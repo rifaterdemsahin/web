@@ -458,7 +458,38 @@
     </footer>
 
     <script>
-        document.getElementById('emailForm').addEventListener('submit', function(e) {
+        // Function to fetch coupon code from text file
+        async function fetchCouponCode() {
+            try {
+                const response = await fetch('coupons.txt');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch coupon code');
+                }
+                const couponCode = await response.text();
+                return couponCode.trim();
+            } catch (error) {
+                console.error('Error fetching coupon code:', error);
+                // Fallback coupon code if file can't be read
+                return 'UDEMY50OFF2024';
+            }
+        }
+
+        // Function to update coupon display
+        async function updateCouponDisplay() {
+            const couponCode = await fetchCouponCode();
+            const couponElement = document.getElementById('couponCode');
+            if (couponElement) {
+                couponElement.textContent = couponCode;
+            }
+            return couponCode;
+        }
+
+        // Load coupon code when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCouponDisplay();
+        });
+
+        document.getElementById('emailForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const email = document.getElementById('email').value;
@@ -480,14 +511,26 @@
             submitButton.disabled = true;
             loading.classList.add('show');
             
-            // Store email in localStorage for the next page
-            localStorage.setItem('submittedEmail', email);
-            
-            // Simulate processing time (you can remove this in production)
-            setTimeout(() => {
-                // Redirect to the post-email page with email parameter
-                window.location.href = `post-email-page.html?email=${encodeURIComponent(email)}`;
-            }, 1500);
+            try {
+                // Get the current coupon code
+                const couponCode = await fetchCouponCode();
+                
+                // Store email and coupon code in localStorage for the next page
+                localStorage.setItem('submittedEmail', email);
+                localStorage.setItem('couponCode', couponCode);
+                
+                // Simulate processing time (you can remove this in production)
+                setTimeout(() => {
+                    // Redirect to the post-email page with email parameter
+                    window.location.href = `post-email-page.html?email=${encodeURIComponent(email)}`;
+                }, 1500);
+            } catch (error) {
+                console.error('Error processing form:', error);
+                errorMessage.textContent = 'An error occurred. Please try again.';
+                errorMessage.classList.add('show');
+                submitButton.disabled = false;
+                loading.classList.remove('show');
+            }
         });
         
         function isValidEmail(email) {
