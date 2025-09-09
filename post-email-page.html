@@ -671,6 +671,20 @@
             const container = document.querySelector('.container');
             container.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
         });
+
+        // Auto-update footer copyright year
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            const copyrightElements = document.querySelectorAll('.footer-bottom p');
+            copyrightElements.forEach(element => {
+                if (element.textContent.includes('©')) {
+                    element.textContent = element.textContent.replace(/\d{4}/, currentYear);
+                }
+            });
+        }
+
+        // Update copyright year when page loads
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
     </script>
 </body>
 </html>
