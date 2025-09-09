@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Your Free Udemy Coupon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #f5576c);
+        }
+
+        .icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #A435F0, #8B2FC7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            animation: pulse 2s infinite;
+        }
+
+        .icon::after {
+            content: '🎓';
+            font-size: 40px;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        input[type="email"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #A435F0;
+            box-shadow: 0 0 0 3px rgba(164, 53, 240, 0.1);
+        }
+
+        .submit-button {
+            width: 100%;
+            background: linear-gradient(135deg, #A435F0, #8B2FC7);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(164, 53, 240, 0.4);
+        }
+
+        .submit-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading {
+            display: none;
+            margin: 20px 0;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #A435F0;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .benefits {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .benefits h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .benefit-item::before {
+            content: '✓';
+            color: #4CAF50;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon"></div>
+        
+        <h1>Get Your Free Udemy Coupon!</h1>
+        <p class="subtitle">Enter your email below to receive an exclusive 50% discount code for any Udemy course.</p>
+        
+        <form id="emailForm">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                <div class="error-message" id="errorMessage"></div>
+            </div>
+            
+            <button type="submit" class="submit-button" id="submitButton">
+                Get My Coupon Code
+            </button>
+        </form>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Processing your request...</p>
+        </div>
+        
+        <div class="benefits">
+            <h3>What you'll get:</h3>
+            <div class="benefit-item">50% off any Udemy course</div>
+            <div class="benefit-item">Valid for 30 days</div>
+            <div class="benefit-item">Instant access to thousands of courses</div>
+            <div class="benefit-item">No hidden fees or subscriptions</div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('emailForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const submitButton = document.getElementById('submitButton');
+            const loading = document.getElementById('loading');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Validate email
+            if (!email || !isValidEmail(email)) {
+                errorMessage.textContent = 'Please enter a valid email address';
+                errorMessage.classList.add('show');
+                return;
+            }
+            
+            // Hide error message
+            errorMessage.classList.remove('show');
+            
+            // Show loading state
+            submitButton.disabled = true;
+            loading.classList.add('show');
+            
+            // Store email in localStorage for the next page
+            localStorage.setItem('submittedEmail', email);
+            
+            // Simulate processing time (you can remove this in production)
+            setTimeout(() => {
+                // Redirect to the post-email page with email parameter
+                window.location.href = `post-email-page.html?email=${encodeURIComponent(email)}`;
+            }, 1500);
+        });
+        
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+        
+        // Clear any existing error when user starts typing
+        document.getElementById('email').addEventListener('input', function() {
+            const errorMessage = document.getElementById('errorMessage');
+            errorMessage.classList.remove('show');
+        });
+    </script>
+</body>
+</html>
