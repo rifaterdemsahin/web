@@ -1,0 +1,110 @@
+# AI Courses Configuration
+# This file contains all available courses and their details
+
+current_course:
+  title: "Automated Functional Testing using AI"
+  link: "https://www.udemy.com/course/draft/6810859/?referralCode=7FC8B4873F8059BD00A7"
+  referral_code: "92669EE8EFF90E14C53D"
+  category: "Testing & QA"
+  description: "Learn to implement automated functional testing using AI-powered tools and techniques"
+
+upcoming_courses:
+  - title: "Production-Ready RAG: Building Advanced Q&A Systems"
+    category: "AI/ML"
+    description: "Master the art of building production-ready Retrieval-Augmented Generation systems for advanced Q&A applications"
+    status: "early_bird"
+    
+  - title: "Fine-Tuning Open-Source LLMs: A Practical Guide to Mistral & Llama 3"
+    category: "AI/ML"
+    description: "Learn to fine-tune open-source large language models including Mistral and Llama 3 for your specific use cases"
+    status: "early_bird"
+    
+  - title: "MLOps Fundamentals: CI/CD for Machine Learning from Scratch"
+    category: "MLOps"
+    description: "Build robust MLOps pipelines with CI/CD for machine learning models from the ground up"
+    status: "early_bird"
+    
+  - title: "Building Autonomous AI Agents: From Theory to Deployed Application"
+    category: "AI/ML"
+    description: "Create and deploy autonomous AI agents that can perform complex tasks independently"
+    status: "early_bird"
+    
+  - title: "The AI-Powered Data Analyst: Automating Insights"
+    category: "Data Science"
+    description: "Transform your data analysis workflow with AI-powered automation and insight generation"
+    status: "early_bird"
+    
+  - title: "AI for Product Managers: From Idea to MVP"
+    category: "Product Management"
+    description: "Learn how to leverage AI in product management from initial concept to minimum viable product"
+    status: "early_bird"
+    
+  - title: "AI-Driven Marketing: Automating Content, SEO, and Ad Campaigns"
+    category: "Marketing"
+    description: "Automate your marketing efforts with AI for content creation, SEO optimization, and ad campaign management"
+    status: "early_bird"
+
+existing_courses:
+  - title: "Ultimate Contractor"
+    category: "Career Development"
+    description: "Master the skills needed to become a successful independent contractor"
+    link: "https://www.udemy.com/user/rifat-erdem-sahin-2/"
+    
+  - title: "Test Automation"
+    category: "Testing & QA"
+    description: "Comprehensive guide to test automation strategies and implementation"
+    link: "https://www.udemy.com/user/rifat-erdem-sahin-2/"
+    
+  - title: "Infrastructure As Code"
+    category: "DevOps"
+    description: "Learn to manage and provision infrastructure using code and automation"
+    link: "https://www.udemy.com/user/rifat-erdem-sahin-2/"
+    
+  - title: "SonarQube"
+    category: "Code Quality"
+    description: "Master continuous code quality analysis with SonarQube"
+    link: "https://www.coursera.org/learn/sonarqube-mastery-continuous-code-inspection--security"
+
+course_categories:
+  - name: "AI/ML"
+    description: "Artificial Intelligence and Machine Learning courses"
+    icon: "🤖"
+    
+  - name: "MLOps"
+    description: "Machine Learning Operations and DevOps for AI"
+    icon: "⚙️"
+    
+  - name: "Data Science"
+    description: "Data analysis and insights with AI"
+    icon: "📊"
+    
+  - name: "Product Management"
+    description: "AI for product development and management"
+    icon: "📋"
+    
+  - name: "Marketing"
+    description: "AI-driven marketing automation"
+    icon: "📈"
+    
+  - name: "Testing & QA"
+    description: "AI-powered testing and quality assurance"
+    icon: "🧪"
+    
+  - name: "DevOps"
+    description: "Infrastructure and operations with AI"
+    icon: "🚀"
+    
+  - name: "Code Quality"
+    description: "Code quality and analysis tools"
+    icon: "🔍"
+    
+  - name: "Career Development"
+    description: "Professional development and career growth"
+    icon: "💼"
+
+# Configuration settings
+settings:
+  early_bird_discount: 50
+  currency: "USD"
+  default_platform: "udemy"
+  fallback_platform: "coursera"

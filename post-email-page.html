@@ -608,49 +608,88 @@
             });
         }
         
-        // Load and display coupon data
-        function loadCouponData() {
+        // Function to fetch course data from YAML file
+        async function fetchCourseData() {
             try {
-                const couponDataStr = localStorage.getItem('couponData');
-                if (couponDataStr) {
-                    const couponData = JSON.parse(couponDataStr);
+                const response = await fetch('courses.yaml');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch course data');
+                }
+                const yamlText = await response.text();
+                
+                // Simple YAML parsing for current_course section
+                const lines = yamlText.split('\n');
+                const courseData = {};
+                let inCurrentCourse = false;
+                
+                for (let line of lines) {
+                    line = line.trim();
                     
-                    // Update course title
-                    const courseTitle = document.getElementById('courseTitle');
-                    if (courseTitle) {
-                        courseTitle.textContent = couponData.course;
+                    if (line === 'current_course:') {
+                        inCurrentCourse = true;
+                        continue;
                     }
                     
-                    // Update referral code
-                    const referralCode = document.getElementById('referralCode');
-                    if (referralCode) {
-                        referralCode.textContent = couponData.referralCode;
-                    }
-                    
-                    // Update course link
-                    const courseLink = document.getElementById('courseLink');
-                    if (courseLink) {
-                        courseLink.href = couponData.link;
-                    }
-                } else {
-                    // Fallback data if localStorage is empty
-                    const courseTitle = document.getElementById('courseTitle');
-                    if (courseTitle) {
-                        courseTitle.textContent = 'Automated Functional Testing using AI';
-                    }
-                    
-                    const referralCode = document.getElementById('referralCode');
-                    if (referralCode) {
-                        referralCode.textContent = '92669EE8EFF90E14C53D';
-                    }
-                    
-                    const courseLink = document.getElementById('courseLink');
-                    if (courseLink) {
-                        courseLink.href = 'https://www.udemy.com/course/draft/6810859/?referralCode=7FC8B4873F8059BD00A7';
+                    if (inCurrentCourse) {
+                        if (line.startsWith('title:')) {
+                            courseData.title = line.split('title:')[1].trim().replace(/"/g, '');
+                        } else if (line.startsWith('link:')) {
+                            courseData.link = line.split('link:')[1].trim().replace(/"/g, '');
+                        } else if (line.startsWith('referral_code:')) {
+                            courseData.referralCode = line.split('referral_code:')[1].trim().replace(/"/g, '');
+                        } else if (line.startsWith('description:')) {
+                            courseData.description = line.split('description:')[1].trim().replace(/"/g, '');
+                        } else if (line && !line.startsWith(' ') && !line.startsWith('-')) {
+                            // End of current_course section
+                            break;
+                        }
                     }
                 }
+                
+                return courseData;
             } catch (error) {
-                console.error('Error loading coupon data:', error);
+                console.error('Error fetching course data:', error);
+                // Fallback course data if YAML can't be read
+                return {
+                    title: 'Automated Functional Testing using AI',
+                    link: 'https://www.udemy.com/course/draft/6810859/?referralCode=7FC8B4873F8059BD00A7',
+                    referralCode: '92669EE8EFF90E14C53D',
+                    description: 'Learn to implement automated functional testing using AI-powered tools and techniques'
+                };
+            }
+        }
+
+        // Load and display course data
+        async function loadCouponData() {
+            try {
+                const courseData = await fetchCourseData();
+                
+                // Update course title
+                const courseTitle = document.getElementById('courseTitle');
+                if (courseTitle) {
+                    courseTitle.textContent = courseData.title;
+                }
+                
+                // Update referral code
+                const referralCode = document.getElementById('referralCode');
+                if (referralCode) {
+                    referralCode.textContent = courseData.referralCode;
+                }
+                
+                // Update course link
+                const courseLink = document.getElementById('courseLink');
+                if (courseLink) {
+                    courseLink.href = courseData.link;
+                }
+                
+                // Update course description if element exists
+                const courseDescription = document.querySelector('.course-description');
+                if (courseDescription && courseData.description) {
+                    courseDescription.textContent = courseData.description;
+                }
+                
+            } catch (error) {
+                console.error('Error loading course data:', error);
             }
         }
 
