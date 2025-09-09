@@ -210,6 +210,31 @@
             color: var(--text-secondary);
         }
 
+        .course-info {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid #e9ecef;
+            text-align: center;
+        }
+
+        .course-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .course-info .course-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .course-link-container {
+            margin-top: 1.5rem;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
@@ -484,20 +509,26 @@
         <div class="success-icon"></div>
         
         <h1>Thank You!</h1>
-        <p class="subtitle">Your email has been successfully submitted. Here's your exclusive Udemy coupon!</p>
+        <p class="subtitle">Your email has been successfully submitted. Here's your exclusive course access!</p>
         
-        <div class="coupon-container">
-            <div class="coupon-label">🎉 Your Exclusive Coupon Code</div>
-            <div class="coupon-code">
-                <div class="coupon-value" id="couponCode">UDEMY2024</div>
-            </div>
-            <p class="coupon-description">Get 50% off on any Udemy course!</p>
-            <button class="copy-button" onclick="copyCoupon()">Copy Code</button>
+        <div class="course-info">
+            <h3 id="courseTitle">Loading course information...</h3>
+            <p class="course-description">Get instant access to this comprehensive course</p>
         </div>
         
-        <a href="https://www.udemy.com" target="_blank" class="udemy-link">
-            🚀 Browse Udemy Courses
-        </a>
+        <div class="coupon-container">
+            <div class="coupon-label">🎉 Your Referral Code</div>
+            <div class="coupon-code">
+                <div class="coupon-value" id="referralCode">Loading...</div>
+            </div>
+            <button class="copy-button" onclick="copyReferralCode()">Copy Code</button>
+        </div>
+        
+        <div class="course-link-container">
+            <a href="#" id="courseLink" target="_blank" class="udemy-link">
+                🚀 Access Course Now
+            </a>
+        </div>
         
         <div class="loading" id="loading">
             <div class="spinner"></div>
@@ -545,9 +576,9 @@
         }
         
         // Copy coupon code to clipboard
-        function copyCoupon() {
-            const couponCode = document.getElementById('couponCode').textContent;
-            navigator.clipboard.writeText(couponCode).then(() => {
+        function copyReferralCode() {
+            const referralCode = document.getElementById('referralCode').textContent;
+            navigator.clipboard.writeText(referralCode).then(() => {
                 const button = document.querySelector('.copy-button');
                 const originalText = button.textContent;
                 button.textContent = 'Copied!';
@@ -561,7 +592,7 @@
                 console.error('Failed to copy: ', err);
                 // Fallback for older browsers
                 const textArea = document.createElement('textarea');
-                textArea.value = couponCode;
+                textArea.value = referralCode;
                 document.body.appendChild(textArea);
                 textArea.select();
                 document.execCommand('copy');
@@ -577,6 +608,52 @@
             });
         }
         
+        // Load and display coupon data
+        function loadCouponData() {
+            try {
+                const couponDataStr = localStorage.getItem('couponData');
+                if (couponDataStr) {
+                    const couponData = JSON.parse(couponDataStr);
+                    
+                    // Update course title
+                    const courseTitle = document.getElementById('courseTitle');
+                    if (courseTitle) {
+                        courseTitle.textContent = couponData.course;
+                    }
+                    
+                    // Update referral code
+                    const referralCode = document.getElementById('referralCode');
+                    if (referralCode) {
+                        referralCode.textContent = couponData.referralCode;
+                    }
+                    
+                    // Update course link
+                    const courseLink = document.getElementById('courseLink');
+                    if (courseLink) {
+                        courseLink.href = couponData.link;
+                    }
+                } else {
+                    // Fallback data if localStorage is empty
+                    const courseTitle = document.getElementById('courseTitle');
+                    if (courseTitle) {
+                        courseTitle.textContent = 'Automated Functional Testing using AI';
+                    }
+                    
+                    const referralCode = document.getElementById('referralCode');
+                    if (referralCode) {
+                        referralCode.textContent = '92669EE8EFF90E14C53D';
+                    }
+                    
+                    const courseLink = document.getElementById('courseLink');
+                    if (courseLink) {
+                        courseLink.href = 'https://www.udemy.com/course/draft/6810859/?referralCode=7FC8B4873F8059BD00A7';
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading coupon data:', error);
+            }
+        }
+
         // Make POST request to n8n webhook
         async function sendToN8N(email) {
             if (!email) {
@@ -625,6 +702,9 @@
         
         // Initialize page
         document.addEventListener('DOMContentLoaded', function() {
+            // Load and display coupon data first
+            loadCouponData();
+            
             const email = getEmailFromSource();
             
             if (email) {
@@ -634,7 +714,7 @@
                 console.warn('No email found in URL parameters or localStorage');
                 // Still show the page but without n8n call
                 const statusMessage = document.getElementById('statusMessage');
-                statusMessage.textContent = '⚠️ Email information not found, but your coupon is still valid!';
+                statusMessage.textContent = '⚠️ Email information not found, but your course access is still valid!';
                 statusMessage.classList.add('show', 'error');
             }
             

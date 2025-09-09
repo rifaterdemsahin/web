@@ -304,6 +304,26 @@
             color: #666;
         }
 
+        .course-preview {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid #e9ecef;
+        }
+
+        .course-preview h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .course-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
         .benefit-item::before {
             content: '✓';
             color: #4CAF50;
@@ -407,8 +427,13 @@
             <div class="form-container">
         <div class="icon"></div>
         
-        <h1>Get Your Free Udemy Coupon!</h1>
-        <p class="subtitle">Enter your email below to receive an exclusive 50% discount code for any Udemy course.</p>
+        <h1>Get Your Free Udemy Course Access!</h1>
+        <p class="subtitle">Enter your email below to receive exclusive access to our featured course.</p>
+        
+        <div class="course-preview">
+            <h3 id="courseTitle">Loading course information...</h3>
+            <p class="course-description">Get instant access to this comprehensive course with your referral code.</p>
+        </div>
         
         <form id="emailForm">
             <div class="form-group">
@@ -429,10 +454,10 @@
         
         <div class="benefits">
             <h3>What you'll get:</h3>
-            <div class="benefit-item">50% off any Udemy course</div>
-            <div class="benefit-item">Valid for 30 days</div>
-            <div class="benefit-item">Instant access to thousands of courses</div>
+            <div class="benefit-item">Exclusive referral code for the featured course</div>
+            <div class="benefit-item">Direct access to the course link</div>
             <div class="benefit-item">No hidden fees or subscriptions</div>
+            <div class="benefit-item">Instant access upon email submission</div>
             </div>
         </div>
     </main>
@@ -458,30 +483,58 @@
     </footer>
 
     <script>
-        // Function to fetch coupon code from text file
-        async function fetchCouponCode() {
+        // Function to fetch coupon data from text file
+        async function fetchCouponData() {
             try {
                 const response = await fetch('coupons.txt');
                 if (!response.ok) {
-                    throw new Error('Failed to fetch coupon code');
+                    throw new Error('Failed to fetch coupon data');
                 }
-                const couponCode = await response.text();
-                return couponCode.trim();
+                const text = await response.text();
+                
+                // Parse the text file to extract the 3 properties
+                const lines = text.split('\n').filter(line => line.trim() !== '' && line.trim() !== '---');
+                const couponData = {};
+                
+                lines.forEach(line => {
+                    if (line.includes('Course :')) {
+                        couponData.course = line.split('Course :')[1].trim();
+                    } else if (line.includes('Link :')) {
+                        couponData.link = line.split('Link :')[1].trim();
+                    } else if (line.includes('Referral Code :')) {
+                        couponData.referralCode = line.split('Referral Code :')[1].trim();
+                    }
+                });
+                
+                return couponData;
             } catch (error) {
-                console.error('Error fetching coupon code:', error);
-                // Fallback coupon code if file can't be read
-                return 'UDEMY50OFF2024';
+                console.error('Error fetching coupon data:', error);
+                // Fallback coupon data if file can't be read
+                return {
+                    course: 'Automated Functional Testing using AI',
+                    link: 'https://www.udemy.com/course/draft/6810859/?referralCode=7FC8B4873F8059BD00A7',
+                    referralCode: '92669EE8EFF90E14C53D'
+                };
             }
         }
 
         // Function to update coupon display
         async function updateCouponDisplay() {
-            const couponCode = await fetchCouponCode();
-            const couponElement = document.getElementById('couponCode');
-            if (couponElement) {
-                couponElement.textContent = couponCode;
+            const couponData = await fetchCouponData();
+            
+            // Update course title if element exists
+            const courseElement = document.getElementById('courseTitle');
+            if (courseElement) {
+                courseElement.textContent = couponData.course;
             }
-            return couponCode;
+            
+            // Update referral code if element exists
+            const codeElement = document.getElementById('couponCode');
+            if (codeElement) {
+                codeElement.textContent = couponData.referralCode;
+            }
+            
+            return couponData;
         }
 
         // Load coupon code when page loads
@@ -512,12 +565,12 @@
             loading.classList.add('show');
             
             try {
-                // Get the current coupon code
-                const couponCode = await fetchCouponCode();
+                // Get the current coupon data
+                const couponData = await fetchCouponData();
                 
-                // Store email and coupon code in localStorage for the next page
+                // Store email and coupon data in localStorage for the next page
                 localStorage.setItem('submittedEmail', email);
-                localStorage.setItem('couponCode', couponCode);
+                localStorage.setItem('couponData', JSON.stringify(couponData));
                 
                 // Simulate processing time (you can remove this in production)
                 setTimeout(() => {
