@@ -401,6 +401,58 @@
             flex-wrap: wrap;
         }
 
+        /* Video Section */
+        .video-section {
+            padding: 6rem 0;
+            background: var(--bg-primary);
+        }
+
+        .video-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .video-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .video-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
         /* Social Media Section */
         .social-section {
             padding: 4rem 0;
@@ -619,6 +671,15 @@
             .social-title {
                 font-size: 2rem;
             }
+
+            .video-title {
+                font-size: 2rem;
+            }
+
+            .video-cta {
+                flex-direction: column;
+                align-items: center;
+            }
         }
 
         @media (max-width: 480px) {
@@ -663,7 +724,7 @@
             <a href="#" class="logo">Rifat Erdem Sahin</a>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
-                <li><a href="blog.html">Blog</a></li>
+                <li><a href="https://rifaterdemsahin.com/" target="_blank">Blog</a></li>
                 <li><a href="courses.html">Courses</a></li>
                 <li><a href="delivery-pilot.html">Delivery Pilot</a></li>
                 <li><a href="cv.html">CV</a></li>
@@ -783,6 +844,29 @@
         </div>
     </section>
 
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="container">
+            <div class="video-content">
+                <h2 class="video-title">CV as Code</h2>
+                <p class="video-subtitle">Watch my latest video on modernizing your professional profile</p>
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/dCU0GpriG1o" 
+                        title="CV as Code - Rifat Erdem Sahin"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="video-cta">
+                    <a href="https://youtu.be/dCU0GpriG1o" target="_blank" class="btn btn-primary">Watch on YouTube</a>
+                    <a href="cv.html" class="btn btn-secondary">View My CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Social Media Section -->
     <section class="social-section">
         <div class="container">
@@ -817,7 +901,7 @@
             <p class="footer-text">Let's connect and grow together in the world of technology</p>
             <div class="footer-links">
                 <a href="#about">About</a>
-                <a href="blog.html">Blog</a>
+                <a href="https://rifaterdemsahin.com/" target="_blank">Blog</a>
                 <a href="courses.html">Courses</a>
                 <a href="delivery-pilot.html">Delivery Pilot</a>
                 <a href="cv.html">CV</a>
