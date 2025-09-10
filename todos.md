@@ -1,0 +1,4 @@
+-  create a folder structure for the html other than index.html > update the references
+-  update the post and use the n8n structure in the background
+-  move the blog to blog.rifaterdemsahin
+-  live site www.rifaterdemsahin.com 
