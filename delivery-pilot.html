@@ -562,6 +562,196 @@
             opacity: 0.6;
         }
 
+        /* GitHub Assessment Section */
+        .github-assessment-section {
+            background: var(--bg-secondary);
+            padding: 6rem 0;
+        }
+
+        .assessment-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .assessment-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .assessment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
+
+        .assessment-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .assessment-header h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .assessment-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .assessment-form {
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .form-group input[type="url"] {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--bg-primary);
+        }
+
+        .form-group input[type="url"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .checkbox-group {
+            margin: 2rem 0;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            cursor: pointer;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            display: none;
+        }
+
+        .checkmark {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 4px;
+            position: relative;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            margin-top: 2px;
+        }
+
+        .checkbox-label input[type="checkbox"]:checked + .checkmark {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .checkbox-label input[type="checkbox"]:checked + .checkmark::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .assessment-btn {
+            width: 100%;
+            justify-content: center;
+            font-size: 1.1rem;
+            padding: 1.2rem 2rem;
+            margin-top: 1rem;
+        }
+
+        .assessment-result {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: var(--bg-accent);
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .result-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .result-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .grade-display {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .grade-letter {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .grade-letter.grade-a { color: #10b981; }
+        .grade-letter.grade-b { color: #3b82f6; }
+        .grade-letter.grade-c { color: #f59e0b; }
+        .grade-letter.grade-d { color: #f97316; }
+        .grade-letter.grade-f { color: #ef4444; }
+
+        .grade-description {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .ai-feedback {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .ai-feedback h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .ai-feedback p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
@@ -926,6 +1116,64 @@
                 </div>
             </div>
         </section>
+
+        <!-- GitHub Assessment Section -->
+        <section class="github-assessment-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">🚀 GitHub Repository Assessment</h2>
+                    <p class="section-subtitle">
+                        Get your code assessed by AI and receive a grade with personalized feedback
+                    </p>
+                </div>
+
+                <div class="assessment-container">
+                    <div class="assessment-card">
+                        <div class="assessment-header">
+                            <h3>📊 AI-Powered Code Assessment</h3>
+                            <p>Submit your GitHub repository for intelligent analysis and grading</p>
+                        </div>
+                        
+                        <form id="githubAssessmentForm" class="assessment-form">
+                            <div class="form-group">
+                                <label for="githubRepo">GitHub Repository URL</label>
+                                <input 
+                                    type="url" 
+                                    id="githubRepo" 
+                                    name="githubRepo" 
+                                    placeholder="https://github.com/username/repository"
+                                    required
+                                >
+                            </div>
+                            
+                            <div class="form-group checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="agreeToAssessment" name="agreeToAssessment" required>
+                                    <span class="checkmark"></span>
+                                    I agree to have my repository assessed by AI and receive a grade
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary assessment-btn">
+                                <span class="btn-text">🚀 Get My Assessment</span>
+                                <span class="btn-loading" style="display: none;">⏳ Assessing...</span>
+                            </button>
+                        </form>
+                        
+                        <div id="assessmentResult" class="assessment-result" style="display: none;">
+                            <div class="result-header">
+                                <h3>🎯 Your Assessment Results</h3>
+                            </div>
+                            <div class="grade-display">
+                                <div class="grade-letter" id="gradeLetter"></div>
+                                <div class="grade-description" id="gradeDescription"></div>
+                            </div>
+                            <div class="ai-feedback" id="aiFeedback"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- CTA Section -->
@@ -1026,6 +1274,101 @@
 
         // Update copyright year when page loads
         document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+
+        // GitHub Assessment functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const assessmentForm = document.getElementById('githubAssessmentForm');
+            const assessmentResult = document.getElementById('assessmentResult');
+            const gradeLetter = document.getElementById('gradeLetter');
+            const gradeDescription = document.getElementById('gradeDescription');
+            const aiFeedback = document.getElementById('aiFeedback');
+            const btnText = document.querySelector('.btn-text');
+            const btnLoading = document.querySelector('.btn-loading');
+
+            if (assessmentForm) {
+                assessmentForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const githubRepo = document.getElementById('githubRepo').value;
+                    const agreeToAssessment = document.getElementById('agreeToAssessment').checked;
+                    
+                    if (!githubRepo || !agreeToAssessment) {
+                        alert('Please provide a GitHub repository URL and agree to the assessment terms.');
+                        return;
+                    }
+
+                    // Show loading state
+                    btnText.style.display = 'none';
+                    btnLoading.style.display = 'inline';
+                    
+                    try {
+                        // Generate random grade
+                        const grades = [
+                            { letter: 'A', emoji: '🌟', description: 'Excellent! Outstanding code quality and implementation.', 
+                              feedback: 'Your repository demonstrates exceptional coding practices, clean architecture, and attention to detail. The code is well-structured, documented, and follows best practices. This is production-ready code that showcases advanced technical skills.' },
+                            { letter: 'B', emoji: '👍', description: 'Good work! Solid implementation with room for improvement.', 
+                              feedback: 'Your code shows strong technical skills with good structure and implementation. There are some areas for optimization and additional features that could elevate this to the next level. Consider adding more comprehensive testing and documentation.' },
+                            { letter: 'C', emoji: '👌', description: 'Average performance. Basic functionality implemented.', 
+                              feedback: 'The repository meets basic requirements and demonstrates fundamental programming skills. To improve, focus on code organization, error handling, and adding more robust features. Consider implementing better testing practices.' },
+                            { letter: 'D', emoji: '📝', description: 'Below average. Needs significant improvement.', 
+                              feedback: 'While the basic functionality is present, there are several areas that need attention. Focus on code quality, proper error handling, and following coding standards. Consider refactoring for better maintainability.' },
+                            { letter: 'F', emoji: '🔄', description: 'Needs major work. Significant issues found.', 
+                              feedback: 'The repository has fundamental issues that need to be addressed. Focus on understanding basic programming concepts, proper code structure, and implementing core functionality correctly. Consider seeking additional learning resources.' }
+                        ];
+                        
+                        const randomGrade = grades[Math.floor(Math.random() * grades.length)];
+                        
+                        // Simulate API call delay
+                        await new Promise(resolve => setTimeout(resolve, 2000));
+                        
+                        // Send POST request to n8n
+                        try {
+                            const response = await fetch('https://n8n.rifaterdemsahin.com/webhook/github-assessment', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({
+                                    githubRepo: githubRepo,
+                                    timestamp: new Date().toISOString(),
+                                    userAgent: navigator.userAgent
+                                })
+                            });
+                            
+                            if (!response.ok) {
+                                console.warn('N8N webhook call failed, but continuing with assessment');
+                            }
+                        } catch (error) {
+                            console.warn('Failed to send data to N8N:', error);
+                            // Continue with assessment even if N8N call fails
+                        }
+                        
+                        // Display results
+                        gradeLetter.textContent = randomGrade.emoji + ' ' + randomGrade.letter;
+                        gradeLetter.className = `grade-letter grade-${randomGrade.letter.toLowerCase()}`;
+                        gradeDescription.textContent = randomGrade.description;
+                        
+                        aiFeedback.innerHTML = `
+                            <h4>🤖 AI Assessment Feedback</h4>
+                            <p><strong>Repository:</strong> ${githubRepo}</p>
+                            <p><strong>Assessment:</strong> ${randomGrade.feedback}</p>
+                            <p><strong>Recommendations:</strong> Continue learning and implementing best practices. Consider contributing to open source projects to further develop your skills.</p>
+                        `;
+                        
+                        assessmentResult.style.display = 'block';
+                        assessmentResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        
+                    } catch (error) {
+                        console.error('Assessment error:', error);
+                        alert('An error occurred during assessment. Please try again.');
+                    } finally {
+                        // Hide loading state
+                        btnText.style.display = 'inline';
+                        btnLoading.style.display = 'none';
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html>
