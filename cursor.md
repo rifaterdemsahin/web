@@ -298,6 +298,8 @@ web/
 - **Add image**: Place in `assets/images/` with descriptive name
 - **Update content**: Edit HTML directly, maintain semantic structure
 
+- **SEO**: Make it search engine friendly
+
 ### Key Files to Monitor
 - `pages/index.html` - Main homepage
 - `pages/delivery-pilot.html` - Core service page
