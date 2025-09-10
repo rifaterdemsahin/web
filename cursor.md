@@ -24,8 +24,10 @@ web/
 │   ├── images/               # Images and photos
 │   │   ├── erdem_photo.jpeg  # Profile photo
 │   │   └── delivery_pilot.png # Service image
-│   ├── css/                  # CSS files (future use)
-│   └── js/                   # JavaScript files (future use)
+│   ├── css/                  # CSS files
+│   │   └── main.css          # Main stylesheet
+│   └── js/                   # JavaScript files
+│       └── main.js           # Main JavaScript file
 ├── docs/                     # Documentation
 │   ├── README.md             # Project documentation
 │   ├── courses.yaml          # Course data
@@ -109,16 +111,18 @@ web/
 4. **Performance**: Optimize images, minimize HTTP requests
 
 ### CSS Organization
-1. **CSS Variables**: Use custom properties for consistent theming
-2. **Mobile First**: Write mobile styles first, then enhance for larger screens
-3. **Component-Based**: Group related styles together
-4. **BEM Methodology**: Consider using BEM for complex components
+1. **External Stylesheets**: All styles are in `assets/css/main.css`
+2. **CSS Variables**: Use custom properties for consistent theming
+3. **Mobile First**: Write mobile styles first, then enhance for larger screens
+4. **Component-Based**: Group related styles together
+5. **BEM Methodology**: Consider using BEM for complex components
 
 ### JavaScript Guidelines
-1. **ES6+ Features**: Use modern JavaScript features
-2. **Event Delegation**: Use event delegation for dynamic content
-3. **Performance**: Debounce scroll events, use Intersection Observer
-4. **Progressive Enhancement**: Ensure functionality works without JavaScript
+1. **External Scripts**: All JavaScript is in `assets/js/main.js`
+2. **ES6+ Features**: Use modern JavaScript features
+3. **Event Delegation**: Use event delegation for dynamic content
+4. **Performance**: Debounce scroll events, use Intersection Observer
+5. **Progressive Enhancement**: Ensure functionality works without JavaScript
 
 ## 🔧 Code Quality Standards
 
@@ -294,16 +298,35 @@ web/
 
 ### Common Tasks
 - **Add new page**: Create HTML file in `pages/` directory
-- **Update styles**: Modify CSS variables in `:root`
+- **Update styles**: Modify `assets/css/main.css` and CSS variables in `:root`
 - **Add image**: Place in `assets/images/` with descriptive name
 - **Update content**: Edit HTML directly, maintain semantic structure
-
-- **SEO**: Make it search engine friendly
+- **Add JavaScript**: Modify `assets/js/main.js` for interactive features
 
 ### Key Files to Monitor
-- `pages/index.html` - Main homepage
+- `pages/index.html` - Main homepage (uses external CSS/JS)
 - `pages/delivery-pilot.html` - Core service page
+- `assets/css/main.css` - Main stylesheet
+- `assets/js/main.js` - Main JavaScript file
 - `docs/todos.md` - Project tasks and updates
 - `README.md` - Project documentation
+
+### Current Implementation Status
+✅ **Completed**:
+- External CSS and JavaScript files created
+- Image paths fixed for proper asset loading
+- Responsive design implemented
+- Performance optimizations (debounced scroll events, lazy loading)
+- Modern JavaScript features (ES6+, Intersection Observer)
+
+🔄 **In Progress**:
+- HTML structure validation
+- Cross-browser testing
+- Performance monitoring
+
+📋 **Planned**:
+- Mobile menu implementation
+- Additional page optimizations
+- SEO enhancements
 
 Remember: This website represents Rifat's professional brand and expertise in AI/DevOps. Every change should maintain the high quality and professional appearance while enhancing user experience and technical performance.
