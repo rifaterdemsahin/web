@@ -4,80 +4,235 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Investors - Rifat Erdem Sahin</title>
-    <meta name="description" content="Information for investors interested in Delivery Pilot.">
+    <meta name="description" content="Investment opportunity in Delivery Pilot - AI-powered learning platform bridging technology skills gaps.">
     <link rel="stylesheet" href="../assets/css/main.css">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f4f4f4;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
         }
         .navbar {
-            background: #fff;
-            padding: 1rem;
-            border-bottom: 1px solid #ddd;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
         }
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
         .logo {
             font-size: 1.5rem;
-            font-weight: bold;
+            font-weight: 800;
             text-decoration: none;
-            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
+            flex-wrap: wrap;
         }
         .nav-links a {
             text-decoration: none;
             color: #555;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: white;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
         }
         .main-content {
-            padding: 2rem 1rem;
+            padding: 3rem 2rem;
         }
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
-            background: #fff;
-            padding: 2rem;
-            border-radius: 8px;
         }
-        .section-header {
-            text-align: center;
+        .content-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
             margin-bottom: 2rem;
         }
         .section-title {
             font-size: 2rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+            font-weight: 700;
         }
         .section-subtitle {
             font-size: 1.1rem;
-            color: #777;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        .opportunity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .opportunity-card {
+            padding: 2rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .opportunity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .opportunity-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .opportunity-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+        .opportunity-desc {
+            color: #555;
+            line-height: 1.6;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        .cta-section {
+            text-align: center;
+            padding: 3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            margin: 3rem 0;
+        }
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .feature-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+        .feature-list li {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+        }
+        .feature-list li strong {
+            color: #667eea;
         }
         .footer {
             text-align: center;
-            padding: 2rem 1rem;
-            margin-top: 2rem;
-            background: #333;
+            padding: 3rem 2rem;
+            background: rgba(0,0,0,0.9);
             color: #fff;
+            margin-top: 3rem;
         }
         .footer-links {
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
         .footer-links a {
             color: #fff;
             text-decoration: none;
-            margin: 0 0.5rem;
+            padding: 0.5rem 1rem;
+            transition: opacity 0.3s;
+        }
+        .footer-links a:hover {
+            opacity: 0.7;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .nav-links {
+                gap: 0.5rem;
+                font-size: 0.9rem;
+            }
+            .content-card {
+                padding: 2rem 1.5rem;
+            }
         }
     </style>
 </head>
@@ -101,16 +256,170 @@
         </div>
     </nav>
 
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Investment Opportunity</h1>
+        <p>Join us in building the future of AI-powered learning and bridging the global skills gap</p>
+    </section>
+
     <main class="main-content">
-        <section class="container">
-            <div class="section-header">
-                <h1 class="section-title">For Investors</h1>
+        <div class="container">
+            <!-- Market Opportunity -->
+            <div class="content-card">
+                <h2 class="section-title">💡 The Opportunity</h2>
                 <p class="section-subtitle">
-                    Investors who are interested in Delivery Pilot can contact us at:
+                    The AI revolution is creating an unprecedented skills gap crisis. Organizations are struggling to adapt, 
+                    and professionals are being left behind. Delivery Pilot is positioned to capture this massive market opportunity.
                 </p>
-                <p><a href="mailto:contact@rifaterdemsahin.com">contact@rifaterdemsahin.com</a></p>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">$340B</div>
+                        <div class="stat-label">Global Corporate Training Market</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">87%</div>
+                        <div class="stat-label">Companies Facing Skills Gaps</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">50M+</div>
+                        <div class="stat-label">Tech Workers Needing Upskilling</div>
+                    </div>
+                </div>
             </div>
-        </section>
+
+            <!-- Why Delivery Pilot -->
+            <div class="content-card">
+                <h2 class="section-title">🚀 Why Delivery Pilot?</h2>
+                <div class="opportunity-grid">
+                    <div class="opportunity-card">
+                        <div class="opportunity-icon">🎯</div>
+                        <h3 class="opportunity-title">Unique Positioning</h3>
+                        <p class="opportunity-desc">
+                            We bridge the gap between vibe coders (juniors) and agentic frameworks (seniors), 
+                            creating always learning organizations through AI-powered guidance.
+                        </p>
+                    </div>
+                    <div class="opportunity-card">
+                        <div class="opportunity-icon">⚡</div>
+                        <h3 class="opportunity-title">Scalable Model</h3>
+                        <p class="opportunity-desc">
+                            From £500/day remote sessions to £1,200/day enterprise implementations, 
+                            our tiered approach scales from individuals to global enterprises.
+                        </p>
+                    </div>
+                    <div class="opportunity-card">
+                        <div class="opportunity-icon">🌍</div>
+                        <h3 class="opportunity-title">Global Reach</h3>
+                        <p class="opportunity-desc">
+                            Remote-first model with UK onsite and global implementation capabilities, 
+                            positioning us for rapid international expansion.
+                        </p>
+                    </div>
+                    <div class="opportunity-card">
+                        <div class="opportunity-icon">🔄</div>
+                        <h3 class="opportunity-title">Recurring Revenue</h3>
+                        <p class="opportunity-desc">
+                            Continuous learning needs create ongoing engagement, with support plans 
+                            and implementation services generating predictable revenue streams.
+                        </p>
+                    </div>
+                    <div class="opportunity-card">
+                        <div class="opportunity-icon">🤖</div>
+                        <h3 class="opportunity-title">AI-First Approach</h3>
+                        <p class="opportunity-desc">
+                            Our AI-powered assessment and learning initiation system identifies gaps 
+                            and kickstarts self-learning automatically, reducing delivery costs.
+                        </p>
+                    </div>
+                    <div class="opportunity-card">
+                        <div class="opportunity-icon">📈</div>
+                        <h3 class="opportunity-title">Proven Traction</h3>
+                        <p class="opportunity-desc">
+                            Active showcase courses, established pricing model, and operational 
+                            delivery framework demonstrate market validation and execution capability.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business Model -->
+            <div class="content-card">
+                <h2 class="section-title">💼 Business Model</h2>
+                <p class="section-subtitle">Three-tier service model with clear revenue streams</p>
+                
+                <ul class="feature-list">
+                    <li>
+                        <strong>Starter (£500/day):</strong> Remote daily sessions targeting individual developers 
+                        and small teams. High volume, scalable delivery model.
+                    </li>
+                    <li>
+                        <strong>Professional (£800/day):</strong> Onsite UK sessions for mid-market companies. 
+                        Face-to-face value with integration guidance and priority support.
+                    </li>
+                    <li>
+                        <strong>Enterprise (£1,200/day):</strong> Global implementation for large organizations. 
+                        Enterprise-wide solutions with 24/7 support and post-implementation services.
+                    </li>
+                    <li>
+                        <strong>Platform Revenue:</strong> Showcase courses, newsletter subscriptions, and 
+                        AI-powered skills gap analysis creating additional monetization channels.
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Investment Use -->
+            <div class="content-card">
+                <h2 class="section-title">💰 Use of Funds</h2>
+                <p class="section-subtitle">Strategic deployment for rapid growth and market capture</p>
+                
+                <ul class="feature-list">
+                    <li>
+                        <strong>Platform Development:</strong> Enhance AI assessment capabilities, build automated 
+                        learning path generation, and develop self-service onboarding tools.
+                    </li>
+                    <li>
+                        <strong>Team Expansion:</strong> Hire delivery pilots, technical instructors, and sales 
+                        professionals to scale operations across regions.
+                    </li>
+                    <li>
+                        <strong>Marketing & Sales:</strong> Build brand awareness, create enterprise sales pipeline, 
+                        and establish partnerships with major technology vendors.
+                    </li>
+                    <li>
+                        <strong>Content Creation:</strong> Develop comprehensive course library, create showcase 
+                        implementations, and build thought leadership content.
+                    </li>
+                    <li>
+                        <strong>Infrastructure:</strong> Scale technical infrastructure, implement enterprise-grade 
+                        security, and build global delivery capabilities.
+                    </li>
+                </ul>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="cta-section">
+                <h2>Ready to Transform AI Education?</h2>
+                <p>Join us in building the future of always learning organizations</p>
+                <a href="mailto:contact@rifaterdemsahin.com" class="cta-button">
+                    📧 Contact for Investment Inquiry
+                </a>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="content-card">
+                <h2 class="section-title">📞 Get in Touch</h2>
+                <p class="section-subtitle">
+                    For detailed investor deck, financial projections, and partnership discussions:
+                </p>
+                <p style="text-align: center; font-size: 1.2rem; margin-top: 1rem;">
+                    <strong>Email:</strong> 
+                    <a href="mailto:contact@rifaterdemsahin.com" style="color: #667eea; text-decoration: none;">
+                        contact@rifaterdemsahin.com
+                    </a>
+                </p>
+            </div>
+        </div>
     </main>
 
     <!-- Footer -->
@@ -129,7 +438,7 @@
                 <a href="investor.html">💼 Investors</a>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Rifat Erdem Sahin. All rights reserved.</p>
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
             </div>
         </div>
     </footer>
