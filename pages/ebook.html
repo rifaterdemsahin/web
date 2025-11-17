@@ -263,6 +263,24 @@
         .url-reveal a:hover {
             text-decoration: underline;
         }
+
+        .youtube-subscribe {
+            display: inline-block;
+            background: #ff0000;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: background 0.3s, transform 0.2s;
+            margin-top: 20px;
+        }
+
+        .youtube-subscribe:hover {
+            background: #cc0000;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -321,6 +339,12 @@
                target="_blank"
                rel="noopener noreferrer">
                 📄 <span id="pdfLinkText">Download Your PDF Guide</span>
+            </a>
+            <a href="https://www.youtube.com/@rifaterdemsahin?sub_confirmation=1" 
+               class="youtube-subscribe" 
+               target="_blank" 
+               rel="noopener noreferrer">
+                🔔 Subscribe on YouTube
             </a>
             <div class="url-reveal" id="urlReveal">
                 <strong>🔗 Direct Download Link:</strong><br>
