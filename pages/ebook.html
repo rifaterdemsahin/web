@@ -291,8 +291,8 @@
             loading.classList.add('show');
 
             try {
-                // Replace with your actual n8n webhook URL
-                const n8nWebhookUrl = 'https://your-n8n-instance.com/webhook/email-collection';
+                // n8n webhook URL
+                const n8nWebhookUrl = 'https://n8n.rifaterdemsahin.com/webhook/d12f4c42-0eb5-4d3f-ab81-995cd5ea3676';
                 
                 const response = await fetch(n8nWebhookUrl, {
                     method: 'POST',
@@ -300,10 +300,9 @@
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        email: email,
-                        timestamp: new Date().toISOString(),
-                        source: currentContent.source,
-                        contentType: contentType
+                        'Email address': email,
+                        'Interested In': currentContent.pdfName,
+                        'Timestamp': new Date().toISOString()
                     })
                 });
 
