@@ -184,9 +184,107 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        /* Navigation Styles */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 15px 20px;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links li {
+            display: inline;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        body {
+            padding-top: 80px;
+        }
+
+        .url-reveal {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: #f0f9ff;
+            border: 2px solid #3b82f6;
+            border-radius: 8px;
+            word-break: break-all;
+        }
+
+        .url-reveal.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        .url-reveal a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .url-reveal a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Rifat Erdem Sahin</a>
+            <ul class="nav-links">
+                <li><a href="index.html#about">👨‍💻 About</a></li>
+                <li><a href="cv.html">📄 CV</a></li>
+                <li><a href="contact.html">📞 Contact</a></li>
+                <li><a href="newsletter.html">📧 Newsletter</a></li>
+                <li><a href="courses.html">🎓 Courses</a></li>
+                <li><a href="ebook.html">📚 eBooks</a></li>
+                <li><a href="email-form.html">🎫 Get Coupon</a></li>
+                <li><a href="early-bird-registration.html">🐦 Early Bird</a></li>
+                <li><a href="https://rifaterdemsahin.com/" target="_blank" rel="noopener noreferrer">📝 Blog</a></li>
+                <li><a href="delivery-pilot.html">🚀 Delivery Pilot</a></li>
+                <li><a href="investor.html">💼 Investors</a></li>
+            </ul>
+        </div>
+    </nav>
     <div class="container">
         <div class="icon" id="pageIcon">🚀</div>
         <h1 id="pageTitle">Start Your AI Journey</h1>
@@ -224,6 +322,10 @@
                rel="noopener noreferrer">
                 📄 <span id="pdfLinkText">Download Your PDF Guide</span>
             </a>
+            <div class="url-reveal" id="urlReveal">
+                <strong>🔗 Direct Download Link:</strong><br>
+                <a href="#" id="directPdfUrl" target="_blank" rel="noopener noreferrer"></a>
+            </div>
             <p style="margin-top: 15px; font-size: 14px;">The guide has been sent to your email as well.</p>
         </div>
     </div>
@@ -314,6 +416,13 @@
                     form.style.display = 'none';
                     loading.classList.remove('show');
                     successMessage.classList.add('show');
+                    
+                    // Reveal the direct URL
+                    const urlReveal = document.getElementById('urlReveal');
+                    const directPdfUrl = document.getElementById('directPdfUrl');
+                    directPdfUrl.href = currentContent.pdfUrl;
+                    directPdfUrl.textContent = currentContent.pdfUrl;
+                    urlReveal.classList.add('show');
                 } else {
                     throw new Error('Submission failed');
                 }
