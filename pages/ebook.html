@@ -188,9 +188,9 @@
 </head>
 <body>
     <div class="container">
-        <div class="icon">🚀</div>
-        <h1>Start Your AI Journey</h1>
-        <p class="subtitle">Enter your email to receive the comprehensive guide on Retrieval-Augmented Generation (RAG) and kickstart your AI engineering career.</p>
+        <div class="icon" id="pageIcon">🚀</div>
+        <h1 id="pageTitle">Start Your AI Journey</h1>
+        <p class="subtitle" id="pageSubtitle">Enter your email to receive the comprehensive guide on Retrieval-Augmented Generation (RAG) and kickstart your AI engineering career.</p>
         
         <form id="emailForm">
             <div class="form-group">
@@ -216,18 +216,55 @@
 
         <div class="success-message" id="successMessage">
             <h2>🎉 Success!</h2>
-            <p>Thank you for joining the AI Engineering community! Your comprehensive RAG guide is ready.</p>
+            <p id="successText">Thank you for joining the AI Engineering community! Your comprehensive RAG guide is ready.</p>
             <a href="https://hello.rifaterdemsahin.com/3_UI/rag_apply.pdf" 
+               id="pdfLink"
                class="pdf-link" 
                target="_blank"
                rel="noopener noreferrer">
-                📄 Download Your PDF Guide
+                📄 <span id="pdfLinkText">Download Your PDF Guide</span>
             </a>
             <p style="margin-top: 15px; font-size: 14px;">The guide has been sent to your email as well.</p>
         </div>
     </div>
 
     <script>
+        // eBook Content Configuration
+        const ebookContent = {
+            rag: {
+                icon: '🚀',
+                title: 'Start Your AI Journey',
+                subtitle: 'Enter your email to receive the comprehensive guide on Retrieval-Augmented Generation (RAG) and kickstart your AI engineering career.',
+                pdfUrl: 'https://hello.rifaterdemsahin.com/3_UI/rag_apply.pdf',
+                pdfName: 'RAG Guide',
+                successText: 'Thank you for joining the AI Engineering community! Your comprehensive RAG guide is ready.',
+                source: 'rag_apply_page'
+            },
+            default: {
+                icon: '📚',
+                title: 'AI Engineering Fundamentals',
+                subtitle: 'Get started with AI Engineering basics. Enter your email to receive a comprehensive introduction to AI engineering concepts and best practices.',
+                pdfUrl: 'https://hello.rifaterdemsahin.com/assets/ebook/ai_engineering_basics.pdf',
+                pdfName: 'AI Engineering Basics',
+                successText: 'Welcome to AI Engineering! Your foundational guide is ready to download.',
+                source: 'ai_basics_page'
+            }
+        };
+
+        // Get content type from URL parameter, default to 'rag'
+        const urlParams = new URLSearchParams(window.location.search);
+        const contentType = urlParams.get('type') || 'rag';
+        const currentContent = ebookContent[contentType] || ebookContent.rag;
+
+        // Update page content based on type
+        document.getElementById('pageIcon').textContent = currentContent.icon;
+        document.getElementById('pageTitle').textContent = currentContent.title;
+        document.getElementById('pageSubtitle').textContent = currentContent.subtitle;
+        document.getElementById('pdfLink').href = currentContent.pdfUrl;
+        document.getElementById('pdfLinkText').textContent = `Download Your ${currentContent.pdfName}`;
+        document.getElementById('successText').textContent = currentContent.successText;
+        document.title = currentContent.title;
+
         const form = document.getElementById('emailForm');
         const emailInput = document.getElementById('emailInput');
         const submitBtn = document.getElementById('submitBtn');
@@ -265,7 +302,8 @@
                     body: JSON.stringify({
                         email: email,
                         timestamp: new Date().toISOString(),
-                        source: 'rag_apply_page'
+                        source: currentContent.source,
+                        contentType: contentType
                     })
                 });
 
