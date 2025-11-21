@@ -1404,7 +1404,7 @@
         <section class="github-assessment-section">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">🔍 Identify Your Skills Gaps</h2>
+                    <h2 class="section-title">🔍 Schedule a Free Assessment Call</h2>
                     <p class="section-subtitle">
                         <strong>Start here:</strong> Get your code assessed by AI to identify specific
                         skills gaps and receive personalized feedback on where to focus your learning
@@ -1414,7 +1414,7 @@
                 <div class="assessment-container">
                     <div class="assessment-card">
                         <div class="assessment-header">
-                            <h3>📊 Delivery Pilot - Powered Skills Gap Analysis</h3>
+                            <h3>📊 Delivery Pilot - Schedule a Free Assessment Call</h3>
                             <p>Submit your GitHub repository to identify specific skills gaps and get a personalized
                                 learning roadmap</p>
                         </div>
@@ -1442,8 +1442,8 @@
                             </div>
 
                             <button type="submit" class="btn btn-primary assessment-btn">
-                                <span class="btn-text">🔍 Identify My Skills Gaps</span>
-                                <span class="btn-loading" style="display: none;">⏳ Assessing...</span>
+                                <span class="btn-text">� Schedule Free Call</span>
+                                <span class="btn-loading" style="display: none;">⏳ Scheduling...</span>
                             </button>
                         </form>
 
@@ -1648,9 +1648,14 @@
                         }
 
                         // Display results
-                        gradeLetter.textContent = randomGrade.emoji + ' ' + randomGrade.letter;
-                        gradeLetter.className = `grade-letter grade-${randomGrade.letter.toLowerCase()}`;
-                        gradeDescription.textContent = randomGrade.description;
+                        assessmentForm.style.display = 'none';
+                        assessmentResult.style.display = 'block';
+                        assessmentResult.innerHTML = `
+                            <div class="result-header">
+                                <h3>🎉 Thanks!</h3>
+                                <p>Your assessment request has been received. We will be in touch shortly with your personalized report.</p>
+                            </div>
+                        `;
 
                         aiFeedback.innerHTML = `
                             <h4>🤖 AI Assessment Feedback</h4>
