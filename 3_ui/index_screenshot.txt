@@ -1,0 +1,6 @@
+This file is a placeholder for a screenshot of the main landing page (index.html).
+It should depict:
+- The navigation bar at the top.
+- The hero section with a greeting, title ("Rifat Erdem Sahin"), subtitle, and description.
+- A profile card with an image of Rifat Erdem Sahin, his name, title, and location.
+- The overall layout should be clean, modern, and professional, using the color scheme defined in common-styles.css.

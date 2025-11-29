@@ -1,0 +1,9 @@
+This file is a placeholder for a screenshot of the Delivery Pilot service page (delivery-pilot.html).
+It should depict:
+- The navigation bar at the top.
+- A hero section describing the "Delivery Pilot" service for AI-powered learning, with a call-to-action.
+- Sections outlining "The 3 Stages of Transformation" (Assessment, Training, Implementation).
+- A "Top 10 AI Courses" section.
+- A "Support Plans" (pricing) section.
+- A section to schedule a free assessment call.
+- The overall layout should be clean, modern, and professional, using the color scheme defined in common-styles.css.

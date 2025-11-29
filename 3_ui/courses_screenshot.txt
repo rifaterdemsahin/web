@@ -1,0 +1,7 @@
+This file is a placeholder for a screenshot of the courses page (courses.html).
+It should depict:
+- The navigation bar at the top.
+- A header section with a title ("Delivery Pilot Showcase") and subtitle.
+- A grid of course cards, each showing an icon, category, title, description, duration, level, and enrollment buttons.
+- A "Coming Soon" section with a newsletter signup form.
+- The overall layout should be clean, modern, and professional, using the color scheme defined in common-styles.css.
