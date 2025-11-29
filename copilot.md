@@ -8,12 +8,14 @@ This is a personal website with AI engineering content, including blog posts, co
 - Repository: rifaterdemsahin/web
 
 ## Project Structure
-```
-/pages/ - Main website pages (HTML)
-/assets/ - Static assets (CSS, JS, images, ebooks)
-/docs/ - Documentation and guides
-/2025/ - Blog posts organized by date
-```
+The project follows a 7-folder structure defined in `antigravity.md`:
+1. `1_Real`: Objectives & Key Results
+2. `2_Environment`: Roadmap & Use Cases
+3. `3_UI`: Knowledge & Skill Acquisition
+4. `4_Formula`: Guides & Best Practices
+5. `5_Symbols`: Implementation & Code (Main Web Files)
+6. `6_Semblance`: Error Logging & Solutions
+7. `7_Testing`: Validation & Quality Assurance
 
 ## eBook System
 
@@ -37,8 +39,8 @@ eBook content is managed through an internal JSON structure in the HTML file. Ea
 3. Test with URL parameter: `?type=your-new-type`
 
 ## Development Guidelines
-- Keep HTML files in `/pages/`
-- Store assets in appropriate `/assets/` subdirectories
+- Keep HTML files in `5_Symbols/pages/`
+- Store assets in appropriate `5_Symbols/assets/` subdirectories
 - Use domain `https://hello.rifaterdemsahin.com` for all external links
 - Follow existing styling patterns (gradient backgrounds, rounded corners)
 

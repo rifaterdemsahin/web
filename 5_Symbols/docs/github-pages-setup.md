@@ -96,8 +96,8 @@ Example:
 
 ### Static Pages
 For main site pages, you can use either approach:
-- `pages/index.html` → accessible as `/pages/`
-- `pages/about.html` → accessible as `/pages/about.html`
+- `5_Symbols/pages/index.html` → accessible as `/5_Symbols/pages/`
+- `5_Symbols/pages/about.html` → accessible as `/5_Symbols/pages/about.html`
 
 ## Troubleshooting
 

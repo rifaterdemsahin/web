@@ -8,32 +8,24 @@ This is a personal website for Rifat Erdem Sahin, an AI Solutions Architect base
 
 ```
 web/
-├── index.html                 # Main entry point (redirects to pages/index.html)
-├── pages/                     # All HTML pages
-│   ├── index.html            # Homepage with hero section and about
-│   ├── cv.html               # CV/Resume page
-│   ├── contact.html          # Contact form
-│   ├── newsletter.html       # Newsletter signup
-│   ├── courses.html          # Course showcase
-│   ├── email-form.html       # Email form for coupons
-│   ├── early-bird-registration.html  # Early bird registration
-│   ├── blog.html             # Blog page
-│   ├── delivery-pilot.html   # Delivery Pilot service page
-│   └── post-email-page.html  # Post-email confirmation
-├── assets/                    # Static assets
-│   ├── images/               # Images and photos
-│   │   ├── erdem_photo.jpeg  # Profile photo
-│   │   └── delivery_pilot.png # Service image
-│   ├── css/                  # CSS files
-│   │   └── main.css          # Main stylesheet
-│   └── js/                   # JavaScript files
-│       └── main.js           # Main JavaScript file
-├── docs/                     # Documentation
-│   ├── README.md             # Project documentation
-│   ├── courses.yaml          # Course data
-│   ├── coupons.txt           # Coupon information
-│   ├── todos.md              # Project todos
-│   └── WORDPRESS_DEPLOYMENT_GUIDE.md  # Deployment guide
+├── 1_Real/                   # Objectives & Key Results
+├── 2_Environment/            # Roadmap & Use Cases
+├── 3_UI/                     # Knowledge & Skill Acquisition
+├── 4_Formula/                # Guides & Best Practices
+├── 5_Symbols/                # Implementation & Code
+│   ├── pages/                # All HTML pages
+│   │   ├── index.html        # Homepage with hero section and about
+│   │   └── ...
+│   ├── assets/               # Static assets
+│   │   ├── css/              # CSS files
+│   │   ├── js/               # JavaScript files
+│   │   └── images/           # Images
+│   └── docs/                 # Documentation
+├── 6_Semblance/              # Error Logging & Solutions
+├── 7_Testing/                # Validation & Quality Assurance
+├── antigravity.md            # Project Philosophy
+├── copilot.md                # Copilot Instructions
+├── gemini.md                 # Gemini Instructions
 └── cursor.md                 # This file - Cursor best practices
 ```
 
@@ -111,14 +103,14 @@ web/
 4. **Performance**: Optimize images, minimize HTTP requests
 
 ### CSS Organization
-1. **External Stylesheets**: All styles are in `assets/css/main.css`
+1. **External Stylesheets**: All styles are in `5_Symbols/assets/css/main.css`
 2. **CSS Variables**: Use custom properties for consistent theming
 3. **Mobile First**: Write mobile styles first, then enhance for larger screens
 4. **Component-Based**: Group related styles together
 5. **BEM Methodology**: Consider using BEM for complex components
 
 ### JavaScript Guidelines
-1. **External Scripts**: All JavaScript is in `assets/js/main.js`
+1. **External Scripts**: All JavaScript is in `5_Symbols/assets/js/main.js`
 2. **ES6+ Features**: Use modern JavaScript features
 3. **Event Delegation**: Use event delegation for dynamic content
 4. **Performance**: Debounce scroll events, use Intersection Observer
@@ -564,18 +556,18 @@ This SEO implementation provides comprehensive search engine optimization while 
 ## 🎯 Quick Reference
 
 ### Common Tasks
-- **Add new page**: Create HTML file in `pages/` directory
-- **Update styles**: Modify `assets/css/main.css` and CSS variables in `:root`
-- **Add image**: Place in `assets/images/` with descriptive name
+- **Add new page**: Create HTML file in `5_Symbols/pages/` directory
+- **Update styles**: Modify `5_Symbols/assets/css/main.css` and CSS variables in `:root`
+- **Add image**: Place in `5_Symbols/assets/images/` with descriptive name
 - **Update content**: Edit HTML directly, maintain semantic structure
-- **Add JavaScript**: Modify `assets/js/main.js` for interactive features
+- **Add JavaScript**: Modify `5_Symbols/assets/js/main.js` for interactive features
 
 ### Key Files to Monitor
-- `pages/index.html` - Main homepage (uses external CSS/JS)
-- `pages/delivery-pilot.html` - Core service page
-- `assets/css/main.css` - Main stylesheet
-- `assets/js/main.js` - Main JavaScript file
-- `docs/todos.md` - Project tasks and updates
+- `5_Symbols/pages/index.html` - Main homepage (uses external CSS/JS)
+- `5_Symbols/pages/delivery-pilot.html` - Core service page
+- `5_Symbols/assets/css/main.css` - Main stylesheet
+- `5_Symbols/assets/js/main.js` - Main JavaScript file
+- `5_Symbols/docs/todos.md` - Project tasks and updates
 - `README.md` - Project documentation
 
 ### Current Implementation Status

@@ -7,35 +7,36 @@ https://hello.rifaterdemsahin.com
 
 ```
 web/
-├── index.html                 # Main entry point (redirects to pages/index.html)
-├── pages/                     # All HTML pages
-│   ├── index.html            # Homepage
-│   ├── cv.html               # CV/Resume page
-│   ├── contact.html          # Contact form
-│   ├── newsletter.html       # Newsletter signup
-│   ├── courses.html          # Course showcase
-│   ├── email-form.html       # Email form for coupons
-│   ├── early-bird-registration.html  # Early bird registration
-│   ├── blog.html             # Blog page
-│   ├── delivery-pilot.html   # Delivery Pilot service page
-│   └── post-email-page.html  # Post-email confirmation
-├── assets/                    # Static assets
-│   ├── images/               # Images and photos
-│   │   └── erdem_photo.jpeg  # Profile photo
-│   ├── css/                  # CSS files (future use)
-│   └── js/                   # JavaScript files (future use)
-└── docs/                     # Documentation
-    ├── README.md             # This file
-    ├── courses.yaml          # Course data
-    ├── coupons.txt           # Coupon information
-    ├── todos.md              # Project todos
-    └── WORDPRESS_DEPLOYMENT_GUIDE.md  # Deployment guide
+├── index.html                 # Main entry point (redirects to 5_Symbols/pages/index.html)
+├── 5_Symbols/                 # Implementation & Code
+│   ├── pages/                 # All HTML pages
+│   │   ├── index.html         # Homepage
+│   │   ├── cv.html            # CV/Resume page
+│   │   ├── contact.html       # Contact form
+│   │   ├── newsletter.html    # Newsletter signup
+│   │   ├── courses.html       # Course showcase
+│   │   ├── email-form.html    # Email form for coupons
+│   │   ├── early-bird-registration.html  # Early bird registration
+│   │   ├── blog.html          # Blog page
+│   │   ├── delivery-pilot.html   # Delivery Pilot service page
+│   │   └── post-email-page.html  # Post-email confirmation
+│   └── assets/                # Static assets
+│       ├── images/            # Images and photos
+│       │   └── erdem_photo.jpeg  # Profile photo
+│       ├── css/               # CSS files
+│       └── js/                # JavaScript files
+├── docs/                      # Documentation
+│   ├── README.md              # This file
+│   ├── courses.yaml           # Course data
+│   ├── coupons.txt            # Coupon information
+│   ├── todos.md               # Project todos
+│   └── WORDPRESS_DEPLOYMENT_GUIDE.md  # Deployment guide
 ```
 
 ## 🚀 Features
 
 ### GitHub Repository Assessment
-- **Location**: `pages/delivery-pilot.html`
+- **Location**: `5_Symbols/pages/delivery-pilot.html`
 - **Functionality**: AI-powered code assessment with random grading (A-F)
 - **Integration**: POST requests to `n8n.rifaterdemsahin.com`
 - **Features**:
@@ -99,10 +100,10 @@ All pages are fully responsive and optimized for:
    ```
 
 ### File Organization
-- All HTML pages are in the `pages/` directory
-- Static assets (images, CSS, JS) are in the `assets/` directory
+- All HTML pages are in the `5_Symbols/pages/` directory
+- Static assets (images, CSS, JS) are in the `5_Symbols/assets/` directory
 - Documentation is in the `docs/` directory
-- Main `index.html` redirects to `pages/index.html`
+- Main `index.html` redirects to `5_Symbols/pages/index.html`
 
 ## 📞 Contact
 
