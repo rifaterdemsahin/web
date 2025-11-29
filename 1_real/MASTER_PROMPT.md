@@ -6,62 +6,53 @@ This prompt contains all the necessary information to recreate the website.
 
 ```
 .
-├── 2025
-│   ├── 08
-│   │   └── 27
-│   │       └── 🚀-how-to-apply-yaml-configurations-using-kubectl-in-terminal
-│   │           └── index.html
-│   └── 09
-│       └── 14
-│           └── how_to_talk_to_Computers
-│               └── index.html
-├── assets
-│   ├── css
-│   │   ├── common-styles.css
-│   │   └── main.css
-│   ├── ebook
-│   │   ├── rag.pdf
-│   │   └── readme.txt
-│   ├── images
-│   │   ├── delivery_pilot.png
-│   │   └── erdem_photo.jpeg
-│   ├── js
-│   │   └── main.js
-│   └── pdf
-│       ├── delivery_pilot_november_27.pdf
-│       ├── delivery_pilot_november_27_turkish.pdf
-│       └── readme.md
-├── common-nav.html
+├── 1_real
+│   └── MASTER_PROMPT.md
+├── 2_environment
+├── 3_ui
+├── 4_formula
+├── 5_Symbols
+│   ├── assets
+│   │   ├── css
+│   │   ├── images
+│   │   ├── js
+│   │   └── pdf
+│   ├── common-nav.html
+│   ├── docs
+│   └── pages
+│       ├── about.html
+│       ├── assesment.html
+│       ├── blog.html
+│       ├── contact.html
+│       ├── courses.html
+│       ├── delivery-pilot.html
+│       ├── early-bird-registration.html
+│       ├── ebook.html
+│       ├── email-form.html
+│       ├── index.html
+│       ├── investor.html
+│       ├── newsletter.html
+│       ├── post-email-page.html
+│       └── vision.html
+├── 6_Semblance
+├── 7_Testing
+├── antigravity.md
 ├── copilot.md
 ├── cursor.md
-├── delivery-guide.md
-├── docs
-│   ├── coupons.txt
-│   ├── courses.yaml
-│   ├── github-pages-setup.md
-│   ├── readme.md
-│   └── todos.md
-├── formula
 ├── gemini.md
 ├── index.html
-├── pages
-│   ├── about.html
-│   ├── assesment.html
-│   ├── blog.html
-│   ├── contact.html
-│   ├── courses.html
-│   ├── delivery-pilot.html
-│   ├── early-bird-registration.html
-│   ├── ebook.html
-│   ├── email-form.html
-│   ├── index.html
-│   ├── investor.html
-│   ├── newsletter.html
-│   └── post-email-page.html
 ├── README.md
 ├── robots.txt
 └── sitemap.xml
 ```
+
+## Markdown File Descriptions
+
+### `./antigravity.md`
+- **Purpose:** Documents the project's unique seven-folder structure and philosophical approach.
+- **Key Elements:**
+    - Explanations for each of the 7 folders (1_Real to 7_Testing).
+    - Premise, Content, and Conclusion for each section.
 
 ## HTML File Descriptions
 
@@ -171,6 +162,14 @@ This prompt contains all the necessary information to recreate the website.
     - Displays the course information and a referral code.
     - A button to access the course.
     - The page dynamically fetches course data and email from local storage or URL parameters.
+
+### `./5_Symbols/pages/vision.html`
+- **Purpose:** Articulates the vision of AI transformation and the 10x opportunity.
+- **Key Elements:**
+    - "The 10x Opportunity" section explaining job multiplication.
+    - "Why Enterprise Transformation Matters" section.
+    - A positive message from Rifat Erdem Sahin.
+    - Call-to-action to join Delivery Pilot or schedule consulting.
 
 ### `./5_Symbols/common-nav.html`
 - **Purpose:** A reusable HTML snippet for the common navigation bar.
