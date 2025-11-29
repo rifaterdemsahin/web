@@ -317,6 +317,17 @@
             color: var(--primary-color);
         }
 
+        .btn-download {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            background: var(--secondary-color);
+        }
+
         .hero-visual {
             display: flex;
             justify-content: center;
@@ -1486,6 +1497,26 @@
                     <a href="https://www.linkedin.com/in/rifaterdemsahin/" target="_blank"
                         class="btn btn-secondary">Connect on LinkedIn</a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PDF Downloads Section -->
+    <section class="pdf-downloads-section" style="background: var(--bg-secondary); padding: 4rem 0;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">📄 Download Resources</h2>
+                <p class="section-subtitle">
+                    Get the Delivery Pilot documentation in PDF format
+                </p>
+            </div>
+            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 2rem;">
+                <a href="../assets/pdf/delivery_pilot_november_27.pdf" download class="btn btn-download">
+                    📥 Download PDF (English)
+                </a>
+                <a href="../assets/pdf/delivery_pilot_november_27_turkish.pdf" download class="btn btn-download">
+                    📥 Download PDF (Turkish)
+                </a>
             </div>
         </div>
     </section>
