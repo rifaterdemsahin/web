@@ -1,0 +1,8 @@
+This file is a placeholder for a screenshot of the Post-Email/Thank You page (post-email-page.html).
+It should depict:
+- A celebratory "Success" container with a bouncing checkmark icon.
+- A headline "Welcome to the AI Learning Revolution! 🚀".
+- A "Your Referral Code" box with a dashed border, displaying a code (e.g., UDEMY123456).
+- A "Copy Code" button and a prominent "Access Course Now" CTA button.
+- A footer note about coupon validity.
+- The design should be rewarding and clearly guide the user to the next step (using the coupon).

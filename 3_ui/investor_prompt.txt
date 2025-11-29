@@ -1,0 +1,9 @@
+This file is a placeholder for a screenshot of the Investor Relations page (investor.html).
+It should depict:
+- A professional hero section titled "Investment Opportunity".
+- A "Market Opportunity" section with large statistic cards (e.g., "$340B Global Corporate Training Market").
+- A "Why Delivery Pilot?" grid of cards highlighting USP, Scalability, Global Reach, etc.
+- A "Business Model" section outlining the three-tier service model.
+- A "Use of Funds" section listing development, expansion, and marketing goals.
+- A clear CTA section for investment inquiries.
+- The design should be corporate, data-driven, and trustworthy.

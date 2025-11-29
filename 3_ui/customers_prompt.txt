@@ -1,0 +1,7 @@
+This file is a placeholder for a screenshot of the Customers page (customers.html).
+It should depict:
+- A header titled "Customers & Engagements".
+- Sections categorized by industry: "Global Enterprise & Finance", "Technology, SaaS & Digital", "Healthcare, Gov & Public Sector", "EdTech, VR & Innovation".
+- A grid of client logo cards for each section (e.g., IBM, Microsoft, Goldman Sachs, Udemy).
+- Each card should show the logo and client name.
+- The design should be a clean grid layout showcasing the logos prominently.

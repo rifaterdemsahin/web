@@ -1,0 +1,10 @@
+This file is a placeholder for a screenshot of the main landing page (index.html).
+It should depict:
+- The navigation bar at the top with "Home" active.
+- A Hero section with a greeting "Hello, I'm Rifat Erdem Sahin", title, subtitle "From DevSecOps to AI", and description.
+- A profile card with an image of Rifat Erdem Sahin, his name, title, and location.
+- A "Journey" timeline section showing the progression from DevSecOps to AI.
+- A "Skills" grid section showing "Security-First AI", "AI Infrastructure", "Learning Innovation", and "Gap Bridging".
+- A CTA section "Ready to Transform Your AI Journey?".
+- The footer with social links (YouTube, Udemy, Coursera, Blog) and copyright.
+- The overall layout should be clean, modern, and professional, using the color scheme defined in common-styles.css.

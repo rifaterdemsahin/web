@@ -1,0 +1,7 @@
+This file is a placeholder for a screenshot of the Blog Post: "How to Apply YAML Configurations Using kubectl" (2025/08/27/.../index.html).
+It should depict:
+- A standard blog post layout with a "Back to Blog" link.
+- Article Header: Title, Category (DevOps), Date, Read Time.
+- Article Content: Step-by-step guide with code blocks (syntax highlighted), tip boxes, and explanatory text.
+- Footer: Standard site footer with links and copyright.
+- The design should be readable, with clear distinction between text and code.

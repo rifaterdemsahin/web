@@ -1,0 +1,7 @@
+This file is a placeholder for a screenshot of the Common Navigation Component (common-nav.html).
+It should depict:
+- A responsive navigation bar.
+- Brand name "Rifat Erdem Sahin" on the left.
+- A hamburger menu icon (for mobile).
+- Navigation links: Home, Delivery Pilot, Courses, Early Bird, Ebook, Newsletter, Investors, About, Contact.
+- The design should be clean, accessible, and consistent with the site's header style.

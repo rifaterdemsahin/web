@@ -1,0 +1,8 @@
+This file is a placeholder for a screenshot of the Ebook Landing page (ebook.html).
+It should depict:
+- A clean, centered card layout on a gradient background.
+- A header icon (🚀) and title "Start Your AI Journey".
+- A subtitle offering a comprehensive RAG guide.
+- A simple email capture form with a "Get Your Free PDF Guide" button.
+- A hidden-by-default success message section with a "Download Your PDF Guide" link and YouTube subscribe button.
+- The design should be minimal, focused entirely on the lead magnet conversion.

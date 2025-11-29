@@ -1,0 +1,8 @@
+This file is a placeholder for a screenshot of the Early Bird Registration page (early-bird-registration.html).
+It should depict:
+- The navigation bar at the top with "Early Bird" active.
+- A page header titled "Bridge the AI Skills Gap Early! 🚀".
+- A registration form card with fields for Email and a checklist of "Interested In" courses.
+- A "Join Early Bird List" button.
+- A "Course Benefits" section with cards for "Early Access", "Special Pricing", "Comprehensive Content", etc.
+- The design should be conversion-focused, using the primary gradient theme.

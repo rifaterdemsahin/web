@@ -1,0 +1,9 @@
+This file is a placeholder for a screenshot of the Coupon/Email Form page (email-form.html).
+It should depict:
+- A centered form container on a gradient background with a subtle grain texture.
+- An animated icon at the top.
+- A headline "Bridge the AI Skills Gap! 🚀".
+- A "Course Preview" box showing the current course title.
+- An email input field and a "Get My Coupon Code" submit button.
+- A "What you'll get" benefits list with checkmarks.
+- The design should be attractive and high-converting, similar to a landing page for a special offer.

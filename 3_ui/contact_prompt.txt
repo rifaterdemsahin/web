@@ -1,0 +1,9 @@
+This file is a placeholder for a screenshot of the Contact page (contact.html).
+It should depict:
+- The navigation bar at the top with "Contact" active.
+- A page header titled "Get In Touch".
+- An "Availability Status" section indicating availability for projects.
+- A two-column layout:
+    - Left column: Contact Information (Email, Phone, WhatsApp, Address, Services, Response Time, Schedule Meeting) and Social Links.
+    - Right column: A "Send Me a Message" contact form with fields for Name, Email, Company, Subject, and Message.
+- The design should be clean, accessible, and encourage communication.

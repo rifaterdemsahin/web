@@ -1,0 +1,8 @@
+This file is a placeholder for a screenshot of the Newsletter Subscription page (newsletter.html).
+It should depict:
+- A page header "Join the AI Skills Revolution! 🚀".
+- A split-layout main section:
+    - Left: A detailed subscription form (Name, Email, Primary Interest dropdown, Privacy checkbox).
+    - Right: An info panel showing "What You'll Get" (list), "Newsletter Stats" (grid), and "Why Subscribe" text.
+- A "Latest from the Blog" section at the bottom with post cards.
+- The design should be clean, structured, and emphasize the value of subscribing.

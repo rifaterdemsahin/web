@@ -1,0 +1,11 @@
+This file is a placeholder for a screenshot of the About page (about.html).
+It should depict:
+- The navigation bar at the top with "About" active.
+- A page header titled "Why Work With Me in AI Transformation".
+- A CV-style layout with a profile section (image, name, title, location).
+- Sections explaining "Why AI Transformation Matters" and "Why Work With Rifat Erdem Sahin".
+- A list of services: Generative AI Integration, RAG Architecture Design, AI-Powered DevOps.
+- Credentials section (Security Clearance, Degrees, Certifications).
+- A "Start Your AI Transformation" section with download options for CV and booking a consultation.
+- Contact information and social links.
+- The overall layout should be clean, professional, and content-rich, matching the common styles.

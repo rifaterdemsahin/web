@@ -1,0 +1,9 @@
+This file is a placeholder for a screenshot of the Courses page (courses.html).
+It should depict:
+- The navigation bar at the top with "Courses" active.
+- A page header titled "Delivery Pilot Showcase" with a subtitle about AI-powered learning.
+- A grid of course cards (e.g., Ultimate Contractor, Test Automation, Infrastructure as Code, SonarQube).
+- Each course card should show an icon, category, title, description, duration, level, and CTA buttons (Enroll, Coursera/Udemy).
+- A "Coming Soon" section with a newsletter signup form.
+- The footer with links and copyright info.
+- The design should be grid-based, colorful yet professional, highlighting the educational content.

@@ -1,0 +1,9 @@
+This file is a placeholder for a screenshot of the Assessment page (assesment.html).
+It should depict:
+- The navigation bar at the top.
+- An interactive React-based "AI-Powered DevOps Maturity Assessment" tool.
+- An initial screen asking for user details (Name, Org, Role, Email) to start the assessment.
+- A series of questions with options and progress bars (if the assessment is active).
+- A results screen showing scores, maturity level, delivery capability, and recommendations.
+- A section to schedule a free assessment call via Calendly.
+- The design should be modern, interactive, and data-driven with charts or scorecards.

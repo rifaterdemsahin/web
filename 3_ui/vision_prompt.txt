@@ -1,0 +1,8 @@
+This file is a placeholder for a screenshot of the Vision page (vision.html).
+It should depict:
+- The navigation bar at the top with "Vision" active.
+- A page header titled "The 10x Vision: A Positive Future with AI".
+- A content section explaining the "10x Opportunity" and "Why Enterprise Transformation Matters".
+- A highlighted quote/message from Rifat Erdem Sahin about optimism and augmentation.
+- A "Be Part of the Transformation" section with cards to "Join Delivery Pilot" or "Consulting".
+- The layout should focus on readability and inspiring text, with a clean, modern typography.

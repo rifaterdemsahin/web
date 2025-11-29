@@ -1,0 +1,8 @@
+This file is a placeholder for a screenshot of the Blog page (blog.html).
+It should depict:
+- The navigation bar at the top.
+- A page header titled "Blog & Insights".
+- A "Latest Blog Posts" section linking to the WordPress blog.
+- A list of featured blog post cards (e.g., "The Future of DevOps", "Multi-Cloud Strategy", "Integrating AI").
+- A sidebar with widgets for "About the Blog", "Categories", "Newsletter Signup", and "Connect With Me".
+- The layout should be a standard blog listing with a sidebar, clean typography, and read more buttons.
