@@ -1,37 +1,39 @@
 :root {
     /* Color Palette */
-    --primary-color: #2563eb; /* Blue */
-    --secondary-color: #1e40af; /* Darker Blue */
-    --accent-color: #f97316; /* Orange */
-    --text-primary: #1f2937; /* Dark Gray */
-    --text-secondary: #4b5563; /* Medium Gray */
-    --text-light: #6b7280; /* Light Gray */
-    --bg-light: #f9fafb; /* Off-White */
-    --bg-dark: #111827; /* Dark background for contrast */
-    --border-color: #e5e7eb; /* Light border */
-    --success-color: #10b981; /* Green */
-    --error-color: #ef4444; /* Red */
+    --primary-color: #007aff; /* Vibrant Blue */
+    --secondary-color: #0056b3; /* Darker Blue */
+    --accent-color: #ff9500; /* Vibrant Orange */
+    --text-primary: #1d1d1f; /* Near Black */
+    --text-secondary: #6e6e73; /* Gray */
+    --text-light: #86868b; /* Lighter Gray */
+    --bg-light: #f5f5f7; /* Light Gray */
+    --bg-dark: #1d1d1f; /* Near Black */
+    --border-color: #d2d2d7; /* Light Gray Border */
+    --success-color: #34c759; /* Green */
+    --error-color: #ff3b30; /* Red */
 
     /* Typography */
-    --font-family: 'Inter', sans-serif;
-    --font-size-base: 1rem; /* 16px */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-size-base: 1.0625rem; /* 17px */
+    --font-size-lg: 1.1875rem; /* 19px */
+    --font-size-xl: 1.5rem; /* 24px */
 
     /* Spacing */
     --spacing-xs: 0.25rem;
     --spacing-sm: 0.5rem;
     --spacing-md: 1rem;
     --spacing-lg: 1.5rem;
-    --spacing-xl: 2rem;
+    --spacing-xl: 2.5rem;
 
     /* Border Radius */
-    --border-radius-sm: 0.25rem;
-    --border-radius-md: 0.5rem;
-    --border-radius-lg: 0.75rem;
+    --border-radius-sm: 0.3125rem; /* 5px */
+    --border-radius-md: 0.625rem; /* 10px */
+    --border-radius-lg: 1.25rem; /* 20px */
 
     /* Shadow */
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 /* Basic Reset & Normalize */
@@ -44,9 +46,10 @@
 body {
     font-family: var(--font-family);
     font-size: var(--font-size-base);
-    line-height: 1.6;
+    line-height: 1.65;
     color: var(--text-primary);
     background-color: var(--bg-light);
+    background-image: linear-gradient(135deg, var(--bg-light) 0%, #ffffff 100%);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -54,10 +57,12 @@ body {
 a {
     color: var(--primary-color);
     text-decoration: none;
+    font-weight: 500;
 }
 
 a:hover {
     text-decoration: underline;
+    color: var(--secondary-color);
 }
 
 ul {
@@ -66,9 +71,12 @@ ul {
 
 /* Navigation Menu Styling */
 .navbar {
-    background-color: #ffffff; /* White background for the navbar itself */
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     padding: var(--spacing-md) var(--spacing-xl);
-    box-shadow: var(--shadow-md);
+    box-shadow: none;
+    border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
     width: 100%;
@@ -86,7 +94,7 @@ ul {
 .navbar-brand {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--primary-color);
+    color: var(--text-primary);
     text-decoration: none;
 }
 
@@ -98,7 +106,7 @@ ul {
 .nav-links a {
     color: var(--text-secondary);
     font-weight: 500;
-    transition: color 0.3s ease, transform 0.3s ease;
+    transition: color 0.3s ease;
     position: relative;
     padding: var(--spacing-sm) 0;
 }
@@ -106,7 +114,6 @@ ul {
 .nav-links a:hover {
     color: var(--primary-color);
     text-decoration: none;
-    transform: translateY(-2px);
 }
 
 /* Underline effect on hover */
@@ -144,9 +151,25 @@ ul {
         display: none; /* Hide nav links by default on small screens */
         flex-direction: column;
         width: 100%;
+        background-color: white;
         text-align: center;
-        gap: var(--spacing-md);
+        gap: 0;
         padding-top: var(--spacing-md);
+        border-top: 1px solid var(--border-color);
+        margin-top: var(--spacing-md);
+    }
+    
+    .nav-links li {
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-links a {
+        display: block;
+        padding: var(--spacing-md) 0;
+    }
+    
+    .nav-links li:last-child {
+        border-bottom: none;
     }
 
     .nav-links.active {
@@ -169,7 +192,7 @@ ul {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: var(--spacing-md) var(--spacing-xl);
+    padding: 0.875rem 1.5rem;
     border-radius: var(--border-radius-md);
     font-weight: 600;
     text-decoration: none;
@@ -186,20 +209,21 @@ ul {
 .btn-primary:hover {
     background-color: var(--secondary-color);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-md);
     text-decoration: none;
 }
 
 .btn-secondary {
-    background-color: var(--bg-light);
-    color: var(--text-primary);
-    border-color: var(--border-color);
+    background-color: transparent;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
 .btn-secondary:hover {
-    background-color: var(--bg-accent);
+    background-color: var(--primary-color);
+    color: white;
     transform: translateY(-2px);
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-md);
     text-decoration: none;
 }
 
