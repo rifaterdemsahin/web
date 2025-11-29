@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Engineering Apply</title>
+    <link rel="stylesheet" href="../assets/css/common-styles.css">
     <style>
         * {
             margin: 0;
@@ -286,11 +287,17 @@
 <body>
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">Rifat Erdem Sahin</a>
+        <div class="navbar-container container">
+            <a href="index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
             <ul class="nav-links">
                 <li><a href="index.html">🏠 Home</a></li>
                 <li><a href="delivery-pilot.html">🚀 Delivery Pilot</a></li>
+                <li><a href="courses.html">🎓 Courses</a></li>
+                <li><a href="early-bird-registration.html">🐦 Early Bird</a></li>
+                <li><a href="ebook.html">📚 Ebook</a></li>
+                <li><a href="newsletter.html">📧 Newsletter</a></li>
+                <li><a href="investor.html">💼 Investors</a></li>
                 <li><a href="about.html">👤 About</a></li>
                 <li><a href="contact.html">📞 Contact</a></li>
             </ul>
@@ -458,6 +465,18 @@
                 errorMessage.classList.remove('show');
             }, 5000);
         }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+            }
+        });
     </script>
 </body>
 </html>

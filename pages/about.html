@@ -31,6 +31,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <link rel="stylesheet" href="../assets/css/common-styles.css">
+    
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
@@ -99,20 +101,20 @@
         }
 
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --accent-color: #3b82f6;
-            --text-primary: #1f2937;
-            --text-secondary: #6b7280;
+            --primary-color: #00ff88;
+            --secondary-color: #ff0088;
+            --accent-color: #330066;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
             --text-light: #9ca3af;
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8fafc;
-            --bg-accent: #f1f5f9;
-            --border-color: #e5e7eb;
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a0033;
+            --bg-accent: #330066;
+            --border-color: #00ff88;
+            --shadow-sm: 0 1px 2px 0 rgb(0 255 136 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 255 136 / 0.1), 0 2px 4px -2px rgb(0 255 136 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 255 136 / 0.1), 0 4px 6px -4px rgb(0 255 136 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 255 136 / 0.1), 0 8px 10px -6px rgb(0 255 136 / 0.1);
             --success-color: #10b981;
             --warning-color: #f59e0b;
             --error-color: #ef4444;
@@ -637,11 +639,17 @@
 <body>
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">Rifat Erdem Sahin</a>
+        <div class="navbar-container container">
+            <a href="index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
             <ul class="nav-links">
                 <li><a href="index.html">🏠 Home</a></li>
                 <li><a href="delivery-pilot.html">🚀 Delivery Pilot</a></li>
+                <li><a href="courses.html">🎓 Courses</a></li>
+                <li><a href="early-bird-registration.html">🐦 Early Bird</a></li>
+                <li><a href="ebook.html">📚 Ebook</a></li>
+                <li><a href="newsletter.html">📧 Newsletter</a></li>
+                <li><a href="investor.html">💼 Investors</a></li>
                 <li><a href="about.html">👤 About</a></li>
                 <li><a href="contact.html">📞 Contact</a></li>
             </ul>
@@ -973,6 +981,18 @@
 
         // Update copyright year when page loads
         document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+            }
+        });
     </script>
 </body>
 </html>
