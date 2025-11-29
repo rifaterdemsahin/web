@@ -1428,53 +1428,10 @@
                     </p>
                 </div>
 
-                <div class="assessment-container">
-                    <div class="assessment-card">
-                        <div class="assessment-header">
-                            <h3>📊 Delivery Pilot - Schedule a Free Assessment Call</h3>
-                            <p>Submit your GitHub repository to identify specific skills gaps and get a personalized
-                                learning roadmap</p>
-                        </div>
-
-                        <form id="githubAssessmentForm" class="assessment-form">
-                            <div class="form-group">
-                                <label for="emailAddress">Email Address</label>
-                                <input type="email" id="emailAddress" name="emailAddress" placeholder="you@example.com"
-                                    required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="githubRepo">GitHub Repository URL</label>
-                                <input type="url" id="githubRepo" name="githubRepo"
-                                    placeholder="https://github.com/username/repository" required>
-                            </div>
-
-                            <div class="form-group checkbox-group">
-                                <label class="checkbox-label">
-                                    <input type="checkbox" id="agreeToAssessment" name="agreeToAssessment" required>
-                                    <span class="checkmark"></span>
-                                    I agree to have my repository analyzed to identify skills gaps and receive a
-                                    learning roadmap
-                                </label>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary assessment-btn">
-                                <span class="btn-text">📅 Schedule Free Call</span>
-                                <span class="btn-loading" style="display: none;">⏳ Scheduling...</span>
-                            </button>
-                        </form>
-
-                        <div id="assessmentResult" class="assessment-result" style="display: none;">
-                            <div class="result-header">
-                                <h3>🎯 Your Assessment Results</h3>
-                            </div>
-                            <div class="grade-display">
-                                <div class="grade-letter" id="gradeLetter"></div>
-                                <div class="grade-description" id="gradeDescription"></div>
-                            </div>
-                            <div class="ai-feedback" id="aiFeedback"></div>
-                        </div>
-                    </div>
+                <div class="assessment-container" style="text-align: center;">
+                    <a href="assesment.html" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.5rem 3rem;">
+                        🚀 Start Your Assessment
+                    </a>
                 </div>
             </div>
         </section>
@@ -1602,119 +1559,6 @@
 
         // Update copyright year when page loads
         document.addEventListener('DOMContentLoaded', updateCopyrightYear);
-
-        // GitHub Assessment functionality
-        document.addEventListener('DOMContentLoaded', function () {
-            const assessmentForm = document.getElementById('githubAssessmentForm');
-            const assessmentResult = document.getElementById('assessmentResult');
-            const gradeLetter = document.getElementById('gradeLetter');
-            const gradeDescription = document.getElementById('gradeDescription');
-            const aiFeedback = document.getElementById('aiFeedback');
-            const btnText = document.querySelector('.btn-text');
-            const btnLoading = document.querySelector('.btn-loading');
-
-            if (assessmentForm) {
-                assessmentForm.addEventListener('submit', async function (e) {
-                    e.preventDefault();
-
-                    const githubRepo = document.getElementById('githubRepo').value;
-                    const agreeToAssessment = document.getElementById('agreeToAssessment').checked;
-
-                    if (!githubRepo || !agreeToAssessment) {
-                        alert('Please provide a GitHub repository URL and agree to the assessment terms.');
-                        return;
-                    }
-
-                    // Show loading state
-                    btnText.style.display = 'none';
-                    btnLoading.style.display = 'inline';
-
-                    try {
-                        // Generate random grade
-                        const grades = [
-                            {
-                                letter: 'A', emoji: '🌟', description: 'Excellent! Outstanding code quality and implementation.',
-                                feedback: 'Your repository demonstrates exceptional coding practices, clean architecture, and attention to detail. The code is well-structured, documented, and follows best practices. This is production-ready code that showcases advanced technical skills.'
-                            },
-                            {
-                                letter: 'B', emoji: '👍', description: 'Good work! Solid implementation with room for improvement.',
-                                feedback: 'Your code shows strong technical skills with good structure and implementation. There are some areas for optimization and additional features that could elevate this to the next level. Consider adding more comprehensive testing and documentation.'
-                            },
-                            {
-                                letter: 'C', emoji: '👌', description: 'Average performance. Basic functionality implemented.',
-                                feedback: 'The repository meets basic requirements and demonstrates fundamental programming skills. To improve, focus on code organization, error handling, and adding more robust features. Consider implementing better testing practices.'
-                            },
-                            {
-                                letter: 'D', emoji: '📝', description: 'Below average. Needs significant improvement.',
-                                feedback: 'While the basic functionality is present, there are several areas that need attention. Focus on code quality, proper error handling, and following coding standards. Consider refactoring for better maintainability.'
-                            },
-                            {
-                                letter: 'F', emoji: '🔄', description: 'Needs major work. Significant issues found.',
-                                feedback: 'The repository has fundamental issues that need to be addressed. Focus on understanding basic programming concepts, proper code structure, and implementing core functionality correctly. Consider seeking additional learning resources.'
-                            }
-                        ];
-
-                        const randomGrade = grades[Math.floor(Math.random() * grades.length)];
-
-                        // Simulate API call delay
-                        await new Promise(resolve => setTimeout(resolve, 2000));
-
-                        // Send POST request to n8n
-                        try {
-                            const n8nWebhookUrl = 'https://n8n.rifaterdemsahin.com/webhook/d12f4c42-0eb5-4d3f-ab81-995cd5ea3676';
-                            const email = document.getElementById('emailAddress').value;
-
-                            const response = await fetch(n8nWebhookUrl, {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify({
-                                    'Email address': email,
-                                    'Interested In': 'delivery pilot assesment+githuburl',
-                                    'Timestamp': new Date().toISOString()
-                                })
-                            });
-
-                            if (!response.ok) {
-                                console.warn('N8N webhook call failed, but continuing with assessment');
-                            }
-                        } catch (error) {
-                            console.warn('Failed to send data to N8N:', error);
-                            // Continue with assessment even if N8N call fails
-                        }
-
-                        // Display results
-                        assessmentForm.style.display = 'none';
-                        assessmentResult.style.display = 'block';
-                        assessmentResult.innerHTML = `
-                            <div class="result-header">
-                                <h3>🎉 Thanks!</h3>
-                                <p>Your assessment request has been received. We will be in touch shortly with your personalized report.</p>
-                            </div>
-                        `;
-
-                        aiFeedback.innerHTML = `
-                            <h4>🤖 AI Assessment Feedback</h4>
-                            <p><strong>Repository:</strong> ${githubRepo}</p>
-                            <p><strong>Assessment:</strong> ${randomGrade.feedback}</p>
-                            <p><strong>Recommendations:</strong> Continue learning and implementing best practices. Consider contributing to open source projects to further develop your skills.</p>
-                        `;
-
-                        assessmentResult.style.display = 'block';
-                        assessmentResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-                    } catch (error) {
-                        console.error('Assessment error:', error);
-                        alert('An error occurred during assessment. Please try again.');
-                    } finally {
-                        // Hide loading state
-                        btnText.style.display = 'inline';
-                        btnLoading.style.display = 'none';
-                    }
-                });
-            }
-        });
     </script>
 </body>
 
