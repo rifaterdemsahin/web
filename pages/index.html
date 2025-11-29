@@ -4,319 +4,638 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rifat Erdem Sahin - AI Solutions Architect</title>
-    <meta name="description" content="AI Solutions Architect based in Cambridge, UK. Former DevOps Engineer transitioning to AI, bridging the skills gap through AI-powered learning solutions.">
-    <meta name="keywords" content="DevOps, AI, Solutions Architect, Cambridge, UK, Technology, Self-growth, Entrepreneurship, Delivery Pilot, AI Learning, Skills Gap">
-    <meta name="author" content="Rifat Erdem Sahin">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://www.rifaterdemsahin.com/pages/index.html">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.rifaterdemsahin.com/pages/index.html">
-    <meta property="og:title" content="Rifat Erdem Sahin - AI Solutions Architect">
-    <meta property="og:description" content="AI Solutions Architect based in Cambridge, UK. Former DevOps Engineer transitioning to AI, bridging the skills gap through AI-powered learning solutions.">
-    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
-    <meta property="og:site_name" content="Rifat Erdem Sahin">
-    <meta property="og:locale" content="en_GB">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/pages/index.html">
-    <meta property="twitter:title" content="Rifat Erdem Sahin - AI Solutions Architect">
-    <meta property="twitter:description" content="AI Solutions Architect based in Cambridge, UK. Former DevOps Engineer transitioning to AI, bridging the skills gap through AI-powered learning solutions.">
-    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
-    <meta property="twitter:creator" content="@rifaterdemsahin">
-    
-    <!-- Additional SEO Meta Tags -->
-    <meta name="geo.region" content="GB-CAM">
-    <meta name="geo.placename" content="Cambridge">
-    <meta name="geo.position" content="52.2053;0.1218">
-    <meta name="ICBM" content="52.2053, 0.1218">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/main.css">
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Rifat Erdem Sahin",
-      "jobTitle": "AI Solutions Architect",
-      "description": "AI Solutions Architect based in Cambridge, UK. Former DevOps Engineer transitioning to AI, bridging the skills gap through AI-powered learning solutions.",
-      "url": "https://www.rifaterdemsahin.com",
-      "image": "https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Cambridge",
-        "addressRegion": "Cambridgeshire",
-        "addressCountry": "GB"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/in/rifaterdemsahin/",
-        "https://www.youtube.com/@RifatErdemSahin",
-        "https://www.udemy.com/user/rifat-erdem-sahin-2/",
-        "https://www.coursera.org/instructor/~184662540",
-        "https://rifaterdemsahin.com/"
-      ],
-      "knowsAbout": [
-        "DevOps",
-        "AI Solutions Architecture",
-        "Machine Learning",
-        "Cloud Computing",
-        "Automation",
-        "CI/CD",
-        "Kubernetes",
-        "Docker",
-        "Python",
-        "Infrastructure as Code"
-      ],
-      "alumniOf": "Southern New Hampshire University",
-      "nationality": "British",
-      "telephone": "+44-7848-024-173",
-      "email": "contact@rifaterdemsahin.com"
-    }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        
+        .navbar {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #00ff88;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00ff88;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #00ff88;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #1a0033 0%, #330066 50%, #1a0033 100%);
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(255, 0, 136, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-greeting {
+            font-size: 1.5rem;
+            color: #00ff88;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #00ff88 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.8rem;
+            color: #ff0088;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+        
+        .hero-description {
+            font-size: 1.2rem;
+            color: #cccccc;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: #00ff88;
+            color: #0a0a0a;
+            border: 2px solid #00ff88;
+        }
+        
+        .btn-primary:hover {
+            background: transparent;
+            color: #00ff88;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 255, 136, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #ff0088;
+            border: 2px solid #ff0088;
+        }
+        
+        .btn-secondary:hover {
+            background: #ff0088;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 0, 136, 0.3);
+        }
+        
+        .profile-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 2px solid #00ff88;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 255, 136, 0.2);
+        }
+        
+        .profile-avatar img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid #00ff88;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 30px rgba(0, 255, 136, 0.4);
+        }
+        
+        .profile-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .profile-title {
+            font-size: 1.2rem;
+            color: #ff0088;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .profile-location {
+            color: #00ff88;
+            font-size: 1.1rem;
+        }
+        
+        .journey-section {
+            background: #0a0a0a;
+            padding: 6rem 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #00ff88 0%, #ff0088 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: #cccccc;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #00ff88 0%, #ff0088 100%);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            grid-column: 1;
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-visual {
+            grid-column: 2;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 2rem;
+            width: 20px;
+            height: 20px;
+            background: #00ff88;
+            border: 4px solid #0a0a0a;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.6);
+        }
+        
+        .timeline-content {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(255, 0, 136, 0.1) 100%);
+            border: 2px solid #00ff88;
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .timeline-year {
+            font-size: 1rem;
+            color: #ff0088;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #00ff88;
+        }
+        
+        .timeline-description {
+            color: #cccccc;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .timeline-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+        }
+        
+        .skills-section {
+            background: linear-gradient(135deg, #1a0033 0%, #0a0a0a 100%);
+            padding: 6rem 2rem;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid #00ff88;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.3);
+            border-color: #ff0088;
+        }
+        
+        .skill-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .skill-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #00ff88;
+        }
+        
+        .skill-description {
+            color: #cccccc;
+            line-height: 1.6;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #ff0088 0%, #00ff88 100%);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+        
+        .cta-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: #0a0a0a;
+        }
+        
+        .cta-description {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #0a0a0a;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .footer {
+            background: #0a0a0a;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 2px solid #00ff88;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #00ff88;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #ff0088;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding-left: 60px;
+            }
+            
+            .timeline-dot {
+                left: 20px;
+            }
+            
+            .timeline-item:nth-child(even) .timeline-content {
+                text-align: left;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="#" class="logo">Rifat Erdem Sahin</a>
             <ul class="nav-links">
-                <li><a href="#about">👨‍💻 Home</a></li>
-                <li><a href="delivery-pilot.html">🚀 Delivery Pilot</a></li>
-                <li><a href="about.html">👤 About</a></li>
-                <li><a href="contact.html">📞 Contact</a></li>
+                <li><a href="#journey">🚀 Journey</a></li>
+                <li><a href="#skills">💡 Skills</a></li>
+                <li><a href="#contact">📞 Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-container">
             <div class="hero-content">
-        <div class="hero-greeting">👋 Hello, I'm</div>
-        <h1 class="hero-title">Rifat Erdem Sahin</h1>
-        <div class="hero-subtitle">🚀 Bridging the AI Skills Gap Through Self-Learning</div>
-        <p class="hero-description">
-            The AI revolution is here, but there's a massive skills gap! 💡 I'm now transitioning to become an AI Engineer, 
-            and I help professionals bridge this gap through AI-powered self-learning. My Delivery Pilot platform transforms 
-            how you learn new technologies, making complex concepts accessible and actionable.
-        </p>
-        <div class="hero-cta">
-            <a href="delivery-pilot.html" class="btn btn-primary">🚀 Discover Delivery Pilot</a>
-            <a href="courses.html" class="btn btn-secondary">🎓 See AI Learning in Action</a>
-        </div>
+                <div class="hero-greeting">👋 Hello, I'm</div>
+                <h1 class="hero-title">Rifat Erdem Sahin</h1>
+                <div class="hero-subtitle">🚀 From DevSecOps to AI: Bridging the Skills Gap</div>
+                <p class="hero-description">
+                    With 12+ years in DevSecOps and security-cleared environments, I'm now pioneering the AI transformation. 
+                    I help professionals navigate this revolution through AI-powered learning platforms, making complex 
+                    technologies accessible to everyone. My journey from securing critical infrastructure to building 
+                    AI solutions shows that transformation is possible for anyone willing to learn.
+                </p>
+                <div class="hero-cta">
+                    <a href="#journey" class="btn btn-primary">🚀 See My Journey</a>
+                    <a href="#skills" class="btn btn-secondary">💡 Explore Skills</a>
+                </div>
             </div>
             <div class="hero-visual">
                 <div class="profile-card">
                     <div class="profile-avatar">
-                        <img src="../assets/images/erdem_photo.jpeg" alt="Rifat Erdem Sahin - AI Solutions Architect and DevOps Engineer based in Cambridge, UK" width="200" height="200">
+                        <img src="../assets/images/erdem_photo.jpeg" alt="Rifat Erdem Sahin">
                     </div>
                     <div class="profile-info">
                         <div class="profile-name">Rifat Erdem Sahin</div>
                         <div class="profile-title">AI Solutions Architect</div>
-                        <div class="profile-location">
-                            <span>📍</span>
-                            <span>Cambridge, UK</span>
-                        </div>
+                        <div class="profile-location">📍 Cambridge, UK</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container" style="background: linear-gradient(135deg, #1a1a2e 0%, #e94560 100%); color: #fff; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.15); padding: 32px 24px;">
-            <div class="section-header" style="border-bottom: 2px solid #fff; margin-bottom: 24px;">
-                <h2 class="section-title" style="color: #ffd700; text-shadow: 1px 1px 8px #e94560;">About My Journey</h2>
-                <p class="section-subtitle" style="color: #fff; font-weight: 500;">
-                    This is <span style="color: #e94560; font-weight:700;">not traditional learning</span>—it's all about <span style="color: #ffd700; font-weight:700;">doing</span>. My workshops focus on the <span style="color: #0f3460; background: #ffd700; padding: 2px 6px; border-radius: 4px;">Top 10 AI Topics</span> that matter most for your career. Every session is hands-on, practical, and designed to help you build real skills through action.
+    <section id="journey" class="journey-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">My AI Transformation Journey</h2>
+                <p class="section-subtitle">
+                    From securing critical national infrastructure to democratizing AI learning - 
+                    here's how I'm bridging the gap between traditional tech and the AI revolution
                 </p>
             </div>
-            <div class="about-content">
-                <div class="about-text fade-in" style="font-size: 1.15em; line-height: 1.7;">
-                    <p style="background: #0f3460; color: #ffd700; padding: 12px 18px; border-radius: 8px; margin-bottom: 16px; font-weight: 600; box-shadow: 0 2px 8px #e94560;">
-                        The AI revolution is creating an <span style="color: #e94560;">unprecedented skills gap!</span> 🚨 While AI tools are becoming more powerful, most professionals struggle to keep up with the rapid pace of technological change. Having spent over a decade in DevOps engineering, I'm now transitioning to AI and have seen this gap widen every day.
-                    </p>
-                    <div style="background: #0f3460; color: #fff; padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
-                        <h3 style="color: #ffd700; font-size: 1.6em; margin-bottom: 15px; text-align: center; border-bottom: 2px solid #ffd700; padding-bottom: 10px;">My Approach to Bridging the AI Skills Gap:</h3>
-                        
-                        <div style="margin-bottom: 25px;">
-                            <h4 style="color: #e94560; font-size: 1.3em; margin-bottom: 8px;">1. Assessment 📊</h4>
-                            <p style="margin-left: 15px; margin-bottom: 5px;"><strong>Quarterly 1-1 Private Meetings.</strong></p>
-                            <p style="margin-left: 15px; margin-bottom: 10px;">Confidential assessments tailored to your role.</p>
-                            <ul style="list-style: none; padding-left: 25px; margin-bottom: 10px;">
-                                <li style="margin-bottom: 5px;"><span style="color: #ffd700;">🔒</span> Private & Secure: 1-1 sessions are strictly confidential.</li>
-                                <li style="margin-bottom: 5px;"><span style="color: #ffd700;">💻</span> Developers: Share your Git repositories (public or private).</li>
-                                <li style="margin-bottom: 5px;"><span style="color: #ffd700;">✍️</span> Non-Developers: Share your prompts and workflows.</li>
-                                <li style="margin-bottom: 5px;"><span style="color: #ffd700;">📄</span> Outcome: Everyone receives a unique maturity assessment report containing a tailored training roadmap for the AI courses.</li>
-                            </ul>
-                        </div>
-                        
-                        <div style="margin-bottom: 25px;">
-                            <h4 style="color: #e94560; font-size: 1.3em; margin-bottom: 8px;">2. Training 🎓</h4>
-                            <p style="margin-left: 15px; margin-bottom: 5px;"><strong>One-to-Many Lecture Format.</strong></p>
-                            <p style="margin-left: 15px; margin-bottom: 10px;">After assessment comes the knowledge download. We cover the Top 10 AI Courses in a lecture style to get everyone on the same wavelength.</p>
-                            <ul style="list-style: none; padding-left: 25px; margin-bottom: 10px;">
-                                <li style="margin-bottom: 5px;"><span style="color: #ffd700;">📚</span> Curriculum Includes:</li>
-                                <li style="margin-bottom: 5px; margin-left: 20px;"><span style="color: #ffd700;">✨</span> Vibe Programming</li>
-                                <li style="margin-bottom: 5px; margin-left: 20px;"><span style="color: #ffd700;">🤖</span> RAF & Xazi Frameworks</li>
-                                <li style="margin-bottom: 5px; margin-left: 20px;"><span style="color: #ffd700;">🧠</span> Model Training & Security</li>
-                                <li style="margin-bottom: 5px; margin-left: 20px;"><span style="color: #ffd700;">🔄</span> Hybrid AI Modeling</li>
-                            </ul>
-                        </div>
-                        
-                        <div>
-                            <h4 style="color: #e94560; font-size: 1.3em; margin-bottom: 8px;">3. Implementation ⚙️</h4>
-                            <p style="margin-left: 15px; margin-bottom: 5px;"><strong>Merging Worlds.</strong></p>
-                            <p style="margin-left: 15px; margin-bottom: 10px;">This is where the magic happens. Developers and non-developers team up to bridge the gap between the deterministic and non-deterministic worlds.</p>
-                            <ul style="list-style: none; padding-left: 25px; margin-bottom: 10px;">
-                                <li style="margin-bottom: 5px;"><span style="color: #ffd700;">🎨</span> Creativity at the Core: Essential for fulfilling demanding requirements.</li>
-                                <li style="margin-bottom: 5px;"><span style="color: #ffd700;">🚀</span> Evolution: Stakeholders evolve from I-shaped to M-shaped and X-shaped skills.</li>
-                                <li style="margin-bottom: 5px;"><span style="color: #ffd700;">🤝</span> Enterprise-Wide Collaboration: Solving RAISE together.</li>
-                            </ul>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2013-2024 | THE FOUNDATION</div>
+                        <div class="timeline-title">12 Years of DevSecOps Excellence</div>
+                        <div class="timeline-description">
+                            Built and secured mission-critical platforms across CNI, finance, and government sectors. 
+                            From Goldman Sachs to IBM's Critical National Infrastructure, I mastered zero-trust architectures, 
+                            air-gapped deployments, and security-first engineering. This foundation taught me that 
+                            <strong style="color: #00ff88">complex systems can be made accessible through the right approach</strong>.
                         </div>
                     </div>
-
-                    <p style="background: #e94560; color: #fff; padding: 12px 18px; border-radius: 8px; margin-bottom: 16px; font-weight: 500; box-shadow: 0 2px 8px #ffd700;">
-                        That's why I created <strong style="color: #ffd700;">Delivery Pilot</strong> - a revolutionary platform that uses AI to make learning new technologies accessible, practical, and effective. Instead of traditional courses that become outdated quickly, Delivery Pilot provides hands-on, AI-guided learning experiences that adapt to your pace and needs.
-                    </p>
-                    <p style="background: #fff; color: #e94560; padding: 12px 18px; border-radius: 8px; margin-bottom: 16px; font-weight: 500; box-shadow: 0 2px 8px #0f3460;">
-                        My courses and videos aren't just educational content - they're showcases of how Delivery Pilot transforms learning. From automated testing with AI to infrastructure as code, each course demonstrates the power of AI-assisted self-learning in solving real-world problems.
-                    </p>
-                    <p style="background: #ffd700; color: #0f3460; padding: 12px 18px; border-radius: 8px; font-weight: 700; box-shadow: 0 2px 8px #e94560;">
-                        Join me in bridging the AI skills gap! Let's turn the challenge of rapid technological change into your greatest opportunity for growth and success. 🌟
-                    </p>
+                    <div class="timeline-visual">🔒</div>
                 </div>
-                <div class="skills-grid fade-in">
-                    <div class="skill-card">
-                        <div class="skill-icon">⚙️</div>
-                        <div class="skill-title">DevOps Engineering (Transitioning to AI)</div>
-                        <div class="skill-description">Over a decade of experience in automation, CI/CD, and infrastructure management, now applying these skills to AI solutions</div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-visual">⚡</div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2024 | THE AWAKENING</div>
+                        <div class="timeline-title">Recognizing the AI Skills Gap</div>
+                        <div class="timeline-description">
+                            While working with cutting-edge secure systems, I noticed a massive disconnect: 
+                            AI tools were advancing rapidly, but professionals struggled to keep pace. Traditional learning 
+                            methods were too slow. The gap wasn't just technical—it was <strong style="color: #ff0088">a crisis 
+                            of adaptation</strong>. I realized my mission: help others transform as I was transforming.
+                        </div>
                     </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">🤖</div>
-                        <div class="skill-title">AI Solutions</div>
-                        <div class="skill-description">Integrating AI into DevOps practices to enhance efficiency and innovation</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2025 | THE TRANSFORMATION</div>
+                        <div class="timeline-title">Building AI-Powered Learning Solutions</div>
+                        <div class="timeline-description">
+                            Created <strong style="color: #00ff88">Delivery Pilot</strong>—a revolutionary platform 
+                            that uses AI to make learning accessible, practical, and effective. Combining my DevSecOps 
+                            expertise with AI capabilities (AWS Bedrock, Vertex AI, LangChain), I'm now helping organizations 
+                            bridge the skills gap through hands-on, AI-guided experiences. My courses showcase how 
+                            <strong style="color: #ff0088">AI transforms the learning journey itself</strong>.
+                        </div>
                     </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">📚</div>
-                        <div class="skill-title">Self-Growth</div>
-                        <div class="skill-description">Sharing strategies for continuous learning and skill development</div>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">🚀</div>
-                        <div class="skill-title">Entrepreneurship</div>
-                        <div class="skill-description">Exploring entrepreneurial ventures in the tech landscape</div>
+                    <div class="timeline-visual">🤖</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-visual">🌟</div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">TODAY | THE MISSION</div>
+                        <div class="timeline-title">Democratizing AI Knowledge</div>
+                        <div class="timeline-description">
+                            Now working as an AI Solutions Architect, I focus on three pillars: <strong style="color: #00ff88">
+                            Assessment</strong> (1-1 confidential skill evaluations), <strong style="color: #00ff88">Training</strong> 
+                            (Top 10 AI topics in accessible lectures), and <strong style="color: #00ff88">Implementation</strong> 
+                            (merging developer and non-developer worlds). My goal: ensure no one is left behind in the AI revolution. 
+                            <strong style="color: #ff0088">Transformation is a journey we take together</strong>.
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta">
+    <section id="skills" class="skills-section">
         <div class="container">
-            <div class="cta-content">
-                <h2 class="cta-title">Ready to Bridge the AI Skills Gap? 🚀</h2>
-                <p class="cta-description">
-                    Don't let the AI revolution leave you behind! Discover how Delivery Pilot can transform your 
-                    learning experience and help you master new technologies with AI-powered guidance.
+            <div class="section-header">
+                <h2 class="section-title">Bridging Two Worlds</h2>
+                <p class="section-subtitle">
+                    Combining deep security expertise with cutting-edge AI capabilities to create accessible learning solutions
                 </p>
-                <div class="cta-buttons">
-                    <a href="delivery-pilot.html" class="btn btn-primary">🚀 Explore Delivery Pilot</a>
-                    <a href="courses.html" class="btn btn-secondary">🎓 See Learning in Action</a>
+            </div>
+            
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">🔐</div>
+                    <div class="skill-title">Security-First AI</div>
+                    <div class="skill-description">
+                        12+ years securing CNI, finance & government systems. Now applying zero-trust principles 
+                        to AI deployments—ensuring safe, compliant, and resilient AI solutions.
+                    </div>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">🤖</div>
+                    <div class="skill-title">AI Infrastructure</div>
+                    <div class="skill-description">
+                        Expert in AWS Bedrock, Vertex AI, Azure OpenAI, LangChain & LlamaIndex. Building MLOps 
+                        pipelines and AI platforms that scale from concept to production.
+                    </div>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">🎓</div>
+                    <div class="skill-title">Learning Innovation</div>
+                    <div class="skill-description">
+                        Created Delivery Pilot—an AI-powered platform that transforms how professionals learn. 
+                        Certified trainer on Pluralsight & Knowledge Academy, teaching thousands.
+                    </div>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">🌉</div>
+                    <div class="skill-title">Gap Bridging</div>
+                    <div class="skill-description">
+                        Specializing in making complex AI concepts accessible. Helping organizations evolve from 
+                        I-shaped to M-shaped and X-shaped skills through practical, hands-on implementation.
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Video Section -->
-    <section class="video-section">
+    <section class="cta-section">
         <div class="container">
-            <div class="video-content">
-                <h2 class="video-title">CV as Code</h2>
-                <p class="video-subtitle">Watch my latest video on modernizing your professional profile</p>
-                <div class="video-container">
-                    <iframe 
-                        src="https://www.youtube.com/embed/dCU0GpriG1o" 
-                        title="CV as Code - Rifat Erdem Sahin"
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                <div class="video-cta">
-                    <a href="https://youtu.be/dCU0GpriG1o" target="_blank" class="btn btn-primary">Watch on YouTube</a>
-                    <a href="about.html" class="btn btn-secondary">Learn About Me</a>
-                </div>
+            <h2 class="cta-title">Ready to Transform Your AI Journey? 🚀</h2>
+            <p class="cta-description">
+                Don't let the AI revolution leave you behind. Join me in bridging the skills gap through 
+                practical, AI-powered learning. Let's turn technological change into your greatest opportunity.
+            </p>
+            <div class="hero-cta" style="justify-content: center;">
+                <a href="mailto:contact@rifaterdemsahin.com" class="btn btn-primary">📧 Get In Touch</a>
+                <a href="https://www.linkedin.com/in/rifaterdemsahin/" class="btn btn-secondary" target="_blank">💼 Connect on LinkedIn</a>
             </div>
         </div>
     </section>
 
-    <!-- Social Media Section -->
-    <section class="social-section">
-        <div class="container">
-            <div class="social-content">
-                <h2 class="social-title">Connect With Me</h2>
-                <p class="social-subtitle">Follow my journey and stay updated with the latest insights</p>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/rifaterdemsahin/" target="_blank" class="social-link linkedin">
-                        <span class="social-icon">💼</span>
-                        <span class="social-text">LinkedIn</span>
-                    </a>
-                    <a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" class="social-link youtube">
-                        <span class="social-icon">📺</span>
-                        <span class="social-text">YouTube</span>
-                    </a>
-                    <a href="https://www.udemy.com/user/rifat-erdem-sahin-2/" target="_blank" class="social-link udemy">
-                        <span class="social-icon">🎓</span>
-                        <span class="social-text">Udemy</span>
-                    </a>
-                    <a href="https://www.coursera.org/instructor/~184662540" target="_blank" class="social-link coursera">
-                        <span class="social-icon">📚</span>
-                        <span class="social-text">Coursera</span>
-                    </a>
-                </div>
-                <div style="margin-top: 30px; text-align: center;">
-                    <a href="https://www.youtube.com/@rifaterdemsahin?sub_confirmation=1" 
-                       target="_blank" 
-                       rel="noopener noreferrer"
-                       style="display: inline-block; background: #ff0000; color: white; padding: 12px 24px; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 16px; transition: background 0.3s, transform 0.2s;">
-                        🔔 Subscribe on YouTube
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
-            <p class="footer-text">Let's connect and grow together in the world of technology</p>
-            <div class="footer-links">
-                <a href="#about">👨‍💻 About</a>
-                <a href="about.html">👤 About</a>
-                <a href="contact.html">📞 Contact</a>
-                <a href="newsletter.html">📧 Newsletter</a>
-                <a href="courses.html">🎓 Courses</a>
-                <a href="email-form.html">🎫 Get Coupon</a>
-                <a href="early-bird-registration.html">🐦 Early Bird</a>
-                <a href="https://rifaterdemsahin.com/" target="_blank">📝 Blog</a>
-                <a href="delivery-pilot.html">🚀 Delivery Pilot</a>
-                <a href="investor.html">💼 Investors</a>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Rifat Erdem Sahin. All rights reserved.</p>
-            </div>
+        <div class="footer-links">
+            <a href="https://www.youtube.com/@RifatErdemSahin" target="_blank">📺 YouTube</a>
+            <a href="https://www.udemy.com/user/rifat-erdem-sahin-2/" target="_blank">🎓 Udemy</a>
+            <a href="https://www.coursera.org/instructor/~184662540" target="_blank">📚 Coursera</a>
+            <a href="https://rifaterdemsahin.com/" target="_blank">📝 Blog</a>
         </div>
+        <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+        <p style="color: #00ff88; margin-top: 1rem;">🚀 Bridging the AI Skills Gap, One Learner at a Time</p>
     </footer>
-
-    <script src="assets/js/main.js"></script>
 </body>
 </html>
