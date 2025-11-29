@@ -15,6 +15,324 @@
 <body>
   <div id="root"></div>
 
+  <!-- GitHub Assessment Form Section -->
+  <div id="github-assessment-section" style="display: none;">
+    <style>
+      :root {
+        --primary-color: #2563eb;
+        --secondary-color: #1e40af;
+        --accent-color: #3b82f6;
+        --text-primary: #1f2937;
+        --text-secondary: #6b7280;
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8fafc;
+        --border-color: #e5e7eb;
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+      }
+
+      .github-assessment-wrapper {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: var(--bg-secondary);
+        padding: 4rem 0;
+        margin-top: 2rem;
+      }
+
+      .github-assessment-wrapper .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .github-assessment-wrapper .section-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .github-assessment-wrapper .section-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .github-assessment-wrapper .section-subtitle {
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .github-assessment-wrapper .assessment-card {
+        background: white;
+        border-radius: 20px;
+        box-shadow: var(--shadow-xl);
+        border: 1px solid var(--border-color);
+        overflow: hidden;
+      }
+
+      .github-assessment-wrapper .assessment-header {
+        background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        color: white;
+        padding: 2rem;
+        text-align: center;
+      }
+
+      .github-assessment-wrapper .assessment-header h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      .github-assessment-wrapper .assessment-header p {
+        font-size: 1rem;
+        opacity: 0.9;
+      }
+
+      .github-assessment-wrapper .assessment-form {
+        padding: 2rem;
+      }
+
+      .github-assessment-wrapper .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .github-assessment-wrapper .form-group label {
+        display: block;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+      }
+
+      .github-assessment-wrapper .form-group input[type="email"],
+      .github-assessment-wrapper .form-group input[type="url"] {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid var(--border-color);
+        border-radius: 10px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background: var(--bg-primary);
+        box-sizing: border-box;
+      }
+
+      .github-assessment-wrapper .form-group input[type="email"]:focus,
+      .github-assessment-wrapper .form-group input[type="url"]:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      }
+
+      .github-assessment-wrapper .checkbox-group {
+        margin: 2rem 0;
+      }
+
+      .github-assessment-wrapper .checkbox-label {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        cursor: pointer;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: var(--text-secondary);
+      }
+
+      .github-assessment-wrapper .checkbox-label input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        margin-top: 2px;
+        cursor: pointer;
+      }
+
+      .github-assessment-wrapper .btn {
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        border: none;
+        cursor: pointer;
+      }
+
+      .github-assessment-wrapper .btn-primary {
+        background: var(--primary-color);
+        color: white;
+      }
+
+      .github-assessment-wrapper .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+        background: var(--secondary-color);
+      }
+
+      .github-assessment-wrapper .assessment-btn {
+        width: 100%;
+        justify-content: center;
+        font-size: 1.1rem;
+        padding: 1.2rem 2rem;
+        margin-top: 1rem;
+      }
+
+      .github-assessment-wrapper .assessment-result {
+        margin-top: 2rem;
+        padding: 2rem;
+        background: #f0f9ff;
+        border-radius: 15px;
+        border: 1px solid var(--border-color);
+        text-align: center;
+      }
+
+      .github-assessment-wrapper .result-header h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .github-assessment-wrapper .result-header p {
+        color: var(--text-secondary);
+      }
+    </style>
+
+    <div class="github-assessment-wrapper">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">📊 Delivery Pilot - Schedule a Free Assessment Call</h2>
+          <p class="section-subtitle">
+            Submit your GitHub repository to identify specific skills gaps and get a personalized learning roadmap
+          </p>
+        </div>
+
+        <div class="assessment-card">
+          <div class="assessment-header">
+            <h3>📅 Schedule Free Call</h3>
+            <p>Get your code assessed by AI to identify specific skills gaps</p>
+          </div>
+
+          <form id="githubAssessmentForm" class="assessment-form">
+            <div class="form-group">
+              <label for="emailAddress">Email Address</label>
+              <input type="email" id="emailAddress" name="emailAddress" placeholder="you@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="githubRepo">GitHub Repository URL</label>
+              <input type="url" id="githubRepo" name="githubRepo"
+                placeholder="https://github.com/username/repository" required>
+            </div>
+
+            <div class="form-group checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="agreeToAssessment" name="agreeToAssessment" required>
+                I agree to have my repository analyzed to identify skills gaps and receive a learning roadmap
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary assessment-btn">
+              <span class="btn-text">📅 Schedule Free Call</span>
+              <span class="btn-loading" style="display: none;">⏳ Scheduling...</span>
+            </button>
+          </form>
+
+          <div id="assessmentResult" class="assessment-result" style="display: none;">
+            <div class="result-header">
+              <h3>🎉 Thanks!</h3>
+              <p>Your assessment request has been received. We will be in touch shortly with your personalized report.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Show the GitHub assessment section after React mounts
+    document.addEventListener('DOMContentLoaded', function() {
+      // Wait for React to render, then show the section
+      setTimeout(function() {
+        const section = document.getElementById('github-assessment-section');
+        if (section) {
+          section.style.display = 'block';
+        }
+      }, 100);
+    });
+
+    // GitHub Assessment Form functionality
+    document.addEventListener('DOMContentLoaded', function () {
+      const assessmentForm = document.getElementById('githubAssessmentForm');
+      const assessmentResult = document.getElementById('assessmentResult');
+      const btnText = document.querySelector('.btn-text');
+      const btnLoading = document.querySelector('.btn-loading');
+
+      if (assessmentForm) {
+        assessmentForm.addEventListener('submit', async function (e) {
+          e.preventDefault();
+
+          const githubRepo = document.getElementById('githubRepo').value;
+          const agreeToAssessment = document.getElementById('agreeToAssessment').checked;
+
+          if (!githubRepo || !agreeToAssessment) {
+            alert('Please provide a GitHub repository URL and agree to the assessment terms.');
+            return;
+          }
+
+          // Show loading state
+          if (btnText) btnText.style.display = 'none';
+          if (btnLoading) btnLoading.style.display = 'inline';
+
+          try {
+            // Simulate API call delay
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            // Send POST request to n8n
+            try {
+              const n8nWebhookUrl = 'https://n8n.rifaterdemsahin.com/webhook/d12f4c42-0eb5-4d3f-ab81-995cd5ea3676';
+              const email = document.getElementById('emailAddress').value;
+
+              const response = await fetch(n8nWebhookUrl, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  'Email address': email,
+                  'GitHub Repository': githubRepo,
+                  'Interested In': 'delivery pilot assessment+githuburl',
+                  'Timestamp': new Date().toISOString()
+                })
+              });
+
+              if (!response.ok) {
+                console.warn('N8N webhook call failed, but continuing with assessment');
+              }
+            } catch (error) {
+              console.warn('Failed to send data to N8N:', error);
+              // Continue with assessment even if N8N call fails
+            }
+
+            // Display results
+            assessmentForm.style.display = 'none';
+            assessmentResult.style.display = 'block';
+            assessmentResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+          } catch (error) {
+            console.error('Assessment error:', error);
+            alert('An error occurred during assessment. Please try again.');
+          } finally {
+            // Hide loading state
+            if (btnText) btnText.style.display = 'inline';
+            if (btnLoading) btnLoading.style.display = 'none';
+          }
+        });
+      }
+    });
+  </script>
+
   <script type="text/babel">
     const { useState } = React;
 
