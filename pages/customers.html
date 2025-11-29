@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erdem Sahin - Customers & Engagements</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --light-text: #7f8c8d;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 1px solid #e1e4e8;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        p.subtitle {
+            font-size: 1.1rem;
+            color: var(--light-text);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            height: 180px;
+            position: relative;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .logo-container {
+            height: 80px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .logo {
+            max-height: 100%;
+            max-width: 90%;
+            object-fit: contain;
+            filter: grayscale(100%);
+            opacity: 0.8;
+            transition: filter 0.3s ease, opacity 0.3s ease;
+        }
+
+        .card:hover .logo {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        .client-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* Fallback styling for companies without public vector logos */
+        .fallback-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #bdc3c7;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+            background: #fdfdfd;
+            border-radius: 4px;
+            border: 1px dashed #e0e0e0;
+        }
+
+        .card:hover .fallback-logo {
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #eef2f7;
+            color: #555;
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Customers & Engagements</h1>
+        <p class="subtitle">A showcase of the global enterprises, government bodies, and innovators Erdem Sahin has partnered with to deliver DevOps, Cloud, and AI solutions.</p>
+    </header>
+
+    <div class="container">
+
+        <h2 class="section-title">Global Enterprise & Finance</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" class="logo">
+                </div>
+                <div class="client-name">IBM</div>
+            </div>
+            <div class="card">
+                <div class="logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" alt="Microsoft" class="logo">
+                </div>
+                <div class="client-name">Microsoft</div>
+            </div>
+            <div class="card">
+                <div class="logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/Goldman_Sachs.svg" alt="Goldman Sachs" class="logo">
+                </div>
+                <div class="client-name">Goldman Sachs</div>
+            </div>
+            <div class="card">
+                <div class="logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/Standard_Chartered.svg" alt="Standard Chartered" class="logo">
+                </div>
+                <div class="client-name">Standard Chartered</div>
+            </div>
+            <div class="card">
+                <div class="logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Accenture.svg" alt="Accenture" class="logo">
+                </div>
+                <div class="client-name">Accenture (UniCredit)</div>
+            </div>
+            <div class="card">
+                <div class="logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d6/Cushman_%26_Wakefield_Logo.svg" alt="Cushman & Wakefield" class="logo">
+                </div>
+                <div class="client-name">Cushman & Wakefield</div>
+            </div>
+             <div class="card">
+                <div class="logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Emerson_Electric_logo.svg" alt="Emerson" class="logo">
+                </div>
+                <div class="client-name">Emerson Automation</div>
+            </div>
+             <div class="card">
+                <div class="logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/RHI_Magnesita_Logo.svg" alt="RHI Magnesita" class="logo">
+                </div>
+                <div class="client-name">RHI Magnesita</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Technology, SaaS & Digital</h2>
+        <div class="grid">
+             <div class="card">
+                <div class="logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Pluralsight_logo.svg" alt="Pluralsight" class="logo">
+                </div>
+                <div class="client-name">Pluralsight</div>
+            </div>
+            <div class="card">
+                <div class="logo-container">
+                    <div class="fallback-logo">SMART</div>
+                </div>
+                <div class="client-name">SmartSpace Software</div>
+            </div>
+            <div class="card">
+                <div class="logo-container">
+                     <div class="fallback-logo">CONC</div>
+                </div>
+                <div class="client-name">Concentra Analytics</div>
+            </div>
+            <div class="card">
+                <div class="logo-container">
+                    <div class="fallback-logo">ORG</div>
+                </div>
+                <div class="client-name">Orgvue</div>
+            </div>
+            <div class="card">
+                <div class="logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/ZTE_logo.svg" alt="ZTE" class="logo">
+                </div>
+                <div class="client-name">Netas / ZTE</div>
+            </div>
+            <div class="card">
+                <div class="logo-container">
+                    <div class="fallback-logo">MMT</div>
+                </div>
+                <div class="client-name">MMT Digital</div>
+            </div>
+             <div class="card">
+                <div class="logo-container">
+                    <div class="fallback-logo">RED</div>
+                </div>
+                <div class="client-name">Red Box</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Healthcare, Gov & Public Sector</h2>
+        <div class="grid">
+             <div class="card">
+                <div class="logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Logo_Ypsomed.svg" alt="Ypsomed" class="logo">
+                </div>
+                <div class="client-name">Ypsomed AG</div>
+            </div>
+            <div class="card">
+                <div class="logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Canada_Life_logo.svg" alt="Canada Life" class="logo">
+                </div>
+                <div class="client-name">Canada Life</div>
+            </div>
+            <div class="card">
+                <div class="logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/52/Scottish_Enterprise_logo.svg/1200px-Scottish_Enterprise_logo.svg.png" alt="Scottish Enterprise" class="logo">
+                </div>
+                <div class="client-name">Scottish Enterprise</div>
+            </div>
+            <div class="card">
+                <div class="logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/T%C3%9CB%C4%B0TAK_logo.svg" alt="Tubitak" class="logo">
+                </div>
+                <div class="client-name">Tubitak</div>
+            </div>
+            <div class="card">
+                <div class="logo-container">
+                    <div class="fallback-logo">CRN</div>
+                </div>
+                <div class="client-name">Craneware</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">EdTech, VR & Innovation</h2>
+        <div class="grid">
+             <div class="card">
+                <div class="logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Udemy_logo.svg" alt="Udemy" class="logo">
+                </div>
+                <div class="client-name">Udemy</div>
+            </div>
+             <div class="card">
+                <div class="logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c0/Skillshare_logo_2020.svg" alt="Skillshare" class="logo">
+                </div>
+                <div class="client-name">Skillshare</div>
+            </div>
+            <div class="card">
+                <div class="logo-container">
+                    <div class="fallback-logo">TKA</div>
+                </div>
+                <div class="client-name">The Knowledge Academy</div>
+            </div>
+            <div class="card">
+                <div class="logo-container">
+                    <div class="fallback-logo">VR</div>
+                </div>
+                <div class="client-name">TransfrVR</div>
+            </div>
+            <div class="card">
+                <div class="logo-container">
+                    <div class="fallback-logo">HOLO</div>
+                </div>
+                <div class="client-name">Holovis</div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
