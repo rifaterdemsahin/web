@@ -214,36 +214,18 @@
             <p>Get your code assessed by AI to identify specific skills gaps</p>
           </div>
 
-          <form id="githubAssessmentForm" class="assessment-form">
-            <div class="form-group">
-              <label for="emailAddress">Email Address</label>
-              <input type="email" id="emailAddress" name="emailAddress" placeholder="you@example.com" required>
-            </div>
+          <div class="assessment-form">
+            <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem;">
+              During your call, we can analyze your repository to identify skills gaps and create a learning roadmap.
+            </p>
 
-            <div class="form-group">
-              <label for="githubRepo">GitHub Repository URL</label>
-              <input type="url" id="githubRepo" name="githubRepo"
-                placeholder="https://github.com/username/repository" required>
-            </div>
-
-            <div class="form-group checkbox-group">
-              <label class="checkbox-label">
-                <input type="checkbox" id="agreeToAssessment" name="agreeToAssessment" required>
-                I agree to have my repository analyzed to identify skills gaps and receive a learning roadmap
-              </label>
-            </div>
-
-            <button type="submit" class="btn btn-primary assessment-btn">
-              <span class="btn-text">📅 Schedule Free Call</span>
-              <span class="btn-loading" style="display: none;">⏳ Scheduling...</span>
-            </button>
-          </form>
-
-          <div id="assessmentResult" class="assessment-result" style="display: none;">
-            <div class="result-header">
-              <h3>🎉 Thanks!</h3>
-              <p>Your assessment request has been received. We will be in touch shortly with your personalized report.</p>
-            </div>
+            <a href="https://calendly.com/rifaterdem/schedule"
+               class="btn btn-primary assessment-btn"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Schedule a free call on Calendly (opens in new tab)">
+              📅 Schedule Free Call
+            </a>
           </div>
         </div>
       </div>
@@ -262,75 +244,7 @@
       }, 100);
     });
 
-    // GitHub Assessment Form functionality
-    document.addEventListener('DOMContentLoaded', function () {
-      const assessmentForm = document.getElementById('githubAssessmentForm');
-      const assessmentResult = document.getElementById('assessmentResult');
-      const btnText = document.querySelector('.btn-text');
-      const btnLoading = document.querySelector('.btn-loading');
-
-      if (assessmentForm) {
-        assessmentForm.addEventListener('submit', async function (e) {
-          e.preventDefault();
-
-          const githubRepo = document.getElementById('githubRepo').value;
-          const agreeToAssessment = document.getElementById('agreeToAssessment').checked;
-
-          if (!githubRepo || !agreeToAssessment) {
-            alert('Please provide a GitHub repository URL and agree to the assessment terms.');
-            return;
-          }
-
-          // Show loading state
-          if (btnText) btnText.style.display = 'none';
-          if (btnLoading) btnLoading.style.display = 'inline';
-
-          try {
-            // Simulate API call delay
-            await new Promise(resolve => setTimeout(resolve, 2000));
-
-            // Send POST request to n8n
-            try {
-              const n8nWebhookUrl = 'https://n8n.rifaterdemsahin.com/webhook/d12f4c42-0eb5-4d3f-ab81-995cd5ea3676';
-              const email = document.getElementById('emailAddress').value;
-
-              const response = await fetch(n8nWebhookUrl, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  'Email address': email,
-                  'GitHub Repository': githubRepo,
-                  'Interested In': 'delivery pilot assessment+githuburl',
-                  'Timestamp': new Date().toISOString()
-                })
-              });
-
-              if (!response.ok) {
-                console.warn('N8N webhook call failed, but continuing with assessment');
-              }
-            } catch (error) {
-              console.warn('Failed to send data to N8N:', error);
-              // Continue with assessment even if N8N call fails
-            }
-
-            // Display results
-            assessmentForm.style.display = 'none';
-            assessmentResult.style.display = 'block';
-            assessmentResult.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-          } catch (error) {
-            console.error('Assessment error:', error);
-            alert('An error occurred during assessment. Please try again.');
-          } finally {
-            // Hide loading state
-            if (btnText) btnText.style.display = 'inline';
-            if (btnLoading) btnLoading.style.display = 'none';
-          }
-        });
-      }
-    });
+    // GitHub Assessment Form functionality has been replaced with Calendly link
   </script>
 
   <script type="text/babel">
