@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found</title>
+    <script>
+        // Smart 404 Redirect
+        (function() {
+            var currentPath = window.location.pathname;
+            // Check if the path matches the old broken link
+            if (currentPath === '/pages/delivery-pilot.html' || currentPath === '/pages/delivery-pilot') {
+                // Redirect to home page
+                window.location.replace('/');
+            }
+        })();
+    </script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f6f8fa;
+            color: #24292e;
+            text-align: center;
+        }
+        h1 { font-size: 2rem; margin-bottom: 1rem; }
+        p { font-size: 1.2rem; color: #586069; }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>404 - Page Not Found</h1>
+    <p>The page you are looking for does not exist.</p>
+    <p><a href="/">Go back to Home</a></p>
+</body>
+</html>
