@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise AI Maturity Analysis - On-Premise AI Readiness Platform</title>
+    <meta name="description"
+        content="Enterprise AI Maturity Analysis - On-premise software solution that analyzes enterprise teams, collects data from enterprise data sources, and provides AI readiness reports and recommendations.">
+    <meta name="keywords"
+        content="Enterprise AI, AI Maturity Analysis, On-Premise Software, AI Readiness, DevOps Automation, Git Analysis, Jenkins Integration, AI Transformation">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/pages/enterprise-ai-maturity.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/pages/enterprise-ai-maturity.html">
+    <meta property="og:title" content="Enterprise AI Maturity Analysis - On-Premise AI Readiness Platform">
+    <meta property="og:description"
+        content="On-premise software solution that analyzes enterprise teams, collects data from enterprise data sources, and provides AI readiness reports and recommendations.">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/delivery_pilot.png">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/pages/enterprise-ai-maturity.html">
+    <meta property="twitter:title" content="Enterprise AI Maturity Analysis - On-Premise AI Readiness Platform">
+    <meta property="twitter:description"
+        content="On-premise software solution that analyzes enterprise teams, collects data from enterprise data sources, and provides AI readiness reports and recommendations.">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/delivery_pilot.png">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/common-styles.css">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Enterprise AI Maturity Analysis",
+      "description": "On-premise software solution that analyzes enterprise teams, collects data from enterprise data sources, and provides AI readiness reports and recommendations for AI transformation.",
+      "provider": {
+        "@type": "Person",
+        "name": "Rifat Erdem Sahin",
+        "jobTitle": "AI Solutions Architect"
+      },
+      "url": "https://www.rifaterdemsahin.com/pages/enterprise-ai-maturity.html",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "On-Premise Enterprise",
+      "offers": {
+        "@type": "Offer",
+        "name": "Enterprise AI Maturity Analysis Implementation",
+        "description": "Custom pricing based on assessments, workshops, and consultant effort for enterprise data source integration",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "priceCurrency": "GBP",
+          "unitText": "Custom quote based on scope"
+        }
+      }
+    }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --text-light: #9ca3af;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-accent: #f1f5f9;
+            --border-color: #e5e7eb;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #7c3aed 100%);
+            position: relative;
+            overflow: hidden;
+            margin-top: 70px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            color: white;
+        }
+
+        .product-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            opacity: 0.8;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .product-showcase {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .product-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 3rem;
+        }
+
+        .product-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-tagline {
+            font-size: 1rem;
+            opacity: 0.8;
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 6rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Data Sources Section */
+        .data-sources-section {
+            background: var(--bg-secondary);
+            padding: 6rem 0;
+        }
+
+        .data-source-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .data-source-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .data-source-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .data-source-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .data-source-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .data-source-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Use Case Section */
+        .use-case-section {
+            padding: 6rem 0;
+        }
+
+        .use-case-box {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-radius: 20px;
+            padding: 3rem;
+            border-left: 6px solid var(--warning-color);
+            margin-top: 3rem;
+        }
+
+        .use-case-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .use-case-content {
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .use-case-content strong {
+            color: var(--secondary-color);
+        }
+
+        .code-block {
+            background: #1f2937;
+            color: #10b981;
+            padding: 1.5rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+
+        /* Process Section */
+        .process-section {
+            background: var(--bg-secondary);
+            padding: 6rem 0;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .step-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 6rem 0;
+        }
+
+        .pricing-box {
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 3rem auto 0;
+            border: 2px solid var(--primary-color);
+        }
+
+        .pricing-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .pricing-desc {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .pricing-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .pricing-item-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-item-name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .pricing-item-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-description {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-text {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+                padding-top: 2rem;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero-cta {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .data-source-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .cta-title {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .data-source-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="index.html">🏠 Home</a></li>
+                <li><a href="vision.html">👁️ Vision</a></li>
+                <li><a href="delivery-pilot.html">🚀 Delivery Pilot</a></li>
+                <li><a href="enterprise-ai-maturity.html">🏢 Enterprise AI</a></li>
+                <li><a href="courses.html">🎓 Courses</a></li>
+                <li><a href="early-bird-registration.html">🐦 Early Bird</a></li>
+                <li><a href="newsletter.html">📧 Newsletter</a></li>
+                <li><a href="investor.html">💼 Investors</a></li>
+                <li><a href="about.html">👤 About</a></li>
+                <li><a href="contact.html">📞 Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="product-badge">🏢 Final Delivery Pilot Product for Enterprise Teams</div>
+                <h1 class="hero-title">Enterprise AI Maturity Analysis</h1>
+                <div class="hero-subtitle">On-Premise Software for AI Readiness & Transformation</div>
+                <p class="hero-description">
+                    After completing <strong>assessments and workshops</strong>, we deploy an on-premise software solution 
+                    that analyzes your enterprise teams, collects data from your enterprise data sources, and provides 
+                    <strong>AI readiness reports</strong> with actionable recommendations. Identify where and how AI 
+                    can help boost productivity with <strong>timely notifications</strong> to multiple stakeholders.
+                </p>
+                <div class="hero-cta">
+                    <a href="https://calendly.com/rifaterdem/" target="_blank" class="btn btn-primary">📅 Schedule Consultation</a>
+                    <a href="#data-sources" class="btn btn-secondary">🔍 Explore Data Sources</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="product-showcase">
+                    <div class="product-icon">🔬</div>
+                    <div class="product-name">AI Maturity Analyzer</div>
+                    <div class="product-tagline">Enterprise-Grade On-Premise Solution</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Key Features Section -->
+        <section class="container">
+            <div class="section-header">
+                <h2 class="section-title">🎯 Key Capabilities</h2>
+                <p class="section-subtitle">
+                    Comprehensive enterprise analysis for AI transformation with automated insights and multi-party notifications
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card" style="border-top: 4px solid #10b981;">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Enterprise Data Collection</h3>
+                    <p class="feature-description">
+                        Seamlessly integrate with your existing enterprise data sources including Git repositories, 
+                        Microsoft Teams, Jenkins pipelines, and databases to collect comprehensive operational data.
+                    </p>
+                </div>
+
+                <div class="feature-card" style="border-top: 4px solid #3b82f6;">
+                    <div class="feature-icon">🤖</div>
+                    <h3 class="feature-title">AI Readiness Analysis</h3>
+                    <p class="feature-description">
+                        Advanced algorithms analyze your enterprise operations to assess AI readiness levels, 
+                        identify manual processes, and discover automation opportunities across all teams.
+                    </p>
+                </div>
+
+                <div class="feature-card" style="border-top: 4px solid #f59e0b;">
+                    <div class="feature-icon">📈</div>
+                    <h3 class="feature-title">Reports & Recommendations</h3>
+                    <p class="feature-description">
+                        Generate detailed reports with actionable recommendations on where AI could help improve 
+                        productivity, including specific script suggestions and process improvements.
+                    </p>
+                </div>
+
+                <div class="feature-card" style="border-top: 4px solid #8b5cf6;">
+                    <div class="feature-icon">🔔</div>
+                    <h3 class="feature-title">Multi-Party Notifications</h3>
+                    <p class="feature-description">
+                        Send timely signals and recommendations to multiple related parties in your company, 
+                        ensuring all stakeholders are informed about AI transformation opportunities.
+                    </p>
+                </div>
+
+                <div class="feature-card" style="border-top: 4px solid #ef4444;">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title">On-Premise Security</h3>
+                    <p class="feature-description">
+                        Fully on-premise deployment ensures your sensitive enterprise data never leaves your 
+                        infrastructure, meeting strict security and compliance requirements.
+                    </p>
+                </div>
+
+                <div class="feature-card" style="border-top: 4px solid #06b6d4;">
+                    <div class="feature-icon">🔄</div>
+                    <h3 class="feature-title">Continuous Monitoring</h3>
+                    <p class="feature-description">
+                        Ongoing analysis and monitoring of enterprise operations to continuously identify 
+                        new AI transformation opportunities as your organization evolves.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Sources Section -->
+        <section id="data-sources" class="data-sources-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">🔗 Supported Data Sources</h2>
+                    <p class="section-subtitle">
+                        The maturity assessment integrates with your enterprise systems to provide comprehensive analysis
+                    </p>
+                </div>
+
+                <div class="data-source-grid">
+                    <div class="data-source-card">
+                        <div class="data-source-icon">📦</div>
+                        <div class="data-source-name">Git Repositories</div>
+                        <div class="data-source-desc">Analyze commit patterns, manual processes, and code quality metrics</div>
+                    </div>
+
+                    <div class="data-source-card">
+                        <div class="data-source-icon">💬</div>
+                        <div class="data-source-name">Microsoft Teams</div>
+                        <div class="data-source-desc">Extract communication patterns and collaboration insights</div>
+                    </div>
+
+                    <div class="data-source-card">
+                        <div class="data-source-icon">⚙️</div>
+                        <div class="data-source-name">Jenkins</div>
+                        <div class="data-source-desc">Monitor CI/CD pipelines and deployment patterns</div>
+                    </div>
+
+                    <div class="data-source-card">
+                        <div class="data-source-icon">🗄️</div>
+                        <div class="data-source-name">Databases</div>
+                        <div class="data-source-desc">Query operational data and business metrics</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Use Case Example Section -->
+        <section class="use-case-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">💡 Real-World Example</h2>
+                    <p class="section-subtitle">
+                        See how Enterprise AI Maturity Analysis identifies automation opportunities
+                    </p>
+                </div>
+
+                <div class="use-case-box">
+                    <div class="use-case-title">
+                        🔍 Detected: Manual OpenShift Environment Swap Procedure
+                    </div>
+                    <div class="use-case-content">
+                        <p>
+                            <strong>Scenario:</strong> The system analyzes Git commit messages and identifies recurring 
+                            patterns indicating manual environment swap operations in OpenShift. Team members are 
+                            manually executing environment swaps without scripting automation.
+                        </p>
+
+                        <div class="code-block">
+# Detected manual commit pattern:
+"manual swap from staging to production environment"
+"manually switched openshift namespace"
+"environment swap completed - done manually"
+
+# No associated automation scripts found
+# Recommendation: Implement automated swap script
+                        </div>
+
+                        <p>
+                            <strong>AI Recommendation:</strong> Create an automation script for OpenShift environment 
+                            swaps and establish a standard operating procedure. The system automatically notifies:
+                        </p>
+                        <ul style="margin: 1rem 0; padding-left: 2rem;">
+                            <li>📧 <strong>DevOps Team Lead</strong> - Script implementation task</li>
+                            <li>📧 <strong>Operations Manager</strong> - Process improvement opportunity</li>
+                            <li>📧 <strong>Security Team</strong> - Audit trail requirements</li>
+                            <li>📧 <strong>Platform Architect</strong> - Infrastructure standardization</li>
+                        </ul>
+
+                        <div class="code-block">
+#!/bin/bash
+# Suggested OpenShift Environment Swap Script
+# Generated by Enterprise AI Maturity Analysis
+
+NAMESPACE_SOURCE="staging"
+NAMESPACE_TARGET="production"
+
+echo "🔄 Initiating environment swap..."
+oc project $NAMESPACE_SOURCE
+oc get deployments -o yaml > /tmp/deployments-backup.yaml
+
+oc project $NAMESPACE_TARGET
+oc apply -f /tmp/deployments-backup.yaml
+
+echo "✅ Environment swap completed with audit logging"
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="process-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">📋 Implementation Process</h2>
+                    <p class="section-subtitle">
+                        From assessment to deployment - your journey to enterprise AI transformation
+                    </p>
+                </div>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">🔍 Assessment</h3>
+                        <p class="step-description">
+                            Comprehensive evaluation of your current enterprise operations, team structures, 
+                            and existing data sources to understand your AI readiness baseline.
+                        </p>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">🎓 Workshops</h3>
+                        <p class="step-description">
+                            Interactive workshops with your teams to identify pain points, manual processes, 
+                            and areas where AI could provide the most significant productivity improvements.
+                        </p>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">🔧 Integration</h3>
+                        <p class="step-description">
+                            Consultant-led integration of the on-premise software with your enterprise data 
+                            sources including Git, Teams, Jenkins, and databases.
+                        </p>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h3 class="step-title">🚀 Deployment</h3>
+                        <p class="step-description">
+                            On-premise deployment of the Enterprise AI Maturity Analysis platform with 
+                            continuous monitoring and automated notification systems.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="pricing-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">💰 Custom Enterprise Pricing</h2>
+                    <p class="section-subtitle">
+                        Tailored pricing based on your enterprise scope and integration requirements
+                    </p>
+                </div>
+
+                <div class="pricing-box">
+                    <div class="pricing-title">Enterprise AI Transformation Offer</div>
+                    <div class="pricing-desc">
+                        The cost for this implementation depends on the scope of assessments, workshops, 
+                        and the consultant effort required to integrate with your enterprise data sources. 
+                        Each engagement is customized to your organization's specific needs.
+                    </div>
+
+                    <div class="pricing-items">
+                        <div class="pricing-item">
+                            <div class="pricing-item-icon">🔍</div>
+                            <div class="pricing-item-name">Assessments</div>
+                            <div class="pricing-item-desc">Initial evaluation and AI readiness analysis</div>
+                        </div>
+                        <div class="pricing-item">
+                            <div class="pricing-item-icon">🎓</div>
+                            <div class="pricing-item-name">Workshops</div>
+                            <div class="pricing-item-desc">Interactive sessions with your teams</div>
+                        </div>
+                        <div class="pricing-item">
+                            <div class="pricing-item-icon">👨‍💻</div>
+                            <div class="pricing-item-name">Consultant Days</div>
+                            <div class="pricing-item-desc">Expert integration and deployment support</div>
+                        </div>
+                        <div class="pricing-item">
+                            <div class="pricing-item-icon">🔗</div>
+                            <div class="pricing-item-name">Data Source Integration</div>
+                            <div class="pricing-item-desc">Custom connectors for your systems</div>
+                        </div>
+                    </div>
+
+                    <a href="https://calendly.com/rifaterdem/" target="_blank" class="btn btn-primary" style="background: var(--primary-color); color: white;">
+                        📅 Request Custom Quote
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Transform Your Enterprise with AI?</h2>
+                <p class="cta-description">
+                    Start with our assessment and workshops to understand your AI readiness, 
+                    then deploy the Enterprise AI Maturity Analysis platform for continuous 
+                    insights and productivity improvements.
+                </p>
+                <div class="cta-buttons">
+                    <a href="https://calendly.com/rifaterdem/" target="_blank" class="btn btn-primary">📅 Schedule Consultation</a>
+                    <a href="delivery-pilot.html" class="btn btn-secondary">🚀 Learn About Delivery Pilot</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Enterprise AI Transformation - Bridging the Gap Between Manual Operations and AI-Powered Productivity</p>
+            <div class="footer-links">
+                <a href="index.html">🏠 Home</a>
+                <a href="about.html">👤 About</a>
+                <a href="contact.html">📞 Contact</a>
+                <a href="newsletter.html">📧 Newsletter</a>
+                <a href="courses.html">🎓 Courses</a>
+                <a href="delivery-pilot.html">🚀 Delivery Pilot</a>
+                <a href="enterprise-ai-maturity.html">🏢 Enterprise AI</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Auto-update footer copyright year
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            const copyrightElements = document.querySelectorAll('.footer-bottom p');
+            copyrightElements.forEach(element => {
+                if (element.textContent.includes('©')) {
+                    element.textContent = element.textContent.replace(/\d{4}/, currentYear);
+                }
+            });
+        }
+
+        // Update copyright year when page loads
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
