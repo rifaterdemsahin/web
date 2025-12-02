@@ -35,6 +35,7 @@ This prompt contains all the necessary information to recreate the website.
 │       ├── post-email-page.html
 │       └── vision.html
 │       └── workshops.html
+│       └── enterprise-ai-maturity.html
 ├── 6_Semblance
 ├── 7_Testing
 ├── antigravity.md
