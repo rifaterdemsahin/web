@@ -34,6 +34,7 @@ This prompt contains all the necessary information to recreate the website.
 │       ├── newsletter.html
 │       ├── post-email-page.html
 │       └── vision.html
+│       └── workshops.html
 ├── 6_Semblance
 ├── 7_Testing
 ├── antigravity.md
@@ -154,6 +155,14 @@ This prompt contains all the necessary information to recreate the website.
     - A newsletter subscription form.
     - "What You'll Get", "Newsletter Stats", and "Why Subscribe?" sections.
     - A section with recent blog posts.
+ 
+### `./5_Symbols/pages/workshops.html`
+- **Purpose:** A page for enterprises for to learn what is needed for the workshops.
+- **Key Elements:**
+    - "The tools that is there to be used online tools github,canva,,chatgpt,gemini,grok.
+    -  Workshop size of 8 including the instructor.
+    - 8 hour daily session with breaks and lunch break.
+    - A live working output in github.
 
 ### `./5_Symbols/pages/post-email-page.html`
 - **Purpose:** A "thank you" page displayed after a user submits the email form for a coupon.
