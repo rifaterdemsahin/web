@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshops - AI Multi-Role Workshops | Rifat Erdem Sahin</title>
+    <meta name="description" content="Join our multi-role AI workshops based on Delivery Pilot methodology. Maximum 8 hours, maximum 8 persons including the instructor. Prerequisites: GitHub, Canva.com, Gemini, ChatGPT, X Grok access.">
+    <meta name="keywords" content="AI Workshops, Delivery Pilot, Multi-Role Training, AI Learning, GitHub, Canva, Gemini, ChatGPT, Grok, Team Training">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/pages/workshops.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/pages/workshops.html">
+    <meta property="og:title" content="Workshops - AI Multi-Role Workshops | Rifat Erdem Sahin">
+    <meta property="og:description" content="Join our multi-role AI workshops based on Delivery Pilot methodology. Maximum 8 hours, maximum 8 persons including the instructor.">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/pages/workshops.html">
+    <meta property="twitter:title" content="Workshops - AI Multi-Role Workshops | Rifat Erdem Sahin">
+    <meta property="twitter:description" content="Join our multi-role AI workshops based on Delivery Pilot methodology. Maximum 8 hours, maximum 8 persons including the instructor.">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/common-styles.css">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "AI Multi-Role Workshop",
+      "description": "A multi-role workshop based on Delivery Pilot methodology. Maximum 8 hours, maximum 8 persons including the instructor.",
+      "organizer": {
+        "@type": "Person",
+        "name": "Rifat Erdem Sahin",
+        "jobTitle": "AI Solutions Architect"
+      },
+      "url": "https://www.rifaterdemsahin.com/pages/workshops.html",
+      "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
+      "maximumAttendeeCapacity": 8,
+      "duration": "PT8H"
+    }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --text-light: #9ca3af;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-accent: #f1f5f9;
+            --border-color: #e5e7eb;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #7c3aed 0%, #2563eb 50%, #0891b2 100%);
+            position: relative;
+            overflow: hidden;
+            margin-top: 70px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .hero-content {
+            color: white;
+        }
+
+        .product-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 4rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Workshop Details Section */
+        .workshop-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .detail-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .detail-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .detail-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        .detail-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-value {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Prerequisites Section */
+        .prerequisites-section {
+            background: var(--bg-secondary);
+            padding: 4rem 0;
+        }
+
+        .prerequisites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .prereq-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .prereq-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .prereq-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .prereq-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .prereq-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* About Workshop Section */
+        .about-section {
+            padding: 4rem 0;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .highlight-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-box p {
+            opacity: 0.9;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-text {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .workshop-details {
+                grid-template-columns: 1fr;
+            }
+
+            .prerequisites-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.75rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .prerequisites-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="index.html">🏠 Home</a></li>
+                <li><a href="vision.html">👁️ Vision</a></li>
+                <li><a href="delivery-pilot.html">🚀 Delivery Pilot</a></li>
+                <li><a href="workshops.html">🎯 Workshops</a></li>
+                <li><a href="courses.html">🎓 Courses</a></li>
+                <li><a href="early-bird-registration.html">🐦 Early Bird</a></li>
+                <li><a href="ebook.html">📚 Ebook</a></li>
+                <li><a href="newsletter.html">📧 Newsletter</a></li>
+                <li><a href="investor.html">💼 Investors</a></li>
+                <li><a href="about.html">👤 About</a></li>
+                <li><a href="contact.html">📞 Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="product-badge">🎯 Multi-Role Workshop Based on Delivery Pilot</div>
+                <h1 class="hero-title">AI Workshops 🎯</h1>
+                <p class="hero-subtitle">
+                    Intensive, hands-on multi-role workshops designed to bridge the AI skills gap. 
+                    Learn collaboratively in small groups with personalized guidance.
+                </p>
+                <div class="hero-cta">
+                    <a href="https://calendly.com/rifaterdem/" target="_blank" class="btn btn-primary">📅 Book Your Workshop</a>
+                    <a href="#prerequisites" class="btn btn-secondary">📋 View Prerequisites</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Workshop Details -->
+        <section class="container">
+            <div class="section-header">
+                <h2 class="section-title">Workshop Details</h2>
+                <p class="section-subtitle">
+                    Small group, high-impact learning experiences
+                </p>
+            </div>
+
+            <div class="workshop-details">
+                <div class="detail-card">
+                    <div class="detail-icon">⏱️</div>
+                    <h3 class="detail-title">Duration</h3>
+                    <p class="detail-value">Maximum 8 Hours</p>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-icon">👥</div>
+                    <h3 class="detail-title">Group Size</h3>
+                    <p class="detail-value">Maximum 8 Persons<br><small>(including the instructor)</small></p>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-icon">🎭</div>
+                    <h3 class="detail-title">Format</h3>
+                    <p class="detail-value">Multi-Role Workshop</p>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-icon">🚀</div>
+                    <h3 class="detail-title">Methodology</h3>
+                    <p class="detail-value">Based on Delivery Pilot</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prerequisites Section -->
+        <section id="prerequisites" class="prerequisites-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Prerequisites</h2>
+                    <p class="section-subtitle">
+                        Please ensure you have access to the following tools before attending the workshop
+                    </p>
+                </div>
+
+                <div class="prerequisites-grid">
+                    <div class="prereq-card">
+                        <div class="prereq-icon">🐙</div>
+                        <h3 class="prereq-name">GitHub</h3>
+                        <p class="prereq-desc">Version control and collaboration platform</p>
+                    </div>
+
+                    <div class="prereq-card">
+                        <div class="prereq-icon">🎨</div>
+                        <h3 class="prereq-name">Canva.com</h3>
+                        <p class="prereq-desc">Design and visual content creation</p>
+                    </div>
+
+                    <div class="prereq-card">
+                        <div class="prereq-icon">💎</div>
+                        <h3 class="prereq-name">Gemini</h3>
+                        <p class="prereq-desc">Google's AI assistant access</p>
+                    </div>
+
+                    <div class="prereq-card">
+                        <div class="prereq-icon">🤖</div>
+                        <h3 class="prereq-name">ChatGPT</h3>
+                        <p class="prereq-desc">OpenAI's conversational AI</p>
+                    </div>
+
+                    <div class="prereq-card">
+                        <div class="prereq-icon">🅧</div>
+                        <h3 class="prereq-name">X Grok</h3>
+                        <p class="prereq-desc">X's AI assistant access</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="section-header">
+                        <h2 class="section-title">About the Workshop</h2>
+                    </div>
+
+                    <p class="about-text">
+                        Our workshops are designed as multi-role learning experiences based on the 
+                        <strong>Delivery Pilot</strong> methodology. Participants work together across 
+                        different roles—developers and non-developers alike—to bridge the gap between 
+                        traditional skills and AI-powered workflows.
+                    </p>
+
+                    <p class="about-text">
+                        With a maximum of 8 participants including the instructor, each workshop provides 
+                        personalized attention and hands-on practice. The intimate group size ensures 
+                        everyone gets the guidance they need to transform their workflow with AI tools.
+                    </p>
+
+                    <div class="highlight-box">
+                        <h3>🎯 What You'll Gain</h3>
+                        <p>
+                            Practical skills in leveraging AI tools across multiple platforms. 
+                            Learn to collaborate effectively using GitHub, create compelling content with Canva, 
+                            and harness the power of Gemini, ChatGPT, and Grok for your daily workflows.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Transform Your Skills?</h2>
+                <p class="cta-description">
+                    Join our next workshop and experience the power of multi-role AI learning. 
+                    Limited spots available—book now to secure your place!
+                </p>
+                <div class="cta-buttons">
+                    <a href="https://calendly.com/rifaterdem/" target="_blank" class="btn btn-primary">📅 Schedule Workshop</a>
+                    <a href="contact.html" class="btn btn-secondary">📞 Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="index.html">🏠 Home</a>
+                <a href="about.html">👤 About</a>
+                <a href="contact.html">📞 Contact</a>
+                <a href="newsletter.html">📧 Newsletter</a>
+                <a href="courses.html">🎓 Courses</a>
+                <a href="workshops.html">🎯 Workshops</a>
+                <a href="email-form.html">🎫 Get Coupon</a>
+                <a href="early-bird-registration.html">🐦 Early Bird</a>
+                <a href="https://rifaterdemsahin.com/" target="_blank">📝 Blog</a>
+                <a href="delivery-pilot.html">🚀 Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Auto-update footer copyright year
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            const copyrightElements = document.querySelectorAll('.footer-bottom p');
+            copyrightElements.forEach(element => {
+                if (element.textContent.includes('©')) {
+                    element.textContent = element.textContent.replace(/\d{4}/, currentYear);
+                }
+            });
+        }
+
+        // Update copyright year when page loads
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
