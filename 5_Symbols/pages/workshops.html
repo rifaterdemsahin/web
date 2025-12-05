@@ -534,6 +534,135 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Timeline Section Styles */
+        .timeline-section {
+            padding: 4rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .timeline-table-container {
+            overflow-x: auto;
+            margin-top: 2rem;
+        }
+
+        .timeline-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .timeline-table th,
+        .timeline-table td {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .timeline-table th {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .timeline-table tr:hover {
+            background: var(--bg-accent);
+        }
+
+        .timeline-table tr.lunch-row {
+            background: linear-gradient(135deg, #f59e0b, #f97316);
+            color: white;
+        }
+
+        .timeline-table tr.lunch-row:hover {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+        }
+
+        .session-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .session-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .session-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+        }
+
+        .time-cell {
+            font-weight: 600;
+            color: var(--primary-color);
+            white-space: nowrap;
+        }
+
+        .phase-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .phase-setup { background: #dbeafe; color: #1e40af; }
+        .phase-planning { background: #dcfce7; color: #166534; }
+        .phase-build { background: #fef3c7; color: #92400e; }
+        .phase-test { background: #fce7f3; color: #9d174d; }
+        .phase-break { background: #ffedd5; color: #9a3412; }
+
+        .lunch-text {
+            color: white;
+        }
+
+        .lunch-description {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .timeline-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-table th,
+            .timeline-table td {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .session-icon {
+                font-size: 1.2rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -570,6 +699,7 @@
                 </p>
                 <div class="hero-cta">
                     <a href="https://calendly.com/rifaterdem/" target="_blank" class="btn btn-primary">📅 Book Your Workshop</a>
+                    <a href="#timeline" class="btn btn-secondary">⏰ View Timeline</a>
                     <a href="#prerequisites" class="btn btn-secondary">📋 View Prerequisites</a>
                 </div>
             </div>
@@ -610,6 +740,199 @@
                     <div class="detail-icon">🚀</div>
                     <h3 class="detail-title">Methodology</h3>
                     <p class="detail-value">Based on Delivery Pilot</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workshop Timeline Section -->
+        <section id="timeline" class="timeline-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">📅 Workshop Timeline</h2>
+                    <p class="section-subtitle">
+                        A full day journey from unknown to known state (9:00 AM - 5:00 PM)
+                    </p>
+                </div>
+
+                <div class="timeline-table-container">
+                    <table class="timeline-table">
+                        <thead>
+                            <tr>
+                                <th>⏰ Time</th>
+                                <th>📌 Session</th>
+                                <th>📝 Description</th>
+                                <th>🏷️ Phase</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="time-cell">9:00 AM - 9:30 AM</td>
+                                <td>
+                                    <div class="session-title">
+                                        <span class="session-icon">📋</span>
+                                        AI Maturity Assessment
+                                    </div>
+                                </td>
+                                <td class="session-description">
+                                    Professional AI maturity assessment checks. Evaluate current skills and knowledge levels to start from the unknown state.
+                                </td>
+                                <td><span class="phase-badge phase-setup">Setup</span></td>
+                            </tr>
+                            <tr>
+                                <td class="time-cell">9:30 AM - 10:00 AM</td>
+                                <td>
+                                    <div class="session-title">
+                                        <span class="session-icon">👥</span>
+                                        Team Assignment
+                                    </div>
+                                </td>
+                                <td class="session-description">
+                                    Assign participants to teams based on assessment results. Pair experienced members with beginners for collaborative learning.
+                                </td>
+                                <td><span class="phase-badge phase-setup">Setup</span></td>
+                            </tr>
+                            <tr>
+                                <td class="time-cell">10:00 AM - 10:30 AM</td>
+                                <td>
+                                    <div class="session-title">
+                                        <span class="session-icon">🔐</span>
+                                        Access Checks
+                                    </div>
+                                </td>
+                                <td class="session-description">
+                                    Verify GitHub access and whiteboard access for all participants. Ensure everyone has the required tools and permissions.
+                                </td>
+                                <td><span class="phase-badge phase-setup">Setup</span></td>
+                            </tr>
+                            <tr>
+                                <td class="time-cell">10:30 AM - 11:00 AM</td>
+                                <td>
+                                    <div class="session-title">
+                                        <span class="session-icon">🎯</span>
+                                        OKR Assignment
+                                    </div>
+                                </td>
+                                <td class="session-description">
+                                    Define and assign Objectives and Key Results (OKRs) as a team. Beginners take the lead while experienced members pair and guide.
+                                </td>
+                                <td><span class="phase-badge phase-planning">Planning</span></td>
+                            </tr>
+                            <tr>
+                                <td class="time-cell">11:00 AM - 12:00 PM</td>
+                                <td>
+                                    <div class="session-title">
+                                        <span class="session-icon">🛠️</span>
+                                        Environment Setup
+                                    </div>
+                                </td>
+                                <td class="session-description">
+                                    Create the development environment in Git and GitHub Codespaces. Set up repositories, branches, and collaboration workflows.
+                                </td>
+                                <td><span class="phase-badge phase-build">Build</span></td>
+                            </tr>
+                            <tr class="lunch-row">
+                                <td class="time-cell">12:00 PM - 1:00 PM</td>
+                                <td>
+                                    <div class="session-title lunch-text">
+                                        <span class="session-icon">🍽️</span>
+                                        Lunch Break
+                                    </div>
+                                </td>
+                                <td class="session-description lunch-description">
+                                    Time to recharge! Networking opportunity with fellow participants and the instructor.
+                                </td>
+                                <td><span class="phase-badge phase-break">Break</span></td>
+                            </tr>
+                            <tr>
+                                <td class="time-cell">1:00 PM - 2:00 PM</td>
+                                <td>
+                                    <div class="session-title">
+                                        <span class="session-icon">🎨</span>
+                                        UI Creation
+                                    </div>
+                                </td>
+                                <td class="session-description">
+                                    Create user interfaces with Gemini nanobanana. Design and implement UI components in the designated UI folder.
+                                </td>
+                                <td><span class="phase-badge phase-build">Build</span></td>
+                            </tr>
+                            <tr>
+                                <td class="time-cell">2:00 PM - 3:00 PM</td>
+                                <td>
+                                    <div class="session-title">
+                                        <span class="session-icon">📐</span>
+                                        Formula Writing
+                                    </div>
+                                </td>
+                                <td class="session-description">
+                                    Write the formulas needed to create the system. Define logic, algorithms, and data transformations required for the solution.
+                                </td>
+                                <td><span class="phase-badge phase-build">Build</span></td>
+                            </tr>
+                            <tr>
+                                <td class="time-cell">3:00 PM - 4:00 PM</td>
+                                <td>
+                                    <div class="session-title">
+                                        <span class="session-icon">💻</span>
+                                        Code Generation
+                                    </div>
+                                </td>
+                                <td class="session-description">
+                                    Generate the code using AI-assisted tools. Transform formulas and UI designs into working implementation.
+                                </td>
+                                <td><span class="phase-badge phase-build">Build</span></td>
+                            </tr>
+                            <tr>
+                                <td class="time-cell">4:00 PM - 4:30 PM</td>
+                                <td>
+                                    <div class="session-title">
+                                        <span class="session-icon">🐛</span>
+                                        Error Recording
+                                    </div>
+                                </td>
+                                <td class="session-description">
+                                    Run the code and record all errors. Document issues, bugs, and unexpected behaviors for systematic resolution.
+                                </td>
+                                <td><span class="phase-badge phase-test">Test</span></td>
+                            </tr>
+                            <tr>
+                                <td class="time-cell">4:30 PM - 5:00 PM</td>
+                                <td>
+                                    <div class="session-title">
+                                        <span class="session-icon">✅</span>
+                                        System Testing
+                                    </div>
+                                </td>
+                                <td class="session-description">
+                                    Test the system to reach the real (known) state. Validate functionality, fix remaining issues, and celebrate the journey from unknown to known!
+                                </td>
+                                <td><span class="phase-badge phase-test">Test</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="timeline-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #dbeafe;"></div>
+                        <span>Setup Phase</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #dcfce7;"></div>
+                        <span>Planning Phase</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #fef3c7;"></div>
+                        <span>Build Phase</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #fce7f3;"></div>
+                        <span>Test Phase</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #ffedd5;"></div>
+                        <span>Break</span>
+                    </div>
                 </div>
             </div>
         </section>
