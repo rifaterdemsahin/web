@@ -127,7 +127,12 @@
         .article-content code { padding: 0.2em 0.4em; }
         .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
         .article-content pre code { background: none; padding: 0; }
-        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
 
         /* ── Video embeds (YouTube / Loom) ────────────────────── */
         .video-embed {
@@ -242,11 +247,11 @@
                 <p>https:&#047;&#047;www.udemy.com/course/infrastructure-as-code-beginners/?couponCode=67659E1FC0139F914FEB</p>
                 <p>`</p>
                 <p><strong>Handle objectections</strong></p>
-                <p>![[aws-course-to-1.png]]</p>
+                <p><img src="images/aws-course-to-1.png" alt="aws course to 1" class="article-image" loading="lazy"></p>
                 <p>To learn more on the techniques take course i have created</p>
                 <p>https://www.udemy.com/course/become-an-ultimate-it-contractor/?couponCode=ACD57A60EF63DB1A02D5</p>
                 <hr />
-                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+                <p><em>Imported from rifaterdemsahin.com · 2023</em></p>
             </article>
         </div>
     </main>

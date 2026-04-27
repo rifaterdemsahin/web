@@ -127,7 +127,12 @@
         .article-content code { padding: 0.2em 0.4em; }
         .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
         .article-content pre code { background: none; padding: 0; }
-        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
 
         /* ── Video embeds (YouTube / Loom) ────────────────────── */
         .video-embed {
@@ -237,11 +242,11 @@
                 <h1>Immigrants and prison mindset</h1>
                 <p>I have managed the a list for immigrant where they where trying to predict the visa dates. Even though every one has the similar timeline people kept on posting.</p>
                 <p>Counting days</p>
-                <p>![[immigrants-and-prison-1.png]]</p>
+                <p><img src="images/immigrants-and-prison-1.png" alt="immigrants and prison 1" class="article-image" loading="lazy"></p>
                 <p>From time to time some application where slow still it did not change the game where they all played it extra safe</p>
-                <p>![[immigrants-and-prison-2.png]]</p>
+                <p><img src="images/immigrants-and-prison-2.png" alt="immigrants and prison 2" class="article-image" loading="lazy"></p>
                 <hr />
-                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+                <p><em>Imported from rifaterdemsahin.com · 2023</em></p>
             </article>
         </div>
     </main>

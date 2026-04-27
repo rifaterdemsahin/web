@@ -127,7 +127,12 @@
         .article-content code { padding: 0.2em 0.4em; }
         .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
         .article-content pre code { background: none; padding: 0; }
-        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
 
         /* ── Video embeds (YouTube / Loom) ────────────────────── */
         .video-embed {
@@ -236,23 +241,23 @@
             <article class="article-content">
                 <h1>When to disable the logic apps</h1>
                 <p>When there are just so many running at the same time !</p>
-                <p>![[when-to-disable-1.png]]</p>
+                <p><img src="images/when-to-disable-1.png" alt="when to disable 1" class="article-image" loading="lazy"></p>
                 <p>circuit breakers needed</p>
-                <p>![[when-to-disable-2.png]]</p>
+                <p><img src="images/when-to-disable-2.png" alt="when to disable 2" class="article-image" loading="lazy"></p>
                 <p>AFter cancel</p>
-                <p>![[when-to-disable-3.png]]</p>
+                <p><img src="images/when-to-disable-3.png" alt="when to disable 3" class="article-image" loading="lazy"></p>
                 <p>Similar fail times</p>
-                <p>![[when-to-disable-4.png]]</p>
+                <p><img src="images/when-to-disable-4.png" alt="when to disable 4" class="article-image" loading="lazy"></p>
                 <p>1 to n is ok and see all the delays in one place</p>
-                <p>![[when-to-disable-5.png]]</p>
+                <p><img src="images/when-to-disable-5.png" alt="when to disable 5" class="article-image" loading="lazy"></p>
                 <p>you do not wanna see 3 there</p>
-                <p>![[when-to-disable-6.png]]</p>
+                <p><img src="images/when-to-disable-6.png" alt="when to disable 6" class="article-image" loading="lazy"></p>
                 <p>Notion fails the other ones as well </p>
-                <p>![[when-to-disable-7.png]]</p>
-                <p>![[when-to-disable-8.png]]</p>
-                <p>![[when-to-disable-9.png]]</p>
+                <p><img src="images/when-to-disable-7.png" alt="when to disable 7" class="article-image" loading="lazy"></p>
+                <p><img src="images/when-to-disable-8.png" alt="when to disable 8" class="article-image" loading="lazy"></p>
+                <p><img src="images/when-to-disable-9.png" alt="when to disable 9" class="article-image" loading="lazy"></p>
                 <hr />
-                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+                <p><em>Imported from rifaterdemsahin.com · 2023</em></p>
             </article>
         </div>
     </main>

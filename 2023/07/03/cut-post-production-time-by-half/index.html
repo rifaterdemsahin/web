@@ -127,7 +127,12 @@
         .article-content code { padding: 0.2em 0.4em; }
         .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
         .article-content pre code { background: none; padding: 0; }
-        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
 
         /* ── Video embeds (YouTube / Loom) ────────────────────── */
         .video-embed {
@@ -243,10 +248,10 @@
                 
                 <p>One way to dramatically reduce post-production time is by utilizing a live production approach. This means that the footage is captured and edited in real-time, rather than waiting until after the shooting is complete to begin the editing process. By doing so, the need for post-production editing is minimized, which can save a significant amount of time. Additionally, it may be worth considering alternative editing software options instead of Davinci Resolve, as some programs may be better suited for live production workflows and can further streamline the process. Overall, by incorporating these techniques and tools, it's possible to reduce post-production time by up to 50%, allowing for greater efficiency and faster project delivery.</p>
                 <p>Example</p>
-                <p>![[cut-post-production-1.png]]</p>
+                <p><img src="images/cut-post-production-1.png" alt="cut post production 1" class="article-image" loading="lazy"></p>
                 <p>https://vdo.ninja/?push=rBqvAP4</p>
                 <hr />
-                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+                <p><em>Imported from rifaterdemsahin.com · 2023</em></p>
             </article>
         </div>
     </main>

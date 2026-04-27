@@ -127,7 +127,12 @@
         .article-content code { padding: 0.2em 0.4em; }
         .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
         .article-content pre code { background: none; padding: 0; }
-        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
 
         /* ── Video embeds (YouTube / Loom) ────────────────────── */
         .video-embed {
@@ -236,11 +241,11 @@
             <article class="article-content">
                 <h1>Satis ve borc alma surecinin kontrat isine entegre edilmesi</h1>
                 <p>Kendine surecinini cikart ve satisinin ve borc almanin isin parcasi oldugunu gor.</p>
-                <p>![[satis-ve-borc-1.png]]</p>
+                <p><img src="images/satis-ve-borc-1.png" alt="satis ve borc 1" class="article-image" loading="lazy"></p>
                 <p>Isci ve kucuk isletme farkini anla</p>
-                <p>![[satis-ve-borc-2.png]]</p>
+                <p><img src="images/satis-ve-borc-2.png" alt="satis ve borc 2" class="article-image" loading="lazy"></p>
                 <p>Za</p>
-                <p>![[satis-ve-borc-3.png]]</p>
+                <p><img src="images/satis-ve-borc-3.png" alt="satis ve borc 3" class="article-image" loading="lazy"></p>
                 <p><strong>Assitanlara </strong>delege edilmesi</p>
                 <div class="video-embed"><iframe src="https://www.loom.com/embed/fdafed76f532498caea34f96808e3411" frameborder="0" allowfullscreen></iframe></div>
                 
@@ -260,7 +265,7 @@
                 <p>https://www.cmcarrillofinancialadvising.com/the-esbi</p>
                 <p>https://www.canva.com/design/DAFiWZSc7CQ/jq2YsQHXGC1YPq3s-04RHA/edit?utm_content=DAFiWZSc7CQ&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton</p>
                 <hr />
-                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+                <p><em>Imported from rifaterdemsahin.com · 2023</em></p>
             </article>
         </div>
     </main>

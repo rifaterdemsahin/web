@@ -127,7 +127,12 @@
         .article-content code { padding: 0.2em 0.4em; }
         .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
         .article-content pre code { background: none; padding: 0; }
-        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
 
         /* ── Video embeds (YouTube / Loom) ────────────────────── */
         .video-embed {
@@ -235,17 +240,17 @@
             </header>
             <article class="article-content">
                 <h1>Why it shuts down automaticly ?</h1>
-                <p>![[why-it-shuts-1.png]]</p>
+                <p><img src="images/why-it-shuts-1.png" alt="why it shuts 1" class="article-image" loading="lazy"></p>
                 <div class="video-embed"><iframe src="https://www.youtube.com/embed/vONsgIqbQQI" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
                 
                 <p>High and auto power off to off</p>
-                <p>![[why-it-shuts-2.png]]</p>
+                <p><img src="images/why-it-shuts-2.png" alt="why it shuts 2" class="article-image" loading="lazy"></p>
                 <p>Still turning off</p>
                 <p>https://www.sony.com/electronics/support/articles/00022539</p>
                 <p>References that also talks on the battery state</p>
                 <p>https://www.sony.co.uk/electronics/support/articles/00012957</p>
                 <hr />
-                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+                <p><em>Imported from rifaterdemsahin.com · 2023</em></p>
             </article>
         </div>
     </main>

@@ -127,7 +127,12 @@
         .article-content code { padding: 0.2em 0.4em; }
         .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
         .article-content pre code { background: none; padding: 0; }
-        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
 
         /* ── Video embeds (YouTube / Loom) ────────────────────── */
         .video-embed {
@@ -244,9 +249,9 @@
                 <p>Even affiliate marketing is a good idea it does not make sense if there is no validation and existing sales.</p>
                 <p>At the discovery the leads should be organic so the customer aquisition cost should not low enough to enter customer creation.</p>
                 <p>Setting up business rules requires a business which can only happen after the customer creation stage.</p>
-                <p>![[lead-dyno-usage-1.png]]</p>
+                <p><img src="images/lead-dyno-usage-1.png" alt="lead dyno usage 1" class="article-image" loading="lazy"></p>
                 <hr />
-                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+                <p><em>Imported from rifaterdemsahin.com · 2023</em></p>
             </article>
         </div>
     </main>

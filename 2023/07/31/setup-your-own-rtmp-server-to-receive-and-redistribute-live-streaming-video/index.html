@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Setup your own RTMP Server to Receive and Redistribute Live Streaming Video - Rifat Erdem Sahin</title>
-    <meta name="description" content="Setup your own RTMP Server to Receive and Redistribute Live Streaming Video My second attempt, Goal : Have a server and save the files to google drive Tools NGINX VLC media player ![[setup-your-own-1.">
+    <meta name="description" content="Setup your own RTMP Server to Receive and Redistribute Live Streaming Video My second attempt, Goal : Have a server and save the files to google drive Tools NGINX VLC media player For cost in terms of">
     <meta name="keywords" content="Setup your own RTMP Server to Receive and Redistribute Live Streaming Video">
     <meta name="author" content="Rifat Erdem Sahin">
     <meta name="robots" content="index, follow">
@@ -14,7 +14,7 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://www.rifaterdemsahin.com/2023/07/31/setup-your-own-rtmp-server-to-receive-and-redistribute-live-streaming-video/">
     <meta property="og:title" content="Setup your own RTMP Server to Receive and Redistribute Live Streaming Video">
-    <meta property="og:description" content="Setup your own RTMP Server to Receive and Redistribute Live Streaming Video My second attempt, Goal : Have a server and save the files to google drive Tools NGINX VLC media player ![[setup-your-own-1.">
+    <meta property="og:description" content="Setup your own RTMP Server to Receive and Redistribute Live Streaming Video My second attempt, Goal : Have a server and save the files to google drive Tools NGINX VLC media player For cost in terms of">
     <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
     <meta property="og:site_name" content="Rifat Erdem Sahin">
     <meta property="og:locale" content="en_GB">
@@ -23,7 +23,7 @@
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2023/07/31/setup-your-own-rtmp-server-to-receive-and-redistribute-live-streaming-video/">
     <meta property="twitter:title" content="Setup your own RTMP Server to Receive and Redistribute Live Streaming Video">
-    <meta property="twitter:description" content="Setup your own RTMP Server to Receive and Redistribute Live Streaming Video My second attempt, Goal : Have a server and save the files to google drive Tools NGINX VLC media player ![[setup-your-own-1.">
+    <meta property="twitter:description" content="Setup your own RTMP Server to Receive and Redistribute Live Streaming Video My second attempt, Goal : Have a server and save the files to google drive Tools NGINX VLC media player For cost in terms of">
     <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
     <meta property="twitter:creator" content="@rifaterdemsahin">
 
@@ -37,7 +37,7 @@
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": "Setup your own RTMP Server to Receive and Redistribute Live Streaming Video",
-      "description": "Setup your own RTMP Server to Receive and Redistribute Live Streaming Video My second attempt, Goal : Have a server and save the files to google drive Tools NGINX VLC media player ![[setup-your-own-1.",
+      "description": "Setup your own RTMP Server to Receive and Redistribute Live Streaming Video My second attempt, Goal : Have a server and save the files to google drive Tools NGINX VLC media player For cost in terms of",
       "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
       "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
       "datePublished": "2023-07-31",
@@ -127,7 +127,12 @@
         .article-content code { padding: 0.2em 0.4em; }
         .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
         .article-content pre code { background: none; padding: 0; }
-        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
 
         /* ── Video embeds (YouTube / Loom) ────────────────────── */
         .video-embed {
@@ -229,9 +234,9 @@
                     <span>&bull;</span>
                     <span>July 31, 2023</span>
                     <span>&bull;</span>
-                    <span>1 min read</span>
+                    <span>2 min read</span>
                 </div>
-                <p class="article-excerpt">Setup your own RTMP Server to Receive and Redistribute Live Streaming Video My second attempt, Goal : Have a server and save the files to google drive Tools NGINX VLC media player ![[setup-your-own-1.png]] For cost in terms of uploads it has to be on OVH not to get affected.</p>
+                <p class="article-excerpt">Setup your own RTMP Server to Receive and Redistribute Live Streaming Video My second attempt, Goal : Have a server and save the files to google drive Tools NGINX VLC media player For cost in terms of uploads it has to be on OVH not to get affected.</p>
             </header>
             <article class="article-content">
                 <h1>Setup your own RTMP Server to Receive and Redistribute Live Streaming Video</h1>
@@ -249,29 +254,29 @@
                 <p>VLC media player</p>
                 </li>
                 </ul>
-                <p>![[setup-your-own-1.png]]</p>
+                <p><img src="images/setup-your-own-1.png" alt="setup your own 1" class="article-image" loading="lazy"></p>
                 <p>For cost in terms of uploads it has to be on OVH not to get affected.</p>
                 <p>Cost of running a Windows Server is there!</p>
                 <p>a3 150 dollars a month </p>
-                <p>![[setup-your-own-2.png]]</p>
+                <p><img src="images/setup-your-own-2.png" alt="setup your own 2" class="article-image" loading="lazy"></p>
                 <p>Basic Config</p>
-                <p>![[setup-your-own-3.png]]</p>
+                <p><img src="images/setup-your-own-3.png" alt="setup your own 3" class="article-image" loading="lazy"></p>
                 <p>VLC to be able to get the stream</p>
                 <p>Maybe i could set this up in protect CL proxmox with the windows machine.</p>
                 <p>Windows machine can push the data to the cloud.</p>
                 <p><strong>on premise one would have less frame drops</strong></p>
                 <p>Start the embed url fast when the upload completes</p>
-                <p>![[setup-your-own-4.png]]</p>
+                <p><img src="images/setup-your-own-4.png" alt="setup your own 4" class="article-image" loading="lazy"></p>
                 <p>Embedded player has the unique google id not the file name &gt; easy to get</p>
-                <p>![[setup-your-own-5.png]]</p>
+                <p><img src="images/setup-your-own-5.png" alt="setup your own 5" class="article-image" loading="lazy"></p>
                 <p>this could be usable here</p>
                 <p>[googleapps domain="drive" dir="file/d/1DsL1BQVbi2nsrm9s9bQPYmpMbhh-2XsM/preview" query="" width="640" height="480" /]</p>
                 <p>Centered html is also fine</p>
-                <p>![[setup-your-own-6.png]]</p>
+                <p><img src="images/setup-your-own-6.png" alt="setup your own 6" class="article-image" loading="lazy"></p>
                 <p>Share access properly or it errors out</p>
-                <p>![[setup-your-own-7.png]]</p>
+                <p><img src="images/setup-your-own-7.png" alt="setup your own 7" class="article-image" loading="lazy"></p>
                 <p>Everytime</p>
-                <p>![[setup-your-own-8.png]]</p>
+                <p><img src="images/setup-your-own-8.png" alt="setup your own 8" class="article-image" loading="lazy"></p>
                 <p>Todos</p>
                 <ul>
                 <li>
@@ -297,14 +302,14 @@
                 </li>
                 </ul>
                 <p>Still Google might not let you do that to the audience</p>
-                <p>![[setup-your-own-9.png]]</p>
+                <p><img src="images/setup-your-own-9.png" alt="setup your own 9" class="article-image" loading="lazy"></p>
                 <p>Powershell to move recording to nas makes more sense over ftp.</p>
                 <p><strong>Reference</strong></p>
                 <p>https://azure.microsoft.com/en-us/pricing/calculator/</p>
                 <p>Center html</p>
                 <p>https://stackoverflow.com/questions/8366957/how-to-center-an-iframe-horizontally</p>
                 <hr />
-                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+                <p><em>Imported from rifaterdemsahin.com · 2023</em></p>
             </article>
         </div>
     </main>

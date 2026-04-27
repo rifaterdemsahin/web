@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IP update - Rifat Erdem Sahin</title>
-    <meta name="description" content="IP update Settings https://github.com/qdm12/ddns-updater/blob/master/docs/noip.md Add file ![[ip-update-1.png]] config.json {  settings : [ {  provider :  noip ,  domain :  domain.com ,  host :  @ ,  ">
+    <meta name="description" content="IP update Settings https://github.com/qdm12/ddns-updater/blob/master/docs/noip.md Add file config.json {  settings : [ {  provider :  noip ,  domain :  domain.com ,  host :  @ ,  username :  username ">
     <meta name="keywords" content="IP update">
     <meta name="author" content="Rifat Erdem Sahin">
     <meta name="robots" content="index, follow">
@@ -14,7 +14,7 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://www.rifaterdemsahin.com/2023/07/24/ip-update/">
     <meta property="og:title" content="IP update">
-    <meta property="og:description" content="IP update Settings https://github.com/qdm12/ddns-updater/blob/master/docs/noip.md Add file ![[ip-update-1.png]] config.json {  settings : [ {  provider :  noip ,  domain :  domain.com ,  host :  @ ,  ">
+    <meta property="og:description" content="IP update Settings https://github.com/qdm12/ddns-updater/blob/master/docs/noip.md Add file config.json {  settings : [ {  provider :  noip ,  domain :  domain.com ,  host :  @ ,  username :  username ">
     <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
     <meta property="og:site_name" content="Rifat Erdem Sahin">
     <meta property="og:locale" content="en_GB">
@@ -23,7 +23,7 @@
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2023/07/24/ip-update/">
     <meta property="twitter:title" content="IP update">
-    <meta property="twitter:description" content="IP update Settings https://github.com/qdm12/ddns-updater/blob/master/docs/noip.md Add file ![[ip-update-1.png]] config.json {  settings : [ {  provider :  noip ,  domain :  domain.com ,  host :  @ ,  ">
+    <meta property="twitter:description" content="IP update Settings https://github.com/qdm12/ddns-updater/blob/master/docs/noip.md Add file config.json {  settings : [ {  provider :  noip ,  domain :  domain.com ,  host :  @ ,  username :  username ">
     <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
     <meta property="twitter:creator" content="@rifaterdemsahin">
 
@@ -37,7 +37,7 @@
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": "IP update",
-      "description": "IP update Settings https://github.com/qdm12/ddns-updater/blob/master/docs/noip.md Add file ![[ip-update-1.png]] config.json {  settings : [ {  provider :  noip ,  domain :  domain.com ,  host :  @ ,  ",
+      "description": "IP update Settings https://github.com/qdm12/ddns-updater/blob/master/docs/noip.md Add file config.json {  settings : [ {  provider :  noip ,  domain :  domain.com ,  host :  @ ,  username :  username ",
       "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
       "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
       "datePublished": "2023-07-24",
@@ -127,7 +127,12 @@
         .article-content code { padding: 0.2em 0.4em; }
         .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
         .article-content pre code { background: none; padding: 0; }
-        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
 
         /* ── Video embeds (YouTube / Loom) ────────────────────── */
         .video-embed {
@@ -231,32 +236,32 @@
                     <span>&bull;</span>
                     <span>1 min read</span>
                 </div>
-                <p class="article-excerpt">IP update Settings https://github.com/qdm12/ddns-updater/blob/master/docs/noip.md Add file ![[ip-update-1.png]] config.json { &quot;settings&quot;: [ { &quot;provider&quot;: &quot;noip&quot;, &quot;domain&quot;: &quot;domain.com&quot;, &quot;host&quot;: &quot;@&quot;, &quot;username&quot;: &quot;username&quot;, &quot;password&quot;: &quot;password&quot;, &quot;ip_version&quot;: &quot;ipv4&quot;, &quot;provider_i</p>
+                <p class="article-excerpt">IP update Settings https://github.com/qdm12/ddns-updater/blob/master/docs/noip.md Add file config.json { &quot;settings&quot;: [ { &quot;provider&quot;: &quot;noip&quot;, &quot;domain&quot;: &quot;domain.com&quot;, &quot;host&quot;: &quot;@&quot;, &quot;username&quot;: &quot;username&quot;, &quot;password&quot;: &quot;password&quot;, &quot;ip_version&quot;: &quot;ipv4&quot;, &quot;provider_ip&quot;: true } ] }z error</p>
             </header>
             <article class="article-content">
                 <h1>IP update</h1>
                 <p>Settings</p>
                 <p>https://github.com/qdm12/ddns-updater/blob/master/docs/noip.md</p>
                 <p>Add file</p>
-                <p>![[ip-update-1.png]]</p>
+                <p><img src="images/ip-update-1.png" alt="ip update 1" class="article-image" loading="lazy"></p>
                 <p>config.json</p>
                 <p>{ "settings": [ { "provider": "noip", "domain": "domain.com", "host": "@", "username": "username", "password": "password", "ip_version": "ipv4", "provider_ip": true } ] }z</p>
                 <p>error</p>
                 <p>2023-07-24T17:51:52Z INFO reading JSON config from file /updater/data/config.json</p>
-                <p>![[ip-update-2.png]]</p>
+                <p><img src="images/ip-update-2.png" alt="ip update 2" class="article-image" loading="lazy"></p>
                 <p>Set mount path after entering the data in</p>
-                <p>![[ip-update-3.png]]</p>
+                <p><img src="images/ip-update-3.png" alt="ip update 3" class="article-image" loading="lazy"></p>
                 <p>Install on synology nas</p>
-                <p>![[ip-update-4.png]]</p>
+                <p><img src="images/ip-update-4.png" alt="ip update 4" class="article-image" loading="lazy"></p>
                 <p>Run instance</p>
-                <p>![[ip-update-5.png]]</p>
+                <p><img src="images/ip-update-5.png" alt="ip update 5" class="article-image" loading="lazy"></p>
                 <p>Find a docker container</p>
-                <p>![[ip-update-6.png]]</p>
+                <p><img src="images/ip-update-6.png" alt="ip update 6" class="article-image" loading="lazy"></p>
                 <p><strong>Reference</strong></p>
                 <p>https://hub.docker.com/r/qmcgaw/ddns-updater/</p>
                 <p>https://www.noip.com/support/knowledgebase/installing-the-linux-dynamic-update-client</p>
                 <hr />
-                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+                <p><em>Imported from rifaterdemsahin.com · 2023</em></p>
             </article>
         </div>
     </main>

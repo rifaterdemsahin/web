@@ -127,7 +127,12 @@
         .article-content code { padding: 0.2em 0.4em; }
         .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
         .article-content pre code { background: none; padding: 0; }
-        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
 
         /* ── Video embeds (YouTube / Loom) ────────────────────── */
         .video-embed {
@@ -229,7 +234,7 @@
                     <span>&bull;</span>
                     <span>July 24, 2023</span>
                     <span>&bull;</span>
-                    <span>1 min read</span>
+                    <span>2 min read</span>
                 </div>
                 <p class="article-excerpt">no-ip service Journey History I am trying to reach my onpremise environment. I registered for the no-ip service Installed the nuc update application.</p>
             </header>
@@ -250,7 +255,7 @@
                 <p>Started Conversation with Support</p>
                 </li>
                 </ul>
-                <p>![[noip-service-journey-1.png]]</p>
+                <p><img src="images/noip-service-journey-1.png" alt="noip service journey 1" class="article-image" loading="lazy"></p>
                 <p><strong>Use CASES</strong></p>
                 <ul>
                 <li>
@@ -275,70 +280,70 @@
                 <p>1.Windows &gt; straight forward install</p>
                 <p>2.Linux over Proxmox ( here is the install )</p>
                 <p>https://www.noip.com/support/knowledgebase/installing-the-linux-dynamic-update-client</p>
-                <p>![[noip-service-journey-2.png]]</p>
+                <p><img src="images/noip-service-journey-2.png" alt="noip service journey 2" class="article-image" loading="lazy"></p>
                 <p>have the system make ready </p>
-                <p>![[noip-service-journey-3.png]]</p>
-                <p>![[noip-service-journey-4.png]]</p>
+                <p><img src="images/noip-service-journey-3.png" alt="noip service journey 3" class="article-image" loading="lazy"></p>
+                <p><img src="images/noip-service-journey-4.png" alt="noip service journey 4" class="article-image" loading="lazy"></p>
                 <p>https://www.makeuseof.com/how-to-fix-make-command-not-found-error-ubuntu/</p>
-                <p>![[noip-service-journey-5.png]]</p>
+                <p><img src="images/noip-service-journey-5.png" alt="noip service journey 5" class="article-image" loading="lazy"></p>
                 <p>not so straight forward to install on linux</p>
-                <p>![[noip-service-journey-6.png]]</p>
-                <p>![[noip-service-journey-7.png]]</p>
-                <p>![[noip-service-journey-8.png]]</p>
+                <p><img src="images/noip-service-journey-6.png" alt="noip service journey 6" class="article-image" loading="lazy"></p>
+                <p><img src="images/noip-service-journey-7.png" alt="noip service journey 7" class="article-image" loading="lazy"></p>
+                <p><img src="images/noip-service-journey-8.png" alt="noip service journey 8" class="article-image" loading="lazy"></p>
                 <p>REferences</p>
                 <p>https://www.google.com/search?q=Dynamic+DNS+Update+Client+linux+noip&amp;rlz=1C1GCEA_enGB1067GB1067&amp;oq=Dynamic+DNS+Update+Client+linux+noip&amp;aqs=chrome..69i57j33i160.4814j0j4&amp;sourceid=chrome&amp;ie=UTF-8</p>
                 <p>https://www.makeuseof.com/how-to-fix-make-command-not-found-error-ubuntu/</p>
                 <p>https://www.noip.com/support/knowledgebase/how-to-configure-ddns-in-router</p>
                 <hr />
                 <p>Semblance in the studio it works</p>
-                <p>![[noip-service-journey-9.png]]</p>
+                <p><img src="images/noip-service-journey-9.png" alt="noip service journey 9" class="article-image" loading="lazy"></p>
                 <p>When i am out it fails</p>
                 <p>Mitigation test on mobile before you leave the workstation</p>
                 <p>Ip location is correct</p>
-                <p>![[noip-service-journey-10.png]]</p>
+                <p><img src="images/noip-service-journey-10.png" alt="noip service journey 10" class="article-image" loading="lazy"></p>
                 <p>https://tools.keycdn.com/geo</p>
                 <p>I am stuck at accesing from outside</p>
                 <p>Left is cloud right is my on prem</p>
-                <p>![[noip-service-journey-11.png]]</p>
+                <p><img src="images/noip-service-journey-11.png" alt="noip service journey 11" class="article-image" loading="lazy"></p>
                 <p>Opened another ticket</p>
-                <p>![[noip-service-journey-12.png]]</p>
+                <p><img src="images/noip-service-journey-12.png" alt="noip service journey 12" class="article-image" loading="lazy"></p>
                 <p>https://www.noip.com/ticket/view?tid=E5E5ttYE3pQm6212</p>
                 <p>On Azure I get this on Edge</p>
-                <p>![[noip-service-journey-13.png]]</p>
+                <p><img src="images/noip-service-journey-13.png" alt="noip service journey 13" class="article-image" loading="lazy"></p>
                 <p>Installing chrome there</p>
-                <p>![[noip-service-journey-14.png]]</p>
+                <p><img src="images/noip-service-journey-14.png" alt="noip service journey 14" class="article-image" loading="lazy"></p>
                 <p>Still the same error</p>
-                <p>![[noip-service-journey-15.png]]</p>
+                <p><img src="images/noip-service-journey-15.png" alt="noip service journey 15" class="article-image" loading="lazy"></p>
                 <p><strong>My bad</strong> the forwared port was failing</p>
-                <p>![[noip-service-journey-16.png]]</p>
+                <p><img src="images/noip-service-journey-16.png" alt="noip service journey 16" class="article-image" loading="lazy"></p>
                 <p>Go to router</p>
                 <p>https://192.168.3.1/#Services/DHCP/Server</p>
-                <p>![[noip-service-journey-17.png]]</p>
+                <p><img src="images/noip-service-journey-17.png" alt="noip service journey 17" class="article-image" loading="lazy"></p>
                 <p>Plex also turns on</p>
-                <p>![[noip-service-journey-18.png]]</p>
+                <p><img src="images/noip-service-journey-18.png" alt="noip service journey 18" class="article-image" loading="lazy"></p>
                 <p>Still th port 80 and por 443 is not working outside of the premise</p>
                 <p>As a back up i would also set it on the router</p>
                 <p>https://www.noip.com/support/knowledgebase/how-to-setup-ddns-ubiquiti-edge-router</p>
                 <p>Applied over here</p>
-                <p>![[noip-service-journey-19.png]]</p>
+                <p><img src="images/noip-service-journey-19.png" alt="noip service journey 19" class="article-image" loading="lazy"></p>
                 <p>https://192.168.3.1/#Services/DNS</p>
                 <p>The error is the et3 should be the siwtch 0</p>
-                <p>![[noip-service-journey-20.png]]</p>
+                <p><img src="images/noip-service-journey-20.png" alt="noip service journey 20" class="article-image" loading="lazy"></p>
                 <p>3.1 network gets mapped</p>
-                <p>![[noip-service-journey-21.png]]</p>
-                <p>![[noip-service-journey-22.png]]</p>
+                <p><img src="images/noip-service-journey-21.png" alt="noip service journey 21" class="article-image" loading="lazy"></p>
+                <p><img src="images/noip-service-journey-22.png" alt="noip service journey 22" class="article-image" loading="lazy"></p>
                 <p>dd now the proxmox as well </p>
-                <p>![[noip-service-journey-23.png]]</p>
+                <p><img src="images/noip-service-journey-23.png" alt="noip service journey 23" class="article-image" loading="lazy"></p>
                 <p>happiness</p>
-                <p>![[noip-service-journey-24.png]]</p>
+                <p><img src="images/noip-service-journey-24.png" alt="noip service journey 24" class="article-image" loading="lazy"></p>
                 <p>Mobile works</p>
-                <p>![[noip-service-journey-25.png]]</p>
-                <p>![[noip-service-journey-26.png]]</p>
-                <p>![[noip-service-journey-27.png]]</p>
-                <p>![[noip-service-journey-28.png]]</p>
-                <p>![[noip-service-journey-29.png]]</p>
+                <p><img src="images/noip-service-journey-25.png" alt="noip service journey 25" class="article-image" loading="lazy"></p>
+                <p><img src="images/noip-service-journey-26.png" alt="noip service journey 26" class="article-image" loading="lazy"></p>
+                <p><img src="images/noip-service-journey-27.png" alt="noip service journey 27" class="article-image" loading="lazy"></p>
+                <p><img src="images/noip-service-journey-28.png" alt="noip service journey 28" class="article-image" loading="lazy"></p>
+                <p><img src="images/noip-service-journey-29.png" alt="noip service journey 29" class="article-image" loading="lazy"></p>
                 <hr />
-                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+                <p><em>Imported from rifaterdemsahin.com · 2023</em></p>
             </article>
         </div>
     </main>

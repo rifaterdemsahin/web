@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minecraft server creation - Rifat Erdem Sahin</title>
-    <meta name="description" content="Minecraft server creation ![[minecraft-server-creation-1.png]] ![[minecraft-server-creation-2.png]] Networking ![[minecraft-server-creation-3.png]] Reference https://james-rankin.com/all-posts/buildin">
+    <meta name="description" content="Minecraft server creation Networking Reference https://james-rankin.com/all-posts/building-an-ubuntu-minecraft-server-on-azure/ SSH to the box update the box &gt; sudo do-release-upgrade -d check serv">
     <meta name="keywords" content="Minecraft server creation">
     <meta name="author" content="Rifat Erdem Sahin">
     <meta name="robots" content="index, follow">
@@ -14,7 +14,7 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://www.rifaterdemsahin.com/2023/11/10/minecraft-server-creation/">
     <meta property="og:title" content="Minecraft server creation">
-    <meta property="og:description" content="Minecraft server creation ![[minecraft-server-creation-1.png]] ![[minecraft-server-creation-2.png]] Networking ![[minecraft-server-creation-3.png]] Reference https://james-rankin.com/all-posts/buildin">
+    <meta property="og:description" content="Minecraft server creation Networking Reference https://james-rankin.com/all-posts/building-an-ubuntu-minecraft-server-on-azure/ SSH to the box update the box &gt; sudo do-release-upgrade -d check serv">
     <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
     <meta property="og:site_name" content="Rifat Erdem Sahin">
     <meta property="og:locale" content="en_GB">
@@ -23,7 +23,7 @@
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2023/11/10/minecraft-server-creation/">
     <meta property="twitter:title" content="Minecraft server creation">
-    <meta property="twitter:description" content="Minecraft server creation ![[minecraft-server-creation-1.png]] ![[minecraft-server-creation-2.png]] Networking ![[minecraft-server-creation-3.png]] Reference https://james-rankin.com/all-posts/buildin">
+    <meta property="twitter:description" content="Minecraft server creation Networking Reference https://james-rankin.com/all-posts/building-an-ubuntu-minecraft-server-on-azure/ SSH to the box update the box &gt; sudo do-release-upgrade -d check serv">
     <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
     <meta property="twitter:creator" content="@rifaterdemsahin">
 
@@ -37,7 +37,7 @@
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": "Minecraft server creation",
-      "description": "Minecraft server creation ![[minecraft-server-creation-1.png]] ![[minecraft-server-creation-2.png]] Networking ![[minecraft-server-creation-3.png]] Reference https://james-rankin.com/all-posts/buildin",
+      "description": "Minecraft server creation Networking Reference https://james-rankin.com/all-posts/building-an-ubuntu-minecraft-server-on-azure/ SSH to the box update the box &gt; sudo do-release-upgrade -d check serv",
       "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
       "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
       "datePublished": "2023-11-10",
@@ -127,7 +127,12 @@
         .article-content code { padding: 0.2em 0.4em; }
         .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
         .article-content pre code { background: none; padding: 0; }
-        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
 
         /* ── Video embeds (YouTube / Loom) ────────────────────── */
         .video-embed {
@@ -229,71 +234,71 @@
                     <span>&bull;</span>
                     <span>November 10, 2023</span>
                     <span>&bull;</span>
-                    <span>2 min read</span>
+                    <span>4 min read</span>
                 </div>
-                <p class="article-excerpt">Minecraft server creation ![[minecraft-server-creation-1.png]] ![[minecraft-server-creation-2.png]] Networking ![[minecraft-server-creation-3.png]] Reference https://james-rankin.com/all-posts/building-an-ubuntu-minecraft-server-on-azure/ SSH to the box ![[minecraft-server-creati</p>
+                <p class="article-excerpt">Minecraft server creation Networking Reference https://james-rankin.com/all-posts/building-an-ubuntu-minecraft-server-on-azure/ SSH to the box update the box &gt; sudo do-release-upgrade -d check service &gt; sudo systemctl status mine-java.service Maybe more memory needed Low me</p>
             </header>
             <article class="article-content">
                 <h1>Minecraft server creation</h1>
-                <p>![[minecraft-server-creation-1.png]]</p>
-                <p>![[minecraft-server-creation-2.png]]</p>
+                <p><img src="images/minecraft-server-creation-1.png" alt="minecraft server creation 1" class="article-image" loading="lazy"></p>
+                <p><img src="images/minecraft-server-creation-2.png" alt="minecraft server creation 2" class="article-image" loading="lazy"></p>
                 <p>Networking</p>
-                <p>![[minecraft-server-creation-3.png]]</p>
+                <p><img src="images/minecraft-server-creation-3.png" alt="minecraft server creation 3" class="article-image" loading="lazy"></p>
                 <p>Reference</p>
                 <p>https://james-rankin.com/all-posts/building-an-ubuntu-minecraft-server-on-azure/</p>
                 <p>SSH to the box</p>
-                <p>![[minecraft-server-creation-4.png]]</p>
+                <p><img src="images/minecraft-server-creation-4.png" alt="minecraft server creation 4" class="article-image" loading="lazy"></p>
                 <p>update the box &gt;</p>
                 <p>sudo do-release-upgrade -d</p>
                 <p>check service &gt; </p>
                 <p>sudo systemctl status mine-java.service</p>
-                <p>![[minecraft-server-creation-5.png]]</p>
+                <p><img src="images/minecraft-server-creation-5.png" alt="minecraft server creation 5" class="article-image" loading="lazy"></p>
                 <p>Maybe more memory needed</p>
-                <p>![[minecraft-server-creation-6.png]]</p>
+                <p><img src="images/minecraft-server-creation-6.png" alt="minecraft server creation 6" class="article-image" loading="lazy"></p>
                 <p>Low memory</p>
-                <p>![[minecraft-server-creation-7.png]]</p>
+                <p><img src="images/minecraft-server-creation-7.png" alt="minecraft server creation 7" class="article-image" loading="lazy"></p>
                 <p>move up in pricing &gt; turn on the server when you use it</p>
-                <p>![[minecraft-server-creation-8.png]]</p>
+                <p><img src="images/minecraft-server-creation-8.png" alt="minecraft server creation 8" class="article-image" loading="lazy"></p>
                 <p>try with her account x2 &gt; Y</p>
-                <p>![[minecraft-server-creation-9.png]]</p>
+                <p><img src="images/minecraft-server-creation-9.png" alt="minecraft server creation 9" class="article-image" loading="lazy"></p>
                 <p>Java and Bedrock is sold together</p>
-                <p>![[minecraft-server-creation-10.png]]</p>
+                <p><img src="images/minecraft-server-creation-10.png" alt="minecraft server creation 10" class="article-image" loading="lazy"></p>
                 <p>With more memory it is active</p>
-                <p>![[minecraft-server-creation-11.png]]</p>
+                <p><img src="images/minecraft-server-creation-11.png" alt="minecraft server creation 11" class="article-image" loading="lazy"></p>
                 <p>Desktop edition is different</p>
-                <p>![[minecraft-server-creation-12.png]]</p>
+                <p><img src="images/minecraft-server-creation-12.png" alt="minecraft server creation 12" class="article-image" loading="lazy"></p>
                 <p>Deluxe edition is there with more maps</p>
-                <p>![[minecraft-server-creation-13.png]]</p>
-                <p>![[minecraft-server-creation-14.png]]</p>
+                <p><img src="images/minecraft-server-creation-13.png" alt="minecraft server creation 13" class="article-image" loading="lazy"></p>
+                <p><img src="images/minecraft-server-creation-14.png" alt="minecraft server creation 14" class="article-image" loading="lazy"></p>
                 <p>How many minecrafts do we have ?</p>
                 <p>dungeons &gt; on the steamdeck &gt; 40 dollars</p>
                 <p>ipad &gt; info@pexabo.com &gt; 10 dollars</p>
                 <p>iphone &gt; info@pexabo.com &gt; 10 dollars</p>
                 <p>new one on the pc cost &gt; 40 dollars ( new expense to test the machine )</p>
-                <p>![[minecraft-server-creation-15.png]]</p>
+                <p><img src="images/minecraft-server-creation-15.png" alt="minecraft server creation 15" class="article-image" loading="lazy"></p>
                 <p>Link &gt; <a href="https://www.minecraft.net/en-us/store/checkout/minecraft-deluxe-collection-pc">https://www.minecraft.net/en-us/store/checkout/minecraft-deluxe-collection-pc</a></p>
                 <p>User &gt; AryaSahin</p>
                 <p>User &gt; AryaSahin2</p>
-                <p>![[minecraft-server-creation-16.png]]</p>
-                <p>![[minecraft-server-creation-17.png]]</p>
-                <p>![[minecraft-server-creation-18.png]]</p>
+                <p><img src="images/minecraft-server-creation-16.png" alt="minecraft server creation 16" class="article-image" loading="lazy"></p>
+                <p><img src="images/minecraft-server-creation-17.png" alt="minecraft server creation 17" class="article-image" loading="lazy"></p>
+                <p><img src="images/minecraft-server-creation-18.png" alt="minecraft server creation 18" class="article-image" loading="lazy"></p>
                 <p>They sell it for much cheaper price &gt;&gt;&gt; auto on and off there probably.</p>
                 <p>Naming dillema</p>
-                <p>![[minecraft-server-creation-19.png]]</p>
+                <p><img src="images/minecraft-server-creation-19.png" alt="minecraft server creation 19" class="article-image" loading="lazy"></p>
                 <p>Looks like realm is easier for others to join &gt;&gt;&gt; less cost but there can be ongoing cost</p>
-                <p>![[minecraft-server-creation-20.png]]</p>
+                <p><img src="images/minecraft-server-creation-20.png" alt="minecraft server creation 20" class="article-image" loading="lazy"></p>
                 <p>Reopen</p>
-                <p>![[minecraft-server-creation-21.png]]</p>
-                <p>![[minecraft-server-creation-22.png]]</p>
-                <p>![[minecraft-server-creation-23.png]]</p>
-                <p>![[minecraft-server-creation-24.png]]</p>
-                <p>![[minecraft-server-creation-25.png]]</p>
-                <p>![[minecraft-server-creation-26.png]]</p>
-                <p>![[minecraft-server-creation-27.png]]</p>
-                <p>![[minecraft-server-creation-28.png]]</p>
-                <p>![[minecraft-server-creation-29.png]]</p>
-                <p>![[minecraft-server-creation-30.jpg]]</p>
-                <p>![[minecraft-server-creation-31.png]]</p>
+                <p><img src="images/minecraft-server-creation-21.png" alt="minecraft server creation 21" class="article-image" loading="lazy"></p>
+                <p><img src="images/minecraft-server-creation-22.png" alt="minecraft server creation 22" class="article-image" loading="lazy"></p>
+                <p><img src="images/minecraft-server-creation-23.png" alt="minecraft server creation 23" class="article-image" loading="lazy"></p>
+                <p><img src="images/minecraft-server-creation-24.png" alt="minecraft server creation 24" class="article-image" loading="lazy"></p>
+                <p><img src="images/minecraft-server-creation-25.png" alt="minecraft server creation 25" class="article-image" loading="lazy"></p>
+                <p><img src="images/minecraft-server-creation-26.png" alt="minecraft server creation 26" class="article-image" loading="lazy"></p>
+                <p><img src="images/minecraft-server-creation-27.png" alt="minecraft server creation 27" class="article-image" loading="lazy"></p>
+                <p><img src="images/minecraft-server-creation-28.png" alt="minecraft server creation 28" class="article-image" loading="lazy"></p>
+                <p><img src="images/minecraft-server-creation-29.png" alt="minecraft server creation 29" class="article-image" loading="lazy"></p>
+                <p><img src="images/minecraft-server-creation-30.jpg" alt="minecraft server creation 30" class="article-image" loading="lazy"></p>
+                <p><img src="images/minecraft-server-creation-31.png" alt="minecraft server creation 31" class="article-image" loading="lazy"></p>
                 <p>Iphone does not connect but computer does</p>
                 <p><strong>STEPS TO CONNECT</strong></p>
                 <ul>
@@ -311,44 +316,44 @@
                 </li>
                 </ul>
                 <p>Multi player menu</p>
-                <p>![[minecraft-server-creation-32.png]]</p>
+                <p><img src="images/minecraft-server-creation-32.png" alt="minecraft server creation 32" class="article-image" loading="lazy"></p>
                 <p>Connect green</p>
-                <p>![[minecraft-server-creation-33.png]]</p>
+                <p><img src="images/minecraft-server-creation-33.png" alt="minecraft server creation 33" class="article-image" loading="lazy"></p>
                 <p>Goal &gt; Teach kids about the real world</p>
-                <p>![[minecraft-server-creation-34.png]]</p>
+                <p><img src="images/minecraft-server-creation-34.png" alt="minecraft server creation 34" class="article-image" loading="lazy"></p>
                 <p>Started the play with Arya  &gt;&gt;&gt; shutdown server set</p>
-                <p>![[minecraft-server-creation-35.png]]</p>
+                <p><img src="images/minecraft-server-creation-35.png" alt="minecraft server creation 35" class="article-image" loading="lazy"></p>
                 <p>Need to learn how to send commands to the server</p>
                 <p>ipads did nOT Connect</p>
-                <p>![[minecraft-server-creation-36.png]]</p>
+                <p><img src="images/minecraft-server-creation-36.png" alt="minecraft server creation 36" class="article-image" loading="lazy"></p>
                 <p>practical server is there &gt;&gt;&gt; <strong>cubecraft &gt;&gt;&gt; survival</strong></p>
                 <p>for creative mode &gt;&gt;&gt; bedrock &gt;&gt;&gt; also paid for it</p>
-                <p>![[minecraft-server-creation-37.png]]</p>
+                <p><img src="images/minecraft-server-creation-37.png" alt="minecraft server creation 37" class="article-image" loading="lazy"></p>
                 <p>Also use the skull canyon as well</p>
                 <p>boot diag</p>
-                <p>![[minecraft-server-creation-38.png]]</p>
+                <p><img src="images/minecraft-server-creation-38.png" alt="minecraft server creation 38" class="article-image" loading="lazy"></p>
                 <p>sucesss on 2 mobile connecting to bedrock &gt;&gt;&gt; 7 yearolds are happy</p>
                 <p>they wanna be in creative mode...</p>
-                <p>![[minecraft-server-creation-39.png]]</p>
-                <p>![[minecraft-server-creation-40.png]]</p>
-                <p>![[minecraft-server-creation-41.png]]</p>
+                <p><img src="images/minecraft-server-creation-39.png" alt="minecraft server creation 39" class="article-image" loading="lazy"></p>
+                <p><img src="images/minecraft-server-creation-40.png" alt="minecraft server creation 40" class="article-image" loading="lazy"></p>
+                <p><img src="images/minecraft-server-creation-41.png" alt="minecraft server creation 41" class="article-image" loading="lazy"></p>
                 <p>Server properties</p>
                 <p>https://minecraft.fandom.com/wiki/Server.properties#:~:text=force%2Dgamemode,-boolean&amp;text=Force%20players%20to%20join%20in,join%20in%20the%20default%20gamemode.</p>
-                <p>![[minecraft-server-creation-42.png]]</p>
+                <p><img src="images/minecraft-server-creation-42.png" alt="minecraft server creation 42" class="article-image" loading="lazy"></p>
                 <p>Configure and connect</p>
-                <p>![[minecraft-server-creation-43.png]]</p>
-                <p>![[minecraft-server-creation-44.png]]</p>
-                <p>![[minecraft-server-creation-45.png]]</p>
-                <p>![[minecraft-server-creation-46.png]]</p>
+                <p><img src="images/minecraft-server-creation-43.png" alt="minecraft server creation 43" class="article-image" loading="lazy"></p>
+                <p><img src="images/minecraft-server-creation-44.png" alt="minecraft server creation 44" class="article-image" loading="lazy"></p>
+                <p><img src="images/minecraft-server-creation-45.png" alt="minecraft server creation 45" class="article-image" loading="lazy"></p>
+                <p><img src="images/minecraft-server-creation-46.png" alt="minecraft server creation 46" class="article-image" loading="lazy"></p>
                 <p>survival and cheats</p>
-                <p>![[minecraft-server-creation-47.png]]</p>
+                <p><img src="images/minecraft-server-creation-47.png" alt="minecraft server creation 47" class="article-image" loading="lazy"></p>
                 <p>Reset the turn off time </p>
-                <p>![[minecraft-server-creation-48.png]]</p>
+                <p><img src="images/minecraft-server-creation-48.png" alt="minecraft server creation 48" class="article-image" loading="lazy"></p>
                 <p>The test did not work &gt;&gt;&gt; minecraft server not in creative mode</p>
                 <p>todo&gt;&gt;&gt; learn to start with creative mode properties</p>
                 <p>todo&gt;&gt;&gt; ask reddit</p>
                 <hr />
-                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+                <p><em>Imported from rifaterdemsahin.com · 2023</em></p>
             </article>
         </div>
     </main>

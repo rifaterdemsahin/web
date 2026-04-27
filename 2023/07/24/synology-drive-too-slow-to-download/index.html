@@ -127,7 +127,12 @@
         .article-content code { padding: 0.2em 0.4em; }
         .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
         .article-content pre code { background: none; padding: 0; }
-        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
 
         /* ── Video embeds (YouTube / Loom) ────────────────────── */
         .video-embed {
@@ -238,12 +243,12 @@
                 <p>15 GB with 300 Kbyte takes around 12 hours &gt; browser based direct download does not work fast enough!</p>
                 <p>use the google drive to upload than do the action</p>
                 <p>Mitigation move to the cloud sync</p>
-                <p>![[synology-drive-too-1.png]]</p>
+                <p><img src="images/synology-drive-too-1.png" alt="synology drive too 1" class="article-image" loading="lazy"></p>
                 <p>Upload in the back ground</p>
-                <p>![[synology-drive-too-2.png]]</p>
+                <p><img src="images/synology-drive-too-2.png" alt="synology drive too 2" class="article-image" loading="lazy"></p>
                 <p>Go to the Azure server and download from there</p>
                 <hr />
-                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+                <p><em>Imported from rifaterdemsahin.com · 2023</em></p>
             </article>
         </div>
     </main>

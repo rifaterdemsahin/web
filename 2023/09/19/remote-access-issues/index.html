@@ -127,7 +127,12 @@
         .article-content code { padding: 0.2em 0.4em; }
         .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
         .article-content pre code { background: none; padding: 0; }
-        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
 
         /* ── Video embeds (YouTube / Loom) ────────────────────── */
         .video-embed {
@@ -229,63 +234,63 @@
                     <span>&bull;</span>
                     <span>September 19, 2023</span>
                     <span>&bull;</span>
-                    <span>1 min read</span>
+                    <span>2 min read</span>
                 </div>
                 <p class="article-excerpt">Remote Access issues not properly closed .</p>
             </header>
             <article class="article-content">
                 <h1>Remote Access issues</h1>
                 <h5>not properly closed . ANY DESK CANT ACCESS</h5>
-                <p>![[remote-access-issues-1.png]]</p>
+                <p><img src="images/remote-access-issues-1.png" alt="remote access issues 1" class="article-image" loading="lazy"></p>
                 <p>todo : check the router</p>
                 <p>todo: switchbot retrigger</p>
                 <p>todo: scale down to one monitor</p>
                 <p>Hitting the buttons harder does not make sense</p>
-                <p>![[remote-access-issues-2.png]]</p>
+                <p><img src="images/remote-access-issues-2.png" alt="remote access issues 2" class="article-image" loading="lazy"></p>
                 <p>Mitigation go to router</p>
-                <p>![[remote-access-issues-3.png]]</p>
+                <p><img src="images/remote-access-issues-3.png" alt="remote access issues 3" class="article-image" loading="lazy"></p>
                 <p>Web login</p>
-                <p>![[remote-access-issues-4.png]]</p>
+                <p><img src="images/remote-access-issues-4.png" alt="remote access issues 4" class="article-image" loading="lazy"></p>
                 <p>switchbot offline &gt;&gt;&gt; is it battery or is it the wifi issue ?</p>
-                <p>![[remote-access-issues-5.png]]</p>
+                <p><img src="images/remote-access-issues-5.png" alt="remote access issues 5" class="article-image" loading="lazy"></p>
                 <p>Router cli is there</p>
-                <p>![[remote-access-issues-6.png]]</p>
+                <p><img src="images/remote-access-issues-6.png" alt="remote access issues 6" class="article-image" loading="lazy"></p>
                 <p>Find the workstation ip</p>
-                <p>![[remote-access-issues-7.png]]</p>
+                <p><img src="images/remote-access-issues-7.png" alt="remote access issues 7" class="article-image" loading="lazy"></p>
                 <p>Leases</p>
-                <p>![[remote-access-issues-8.png]]</p>
+                <p><img src="images/remote-access-issues-8.png" alt="remote access issues 8" class="article-image" loading="lazy"></p>
                 <p>Not reachable</p>
-                <p>![[remote-access-issues-9.png]]</p>
+                <p><img src="images/remote-access-issues-9.png" alt="remote access issues 9" class="article-image" loading="lazy"></p>
                 <p>RDP would also not work</p>
-                <p>![[remote-access-issues-10.png]]</p>
+                <p><img src="images/remote-access-issues-10.png" alt="remote access issues 10" class="article-image" loading="lazy"></p>
                 <p>it can not access it</p>
-                <p>![[remote-access-issues-11.png]]</p>
+                <p><img src="images/remote-access-issues-11.png" alt="remote access issues 11" class="article-image" loading="lazy"></p>
                 <p>try with twingate</p>
-                <p>![[remote-access-issues-12.png]]</p>
+                <p><img src="images/remote-access-issues-12.png" alt="remote access issues 12" class="article-image" loading="lazy"></p>
                 <p>authenticate twingate</p>
-                <p>![[remote-access-issues-13.png]]</p>
+                <p><img src="images/remote-access-issues-13.png" alt="remote access issues 13" class="article-image" loading="lazy"></p>
                 <p>Not a proper shutdown</p>
-                <p>![[remote-access-issues-14.png]]</p>
-                <p>![[remote-access-issues-15.png]]</p>
+                <p><img src="images/remote-access-issues-14.png" alt="remote access issues 14" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-access-issues-15.png" alt="remote access issues 15" class="article-image" loading="lazy"></p>
                 <p>Online page does not work as well</p>
-                <p>![[remote-access-issues-16.png]]</p>
+                <p><img src="images/remote-access-issues-16.png" alt="remote access issues 16" class="article-image" loading="lazy"></p>
                 <p>last time connection on the lease time ?</p>
-                <p>![[remote-access-issues-17.png]]</p>
-                <p>![[remote-access-issues-18.png]]</p>
+                <p><img src="images/remote-access-issues-17.png" alt="remote access issues 17" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-access-issues-18.png" alt="remote access issues 18" class="article-image" loading="lazy"></p>
                 <p>try both ips</p>
-                <p>![[remote-access-issues-19.png]]</p>
+                <p><img src="images/remote-access-issues-19.png" alt="remote access issues 19" class="article-image" loading="lazy"></p>
                 <p>Similar time at leases</p>
-                <p>![[remote-access-issues-20.png]]</p>
+                <p><img src="images/remote-access-issues-20.png" alt="remote access issues 20" class="article-image" loading="lazy"></p>
                 <p>todo : test on mac</p>
                 <p>Wol worked on my end &gt; machine at sleep mode</p>
-                <p>![[remote-access-issues-21.png]]</p>
-                <p>![[remote-access-issues-22.jpg]]</p>
+                <p><img src="images/remote-access-issues-21.png" alt="remote access issues 21" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-access-issues-22.jpg" alt="remote access issues 22" class="article-image" loading="lazy"></p>
                 <p>Shutdown to practical commands</p>
                 <p>I should have tested wake on lan on the router with last pass ready scripts </p>
                 <p>Todo : access ipad &gt;&gt;&gt; needs to be on</p>
-                <p>![[remote-access-issues-23.jpg]]</p>
+                <p><img src="images/remote-access-issues-23.jpg" alt="remote access issues 23" class="article-image" loading="lazy"></p>
                 <hr />
-                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+                <p><em>Imported from rifaterdemsahin.com · 2023</em></p>
             </article>
         </div>
     </main>

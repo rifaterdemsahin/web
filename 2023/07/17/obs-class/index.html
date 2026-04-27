@@ -127,7 +127,12 @@
         .article-content code { padding: 0.2em 0.4em; }
         .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
         .article-content pre code { background: none; padding: 0; }
-        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
 
         /* ── Video embeds (YouTube / Loom) ────────────────────── */
         .video-embed {
@@ -289,13 +294,13 @@
                 </li>
                 </ul>
                 <p><strong>Notes</strong></p>
-                <p>![[obs-class-on-1.jpg]]</p>
+                <p><img src="images/obs-class-on-1.jpg" alt="obs class on 1" class="article-image" loading="lazy"></p>
                 <p><strong>Completion</strong></p>
-                <p>![[obs-class-on-2.png]]</p>
+                <p><img src="images/obs-class-on-2.png" alt="obs class on 2" class="article-image" loading="lazy"></p>
                 <p><strong>Reference</strong></p>
                 <p>https://www.skillshare.com/en/classes/Start-Streaming-With-OBS-Studio-In-2022/491972286?via=search-layout-grid</p>
                 <hr />
-                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+                <p><em>Imported from rifaterdemsahin.com · 2023</em></p>
             </article>
         </div>
     </main>

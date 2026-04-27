@@ -127,7 +127,12 @@
         .article-content code { padding: 0.2em 0.4em; }
         .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
         .article-content pre code { background: none; padding: 0; }
-        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
 
         /* ── Video embeds (YouTube / Loom) ────────────────────── */
         .video-embed {
@@ -229,7 +234,7 @@
                     <span>&bull;</span>
                     <span>August 21, 2023</span>
                     <span>&bull;</span>
-                    <span>9 min read</span>
+                    <span>11 min read</span>
                 </div>
                 <p class="article-excerpt">Audio Track quality issue / crackling After I installed vb audio Cable A, I began to experience some recording issues. These issues were really frustrating and I couldn't seem to get to the bottom of them. I tried a lot of different things to fix them, but nothing seemed to work.</p>
             </header>
@@ -250,17 +255,17 @@
                 </ul>
                 <p>To check installed audacity with choco to sport the issues visually</p>
                 <p>choco install audacity -y</p>
-                <p>![[audio-track-quality-1.png]]</p>
+                <p><img src="images/audio-track-quality-1.png" alt="audio track quality 1" class="article-image" loading="lazy"></p>
                 <p>audio quality issue recorded here</p>
                 <div class="video-embed"><iframe src="https://www.loom.com/embed/be853f2ebb0a4d22b23fa5d34ecd6621" frameborder="0" allowfullscreen></iframe></div>
                 
                 <p>Even the claps have hard time on the play back</p>
                 <p>maybe equalizer but that one is muted &gt; even when i take the potato out the issue is there</p>
-                <p>![[audio-track-quality-2.png]]</p>
+                <p><img src="images/audio-track-quality-2.png" alt="audio track quality 2" class="article-image" loading="lazy"></p>
                 <p>eq only set for razer headphones only</p>
-                <p>![[audio-track-quality-3.png]]</p>
+                <p><img src="images/audio-track-quality-3.png" alt="audio track quality 3" class="article-image" loading="lazy"></p>
                 <p>see error in visuals &gt; not possible but tried</p>
-                <p>![[audio-track-quality-4.png]]</p>
+                <p><img src="images/audio-track-quality-4.png" alt="audio track quality 4" class="article-image" loading="lazy"></p>
                 <p>online editor could not do it https://editor.flixier.com/home/library</p>
                 <p>Direct voicemeter recording no crack over the rode&gt;&gt; problem in obs</p>
                 <p><strong>Confusion point</strong></p>
@@ -275,22 +280,22 @@
                 <p>https://rode.com/fr/user-guides/rodecaster-pro-ii/recording-and-exporting-audio</p>
                 <p>https://drive.google.com/file/d/1seWj6Fwt4PKLMHKR2WscWn4vr-zViGQu/view?usp=sharing</p>
                 <p>Standup and go back and pull the sd card out</p>
-                <p>![[audio-track-quality-5.png]]</p>
+                <p><img src="images/audio-track-quality-5.png" alt="audio track quality 5" class="article-image" loading="lazy"></p>
                 <p>Zoom hand held mic</p>
-                <p>![[audio-track-quality-6.png]]</p>
-                <p>![[audio-track-quality-7.png]]</p>
+                <p><img src="images/audio-track-quality-6.png" alt="audio track quality 6" class="article-image" loading="lazy"></p>
+                <p><img src="images/audio-track-quality-7.png" alt="audio track quality 7" class="article-image" loading="lazy"></p>
                 <p>No error in the environment </p>
                 <p>obs record and there are issues now</p>
                 <div class="video-embed"><iframe src="https://www.loom.com/embed/4a8667b698e54e439e8da7ef56f08a32" frameborder="0" allowfullscreen></iframe></div>
                 
-                <p>![[audio-track-quality-8.png]]</p>
-                <p>![[audio-track-quality-9.png]]</p>
-                <p>![[audio-track-quality-10.png]]</p>
-                <p>![[audio-track-quality-11.png]]</p>
+                <p><img src="images/audio-track-quality-8.png" alt="audio track quality 8" class="article-image" loading="lazy"></p>
+                <p><img src="images/audio-track-quality-9.png" alt="audio track quality 9" class="article-image" loading="lazy"></p>
+                <p><img src="images/audio-track-quality-10.png" alt="audio track quality 10" class="article-image" loading="lazy"></p>
+                <p><img src="images/audio-track-quality-11.png" alt="audio track quality 11" class="article-image" loading="lazy"></p>
                 <p>track 3 for the <strong>mix </strong>could make sense ( have both guests )</p>
                 <p>xsplit record with rode procaster 2 on rode procaster</p>
                 <p><strong>there are issues but much less</strong></p>
-                <p>![[audio-track-quality-12.png]]</p>
+                <p><img src="images/audio-track-quality-12.png" alt="audio track quality 12" class="article-image" loading="lazy"></p>
                 <div class="video-embed"><iframe src="https://www.youtube.com/embed/4YOkWU9r5x4" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
                 
                 <p><strong>encoding </strong>lag  &gt; can it be after the parsec ? ( uninstalled did not change )</p>
@@ -303,11 +308,11 @@
                 
                 <p>I feel it is related to the obs right now</p>
                 <p>my obs</p>
-                <p>![[audio-track-quality-13.png]]</p>
+                <p><img src="images/audio-track-quality-13.png" alt="audio track quality 13" class="article-image" loading="lazy"></p>
                 <p>try beta 2 than move on with xspit ( even nuking the config did not work )</p>
-                <p>![[audio-track-quality-14.png]]</p>
+                <p><img src="images/audio-track-quality-14.png" alt="audio track quality 14" class="article-image" loading="lazy"></p>
                 <p>Github releases page</p>
-                <p>![[audio-track-quality-15.png]]</p>
+                <p><img src="images/audio-track-quality-15.png" alt="audio track quality 15" class="article-image" loading="lazy"></p>
                 <p>the issue looks like it is in obs config ver 29 to 30 did not change</p>
                 <div class="video-embed"><iframe src="https://www.loom.com/embed/613b2e4d96c64fdbb992a33b33676913" frameborder="0" allowfullscreen></iframe></div>
                 
@@ -315,26 +320,26 @@
                 <div class="video-embed"><iframe src="https://www.loom.com/embed/7ff6bdde3f274f4b960382f57fb3a6ec" frameborder="0" allowfullscreen></iframe></div>
                 
                 <p>nuke config for obs/ config</p>
-                <p>![[audio-track-quality-16.png]]</p>
+                <p><img src="images/audio-track-quality-16.png" alt="audio track quality 16" class="article-image" loading="lazy"></p>
                 <p>https://obsproject.com/forum/threads/reset-settings.146045/#:~:text=On%20windows%2C%20try%20to%20go,It%20should%20work%20!</p>
-                <p>![[audio-track-quality-17.png]]</p>
+                <p><img src="images/audio-track-quality-17.png" alt="audio track quality 17" class="article-image" loading="lazy"></p>
                 <p>backup of the problematic obs</p>
                 <p>https://drive.google.com/drive/folders/15kMfx1T6341PYR6UOrKPRjHp0uUM56fP</p>
-                <p>![[audio-track-quality-18.png]]</p>
-                <p>![[audio-track-quality-19.png]]</p>
-                <p>![[audio-track-quality-20.png]]</p>
-                <p>![[audio-track-quality-21.png]]</p>
+                <p><img src="images/audio-track-quality-18.png" alt="audio track quality 18" class="article-image" loading="lazy"></p>
+                <p><img src="images/audio-track-quality-19.png" alt="audio track quality 19" class="article-image" loading="lazy"></p>
+                <p><img src="images/audio-track-quality-20.png" alt="audio track quality 20" class="article-image" loading="lazy"></p>
+                <p><img src="images/audio-track-quality-21.png" alt="audio track quality 21" class="article-image" loading="lazy"></p>
                 <p><a href="https://rifaterdemsahin.com/wp-content/uploads/2023/08/2023-08-21-16-19-28.txt">2023-08-21-16-19-28</a><a href="https://rifaterdemsahin.com/wp-content/uploads/2023/08/2023-08-21-16-19-28.txt">Download</a></p>
-                <p>![[audio-track-quality-22.png]]</p>
+                <p><img src="images/audio-track-quality-22.png" alt="audio track quality 22" class="article-image" loading="lazy"></p>
                 <p>socket thing is still there ( old extension install &gt; so deleting obs could resolve it )</p>
-                <p>![[audio-track-quality-23.png]]</p>
-                <p>![[audio-track-quality-24.png]]</p>
-                <p>![[audio-track-quality-25.png]]</p>
-                <p>![[audio-track-quality-26.png]]</p>
-                <p>![[audio-track-quality-27.png]]</p>
+                <p><img src="images/audio-track-quality-23.png" alt="audio track quality 23" class="article-image" loading="lazy"></p>
+                <p><img src="images/audio-track-quality-24.png" alt="audio track quality 24" class="article-image" loading="lazy"></p>
+                <p><img src="images/audio-track-quality-25.png" alt="audio track quality 25" class="article-image" loading="lazy"></p>
+                <p><img src="images/audio-track-quality-26.png" alt="audio track quality 26" class="article-image" loading="lazy"></p>
+                <p><img src="images/audio-track-quality-27.png" alt="audio track quality 27" class="article-image" loading="lazy"></p>
                 <p>extensions might be killing it</p>
-                <p>![[audio-track-quality-28.png]]</p>
-                <p>![[audio-track-quality-29.png]]</p>
+                <p><img src="images/audio-track-quality-28.png" alt="audio track quality 28" class="article-image" loading="lazy"></p>
+                <p><img src="images/audio-track-quality-29.png" alt="audio track quality 29" class="article-image" loading="lazy"></p>
                 <p><strong>Audio encoder has an issue</strong></p>
                 <p>16:19:30.241: id: default<br />
                 16:19:30.241: ---------------------------------<br />
@@ -356,30 +361,30 @@
                 16:19:31.021: H265/HEVC: Supported</p>
                 <p><strong>C:\Users\Pexabo\AppData\Roaming\obs-studio\logs</strong></p>
                 <p>remove the ndi as welll due to video ninja makes more sense in slower action</p>
-                <p>![[audio-track-quality-30.png]]</p>
+                <p><img src="images/audio-track-quality-30.png" alt="audio track quality 30" class="article-image" loading="lazy"></p>
                 <p>ndi as well needs to get out could affect the system</p>
-                <p>![[audio-track-quality-31.png]]</p>
-                <p>![[audio-track-quality-32.png]]</p>
+                <p><img src="images/audio-track-quality-31.png" alt="audio track quality 31" class="article-image" loading="lazy"></p>
+                <p><img src="images/audio-track-quality-32.png" alt="audio track quality 32" class="article-image" loading="lazy"></p>
                 <p>Parsec out as well <strong>zoom </strong>and the dra on the erdem side created</p>
                 <p>Remaining deletion</p>
-                <p>![[audio-track-quality-33.png]]</p>
+                <p><img src="images/audio-track-quality-33.png" alt="audio track quality 33" class="article-image" loading="lazy"></p>
                 <p>obs also deleted as well &gt; zoom is the way to go with fresh install</p>
                 <p>clean back ground junk</p>
                 <p>run and restart</p>
-                <p>![[audio-track-quality-34.png]]</p>
+                <p><img src="images/audio-track-quality-34.png" alt="audio track quality 34" class="article-image" loading="lazy"></p>
                 <p>obs should not fail in the back and expect to record proper oudio</p>
-                <p>![[audio-track-quality-35.png]]</p>
+                <p><img src="images/audio-track-quality-35.png" alt="audio track quality 35" class="article-image" loading="lazy"></p>
                 <p>OBS-Studio-30.0-beta2-Full-Installer-x64.exe</p>
-                <p>![[audio-track-quality-36.png]]</p>
+                <p><img src="images/audio-track-quality-36.png" alt="audio track quality 36" class="article-image" loading="lazy"></p>
                 <p>during install it is empty</p>
-                <p>![[audio-track-quality-37.png]]</p>
+                <p><img src="images/audio-track-quality-37.png" alt="audio track quality 37" class="article-image" loading="lazy"></p>
                 <p>First error comes</p>
-                <p>![[audio-track-quality-38.png]]</p>
-                <p>![[audio-track-quality-39.png]]</p>
+                <p><img src="images/audio-track-quality-38.png" alt="audio track quality 38" class="article-image" loading="lazy"></p>
+                <p><img src="images/audio-track-quality-39.png" alt="audio track quality 39" class="article-image" loading="lazy"></p>
                 <p>all tracks selected at start &gt; understand what does that mean</p>
-                <p>![[audio-track-quality-40.png]]</p>
+                <p><img src="images/audio-track-quality-40.png" alt="audio track quality 40" class="article-image" loading="lazy"></p>
                 <p>it feels better but some red</p>
-                <p>![[audio-track-quality-41.png]]</p>
+                <p><img src="images/audio-track-quality-41.png" alt="audio track quality 41" class="article-image" loading="lazy"></p>
                 <div class="video-embed"><iframe src="https://www.loom.com/embed/23cef398ae364d35a2426aa1873fca6b" frameborder="0" allowfullscreen></iframe></div>
                 
                 <p>could be clipping</p>
@@ -389,24 +394,24 @@
                 <p><strong><em>idea : too many fader have issues &gt;&gt;&gt; could be....in and out coming in.</em></strong></p>
                 <p>there is still some <strong>cizzz </strong>in the back</p>
                 <p>I can not see the <strong>cizz</strong></p>
-                <p>![[audio-track-quality-42.png]]</p>
+                <p><img src="images/audio-track-quality-42.png" alt="audio track quality 42" class="article-image" loading="lazy"></p>
                 <p>NDI plugin error &gt; beta error &gt;&gt;&gt; dont think that is the case</p>
-                <p>![[audio-track-quality-43.png]]</p>
+                <p><img src="images/audio-track-quality-43.png" alt="audio track quality 43" class="article-image" loading="lazy"></p>
                 <p>Take &gt; too many scenes failed it xsplit structure is better</p>
                 <p>Still issues on the audio i need to learn how to debug it </p>
                 <div class="video-embed"><iframe src="https://www.loom.com/embed/8f69f028613f496aaa094ddb7a27ece3" frameborder="0" allowfullscreen></iframe></div>
                 
                 <p>Davinci error  checks...as the play back is not working well</p>
                 <p><code>&amp;#091;0x000026d4] | IO | ERROR | 2023-08-21 19:26:23,609 | Failed to load NvEncodeAPI library.</code></p>
-                <p>![[audio-track-quality-44.png]]</p>
+                <p><img src="images/audio-track-quality-44.png" alt="audio track quality 44" class="article-image" loading="lazy"></p>
                 <p>it could be a problem after the cable a install <strong>( first suspect )</strong></p>
                 <p>Fragile davinci</p>
-                <p>![[audio-track-quality-45.png]]</p>
+                <p><img src="images/audio-track-quality-45.png" alt="audio track quality 45" class="article-image" loading="lazy"></p>
                 <p>keep working with <strong>xsplit </strong>till the obs and davinci is resolved and have an external audio recorder</p>
                 <p>Todo: ask cable a</p>
                 <p>Research online</p>
                 <p>Hardware problems can be caused by outdated or malfunctioning drivers. <strong>Make sure your audio driver is up to date and update it if needed</strong>. If that doesn't work, try uninstalling the audio driver (it will reinstall automatically). If that doesn't work, try using the generic audio driver that comes with Windows.</p>
-                <p>![[audio-track-quality-46.png]]</p>
+                <p><img src="images/audio-track-quality-46.png" alt="audio track quality 46" class="article-image" loading="lazy"></p>
                 <p>forum posts&gt; to get help</p>
                 <p>davinci resolve ( no answer 2 days )</p>
                 <p>https://forum.blackmagicdesign.com/viewtopic.php?f=21&amp;t=187017</p>
@@ -414,12 +419,12 @@
                 <p>https://vb-audio.com/Services/support.htm</p>
                 <p>https://twitter.com/VB_Audio/status/1689528268133629952?s=20</p>
                 <p>Learn the documentation for production</p>
-                <p>![[audio-track-quality-47.png]]</p>
+                <p><img src="images/audio-track-quality-47.png" alt="audio track quality 47" class="article-image" loading="lazy"></p>
                 <p>wow that are many online people</p>
-                <p>![[audio-track-quality-48.png]]</p>
+                <p><img src="images/audio-track-quality-48.png" alt="audio track quality 48" class="article-image" loading="lazy"></p>
                 <p>Discord question</p>
                 <p>https://discord.com/channels/755690270795890739/780757149806100500/1143797977907994624</p>
-                <p>![[audio-track-quality-49.png]]</p>
+                <p><img src="images/audio-track-quality-49.png" alt="audio track quality 49" class="article-image" loading="lazy"></p>
                 <p>Voicemeter thread as well </p>
                 <p>I use the voicemeeter potato, I began to experience some recording issues. These issues were really frustrating and I couldn’t seem to get to the bottom of them. I tried a lot of different things to fix them, but nothing seemed to work. U</p>
                 <p>Distorted audio quality<br />
@@ -430,23 +435,23 @@
                 <p>Ask at audio engineering on reddit</p>
                 <p>https://www.reddit.com/r/audioengineering/comments/15yx7dy/could_not_locate_why_the_recording_quality_is_so/<br />
                 before uninstalling the cable a for poping and crackling</p>
-                <p>![[audio-track-quality-50.png]]</p>
-                <p>![[audio-track-quality-51.png]]</p>
+                <p><img src="images/audio-track-quality-50.png" alt="audio track quality 50" class="article-image" loading="lazy"></p>
+                <p><img src="images/audio-track-quality-51.png" alt="audio track quality 51" class="article-image" loading="lazy"></p>
                 <p>Primary Device Name:PCI\VEN_1022&amp;DEV_1483&amp;SUBSYS_88151043&amp;REV_00<br />
                 Secondary Device Name:PCI\VEN_1002&amp;DEV_1478&amp;SUBSYS_00000000&amp;REV_C0</p>
-                <p>![[audio-track-quality-52.png]]</p>
-                <p>![[audio-track-quality-53.png]]</p>
+                <p><img src="images/audio-track-quality-52.png" alt="audio track quality 52" class="article-image" loading="lazy"></p>
+                <p><img src="images/audio-track-quality-53.png" alt="audio track quality 53" class="article-image" loading="lazy"></p>
                 <div class="video-embed"><iframe src="https://www.loom.com/embed/7a529196aef84984ba61d0d8187184fa" frameborder="0" allowfullscreen></iframe></div>
                 
-                <p>![[audio-track-quality-54.png]]</p>
+                <p><img src="images/audio-track-quality-54.png" alt="audio track quality 54" class="article-image" loading="lazy"></p>
                 <p>When there is not video there is no error ?</p>
                 <div class="video-embed"><iframe src="https://www.loom.com/embed/a55dc9c742864bf7975dd42a901bbe9a" frameborder="0" allowfullscreen></iframe></div>
                 
                 <p>Yesterday I had a major windows update</p>
-                <p>![[audio-track-quality-55.png]]</p>
+                <p><img src="images/audio-track-quality-55.png" alt="audio track quality 55" class="article-image" loading="lazy"></p>
                 <p>https://support.microsoft.com/en-gb/topic/august-22-2023-kb5029351-os-build-22621-2215-preview-9af25662-083a-43f5-b3a7-975fe25cc692</p>
                 <p>Cant see anything related in the audio</p>
-                <p>![[audio-track-quality-56.png]]</p>
+                <p><img src="images/audio-track-quality-56.png" alt="audio track quality 56" class="article-image" loading="lazy"></p>
                 <p>Could be related to cross device usage</p>
                 <ul>
                 <li>
@@ -457,34 +462,34 @@
                 </li>
                 </ul>
                 <p>they are trying to use the rode at the same time</p>
-                <p>![[audio-track-quality-57.png]]</p>
+                <p><img src="images/audio-track-quality-57.png" alt="audio track quality 57" class="article-image" loading="lazy"></p>
                 <p>https://support.microsoft.com/en-gb/topic/august-22-2023-kb5029351-os-build-22621-2215-preview-9af25662-083a-43f5-b3a7-975fe25cc692</p>
                 <p>Another reference</p>
                 <div class="video-embed"><iframe src="https://www.youtube.com/embed/PaYPaqEB1hU" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
                 
-                <p>![[audio-track-quality-58.png]]</p>
+                <p><img src="images/audio-track-quality-58.png" alt="audio track quality 58" class="article-image" loading="lazy"></p>
                 <p>latency mon software]</p>
-                <p>![[audio-track-quality-59.png]]</p>
+                <p><img src="images/audio-track-quality-59.png" alt="audio track quality 59" class="article-image" loading="lazy"></p>
                 <p>https://community.chocolatey.org/packages/latencymon</p>
-                <p>![[audio-track-quality-60.png]]</p>
-                <p>![[audio-track-quality-61.png]]</p>
-                <p>![[audio-track-quality-62.png]]</p>
+                <p><img src="images/audio-track-quality-60.png" alt="audio track quality 60" class="article-image" loading="lazy"></p>
+                <p><img src="images/audio-track-quality-61.png" alt="audio track quality 61" class="article-image" loading="lazy"></p>
+                <p><img src="images/audio-track-quality-62.png" alt="audio track quality 62" class="article-image" loading="lazy"></p>
                 <p>Multi device usage could be the case</p>
-                <p>![[audio-track-quality-63.png]]</p>
+                <p><img src="images/audio-track-quality-63.png" alt="audio track quality 63" class="article-image" loading="lazy"></p>
                 <p>Crackling could be the use the cpu affinity with the problem</p>
                 <div class="video-embed"><iframe src="https://www.youtube.com/embed/Gb-PsrIVChY" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
                 
                 <p>Process Lasso can be interesting</p>
-                <p>![[audio-track-quality-64.png]]</p>
+                <p><img src="images/audio-track-quality-64.png" alt="audio track quality 64" class="article-image" loading="lazy"></p>
                 <p>choco install plasso -y</p>
-                <p>![[audio-track-quality-65.png]]</p>
+                <p><img src="images/audio-track-quality-65.png" alt="audio track quality 65" class="article-image" loading="lazy"></p>
                 <p>Some applications are over using the action and affinity might me important </p>
-                <p>![[audio-track-quality-66.png]]</p>
-                <p>![[audio-track-quality-67.png]]</p>
+                <p><img src="images/audio-track-quality-66.png" alt="audio track quality 66" class="article-image" loading="lazy"></p>
+                <p><img src="images/audio-track-quality-67.png" alt="audio track quality 67" class="article-image" loading="lazy"></p>
                 <p>Responsiveness and details are ther</p>
-                <p>![[audio-track-quality-68.png]]</p>
+                <p><img src="images/audio-track-quality-68.png" alt="audio track quality 68" class="article-image" loading="lazy"></p>
                 <p>setting to always and high</p>
-                <p>![[audio-track-quality-69.png]]</p>
+                <p><img src="images/audio-track-quality-69.png" alt="audio track quality 69" class="article-image" loading="lazy"></p>
                 <p>set affinity to 26 &gt; even numbers </p>
                 <p>add the lasso to th  e resetup list</p>
                 <p>https://rifaterdemsahin.com/2023/07/20/reinstalling-the-windows/</p>
@@ -492,11 +497,11 @@
                 <div class="video-embed"><iframe src="https://www.youtube.com/embed/1cYcr5JPL1I" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
                 
                 <p>affinity fix and restart</p>
-                <p>![[audio-track-quality-70.png]]</p>
+                <p><img src="images/audio-track-quality-70.png" alt="audio track quality 70" class="article-image" loading="lazy"></p>
                 <div class="video-embed"><iframe src="https://www.loom.com/embed/905a38ee74ca429787faf6ea18082202" frameborder="0" allowfullscreen></iframe></div>
                 
                 <p>to be on the safe side add high to voicemeeter</p>
-                <p>![[audio-track-quality-71.png]]</p>
+                <p><img src="images/audio-track-quality-71.png" alt="audio track quality 71" class="article-image" loading="lazy"></p>
                 <p>Crackling also gone removed the mix minus on the rode procaster</p>
                 <div class="video-embed"><iframe src="https://www.loom.com/embed/846e049710b24c0fb792661cbb8914bf" frameborder="0" allowfullscreen></iframe></div>
                 
@@ -534,13 +539,13 @@
                 </ul>
                 <p>Below are all the working fixes you can try in this situation.</p>
                 <p>Process lasso maybegive more than one core?</p>
-                <p>![[audio-track-quality-72.png]]</p>
+                <p><img src="images/audio-track-quality-72.png" alt="audio track quality 72" class="article-image" loading="lazy"></p>
                 <p>Started working after resetting affinity</p>
                 <p>CrACKLING MENTIONED ON mme</p>
                 <div class="video-embed"><iframe src="https://www.youtube.com/embed/EdAhR_CdjLc" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
                 
                 <hr />
-                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+                <p><em>Imported from rifaterdemsahin.com · 2023</em></p>
             </article>
         </div>
     </main>

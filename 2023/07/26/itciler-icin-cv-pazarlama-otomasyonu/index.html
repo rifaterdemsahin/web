@@ -127,7 +127,12 @@
         .article-content code { padding: 0.2em 0.4em; }
         .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
         .article-content pre code { background: none; padding: 0; }
-        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
 
         /* ── Video embeds (YouTube / Loom) ────────────────────── */
         .video-embed {
@@ -238,15 +243,15 @@
                 <p>[youtube https://www.youtube.com/watch?v=noPSkru7tSQ&amp;w=640&amp;h=360]</p>
                 <p><strong>Hedef </strong>: Pratik yanitlari insan kaynaklarina gondererek surecin otomasyonunu sagla, aday donusumu olsun.</p>
                 <p>Kaynak : sorulan bir soru uzerine</p>
-                <p>![[itciler-icin-cv-1.png]]</p>
+                <p><img src="images/itciler-icin-cv-1.png" alt="itciler icin cv 1" class="article-image" loading="lazy"></p>
                 <p><strong>Gelen Email</strong></p>
-                <p>![[itciler-icin-cv-2.png]]</p>
+                <p><img src="images/itciler-icin-cv-2.png" alt="itciler icin cv 2" class="article-image" loading="lazy"></p>
                 <p><strong>Gonderilen Mesaj</strong></p>
                 <p>I am interested in this position and look forward to the opportunity to speak with you soon. Please use the following link for all inquiries: CV, skills, answers, LinkedIn, Initial Video and to schedule a call: https://www.devops.engineering/hire.</p>
                 <p>Regards,</p>
                 <p>Erdem</p>
                 <p><strong>Riskler</strong> <strong>ve cozumler</strong></p>
-                <p>![[itciler-icin-cv-3.png]]</p>
+                <p><img src="images/itciler-icin-cv-3.png" alt="itciler icin cv 3" class="article-image" loading="lazy"></p>
                 <ul>
                 <li>
                 <p>Karsi tarafin filitre etmesini sagla</p>
@@ -270,7 +275,7 @@
                 <div class="video-embed"><iframe src="https://www.loom.com/embed/fdafed76f532498caea34f96808e3411" frameborder="0" allowfullscreen></iframe></div>
                 
                 <p><strong>Kendine ortam yarat</strong></p>
-                <p>![[itciler-icin-cv-4.png]]</p>
+                <p><img src="images/itciler-icin-cv-4.png" alt="itciler icin cv 4" class="article-image" loading="lazy"></p>
                 <p>Es zamanli olarak birden fazla isi yapmak icin gerekli ortam </p>
                 <p><strong>Detayli Kurs</strong></p>
                 <p>https://www.udemy.com/course/become-an-ultimate-it-contractor</p>
@@ -278,7 +283,7 @@
                 <div class="video-embed"><iframe src="https://www.youtube.com/embed/PHe0bXAIuk0" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
                 
                 <hr />
-                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+                <p><em>Imported from rifaterdemsahin.com · 2023</em></p>
             </article>
         </div>
     </main>

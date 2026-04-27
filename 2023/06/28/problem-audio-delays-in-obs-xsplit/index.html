@@ -127,7 +127,12 @@
         .article-content code { padding: 0.2em 0.4em; }
         .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
         .article-content pre code { background: none; padding: 0; }
-        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
 
         /* ── Video embeds (YouTube / Loom) ────────────────────── */
         .video-embed {
@@ -239,32 +244,32 @@
                 <div class="video-embed"><iframe src="https://www.loom.com/embed/1da18075ffea4d33949cd82d15d7cc65" frameborder="0" allowfullscreen></iframe></div>
                 
                 <p>Audio Video Sync Tests</p>
-                <p>![[problem-audio-delays-1.png]]</p>
+                <p><img src="images/problem-audio-delays-1.png" alt="problem audio delays 1" class="article-image" loading="lazy"></p>
                 <div class="video-embed"><iframe src="https://www.youtube.com/embed/c_TCp1x9Ldw" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
                 
                 <p>Upload to Loom and see the error on waveform</p>
-                <p>![[problem-audio-delays-2.png]]</p>
+                <p><img src="images/problem-audio-delays-2.png" alt="problem audio delays 2" class="article-image" loading="lazy"></p>
                 <div class="video-embed"><iframe src="https://www.loom.com/embed/4eae177e59294a89be6cc9b18808445f" frameborder="0" allowfullscreen></iframe></div>
                 
                 <p>No mileseconds in Loom</p>
-                <p>![[problem-audio-delays-3.png]]</p>
+                <p><img src="images/problem-audio-delays-3.png" alt="problem audio delays 3" class="article-image" loading="lazy"></p>
                 <p>davinci shows 130 ms</p>
-                <p>![[problem-audio-delays-4.png]]</p>
+                <p><img src="images/problem-audio-delays-4.png" alt="problem audio delays 4" class="article-image" loading="lazy"></p>
                 <p>With an online editor like weed.io you can also create cuts from the middle and see the error  &gt; 240 ms</p>
                 <p>https://www.veed.io/</p>
-                <p>![[problem-audio-delays-5.png]]</p>
-                <p>![[problem-audio-delays-6.png]]</p>
+                <p><img src="images/problem-audio-delays-5.png" alt="problem audio delays 5" class="article-image" loading="lazy"></p>
+                <p><img src="images/problem-audio-delays-6.png" alt="problem audio delays 6" class="article-image" loading="lazy"></p>
                 <p>Today decided to install audiacity over chocolatey</p>
                 <p>https://community.chocolatey.org/packages/audacity</p>
                 <p><code>choco install audacity -y</code></p>
-                <p>![[problem-audio-delays-7.png]]</p>
-                <p>![[problem-audio-delays-8.png]]</p>
+                <p><img src="images/problem-audio-delays-7.png" alt="problem audio delays 7" class="article-image" loading="lazy"></p>
+                <p><img src="images/problem-audio-delays-8.png" alt="problem audio delays 8" class="article-image" loading="lazy"></p>
                 <p>Pinned it</p>
-                <p>![[problem-audio-delays-9.png]]</p>
+                <p><img src="images/problem-audio-delays-9.png" alt="problem audio delays 9" class="article-image" loading="lazy"></p>
                 <p>Need to make it work with voicemeter</p>
-                <p>![[problem-audio-delays-10.png]]</p>
+                <p><img src="images/problem-audio-delays-10.png" alt="problem audio delays 10" class="article-image" loading="lazy"></p>
                 <hr />
-                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+                <p><em>Imported from rifaterdemsahin.com · 2023</em></p>
             </article>
         </div>
     </main>

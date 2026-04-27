@@ -127,7 +127,12 @@
         .article-content code { padding: 0.2em 0.4em; }
         .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
         .article-content pre code { background: none; padding: 0; }
-        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
 
         /* ── Video embeds (YouTube / Loom) ────────────────────── */
         .video-embed {
@@ -239,7 +244,7 @@
                 <div class="video-embed"><iframe src="https://www.loom.com/embed/a5f6b78b431645589626fcdb13d4cdc3" frameborder="0" allowfullscreen></iframe></div>
                 
                 <p>Use combination of Canva,Streamdeck,Xsplit,Wordpress and Loom to be able to stream directly without hassles of the content ID</p>
-                <p>![[problem-how-can-1.png]]</p>
+                <p><img src="images/problem-how-can-1.png" alt="problem how can 1" class="article-image" loading="lazy"></p>
                 <p><strong>Step 1</strong></p>
                 <p>Set the loom start button to streamdeck ( shortcut mapped )</p>
                 <p>Set the loom load button to streamdeck</p>
@@ -250,7 +255,7 @@
                 <p>Record the video output of the xsplit</p>
                 <p>Open a new post in wordpress and post it</p>
                 <hr />
-                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+                <p><em>Imported from rifaterdemsahin.com · 2023</em></p>
             </article>
         </div>
     </main>

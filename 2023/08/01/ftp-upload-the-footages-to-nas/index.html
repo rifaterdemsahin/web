@@ -127,7 +127,12 @@
         .article-content code { padding: 0.2em 0.4em; }
         .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
         .article-content pre code { background: none; padding: 0; }
-        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
 
         /* ── Video embeds (YouTube / Loom) ────────────────────── */
         .video-embed {
@@ -229,7 +234,7 @@
                     <span>&bull;</span>
                     <span>August 1, 2023</span>
                     <span>&bull;</span>
-                    <span>4 min read</span>
+                    <span>6 min read</span>
                 </div>
                 <p class="article-excerpt">FTP upload the footages to NAS Objective &gt; Automate the video production workflow Key Results &gt; Backup footages to nas Key Results &gt; one press push the footages Key Result &gt; Auto upload to Google Drive ( Synology Cloud backup ) Options 1&gt; Do it with powershell Opti</p>
             </header>
@@ -241,19 +246,19 @@
                 <p><strong>Key Result &gt; </strong>Auto upload to Google Drive ( Synology Cloud backup )</p>
                 <p>Options  1&gt; Do it with powershell</p>
                 <p>Options 2 &gt; Do iut with synology client who has the automation and the backup</p>
-                <p>![[ftp-upload-the-1.png]]</p>
+                <p><img src="images/ftp-upload-the-1.png" alt="ftp upload the 1" class="article-image" loading="lazy"></p>
                 <p>Sync can push it but not implement a business rule to send it to the todays folder</p>
-                <p>![[ftp-upload-the-2.png]]</p>
+                <p><img src="images/ftp-upload-the-2.png" alt="ftp upload the 2" class="article-image" loading="lazy"></p>
                 <p>Can my rules change or do they matter ?</p>
                 <p>Why cant i put it a one folder 2023  ? too many files in one folder</p>
                 <p>maybe i can have filter and rules in there ?</p>
-                <p>![[ftp-upload-the-3.png]]</p>
+                <p><img src="images/ftp-upload-the-3.png" alt="ftp upload the 3" class="article-image" loading="lazy"></p>
                 <p>Mine is a backup task</p>
-                <p>![[ftp-upload-the-4.png]]</p>
+                <p><img src="images/ftp-upload-the-4.png" alt="ftp upload the 4" class="article-image" loading="lazy"></p>
                 <p>Also putting in the machine name as well</p>
-                <p>![[ftp-upload-the-5.png]]</p>
+                <p><img src="images/ftp-upload-the-5.png" alt="ftp upload the 5" class="article-image" loading="lazy"></p>
                 <p><strong>Basic rules</strong></p>
-                <p>![[ftp-upload-the-6.png]]</p>
+                <p><img src="images/ftp-upload-the-6.png" alt="ftp upload the 6" class="article-image" loading="lazy"></p>
                 <p>https://www.techpout.com/best-file-copy-utility-software/</p>
                 <p>All similar tools can not land the files properly</p>
                 <p>What can my script do &gt; </p>
@@ -261,99 +266,99 @@
                 <p><strong>Copy today &gt; to the folder</strong></p>
                 <p><strong>Copy month &gt; to multi folders</strong></p>
                 <p>Lets try with copy today &gt; 9:24 start time</p>
-                <p>![[ftp-upload-the-7.png]]</p>
+                <p><img src="images/ftp-upload-the-7.png" alt="ftp upload the 7" class="article-image" loading="lazy"></p>
                 <p><strong>Go to Folder</strong></p>
                 <p>`PS C:\Windows\system32&gt; cd "C:\Users\Pexabo\Videos\"<br />
                 PS C:\Users\Pexabo\Videos&gt;</p>
                 <p>Google 10 tabs<br />
                 `</p>
                 <p>MVP send one file</p>
-                <p>![[ftp-upload-the-8.png]]</p>
+                <p><img src="images/ftp-upload-the-8.png" alt="ftp upload the 8" class="article-image" loading="lazy"></p>
                 <p>AI</p>
-                <p>![[ftp-upload-the-9.png]]</p>
+                <p><img src="images/ftp-upload-the-9.png" alt="ftp upload the 9" class="article-image" loading="lazy"></p>
                 <p>To copy a file over FTP using PowerShell, you can utilize the built-in FTP functionalities in PowerShell. First, you need to establish an FTP connection by using the New-Object cmdlet to create an instance of the System.Net.WebClient class. Once you have established the FTP connection, you can use the DownloadFile method to download the file from the FTP server to your local machine. Alternatively, you can use the UploadFile method to upload a file from your local machine to the FTP server. Additionally, you can set up a script to automate the process of copying files over FTP, which can save you time and effort in the long run.</p>
-                <p>![[ftp-upload-the-10.png]]</p>
+                <p><img src="images/ftp-upload-the-10.png" alt="ftp upload the 10" class="article-image" loading="lazy"></p>
                 <p>Basic test</p>
-                <p>![[ftp-upload-the-11.png]]</p>
-                <p>![[ftp-upload-the-12.png]]</p>
-                <p>![[ftp-upload-the-13.png]]</p>
+                <p><img src="images/ftp-upload-the-11.png" alt="ftp upload the 11" class="article-image" loading="lazy"></p>
+                <p><img src="images/ftp-upload-the-12.png" alt="ftp upload the 12" class="article-image" loading="lazy"></p>
+                <p><img src="images/ftp-upload-the-13.png" alt="ftp upload the 13" class="article-image" loading="lazy"></p>
                 <p>file name has to be correct with folder</p>
-                <p>![[ftp-upload-the-14.png]]</p>
+                <p><img src="images/ftp-upload-the-14.png" alt="ftp upload the 14" class="article-image" loading="lazy"></p>
                 <p>removed voluem 5 it did not work</p>
-                <p>![[ftp-upload-the-15.png]]</p>
+                <p><img src="images/ftp-upload-the-15.png" alt="ftp upload the 15" class="article-image" loading="lazy"></p>
                 <p>Longer sequence</p>
-                <p>![[ftp-upload-the-16.png]]</p>
-                <p>![[ftp-upload-the-17.png]]</p>
+                <p><img src="images/ftp-upload-the-16.png" alt="ftp upload the 16" class="article-image" loading="lazy"></p>
+                <p><img src="images/ftp-upload-the-17.png" alt="ftp upload the 17" class="article-image" loading="lazy"></p>
                 <p>Notion rewrite copy clone</p>
-                <p>![[ftp-upload-the-18.png]]</p>
+                <p><img src="images/ftp-upload-the-18.png" alt="ftp upload the 18" class="article-image" loading="lazy"></p>
                 <p>file name is the issue</p>
-                <p>![[ftp-upload-the-19.png]]</p>
+                <p><img src="images/ftp-upload-the-19.png" alt="ftp upload the 19" class="article-image" loading="lazy"></p>
                 <p>Check errros</p>
-                <p>![[ftp-upload-the-20.png]]</p>
+                <p><img src="images/ftp-upload-the-20.png" alt="ftp upload the 20" class="article-image" loading="lazy"></p>
                 <p>No relative paths</p>
-                <p>![[ftp-upload-the-21.png]]</p>
+                <p><img src="images/ftp-upload-the-21.png" alt="ftp upload the 21" class="article-image" loading="lazy"></p>
                 <p>25 minutes</p>
-                <p>![[ftp-upload-the-22.png]]</p>
+                <p><img src="images/ftp-upload-the-22.png" alt="ftp upload the 22" class="article-image" loading="lazy"></p>
                 <p>Next iteration find all files with a name filter belongss yesterday</p>
                 <p>Make something working</p>
-                <p>![[ftp-upload-the-23.png]]</p>
+                <p><img src="images/ftp-upload-the-23.png" alt="ftp upload the 23" class="article-image" loading="lazy"></p>
                 <p>Set the pattern</p>
-                <p>![[ftp-upload-the-24.png]]</p>
+                <p><img src="images/ftp-upload-the-24.png" alt="ftp upload the 24" class="article-image" loading="lazy"></p>
                 <p>Find yesterday</p>
-                <p>![[ftp-upload-the-25.png]]</p>
+                <p><img src="images/ftp-upload-the-25.png" alt="ftp upload the 25" class="article-image" loading="lazy"></p>
                 <p>Find mp4</p>
-                <p>![[ftp-upload-the-26.png]]</p>
+                <p><img src="images/ftp-upload-the-26.png" alt="ftp upload the 26" class="article-image" loading="lazy"></p>
                 <p>Get full path</p>
-                <p>![[ftp-upload-the-27.png]]</p>
+                <p><img src="images/ftp-upload-the-27.png" alt="ftp upload the 27" class="article-image" loading="lazy"></p>
                 <p>Remove mkv &gt; they are just for obs</p>
-                <p>![[ftp-upload-the-28.png]]</p>
-                <p>![[ftp-upload-the-29.png]]</p>
+                <p><img src="images/ftp-upload-the-28.png" alt="ftp upload the 28" class="article-image" loading="lazy"></p>
+                <p><img src="images/ftp-upload-the-29.png" alt="ftp upload the 29" class="article-image" loading="lazy"></p>
                 <p>Create a loop to trigger your code</p>
                 <p>Assign to a list</p>
-                <p>![[ftp-upload-the-30.png]]</p>
+                <p><img src="images/ftp-upload-the-30.png" alt="ftp upload the 30" class="article-image" loading="lazy"></p>
                 <p>Test foreach</p>
-                <p>![[ftp-upload-the-31.png]]</p>
-                <p>![[ftp-upload-the-32.png]]</p>
+                <p><img src="images/ftp-upload-the-31.png" alt="ftp upload the 31" class="article-image" loading="lazy"></p>
+                <p><img src="images/ftp-upload-the-32.png" alt="ftp upload the 32" class="article-image" loading="lazy"></p>
                 <p>Open vs code and put it to a file</p>
                 <p>VSCode and mp4sa not bad</p>
-                <p>![[ftp-upload-the-33.png]]</p>
+                <p><img src="images/ftp-upload-the-33.png" alt="ftp upload the 33" class="article-image" loading="lazy"></p>
                 <p><strong>Plays them slowly and the audio is an issue</strong></p>
-                <p>![[ftp-upload-the-34.png]]</p>
+                <p><img src="images/ftp-upload-the-34.png" alt="ftp upload the 34" class="article-image" loading="lazy"></p>
                 <p>Create the file</p>
-                <p>![[ftp-upload-the-35.png]]</p>
+                <p><img src="images/ftp-upload-the-35.png" alt="ftp upload the 35" class="article-image" loading="lazy"></p>
                 <p>Scripting extensions</p>
-                <p>![[ftp-upload-the-36.png]]</p>
+                <p><img src="images/ftp-upload-the-36.png" alt="ftp upload the 36" class="article-image" loading="lazy"></p>
                 <p>Rename to push to the top</p>
-                <p>![[ftp-upload-the-37.png]]</p>
+                <p><img src="images/ftp-upload-the-37.png" alt="ftp upload the 37" class="article-image" loading="lazy"></p>
                 <p>Debug and see the property</p>
-                <p>![[ftp-upload-the-38.png]]</p>
+                <p><img src="images/ftp-upload-the-38.png" alt="ftp upload the 38" class="article-image" loading="lazy"></p>
                 <p>Resolve path issues</p>
-                <p>![[ftp-upload-the-39.png]]</p>
+                <p><img src="images/ftp-upload-the-39.png" alt="ftp upload the 39" class="article-image" loading="lazy"></p>
                 <p>morefilename errors</p>
-                <p>![[ftp-upload-the-40.png]]</p>
+                <p><img src="images/ftp-upload-the-40.png" alt="ftp upload the 40" class="article-image" loading="lazy"></p>
                 <p>test different variations</p>
-                <p>![[ftp-upload-the-41.png]]</p>
+                <p><img src="images/ftp-upload-the-41.png" alt="ftp upload the 41" class="article-image" loading="lazy"></p>
                 <p><strong>Semblance/Semblance</strong></p>
                 <p>upload from fritst principles and check</p>
-                <p>![[ftp-upload-the-42.png]]</p>
-                <p>![[ftp-upload-the-43.png]]</p>
+                <p><img src="images/ftp-upload-the-42.png" alt="ftp upload the 42" class="article-image" loading="lazy"></p>
+                <p><img src="images/ftp-upload-the-43.png" alt="ftp upload the 43" class="article-image" loading="lazy"></p>
                 <p>Provided file name was the problem &gt;&gt; so maybe be the ftp system needs to create the file names...</p>
-                <p>![[ftp-upload-the-44.png]]</p>
+                <p><img src="images/ftp-upload-the-44.png" alt="ftp upload the 44" class="article-image" loading="lazy"></p>
                 <p>Backup your code</p>
                 <p>Google drive for full text search anbd security </p>
-                <p>![[ftp-upload-the-45.png]]</p>
+                <p><img src="images/ftp-upload-the-45.png" alt="ftp upload the 45" class="article-image" loading="lazy"></p>
                 <p>Refactor add the days from the hard coded variable</p>
-                <p>![[ftp-upload-the-46.png]]</p>
+                <p><img src="images/ftp-upload-the-46.png" alt="ftp upload the 46" class="article-image" loading="lazy"></p>
                 <p>Test yesterday multiple times</p>
-                <p>![[ftp-upload-the-47.png]]</p>
+                <p><img src="images/ftp-upload-the-47.png" alt="ftp upload the 47" class="article-image" loading="lazy"></p>
                 <p>Collect config on the top</p>
-                <p>![[ftp-upload-the-48.png]]</p>
+                <p><img src="images/ftp-upload-the-48.png" alt="ftp upload the 48" class="article-image" loading="lazy"></p>
                 <p>Yesterday</p>
                 <p>(Get-Date).AddDays(-1).ToString('yyyy-MM-dd')</p>
                 <p>days go back and try</p>
-                <p>![[ftp-upload-the-49.png]]</p>
+                <p><img src="images/ftp-upload-the-49.png" alt="ftp upload the 49" class="article-image" loading="lazy"></p>
                 <p>Zoom meeting or obs is fine ?</p>
-                <p>![[ftp-upload-the-50.png]]</p>
+                <p><img src="images/ftp-upload-the-50.png" alt="ftp upload the 50" class="article-image" loading="lazy"></p>
                 <p>End Result Code</p>
                 <p>Write-Host "Process Started for daily recordings"</p>
                 <p>cd "C:\Users\Pexabo\Videos"</p>
@@ -408,43 +413,43 @@
                 <p>}</p>
                 <p>Write-Host "Process Ended for daily recordings"</p>
                 <p>Next phase use it 2 hour is gone test it with yesterday and think on the other use cases</p>
-                <p>![[ftp-upload-the-51.png]]</p>
-                <p>![[ftp-upload-the-52.png]]</p>
-                <p>![[ftp-upload-the-53.png]]</p>
+                <p><img src="images/ftp-upload-the-51.png" alt="ftp upload the 51" class="article-image" loading="lazy"></p>
+                <p><img src="images/ftp-upload-the-52.png" alt="ftp upload the 52" class="article-image" loading="lazy"></p>
+                <p><img src="images/ftp-upload-the-53.png" alt="ftp upload the 53" class="article-image" loading="lazy"></p>
                 <p>this is an async process here is a sample video</p>
                 <p>Link Word Press</p>
                 <p>https://drive.google.com/file/d/1MNcQnIL3AnvmA-7ecL2wggAgzohOKGIE/view?usp=sharing</p>
                 <p>Embed</p>
                 <p>https://drive.google.com/file/d/1MNcQnIL3AnvmA-7ecL2wggAgzohOKGIE/view?usp=sharing</p>
                 <p>Custom html</p>
-                <p>![[ftp-upload-the-54.png]]</p>
+                <p><img src="images/ftp-upload-the-54.png" alt="ftp upload the 54" class="article-image" loading="lazy"></p>
                 <p>Second embed try</p>
                 <p>[googleapps domain="drive" dir="file/d/1MNcQnIL3AnvmA-7ecL2wggAgzohOKGIE/preview" query="" width="640" height="480" /]</p>
-                <p>![[ftp-upload-the-55.png]]</p>
-                <p>![[ftp-upload-the-56.png]]</p>
+                <p><img src="images/ftp-upload-the-55.png" alt="ftp upload the 55" class="article-image" loading="lazy"></p>
+                <p><img src="images/ftp-upload-the-56.png" alt="ftp upload the 56" class="article-image" loading="lazy"></p>
                 <p>Google Drive embed fails at public view</p>
-                <p>![[ftp-upload-the-57.png]]</p>
-                <p>![[ftp-upload-the-58.png]]</p>
+                <p><img src="images/ftp-upload-the-57.png" alt="ftp upload the 57" class="article-image" loading="lazy"></p>
+                <p><img src="images/ftp-upload-the-58.png" alt="ftp upload the 58" class="article-image" loading="lazy"></p>
                 <p>https://support.google.com/blogger/thread/73184958/embed-google-drive-video-not-working?hl=en</p>
                 <p>When i wanna send the footage during the day than it is zero</p>
-                <p>![[ftp-upload-the-59.png]]</p>
+                <p><img src="images/ftp-upload-the-59.png" alt="ftp upload the 59" class="article-image" loading="lazy"></p>
                 <p>And there is going to be an overwrite problem</p>
                 <p>still every update bring a new problem</p>
                 <p>destinonation folders has to be renamed</p>
-                <p>![[ftp-upload-the-60.png]]</p>
+                <p><img src="images/ftp-upload-the-60.png" alt="ftp upload the 60" class="article-image" loading="lazy"></p>
                 <p>Fix the folder with one readme inside </p>
-                <p>![[ftp-upload-the-61.png]]</p>
+                <p><img src="images/ftp-upload-the-61.png" alt="ftp upload the 61" class="article-image" loading="lazy"></p>
                 <p>Noce to haves </p>
                 <blockquote></blockquote>
                 <p>I need upload count</p>
-                <p>![[ftp-upload-the-62.png]]</p>
+                <p><img src="images/ftp-upload-the-62.png" alt="ftp upload the 62" class="article-image" loading="lazy"></p>
                 <p><strong>References</strong></p>
-                <p>![[ftp-upload-the-63.png]]</p>
+                <p><img src="images/ftp-upload-the-63.png" alt="ftp upload the 63" class="article-image" loading="lazy"></p>
                 <p>https://www.howtogeek.com/devops/how-to-upload-files-over-ftp-with-powershell/</p>
                 <p>https://www.synology.com/en-global/dsm/feature/presto</p>
                 <p>https://stackoverflow.com/questions/19207991/how-to-exclude-list-of-items-from-get-childitem-result-in-powershell</p>
                 <hr />
-                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+                <p><em>Imported from rifaterdemsahin.com · 2023</em></p>
             </article>
         </div>
     </main>

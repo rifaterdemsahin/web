@@ -127,7 +127,12 @@
         .article-content code { padding: 0.2em 0.4em; }
         .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
         .article-content pre code { background: none; padding: 0; }
-        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
 
         /* ── Video embeds (YouTube / Loom) ────────────────────── */
         .video-embed {
@@ -229,7 +234,7 @@
                     <span>&bull;</span>
                     <span>July 3, 2023</span>
                     <span>&bull;</span>
-                    <span>5 min read</span>
+                    <span>8 min read</span>
                 </div>
                 <p class="article-excerpt">Remote Controlled Streaming Solution Comparison Solution 1 : Remote pull the action &gt; OBS Web Socket for a remote editor Use obs ninja and ingest on the remote editor One of the great features of OBS (Open Broadcaster Software) is the ability to remotely broadcast your content</p>
             </header>
@@ -242,211 +247,211 @@
                 <p>https://rifaterdemsahin.com/2023/07/03/cut-post-production-time-by-half/</p>
                 <p><strong>Solution 2 : WebSockets ( Remote pull-push the action )</strong></p>
                 <p>This is made possible with the use of OBS WebSocket and the popular online broadcasting platform <a href="http://niek.tv/">niek.tv</a>. OBS WebSocket allows you to establish a connection between OBS and other devices, which in turn allows you to control OBS remotely. On the other hand, <a href="http://niek.tv/">niek.tv</a> is an online service that enables users to easily stream their content to a wider audience. By using these two tools in tandem, you can achieve seamless remote broadcasting without having to be physically present in the same location as your broadcasting equipment. So whether you're a content creator looking to expand your reach or a business looking to conduct remote meetings, OBS WebSocket and <a href="http://niek.tv/">niek.tv</a> make the process easier and more efficient.</p>
-                <p>![[remote-controlled-streaming-1.png]]</p>
+                <p><img src="images/remote-controlled-streaming-1.png" alt="remote controlled streaming 1" class="article-image" loading="lazy"></p>
                 <p>https://github.com/obsproject/obs-websocket/releases/tag/5.0.1</p>
-                <p>![[remote-controlled-streaming-2.png]]</p>
+                <p><img src="images/remote-controlled-streaming-2.png" alt="remote controlled streaming 2" class="article-image" loading="lazy"></p>
                 <div class="video-embed"><iframe src="https://www.youtube.com/embed/R3HXb-yBnig" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
                 
                 <p>Test with the existing structure</p>
-                <p>![[remote-controlled-streaming-3.png]]</p>
+                <p><img src="images/remote-controlled-streaming-3.png" alt="remote controlled streaming 3" class="article-image" loading="lazy"></p>
                 <p>main url  &gt; http://obs-web.niek.tv/</p>
                 <p>use twingate &gt; to give the access to the video editor &gt; book we are ready to go </p>
                 <p>Closed action</p>
-                <p>![[remote-controlled-streaming-4.png]]</p>
+                <p><img src="images/remote-controlled-streaming-4.png" alt="remote controlled streaming 4" class="article-image" loading="lazy"></p>
                 <p>Url &gt; ws://192.168.3.46:4455</p>
                 <p>Pass &gt; 56gvtqirS9Q3O91a ( dont worry only works with twingate )</p>
                 <p>See connections</p>
-                <p>![[remote-controlled-streaming-5.png]]</p>
-                <p>![[remote-controlled-streaming-6.png]]</p>
+                <p><img src="images/remote-controlled-streaming-5.png" alt="remote controlled streaming 5" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-6.png" alt="remote controlled streaming 6" class="article-image" loading="lazy"></p>
                 <p>Create multiple scenes</p>
-                <p>![[remote-controlled-streaming-7.png]]</p>
+                <p><img src="images/remote-controlled-streaming-7.png" alt="remote controlled streaming 7" class="article-image" loading="lazy"></p>
                 <p>See them in action</p>
-                <p>![[remote-controlled-streaming-8.png]]</p>
+                <p><img src="images/remote-controlled-streaming-8.png" alt="remote controlled streaming 8" class="article-image" loading="lazy"></p>
                 <p>Install the client</p>
                 <p>https://pexabo.twingate.com/client-auth-status</p>
                 <p>Add your resources</p>
-                <p>![[remote-controlled-streaming-9.png]]</p>
+                <p><img src="images/remote-controlled-streaming-9.png" alt="remote controlled streaming 9" class="article-image" loading="lazy"></p>
                 <p>Make sure you can connect to that network </p>
-                <p>![[remote-controlled-streaming-10.png]]</p>
+                <p><img src="images/remote-controlled-streaming-10.png" alt="remote controlled streaming 10" class="article-image" loading="lazy"></p>
                 <p>Add a remote network</p>
-                <p>![[remote-controlled-streaming-11.png]]</p>
+                <p><img src="images/remote-controlled-streaming-11.png" alt="remote controlled streaming 11" class="article-image" loading="lazy"></p>
                 <p>Have a runner enviroment to connect to your wifi</p>
-                <p>![[remote-controlled-streaming-12.png]]</p>
+                <p><img src="images/remote-controlled-streaming-12.png" alt="remote controlled streaming 12" class="article-image" loading="lazy"></p>
                 <p>Invite editor to the twingate use</p>
-                <p>![[remote-controlled-streaming-13.png]]</p>
+                <p><img src="images/remote-controlled-streaming-13.png" alt="remote controlled streaming 13" class="article-image" loading="lazy"></p>
                 <p>Find your ip in the network</p>
-                <p>![[remote-controlled-streaming-14.png]]</p>
+                <p><img src="images/remote-controlled-streaming-14.png" alt="remote controlled streaming 14" class="article-image" loading="lazy"></p>
                 <p>If you dont want over the wifi &gt; use normal network</p>
-                <p>![[remote-controlled-streaming-15.png]]</p>
+                <p><img src="images/remote-controlled-streaming-15.png" alt="remote controlled streaming 15" class="article-image" loading="lazy"></p>
                 <p>Ask editor to connect</p>
-                <p>![[remote-controlled-streaming-16.png]]</p>
+                <p><img src="images/remote-controlled-streaming-16.png" alt="remote controlled streaming 16" class="article-image" loading="lazy"></p>
                 <p>Record errors if there are any</p>
-                <p>![[remote-controlled-streaming-17.png]]</p>
-                <p>![[remote-controlled-streaming-18.png]]</p>
+                <p><img src="images/remote-controlled-streaming-17.png" alt="remote controlled streaming 17" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-18.png" alt="remote controlled streaming 18" class="article-image" loading="lazy"></p>
                 <p>Time to install helper containers ?</p>
                 <p>Check your NAS which runs the docker</p>
-                <p>![[remote-controlled-streaming-19.png]]</p>
+                <p><img src="images/remote-controlled-streaming-19.png" alt="remote controlled streaming 19" class="article-image" loading="lazy"></p>
                 <p>Install docker on the workstation remove the hubs and networks have the direct access</p>
                 <p>choco install docker-desktop</p>
                 <p>Use a notepad and copy tokens</p>
-                <p>![[remote-controlled-streaming-20.png]]</p>
+                <p><img src="images/remote-controlled-streaming-20.png" alt="remote controlled streaming 20" class="article-image" loading="lazy"></p>
                 <p>Closer network &gt; restart for the docker desktop</p>
-                <p>![[remote-controlled-streaming-21.png]]</p>
+                <p><img src="images/remote-controlled-streaming-21.png" alt="remote controlled streaming 21" class="article-image" loading="lazy"></p>
                 <p>Ypour goal see the container here</p>
-                <p>![[remote-controlled-streaming-22.png]]</p>
+                <p><img src="images/remote-controlled-streaming-22.png" alt="remote controlled streaming 22" class="article-image" loading="lazy"></p>
                 <p>Remote signature does not work use the file trigger tactic</p>
-                <p>![[remote-controlled-streaming-23.png]]</p>
+                <p><img src="images/remote-controlled-streaming-23.png" alt="remote controlled streaming 23" class="article-image" loading="lazy"></p>
                 <p>See error</p>
-                <p>![[remote-controlled-streaming-24.png]]</p>
+                <p><img src="images/remote-controlled-streaming-24.png" alt="remote controlled streaming 24" class="article-image" loading="lazy"></p>
                 <p>Look at the script at vscode</p>
-                <p>![[remote-controlled-streaming-25.png]]</p>
-                <p>![[remote-controlled-streaming-26.png]]</p>
-                <p>![[remote-controlled-streaming-27.png]]</p>
+                <p><img src="images/remote-controlled-streaming-25.png" alt="remote controlled streaming 25" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-26.png" alt="remote controlled streaming 26" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-27.png" alt="remote controlled streaming 27" class="article-image" loading="lazy"></p>
                 <p>Give up and trigger in bash</p>
-                <p>![[remote-controlled-streaming-28.png]]</p>
-                <p>![[remote-controlled-streaming-29.png]]</p>
-                <p>![[remote-controlled-streaming-30.png]]</p>
+                <p><img src="images/remote-controlled-streaming-28.png" alt="remote controlled streaming 28" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-29.png" alt="remote controlled streaming 29" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-30.png" alt="remote controlled streaming 30" class="article-image" loading="lazy"></p>
                 <p>Check logs for connection</p>
-                <p>![[remote-controlled-streaming-31.png]]</p>
+                <p><img src="images/remote-controlled-streaming-31.png" alt="remote controlled streaming 31" class="article-image" loading="lazy"></p>
                 <p>DElete images and containers and restart without wifi network</p>
-                <p>![[remote-controlled-streaming-32.png]]</p>
+                <p><img src="images/remote-controlled-streaming-32.png" alt="remote controlled streaming 32" class="article-image" loading="lazy"></p>
                 <p>See controller online</p>
-                <p>![[remote-controlled-streaming-33.png]]</p>
-                <p>![[remote-controlled-streaming-34.png]]</p>
-                <p>![[remote-controlled-streaming-35.png]]</p>
+                <p><img src="images/remote-controlled-streaming-33.png" alt="remote controlled streaming 33" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-34.png" alt="remote controlled streaming 34" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-35.png" alt="remote controlled streaming 35" class="article-image" loading="lazy"></p>
                 <p>add one more time</p>
-                <p>![[remote-controlled-streaming-36.png]]</p>
+                <p><img src="images/remote-controlled-streaming-36.png" alt="remote controlled streaming 36" class="article-image" loading="lazy"></p>
                 <p>check ip</p>
-                <p>![[remote-controlled-streaming-37.png]]</p>
-                <p>![[remote-controlled-streaming-38.png]]</p>
+                <p><img src="images/remote-controlled-streaming-37.png" alt="remote controlled streaming 37" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-38.png" alt="remote controlled streaming 38" class="article-image" loading="lazy"></p>
                 <p>with the second container</p>
-                <p>![[remote-controlled-streaming-39.png]]</p>
-                <p>![[remote-controlled-streaming-40.png]]</p>
+                <p><img src="images/remote-controlled-streaming-39.png" alt="remote controlled streaming 39" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-40.png" alt="remote controlled streaming 40" class="article-image" loading="lazy"></p>
                 <p>Access over master box make sure only one device has this access not 2 controller &gt; delete from one controller</p>
                 <p>Access from your mobile turning off the wifi and connecting to the twingate</p>
-                <p>![[remote-controlled-streaming-41.jpeg]]</p>
-                <p>![[remote-controlled-streaming-42.jpeg]]</p>
-                <p>![[remote-controlled-streaming-43.jpeg]]</p>
-                <p>![[remote-controlled-streaming-44.jpeg]]</p>
-                <p>![[remote-controlled-streaming-45.jpeg]]</p>
-                <p>![[remote-controlled-streaming-46.jpeg]]</p>
-                <p>![[remote-controlled-streaming-47.jpeg]]</p>
-                <p>![[remote-controlled-streaming-48.jpeg]]</p>
-                <p>![[remote-controlled-streaming-49.jpeg]]</p>
-                <p>![[remote-controlled-streaming-50.jpeg]]</p>
-                <p>![[remote-controlled-streaming-51.jpeg]]</p>
-                <p>![[remote-controlled-streaming-52.jpeg]]</p>
-                <p>![[remote-controlled-streaming-53.jpeg]]</p>
-                <p>![[remote-controlled-streaming-54.jpeg]]</p>
-                <p>![[remote-controlled-streaming-55.jpeg]]</p>
-                <p>![[remote-controlled-streaming-56.jpeg]]</p>
-                <p>![[remote-controlled-streaming-57.jpeg]]</p>
+                <p><img src="images/remote-controlled-streaming-41.jpeg" alt="remote controlled streaming 41" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-42.jpeg" alt="remote controlled streaming 42" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-43.jpeg" alt="remote controlled streaming 43" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-44.jpeg" alt="remote controlled streaming 44" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-45.jpeg" alt="remote controlled streaming 45" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-46.jpeg" alt="remote controlled streaming 46" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-47.jpeg" alt="remote controlled streaming 47" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-48.jpeg" alt="remote controlled streaming 48" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-49.jpeg" alt="remote controlled streaming 49" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-50.jpeg" alt="remote controlled streaming 50" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-51.jpeg" alt="remote controlled streaming 51" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-52.jpeg" alt="remote controlled streaming 52" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-53.jpeg" alt="remote controlled streaming 53" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-54.jpeg" alt="remote controlled streaming 54" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-55.jpeg" alt="remote controlled streaming 55" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-56.jpeg" alt="remote controlled streaming 56" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-57.jpeg" alt="remote controlled streaming 57" class="article-image" loading="lazy"></p>
                 <p>Solution 3 : Remote pulls the desktop image</p>
                 <p>Docker love and hate relationship &gt; easier way use the <strong>any desk </strong>and the editor can watch easier and click with the mouse</p>
-                <p>![[remote-controlled-streaming-58.png]]</p>
+                <p><img src="images/remote-controlled-streaming-58.png" alt="remote controlled streaming 58" class="article-image" loading="lazy"></p>
                 <p>Even Chrome remote share could be an free option</p>
-                <p>![[remote-controlled-streaming-59.png]]</p>
+                <p><img src="images/remote-controlled-streaming-59.png" alt="remote controlled streaming 59" class="article-image" loading="lazy"></p>
                 <p>Get a code</p>
-                <p>![[remote-controlled-streaming-60.png]]</p>
+                <p><img src="images/remote-controlled-streaming-60.png" alt="remote controlled streaming 60" class="article-image" loading="lazy"></p>
                 <p>946417494806</p>
                 <p>https://remotedesktop.google.com/home</p>
                 <div class="video-embed"><iframe src="https://www.youtube.com/embed/fTiGI_amQpg" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
                 
-                <p>![[remote-controlled-streaming-61.png]]</p>
+                <p><img src="images/remote-controlled-streaming-61.png" alt="remote controlled streaming 61" class="article-image" loading="lazy"></p>
                 <p><strong>Solution 4 : Remote and local meets in the cloud</strong></p>
                 <p>Use restream.io as the middleware and the editor has no sync issue due to added delays</p>
-                <p>![[remote-controlled-streaming-62.png]]</p>
+                <p><img src="images/remote-controlled-streaming-62.png" alt="remote controlled streaming 62" class="article-image" loading="lazy"></p>
                 <p>Restream.io has 2 sources from my end and 2 sources from the editors and and the editor is directing it.</p>
                 <p>Video Storage ( upload the envato footages )</p>
-                <p>![[remote-controlled-streaming-63.png]]</p>
+                <p><img src="images/remote-controlled-streaming-63.png" alt="remote controlled streaming 63" class="article-image" loading="lazy"></p>
                 <p>Recording backedup to the cloud</p>
-                <p>![[remote-controlled-streaming-64.png]]</p>
+                <p><img src="images/remote-controlled-streaming-64.png" alt="remote controlled streaming 64" class="article-image" loading="lazy"></p>
                 <p>start with web studio which is already setup</p>
-                <p>![[remote-controlled-streaming-65.png]]</p>
+                <p><img src="images/remote-controlled-streaming-65.png" alt="remote controlled streaming 65" class="article-image" loading="lazy"></p>
                 <p>Rich sources</p>
-                <p>![[remote-controlled-streaming-66.png]]</p>
+                <p><img src="images/remote-controlled-streaming-66.png" alt="remote controlled streaming 66" class="article-image" loading="lazy"></p>
                 <p>Buffer not needed to promote to multi channels</p>
-                <p>![[remote-controlled-streaming-67.png]]</p>
+                <p><img src="images/remote-controlled-streaming-67.png" alt="remote controlled streaming 67" class="article-image" loading="lazy"></p>
                 <p>Links there</p>
-                <p>![[remote-controlled-streaming-68.png]]</p>
+                <p><img src="images/remote-controlled-streaming-68.png" alt="remote controlled streaming 68" class="article-image" loading="lazy"></p>
                 <p>Ready Graphics</p>
-                <p>![[remote-controlled-streaming-69.png]]</p>
+                <p><img src="images/remote-controlled-streaming-69.png" alt="remote controlled streaming 69" class="article-image" loading="lazy"></p>
                 <p>Clips and backgrounds</p>
-                <p>![[remote-controlled-streaming-70.png]]</p>
+                <p><img src="images/remote-controlled-streaming-70.png" alt="remote controlled streaming 70" class="article-image" loading="lazy"></p>
                 <p>Captions</p>
-                <p>![[remote-controlled-streaming-71.png]]</p>
+                <p><img src="images/remote-controlled-streaming-71.png" alt="remote controlled streaming 71" class="article-image" loading="lazy"></p>
                 <p>Ready transitions</p>
-                <p>![[remote-controlled-streaming-72.png]]</p>
+                <p><img src="images/remote-controlled-streaming-72.png" alt="remote controlled streaming 72" class="article-image" loading="lazy"></p>
                 <p>Guest with their channels</p>
-                <p>![[remote-controlled-streaming-73.png]]</p>
+                <p><img src="images/remote-controlled-streaming-73.png" alt="remote controlled streaming 73" class="article-image" loading="lazy"></p>
                 <p>Presentation management from the editor side</p>
                 <p>Ready shortcuts</p>
-                <p>![[remote-controlled-streaming-74.png]]</p>
+                <p><img src="images/remote-controlled-streaming-74.png" alt="remote controlled streaming 74" class="article-image" loading="lazy"></p>
                 <p>One team member to manage</p>
-                <p>![[remote-controlled-streaming-75.png]]</p>
+                <p><img src="images/remote-controlled-streaming-75.png" alt="remote controlled streaming 75" class="article-image" loading="lazy"></p>
                 <p>Schedule multi events</p>
-                <p>![[remote-controlled-streaming-76.png]]</p>
+                <p><img src="images/remote-controlled-streaming-76.png" alt="remote controlled streaming 76" class="article-image" loading="lazy"></p>
                 <p>Animated text ( can be updated from remote )</p>
-                <p>![[remote-controlled-streaming-77.png]]</p>
+                <p><img src="images/remote-controlled-streaming-77.png" alt="remote controlled streaming 77" class="article-image" loading="lazy"></p>
                 <p>Practical Tickers ( can be updated from remote )</p>
-                <p>![[remote-controlled-streaming-78.png]]</p>
+                <p><img src="images/remote-controlled-streaming-78.png" alt="remote controlled streaming 78" class="article-image" loading="lazy"></p>
                 <p>Practical Location Placement</p>
-                <p>![[remote-controlled-streaming-79.png]]</p>
+                <p><img src="images/remote-controlled-streaming-79.png" alt="remote controlled streaming 79" class="article-image" loading="lazy"></p>
                 <p>Brand Colors</p>
-                <p>![[remote-controlled-streaming-80.png]]</p>
+                <p><img src="images/remote-controlled-streaming-80.png" alt="remote controlled streaming 80" class="article-image" loading="lazy"></p>
                 <p>Guest as director ( static guest code &gt; daily start )</p>
-                <p>![[remote-controlled-streaming-81.png]]</p>
+                <p><img src="images/remote-controlled-streaming-81.png" alt="remote controlled streaming 81" class="article-image" loading="lazy"></p>
                 <p>Practical Logos</p>
-                <p>![[remote-controlled-streaming-82.png]]</p>
+                <p><img src="images/remote-controlled-streaming-82.png" alt="remote controlled streaming 82" class="article-image" loading="lazy"></p>
                 <p>Video with music</p>
-                <p>![[remote-controlled-streaming-83.png]]</p>
+                <p><img src="images/remote-controlled-streaming-83.png" alt="remote controlled streaming 83" class="article-image" loading="lazy"></p>
                 <p>Overlays ( add them using canva on remote )</p>
-                <p>![[remote-controlled-streaming-84.png]]</p>
+                <p><img src="images/remote-controlled-streaming-84.png" alt="remote controlled streaming 84" class="article-image" loading="lazy"></p>
                 <p>Transparents move to png</p>
-                <p>![[remote-controlled-streaming-85.png]]</p>
+                <p><img src="images/remote-controlled-streaming-85.png" alt="remote controlled streaming 85" class="article-image" loading="lazy"></p>
                 <p>Multi upload ready</p>
-                <p>![[remote-controlled-streaming-86.png]]</p>
+                <p><img src="images/remote-controlled-streaming-86.png" alt="remote controlled streaming 86" class="article-image" loading="lazy"></p>
                 <p>Composite Displays</p>
-                <p>![[remote-controlled-streaming-87.png]]</p>
+                <p><img src="images/remote-controlled-streaming-87.png" alt="remote controlled streaming 87" class="article-image" loading="lazy"></p>
                 <p>Production in but disabled</p>
-                <p>![[remote-controlled-streaming-88.png]]</p>
+                <p><img src="images/remote-controlled-streaming-88.png" alt="remote controlled streaming 88" class="article-image" loading="lazy"></p>
                 <p>Production extra camera</p>
-                <p>![[remote-controlled-streaming-89.png]]</p>
+                <p><img src="images/remote-controlled-streaming-89.png" alt="remote controlled streaming 89" class="article-image" loading="lazy"></p>
                 <p>Xsplit and OBS as input</p>
-                <p>![[remote-controlled-streaming-90.png]]</p>
+                <p><img src="images/remote-controlled-streaming-90.png" alt="remote controlled streaming 90" class="article-image" loading="lazy"></p>
                 <p>Rtmp ( may not be used )</p>
-                <p>![[remote-controlled-streaming-91.png]]</p>
+                <p><img src="images/remote-controlled-streaming-91.png" alt="remote controlled streaming 91" class="article-image" loading="lazy"></p>
                 <p>Ready music</p>
-                <p>![[remote-controlled-streaming-92.png]]</p>
+                <p><img src="images/remote-controlled-streaming-92.png" alt="remote controlled streaming 92" class="article-image" loading="lazy"></p>
                 <p>Production Listen end output</p>
-                <p>![[remote-controlled-streaming-93.png]]</p>
+                <p><img src="images/remote-controlled-streaming-93.png" alt="remote controlled streaming 93" class="article-image" loading="lazy"></p>
                 <p>Practical drag and drop location swap</p>
-                <p>![[remote-controlled-streaming-94.png]]</p>
+                <p><img src="images/remote-controlled-streaming-94.png" alt="remote controlled streaming 94" class="article-image" loading="lazy"></p>
                 <p>Admin but director ?</p>
-                <p>![[remote-controlled-streaming-95.png]]</p>
+                <p><img src="images/remote-controlled-streaming-95.png" alt="remote controlled streaming 95" class="article-image" loading="lazy"></p>
                 <p>Envato practical uploads</p>
-                <p>![[remote-controlled-streaming-96.png]]</p>
+                <p><img src="images/remote-controlled-streaming-96.png" alt="remote controlled streaming 96" class="article-image" loading="lazy"></p>
                 <p>Limited</p>
-                <p>![[remote-controlled-streaming-97.png]]</p>
-                <p>![[remote-controlled-streaming-98.png]]</p>
+                <p><img src="images/remote-controlled-streaming-97.png" alt="remote controlled streaming 97" class="article-image" loading="lazy"></p>
+                <p><img src="images/remote-controlled-streaming-98.png" alt="remote controlled streaming 98" class="article-image" loading="lazy"></p>
                 <p>Needs processing time</p>
-                <p>![[remote-controlled-streaming-99.png]]</p>
+                <p><img src="images/remote-controlled-streaming-99.png" alt="remote controlled streaming 99" class="article-image" loading="lazy"></p>
                 <p>Transition entry </p>
-                <p>![[remote-controlled-streaming-100.png]]</p>
+                <p><img src="images/remote-controlled-streaming-100.png" alt="remote controlled streaming 100" class="article-image" loading="lazy"></p>
                 <p>Practical mood changes</p>
-                <p>![[remote-controlled-streaming-101.png]]</p>
+                <p><img src="images/remote-controlled-streaming-101.png" alt="remote controlled streaming 101" class="article-image" loading="lazy"></p>
                 <p>Kids dancing talk &gt; not prompter</p>
-                <p>![[remote-controlled-streaming-102.png]]</p>
+                <p><img src="images/remote-controlled-streaming-102.png" alt="remote controlled streaming 102" class="article-image" loading="lazy"></p>
                 <p>Internal test live sessions with telegram</p>
-                <p>![[remote-controlled-streaming-103.png]]</p>
+                <p><img src="images/remote-controlled-streaming-103.png" alt="remote controlled streaming 103" class="article-image" loading="lazy"></p>
                 <p>Reload and keep settings</p>
-                <p>![[remote-controlled-streaming-104.png]]</p>
+                <p><img src="images/remote-controlled-streaming-104.png" alt="remote controlled streaming 104" class="article-image" loading="lazy"></p>
                 <p>Director can givce feedback with the screen share option</p>
-                <p>![[remote-controlled-streaming-105.png]]</p>
+                <p><img src="images/remote-controlled-streaming-105.png" alt="remote controlled streaming 105" class="article-image" loading="lazy"></p>
                 <p>there 2 producer seats</p>
-                <p>![[remote-controlled-streaming-106.png]]</p>
+                <p><img src="images/remote-controlled-streaming-106.png" alt="remote controlled streaming 106" class="article-image" loading="lazy"></p>
                 <p>Add the producers as cohost</p>
-                <p>![[remote-controlled-streaming-107.png]]</p>
+                <p><img src="images/remote-controlled-streaming-107.png" alt="remote controlled streaming 107" class="article-image" loading="lazy"></p>
                 <p>Comparison</p>
                 <p><strong>Solution 1</strong><br />
                 <strong>Obs Ninja</strong><strong>Solution 2 Web Socket</strong><strong>Solution 3 Desktop</strong><strong>Solution 4  Restream.io</strong><strong>Pro</strong>More control to the remote controllerweb page <br />
@@ -461,7 +466,7 @@
                 <p>https://github.com/Niek/obs-web</p>
                 <p>https://www.canva.com/design/DAFnnIo8VOI/xmJyh7Jr7VsTSXdFZX3V5Q/edit?utm_content=DAFnnIo8VOI&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton</p>
                 <hr />
-                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+                <p><em>Imported from rifaterdemsahin.com · 2023</em></p>
             </article>
         </div>
     </main>

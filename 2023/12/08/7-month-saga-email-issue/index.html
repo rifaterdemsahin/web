@@ -127,7 +127,12 @@
         .article-content code { padding: 0.2em 0.4em; }
         .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
         .article-content pre code { background: none; padding: 0; }
-        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
 
         /* ── Video embeds (YouTube / Loom) ────────────────────── */
         .video-embed {
@@ -229,7 +234,7 @@
                     <span>&bull;</span>
                     <span>December 8, 2023</span>
                     <span>&bull;</span>
-                    <span>1 min read</span>
+                    <span>2 min read</span>
                 </div>
                 <p class="article-excerpt">7 month Saga Email attachment issue Logic app automation to send multiple messages after the hr emails coming in 1.curly braces &gt; not square braces 2.base64 &gt; not direct 3.Use the office365 connector &gt; not gmail one 4.use folders for each use case &gt; not individually s</p>
             </header>
@@ -240,9 +245,9 @@
                 <p>2.base64 &gt; not direct</p>
                 <p>3.Use the office365 connector &gt; not gmail one</p>
                 <p>4.use folders for each use case &gt; not individually selected</p>
-                <p>![[7-month-saga-1.png]]</p>
-                <p>![[7-month-saga-2.png]]</p>
-                <p>![[7-month-saga-3.png]]</p>
+                <p><img src="images/7-month-saga-1.png" alt="7 month saga 1" class="article-image" loading="lazy"></p>
+                <p><img src="images/7-month-saga-2.png" alt="7 month saga 2" class="article-image" loading="lazy"></p>
+                <p><img src="images/7-month-saga-3.png" alt="7 month saga 3" class="article-image" loading="lazy"></p>
                 <p>Code</p>
                 <pre><code>{
                     &quot;definition&quot;: {
@@ -390,7 +395,7 @@
                 }
                 </code></pre>
                 <hr />
-                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+                <p><em>Imported from rifaterdemsahin.com · 2023</em></p>
             </article>
         </div>
     </main>

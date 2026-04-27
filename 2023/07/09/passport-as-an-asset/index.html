@@ -127,7 +127,12 @@
         .article-content code { padding: 0.2em 0.4em; }
         .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
         .article-content pre code { background: none; padding: 0; }
-        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
 
         /* ── Video embeds (YouTube / Loom) ────────────────────── */
         .video-embed {
@@ -236,12 +241,12 @@
             <article class="article-content">
                 <h1>Passport as an asset</h1>
                 <p>after this conversation realised how important the ILR process is and the E2 visa i would get as the doors open up to new possibilities.</p>
-                <p>![[passport-as-an-1.png]]</p>
+                <p><img src="images/passport-as-an-1.png" alt="passport as an 1" class="article-image" loading="lazy"></p>
                 <p>Our conversations outlined the issue as it is not a straight game in life</p>
                 <p>and the consultants for immigration is there for a reason over devops engineering it is a strech and everyone can not fly like i do in a circle</p>
-                <p>![[passport-as-an-2.png]]</p>
+                <p><img src="images/passport-as-an-2.png" alt="passport as an 2" class="article-image" loading="lazy"></p>
                 <hr />
-                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+                <p><em>Imported from rifaterdemsahin.com · 2023</em></p>
             </article>
         </div>
     </main>

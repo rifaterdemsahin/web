@@ -127,7 +127,12 @@
         .article-content code { padding: 0.2em 0.4em; }
         .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
         .article-content pre code { background: none; padding: 0; }
-        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
 
         /* ── Video embeds (YouTube / Loom) ────────────────────── */
         .video-embed {
@@ -237,9 +242,9 @@
                 <h1>Cohost versus a Guest</h1>
                 <p>it is much better to have a cohost to direct the stream when there is a guest who does not know how t manage than the quality and the leverage is lost.</p>
                 <p>Does not make sense what i did asking the parties to become a cohost wrong timing.</p>
-                <p>![[cohost-versus-a-1.png]]</p>
+                <p><img src="images/cohost-versus-a-1.png" alt="cohost versus a 1" class="article-image" loading="lazy"></p>
                 <hr />
-                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+                <p><em>Imported from rifaterdemsahin.com · 2023</em></p>
             </article>
         </div>
     </main>
