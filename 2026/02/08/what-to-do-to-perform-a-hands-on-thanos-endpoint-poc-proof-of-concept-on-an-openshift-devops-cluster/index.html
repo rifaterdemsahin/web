@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What to do &gt; To perform a hands-on Thanos endpoint PoC (Proof of Concept) on an OpenShift DevOps Cluster - Rifat Erdem Sahin</title>
+    <meta name="description" content="What to do &gt; To perform a hands-on Thanos endpoint PoC (Proof of Concept) on an OpenShift DevOps Cluster 1.">
+    <meta name="keywords" content="What to do &gt; To perform a hands-on Thanos endpoint PoC (Proof of Concept) on an OpenShift DevOps Cluster">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2026/02/08/what-to-do-to-perform-a-hands-on-thanos-endpoint-poc-proof-of-concept-on-an-openshift-devops-cluster/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2026/02/08/what-to-do-to-perform-a-hands-on-thanos-endpoint-poc-proof-of-concept-on-an-openshift-devops-cluster/">
+    <meta property="og:title" content="What to do &gt; To perform a hands-on Thanos endpoint PoC (Proof of Concept) on an OpenShift DevOps Cluster">
+    <meta property="og:description" content="What to do &gt; To perform a hands-on Thanos endpoint PoC (Proof of Concept) on an OpenShift DevOps Cluster 1.">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2026/02/08/what-to-do-to-perform-a-hands-on-thanos-endpoint-poc-proof-of-concept-on-an-openshift-devops-cluster/">
+    <meta property="twitter:title" content="What to do &gt; To perform a hands-on Thanos endpoint PoC (Proof of Concept) on an OpenShift DevOps Cluster">
+    <meta property="twitter:description" content="What to do &gt; To perform a hands-on Thanos endpoint PoC (Proof of Concept) on an OpenShift DevOps Cluster 1.">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "What to do &gt; To perform a hands-on Thanos endpoint PoC (Proof of Concept) on an OpenShift DevOps Cluster",
+      "description": "What to do &gt; To perform a hands-on Thanos endpoint PoC (Proof of Concept) on an OpenShift DevOps Cluster 1.",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2026-02-08",
+      "dateModified": "2026-02-08",
+      "url": "https://www.rifaterdemsahin.com/2026/02/08/what-to-do-to-perform-a-hands-on-thanos-endpoint-poc-proof-of-concept-on-an-openshift-devops-cluster/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2026/02/08/what-to-do-to-perform-a-hands-on-thanos-endpoint-poc-proof-of-concept-on-an-openshift-devops-cluster/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">What to do &gt; To perform a hands-on Thanos endpoint PoC (Proof of Concept) on an OpenShift DevOps Cluster</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>February 8, 2026</span>
+                    <span>&bull;</span>
+                    <span>34 min read</span>
+                </div>
+                <p class="article-excerpt">What to do &gt; To perform a hands-on Thanos endpoint PoC (Proof of Concept) on an OpenShift DevOps Cluster 1.</p>
+            </header>
+            <article class="article-content">
+                <h1>What to do &gt; To perform a hands-on Thanos endpoint PoC (Proof of Concept) on an OpenShift DevOps Cluster</h1>
+                <h3>1. <strong>OpenShift Access:</strong></h3>
+                <ul>
+                <li><strong>Cluster-level access:</strong></li>
+                </ul>
+                <p>Access to view and modify resources within the cluster, typically requiring roles like <code>cluster-admin</code> or <code>admin</code> for broad control, though specific roles could be scoped more granularly.</p>
+                <ul>
+                <li>Access to <code>kube-system</code>, <code>monitoring</code>, or any namespace where Thanos components or observability tools are running.</li>
+                </ul>
+                <p>Files and CRC</p>
+                <p><img src="images/what-to-do-1.png" alt="what to do 1" class="article-image" loading="lazy"></p>
+                <p><img src="images/what-to-do-2.png" alt="what to do 2" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>DevOps Namespace access:</strong></li>
+                </ul>
+                <p>Access to the relevant <strong>DevOps namespace/project</strong> where Thanos will be deployed and tested. This could include:</p>
+                <ul>
+                <li>
+                <p><strong>View roles</strong> (<code>view</code> role) to observe configurations and running resources.</p>
+                </li>
+                <li>
+                <p><strong>Edit roles</strong> (<code>edit</code> role) to modify and deploy resources for the PoC.</p>
+                </li>
+                </ul>
+                <p>Self signed Certificates</p>
+                <p><img src="images/what-to-do-3.png" alt="what to do 3" class="article-image" loading="lazy"></p>
+                <p><strong>TRUSTED</strong> IS <strong>MISSING</strong></p>
+                <p>In the screenshot, the certificate viewer shows that the certificate was issued by "ingress-operator@1724061037." Since there is no information provided about a trusted certificate authority (CA) and the issuer is identified by a local identifier instead of a well-known CA like "Let's Encrypt" or "DigiCert," this strongly indicates that the certificate is self-signed.</p>
+                <p>Here’s how you can confirm if it's self-signed:</p>
+                <ul>
+                <li>
+                <p><strong>Issuer and Subject Matching</strong>: If the "Issued By" (the issuer) and the "Issued To" (the subject) fields are identical, this generally indicates a self-signed certificate. In this case, the issuer has a local ingress-operator identifier, which is not associated with a trusted CA.</p>
+                </li>
+                <li>
+                <p><strong>Trusted CA Missing</strong>: Trusted certificates are typically signed by publicly trusted certificate authorities (CAs), and their names (e.g., DigiCert, Let's Encrypt) would appear in the "Issued By" field. Since the certificate here does not have a recognizable CA, it's likely self-signed.</p>
+                </li>
+                <li>
+                <p><strong>Unsecure Connection Warning</strong>: Your browser is showing a "Not Secure" message in the address bar. This generally happens when the certificate is self-signed or not trusted by the browser.</p>
+                </li>
+                </ul>
+                <p>To further verify:</p>
+                <ul>
+                <li>Check if your browser trusts the certificate by viewing the certificate chain, which should include trusted CAs. If the chain ends with the server's own certificate, it confirms that the certificate is self-signed.</li>
+                </ul>
+                <h3>2. <strong>Monitoring &amp; Observability:</strong></h3>
+                <p>Open the code</p>
+                <p><img src="images/what-to-do-4.png" alt="what to do 4" class="article-image" loading="lazy"></p>
+                <p>Execute side by side</p>
+                <p><img src="images/what-to-do-5.png" alt="what to do 5" class="article-image" loading="lazy"></p>
+                <p><img src="images/what-to-do-6.png" alt="what to do 6" class="article-image" loading="lazy"></p>
+                <p><img src="images/what-to-do-7.png" alt="what to do 7" class="article-image" loading="lazy"></p>
+                <p><img src="images/what-to-do-8.png" alt="what to do 8" class="article-image" loading="lazy"></p>
+                <p>Gets triggered by images</p>
+                <p><img src="images/what-to-do-9.png" alt="what to do 9" class="article-image" loading="lazy"></p>
+                <p>Sidecar image is there</p>
+                <p><img src="images/what-to-do-10.png" alt="what to do 10" class="article-image" loading="lazy"></p>
+                <p>Long term storage</p>
+                <p><img src="images/what-to-do-11.png" alt="what to do 11" class="article-image" loading="lazy"></p>
+                <p><img src="images/what-to-do-12.png" alt="what to do 12" class="article-image" loading="lazy"></p>
+                <p>At creating stage</p>
+                <p><img src="images/what-to-do-13.png" alt="what to do 13" class="article-image" loading="lazy"></p>
+                <p><img src="images/what-to-do-14.png" alt="what to do 14" class="article-image" loading="lazy"></p>
+                <p>Ask your question to gpt</p>
+                <p>You're running these two commands to set up a monitoring environment in your OpenShift cluster, specifically to install the Prometheus Operator and create a namespace for monitoring purposes.</p>
+                <ul>
+                <li>
+                <p><strong><code>oc apply -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/main/bundle.yaml</code></strong>:</p>
+                </li>
+                <li>
+                <p>This command installs the <strong>Prometheus Operator</strong> by applying the configuration defined in the <code>**bundle.yaml**</code> file from the provided URL. The Prometheus Operator helps manage Prometheus instances, alerting rules, and service monitors in a Kubernetes or OpenShift cluster. By applying this YAML file, you are deploying the necessary resources (Custom Resource Definitions, services, roles, etc.) required for the Prometheus Operator.</p>
+                </li>
+                <li>
+                <p><strong><code>oc create namespace monitoring</code></strong>:</p>
+                </li>
+                <li>
+                <p>This creates a new <strong>namespace</strong> called <code>monitoring</code> in your OpenShift cluster. Namespaces help in organizing and isolating resources within a Kubernetes or OpenShift environment. The <code>monitoring</code> namespace will likely be used to host the Prometheus instances, Alertmanager, Grafana, and other related resources for monitoring your cluster.</p>
+                </li>
+                </ul>
+                <p>In summary, you're setting up Prometheus for monitoring and creating a namespace to house all the monitoring-related resources.</p>
+                <p><img src="images/what-to-do-15.png" alt="what to do 15" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Prometheus Access:</strong></li>
+                </ul>
+                <p>Access to the <strong>Prometheus instance</strong> running in the OpenShift cluster. You need to:</p>
+                <ul>
+                <li>
+                <p>View and query metrics.</p>
+                </li>
+                <li>
+                <p>Access to <strong>AlertManager</strong> for testing and configuring alerts as part of the observability PoC.</p>
+                </li>
+                <li>
+                <p><strong>Thanos Access:</strong></p>
+                </li>
+                </ul>
+                <p>Ability to <strong>install and configure Thanos</strong> components (Sidecar, Store, Query, Compact) in the cluster.</p>
+                <ul>
+                <li>
+                <p><strong>Modify configuration files</strong> for Prometheus to integrate with Thanos.</p>
+                </li>
+                <li>
+                <p>Access to create and view <strong>Thanos querier endpoints</strong> and explore Thanos dashboards.</p>
+                </li>
+                </ul>
+                <h3>3. <strong>Network and Service Access:</strong></h3>
+                <ul>
+                <li><strong>Service Access:</strong></li>
+                </ul>
+                <p>Access to modify <strong>Service</strong> objects in the cluster for exposing the Thanos Querier endpoint to external systems or developers.</p>
+                <ul>
+                <li>
+                <p>Modify or create <strong>Ingress</strong>/<strong>Route</strong> configurations for external access to the Thanos endpoint.</p>
+                </li>
+                <li>
+                <p><strong>Network Policies:</strong></p>
+                </li>
+                </ul>
+                <p>Ability to define or edit <strong>NetworkPolicies</strong> to ensure Thanos components can communicate internally (e.g., between Prometheus and Thanos Sidecar) and externally if necessary.</p>
+                <h3>4. <strong>DevOps Tooling Access:</strong></h3>
+                <ul>
+                <li><strong>CI/CD Pipeline Access:</strong></li>
+                </ul>
+                <p>If Thanos integration is part of your CI/CD pipeline, access to the pipeline system (like Jenkins, Tekton, or GitLab CI) may be needed to trigger deployments or test Thanos during PoC phases.</p>
+                <h3>5. <strong>Secrets and ConfigMaps:</strong></h3>
+                <ul>
+                <li>Access to create, modify, or view <strong>Secrets</strong> and <strong>ConfigMaps</strong> related to the configuration of Prometheus and Thanos.</li>
+                </ul>
+                <h3>6. <strong>Storage Access (Optional):</strong></h3>
+                <ul>
+                <li><strong>Object Storage Access:</strong></li>
+                </ul>
+                <p>If your Thanos setup involves an <strong>Object Store</strong> (e.g., AWS S3, Google Cloud Storage, or Ceph), you need appropriate access to configure and verify Thanos interaction with the object store.</p>
+                <h3>7. <strong>Logging Access (Optional):</strong></h3>
+                <ul>
+                <li>If logging integration is needed, access to the <strong>logging stack</strong> (e.g., Elasticsearch, Fluentd) to ensure all relevant metrics or logs from Thanos and Prometheus are captured.</li>
+                </ul>
+                <h3>8. <strong>RBAC Permissions:</strong></h3>
+                <ul>
+                <li>If you don’t have full cluster-admin privileges, ensure you have <strong>specific RBAC permissions</strong> granted for the following resources:</li>
+                </ul>
+                <p><strong>Pods</strong></p>
+                <ul>
+                <li>
+                <p><strong>Services</strong></p>
+                </li>
+                <li>
+                <p><strong>Deployments/StatefulSets</strong></p>
+                </li>
+                <li>
+                <p><strong>Secrets</strong></p>
+                </li>
+                <li>
+                <p><strong>ConfigMaps</strong></p>
+                </li>
+                <li>
+                <p><strong>Ingress/Routes</strong></p>
+                </li>
+                <li>
+                <p><strong>NetworkPolicies</strong></p>
+                </li>
+                <li>
+                <p><strong>PersistentVolumeClaims</strong> (if storage integration is required)</p>
+                </li>
+                </ul>
+                <hr />
+                <p>Ensure coordination with your <strong>OpenShift admin team</strong> or <strong>DevOps lead</strong> to verify your access and the setup of necessary roles and permissions, especially in shared cluster environments.</p>
+                <p><strong>ERRORS</strong></p>
+                <p>The issue you're seeing in your OpenShift console, where the Thanos-related pods are stuck in "ContainerCreating," could be caused by a few common factors. Here's a list of possible causes and how you might troubleshoot them:</p>
+                <ul>
+                <li>
+                <p><strong>Insufficient Resources</strong>:</p>
+                </li>
+                <li>
+                <p>Check if the nodes have enough CPU and memory resources to schedule the pods.</p>
+                </li>
+                <li>
+                <p>Use <code>oc get nodes</code> or <code>kubectl describe nodes</code> to check the resource availability.</p>
+                </li>
+                </ul>
+                <p><img src="images/what-to-do-16.png" alt="what to do 16" class="article-image" loading="lazy"></p>
+                <p>Describe Output</p>
+                <p><code>rifaterdemsahin@Rifats-MacBook-Pro Code % kubectl describe nodes
+                Name:               crc
+                Roles:              control-plane,master,worker
+                Labels:             beta.kubernetes.io/arch=arm64
+                                    beta.kubernetes.io/os=linux
+                                    kubernetes.io/arch=arm64
+                                    kubernetes.io/hostname=crc
+                                    kubernetes.io/os=linux
+                                    node-role.kubernetes.io/control-plane=
+                                    node-role.kubernetes.io/master=
+                                    node-role.kubernetes.io/worker=
+                                    node.openshift.io/os_id=rhcos
+                                    topology.hostpath.csi/node=crc
+                Annotations:        csi.volume.kubernetes.io/nodeid: {"kubevirt.io.hostpath-provisioner":"crc"}
+                                    k8s.ovn.org/host-cidrs: &amp;#091;"192.168.126.11/24","192.168.127.2/24"]
+                                    k8s.ovn.org/l3-gateway-config:
+                                    k8s.ovn.org/network-ids: {"default":"0"}
+                                    k8s.ovn.org/node-chassis-id: 9d3fff98-01cf-486d-9566-670db031b6a4
+                                    k8s.ovn.org/node-gateway-router-lrp-ifaddr: {"ipv4":"100.64.0.2/16"}
+                                    k8s.ovn.org/node-id: 2
+                                    k8s.ovn.org/node-mgmt-port-mac-address: 5a:82:34:fc:ba:f6
+                                    k8s.ovn.org/node-primary-ifaddr: {"ipv4":"192.168.127.2/24"}
+                                    k8s.ovn.org/node-subnets: {"default":&amp;#091;"10.217.0.0/23"]}
+                                    k8s.ovn.org/node-transit-switch-port-ifaddr: {"ipv4":"100.88.0.2/16"}
+                                    k8s.ovn.org/remote-zone-migrated: crc
+                                    k8s.ovn.org/zone-name: crc
+                                    machineconfiguration.openshift.io/controlPlaneTopology: SingleReplica
+                                    machineconfiguration.openshift.io/currentConfig: rendered-master-12905364e63cb4650a2c5d16bee61573
+                                    machineconfiguration.openshift.io/desiredConfig: rendered-master-12905364e63cb4650a2c5d16bee61573
+                                    machineconfiguration.openshift.io/desiredDrain: uncordon-rendered-master-12905364e63cb4650a2c5d16bee61573
+                                    machineconfiguration.openshift.io/lastAppliedDrain: uncordon-rendered-master-12905364e63cb4650a2c5d16bee61573
+                                    machineconfiguration.openshift.io/lastObservedServerCAAnnotation: false
+                                    machineconfiguration.openshift.io/lastSyncedControllerConfigResourceVersion: 641274
+                                    machineconfiguration.openshift.io/post-config-action: 
+                                    machineconfiguration.openshift.io/reason: 
+                                    machineconfiguration.openshift.io/state: Done
+                                    volumes.kubernetes.io/controller-managed-attach-detach: true
+                CreationTimestamp:  Mon, 19 Aug 2024 10:48:50 +0100
+                Taints:             &lt;none&gt;
+                Unschedulable:      false
+                Lease:
+                  HolderIdentity:  crc
+                  AcquireTime:     &lt;unset&gt;
+                  RenewTime:       Wed, 25 Sep 2024 19:11:56 +0100
+                Conditions:
+                  Type             Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+                  ----             ------  -----------------                 ------------------                ------                       -------
+                  MemoryPressure   False   Wed, 25 Sep 2024 19:09:06 +0100   Mon, 16 Sep 2024 17:09:11 +0100   KubeletHasSufficientMemory   kubelet has sufficient memory available
+                  DiskPressure     False   Wed, 25 Sep 2024 19:09:06 +0100   Thu, 19 Sep 2024 19:36:16 +0100   KubeletHasNoDiskPressure     kubelet has no disk pressure
+                  PIDPressure      False   Wed, 25 Sep 2024 19:09:06 +0100   Mon, 16 Sep 2024 17:09:11 +0100   KubeletHasSufficientPID      kubelet has sufficient PID available
+                  Ready            True    Wed, 25 Sep 2024 19:09:06 +0100   Mon, 16 Sep 2024 17:09:11 +0100   KubeletReady                 kubelet is posting ready status
+                Addresses:
+                  InternalIP:  192.168.126.11
+                  Hostname:    crc
+                Capacity:
+                  cpu:                4
+                  ephemeral-storage:  31914988Ki
+                  hugepages-1Gi:      0
+                  hugepages-2Mi:      0
+                  hugepages-32Mi:     0
+                  hugepages-64Ki:     0
+                  memory:             10678832Ki
+                  pods:               250
+                Allocatable:
+                  cpu:                3800m
+                  ephemeral-storage:  29045851293
+                  hugepages-1Gi:      0
+                  hugepages-2Mi:      0
+                  hugepages-32Mi:     0
+                  hugepages-64Ki:     0
+                  memory:             10218032Ki
+                  pods:               250
+                System Info:
+                  Machine ID:                                       ead182196ec249a899ef937305b0bc1b
+                  System UUID:                                      9eeaa5fb-8b9e-1841-9307-58bc9f5728f2
+                  Boot ID:                                          815de132-174c-4d7d-89e0-7cf6f8090bef
+                  Kernel Version:                                   5.14.0-427.30.1.el9_4.aarch64
+                  OS Image:                                         Red Hat Enterprise Linux CoreOS 416.94.202408062045-0
+                  Operating System:                                 linux
+                  Architecture:                                     arm64
+                  Container Runtime Version:                        cri-o://1.29.7-3.rhaos4.16.git969f759.el9
+                  Kubelet Version:                                  v1.29.7+6abe8a1
+                  Kube-Proxy Version:                               v1.29.7+6abe8a1
+                Non-terminated Pods:                                (77 in total)
+                  Namespace                                         Name                                                       CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+                  ---------                                         ----                                                       ------------  ----------  ---------------  -------------  ---
+                  default                                           myazurerunner                                              0 (0%)        0 (0%)      0 (0%)           0 (0%)         9d
+                  default                                           prometheusremotewriteopenshiftclusters-7fd596c977-9qxmv    0 (0%)        0 (0%)      0 (0%)           0 (0%)         7d3h
+                  hostpath-provisioner                              csi-hostpathplugin-zhsz6                                   0 (0%)        0 (0%)      0 (0%)           0 (0%)         6d23h
+                  monitoring                                        thanos-query-7455f77fc-npl9r                               0 (0%)        0 (0%)      0 (0%)           0 (0%)         27m
+                  monitoring                                        thanos-receiver-6fb9945cfc-5wfww                           0 (0%)        0 (0%)      0 (0%)           0 (0%)         28m
+                  monitoring                                        thanos-sidecar-75b5f8c765-fjfrz                            0 (0%)        0 (0%)      0 (0%)           0 (0%)         32m
+                  monitoring                                        thanos-store-dc98bdddf-vqdxn                               0 (0%)        0 (0%)      0 (0%)           0 (0%)         24m
+                  openshift-apiserver-operator                      openshift-apiserver-operator-795668dd99-dg9fr              10m (0%)      0 (0%)      50Mi (0%)        0 (0%)         37d
+                  openshift-apiserver                               apiserver-5958c9c46b-22j6s                                 110m (2%)     0 (0%)      250Mi (2%)       0 (0%)         36d
+                  openshift-authentication-operator                 authentication-operator-6d984cd8cf-jmxps                   20m (0%)      0 (0%)      200Mi (2%)       0 (0%)         37d
+                  openshift-authentication                          oauth-openshift-544fdcc47b-plldj                           10m (0%)      0 (0%)      50Mi (0%)        0 (0%)         9d
+                  openshift-cluster-machine-approver                machine-approver-689496d4bd-pqgb4                          20m (0%)      0 (0%)      70Mi (0%)        0 (0%)         37d
+                  openshift-cluster-samples-operator                cluster-samples-operator-c7b6cdf4f-95d92                   20m (0%)      0 (0%)      100Mi (1%)       0 (0%)         37d
+                  openshift-cluster-version                         cluster-version-operator-d7b96d6d4-vfz68                   20m (0%)      0 (0%)      50Mi (0%)        0 (0%)         37d
+                  openshift-config-operator                         openshift-config-operator-65797d5b9b-thpt4                 10m (0%)      0 (0%)      50Mi (0%)        0 (0%)         37d
+                  openshift-console-operator                        console-conversion-webhook-749c84c49-h4g5l                 10m (0%)      0 (0%)      100Mi (1%)       0 (0%)         37d
+                  openshift-console-operator                        console-operator-7f5749c786-4m6pj                          10m (0%)      0 (0%)      100Mi (1%)       0 (0%)         37d
+                  openshift-console                                 console-7cd7c7d658-jv7vz                                   10m (0%)      0 (0%)      100Mi (1%)       0 (0%)         9d
+                  openshift-console                                 downloads-cfdc7cccf-q25h4                                  10m (0%)      0 (0%)      50Mi (0%)        0 (0%)         37d
+                  openshift-controller-manager-operator             openshift-controller-manager-operator-cdf874c48-qt98t      10m (0%)      0 (0%)      50Mi (0%)        0 (0%)         37d
+                  openshift-controller-manager                      controller-manager-6cf7c459c4-zbzt4                        100m (2%)     0 (0%)      100Mi (1%)       0 (0%)         9d
+                  openshift-dns-operator                            dns-operator-7446f9ff6d-lp2nd                              20m (0%)      0 (0%)      69Mi (0%)        0 (0%)         37d
+                  openshift-dns                                     dns-default-2bp84                                          60m (1%)      0 (0%)      110Mi (1%)       0 (0%)         37d
+                  openshift-dns                                     node-resolver-gxkdg                                        5m (0%)       0 (0%)      21Mi (0%)        0 (0%)         37d
+                  openshift-etcd-operator                           etcd-operator-5d6db48946-hjkn6                             10m (0%)      0 (0%)      50Mi (0%)        0 (0%)         37d
+                  openshift-etcd                                    etcd-crc                                                   360m (9%)     0 (0%)      910Mi (9%)       0 (0%)         37d
+                  openshift-image-registry                          cluster-image-registry-operator-6c6fcd7d7-grlp5            10m (0%)      0 (0%)      50Mi (0%)        0 (0%)         37d
+                  openshift-image-registry                          image-pruner-28787040-dpr48                                100m (2%)     0 (0%)      256Mi (2%)       0 (0%)         18h
+                  openshift-image-registry                          image-registry-679f68486c-hrkzq                            100m (2%)     0 (0%)      256Mi (2%)       0 (0%)         9d
+                  openshift-image-registry                          node-ca-tp5wf                                              10m (0%)      0 (0%)      10Mi (0%)        0 (0%)         37d
+                  openshift-ingress-canary                          ingress-canary-6956c                                       10m (0%)      0 (0%)      20Mi (0%)        0 (0%)         37d
+                  openshift-ingress-operator                        ingress-operator-854b88598f-zct95                          20m (0%)      0 (0%)      96Mi (0%)        0 (0%)         37d
+                  openshift-ingress                                 router-default-656f74f78f-b2jlx                            100m (2%)     0 (0%)      256Mi (2%)       0 (0%)         37d
+                  openshift-ingress                                 routes-controller-76c7f5cbc5-jt82s                         0 (0%)        0 (0%)      0 (0%)           0 (0%)         9d
+                  openshift-kube-apiserver-operator                 kube-apiserver-operator-7c4455dbc6-xxjzv                   10m (0%)      0 (0%)      50Mi (0%)        0 (0%)         37d
+                  openshift-kube-apiserver                          kube-apiserver-crc                                         290m (7%)     0 (0%)      1224Mi (12%)     0 (0%)         36d
+                  openshift-kube-controller-manager-operator        kube-controller-manager-operator-65cc5d849f-47qpv          10m (0%)      0 (0%)      50Mi (0%)        0 (0%)         37d
+                  openshift-kube-controller-manager                 kube-controller-manager-crc                                80m (2%)      0 (0%)      500Mi (5%)       0 (0%)         36d
+                  openshift-kube-scheduler-operator                 openshift-kube-scheduler-operator-6666887f44-nk24t         10m (0%)      0 (0%)      50Mi (0%)        0 (0%)         37d
+                  openshift-kube-scheduler                          openshift-kube-scheduler-crc                               25m (0%)      0 (0%)      150Mi (1%)       0 (0%)         37d
+                  openshift-kube-storage-version-migrator-operator  kube-storage-version-migrator-operator-685b56b758-d98p5    10m (0%)      0 (0%)      50Mi (0%)        0 (0%)         37d
+                  openshift-kube-storage-version-migrator           migrator-fd78b896b-p642p                                   10m (0%)      0 (0%)      200Mi (2%)       0 (0%)         37d
+                  openshift-machine-api                             control-plane-machine-set-operator-6b67769f8c-mcxsm        10m (0%)      0 (0%)      50Mi (0%)        0 (0%)         37d
+                  openshift-machine-api                             machine-api-operator-6f97c5bf9d-lcgrh                      20m (0%)      0 (0%)      70Mi (0%)        0 (0%)         37d
+                  openshift-machine-config-operator                 kube-rbac-proxy-crio-crc                                   20m (0%)      0 (0%)      50Mi (0%)        0 (0%)         37d
+                  openshift-machine-config-operator                 machine-config-controller-7765bc6f7f-j77ls                 40m (1%)      0 (0%)      100Mi (1%)       0 (0%)         37d
+                  openshift-machine-config-operator                 machine-config-daemon-bnrb7                                40m (1%)      0 (0%)      100Mi (1%)       0 (0%)         37d
+                  openshift-machine-config-operator                 machine-config-operator-78bf6d7fbf-7xppp                   40m (1%)      0 (0%)      100Mi (1%)       0 (0%)         37d
+                  openshift-machine-config-operator                 machine-config-server-j95vp                                20m (0%)      0 (0%)      50Mi (0%)        0 (0%)         37d
+                  openshift-marketplace                             certified-operators-wh7mr                                  10m (0%)      0 (0%)      40Mi (0%)        0 (0%)         2d5h
+                  openshift-marketplace                             certified-operators-wx8lh                                  10m (0%)      0 (0%)      40Mi (0%)        0 (0%)         26h
+                  openshift-marketplace                             community-operators-9vvwc                                  10m (0%)      0 (0%)      120Mi (1%)       0 (0%)         6d1h
+                  openshift-marketplace                             community-operators-pvw2n                                  10m (0%)      0 (0%)      120Mi (1%)       0 (0%)         5d21h
+                  openshift-marketplace                             marketplace-operator-7486598ff4-gstdp                      1m (0%)       0 (0%)      5Mi (0%)         0 (0%)         37d
+                  openshift-marketplace                             redhat-marketplace-vgwkj                                   10m (0%)      0 (0%)      20Mi (0%)        0 (0%)         3d4h
+                  openshift-marketplace                             redhat-marketplace-xxw9m                                   10m (0%)      0 (0%)      20Mi (0%)        0 (0%)         5d17h
+                  openshift-marketplace                             redhat-operators-psqbg                                     10m (0%)      0 (0%)      30Mi (0%)        0 (0%)         6d21h
+                  openshift-marketplace                             redhat-operators-t4sh6                                     10m (0%)      0 (0%)      30Mi (0%)        0 (0%)         6d20h
+                  openshift-multus                                  multus-additional-cni-plugins-87626                        10m (0%)      0 (0%)      10Mi (0%)        0 (0%)         37d
+                  openshift-multus                                  multus-admission-controller-d4d5b96df-6bjhd                20m (0%)      0 (0%)      70Mi (0%)        0 (0%)         36d
+                  openshift-multus                                  multus-mwk5t                                               10m (0%)      0 (0%)      65Mi (0%)        0 (0%)         37d
+                  openshift-multus                                  network-metrics-daemon-jvf7c                               20m (0%)      0 (0%)      120Mi (1%)       0 (0%)         37d
+                  openshift-network-diagnostics                     network-check-source-7554877989-2wl7d                      10m (0%)      0 (0%)      40Mi (0%)        0 (0%)         37d
+                  openshift-network-diagnostics                     network-check-target-hrhkh                                 10m (0%)      0 (0%)      15Mi (0%)        0 (0%)         37d
+                  openshift-network-node-identity                   network-node-identity-fcpr9                                20m (0%)      0 (0%)      100Mi (1%)       0 (0%)         37d
+                  openshift-network-operator                        iptables-alerter-wwtzk                                     10m (0%)      10m (0%)    65Mi (0%)        0 (0%)         37d
+                  openshift-network-operator                        network-operator-57b85c5977-8ztf5                          10m (0%)      0 (0%)      50Mi (0%)        0 (0%)         37d
+                  openshift-oauth-apiserver                         apiserver-745466fc76-2sj8t                                 150m (3%)     0 (0%)      200Mi (2%)       0 (0%)         37d
+                  openshift-operator-lifecycle-manager              catalog-operator-84c94589df-flsxx                          10m (0%)      0 (0%)      80Mi (0%)        0 (0%)         37d
+                  openshift-operator-lifecycle-manager              olm-operator-5447684-c5fgx                                 10m (0%)      0 (0%)      160Mi (1%)       0 (0%)         37d
+                  openshift-operator-lifecycle-manager              package-server-manager-585f5f44f8-65hjj                    20m (0%)      0 (0%)      30Mi (0%)        0 (0%)         37d
+                  openshift-operator-lifecycle-manager              packageserver-66b48c6844-v6sqd                             10m (0%)      0 (0%)      50Mi (0%)        0 (0%)         37d
+                  openshift-ovn-kubernetes                          ovnkube-control-plane-55469958c8-nv589                     20m (0%)      0 (0%)      320Mi (3%)       0 (0%)         37d
+                  openshift-ovn-kubernetes                          ovnkube-node-rbgz9                                         80m (2%)      0 (0%)      1630Mi (16%)     0 (0%)         37d
+                  openshift-route-controller-manager                route-controller-manager-848c59dc4-tpr5j                   100m (2%)     0 (0%)      100Mi (1%)       0 (0%)         9d
+                  openshift-service-ca-operator                     service-ca-operator-84c7f85459-c6s86                       10m (0%)      0 (0%)      80Mi (0%)        0 (0%)         37d
+                  openshift-service-ca                              service-ca-6fd56f67bb-bhzhd                                10m (0%)      0 (0%)      120Mi (1%)       0 (0%)         37d
+                Allocated resources:
+                  (Total limits may be over 100 percent, i.e., overcommitted.)
+                  Resource           Requests      Limits
+                  --------           --------      ------
+                  cpu                2431m (63%)   10m (0%)
+                  memory             9948Mi (99%)  0 (0%)
+                  ephemeral-storage  0 (0%)        0 (0%)
+                  hugepages-1Gi      0 (0%)        0 (0%)
+                  hugepages-2Mi      0 (0%)        0 (0%)
+                  hugepages-32Mi     0 (0%)        0 (0%)
+                  hugepages-64Ki     0 (0%)        0 (0%)
+                Events:
+                  Type    Reason          Age   From             Message
+                  ----    ------          ----  ----             -------
+                  Normal  RegisteredNode  60m   node-controller  Node crc event: Registered Node crc in Controller
+                rifaterdemsahin@Rifats-MacBook-Pro Code %</code></p>
+                <p>GPT Report</p>
+                <p>This output comes from the <code>kubectl describe nodes</code> command, which provides detailed information about a Kubernetes node. Here’s a breakdown of the key elements from this output:</p>
+                <h3>Node Overview:</h3>
+                <ul>
+                <li>
+                <p><strong>Name</strong>: The node is named <code>crc</code>, indicating it's a part of the OpenShift CRC (CodeReady Containers) environment.</p>
+                </li>
+                <li>
+                <p><strong>Roles</strong>: The node has multiple roles: <code>control-plane</code>, <code>master</code>, and <code>worker</code>, meaning it's responsible for managing the Kubernetes control plane as well as running application workloads.</p>
+                </li>
+                <li>
+                <p><strong>Labels</strong>: Labels such as <code>kubernetes.io/arch=arm64</code> and <code>kubernetes.io/os=linux</code> indicate that the node is running on the ARM64 architecture with a Linux operating system. The <code>node-role.kubernetes.io/worker</code> and <code>node-role.kubernetes.io/master</code> labels show the node is assigned both master and worker roles.</p>
+                </li>
+                <li>
+                <p><strong>Annotations</strong>: These provide additional metadata about the node’s configuration, such as network and storage-related settings. For example:</p>
+                </li>
+                <li>
+                <p><code>k8s.ovn.org/host-cidrs</code> lists the node’s CIDR ranges.</p>
+                </li>
+                <li>
+                <p><code>k8s.ovn.org/l3-gateway-config</code> provides details about the gateway configuration.</p>
+                </li>
+                <li>
+                <p><code>machineconfiguration.openshift.io/currentConfig</code> and similar entries pertain to the OpenShift machine configuration and its status.</p>
+                </li>
+                <li>
+                <p><strong>Conditions</strong>: The health status of the node is monitored through various conditions:</p>
+                </li>
+                <li>
+                <p><code>MemoryPressure</code>, <code>DiskPressure</code>, and <code>PIDPressure</code> are all <code>False</code>, meaning the node has sufficient memory, disk space, and process identifiers.</p>
+                </li>
+                <li>
+                <p><code>Ready</code> is <code>True</code>, indicating the node is ready and functioning.</p>
+                </li>
+                </ul>
+                <h3>Capacity and Allocatable Resources:</h3>
+                <ul>
+                <li>
+                <p><strong>Capacity</strong>: The total resources available on the node:</p>
+                </li>
+                <li>
+                <p><code>cpu: 4</code> indicates 4 CPU cores.</p>
+                </li>
+                <li>
+                <p><code>memory: 10.6 GiB</code> of RAM is available.</p>
+                </li>
+                <li>
+                <p><code>pods: 250</code> shows the node can host up to 250 pods.</p>
+                </li>
+                <li>
+                <p><strong>Allocatable</strong>: This section shows the resources available to be used by workloads, slightly reduced due to system reservations:</p>
+                </li>
+                <li>
+                <p><code>cpu: 3800m</code> means 3.8 CPU cores are allocatable (after reserving some for system processes).</p>
+                </li>
+                <li>
+                <p><code>memory: 10.2 GiB</code> of RAM is allocatable.</p>
+                </li>
+                </ul>
+                <h3>System Info:</h3>
+                <ul>
+                <li>
+                <p><strong>Machine ID, UUID, Boot ID</strong>: These uniquely identify the system and its current boot cycle.</p>
+                </li>
+                <li>
+                <p><strong>Kernel Version</strong>: The Linux kernel version is <code>5.14.0</code>.</p>
+                </li>
+                <li>
+                <p><strong>OS Image</strong>: The node runs on Red Hat Enterprise Linux CoreOS.</p>
+                </li>
+                <li>
+                <p><strong>Container Runtime Version</strong>: <code>cri-o://1.29.7</code> is used as the container runtime.</p>
+                </li>
+                <li>
+                <p><strong>Kubelet and Kube-Proxy Versions</strong>: Both are running Kubernetes version <code>1.29.7</code>.</p>
+                </li>
+                </ul>
+                <h3>Pods Running on the Node:</h3>
+                <ul>
+                <li>
+                <p><strong>Non-terminated Pods</strong>: This section lists the pods running on the node, including their resource requests and limits. Some examples are:</p>
+                </li>
+                <li>
+                <p>The <code>myazurerunner</code> pod in the <code>default</code> namespace.</p>
+                </li>
+                <li>
+                <p>Several OpenShift system pods such as <code>openshift-apiserver</code>, <code>kube-controller-manager</code>, and <code>image-registry</code>.</p>
+                </li>
+                <li>
+                <p>Pods in the <code>monitoring</code> namespace, such as <code>thanos-query</code> and <code>thanos-receiver</code>, for monitoring and logging.</p>
+                </li>
+                </ul>
+                <h3>Resource Allocation:</h3>
+                <ul>
+                <li>
+                <p>The <strong>Allocated Resources</strong> section summarizes the total requests and limits set by the pods on the node:</p>
+                </li>
+                <li>
+                <p><code>cpu: 2431m</code> means about 63% of the node’s CPU is requested.</p>
+                </li>
+                <li>
+                <p><code>memory: 9948Mi</code> means about 99% of the memory is requested.</p>
+                </li>
+                </ul>
+                <h3>Events:</h3>
+                <ul>
+                <li>This shows any recent events related to the node, such as the <code>Normal RegisteredNode</code> event indicating the node was successfully registered with the cluster controller.</li>
+                </ul>
+                <p>In summary, this node is part of a CRC (CodeReady Containers) OpenShift environment, serving both control-plane and worker roles, and is in a healthy state with sufficient resources to run its assigned pods.</p>
+                <ul>
+                <li>
+                <p><strong>Pending or Unavailable Persistent Volumes</strong>:</p>
+                </li>
+                <li>
+                <p>If the pods require persistent storage (for example, Thanos Store might need a volume for storage), the PVC (Persistent Volume Claim) might not be bound.</p>
+                </li>
+                <li>
+                <p>Check if the PVCs are in a "<strong>Pending</strong>" state using <code>kubectl get pvc</code>.</p>
+                </li>
+                </ul>
+                <p><img src="images/what-to-do-17.png" alt="what to do 17" class="article-image" loading="lazy"></p>
+                <p><img src="images/what-to-do-18.png" alt="what to do 18" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>
+                <p><strong>Image Pull Issues</strong>:</p>
+                </li>
+                <li>
+                <p>The image might not be available or there could be network issues that prevent the pod from pulling the container image.</p>
+                </li>
+                <li>
+                <p>You can check the pod events using <code>kubectl describe pod &lt;pod-name&gt;</code> and look for any image pull errors.</p>
+                </li>
+                </ul>
+                <p><img src="images/what-to-do-19.png" alt="what to do 19" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>
+                <p><strong>Network Issues</strong>:</p>
+                </li>
+                <li>
+                <p>If there are networking problems between the nodes or the pod's DNS, the containers might not be able to communicate properly.</p>
+                </li>
+                <li>
+                <p>Try checking the networking setup or any network policies that might be preventing the pod from initializing.</p>
+                </li>
+                <li>
+                <p><strong>Pod Security Context or Privileges</strong>:</p>
+                </li>
+                <li>
+                <p>Some security constraints might prevent the container from running.</p>
+                </li>
+                <li>
+                <p>Check the security policies or try running the pod with different security context settings.</p>
+                </li>
+                <li>
+                <p><strong>CrashLoopBackOff or Other Pod Errors</strong>:</p>
+                </li>
+                <li>
+                <p>If the pod tried to start but failed, it might enter a CrashLoopBackOff state, even though it’s shown as "ContainerCreating."</p>
+                </li>
+                <li>
+                <p>Use <code>kubectl logs &lt;pod-name&gt;</code> to check the logs of the pod and investigate if it's failing to start properly.</p>
+                </li>
+                </ul>
+                <p>You can start by describing one of the pods using:</p>
+                <p>kubectl describe pod <pod-name> -n monitoring</p>
+                <p>This will give you detailed information about what could be causing the container to stay in the creating state, such as events, resource requests, or image pull issues.</p>
+                <p><img src="images/what-to-do-20.png" alt="what to do 20" class="article-image" loading="lazy"></p>
+                <p>It looks like you're facing issues with creating a pod in Kubernetes due to a failure in the Multus CNI (Container Network Interface) configuration. Here’s how you can troubleshoot and potentially resolve this issue:</p>
+                <h3>Steps to resolve:</h3>
+                <ul>
+                <li>
+                <p><strong>Check Multus CNI Configuration:</strong></p>
+                </li>
+                <li>
+                <p>The error suggests a problem with the Multus CNI plugin (<code>multus-shim</code> and <code>multus-cni-network</code>). Verify the configuration files of the Multus CNI plugin to ensure that the <strong>correct network</strong> configuration is set.</p>
+                </li>
+                <li>
+                <p>The path <code>/host/run/multus/cni/net.d/10-ovn-kubernetes.conf</code> is indicated in the error. Ensure that this file is correctly configured and exists on all nodes.</p>
+                </li>
+                <li>
+                <p><strong>Validate CNI Binaries:</strong></p>
+                </li>
+                <li>
+                <p>Ensure the required <strong>CNI</strong> binaries are present on the nodes. <strong>Run the following command on each node:</strong><br />
+                <code>**ls /var/lib/cni/bin**</code></p>
+                </li>
+                <li>
+                <p>If any binaries are missing, you might need to reinstall the Multus CNI plugin.</p>
+                </li>
+                <li>
+                <p><strong>Review Network Namespace:</strong></p>
+                </li>
+                <li>
+                <p>The error references the network namespace (<code>Netns</code>), which could indicate an issue with the network interface or the namespace itself.</p>
+                </li>
+                <li>
+                <p>Check if the network namespace exists and is properly set up:<br />
+                <code>ip netns list</code></p>
+                </li>
+                <li>
+                <p>If the namespace does not exist, there may be issues with the container runtime. Restarting the container runtime or kubelet may help.</p>
+                </li>
+                <li>
+                <p><strong>Check Pod Logs:</strong></p>
+                </li>
+                <li>
+                <p>View the logs for the Thanos pod to gather more details about the networking failure:<br />
+                <code>kubectl logs thanos-query-7455f77fc-npl9r -n monitoring</code></p>
+                </li>
+                <li>
+                <p><strong>Multus CNI Plugin Logs:</strong></p>
+                </li>
+                <li>
+                <p>Check the Multus logs for any specific error messages. The logs should be located in <code>/var/log/multus.log</code> or a similar directory depending on your setup.</p>
+                </li>
+                <li>
+                <p><strong>Restart kubelet and container runtime:</strong></p>
+                </li>
+                <li>
+                <p>Sometimes, restarting the kubelet and the container runtime on the affected node can fix issues with pod creation:<br />
+                <code>systemctl restart kubelet systemctl restart containerd/docker</code></p>
+                </li>
+                <li>
+                <p><strong>Verify Node Networking:</strong></p>
+                </li>
+                <li>
+                <p>Make sure that the nodes can communicate with each other and that the networking between the nodes is not restricted by firewalls or other network policies.</p>
+                </li>
+                <li>
+                <p>Use <code>ping</code> or <code>traceroute</code> to check connectivity.</p>
+                </li>
+                <li>
+                <p><strong>Check for Resource Limits:</strong></p>
+                </li>
+                <li>
+                <p>Sometimes, issues can arise due to resource constraints on the node. Check if the node is running out of CPU, memory, or network resources.</p>
+                </li>
+                <li>
+                <p><strong>Update Multus CNI:</strong></p>
+                </li>
+                <li>
+                <p>If the Multus CNI plugin is outdated or misconfigured, consider updating or reconfiguring it:<br />
+                <code>kubectl apply -f https://raw.githubusercontent.com/intel/multus-cni/master/images/multus-daemonset.yml</code></p>
+                </li>
+                <li>
+                <p><strong>Recreate the Pod:</strong></p>
+                </li>
+                </ul>
+                <p>If the configuration issues are resolved but the pod is still stuck, delete and recreate the pod:<br />
+                <code>kubectl delete pod thanos-query-7455f77fc-npl9r -n monitoring kubectl apply -f &lt;your-thanos-query-deployment-file&gt;.yaml</code></p>
+                <h3>Further Debugging:</h3>
+                <ul>
+                <li>If the problem persists, you can enable more verbose logging for the CNI plugin or kubelet to gather additional insights.</li>
+                </ul>
+                <p>Let me know how it goes or if you need further assistance with any of the steps!</p>
+                <p>In OpenShift, accessing nodes directly is not recommended unless you have specific administrative access. Instead, OpenShift provides ways to interact with nodes and containers via <code>oc</code> commands.</p>
+                <p>Here is how you can check for the CNI binaries on the nodes in OpenShift:</p>
+                <h3>Steps to Verify CNI Binaries on OpenShift Nodes:</h3>
+                <ul>
+                <li><strong>Get a List of Nodes</strong>: Use the <code>oc</code> command to get the list of nodes in the OpenShift cluster.</li>
+                </ul>
+                <p>oc get nodes</p>
+                <p><img src="images/what-to-do-21.png" alt="what to do 21" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>SSH into the Node</strong>: If you have administrative access and are allowed to SSH into nodes, use the node’s IP or hostname to log in:</li>
+                </ul>
+                <p>ssh [username]@[node_ip]</p>
+                <ul>
+                <li><strong>Run the Command</strong>: Once you’re logged into the node, check for the CNI binaries:</li>
+                </ul>
+                <p>ls /var/lib/cni/bin</p>
+                <ul>
+                <li><strong>Alternatively - Use <code>oc debug</code> to Access Nodes (Without SSH)</strong>: OpenShift provides the <code>oc debug</code> command, which allows you to interact with nodes without directly SSH’ing into them. Here’s how you can do that:</li>
+                </ul>
+                <p>oc debug node/[node_name]</p>
+                <p>This will drop you into a debug pod on the node. Once there, run the following command to check the CNI binaries:</p>
+                <p>chroot /host ls /var/lib/cni/bin</p>
+                <p>This command uses <code>chroot</code> to run the <code>ls</code> command in the node's file system.</p>
+                <ul>
+                <li><strong>Exit the Debug Pod</strong>: Once you’ve verified the presence of the binaries, you can exit the debug pod.</li>
+                </ul>
+                <p>exit</p>
+                <h3>Conclusion</h3>
+                <p>By using the <code>oc debug</code> command, you can access nodes in OpenShift without SSH, allowing you to check for CNI binaries in a safe and cluster-compliant way. If any binaries are missing, you may need to troubleshoot or reinstall the relevant CNI plugin.</p>
+                <p>The issue you're facing stems from the fact that <code>crc</code> is not resolving to a valid hostname or IP address. This typically happens when the hostname isn't mapped in your <code>/etc/hosts</code> file or DNS isn't configured properly. Since you're using <strong>CRC (CodeReady Containers)</strong>, here's how you can resolve the issue and successfully SSH into the node:</p>
+                <h3>Steps:</h3>
+                <ul>
+                <li><strong>Get the IP Address of the CRC Node</strong>:<br />
+                First, get the IP address of the <code>crc</code> node. If CRC is running on your local machine, use the following command to get the IP address:</li>
+                </ul>
+                <p>crc ip</p>
+                <p>This will return the IP address of the CRC VM running on your machine.</p>
+                <ul>
+                <li><strong>SSH into the CRC Node</strong>:<br />
+                Once you have the IP address, you can SSH into the CRC node using the <code>kubeadmin</code> user. Replace <code>x.x.x.x</code> with the IP address obtained in the previous step.</li>
+                </ul>
+                <p>ssh kubeadmin@x.x.x.x</p>
+                <p><img src="images/what-to-do-22.png" alt="what to do 22" class="article-image" loading="lazy"></p>
+                <p>If you get a password prompt, the default password for <code>kubeadmin</code> in CRC can be retrieved using:</p>
+                <p>cat ~/.crc/machines/crc/kubeadmin-password</p>
+                <p>Use the password provided when prompted.</p>
+                <ul>
+                <li><strong>Run the Command</strong>:<br />
+                After logging into the node, run the following command to check for the presence of the CNI binaries:</li>
+                </ul>
+                <p>ls /var/lib/cni/bin</p>
+                <h3>Alternative - Use <code>oc debug</code> if SSH Doesn't Work:</h3>
+                <p>If SSH is not feasible or fails for any reason, you can use the <code>oc debug</code> method to access the node directly without using SSH:</p>
+                <ul>
+                <li>Run the following command to enter the debug environment for your node:</li>
+                </ul>
+                <p>oc debug node/crc</p>
+                <ul>
+                <li>Once inside, run:</li>
+                </ul>
+                <p>chroot /host ls /var/lib/cni/bin</p>
+                <ul>
+                <li>After checking, exit the debug environment:</li>
+                </ul>
+                <p>exit</p>
+                <p>This should allow you to inspect the required CNI binaries on your OpenShift CRC node.</p>
+                <p><img src="images/what-to-do-23.png" alt="what to do 23" class="article-image" loading="lazy"></p>
+                <p>It appears that the directory <code>/var/lib/cni/bin</code> does not exist in your current setup, or at least it is not visible in the location you are checking. This might be due to one of the following reasons:</p>
+                <ul>
+                <li>
+                <p><strong>CNI plugins might not be installed</strong>: The CNI binaries might not have been set up properly in your environment. You can install them manually if required.</p>
+                </li>
+                <li>
+                <p><strong>Different directory structure</strong>: In some OpenShift or CRC setups, the directory for CNI binaries might be located elsewhere.</p>
+                </li>
+                </ul>
+                <h3>To Troubleshoot Further:</h3>
+                <ul>
+                <li><strong>Check for CNI directory in alternate locations</strong>:<br />
+                Try checking other common locations for CNI binaries:</li>
+                </ul>
+                <p>ls /opt/cni/bin</p>
+                <p>Or:</p>
+                <p>ls /usr/libexec/cni</p>
+                <p>These are alternate paths where CNI binaries might be stored.</p>
+                <ul>
+                <li><strong>Verify CNI plugin installation</strong>:<br />
+                Ensure that the CNI plugins are correctly installed by searching for known CNI binaries (<code>bridge</code>, <code>host-local</code>, <code>loopback</code>, etc.). Use the following command to search for these binaries across the system:</li>
+                </ul>
+                <p>find / -name bridge -o -name host-local -o -name loopback</p>
+                <ul>
+                <li><strong>Check OpenShift Network Configuration</strong>:<br />
+                If you are using OpenShift, you may also want to check if the network configuration is set up properly. You can check the <code>Network</code> and <code>ClusterNetwork</code> resources in OpenShift:</li>
+                </ul>
+                <p>oc get network<br />
+                   oc get clusternetwork</p>
+                <ul>
+                <li><strong>Install CNI Plugins (If Missing)</strong>:<br />
+                If you find that the CNI plugins are not installed, you can install them by downloading the relevant binaries. For CRC, these might have been skipped during the initial setup. You can find pre-compiled CNI plugins here: <a href="https://github.com/containernetworking/plugins/releases">CNI Plugins Release Page</a>. Download the required version, extract it, and place the binaries in the appropriate directory (e.g., <code>/opt/cni/bin</code> or <code>/usr/libexec/cni</code>).</li>
+                </ul>
+                <p>Let me know if the directory or files are found in the alternate locations, or if you need help with installing the CNI plugins.</p>
+                <p>To install a Container Network Interface (CNI) plugin on CRC (CodeReady Containers), you'll typically need to follow the process depending on the CNI you're using (e.g., Calico, Flannel, Weave). Here's a general guide:</p>
+                <h3>Prerequisites:</h3>
+                <ul>
+                <li><strong>Ensure CRC is Running:</strong><br />
+                Make sure your CRC cluster is up and running. You can verify this with:</li>
+                </ul>
+                <p>crc status</p>
+                <ul>
+                <li><strong>Access the CRC Cluster:</strong><br />
+                Log into your CRC cluster using <code>oc</code> (OpenShift CLI):</li>
+                </ul>
+                <p>crc oc-env<br />
+                   eval $(crc oc-env)<br />
+                   oc login -u developer -p developer https://api.crc.testing:6443</p>
+                <h3>Steps to Install a CNI Plugin:</h3>
+                <ul>
+                <li><strong>Download CNI Plugin YAML:</strong><br />
+                Get the appropriate YAML file for the CNI plugin you wish to install, such as Calico, Flannel, or Weave. For example, to install <strong>Calico</strong>, download the Calico manifest:</li>
+                </ul>
+                <p>curl https://docs.projectcalico.org/manifests/calico.yaml -O</p>
+                <ul>
+                <li><strong>Apply the Manifest to Your Cluster:</strong><br />
+                Once you have the manifest, apply it to your CRC cluster using <code>oc apply</code> or <code>kubectl apply</code>:</li>
+                </ul>
+                <p>oc apply -f calico.yaml</p>
+                <ul>
+                <li><strong>Verify the Installation:</strong><br />
+                After applying the manifest, verify the pods related to the CNI are running:</li>
+                </ul>
+                <p>oc get pods -n kube-system</p>
+                <p><img src="images/what-to-do-24.png" alt="what to do 24" class="article-image" loading="lazy"></p>
+                <p>Check if all Calico (or other CNI) pods are in a running state.</p>
+                <ul>
+                <li><strong>Test the Network:</strong><br />
+                You can deploy a test workload to verify that the networking is working correctly after CNI installation. For example, create a simple pod and check its networking configuration.</li>
+                </ul>
+                <p>It seems that the Calico pods are facing issues, particularly the <code>calico-node</code> pod, which is stuck in <code>Init:Error</code> state. This is usually caused by problems in initializing network components or dependencies. Let's troubleshoot step by step:</p>
+                <h3>1. <strong>Check the Logs for the Failing Pod:</strong></h3>
+                <p>To understand the root cause, check the logs of the <code>calico-node</code> pod:</p>
+                <p>oc logs calico-node-q9mrz -n kube-system</p>
+                <p>This should give you insight into why the initialization is failing.</p>
+                <h3>2. <strong>Check Node Status:</strong></h3>
+                <p>Ensure the node on which the Calico pod is running is in a healthy state:</p>
+                <p>oc get nodes</p>
+                <p>Verify that the nodes are ready and not in any tainted or degraded state.</p>
+                <h3>3. <strong>Inspect Calico Configuration:</strong></h3>
+                <p>Sometimes, Calico has trouble with IP allocation or BGP settings in specific environments. You can inspect the Calico configuration by reviewing the ConfigMap used by Calico:</p>
+                <p>oc get configmap -n kube-system calico-config -o yaml</p>
+                <p>Look for anything that stands out, such as incorrect IP pools or interface settings.</p>
+                <h3>4. <strong>Check for Resource Conflicts:</strong></h3>
+                <p>If the node or cluster doesn't have enough resources, Calico pods may fail to initialize properly. Check the available resources:</p>
+                <p>oc describe node <node-name></p>
+                <p>Verify if there are resource shortages like CPU, memory, or disk space.</p>
+                <h3>5. <strong>Network Plugin Conflict:</strong></h3>
+                <p>CRC might have come with its default network plugin. If there is a conflict between the pre-installed CNI plugin and Calico, you might need to uninstall the default network plugin or configure Calico to work alongside it.</p>
+                <p>Check for any other CNI plugins installed:</p>
+                <p>oc get ds -n kube-system</p>
+                <p>If any other CNI daemonsets (like Flannel) are present, they may conflict with Calico.</p>
+                <h3>6. <strong>Review Cluster DNS and Networking:</strong></h3>
+                <p>Networking issues like DNS or incorrect routes can also cause Calico to fail. Ensure that your DNS and networking setup are functioning properly:</p>
+                <p>oc get svc -n kube-system<br />
+                   oc get endpoints -n kube-system</p>
+                <p>Once you get the logs and more details from the steps above, we can dig deeper into resolving the issue. Let me know what the logs reveal!</p>
+                <h3>Additional Notes:</h3>
+                <ul>
+                <li>
+                <p>Ensure that you remove any existing default network configuration if applicable to avoid conflicts.</p>
+                </li>
+                <li>
+                <p>CRC comes with a pre-configured networking setup, so this installation is typically for scenarios where a specific network configuration is required.</p>
+                </li>
+                </ul>
+                <p>The error message indicates that the <code>calico-node</code> container is stuck in the <code>PodInitializing</code> phase, which could be caused by one of the <code>**initContainers**</code> not completing successfully.</p>
+                <p>Let's inspect the status of the init containers in the <code>calico-node</code> pod.</p>
+                <h3>1. <strong>Check Pod Details:</strong></h3>
+                <p>Get the full details of the <code>calico-node</code> pod to see the status of all the containers, including the <code>initContainers</code>:</p>
+                <p>oc describe pod calico-node-q9mrz -n kube-system</p>
+                <p>This should show the status of each init container (<code>upgrade-ipam</code>, <code>install-cni</code>, <code>mount-bpffs</code>) and reveal which one is failing.</p>
+                <h3>2. <strong>Check Init Container Logs:</strong></h3>
+                <p>Each of the init containers (<code>upgrade-ipam</code>, <code>install-cni</code>, <code>mount-bpffs</code>) may have logs that indicate why they are failing. You can check their logs one by one:</p>
+                <p>oc logs calico-node-q9mrz -n kube-system -c install-cni<br />
+                   oc logs calico-node-q9mrz -n kube-system -c mount-bpffs<br />
+                   oc logs calico-node-q9mrz -n kube-system -c upgrade-ipam</p>
+                <p>This will give you more detailed information on what might be blocking the initialization.</p>
+                <h3>3. <strong>Possible Causes:</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Permissions:</strong> The init containers might require elevated permissions (like access to system-level network components) that are missing.</p>
+                </li>
+                <li>
+                <p><strong>Node Conditions:</strong> If the node has taints or lacks sufficient resources (e.g., CPU, memory), it could prevent the pod from initializing.</p>
+                </li>
+                <li>
+                <p><strong>Existing Network Configuration:</strong> If another CNI plugin is still active or conflicting, it could prevent Calico from properly installing.</p>
+                </li>
+                </ul>
+                <p>After running these commands, let me know what the logs show for the failing init containers, and we can proceed from there!</p>
+                <p>The error message indicates that the <code>install-cni</code> container is failing because it cannot write to the necessary directories (<code>/host/opt/cni/bin</code> and <code>/host/secondary-bin-dir</code>). These directories are critical for installing the CNI binaries.</p>
+                <p>This could happen due to permissions issues or missing volume mounts on the host.</p>
+                <h3>Steps to Fix:</h3>
+                <ul>
+                <li><strong>Ensure Proper Mounts:</strong><br />
+                The CNI installation process requires access to the <code>/opt/cni/bin</code> directory on the host. If this directory is not properly mounted in the pod or if the permissions are wrong, the installer won't be able to proceed. Check the pod specification to ensure the volumes are correctly mounted by running:</li>
+                </ul>
+                <p>oc describe pod calico-node-q9mrz -n kube-system</p>
+                <p>Look for the volume mounts for <code>/host/opt/cni/bin</code> and <code>/host/secondary-bin-dir</code>. Ensure these paths are accessible.</p>
+                <ul>
+                <li><strong>Check Node Permissions:</strong><br />
+                Ensure that the node where this pod is running has the required directory structure and permissions. SSH into the node (if possible) and check if the directories exist and have write permissions:</li>
+                </ul>
+                <p>ls -ld /opt/cni/bin</p>
+                <p>If the directories do not exist, create them and set appropriate permissions:</p>
+                <p>sudo mkdir -p /opt/cni/bin<br />
+                   sudo chmod 755 /opt/cni/bin</p>
+                <ul>
+                <li><strong>Try Re-running the Installer:</strong><br />
+                After making sure the directories are writeable, delete the <code>calico-node</code> pod to trigger a restart:</li>
+                </ul>
+                <p>oc delete pod calico-node-q9mrz -n kube-system</p>
+                <p>This will recreate the pod and the installer will attempt to run again.</p>
+                <ul>
+                <li><strong>Check for Other CNI Conflicts:</strong><br />
+                If there is another CNI plugin already installed, it could be interfering with Calico's installation. You can check for other network-related pods or daemonsets:</li>
+                </ul>
+                <p>oc get ds -n kube-system</p>
+                <p>If there are other CNI daemonsets (like Flannel), consider disabling them to avoid conflicts.</p>
+                <p>Let me know how these steps go, and if the issue persists, we can dig deeper!</p>
+                <p><img src="images/what-to-do-25.png" alt="what to do 25" class="article-image" loading="lazy"></p>
+                <p>In an OpenShift CRC (CodeReady Containers) environment, issues with <strong>Calico</strong>—a networking solution for Kubernetes clusters—can arise due to several reasons. Here are some common causes and contributing factors:</p>
+                <h3>1. <strong>Resource Constraints</strong></h3>
+                <ul>
+                <li><strong>CRC is resource-limited</strong>: CRC is designed for local development and testing and often runs on laptops or desktops with limited resources. Calico requires sufficient CPU, memory, and disk resources for networking operations. If the machine running CRC is resource-constrained, it may affect Calico's functionality, causing network instability or performance degradation.</li>
+                </ul>
+                <h3>2. <strong>Misconfiguration</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Network policy misconfigurations</strong>: Calico enforces network policies. If these policies are improperly configured, they can inadvertently block traffic between pods or external resources, causing connectivity issues.</p>
+                </li>
+                <li>
+                <p><strong>Incorrect CIDR ranges</strong>: If the IP ranges used by Calico do not match the CIDR ranges assigned in the OpenShift CRC network configuration, networking issues can arise.</p>
+                </li>
+                </ul>
+                <h3>3. <strong>Incompatibility with OpenShift</strong></h3>
+                <ul>
+                <li><strong>Calico and OpenShift integration</strong>: OpenShift CRC might have compatibility issues with Calico depending on how they are integrated. OpenShift has its default SDN (Software Defined Networking) provider, and conflicts can occur if Calico is not properly configured to work with OpenShift’s networking stack.</li>
+                </ul>
+                <h3>4. <strong>Container Runtime Issues</strong></h3>
+                <ul>
+                <li><strong>Container runtime problems</strong>: Calico depends on Kubernetes' container runtime to manage network interfaces. If there are issues with the container runtime (like <code>cri-o</code> or <code>containerd</code>), it can affect Calico’s operation, leading to pod networking failures.</li>
+                </ul>
+                <h3>5. <strong>IP Address Exhaustion</strong></h3>
+                <ul>
+                <li><strong>Limited IP space</strong>: CRC typically runs with limited IP address ranges due to its local, small-scale setup. If many pods are deployed and the IP range is exhausted, Calico might fail to assign new IP addresses to pods, causing network outages.</li>
+                </ul>
+                <h3>6. <strong>Host Network Configuration</strong></h3>
+                <ul>
+                <li><strong>Network conflicts on host machine</strong>: The host system running CRC may have conflicting network configurations (e.g., VPNs, firewalls, or local network interface settings), which can interfere with Calico’s networking stack. These conflicts might cause packet drops, latency, or broken connectivity between pods.</li>
+                </ul>
+                <h3>7. <strong>Version Mismatch</strong></h3>
+                <ul>
+                <li><strong>Version compatibility</strong>: Issues may arise if there is a version mismatch between Calico and the OpenShift CRC version being used. Changes in the APIs or networking functionality between different versions of OpenShift or Kubernetes could lead to incompatibilities with the installed version of Calico.</li>
+                </ul>
+                <h3>8. <strong>Insufficient Permissions</strong></h3>
+                <ul>
+                <li><strong>RBAC and security policies</strong>: If Calico does not have the necessary permissions to configure network resources (due to Role-Based Access Control or security restrictions in OpenShift), it might not function correctly. This could manifest as failed networking for pods.</li>
+                </ul>
+                <h3>9. <strong>Calico CNI Plugin Issues</strong></h3>
+                <ul>
+                <li><strong>CNI plugin errors</strong>: Calico functions as a CNI (Container Network Interface) plugin for Kubernetes. Issues with the CNI plugin itself—such as bugs, improper installation, or configuration errors—can disrupt pod networking in the CRC environment.</li>
+                </ul>
+                <p>To troubleshoot these issues, you can:</p>
+                <ul>
+                <li>
+                <p>Check <strong>pod logs</strong> for Calico-related components (e.g., <code>calico-node</code>, <code>calico-kube-controllers</code>).</p>
+                </li>
+                <li>
+                <p>Validate <strong>network policies</strong> and ensure they’re correctly applied.</p>
+                </li>
+                <li>
+                <p>Monitor the CRC environment’s <strong>resource usage</strong> to ensure Calico has enough resources.</p>
+                </li>
+                <li>
+                <p>Verify that <strong>CIDR ranges</strong> are configured correctly and there is no IP address exhaustion.</p>
+                </li>
+                </ul>
+                <p>Would you like any specific guidance on resolving these issues in your setup?</p>
+                <p>Rerun  &gt;&gt;&gt; promethesus yaml at the start</p>
+                <p>The content from your file appears to show Kubernetes custom resource definitions (CRDs) and related resources for the Prometheus operator. Specifically, it lists unchanged resources, including CRDs, role bindings, and deployments. Here's a breakdown:</p>
+                <ul>
+                <li>
+                <p><strong>CustomResourceDefinitions (CRDs):</strong></p>
+                </li>
+                <li>
+                <p><strong>podmonitors.monitoring.coreos.com</strong>: Used to monitor individual pods.</p>
+                </li>
+                <li>
+                <p><strong>probes.monitoring.coreos.com</strong>: Custom probes for monitoring specific endpoints.</p>
+                </li>
+                <li>
+                <p><strong>prometheusrules.monitoring.coreos.com</strong>: Define alerting and recording rules for Prometheus.</p>
+                </li>
+                <li>
+                <p><strong>servicemonitors.monitoring.coreos.com</strong>: Service discovery for monitoring services.</p>
+                </li>
+                <li>
+                <p><strong>ClusterRole and RoleBinding:</strong></p>
+                </li>
+                <li>
+                <p><strong>prometheus-operator</strong>: Permissions and bindings related to Prometheus Operator functionality, allowing it to perform actions on Kubernetes resources.</p>
+                </li>
+                <li>
+                <p><strong>Deployment and Service:</strong></p>
+                </li>
+                <li>
+                <p><strong>prometheus-operator</strong>: Manages the Prometheus instances and related resources within the cluster.</p>
+                </li>
+                </ul>
+                <p>These resources are marked as <strong>unchanged</strong>, suggesting that a <code>kubectl apply</code> command or similar action was run, and the existing configurations were already up-to-date, so no modifications were required.</p>
+                <p>Would you like further analysis on the Prometheus operator setup or Kubernetes monitoring practices?</p>
+                <p>In an OpenShift CRC (CodeReady Containers) environment, issues with <strong>Calico</strong>—a networking solution for Kubernetes clusters—can arise due to several reasons. Here are some common causes and contributing factors:</p>
+                <h3>1. <strong>Resource Constraints</strong></h3>
+                <ul>
+                <li><strong>CRC is resource-limited</strong>: CRC is designed for local development and testing and often runs on laptops or desktops with limited resources. Calico requires sufficient CPU, memory, and disk resources for networking operations. If the machine running CRC is resource-constrained, it may affect Calico's functionality, causing network instability or performance degradation.</li>
+                </ul>
+                <h3>2. <strong>Misconfiguration</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Network policy misconfigurations</strong>: Calico enforces network policies. If these policies are improperly configured, they can inadvertently block traffic between pods or external resources, causing connectivity issues.</p>
+                </li>
+                <li>
+                <p><strong>Incorrect CIDR ranges</strong>: If the IP ranges used by Calico do not match the CIDR ranges assigned in the OpenShift CRC network configuration, networking issues can arise.</p>
+                </li>
+                </ul>
+                <h3>3. <strong>Incompatibility with OpenShift</strong></h3>
+                <ul>
+                <li><strong>Calico and OpenShift integration</strong>: OpenShift CRC might have compatibility issues with Calico depending on how they are integrated. OpenShift has its default SDN (Software Defined Networking) provider, and conflicts can occur if Calico is not properly configured to work with OpenShift’s networking stack.</li>
+                </ul>
+                <h3>4. <strong>Container Runtime Issues</strong></h3>
+                <ul>
+                <li><strong>Container runtime problems</strong>: Calico depends on Kubernetes' container runtime to manage network interfaces. If there are issues with the container runtime (like <code>cri-o</code> or <code>containerd</code>), it can affect Calico’s operation, leading to pod networking failures.</li>
+                </ul>
+                <h3>5. <strong>IP Address Exhaustion</strong></h3>
+                <ul>
+                <li><strong>Limited IP space</strong>: CRC typically runs with limited IP address ranges due to its local, small-scale setup. If many pods are deployed and the IP range is exhausted, Calico might fail to assign new IP addresses to pods, causing network outages.</li>
+                </ul>
+                <h3>6. <strong>Host Network Configuration</strong></h3>
+                <ul>
+                <li><strong>Network conflicts on host machine</strong>: The host system running CRC may have conflicting network configurations (e.g., VPNs, firewalls, or local network interface settings), which can interfere with Calico’s networking stack. These conflicts might cause packet drops, latency, or broken connectivity between pods.</li>
+                </ul>
+                <h3>7. <strong>Version Mismatch</strong></h3>
+                <ul>
+                <li><strong>Version compatibility</strong>: Issues may arise if there is a version mismatch between Calico and the OpenShift CRC version being used. Changes in the APIs or networking functionality between different versions of OpenShift or Kubernetes could lead to incompatibilities with the installed version of Calico.</li>
+                </ul>
+                <h3>8. <strong>Insufficient Permissions</strong></h3>
+                <ul>
+                <li><strong>RBAC and security policies</strong>: If Calico does not have the necessary permissions to configure network resources (due to Role-Based Access Control or security restrictions in OpenShift), it might not function correctly. This could manifest as failed networking for pods.</li>
+                </ul>
+                <h3>9. <strong>Calico CNI Plugin Issues</strong></h3>
+                <ul>
+                <li><strong>CNI plugin errors</strong>: Calico functions as a CNI (Container Network Interface) plugin for Kubernetes. Issues with the CNI plugin itself—such as bugs, improper installation, or configuration errors—can disrupt pod networking in the CRC environment.</li>
+                </ul>
+                <p>To troubleshoot these issues, you can:</p>
+                <ul>
+                <li>
+                <p>Check <strong>pod logs</strong> for Calico-related components (e.g., <code>calico-node</code>, <code>calico-kube-controllers</code>).</p>
+                </li>
+                <li>
+                <p>Validate <strong>network policies</strong> and ensure they’re correctly applied.</p>
+                </li>
+                <li>
+                <p>Monitor the CRC environment’s <strong>resource usage</strong> to ensure Calico has enough resources.</p>
+                </li>
+                <li>
+                <p>Verify that <strong>CIDR ranges</strong> are configured correctly and there is no IP address exhaustion.</p>
+                </li>
+                </ul>
+                <p>Would you like any specific guidance on resolving these issues in your setup?</p>
+                <p><img src="images/what-to-do-26.png" alt="what to do 26" class="article-image" loading="lazy"></p>
+                <p><img src="images/what-to-do-27.png" alt="what to do 27" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2026</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>
