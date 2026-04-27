@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Track quality issue / crackling - Rifat Erdem Sahin</title>
+    <meta name="description" content="Audio Track quality issue / crackling After I installed vb audio Cable A, I began to experience some recording issues. These issues were really frustrating and I couldn't seem to get to the bottom of ">
+    <meta name="keywords" content="Audio Track quality issue / crackling">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2023/08/21/track-quality-issue/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2023/08/21/track-quality-issue/">
+    <meta property="og:title" content="Audio Track quality issue / crackling">
+    <meta property="og:description" content="Audio Track quality issue / crackling After I installed vb audio Cable A, I began to experience some recording issues. These issues were really frustrating and I couldn't seem to get to the bottom of ">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2023/08/21/track-quality-issue/">
+    <meta property="twitter:title" content="Audio Track quality issue / crackling">
+    <meta property="twitter:description" content="Audio Track quality issue / crackling After I installed vb audio Cable A, I began to experience some recording issues. These issues were really frustrating and I couldn't seem to get to the bottom of ">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Audio Track quality issue / crackling",
+      "description": "Audio Track quality issue / crackling After I installed vb audio Cable A, I began to experience some recording issues. These issues were really frustrating and I couldn't seem to get to the bottom of ",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2023-08-21",
+      "dateModified": "2023-08-21",
+      "url": "https://www.rifaterdemsahin.com/2023/08/21/track-quality-issue/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2023/08/21/track-quality-issue/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Audio Track quality issue / crackling</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>August 21, 2023</span>
+                    <span>&bull;</span>
+                    <span>9 min read</span>
+                </div>
+                <p class="article-excerpt">Audio Track quality issue / crackling After I installed vb audio Cable A, I began to experience some recording issues. These issues were really frustrating and I couldn't seem to get to the bottom of them. I tried a lot of different things to fix them, but nothing seemed to work.</p>
+            </header>
+            <article class="article-content">
+                <h1>Audio Track quality issue / crackling</h1>
+                <p>After I installed vb audio Cable A, I began to experience some recording issues. These issues were really frustrating and I couldn't seem to get to the bottom of them. I tried a lot of different things to fix them, but nothing seemed to work. Unfortunately, I wasn't able to install cable B, which I think might have been part of the problem. Despite my best efforts, I just couldn't get my recording setup to work properly. Here are some of the issues I was experiencing:</p>
+                <ul>
+                <li>
+                <p>Distorted audio quality</p>
+                </li>
+                <li>
+                <p>Difficulty syncing audio and video in post-production</p>
+                </li>
+                </ul>
+                <p>it causes the obs to record in a bad audio</p>
+                <ul>
+                <li>it causes the davinci resolve edit page not to work properly</li>
+                </ul>
+                <p>To check installed audacity with choco to sport the issues visually</p>
+                <p>choco install audacity -y</p>
+                <p>![[audio-track-quality-1.png]]</p>
+                <p>audio quality issue recorded here</p>
+                <div class="video-embed"><iframe src="https://www.loom.com/embed/be853f2ebb0a4d22b23fa5d34ecd6621" frameborder="0" allowfullscreen></iframe></div>
+                
+                <p>Even the claps have hard time on the play back</p>
+                <p>maybe equalizer but that one is muted &gt; even when i take the potato out the issue is there</p>
+                <p>![[audio-track-quality-2.png]]</p>
+                <p>eq only set for razer headphones only</p>
+                <p>![[audio-track-quality-3.png]]</p>
+                <p>see error in visuals &gt; not possible but tried</p>
+                <p>![[audio-track-quality-4.png]]</p>
+                <p>online editor could not do it https://editor.flixier.com/home/library</p>
+                <p>Direct voicemeter recording no crack over the rode&gt;&gt; problem in obs</p>
+                <p><strong>Confusion point</strong></p>
+                <p>Loom using the rode recording &gt; feel the crack &gt; obs and computer codec issue( audio)</p>
+                <p>When the voice comes over the program other than voicemeter there is an issue</p>
+                <div class="video-embed"><iframe src="https://www.loom.com/embed/3ea1117bf2564bbeb8bd2e41a959bdab" frameborder="0" allowfullscreen></iframe></div>
+                
+                <p>Import the data from rode</p>
+                <div class="video-embed"><iframe src="https://www.youtube.com/embed/E5GSmNcibdw" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
+                
+                <p>Rode files in the back ( <strong>sd card </strong>)( rode is ok mixer there is no issue at the mixer )</p>
+                <p>https://rode.com/fr/user-guides/rodecaster-pro-ii/recording-and-exporting-audio</p>
+                <p>https://drive.google.com/file/d/1seWj6Fwt4PKLMHKR2WscWn4vr-zViGQu/view?usp=sharing</p>
+                <p>Standup and go back and pull the sd card out</p>
+                <p>![[audio-track-quality-5.png]]</p>
+                <p>Zoom hand held mic</p>
+                <p>![[audio-track-quality-6.png]]</p>
+                <p>![[audio-track-quality-7.png]]</p>
+                <p>No error in the environment </p>
+                <p>obs record and there are issues now</p>
+                <div class="video-embed"><iframe src="https://www.loom.com/embed/4a8667b698e54e439e8da7ef56f08a32" frameborder="0" allowfullscreen></iframe></div>
+                
+                <p>![[audio-track-quality-8.png]]</p>
+                <p>![[audio-track-quality-9.png]]</p>
+                <p>![[audio-track-quality-10.png]]</p>
+                <p>![[audio-track-quality-11.png]]</p>
+                <p>track 3 for the <strong>mix </strong>could make sense ( have both guests )</p>
+                <p>xsplit record with rode procaster 2 on rode procaster</p>
+                <p><strong>there are issues but much less</strong></p>
+                <p>![[audio-track-quality-12.png]]</p>
+                <div class="video-embed"><iframe src="https://www.youtube.com/embed/4YOkWU9r5x4" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
+                
+                <p><strong>encoding </strong>lag  &gt; can it be after the parsec ? ( uninstalled did not change )</p>
+                <p>different <strong>bus </strong>add it *( usb ) pink cable is dedicated cable to rode</p>
+                <p>install there is an issue on xsplit that could be normal ?</p>
+                <p>headphones &gt; echo and screetching issues</p>
+                <p><strong>clickling </strong>and <strong>poping </strong>&gt;&gt;&gt; hardware check </p>
+                <p>opencl kind of a problem here&gt;&gt; parallel processing! maybe ?</p>
+                <div class="video-embed"><iframe src="https://www.loom.com/embed/1c730635a2a24d48bb3c2b5fde9fd798" frameborder="0" allowfullscreen></iframe></div>
+                
+                <p>I feel it is related to the obs right now</p>
+                <p>my obs</p>
+                <p>![[audio-track-quality-13.png]]</p>
+                <p>try beta 2 than move on with xspit ( even nuking the config did not work )</p>
+                <p>![[audio-track-quality-14.png]]</p>
+                <p>Github releases page</p>
+                <p>![[audio-track-quality-15.png]]</p>
+                <p>the issue looks like it is in obs config ver 29 to 30 did not change</p>
+                <div class="video-embed"><iframe src="https://www.loom.com/embed/613b2e4d96c64fdbb992a33b33676913" frameborder="0" allowfullscreen></iframe></div>
+                
+                <p>Quit parsec ?&gt;&gt; still a problem</p>
+                <div class="video-embed"><iframe src="https://www.loom.com/embed/7ff6bdde3f274f4b960382f57fb3a6ec" frameborder="0" allowfullscreen></iframe></div>
+                
+                <p>nuke config for obs/ config</p>
+                <p>![[audio-track-quality-16.png]]</p>
+                <p>https://obsproject.com/forum/threads/reset-settings.146045/#:~:text=On%20windows%2C%20try%20to%20go,It%20should%20work%20!</p>
+                <p>![[audio-track-quality-17.png]]</p>
+                <p>backup of the problematic obs</p>
+                <p>https://drive.google.com/drive/folders/15kMfx1T6341PYR6UOrKPRjHp0uUM56fP</p>
+                <p>![[audio-track-quality-18.png]]</p>
+                <p>![[audio-track-quality-19.png]]</p>
+                <p>![[audio-track-quality-20.png]]</p>
+                <p>![[audio-track-quality-21.png]]</p>
+                <p><a href="https://rifaterdemsahin.com/wp-content/uploads/2023/08/2023-08-21-16-19-28.txt">2023-08-21-16-19-28</a><a href="https://rifaterdemsahin.com/wp-content/uploads/2023/08/2023-08-21-16-19-28.txt">Download</a></p>
+                <p>![[audio-track-quality-22.png]]</p>
+                <p>socket thing is still there ( old extension install &gt; so deleting obs could resolve it )</p>
+                <p>![[audio-track-quality-23.png]]</p>
+                <p>![[audio-track-quality-24.png]]</p>
+                <p>![[audio-track-quality-25.png]]</p>
+                <p>![[audio-track-quality-26.png]]</p>
+                <p>![[audio-track-quality-27.png]]</p>
+                <p>extensions might be killing it</p>
+                <p>![[audio-track-quality-28.png]]</p>
+                <p>![[audio-track-quality-29.png]]</p>
+                <p><strong>Audio encoder has an issue</strong></p>
+                <p>16:19:30.241: id: default<br />
+                16:19:30.241: ---------------------------------<br />
+                16:19:30.296: No AJA devices found, skipping loading AJA UI plugin<br />
+                16:19:30.296: Failed to initialize module 'aja-output-ui.dll'<br />
+                16:19:30.339: No AJA devices found, skipping loading AJA plugin<br />
+                <strong>16:19:30.339: Failed to initialize module 'aja.dll'</strong><br />
+                16:19:30.506: Skipping module '../../obs-plugins/64bit/chrome_elf.dll', not an OBS plugin<br />
+                16:19:30.547: [CoreAudio encoder]: <strong>Adding CoreAudio AAC encoder</strong><br />
+                16:19:30.57<strong>3: Failed to load 'e</strong>n-US' text for module: '<strong>decklink</strong>-captions.dll'<br />
+                16:19:30.601: <strong>Failed to load 'en</strong>-US' text for module: '<strong>decklink</strong>-output-ui.dll'<br />
+                16:19:30.636: A DeckLink iterator could not be created. The DeckLink drivers may not be installed<br />
+                16:19:30.636: Failed to initialize module 'decklink.dll'<br />
+                16:19:30.873: [AMF] Version 2.8.0 loaded (Compiled: 1.4.14.0, Runtime: 1.4.30.0, Library: 1;4;30;0;23.10.01.45;202306261352;AMD-Radeon-Driver/drivers:7c4a108e9541093f8259de1bcc48b5a744278eb0).<br />
+                16:19:30.948: [AMF] Unable to set converter transfer characteristic, error AMF_NOT_FOUND (code 11)<br />
+                16:19:31.019: [AMF] Unable to set converter transfer characteristic, error AMF_NOT_FOUND (code 11)<br />
+                16:19:31.021: [AMF] [Capability Manager] Testing Direct3D 11 Adapter 'AMD Radeon RX 6900 XT (VEN_1002/DEV_73bf/SUB_232c1458/REV_00c0)':<br />
+                16:19:31.021: H264/AVC: Supported<br />
+                16:19:31.021: H265/HEVC: Supported</p>
+                <p><strong>C:\Users\Pexabo\AppData\Roaming\obs-studio\logs</strong></p>
+                <p>remove the ndi as welll due to video ninja makes more sense in slower action</p>
+                <p>![[audio-track-quality-30.png]]</p>
+                <p>ndi as well needs to get out could affect the system</p>
+                <p>![[audio-track-quality-31.png]]</p>
+                <p>![[audio-track-quality-32.png]]</p>
+                <p>Parsec out as well <strong>zoom </strong>and the dra on the erdem side created</p>
+                <p>Remaining deletion</p>
+                <p>![[audio-track-quality-33.png]]</p>
+                <p>obs also deleted as well &gt; zoom is the way to go with fresh install</p>
+                <p>clean back ground junk</p>
+                <p>run and restart</p>
+                <p>![[audio-track-quality-34.png]]</p>
+                <p>obs should not fail in the back and expect to record proper oudio</p>
+                <p>![[audio-track-quality-35.png]]</p>
+                <p>OBS-Studio-30.0-beta2-Full-Installer-x64.exe</p>
+                <p>![[audio-track-quality-36.png]]</p>
+                <p>during install it is empty</p>
+                <p>![[audio-track-quality-37.png]]</p>
+                <p>First error comes</p>
+                <p>![[audio-track-quality-38.png]]</p>
+                <p>![[audio-track-quality-39.png]]</p>
+                <p>all tracks selected at start &gt; understand what does that mean</p>
+                <p>![[audio-track-quality-40.png]]</p>
+                <p>it feels better but some red</p>
+                <p>![[audio-track-quality-41.png]]</p>
+                <div class="video-embed"><iframe src="https://www.loom.com/embed/23cef398ae364d35a2426aa1873fca6b" frameborder="0" allowfullscreen></iframe></div>
+                
+                <p>could be clipping</p>
+                <div class="video-embed"><iframe src="https://www.loom.com/embed/8669e8c9ef134a00894a5e9203d73925" frameborder="0" allowfullscreen></iframe></div>
+                
+                <p>more like digital crackling.....digital noise coming up</p>
+                <p><strong><em>idea : too many fader have issues &gt;&gt;&gt; could be....in and out coming in.</em></strong></p>
+                <p>there is still some <strong>cizzz </strong>in the back</p>
+                <p>I can not see the <strong>cizz</strong></p>
+                <p>![[audio-track-quality-42.png]]</p>
+                <p>NDI plugin error &gt; beta error &gt;&gt;&gt; dont think that is the case</p>
+                <p>![[audio-track-quality-43.png]]</p>
+                <p>Take &gt; too many scenes failed it xsplit structure is better</p>
+                <p>Still issues on the audio i need to learn how to debug it </p>
+                <div class="video-embed"><iframe src="https://www.loom.com/embed/8f69f028613f496aaa094ddb7a27ece3" frameborder="0" allowfullscreen></iframe></div>
+                
+                <p>Davinci error  checks...as the play back is not working well</p>
+                <p><code>&amp;#091;0x000026d4] | IO | ERROR | 2023-08-21 19:26:23,609 | Failed to load NvEncodeAPI library.</code></p>
+                <p>![[audio-track-quality-44.png]]</p>
+                <p>it could be a problem after the cable a install <strong>( first suspect )</strong></p>
+                <p>Fragile davinci</p>
+                <p>![[audio-track-quality-45.png]]</p>
+                <p>keep working with <strong>xsplit </strong>till the obs and davinci is resolved and have an external audio recorder</p>
+                <p>Todo: ask cable a</p>
+                <p>Research online</p>
+                <p>Hardware problems can be caused by outdated or malfunctioning drivers. <strong>Make sure your audio driver is up to date and update it if needed</strong>. If that doesn't work, try uninstalling the audio driver (it will reinstall automatically). If that doesn't work, try using the generic audio driver that comes with Windows.</p>
+                <p>![[audio-track-quality-46.png]]</p>
+                <p>forum posts&gt; to get help</p>
+                <p>davinci resolve ( no answer 2 days )</p>
+                <p>https://forum.blackmagicdesign.com/viewtopic.php?f=21&amp;t=187017</p>
+                <p>vb audio</p>
+                <p>https://vb-audio.com/Services/support.htm</p>
+                <p>https://twitter.com/VB_Audio/status/1689528268133629952?s=20</p>
+                <p>Learn the documentation for production</p>
+                <p>![[audio-track-quality-47.png]]</p>
+                <p>wow that are many online people</p>
+                <p>![[audio-track-quality-48.png]]</p>
+                <p>Discord question</p>
+                <p>https://discord.com/channels/755690270795890739/780757149806100500/1143797977907994624</p>
+                <p>![[audio-track-quality-49.png]]</p>
+                <p>Voicemeter thread as well </p>
+                <p>I use the voicemeeter potato, I began to experience some recording issues. These issues were really frustrating and I couldn’t seem to get to the bottom of them. I tried a lot of different things to fix them, but nothing seemed to work. U</p>
+                <p>Distorted audio quality<br />
+                Difficulty syncing audio and video in post-production<br />
+                it causes the obs to record in a bad audio<br />
+                it causes the davinci resolve edit page not to work properly. here is the log &gt; https://rifaterdemsahin.com/2023/08/21/track-quality-issue/</p>
+                <p>https://discord.com/channels/755690270795890739/780757456228712478/1143817010296389672</p>
+                <p>Ask at audio engineering on reddit</p>
+                <p>https://www.reddit.com/r/audioengineering/comments/15yx7dy/could_not_locate_why_the_recording_quality_is_so/<br />
+                before uninstalling the cable a for poping and crackling</p>
+                <p>![[audio-track-quality-50.png]]</p>
+                <p>![[audio-track-quality-51.png]]</p>
+                <p>Primary Device Name:PCI\VEN_1022&amp;DEV_1483&amp;SUBSYS_88151043&amp;REV_00<br />
+                Secondary Device Name:PCI\VEN_1002&amp;DEV_1478&amp;SUBSYS_00000000&amp;REV_C0</p>
+                <p>![[audio-track-quality-52.png]]</p>
+                <p>![[audio-track-quality-53.png]]</p>
+                <div class="video-embed"><iframe src="https://www.loom.com/embed/7a529196aef84984ba61d0d8187184fa" frameborder="0" allowfullscreen></iframe></div>
+                
+                <p>![[audio-track-quality-54.png]]</p>
+                <p>When there is not video there is no error ?</p>
+                <div class="video-embed"><iframe src="https://www.loom.com/embed/a55dc9c742864bf7975dd42a901bbe9a" frameborder="0" allowfullscreen></iframe></div>
+                
+                <p>Yesterday I had a major windows update</p>
+                <p>![[audio-track-quality-55.png]]</p>
+                <p>https://support.microsoft.com/en-gb/topic/august-22-2023-kb5029351-os-build-22621-2215-preview-9af25662-083a-43f5-b3a7-975fe25cc692</p>
+                <p>Cant see anything related in the audio</p>
+                <p>![[audio-track-quality-56.png]]</p>
+                <p>Could be related to cross device usage</p>
+                <ul>
+                <li>
+                <p>Voicemeeter </p>
+                </li>
+                <li>
+                <p>OBS</p>
+                </li>
+                </ul>
+                <p>they are trying to use the rode at the same time</p>
+                <p>![[audio-track-quality-57.png]]</p>
+                <p>https://support.microsoft.com/en-gb/topic/august-22-2023-kb5029351-os-build-22621-2215-preview-9af25662-083a-43f5-b3a7-975fe25cc692</p>
+                <p>Another reference</p>
+                <div class="video-embed"><iframe src="https://www.youtube.com/embed/PaYPaqEB1hU" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
+                
+                <p>![[audio-track-quality-58.png]]</p>
+                <p>latency mon software]</p>
+                <p>![[audio-track-quality-59.png]]</p>
+                <p>https://community.chocolatey.org/packages/latencymon</p>
+                <p>![[audio-track-quality-60.png]]</p>
+                <p>![[audio-track-quality-61.png]]</p>
+                <p>![[audio-track-quality-62.png]]</p>
+                <p>Multi device usage could be the case</p>
+                <p>![[audio-track-quality-63.png]]</p>
+                <p>Crackling could be the use the cpu affinity with the problem</p>
+                <div class="video-embed"><iframe src="https://www.youtube.com/embed/Gb-PsrIVChY" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
+                
+                <p>Process Lasso can be interesting</p>
+                <p>![[audio-track-quality-64.png]]</p>
+                <p>choco install plasso -y</p>
+                <p>![[audio-track-quality-65.png]]</p>
+                <p>Some applications are over using the action and affinity might me important </p>
+                <p>![[audio-track-quality-66.png]]</p>
+                <p>![[audio-track-quality-67.png]]</p>
+                <p>Responsiveness and details are ther</p>
+                <p>![[audio-track-quality-68.png]]</p>
+                <p>setting to always and high</p>
+                <p>![[audio-track-quality-69.png]]</p>
+                <p>set affinity to 26 &gt; even numbers </p>
+                <p>add the lasso to th  e resetup list</p>
+                <p>https://rifaterdemsahin.com/2023/07/20/reinstalling-the-windows/</p>
+                <p>Some people do it manually</p>
+                <div class="video-embed"><iframe src="https://www.youtube.com/embed/1cYcr5JPL1I" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
+                
+                <p>affinity fix and restart</p>
+                <p>![[audio-track-quality-70.png]]</p>
+                <div class="video-embed"><iframe src="https://www.loom.com/embed/905a38ee74ca429787faf6ea18082202" frameborder="0" allowfullscreen></iframe></div>
+                
+                <p>to be on the safe side add high to voicemeeter</p>
+                <p>![[audio-track-quality-71.png]]</p>
+                <p>Crackling also gone removed the mix minus on the rode procaster</p>
+                <div class="video-embed"><iframe src="https://www.loom.com/embed/846e049710b24c0fb792661cbb8914bf" frameborder="0" allowfullscreen></iframe></div>
+                
+                <p><strong>mitigations</strong> to resolve and solve probability</p>
+                <ul>
+                <li>
+                <p>remove parsec,vdi 2</p>
+                </li>
+                <li>
+                <p>nuke the obs config 3</p>
+                </li>
+                <li>
+                <p>set affinity and priority 45</p>
+                </li>
+                <li>
+                <p>set to mix minus ( dont feedback ) 50</p>
+                </li>
+                </ul>
+                <p>now today got this error on youtube video</p>
+                <p>Audio renderer error. Please restart your computer.</p>
+                <p>Sometimes the Audio renderer error in YouTube may occur due to system lag and various other problems. So, the best way to clear this error is by <strong>restarting your system so that the files come back into the memory and thereby fix the basic errors</strong>.25 Jun 2023</p>
+                <p>Unplug your headphones and play a video through the PC's speakers. If you don't get the error, <strong>plug your headphones back in</strong>. Something as easy as that can fix the problem. If you have more than one playback device, keep the default one plugged in, and disconnect the second playback device.10 Mar 2022</p>
+                <h2>What Causes the YouTube Audio Renderer Error on Windows?</h2>
+                <p>As you might expect from this error message, the problem lies with the audio-based systems on your Windows computer. However, you need to figure out where the problem in your audio system is before you can fix it. Below are all the possible reasons causing the audio renderer error on YouTube.</p>
+                <ul>
+                <li>
+                <p>The most common cause of this problem is a temporary glitch in the plugged audio device.</p>
+                </li>
+                <li>
+                <p>The issue can also appear if the audio enhancement feature is enabled on your Windows PC.</p>
+                </li>
+                <li>
+                <p>Outdated or corrupt audio drivers can also cause the problem in the question.</p>
+                </li>
+                </ul>
+                <p>Below are all the working fixes you can try in this situation.</p>
+                <p>Process lasso maybegive more than one core?</p>
+                <p>![[audio-track-quality-72.png]]</p>
+                <p>Started working after resetting affinity</p>
+                <p>CrACKLING MENTIONED ON mme</p>
+                <div class="video-embed"><iframe src="https://www.youtube.com/embed/EdAhR_CdjLc" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
+                
+                <hr />
+                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

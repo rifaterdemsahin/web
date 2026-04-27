@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimize workstation startup and hardware fail - Rifat Erdem Sahin</title>
+    <meta name="description" content="Optimize workstation startup and hardware fail ![[optimize-workstation-startup-1.png]] ![[optimize-workstation-startup-2.png]] ![[optimize-workstation-startup-3.png]] ![[optimize-workstation-startup-4">
+    <meta name="keywords" content="Optimize workstation startup and hardware fail">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2023/08/29/optimize-workstation-startup/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2023/08/29/optimize-workstation-startup/">
+    <meta property="og:title" content="Optimize workstation startup and hardware fail">
+    <meta property="og:description" content="Optimize workstation startup and hardware fail ![[optimize-workstation-startup-1.png]] ![[optimize-workstation-startup-2.png]] ![[optimize-workstation-startup-3.png]] ![[optimize-workstation-startup-4">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2023/08/29/optimize-workstation-startup/">
+    <meta property="twitter:title" content="Optimize workstation startup and hardware fail">
+    <meta property="twitter:description" content="Optimize workstation startup and hardware fail ![[optimize-workstation-startup-1.png]] ![[optimize-workstation-startup-2.png]] ![[optimize-workstation-startup-3.png]] ![[optimize-workstation-startup-4">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Optimize workstation startup and hardware fail",
+      "description": "Optimize workstation startup and hardware fail ![[optimize-workstation-startup-1.png]] ![[optimize-workstation-startup-2.png]] ![[optimize-workstation-startup-3.png]] ![[optimize-workstation-startup-4",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2023-08-29",
+      "dateModified": "2023-08-29",
+      "url": "https://www.rifaterdemsahin.com/2023/08/29/optimize-workstation-startup/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2023/08/29/optimize-workstation-startup/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Optimize workstation startup and hardware fail</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>August 29, 2023</span>
+                    <span>&bull;</span>
+                    <span>16 min read</span>
+                </div>
+                <p class="article-excerpt">Optimize workstation startup and hardware fail ![[optimize-workstation-startup-1.png]] ![[optimize-workstation-startup-2.png]] ![[optimize-workstation-startup-3.png]] ![[optimize-workstation-startup-4.png]] ![[optimize-workstation-startup-5.png]] ![[optimize-workstation-startup-6</p>
+            </header>
+            <article class="article-content">
+                <h1>Optimize workstation startup and hardware fail</h1>
+                <p>![[optimize-workstation-startup-1.png]]</p>
+                <p>![[optimize-workstation-startup-2.png]]</p>
+                <p>![[optimize-workstation-startup-3.png]]</p>
+                <p>![[optimize-workstation-startup-4.png]]</p>
+                <p>![[optimize-workstation-startup-5.png]]</p>
+                <p>![[optimize-workstation-startup-6.png]]</p>
+                <p>![[optimize-workstation-startup-7.png]]</p>
+                <p>Fixes</p>
+                <p>![[optimize-workstation-startup-8.png]]</p>
+                <p>after optimize</p>
+                <p>![[optimize-workstation-startup-9.png]]</p>
+                <p>![[optimize-workstation-startup-10.png]]</p>
+                <p>Before optimize restart time was 4 minutes</p>
+                <p>after care</p>
+                <p>![[optimize-workstation-startup-11.png]]</p>
+                <p>devices in tact</p>
+                <p>![[optimize-workstation-startup-12.png]]</p>
+                <p>![[optimize-workstation-startup-13.png]]</p>
+                <p>![[optimize-workstation-startup-14.png]]</p>
+                <p>![[optimize-workstation-startup-15.png]]</p>
+                <p>Error in hardware</p>
+                <p>![[optimize-workstation-startup-16.png]]</p>
+                <p>![[optimize-workstation-startup-17.png]]</p>
+                <p>![[optimize-workstation-startup-18.png]]</p>
+                <p>![[optimize-workstation-startup-19.png]]</p>
+                <p>![[optimize-workstation-startup-20.png]]</p>
+                <p>Second motherboard from Asus might be failing...</p>
+                <p>![[optimize-workstation-startup-21.png]]</p>
+                <p>Closes thread</p>
+                <p>https://community.amd.com/t5/drivers-software/missing-pci-encryption-decryption-driver-pci-ven-1022-dev-1486/td-p/122875</p>
+                <p>![[optimize-workstation-startup-22.png]]</p>
+                <p>Find it</p>
+                <p>![[optimize-workstation-startup-23.png]]</p>
+                <p>https://www.avg.com/en/signal/how-to-check-computer-specs-windows#:~:text=Enter%20cmd%20and%20press%20Enter,to%20find%20what%20you%20need.</p>
+                <p>![[optimize-workstation-startup-24.png]]</p>
+                <p>the script to run</p>
+                <p>Get-WmiObject Win32_PNPEntity | Select Name, DeviceID </p>
+                <p>![[optimize-workstation-startup-25.png]]</p>
+                <p>![[optimize-workstation-startup-26.png]]</p>
+                <p>![[optimize-workstation-startup-27.png]]</p>
+                <p>![[optimize-workstation-startup-28.png]]</p>
+                <p>Code</p>
+                <p>![[optimize-workstation-startup-29.png]]</p>
+                <p>`<br />
+                Name                                                           DeviceID                                                                                                                        <br />
+                ----                                                           --------                                                                                                                        <br />
+                Generic Access Profile                                         BTHLEDEVICE{00001800-0000-1000-8000-00805F9B34FB}<em>DEV_VID&amp;02046D_PID&amp;B01D_REV&amp;0016_E1FDA7388B08\B&amp;30F7AE98&amp;0&amp;0001              <br />
+                4 - ASUS VP28U (AMD High Definition Audio Device)              SWD\MMDEVAPI{0.0.0.00000000}.{BCF3A1DE-9DC9-4C8D-83A5-B57460F4D480}                                                            <br />
+                Device Information Service                                     BTHLEDEVICE{0000180A-0000-1000-8000-00805F9B34FB}_DEV_VID&amp;02046D_PID&amp;B019_REV&amp;0003_F90C08EFEF72\B&amp;25E608E7&amp;0&amp;000C              <br />
+                Motherboard resources                                          ACPI\PNP0C02\0                                                                                                                  <br />
+                HID-compliant vendor-defined device                            HID\VID_256F&amp;PID_C652&amp;MI_00&amp;COL01\9&amp;11242FBA&amp;0&amp;0000                                                                             <br />
+                E:\                                                            SWD\WPDBUSENUM_??_USBSTOR#DISK&amp;VEN</em>&amp;PROD_SABRENT_DISK_DEV&amp;REV_0#WD-WMAMAA771258&amp;0#{53F56307-B6BF-11D0-94F2-00A0C91EFB8B}       <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;2411E6FE&amp;0&amp;08                                                                    <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;2411E6FE&amp;0&amp;10                                                                    <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;2411E6FE&amp;0&amp;18                                                                    <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;2411E6FE&amp;0&amp;20                                                                    <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;2411E6FE&amp;0&amp;28                                                                    <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;2411E6FE&amp;0&amp;38                                                                    <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;2411E6FE&amp;0&amp;40                                                                    <br />
+                HID-compliant vendor-defined device                            HID{00001812-0000-1000-8000-00805F9B34FB}<em>DEV_VID&amp;02046D_PID&amp;B35B_REV&amp;0013_E8191CB71144&amp;COL04\C&amp;4AA329B&amp;0&amp;0003                 <br />
+                XSplit Audio (Broadcaster)                                     SWD\MMDEVAPI{0.0.1.00000000}.{E40ECC91-A92B-4885-A554-49CE071EEFB9}                                                            <br />
+                Bluetooth LE Generic Attribute Service                         BTHLEDEVICE{00010000-0000-1000-8000-011F2000046D}_DEV_VID&amp;02046D_PID&amp;B01D_REV&amp;0016_E1FDA7388B08\B&amp;30F7AE98&amp;0&amp;0035              <br />
+                Microsoft Streaming Service Proxy                              SW{96E080C7-143C-11D1-B40F-00A0C9223196}{3C0D501A-140B-11D1-B40F-00A0C9223196}                                                <br />
+                AMD PCI                                                        PCI\VEN_1022&amp;DEV_148A&amp;SUBSYS_88151043&amp;REV_00\4&amp;1BB67788&amp;0&amp;0039                                                                  <br />
+                Volume                                                         STORAGE\VOLUME{50DF6D16-27A9-11EE-B344-806E6F6E6963}#0000000000004400                                                          <br />
+                USB Composite Device                                           USB\VID_19F7&amp;PID_0037\GV0074513                                                                                                 <br />
+                Volume                                                         STORAGE\VOLUME{50DF6D1A-27A9-11EE-B344-806E6F6E6963}#0000000000100000                                                          <br />
+                Motherboard resources                                          ACPI\PNP0C02\4&amp;3ABF7A39&amp;0                                                                                                       <br />
+                Volume                                                         STORAGE\VOLUME{F291BEFB-2745-11EE-B339-806E6F6E6963}#0000000000100000                                                          <br />
+                High Definition Audio Controller                               PCI\VEN_1022&amp;DEV_1487&amp;SUBSYS_874F1043&amp;REV_00\4&amp;21F346C1&amp;0&amp;0441                                                                  <br />
+                Generic Attribute Profile                                      BTHLEDEVICE{00001801-0000-1000-8000-00805F9B34FB}_DEV_VID&amp;02046D_PID&amp;B35B_REV&amp;0013_E8191CB71144\B&amp;259C4587&amp;0&amp;000A              <br />
+                Logitech Download Assistant                                    HID{00001812-0000-1000-8000-00805F9B34FB}_DEV_VID&amp;02046D_PID&amp;B35B_REV&amp;0013_E8191CB71144&amp;COL03\C&amp;4AA329B&amp;0&amp;0002                 <br />
+                AMD-Windows Support Components                                 SWD\DRIVERENUM\AMDWIN&amp;7&amp;1343A6A2&amp;0                                                                                              <br />
+                Intel(R) Ethernet Controller X550                              PCI\VEN_8086&amp;DEV_1563&amp;SUBSYS_87121043&amp;REV_01\0000C9FFFF00000000                                                                 <br />
+                Intel(R) Ethernet Controller X550 #2                           PCI\VEN_8086&amp;DEV_1563&amp;SUBSYS_87121043&amp;REV_01\0000C9FFFF00000001                                                                 <br />
+                Standard SATA AHCI Controller                                  PCI\VEN_1B21&amp;DEV_0612&amp;SUBSYS_858D1043&amp;REV_02\6&amp;B788C78&amp;0&amp;00280009                                                               <br />
+                5 - ASUS VP28U (AMD High Definition Audio Device)              SWD\MMDEVAPI{0.0.0.00000000}.{289231DE-79D9-44EF-B000-BC9DFE20CFC0}                                                            <br />
+                Sabrent Disk Dev USB Device                                    USBSTOR\DISK&amp;VEN</em>&amp;PROD_SABRENT_DISK_DEV&amp;REV_0\WD-WMAMAA771258&amp;0                                                                 <br />
+                HID-compliant vendor-defined device                            HID\VID_0B05&amp;PID_1984&amp;MI_07\A&amp;1C38109C&amp;0&amp;0000                                                                                   <br />
+                AMD Radeon RX 6900 XT                                          PCI\VEN_1002&amp;DEV_73BF&amp;SUBSYS_232C1458&amp;REV_C0\6&amp;18445A1E&amp;0&amp;00000009                                                              <br />
+                HID-compliant mouse                                            HID\3DXKMJ_HIDMINI&amp;COL01\1&amp;2D595CA7&amp;0&amp;0000                                                                                      <br />
+                Cam Link Pro                                                   PCI\VEN_12AB&amp;DEV_0710&amp;SUBSYS_00111CFA&amp;REV_00\4&amp;3CFE0B2&amp;0&amp;0009                                                                   <br />
+                Logitech Download Assistant                                    HID{00001812-0000-1000-8000-00805F9B34FB}<em>DEV_VID&amp;02046D_PID&amp;B01D_REV&amp;0016_E1FDA7388B08&amp;COL02\C&amp;5DAFDCA&amp;0&amp;0001                 <br />
+                USB Input Device                                               USB\VID_145F&amp;PID_01AD&amp;MI_00\A&amp;1CB78090&amp;0&amp;0000                                                                                   <br />
+                HID-compliant mouse                                            HID{00001812-0000-1000-8000-00805F9B34FB}_DEV_VID&amp;02046D_PID&amp;B35B_REV&amp;0013_E8191CB71144&amp;COL02\C&amp;4AA329B&amp;0&amp;0001                 <br />
+                AMD PCI                                                        PCI\VEN_1022&amp;DEV_148A&amp;SUBSYS_88151043&amp;REV_00\4&amp;3303013A&amp;0&amp;0039                                                                  <br />
+                Root Print Queue                                               SWD\PRINTENUM\PRINTQUEUES                                                                                                       <br />
+                THX Spatial Audio Service                                      SWD\DRIVERENUM{DD85E149-5EE5-4DC6-B0E7-873753692190}#THXSERVICECOMPONENT_119648BC-6ACD-42C4-A0BF-3B389E4C03CC&amp;B&amp;1EA4F99D&amp;0     <br />
+                HID-compliant vendor-defined device                            HID\VID_1532&amp;PID_0555&amp;MI_03&amp;COL02\B&amp;3A3A8316&amp;0&amp;0001                                                                             <br />
+                USB Composite Device                                           USB\VID_046D&amp;PID_C540\7&amp;10923DA3&amp;0&amp;1                                                                                            <br />
+                HID-compliant consumer control device                          HID\VID_046D&amp;PID_C540&amp;MI_01&amp;COL02\9&amp;1FD06D2F&amp;0&amp;0001                                                                             <br />
+                Generic USB Hub                                                USB\VID_05E3&amp;PID_0608\8&amp;118DA082&amp;0&amp;5                                                                                            <br />
+                HID-compliant mouse                                            HID{00001812-0000-1000-8000-00805F9B34FB}_DEV_VID&amp;02046D_PID&amp;B01D_REV&amp;0016_E1FDA7388B08&amp;COL01\C&amp;5DAFDCA&amp;0&amp;0000                 <br />
+                PCI Express Downstream Switch Port                             PCI\VEN_1022&amp;DEV_57A3&amp;SUBSYS_88151043&amp;REV_00\5&amp;262EF69D&amp;0&amp;000009                                                                <br />
+                Generic Monitor (ASUS VP28U)                                   DISPLAY\AUS28B1\7&amp;1343A6A2&amp;0&amp;UID260                                                                                             <br />
+                Generic Monitor (ASUS VP28U)                                   DISPLAY\AUS28B1\7&amp;1343A6A2&amp;0&amp;UID265                                                                                             <br />
+                Cam Link Pro Audio-2 (Cam Link Pro)                            SWD\MMDEVAPI{0.0.1.00000000}.{CDDE2F35-6250-415B-8E7D-CC42902D093C}                                                            <br />
+                HID Keyboard Device                                            HID{00001812-0000-1000-8000-00805F9B34FB}_DEV_VID&amp;02046D_PID&amp;B35B_REV&amp;0013_E8191CB71144&amp;COL01\C&amp;4AA329B&amp;0&amp;0000                 <br />
+                ZOOM H2n SD R&amp;W USB Device                                     USBSTOR\DISK&amp;VEN_ZOOM&amp;PROD_H2N_SD_R&amp;W&amp;REV_0.01\000000000000&amp;0                                                                   <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1494&amp;SUBSYS_00000000&amp;REV_00\3&amp;11583659&amp;0&amp;C4                                                                    <br />
+                Volume Manager                                                 ROOT\VOLMGR\0000                                                                                                                <br />
+                High precision event timer                                     ACPI\PNP0103\2&amp;DABA3FF&amp;0                                                                                                        <br />
+                HID-compliant vendor-defined device                            HID\VID_256F&amp;PID_C652&amp;MI_01\9&amp;34FB6D7C&amp;0&amp;0000                                                                                   <br />
+                Speakers (3- Razer BlackShark V2 Pro)                          SWD\MMDEVAPI{0.0.0.00000000}.{E7C3E3C0-1B7C-4738-AFC7-9A62C12A2F4D}                                                            <br />
+                Standard NVM Express Controller                                PCI\VEN_1BB1&amp;DEV_5018&amp;SUBSYS_50181BB1&amp;REV_01\4&amp;2606D5C1&amp;0&amp;001B                                                                  <br />
+                Generic USB Hub                                                USB\VID_2109&amp;PID_2822\8&amp;25F16328&amp;0&amp;2                                                                                            <br />
+                THX Spatial Audio Configuration Razer BlackShark V2 Pro        SWD\DRIVERENUM{DD85E149-5EE5-4DC6-B0E7-873753692190}#THXCONFIGURATIONCOMPONENT.15320555._119648BC-6ACD-42C4-A0BF-3B389E4C03CC&amp;...<br />
+                1 - LC49G95T (AMD High Definition Audio Device)                SWD\MMDEVAPI{0.0.0.00000000}.{AD03B93A-4150-4AF4-84BD-F86DC6FC705E}                                                            <br />
+                Soundcore Life Q20 Avrcp Transport                             BTHENUM{0000110C-0000-1000-8000-00805F9B34FB}_LOCALMFG&amp;0002\A&amp;18D31A6F&amp;0&amp;9505BB2AED2F_C00000000                                <br />
+                MX Keys                                                        BTHLE\DEV_E8191CB71144\A&amp;21DD107&amp;0&amp;E8191CB71144                                                                                 <br />
+                VoiceMeeter Input (VB-Audio VoiceMeeter VAIO)                  SWD\MMDEVAPI{0.0.0.00000000}.{DDC0A63D-AFF4-4C7E-9395-D4B52A902900}                                                            <br />
+                ST8000VN004-2M2101                                             SCSI\DISK&amp;VEN</em>&amp;PROD_ST8000VN004-2M21\7&amp;AF0C8F9&amp;0&amp;000000                                                                         <br />
+                USB Input Device                                               USB\VID_256F&amp;PID_C652&amp;MI_01\8&amp;2038A7E2&amp;0&amp;0001                                                                                   <br />
+                WAN Miniport (PPPOE)                                           SWD\MSRRAS\MS_PPPOEMINIPORT                                                                                                     <br />
+                Bluetooth LE Generic Attribute Service                         BTHLEDEVICE{0000180F-0000-1000-8000-00805F9B34FB}<em>DEV_VID&amp;02046D_PID&amp;B019_REV&amp;0003_F90C08EFEF72\B&amp;25E608E7&amp;0&amp;001B              <br />
+                Speakers (THX Spatial)                                         SWD\MMDEVAPI{0.0.0.00000000}.{CCCA35C1-1B20-4C4B-AFFA-F586AABC5B95}                                                            <br />
+                Generic USB Hub                                                USB\VID_2109&amp;PID_2822\MSFT20000000001                                                                                           <br />
+                Microsoft Basic Display Driver                                 ROOT\BASICDISPLAY\0000                                                                                                          <br />
+                Microphone (3- Razer BlackShark V2 Pro)                        SWD\MMDEVAPI{0.0.1.00000000}.{AB96B3B5-D12E-4C68-A064-8596E19FAD2B}                                                            <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1480&amp;SUBSYS_88151043&amp;REV_00\3&amp;3AA59A3&amp;0&amp;00                                                                     <br />
+                Generic SuperSpeed USB Hub                                     USB\VID_2109&amp;PID_0822\9&amp;707FC28&amp;0&amp;1                                                                                             <br />
+                AMD Link Controller Emulation                                  ROOT\AMDXE\0000                                                                                                                 <br />
+                Microsoft Hypervisor Service                                   ROOT\HVSERVICE\0000                                                                                                             <br />
+                AMD USB 3.10 eXtensible Host Controller - 1.10 (Microsoft)     PCI\VEN_1022&amp;DEV_149C&amp;SUBSYS_88151043&amp;REV_00\6&amp;333648BD&amp;0&amp;01400009                                                              <br />
+                RODECaster Pro II Main Stereo                                  USB\VID_19F7&amp;PID_0037&amp;MI_03\8&amp;297FED45&amp;0&amp;0003                                                                                   <br />
+                AMD GPIO Controller                                            ACPI\AMDI0030\0                                                                                                                 <br />
+                PCI Express Downstream Switch Port                             PCI\VEN_1022&amp;DEV_57A3&amp;SUBSYS_88151043&amp;REV_00\5&amp;262EF69D&amp;0&amp;100009                                                                <br />
+                USB Mass Storage Device                                        USB\VID_19F7&amp;PID_0037&amp;MI_08\8&amp;297FED45&amp;0&amp;0008                                                                                   <br />
+                USB Composite Device                                           USB\VID_1EDB&amp;PID_BE55\0FE0B2E2998E405285C5134449C70626                                                                          <br />
+                Bluetooth Low Energy GATT compliant HID device                 BTHLEDEVICE{00001812-0000-1000-8000-00805F9B34FB}_DEV_VID&amp;02046D_PID&amp;B01D_REV&amp;0016_E1FDA7388B08\B&amp;30F7AE98&amp;0&amp;001E              <br />
+                Razer BlackShark V2 Pro                                        USB\VID_1532&amp;PID_0555&amp;MI_03\A&amp;2951501D&amp;0&amp;0003                                                                                   <br />
+                Standard Serial over Bluetooth link (COM8)                     BTHENUM{00001101-0000-1000-8000-00805F9B34FB}_LOCALMFG&amp;0002\A&amp;2F6FDF65&amp;0&amp;9505BB2AED2F_C00000000                                <br />
+                Generic Monitor (LG HDR 4K)                                    DISPLAY\GSM774F\7&amp;1343A6A2&amp;0&amp;UID264                                                                                             <br />
+                System timer                                                   ACPI\PNP0100\4&amp;FB1875&amp;0                                                                                                         <br />
+                Microsoft RRAS Root Enumerator                                 SWD\MSRRAS{5E259276-BC7E-40E3-B93B-8F89B5F3ABC0}                                                                               <br />
+                Seagate FireCuda 530 ZP1000GM30013                             SCSI\DISK&amp;VEN_NVME&amp;PROD_SEAGATE_FIRECUDA\5&amp;1AC447EB&amp;0&amp;000000                                                                    <br />
+                VoiceMeeter Aux Input (VB-Audio VoiceMeeter AUX VAIO)          SWD\MMDEVAPI{0.0.0.00000000}.{83E328D0-F2DF-428C-97D3-A995250812B6}                                                            <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1491&amp;SUBSYS_00000000&amp;REV_00\3&amp;11583659&amp;0&amp;C1                                                                    <br />
+                3 - LG HDR 4K (AMD High Definition Audio Device)               SWD\MMDEVAPI{0.0.0.00000000}.{A4DB487B-2EFB-4C2F-8F94-B89714E40C14}                                                            <br />
+                Microsoft Windows Management Interface for ACPI                ACPI\PNP0C14\ASUSWMI                                                                                                            <br />
+                PCI Express Downstream Switch Port                             PCI\VEN_1022&amp;DEV_57A3&amp;SUBSYS_88151043&amp;REV_00\5&amp;262EF69D&amp;0&amp;080009                                                                <br />
+                VMware Virtual Ethernet Adapter for VMnet1                     ROOT\VMWARE\0000                                                                                                                <br />
+                VMware Virtual Ethernet Adapter for VMnet8                     ROOT\VMWARE\0001                                                                                                                <br />
+                Microsoft Print to PDF                                         SWD\PRINTENUM{A32F4594-4406-4D5F-99A6-A3093CF51899}                                                                            <br />
+                HID-compliant vendor-defined device                            HID\VID_046D&amp;PID_C540&amp;MI_02&amp;COL03\9&amp;CA050F1&amp;0&amp;0002                                                                              <br />
+                HID-compliant device                                           HID\VID_054C&amp;PID_0D68\B&amp;19DF3847&amp;0&amp;0000                                                                                         <br />
+                PCI Express Root Port                                          PCI\VEN_1022&amp;DEV_1483&amp;SUBSYS_88151043&amp;REV_00\3&amp;11583659&amp;0&amp;09                                                                    <br />
+                Standard NVM Express Controller                                PCI\VEN_8086&amp;DEV_2700&amp;SUBSYS_39018086&amp;REV_00\55CD2E41525CC34000                                                                 <br />
+                System Firmware                                                UEFI\RES</em>{9AB65672-B9F9-5068-BED5-34B99D7555B8}\0                                                                               <br />
+                WAN Miniport (PPTP)                                            SWD\MSRRAS\MS_PPTPMINIPORT                                                                                                      <br />
+                3Dconnexion Wireless Device                                    HID\VID_256F&amp;PID_C652&amp;MI_00&amp;COL02\9&amp;11242FBA&amp;0&amp;0001                                                                             <br />
+                HID-compliant vendor-defined device                            HID\VID_046D&amp;PID_C540&amp;MI_02&amp;COL02\9&amp;CA050F1&amp;0&amp;0001                                                                              <br />
+                VoiceMeeter Aux Output (VB-Audio VoiceMeeter AUX VAIO)         SWD\MMDEVAPI{0.0.1.00000000}.{6F620BA8-8A51-4A60-854D-EC2A1FBA930A}                                                            <br />
+                Speakers (RODECaster Pro II Chat)                              SWD\MMDEVAPI{0.0.0.00000000}.{E54026F8-16E1-4DCF-97B9-52B810C7E5B8}                                                            <br />
+                Generic Attribute Profile                                      BTHLEDEVICE{00001801-0000-1000-8000-00805F9B34FB}<em>DEV_VID&amp;02046D_PID&amp;B01D_REV&amp;0016_E1FDA7388B08\B&amp;30F7AE98&amp;0&amp;0008              <br />
+                Microsoft Hyper-V Virtualization Infrastructure Driver         ROOT\VID\0000                                                                                                                   <br />
+                Generic Access Profile                                         BTHLEDEVICE{00001800-0000-1000-8000-00805F9B34FB}_DEV_VID&amp;02046D_PID&amp;B019_REV&amp;0003_F90C08EFEF72\B&amp;25E608E7&amp;0&amp;0001              <br />
+                Wacom Tablet                                                   USB\VID_056A&amp;PID_037A\0FE00L1048349                                                                                             <br />
+                Realtek USB2.0 Audio                                           USB\VID_0B05&amp;PID_1984&amp;MI_00\9&amp;203CC92C&amp;0&amp;0000                                                                                   <br />
+                Volume                                                         STORAGE\VOLUME{F291BEFB-2745-11EE-B339-806E6F6E6963}#0000000007500000                                                          <br />
+                THX Spatial Audio                                              ROOT\THXV2VAD\0000                                                                                                              <br />
+                Soundcore Life Q20 Hands-Free                                  BTHHFENUM\BTHHFPAUDIO\B&amp;499CF95&amp;0&amp;97                                                                                            <br />
+                Bluetooth LE Generic Attribute Service                         BTHLEDEVICE{00010000-0000-1000-8000-011F2000046D}_DEV_VID&amp;02046D_PID&amp;B019_REV&amp;0003_F90C08EFEF72\B&amp;25E608E7&amp;0&amp;003F              <br />
+                HID-compliant vendor-defined device                            HID\VID_046D&amp;PID_C540&amp;MI_02&amp;COL01\9&amp;CA050F1&amp;0&amp;0000                                                                              <br />
+                HID-compliant consumer control device                          HID\VID_0FD9&amp;PID_006C\B&amp;83D3676&amp;0&amp;0000                                                                                          <br />
+                PCI Express Downstream Switch Port                             PCI\VEN_1022&amp;DEV_57A3&amp;SUBSYS_88151043&amp;REV_00\5&amp;262EF69D&amp;0&amp;200009                                                                <br />
+                WAN Miniport (IKEv2)                                           SWD\MSRRAS\MS_AGILEVPNMINIPORT                                                                                                  <br />
+                Composite Bus Enumerator                                       ROOT\COMPOSITEBUS\0000                                                                                                          <br />
+                Microsoft Virtual Drive Enumerator                             ROOT\VDRVROOT\0000                                                                                                              <br />
+                HID Keyboard Device                                            HID\3DXKMJ_HIDMINI&amp;COL02\1&amp;2D595CA7&amp;0&amp;0001                                                                                      <br />
+                Microsoft Wi-Fi Direct Virtual Adapter                         {5D624F94-8850-40C3-A3FA-A4FD2080BAF3}\VWIFIMP_WFD\7&amp;513F610&amp;0&amp;11                                                               <br />
+                Microsoft Wi-Fi Direct Virtual Adapter #2                      {5D624F94-8850-40C3-A3FA-A4FD2080BAF3}\VWIFIMP_WFD\7&amp;513F610&amp;0&amp;12                                                               <br />
+                USB Input Device                                               USB\VID_145F&amp;PID_01AD&amp;MI_01\A&amp;1CB78090&amp;0&amp;0001                                                                                   <br />
+                PCI standard ISA bridge                                        PCI\VEN_1022&amp;DEV_790E&amp;SUBSYS_88151043&amp;REV_51\3&amp;11583659&amp;0&amp;A3                                                                    <br />
+                USB Serial Device (COM3)                                       USB\VID_2EC2&amp;PID_0003&amp;MI_00\B&amp;2F4CD955&amp;0&amp;0000                                                                                   <br />
+                Seagate FireCuda 530 ZP1000GM30013                             SCSI\DISK&amp;VEN_NVME&amp;PROD_SEAGATE_FIRECUDA\5&amp;E0B96EA&amp;0&amp;000000                                                                     <br />
+                HID-Compliant Mouse                                            HID\VID_056A&amp;PID_037A&amp;COL01\B&amp;1A039BA5&amp;0&amp;0000                                                                                   <br />
+                Microsoft Storage Spaces Controller                            ROOT\SPACEPORT\0000                                                                                                             <br />
+                HID-compliant system controller                                HID\VID_046D&amp;PID_C540&amp;MI_01&amp;COL03\9&amp;1FD06D2F&amp;0&amp;0002                                                                             <br />
+                H2N_SD                                                         SWD\WPDBUSENUM_??_USBSTOR#DISK&amp;VEN_ZOOM&amp;PROD_H2N_SD_R&amp;W&amp;REV_0.01#000000000000&amp;0#{53F56307-B6BF-11D0-94F2-00A0C91EFB8B}         <br />
+                HID-compliant vendor-defined device                            HID\VID_19F7&amp;PID_0037&amp;MI_09\9&amp;32867F9D&amp;0&amp;0000                                                                                   <br />
+                AMD PCI Express Downstream Switch Port                         PCI\VEN_1002&amp;DEV_1479&amp;SUBSYS_14791002&amp;REV_00\5&amp;22FFB77C&amp;0&amp;000009                                                                <br />
+                PCI Express Downstream Switch Port                             PCI\VEN_1022&amp;DEV_57A3&amp;SUBSYS_88151043&amp;REV_00\5&amp;262EF69D&amp;0&amp;180009                                                                <br />
+                Generic USB Hub                                                USB\VID_05E3&amp;PID_0608\8&amp;3895167B&amp;0&amp;1                                                                                            <br />
+                Communications Port (COM1)                                     ACPI\PNP0501\0                                                                                                                  <br />
+                Communications Port (COM2)                                     ACPI\PNP0501\1                                                                                                                  <br />
+                Volume                                                         STORAGE\VOLUME{F291BEFB-2745-11EE-B339-806E6F6E6963}#000001D196600000                                                          <br />
+                Microsoft Kernel Debug Network Adapter                         ROOT\KDNIC\0000                                                                                                                 <br />
+                MX Master 2S                                                   BTHLE\DEV_F90C08EFEF72\A&amp;21DD107&amp;0&amp;F90C08EFEF72                                                                                 <br />
+                Standard NVM Express Controller                                PCI\VEN_144D&amp;DEV_A808&amp;SUBSYS_A801144D&amp;REV_00\4&amp;295D9FAD&amp;0&amp;0009                                                                  <br />
+                Generic volume shadow copy                                     STORAGE\VOLUMESNAPSHOT\HARDDISKVOLUMESNAPSHOT1                                                                                  <br />
+                Generic volume shadow copy                                     STORAGE\VOLUMESNAPSHOT\HARDDISKVOLUMESNAPSHOT2                                                                                  <br />
+                Generic volume shadow copy                                     STORAGE\VOLUMESNAPSHOT\HARDDISKVOLUMESNAPSHOT3                                                                                  <br />
+                Generic volume shadow copy                                     STORAGE\VOLUMESNAPSHOT\HARDDISKVOLUMESNAPSHOT4                                                                                  <br />
+                Generic volume shadow copy                                     STORAGE\VOLUMESNAPSHOT\HARDDISKVOLUMESNAPSHOT5                                                                                  <br />
+                Generic volume shadow copy                                     STORAGE\VOLUMESNAPSHOT\HARDDISKVOLUMESNAPSHOT6                                                                                  <br />
+                Generic volume shadow copy                                     STORAGE\VOLUMESNAPSHOT\HARDDISKVOLUMESNAPSHOT7                                                                                  <br />
+                Generic volume shadow copy                                     STORAGE\VOLUMESNAPSHOT\HARDDISKVOLUMESNAPSHOT8                                                                                  <br />
+                Generic volume shadow copy                                     STORAGE\VOLUMESNAPSHOT\HARDDISKVOLUMESNAPSHOT9                                                                                  <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1480&amp;SUBSYS_88151043&amp;REV_00\3&amp;11583659&amp;0&amp;00                                                                    <br />
+                USB Input Device                                               USB\VID_256F&amp;PID_C652&amp;MI_02\8&amp;2038A7E2&amp;0&amp;0002                                                                                   <br />
+                System speaker                                                 ACPI\PNP0800\4&amp;FB1875&amp;0                                                                                                         <br />
+                AMD Streaming Audio Device                                     ROOT\AMDSAFD&amp;FUN_01&amp;REV_01\0000                                                                                                 <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\10                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\11                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\12                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\13                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\14                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\15                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\16                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\17                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\18                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\19                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\1A                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\1B                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\1C                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\1D                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\1E                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\1F                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\20                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\21                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\22                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\23                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\24                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\25                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\26                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\27                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\28                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\29                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\2A                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\2B                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\2C                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\2D                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\2E                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\2F                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\30                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\31                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\32                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\33                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\34                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\35                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\36                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\37                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\38                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\39                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\3A                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\3B                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\3C                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\3D                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\3E                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\3F                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\40                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\41                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\42                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\43                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\44                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\45                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\46                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\47                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\48                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\49                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\4A                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\4B                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\4C                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\4D                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\4E                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\4F                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\50                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\51                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\52                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\53                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\54                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\55                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\56                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\57                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\58                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\59                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\5A                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\5B                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\5C                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\5D                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\5E                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\5F                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\60                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\61                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\62                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\63                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\64                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\65                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\66                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\67                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\68                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\69                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\6A                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\6B                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\6C                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\6D                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\6E                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\6F                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\70                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\71                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\72                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\73                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\74                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\75                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\76                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\77                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\78                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\79                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\7A                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\7B                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\7C                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\7D                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\7E                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES_____\7F                               <br />
+                Seagate FireCuda 530 ZP2000GM30013                             SCSI\DISK&amp;VEN_NVME&amp;PROD_SEAGATE_FIRECUDA\5&amp;181297EC&amp;0&amp;000000                                                                    <br />
+                Generic SuperSpeed USB Hub                                     USB\VID_2109&amp;PID_0822\9&amp;15316C63&amp;0&amp;1                                                                                            <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES______0                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES______1                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES______2                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES______3                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES______4                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES______5                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES______6                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES______7                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES______8                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES______9                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES______A                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES______B                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES______C                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES______D                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES______E                               <br />
+                AMD Ryzen Threadripper PRO 3995WX 64-Cores                     ACPI\AUTHENTICAMD</em>-<em>AMD64_FAMILY_23_MODEL_49</em>-<em>AMD_RYZEN_THREADRIPPER_PRO_3995WX_64-CORES______F                               <br />
+                Standard SATA AHCI Controller                                  PCI\VEN_1022&amp;DEV_7901&amp;SUBSYS_79011022&amp;REV_51\6&amp;B89A885&amp;0&amp;00500009                                                               <br />
+                Volume                                                         STORAGE\VOLUME_??_USBSTOR#DISK&amp;VEN_GENERIC&amp;PROD_MASS-STORAGE&amp;REV_1.11#9&amp;13449824&amp;0#{53F56307-B6BF-11D0-94F2-00A0C91EFB8B}      <br />
+                PCI Express Root Port                                          PCI\VEN_1022&amp;DEV_1484&amp;SUBSYS_88151043&amp;REV_00\3&amp;36CB97A3&amp;0&amp;39                                                                    <br />
+                PCI Express Root Port                                          PCI\VEN_1022&amp;DEV_1484&amp;SUBSYS_88151043&amp;REV_00\3&amp;36CB97A3&amp;0&amp;41                                                                    <br />
+                HID Keyboard Device                                            HID\VID_145F&amp;PID_01AD&amp;MI_01\B&amp;2032B60B&amp;0&amp;0000                                                                                   <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1496&amp;SUBSYS_00000000&amp;REV_00\3&amp;11583659&amp;0&amp;C6                                                                    <br />
+                AMD SMBus                                                      PCI\VEN_1022&amp;DEV_790B&amp;SUBSYS_88151043&amp;REV_61\3&amp;11583659&amp;0&amp;A0                                                                    <br />
+                OTA1                                                           BTHENUM{66666666-6666-6666-6666-666666666666}_LOCALMFG&amp;0002\A&amp;18D31A6F&amp;0&amp;9505BB2AED2F_C00000000                                <br />
+                AMD PCI                                                        PCI\VEN_1022&amp;DEV_148A&amp;SUBSYS_88151043&amp;REV_00\4&amp;5617F6B&amp;0&amp;0039                                                                   <br />
+                Device Firmware                                                UEFI\RES</em>{F5536E63-E4C0-4E0D-84D4-E8E152B1BA65}\0                                                                               <br />
+                USB Input Device                                               USB\VID_19F7&amp;PID_0037&amp;MI_09\8&amp;297FED45&amp;0&amp;0009                                                                                   <br />
+                PCI Express Downstream Switch Port                             PCI\VEN_1022&amp;DEV_57A3&amp;SUBSYS_88151043&amp;REV_00\5&amp;262EF69D&amp;0&amp;280009                                                                <br />
+                Soundcore Life Q20                                             BTHENUM{0000110B-0000-1000-8000-00805F9B34FB}<em>LOCALMFG&amp;0002\A&amp;18D31A6F&amp;0&amp;9505BB2AED2F_C00000000                                <br />
+                Volume                                                         STORAGE\VOLUME{50DF6D16-27A9-11EE-B344-806E6F6E6963}#0000000000100000                                                          <br />
+                AMD PCI                                                        PCI\VEN_1022&amp;DEV_1485&amp;SUBSYS_88151043&amp;REV_00\6&amp;333648BD&amp;0&amp;00400009                                                              <br />
+                Bluetooth Low Energy GATT compliant HID device                 BTHLEDEVICE{00001812-0000-1000-8000-00805F9B34FB}_DEV_VID&amp;02046D_PID&amp;B019_REV&amp;0003_F90C08EFEF72\B&amp;25E608E7&amp;0&amp;001F              <br />
+                Volume                                                         STORAGE\VOLUME{F291BEFB-2745-11EE-B339-806E6F6E6963}#0000000006500000                                                          <br />
+                Facial Recognition (Windows Hello) Software Device             ROOT\WINDOWSHELLOFACESOFTWAREDRIVER\0000                                                                                        <br />
+                USB Root Hub (USB 3.0)                                         USB\ROOT_HUB30\5&amp;226885E0&amp;0&amp;0                                                                                                   <br />
+                Generic SuperSpeed USB Hub                                     USB\VID_05E3&amp;PID_0617\6&amp;165D8BC3&amp;0&amp;3                                                                                            <br />
+                Standard SATA AHCI Controller                                  PCI\VEN_1B21&amp;DEV_0612&amp;SUBSYS_858D1043&amp;REV_02\6&amp;1B028ED9&amp;0&amp;00200009                                                              <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;11583659&amp;0&amp;08                                                                    <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;11583659&amp;0&amp;10                                                                    <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;11583659&amp;0&amp;18                                                                    <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;11583659&amp;0&amp;20                                                                    <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;11583659&amp;0&amp;28                                                                    <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;11583659&amp;0&amp;38                                                                    <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;11583659&amp;0&amp;40                                                                    <br />
+                PCI Express Upstream Switch Port                               PCI\VEN_1022&amp;DEV_57AD&amp;SUBSYS_00000000&amp;REV_00\4&amp;3756E7E5&amp;0&amp;0009                                                                  <br />
+                Cam Link Pro Audio-1 (Cam Link Pro)                            SWD\MMDEVAPI{0.0.1.00000000}.{6F7CD75D-F744-42F6-880A-AEEDAF382B53}                                                            <br />
+                Linux File-Stor Gadget USB Device                              USBSTOR\DISK&amp;VEN_LINUX&amp;PROD_FILE-STOR_GADGET&amp;REV_0510\9&amp;EAF41DB&amp;0&amp;GV0074513&amp;0                                                   <br />
+                Blackmagic Design                                              USB\VID_1EDB&amp;PID_BE55&amp;MI_06\7&amp;8C7F463&amp;0&amp;0006                                                                                    <br />
+                HID-compliant vendor-defined device                            HID\VID_256F&amp;PID_C652&amp;MI_00&amp;COL03\9&amp;11242FBA&amp;0&amp;0002                                                                             <br />
+                Microsoft Bluetooth LE Enumerator                              BTH\MS_BTHLE\9&amp;300E02C6&amp;1&amp;3                                                                                                     <br />
+                Intel(R) Wi-Fi 6 AX200 160MHz                                  PCI\VEN_8086&amp;DEV_2723&amp;SUBSYS_00848086&amp;REV_1A\6&amp;2F72431&amp;0&amp;00180009                                                               <br />
+                Generic SuperSpeed USB Hub                                     USB\VID_2109&amp;PID_0822\8&amp;118DA082&amp;0&amp;9                                                                                            <br />
+                SPDIF Interface (Realtek USB2.0 Audio)                         SWD\MMDEVAPI{0.0.0.00000000}.{F5B8107A-5DAC-44C2-99DE-D5F7C76619D3}                                                            <br />
+                USB Composite Device                                           USB\VID_0FD9&amp;PID_0078\FW15K1A13280                                                                                              <br />
+                USB Root Hub (USB 3.0)                                         USB\ROOT_HUB30\7&amp;751FA84&amp;0&amp;0                                                                                                    <br />
+                Volume                                                         STORAGE\VOLUME{50DF6D19-27A9-11EE-B344-806E6F6E6963}#0000000008100000                                                          <br />
+                UMBus Root Bus Enumerator                                      ROOT\UMBUS\0000                                                                                                                 <br />
+                VoiceMeeter VAIO3 Output (VB-Audio VoiceMeeter VAIO3)          SWD\MMDEVAPI{0.0.1.00000000}.{560126D5-D35A-43CB-A62E-4F1C5F3E225D}                                                            <br />
+                USB Composite Device                                           USB\VID_256F&amp;PID_C652\7&amp;10923DA3&amp;0&amp;2                                                                                            <br />
+                Microphone (Blackmagic Design)                                 SWD\MMDEVAPI{0.0.1.00000000}.{FAC6EFC2-FE61-4229-A67E-E94770D46889}                                                            <br />
+                Volume                                                         STORAGE\VOLUME{50DF6D1C-27A9-11EE-B344-806E6F6E6963}#0000000001100000                                                          <br />
+                Microphone (RODECaster Pro II Main Stereo)                     SWD\MMDEVAPI{0.0.1.00000000}.{E0C7A3E1-FF20-4E72-BA58-5E7BB3F56623}                                                            <br />
+                PCI Express Root Port                                          PCI\VEN_1022&amp;DEV_1484&amp;SUBSYS_88151043&amp;REV_00\3&amp;2411E6FE&amp;0&amp;39                                                                    <br />
+                PCI Express Root Port                                          PCI\VEN_1022&amp;DEV_1484&amp;SUBSYS_88151043&amp;REV_00\3&amp;2411E6FE&amp;0&amp;41                                                                    <br />
+                AMD USB 3.10 eXtensible Host Controller - 1.10 (Microsoft)     PCI\VEN_1022&amp;DEV_148C&amp;SUBSYS_88151043&amp;REV_00\4&amp;13F9FE89&amp;0&amp;0341                                                                  <br />
+                HID-compliant vendor-defined device                            HID\VID_256F&amp;PID_C652&amp;MI_04\9&amp;23E40F37&amp;0&amp;0000                                                                                   <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1493&amp;SUBSYS_00000000&amp;REV_00\3&amp;11583659&amp;0&amp;C3                                                                    <br />
+                HID-compliant game controller                                  HID\3DXKMJ_HIDMINI&amp;COL03\1&amp;2D595CA7&amp;0&amp;0002                                                                                      <br />
+                Generic Attribute Profile                                      BTHLEDEVICE{00001801-0000-1000-8000-00805F9B34FB}_DEV_VID&amp;02046D_PID&amp;B019_REV&amp;0003_F90C08EFEF72\B&amp;25E608E7&amp;0&amp;0008              <br />
+                Microsoft Radio Device Enumeration Bus                         SWD\RADIO{3DB5895D-CC28-44B3-AD3D-6F01A782B8D2}                                                                                <br />
+                AMD PCI                                                        PCI\VEN_1022&amp;DEV_1485&amp;SUBSYS_88151043&amp;REV_00\4&amp;13F9FE89&amp;0&amp;0041                                                                  <br />
+                WiFi                                                           SWD\RADIO{E0852CEB-AC4A-46FC-B2EB-66D6C08E4C0C}                                                                                <br />
+                Blackmagic Design                                              USB\VID_1EDB&amp;PID_BE55&amp;MI_04\7&amp;8C7F463&amp;0&amp;0004                                                                                    <br />
+                INTEL SSDPE21D480GA                                            SCSI\DISK&amp;VEN_NVME&amp;PROD_INTEL_SSDPE21D48\7&amp;D5828E8&amp;0&amp;000000                                                                     <br />
+                USB Input Device                                               USB\VID_145F&amp;PID_01AD&amp;MI_02\A&amp;1CB78090&amp;0&amp;0002                                                                                   <br />
+                Generic volume shadow copy                                     STORAGE\VOLUMESNAPSHOT\HARDDISKVOLUMESNAPSHOT10                                                                                 <br />
+                Generic volume shadow copy                                     STORAGE\VOLUMESNAPSHOT\HARDDISKVOLUMESNAPSHOT11                                                                                 <br />
+                Generic volume shadow copy                                     STORAGE\VOLUMESNAPSHOT\HARDDISKVOLUMESNAPSHOT12                                                                                 <br />
+                Generic volume shadow copy                                     STORAGE\VOLUMESNAPSHOT\HARDDISKVOLUMESNAPSHOT13                                                                                 <br />
+                System board                                                   ACPI\PNP0C01\C8                                                                                                                 <br />
+                HID-compliant vendor-defined device                            HID\VID_056A&amp;PID_037A&amp;COL02\B&amp;1A039BA5&amp;0&amp;0001                                                                                   <br />
+                Microsoft Device Association Root Enumerator                   SWD\MSDAS{CE958E9A-424F-4C88-86F4-11314821E75A}                                                                                <br />
+                ASMedia USB 3.20 eXtensible Host Controller - 1.10 (Microsoft) PCI\VEN_1B21&amp;DEV_3242&amp;SUBSYS_87C11043&amp;REV_00\6&amp;2E030A&amp;0&amp;00080009                                                                <br />
+                ACPI x64-based PC                                              ROOT\ACPI_HAL\0000                                                                                                              <br />
+                HID-compliant vendor-defined device                            HID\VID_046D&amp;PID_C540&amp;MI_01&amp;COL04\9&amp;1FD06D2F&amp;0&amp;0003                                                                             <br />
+                Standard NVM Express Controller                                PCI\VEN_1BB1&amp;DEV_5018&amp;SUBSYS_50181BB1&amp;REV_01\4&amp;64A0BE6&amp;0&amp;0019                                                                   <br />
+                WAN Miniport (Network Monitor)                                 SWD\MSRRAS\MS_NDISWANBH                                                                                                         <br />
+                WAN Miniport (IP)                                              SWD\MSRRAS\MS_NDISWANIP                                                                                                         <br />
+                Microsoft Windows Management Interface for ACPI                ACPI\PNP0C14\AOD                                                                                                                <br />
+                Microsoft Windows Management Interface for ACPI                ACPI\PNP0C14\AWW                                                                                                                <br />
+                PCI Express Root Complex                                       ACPI\PNP0A08\0                                                                                                                  <br />
+                PCI Express Root Complex                                       ACPI\PNP0A08\1                                                                                                                  <br />
+                PCI Express Root Complex                                       ACPI\PNP0A08\2                                                                                                                  <br />
+                PCI Express Root Complex                                       ACPI\PNP0A08\3                                                                                                                  <br />
+                MX Ergo                                                        BTHLE\DEV_E1FDA7388B08\A&amp;21DD107&amp;0&amp;E1FDA7388B08                                                                                 <br />
+                AMD PCI                                                        PCI\VEN_1022&amp;DEV_1485&amp;SUBSYS_88151043&amp;REV_00\4&amp;2A070995&amp;0&amp;0041                                                                  <br />
+                Volume                                                         STORAGE\VOLUME{50DF6D1B-27A9-11EE-B344-806E6F6E6963}#0000000008100000                                                          <br />
+                Standard NVM Express Controller                                PCI\VEN_1BB1&amp;DEV_5018&amp;SUBSYS_50181BB1&amp;REV_01\4&amp;38C08666&amp;0&amp;001C                                                                  <br />
+                USB Input Device                                               USB\VID_256F&amp;PID_C652&amp;MI_03\8&amp;2038A7E2&amp;0&amp;0003                                                                                   <br />
+                MIDI function &#091;0]                                              SWD\MMDEVAPI\MIDII_74A4DB97.P_0000                                                                                              <br />
+                MIDI function &#091;1]                                              SWD\MMDEVAPI\MIDII_74A4DB97.P_0001                                                                                              <br />
+                Microsoft Hyper-V PCI Server                                   ROOT\VPCIVSP\0000                                                                                                               <br />
+                Snagit 2022                                                    SWD\PRINTENUM{1E783454-6A3D-40BA-92C9-530320235962}                                                                            <br />
+                Generic Mass-Storage USB Device                                USBSTOR\DISK&amp;VEN_GENERIC&amp;PROD_MASS-STORAGE&amp;REV_1.11\9&amp;13449824&amp;0                                                                <br />
+                CABLE-A Input (VB-Audio Cable A)                               SWD\MMDEVAPI{0.0.0.00000000}.{6D04B401-A3A9-4A7E-9709-510AF5987911}                                                            <br />
+                Generic USB Hub                                                USB\VID_05E3&amp;PID_0610\6&amp;165D8BC3&amp;0&amp;1                                                                                            <br />
+                USB Input Device                                               USB\VID_0FD9&amp;PID_0078&amp;MI_02\8&amp;994727B&amp;0&amp;0002                                                                                    <br />
+                AMD USB 3.10 eXtensible Host Controller - 1.10 (Microsoft)     PCI\VEN_1022&amp;DEV_149C&amp;SUBSYS_148C1022&amp;REV_00\6&amp;333648BD&amp;0&amp;03400009                                                              <br />
+                ATEM Mini Pro                                                  USB\VID_1EDB&amp;PID_BE55&amp;MI_00\7&amp;8C7F463&amp;0&amp;0000                                                                                    <br />
+                M:\                                                            SWD\WPDBUSENUM_??_USBSTOR#DISK&amp;VEN_LINUX&amp;PROD_FILE-STOR_GADGET&amp;REV_0510#9&amp;EAF41DB&amp;0&amp;GV0074513&amp;0#{53F56307-B6BF-11D0-94F2-00A0C...<br />
+                Microsoft ACPI-Compliant System                                ACPI_HAL\PNP0C08\0                                                                                                              <br />
+                                                                               HTREE\ROOT\0                                                                                                                    <br />
+                Microsoft Basic Render Driver                                  ROOT\BASICRENDER\0000                                                                                                           <br />
+                RODECaster Pro II Chat                                         USB\VID_19F7&amp;PID_0037&amp;MI_00\8&amp;297FED45&amp;0&amp;0000                                                                                   <br />
+                Soundcore Life Q20 Avrcp Transport                             BTHENUM{0000110E-0000-1000-8000-00805F9B34FB}_LOCALMFG&amp;0002\A&amp;18D31A6F&amp;0&amp;9505BB2AED2F_C00000000                                <br />
+                Sony Camera (Imaging Edge)                                     ROOT\IMAGINGEDGEWEBCAM\0000                                                                                                     <br />
+                Microsoft Hardware Error Device                                ACPI\PNP0C33\0                                                                                                                  <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1490&amp;SUBSYS_00000000&amp;REV_00\3&amp;11583659&amp;0&amp;C0                                                                    <br />
+                Razer BlackShark V2 Pro                                        USB\VID_1532&amp;PID_0555&amp;MI_00\A&amp;2951501D&amp;0&amp;0000                                                                                   <br />
+                WAN Miniport (SSTP)                                            SWD\MSRRAS\MS_SSTPMINIPORT                                                                                                      <br />
+                Elgato Facecam                                                 USB\VID_0FD9&amp;PID_0078&amp;MI_00\8&amp;994727B&amp;0&amp;0000                                                                                    <br />
+                VoiceMeeter Output (VB-Audio VoiceMeeter VAIO)                 SWD\MMDEVAPI{0.0.1.00000000}.{5638C529-AA18-437B-8576-E32ED4E91FCB}                                                            <br />
+                Microsoft UEFI-Compliant System                                ACPI_HAL\UEFI\0                                                                                                                 <br />
+                Generic SuperSpeed USB Hub                                     USB\VID_2109&amp;PID_0822\8&amp;194A79D2&amp;0&amp;1                                                                                            <br />
+                Device Information Service                                     BTHLEDEVICE{0000180A-0000-1000-8000-00805F9B34FB}_DEV_VID&amp;02046D_PID&amp;B35B_REV&amp;0013_E8191CB71144\B&amp;259C4587&amp;0&amp;000E              <br />
+                ASMedia USB 3.1 eXtensible Host Controller - 1.10 (Microsoft)  PCI\VEN_1B21&amp;DEV_2142&amp;SUBSYS_21421B21&amp;REV_00\4&amp;381BEC2&amp;0&amp;0019                                                                   <br />
+                Seagate FireCuda 530 ZP1000GM30013                             SCSI\DISK&amp;VEN_NVME&amp;PROD_SEAGATE_FIRECUDA\5&amp;13F20AFD&amp;0&amp;000000                                                                    <br />
+                3Dx_KMJ_01                                                     {6BCEE436-132B-4AD2-BFCC-A3947CE3804F}\3DXKMJ\1&amp;2D595CA7&amp;0&amp;01                                                                   <br />
+                Volume                                                         STORAGE\VOLUME{50DF6D1C-27A9-11EE-B344-806E6F6E6963}#0000000000100000                                                          <br />
+                Speakers (XSplit  Stream  Audio  Renderer)                     SWD\MMDEVAPI{0.0.0.00000000}.{9FEF3846-6C3E-48A1-9F52-D504906BD074}                                                            <br />
+                Microsoft Generic IPMI Compliant Device                        ACPI\IPI0001\0                                                                                                                  <br />
+                Trusted Platform Module 2.0                                    ACPI\MSFT0101\1                                                                                                                 <br />
+                ACPI Fixed Feature Button                                      ACPI\FIXEDBUTTON\2&amp;DABA3FF&amp;0                                                                                                    <br />
+                Intel(R) Wireless Bluetooth(R)                                 USB\VID_8087&amp;PID_0029\8&amp;118DA082&amp;0&amp;6                                                                                            <br />
+                Device Firmware                                                UEFI\RES</em>{F766F6E6-B43D-4ACD-A4BD-80FF2F0AF5CC}\0                                                                               <br />
+                Microsoft Windows Management Interface for ACPI                ACPI\PNP0C14\ASUSBACKUPWMI                                                                                                      <br />
+                USB Mass Storage Device                                        USB\VID_1908&amp;PID_0226\8&amp;947DB3C&amp;0&amp;4                                                                                             <br />
+                Direct memory access controller                                ACPI\PNP0200\4&amp;FB1875&amp;0                                                                                                         <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;3AA59A3&amp;0&amp;08                                                                     <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;3AA59A3&amp;0&amp;10                                                                     <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;3AA59A3&amp;0&amp;18                                                                     <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;3AA59A3&amp;0&amp;20                                                                     <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;3AA59A3&amp;0&amp;28                                                                     <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;3AA59A3&amp;0&amp;38                                                                     <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;3AA59A3&amp;0&amp;40                                                                     <br />
+                Volume                                                         STORAGE\VOLUME{50DF6D18-27A9-11EE-B344-806E6F6E6963}#0000000008100000                                                          <br />
+                CABLE-A Output (VB-Audio Cable A)                              SWD\MMDEVAPI{0.0.1.00000000}.{F5A5185C-D53E-4731-AC42-4E6FA6D4553F}                                                            <br />
+                USB Composite Device                                           USB\VID_1532&amp;PID_0555\O001000007                                                                                                <br />
+                Volume                                                         STORAGE\VOLUME_??<em>USBSTOR#DISK&amp;VEN_LINUX&amp;PROD_FILE-STOR_GADGET&amp;REV_0510#9&amp;EAF41DB&amp;0&amp;GV0074513&amp;0#{53F56307-B6BF-11D0-94F2-00A0C...<br />
+                USB Input Device                                               USB\VID_0B05&amp;PID_1984&amp;MI_07\9&amp;203CC92C&amp;0&amp;0007                                                                                   <br />
+                Volume                                                         STORAGE\VOLUME{50DF6D16-27A9-11EE-B344-806E6F6E6963}#0000000020100000                                                          <br />
+                THX Audio Processing Object Component                          SWD\DRIVERENUM{DD85E149-5EE5-4DC6-B0E7-873753692190}#THXAPOCOMPONENT_119648BC-6ACD-42C4-A0BF-3B389E4C03CC&amp;B&amp;1EA4F99D&amp;0         <br />
+                Volume                                                         STORAGE\VOLUME_??_USBSTOR#DISK&amp;VEN_ZOOM&amp;PROD_H2N_SD_R&amp;W&amp;REV_0.01#000000000000&amp;0#{53F56307-B6BF-11D0-94F2-00A0C91EFB8B}         <br />
+                AMD PSP 11.0 Device                                            PCI\VEN_1022&amp;DEV_1486&amp;SUBSYS_88151043&amp;REV_00\4&amp;21F346C1&amp;0&amp;0141                                                                  <br />
+                Volume                                                         STORAGE\VOLUME_??_USBSTOR#DISK&amp;VEN</em>&amp;PROD_SABRENT_DISK_DEV&amp;REV_0#WD-WMAMAA771258&amp;0#{53F56307-B6BF-11D0-94F2-00A0C91EFB8B}       <br />
+                Standard Serial over Bluetooth link (COM9)                     BTHENUM{00001101-0000-1000-8000-00805F9B34FB}_LOCALMFG&amp;0000\A&amp;2F6FDF65&amp;0&amp;000000000000_00000000                                 <br />
+                Generic USB Hub                                                USB\VID_2109&amp;PID_2822\7&amp;2E5F6FA0&amp;0&amp;4                                                                                            <br />
+                Loupedeck CT                                                   USB\VID_2EC2&amp;PID_0003&amp;MI_02\B&amp;2F4CD955&amp;0&amp;0002                                                                                   <br />
+                HID-compliant pen                                              HID\VID_056A&amp;PID_037A&amp;COL03\B&amp;1A039BA5&amp;0&amp;0002                                                                                   <br />
+                USB Composite Device                                           USB\VID_145F&amp;PID_01AD\9&amp;694A1&amp;0&amp;4                                                                                               <br />
+                Microsoft Windows Management Interface for ACPI                ACPI\PNP0C14\MXM2                                                                                                               <br />
+                Generic SuperSpeed USB Hub                                     USB\VID_2109&amp;PID_0822\8&amp;25F16328&amp;0&amp;1                                                                                            <br />
+                VMware VMCI Host Device                                        ROOT\VMWVMCIHOSTDEV\0000                                                                                                        <br />
+                Cam Link Pro Audio-3 (Cam Link Pro)                            SWD\MMDEVAPI{0.0.1.00000000}.{FA69397A-EA0B-487E-964C-54054AAA6023}                                                            <br />
+                USB Input Device                                               USB\VID_054C&amp;PID_0D68\A&amp;E1410E9&amp;0&amp;3                                                                                             <br />
+                HID-compliant consumer control device                          HID\VID_145F&amp;PID_01AD&amp;MI_02&amp;COL01\B&amp;37F64250&amp;0&amp;0000                                                                             <br />
+                Microsoft ACPI-Compliant Embedded Controller                   ACPI\PNP0C09\4&amp;FB1875&amp;0                                                                                                         <br />
+                PCI Express Root Port                                          PCI\VEN_1022&amp;DEV_1483&amp;SUBSYS_88151043&amp;REV_00\3&amp;36CB97A3&amp;0&amp;09                                                                    <br />
+                Bluetooth LE Generic Attribute Service                         BTHLEDEVICE{0000180F-0000-1000-8000-00805F9B34FB}_DEV_VID&amp;02046D_PID&amp;B35B_REV&amp;0013_E8191CB71144\B&amp;259C4587&amp;0&amp;001D              <br />
+                USB Composite Device                                           USB\VID_0B05&amp;PID_1984\8&amp;3895167B&amp;0&amp;6                                                                                            <br />
+                Samsung SSD 970 EVO Plus 2TB                                   SCSI\DISK&amp;VEN_NVME&amp;PROD_SAMSUNG_SSD_970\5&amp;12E97A59&amp;0&amp;000000                                                                     <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1495&amp;SUBSYS_00000000&amp;REV_00\3&amp;11583659&amp;0&amp;C5                                                                    <br />
+                Microsoft Streaming Quality Manager Proxy                      SW{DDF4358E-BB2C-11D0-A42F-00A0C9223196}{97EBAACB-95BD-11D0-A3EA-00A0C9223196}                                                <br />
+                USB Input Device                                               USB\VID_256F&amp;PID_C652&amp;MI_04\8&amp;2038A7E2&amp;0&amp;0004                                                                                   <br />
+                Volume                                                         STORAGE\VOLUME{50DF6D1A-27A9-11EE-B344-806E6F6E6963}#0000000008100000                                                          <br />
+                HID Keyboard Device                                            HID\VID_046D&amp;PID_C540&amp;MI_00\9&amp;3300896D&amp;0&amp;0000                                                                                   <br />
+                Generic Monitor (LC49G95T)                                     DISPLAY\SAM7053\7&amp;1343A6A2&amp;0&amp;UID256                                                                                             <br />
+                Cam Link Pro Audio-4 (Cam Link Pro)                            SWD\MMDEVAPI{0.0.1.00000000}.{3A8448C2-368B-47A1-B48D-AC9E00096EDE}                                                            <br />
+                Xvdd SCSI Miniport                                             SWD\XVDDENUM\XVDDROOTDEVICE_INSTANCE                                                                                            <br />
+                ASUS System Product Name                                       SWD\COMPUTER\MFG_ASUS&amp;FAM_TO_BE_FILLED_BY_O.E.M.&amp;PROD_SYSTEM_PRODUCT_NAME&amp;SKU_SKU                                               <br />
+                Microsoft GS Wavetable Synth                                   SWD\MMDEVAPI\MICROSOFTGSWAVETABLESYNTH                                                                                          <br />
+                Volume                                                         STORAGE\VOLUME{50DF6D19-27A9-11EE-B344-806E6F6E6963}#0000000000100000                                                          <br />
+                ACPI Power Button                                              ACPI\PNP0C0C\AA                                                                                                                 <br />
+                USB Input Device                                               USB\VID_046D&amp;PID_C540&amp;MI_02\8&amp;6B7B437&amp;0&amp;0002                                                                                    <br />
+                Programmable interrupt controller                              ACPI\PNP0000\4&amp;FB1875&amp;0                                                                                                         <br />
+                Smart Card Device Enumeration Bus                              SWD\SCDEVICEENUMBUS\0                                                                                                           <br />
+                Microsoft Passport Container Enumeration Bus                   SWD\SCDEVICEENUMBUS\1                                                                                                           <br />
+                Microsoft Bluetooth Enumerator                                 BTH\MS_BTHBRB\9&amp;300E02C6&amp;1&amp;1                                                                                                    <br />
+                AMD PCI Express Upstream Switch Port                           PCI\VEN_1002&amp;DEV_1478&amp;SUBSYS_00000000&amp;REV_C0\4&amp;3A1F3509&amp;0&amp;0009                                                                  <br />
+                Standard NVM Express Controller                                PCI\VEN_1BB1&amp;DEV_5018&amp;SUBSYS_50181BB1&amp;REV_01\4&amp;134D251C&amp;0&amp;001A                                                                  <br />
+                Soundcore Life Q20                                             BTHENUM\DEV_9505BB2AED2F\A&amp;18D31A6F&amp;0&amp;BLUETOOTHDEVICE_9505BB2AED2F                                                              <br />
+                Soundcore Life Q20 Hands-Free AG                               BTHENUM{0000111E-0000-1000-8000-00805F9B34FB}_LOCALMFG&amp;0002\A&amp;18D31A6F&amp;0&amp;9505BB2AED2F_C00000000                                <br />
+                Generic USB Hub                                                USB\VID_2109&amp;PID_2822\9&amp;1132DAE4&amp;0&amp;1                                                                                            <br />
+                USB Input Device                                               USB\VID_046D&amp;PID_C540&amp;MI_01\8&amp;6B7B437&amp;0&amp;0001                                                                                    <br />
+                MIDI function                                                  USB\VID_19F7&amp;PID_0037&amp;MI_06\8&amp;297FED45&amp;0&amp;0006                                                                                   <br />
+                Generic USB Hub                                                USB\VID_2109&amp;PID_2822\8&amp;947DB3C&amp;0&amp;1                                                                                             <br />
+                AnyDesk Printer                                                SWD\PRINTENUM{DA4F7664-AD9B-4EB6-AAB2-58DE756F8C2F}                                                                            <br />
+                PCI Express Downstream Switch Port                             PCI\VEN_1022&amp;DEV_57A4&amp;SUBSYS_88151043&amp;REV_00\5&amp;262EF69D&amp;0&amp;400009                                                                <br />
+                Standard NVM Express Controller                                PCI\VEN_1BB1&amp;DEV_5018&amp;SUBSYS_50181BB1&amp;REV_01\4&amp;22DBD33C&amp;0&amp;000A                                                                  <br />
+                USB Input Device                                               USB\VID_046D&amp;PID_C540&amp;MI_00\8&amp;6B7B437&amp;0&amp;0000                                                                                    <br />
+                AMD Crash Defender                                             ROOT\AMDLOG\0000                                                                                                                <br />
+                Synology Virtual USB Hub                                       ROOT\USB\0000                                                                                                                   <br />
+                Bluetooth                                                      SWD\RADIO\BLUETOOTH_BCF1716E2AE3                                                                                                <br />
+                Device Information Service                                     BTHLEDEVICE{0000180A-0000-1000-8000-00805F9B34FB}_DEV_VID&amp;02046D_PID&amp;B01D_REV&amp;0016_E1FDA7388B08\B&amp;30F7AE98&amp;0&amp;000C              <br />
+                NDIS Virtual Network Adapter Enumerator                        ROOT\NDISVIRTUALBUS\0000                                                                                                        <br />
+                System CMOS/real time clock                                    ACPI\PNP0B00\4&amp;FB1875&amp;0                                                                                                         <br />
+                AMD I2C Controller                                             ACPI\AMDI0010\1                                                                                                                 <br />
+                HID-compliant vendor-defined device                            HID\VID_256F&amp;PID_C652&amp;MI_03\9&amp;57454F2&amp;0&amp;0000                                                                                    <br />
+                Seagate FireCuda 530 ZP1000GM30013                             SCSI\DISK&amp;VEN_NVME&amp;PROD_SEAGATE_FIRECUDA\5&amp;145B4681&amp;0&amp;000000                                                                    <br />
+                Microphone (RODECaster Pro II Chat)                            SWD\MMDEVAPI{0.0.1.00000000}.{6D7C2B33-12EB-4958-8AD3-A083737F8903}                                                            <br />
+                High Definition Audio Bus                                      PCI\VEN_1002&amp;DEV_AB28&amp;SUBSYS_AB281002&amp;REV_00\6&amp;18445A1E&amp;0&amp;01000009                                                              <br />
+                AMD PCI                                                        PCI\VEN_1022&amp;DEV_148A&amp;SUBSYS_88151043&amp;REV_00\4&amp;41F95A5&amp;0&amp;0039                                                                   <br />
+                USB Composite Device                                           USB\VID_2EC2&amp;PID_0003\LDD1903013121240700932B0018                                                                               <br />
+                Configuration                                                  SWD\MMDEVAPI\MIDII_62A510CD.P_0000                                                                                              <br />
+                CDC DATA interface                                             SWD\MMDEVAPI\MIDII_62A510CD.P_0001                                                                                              <br />
+                USB Root Hub (USB 3.0)                                         USB\ROOT_HUB30\7&amp;27488104&amp;0&amp;0                                                                                                   <br />
+                Volume                                                         STORAGE\VOLUME{50DF6D17-27A9-11EE-B344-806E6F6E6963}#0000000000004400                                                          <br />
+                PCI Express Root Port                                          PCI\VEN_1022&amp;DEV_1483&amp;SUBSYS_88151043&amp;REV_00\3&amp;2411E6FE&amp;0&amp;09                                                                    <br />
+                PCI Express Root Port                                          PCI\VEN_1022&amp;DEV_1483&amp;SUBSYS_88151043&amp;REV_00\3&amp;2411E6FE&amp;0&amp;0A                                                                    <br />
+                PCI Express Root Port                                          PCI\VEN_1022&amp;DEV_1483&amp;SUBSYS_88151043&amp;REV_00\3&amp;2411E6FE&amp;0&amp;19                                                                    <br />
+                PCI Express Root Port                                          PCI\VEN_1022&amp;DEV_1483&amp;SUBSYS_88151043&amp;REV_00\3&amp;2411E6FE&amp;0&amp;1A                                                                    <br />
+                PCI Express Root Port                                          PCI\VEN_1022&amp;DEV_1483&amp;SUBSYS_88151043&amp;REV_00\3&amp;2411E6FE&amp;0&amp;1B                                                                    <br />
+                PCI Express Root Port                                          PCI\VEN_1022&amp;DEV_1483&amp;SUBSYS_88151043&amp;REV_00\3&amp;2411E6FE&amp;0&amp;1C                                                                    <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1480&amp;SUBSYS_88151043&amp;REV_00\3&amp;36CB97A3&amp;0&amp;00                                                                    <br />
+                Generic Access Profile                                         BTHLEDEVICE{00001800-0000-1000-8000-00805F9B34FB}_DEV_VID&amp;02046D_PID&amp;B35B_REV&amp;0013_E8191CB71144\B&amp;259C4587&amp;0&amp;0001              <br />
+                HID-compliant consumer control device                          HID\VID_0FD9&amp;PID_006C\A&amp;35A672E8&amp;0&amp;0000                                                                                         <br />
+                Volume                                                         STORAGE\VOLUME{50DF6D1B-27A9-11EE-B344-806E6F6E6963}#0000000000100000                                                          <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1492&amp;SUBSYS_00000000&amp;REV_00\3&amp;11583659&amp;0&amp;C2                                                                    <br />
+                VoiceMeeter VAIO3 Input (VB-Audio VoiceMeeter VAIO3)           SWD\MMDEVAPI{0.0.0.00000000}.{8E6EFACF-44A6-4C69-8A3B-DDDCA7E987DB}                                                            <br />
+                Bluetooth LE Generic Attribute Service                         BTHLEDEVICE{00010000-0000-1000-8000-011F2000046D}_DEV_VID&amp;02046D_PID&amp;B35B_REV&amp;0013_E8191CB71144\B&amp;259C4587&amp;0&amp;0048              <br />
+                AMD-OpenCL User Mode Driver                                    SWD\DRIVERENUM\AMDOCL&amp;7&amp;1343A6A2&amp;0                                                                                              <br />
+                Bluetooth Device (RFCOMM Protocol TDI)                         BTH\MS_RFCOMM\9&amp;300E02C6&amp;1&amp;0                                                                                                    <br />
+                Generic USB Hub                                                USB\VID_2109&amp;PID_2822\8&amp;118DA082&amp;0&amp;1                                                                                            <br />
+                Bluetooth Device (Personal Area Network) #4                    BTH\MS_BTHPAN\9&amp;300E02C6&amp;1&amp;2                                                                                                    <br />
+                PCI Express Root Port                                          PCI\VEN_1022&amp;DEV_1484&amp;SUBSYS_88151043&amp;REV_00\3&amp;11583659&amp;0&amp;39                                                                    <br />
+                PCI Express Root Port                                          PCI\VEN_1022&amp;DEV_1484&amp;SUBSYS_88151043&amp;REV_00\3&amp;11583659&amp;0&amp;41                                                                    <br />
+                USB Root Hub (USB 3.0)                                         USB\ROOT_HUB30\5&amp;3AD7BCDA&amp;0&amp;0                                                                                                   <br />
+                Motherboard resources                                          ACPI\PNP0C02\700                                                                                                                <br />
+                USB Mass Storage Device                                        USB\VID_1686&amp;PID_0180\000000000000                                                                                              <br />
+                H:\                                                            SWD\WPDBUSENUM_??_USBSTOR#DISK&amp;VEN_GENERIC&amp;PROD_MASS-STORAGE&amp;REV_1.11#9&amp;13449824&amp;0#{53F56307-B6BF-11D0-94F2-00A0C91EFB8B}      <br />
+                AMD-Dynamic Audio Noise Supression                             SWD\DRIVERENUM\AMDFDANS&amp;7&amp;1343A6A2&amp;0                                                                                            <br />
+                HID-compliant consumer control device                          HID\VID_1532&amp;PID_0555&amp;MI_03&amp;COL01\B&amp;3A3A8316&amp;0&amp;0000                                                                             <br />
+                PCI Express Downstream Switch Port                             PCI\VEN_1022&amp;DEV_57A4&amp;SUBSYS_88151043&amp;REV_00\5&amp;262EF69D&amp;0&amp;500009                                                                <br />
+                HID-compliant mouse                                            HID\VID_046D&amp;PID_C540&amp;MI_01&amp;COL01\9&amp;1FD06D2F&amp;0&amp;0000                                                                             <br />
+                HID-compliant vendor-defined device                            HID\VID_0FD9&amp;PID_0078&amp;MI_02\9&amp;2906C35E&amp;0&amp;0000                                                                                   <br />
+                HID-compliant digitizer                                        HID\VID_056A&amp;PID_037A&amp;COL04\B&amp;1A039BA5&amp;0&amp;0003                                                                                   <br />
+                USB Mass Storage Device                                        USB\VID_174C&amp;PID_55AA\WD-WMAMAA771258                                                                                           <br />
+                Microsoft System Management BIOS Driver                        ROOT\MSSMBIOS\0000                                                                                                              <br />
+                Speakers (RODECaster Pro II Main Stereo)                       SWD\MMDEVAPI{0.0.0.00000000}.{29FB0307-3A70-4C35-B42A-D2027A2AB975}                                                            <br />
+                HID-compliant vendor-defined device                            HID\VID_145F&amp;PID_01AD&amp;MI_02&amp;COL02\B&amp;37F64250&amp;0&amp;0001                                                                             <br />
+                Bluetooth LE Generic Attribute Service                         BTHLEDEVICE{0000180F-0000-1000-8000-00805F9B34FB}_DEV_VID&amp;02046D_PID&amp;B01D_REV&amp;0016_E1FDA7388B08\B&amp;30F7AE98&amp;0&amp;001B              <br />
+                Microsoft Streaming Clock Proxy                                SW{97EBAACC-95BD-11D0-A3EA-00A0C9223196}{53172480-4791-11D0-A5D6-28DB04C10000}                                                <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;36CB97A3&amp;0&amp;08                                                                    <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;36CB97A3&amp;0&amp;10                                                                    <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;36CB97A3&amp;0&amp;18                                                                    <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;36CB97A3&amp;0&amp;20                                                                    <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;36CB97A3&amp;0&amp;28                                                                    <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;36CB97A3&amp;0&amp;38                                                                    <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1482&amp;SUBSYS_00000000&amp;REV_00\3&amp;36CB97A3&amp;0&amp;40                                                                    <br />
+                AMD High Definition Audio Device                               HDAUDIO\FUNC_01&amp;VEN_1002&amp;DEV_AA01&amp;SUBSYS_00AA0100&amp;REV_1008\7&amp;113A8762&amp;0&amp;0001                                                    <br />
+                USB Input Device                                               USB\VID_256F&amp;PID_C652&amp;MI_00\8&amp;2038A7E2&amp;0&amp;0000                                                                                   <br />
+                AMD PCI                                                        PCI\VEN_1022&amp;DEV_1485&amp;SUBSYS_88151043&amp;REV_00\4&amp;3ABF7A39&amp;0&amp;0041                                                                  <br />
+                Volume                                                         STORAGE\VOLUME{50DF6D17-27A9-11EE-B344-806E6F6E6963}#0000000001000000                                                          <br />
+                USB Input Device                                               USB\VID_0FD9&amp;PID_006C\CL13K1A05274                                                                                              <br />
+                USB Input Device                                               USB\VID_0FD9&amp;PID_006C\CL13K1A05278                                                                                              <br />
+                Windows Hello for Business 1                                   SWD\NGCDEVICEENUM{9E7B42E6-72F2-4747-B120-D7F9A5EB5B3C}                                                                        <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1480&amp;SUBSYS_88151043&amp;REV_00\3&amp;2411E6FE&amp;0&amp;00                                                                    <br />
+                AMD USB 3.10 eXtensible Host Controller - 1.10 (Microsoft)     PCI\VEN_1022&amp;DEV_148C&amp;SUBSYS_88151043&amp;REV_00\4&amp;21F346C1&amp;0&amp;0341                                                                  <br />
+                THX Spatial                                                    ROOT\RZTHXSPATIAL\0001                                                                                                          <br />
+                Plug and Play Software Device Enumerator                       ROOT\SYSTEM\0000                                                                                                                <br />
+                PCI Express Root Port                                          PCI\VEN_1022&amp;DEV_1484&amp;SUBSYS_88151043&amp;REV_00\3&amp;3AA59A3&amp;0&amp;39                                                                     <br />
+                PCI Express Root Port                                          PCI\VEN_1022&amp;DEV_1484&amp;SUBSYS_88151043&amp;REV_00\3&amp;3AA59A3&amp;0&amp;41                                                                     <br />
+                Generic SuperSpeed USB Hub                                     USB\VID_2109&amp;PID_0822\9&amp;18B4FC45&amp;0&amp;4                                                                                            <br />
+                AMD PCI                                                        PCI\VEN_1022&amp;DEV_1485&amp;SUBSYS_88151043&amp;REV_00\4&amp;21F346C1&amp;0&amp;0041                                                                  <br />
+                3Dconnexion KMJ Emulator                                       ROOT\HIDCLASS\0000                                                                                                              <br />
+                Remote Desktop Device Redirector Bus                           ROOT\RDPBUS\0000                                                                                                                <br />
+                Volume                                                         STORAGE\VOLUME{50DF6D18-27A9-11EE-B344-806E6F6E6963}#0000000000100000                                                          <br />
+                WAN Miniport (IPv6)                                            SWD\MSRRAS\MS_NDISWANIPV6                                                                                                       <br />
+                USB Root Hub (USB 3.0)                                         USB\ROOT_HUB30\5&amp;7126A56&amp;0&amp;0                                                                                                    <br />
+                Elgato Virtual Camera                                          ROOT\MEDIA\0000                                                                                                                 <br />
+                VB-Audio VoiceMeeter VAIO                                      ROOT\MEDIA\0003                                                                                                                 <br />
+                VB-Audio VoiceMeeter AUX VAIO                                  ROOT\MEDIA\0004                                                                                                                 <br />
+                VB-Audio VoiceMeeter VAIO3                                     ROOT\MEDIA\0005                                                                                                                 <br />
+                XSplit  Stream  Audio  Renderer                                ROOT\MEDIA\0006                                                                                                                 <br />
+                Broadcaster                                                    ROOT\MEDIA\0007                                                                                                                 <br />
+                VB-Audio Cable A                                               ROOT\MEDIA\0008                                                                                                                 <br />
+                Speakers (THX Spatial Audio)                                   SWD\MMDEVAPI{0.0.0.00000000}.{63F3BA05-16AD-4D78-8673-AAF6C12AAFF2}                                                            <br />
+                PCI standard host CPU bridge                                   PCI\VEN_1022&amp;DEV_1497&amp;SUBSYS_00000000&amp;REV_00\3&amp;11583659&amp;0&amp;C7                                                                    <br />
+                HID-compliant vendor-defined device                            HID\VID_256F&amp;PID_C652&amp;MI_02\9&amp;1D37E137&amp;0&amp;0000                                                                                   <br />
+                HID-compliant mouse                                            HID\VID_145F&amp;PID_01AD&amp;MI_00\B&amp;86F29C6&amp;0&amp;0000                                                                                    <br />
+                Generic USB Hub                                                USB\VID_2109&amp;PID_2822\9&amp;694A1&amp;0&amp;1                                                                                               <br />
+                Bluetooth Low Energy GATT compliant HID device                 BTHLEDEVICE{00001812-0000-1000-8000-00805F9B34FB}_DEV_VID&amp;02046D_PID&amp;B35B_REV&amp;0013_E8191CB71144\B&amp;259C4587&amp;0&amp;0021              <br />
+                Generic SuperSpeed USB Hub                                     USB\VID_2109&amp;PID_0822\MSFT30000000001                                                                                           <br />
+                USB Root Hub (USB 3.0)                                         USB\ROOT_HUB30\7&amp;3461BDDB&amp;0&amp;0                                                                                                   <br />
+                WAN Miniport (L2TP)                                            SWD\MSRRAS\MS_L2TPMINIPORT                                                                                                      <br />
+                Windows Hello for Business 1                                   SWD\SCDEVICEENUM\1_WINDOWS_HELLO_FOR_BUSINESS_1                                                                                 <br />
+                <strong>PCI Express Root Port  **                                        PCI\VEN_1022&amp;DEV_1483&amp;SUBSYS_88151043&amp;REV_00\3&amp;3AA59A3&amp;0&amp;09                                                                     <br />
+                </strong>PCI Express Root Port  **                                        PCI\VEN_1022&amp;DEV_1483&amp;SUBSYS_88151043&amp;REV_00\3&amp;3AA59A3&amp;0&amp;19                                                                       </p>
+                <p>thanks<br />
+                https:&#047;&#047;superuser.com/questions/1014635/powershell-script-to-export-all-devices-in-device-manager-as-tree-or-list`</p>
+                <p>![[optimize-workstation-startup-30.png]]</p>
+                <p>error comes from the root port &gt; wrong usb cabling ?</p>
+                <p>![[optimize-workstation-startup-31.png]]</p>
+                <p>![[optimize-workstation-startup-32.png]]</p>
+                <p>![[optimize-workstation-startup-33.png]]</p>
+                <p>![[optimize-workstation-startup-34.png]]</p>
+                <p>![[optimize-workstation-startup-35.png]]</p>
+                <p>![[optimize-workstation-startup-36.png]]</p>
+                <p>![[optimize-workstation-startup-37.png]]</p>
+                <p>![[optimize-workstation-startup-38.png]]</p>
+                <p>![[optimize-workstation-startup-39.png]]</p>
+                <p>![[optimize-workstation-startup-40.png]]</p>
+                <p>![[optimize-workstation-startup-41.png]]</p>
+                <p>after the restart it is much faster</p>
+                <p>![[optimize-workstation-startup-42.png]]</p>
+                <p>at start avoid connecting to online apps maybe make a delayed start for them</p>
+                <p>![[optimize-workstation-startup-43.png]]</p>
+                <p><strong>retest </strong>and <strong>reboot</strong> &gt;&gt; root pci port is with the amd &gt;&gt;&gt; and integration to windows.</p>
+                <p>felt faster &gt;&gt;&gt; the output is not there from the system care &gt; maybe it is daily.</p>
+                <p>![[optimize-workstation-startup-44.png]]</p>
+                <p>it is not stable i guess it is the internet connecting apps</p>
+                <p>![[optimize-workstation-startup-45.png]]</p>
+                <p>3 more to optimize</p>
+                <p>![[optimize-workstation-startup-46.png]]</p>
+                <p>Blackmagic not there</p>
+                <p>![[optimize-workstation-startup-47.png]]</p>
+                <p>4k link insta not there</p>
+                <p>main motherbor bottom to top move for insta direct</p>
+                <p>![[optimize-workstation-startup-48.png]]</p>
+                <p>now it is back </p>
+                <p>![[optimize-workstation-startup-49.png]]</p>
+                <p>usb a s are failing</p>
+                <p>![[optimize-workstation-startup-50.png]]</p>
+                <p>it would be the cable jump as well </p>
+                <p>more direct cables needed</p>
+                <p>![[optimize-workstation-startup-51.png]]</p>
+                <p>black magic might also need the direct cable so x2 to reach the system</p>
+                <p>Probably over the pci allowed connection to direct motherboard that is also limited.</p>
+                <p>![[optimize-workstation-startup-52.png]]</p>
+                <p>![[optimize-workstation-startup-53.png]]</p>
+                <hr />
+                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

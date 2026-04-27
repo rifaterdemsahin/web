@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FTP upload the footages to NAS - Rifat Erdem Sahin</title>
+    <meta name="description" content="FTP upload the footages to NAS Objective &gt; Automate the video production workflow Key Results &gt; Backup footages to nas Key Results &gt; one press push the footages Key Result &gt; Auto upload to">
+    <meta name="keywords" content="FTP upload the footages to NAS">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2023/08/01/ftp-upload-the-footages-to-nas/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2023/08/01/ftp-upload-the-footages-to-nas/">
+    <meta property="og:title" content="FTP upload the footages to NAS">
+    <meta property="og:description" content="FTP upload the footages to NAS Objective &gt; Automate the video production workflow Key Results &gt; Backup footages to nas Key Results &gt; one press push the footages Key Result &gt; Auto upload to">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2023/08/01/ftp-upload-the-footages-to-nas/">
+    <meta property="twitter:title" content="FTP upload the footages to NAS">
+    <meta property="twitter:description" content="FTP upload the footages to NAS Objective &gt; Automate the video production workflow Key Results &gt; Backup footages to nas Key Results &gt; one press push the footages Key Result &gt; Auto upload to">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "FTP upload the footages to NAS",
+      "description": "FTP upload the footages to NAS Objective &gt; Automate the video production workflow Key Results &gt; Backup footages to nas Key Results &gt; one press push the footages Key Result &gt; Auto upload to",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2023-08-01",
+      "dateModified": "2023-08-01",
+      "url": "https://www.rifaterdemsahin.com/2023/08/01/ftp-upload-the-footages-to-nas/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2023/08/01/ftp-upload-the-footages-to-nas/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">FTP upload the footages to NAS</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>August 1, 2023</span>
+                    <span>&bull;</span>
+                    <span>4 min read</span>
+                </div>
+                <p class="article-excerpt">FTP upload the footages to NAS Objective &gt; Automate the video production workflow Key Results &gt; Backup footages to nas Key Results &gt; one press push the footages Key Result &gt; Auto upload to Google Drive ( Synology Cloud backup ) Options 1&gt; Do it with powershell Opti</p>
+            </header>
+            <article class="article-content">
+                <h1>FTP upload the footages to NAS</h1>
+                <p><strong>Objective </strong>&gt; Automate the video production workflow</p>
+                <p><strong>Key Results &gt;</strong> Backup footages to nas</p>
+                <p><strong>Key Results &gt; </strong>one press push the footages</p>
+                <p><strong>Key Result &gt; </strong>Auto upload to Google Drive ( Synology Cloud backup )</p>
+                <p>Options  1&gt; Do it with powershell</p>
+                <p>Options 2 &gt; Do iut with synology client who has the automation and the backup</p>
+                <p>![[ftp-upload-the-1.png]]</p>
+                <p>Sync can push it but not implement a business rule to send it to the todays folder</p>
+                <p>![[ftp-upload-the-2.png]]</p>
+                <p>Can my rules change or do they matter ?</p>
+                <p>Why cant i put it a one folder 2023  ? too many files in one folder</p>
+                <p>maybe i can have filter and rules in there ?</p>
+                <p>![[ftp-upload-the-3.png]]</p>
+                <p>Mine is a backup task</p>
+                <p>![[ftp-upload-the-4.png]]</p>
+                <p>Also putting in the machine name as well</p>
+                <p>![[ftp-upload-the-5.png]]</p>
+                <p><strong>Basic rules</strong></p>
+                <p>![[ftp-upload-the-6.png]]</p>
+                <p>https://www.techpout.com/best-file-copy-utility-software/</p>
+                <p>All similar tools can not land the files properly</p>
+                <p>What can my script do &gt; </p>
+                <p><strong>Copy yesterday &gt; to the folder</strong></p>
+                <p><strong>Copy today &gt; to the folder</strong></p>
+                <p><strong>Copy month &gt; to multi folders</strong></p>
+                <p>Lets try with copy today &gt; 9:24 start time</p>
+                <p>![[ftp-upload-the-7.png]]</p>
+                <p><strong>Go to Folder</strong></p>
+                <p>`PS C:\Windows\system32&gt; cd "C:\Users\Pexabo\Videos\"<br />
+                PS C:\Users\Pexabo\Videos&gt;</p>
+                <p>Google 10 tabs<br />
+                `</p>
+                <p>MVP send one file</p>
+                <p>![[ftp-upload-the-8.png]]</p>
+                <p>AI</p>
+                <p>![[ftp-upload-the-9.png]]</p>
+                <p>To copy a file over FTP using PowerShell, you can utilize the built-in FTP functionalities in PowerShell. First, you need to establish an FTP connection by using the New-Object cmdlet to create an instance of the System.Net.WebClient class. Once you have established the FTP connection, you can use the DownloadFile method to download the file from the FTP server to your local machine. Alternatively, you can use the UploadFile method to upload a file from your local machine to the FTP server. Additionally, you can set up a script to automate the process of copying files over FTP, which can save you time and effort in the long run.</p>
+                <p>![[ftp-upload-the-10.png]]</p>
+                <p>Basic test</p>
+                <p>![[ftp-upload-the-11.png]]</p>
+                <p>![[ftp-upload-the-12.png]]</p>
+                <p>![[ftp-upload-the-13.png]]</p>
+                <p>file name has to be correct with folder</p>
+                <p>![[ftp-upload-the-14.png]]</p>
+                <p>removed voluem 5 it did not work</p>
+                <p>![[ftp-upload-the-15.png]]</p>
+                <p>Longer sequence</p>
+                <p>![[ftp-upload-the-16.png]]</p>
+                <p>![[ftp-upload-the-17.png]]</p>
+                <p>Notion rewrite copy clone</p>
+                <p>![[ftp-upload-the-18.png]]</p>
+                <p>file name is the issue</p>
+                <p>![[ftp-upload-the-19.png]]</p>
+                <p>Check errros</p>
+                <p>![[ftp-upload-the-20.png]]</p>
+                <p>No relative paths</p>
+                <p>![[ftp-upload-the-21.png]]</p>
+                <p>25 minutes</p>
+                <p>![[ftp-upload-the-22.png]]</p>
+                <p>Next iteration find all files with a name filter belongss yesterday</p>
+                <p>Make something working</p>
+                <p>![[ftp-upload-the-23.png]]</p>
+                <p>Set the pattern</p>
+                <p>![[ftp-upload-the-24.png]]</p>
+                <p>Find yesterday</p>
+                <p>![[ftp-upload-the-25.png]]</p>
+                <p>Find mp4</p>
+                <p>![[ftp-upload-the-26.png]]</p>
+                <p>Get full path</p>
+                <p>![[ftp-upload-the-27.png]]</p>
+                <p>Remove mkv &gt; they are just for obs</p>
+                <p>![[ftp-upload-the-28.png]]</p>
+                <p>![[ftp-upload-the-29.png]]</p>
+                <p>Create a loop to trigger your code</p>
+                <p>Assign to a list</p>
+                <p>![[ftp-upload-the-30.png]]</p>
+                <p>Test foreach</p>
+                <p>![[ftp-upload-the-31.png]]</p>
+                <p>![[ftp-upload-the-32.png]]</p>
+                <p>Open vs code and put it to a file</p>
+                <p>VSCode and mp4sa not bad</p>
+                <p>![[ftp-upload-the-33.png]]</p>
+                <p><strong>Plays them slowly and the audio is an issue</strong></p>
+                <p>![[ftp-upload-the-34.png]]</p>
+                <p>Create the file</p>
+                <p>![[ftp-upload-the-35.png]]</p>
+                <p>Scripting extensions</p>
+                <p>![[ftp-upload-the-36.png]]</p>
+                <p>Rename to push to the top</p>
+                <p>![[ftp-upload-the-37.png]]</p>
+                <p>Debug and see the property</p>
+                <p>![[ftp-upload-the-38.png]]</p>
+                <p>Resolve path issues</p>
+                <p>![[ftp-upload-the-39.png]]</p>
+                <p>morefilename errors</p>
+                <p>![[ftp-upload-the-40.png]]</p>
+                <p>test different variations</p>
+                <p>![[ftp-upload-the-41.png]]</p>
+                <p><strong>Semblance/Semblance</strong></p>
+                <p>upload from fritst principles and check</p>
+                <p>![[ftp-upload-the-42.png]]</p>
+                <p>![[ftp-upload-the-43.png]]</p>
+                <p>Provided file name was the problem &gt;&gt; so maybe be the ftp system needs to create the file names...</p>
+                <p>![[ftp-upload-the-44.png]]</p>
+                <p>Backup your code</p>
+                <p>Google drive for full text search anbd security </p>
+                <p>![[ftp-upload-the-45.png]]</p>
+                <p>Refactor add the days from the hard coded variable</p>
+                <p>![[ftp-upload-the-46.png]]</p>
+                <p>Test yesterday multiple times</p>
+                <p>![[ftp-upload-the-47.png]]</p>
+                <p>Collect config on the top</p>
+                <p>![[ftp-upload-the-48.png]]</p>
+                <p>Yesterday</p>
+                <p>(Get-Date).AddDays(-1).ToString('yyyy-MM-dd')</p>
+                <p>days go back and try</p>
+                <p>![[ftp-upload-the-49.png]]</p>
+                <p>Zoom meeting or obs is fine ?</p>
+                <p>![[ftp-upload-the-50.png]]</p>
+                <p>End Result Code</p>
+                <p>Write-Host "Process Started for daily recordings"</p>
+                <p>cd "C:\Users\Pexabo\Videos"</p>
+                <p>$myDaysGoBack = 2</p>
+                <p>$myday = (Get-Date).AddDays(-$myDaysGoBack).ToString('dd')</p>
+                <p>$mymonth = (Get-Date).AddDays(-$myDaysGoBack).ToString('MM')</p>
+                <p>$myyear = (Get-Date).AddDays(-$myDaysGoBack).ToString('yyyy')</p>
+                <p>$myserverip = "xxx"</p>
+                <p>$myserverusername = "xxx"</p>
+                <p>$myserverpassword = "xxx"</p>
+                <p>$yesterday = (get-ChildItem "C:\Users\Pexabo\Videos\" -recurse -exclude <em>.mkv | where {$_.name -like "</em>$myyear-$mymonth-$myday*"})</p>
+                <p>Write-Host "Yesterdays recordings"</p>
+                <p>$yesterday</p>
+                <p>if($yesterday -eq $Null)</p>
+                <p>{</p>
+                <p>Write-Host "No videos yesterday"</p>
+                <p>}</p>
+                <p>foreach($myfile in $yesterday)</p>
+                <p>{</p>
+                <pre><code>Write-Host "-----------------------------------------"
+                
+                $myfilepath = $myfile.FullName
+                
+                Write-Host $myfile.FullName " to be processed"
+                
+                $myfilepathshort = $myfile.Name
+                
+                $myfilepathshort =  $myfilepathshort.Replace(" ","_").Trim().Replace("-","_")
+                
+                $ftp = "ftp://$myserverusername`:$myserverpassword@$myserverip/CreativeRepository/VideoClips/$myyear/$mymonth/($myday)/$myfilepathshort";
+                
+                Write-Host -Object "ftp url: $ftp";
+                
+                $webclient = New-Object -TypeName System.Net.WebClient;
+                
+                $uri = New-Object -TypeName System.Uri -ArgumentList $ftp;
+                
+                Write-Host -Object "Uploading file path $myfilepath...";
+                
+                Write-Host -Object "Uploading uri ";
+                
+                $uri
+                
+                $webclient.UploadFile($uri, $myfilepath);
+                
+                Write-Host -Object "Uploaded $myfilepath...";
+                
+                Write-Host "Synology cloud will upload this from the NAS to the cloud"
+                
+                Write-Host "-----------------------------------------"
+                </code></pre>
+                <p>}</p>
+                <p>Write-Host "Process Ended for daily recordings"</p>
+                <p>Next phase use it 2 hour is gone test it with yesterday and think on the other use cases</p>
+                <p>![[ftp-upload-the-51.png]]</p>
+                <p>![[ftp-upload-the-52.png]]</p>
+                <p>![[ftp-upload-the-53.png]]</p>
+                <p>this is an async process here is a sample video</p>
+                <p>Link Word Press</p>
+                <p>https://drive.google.com/file/d/1MNcQnIL3AnvmA-7ecL2wggAgzohOKGIE/view?usp=sharing</p>
+                <p>Embed</p>
+                <p>https://drive.google.com/file/d/1MNcQnIL3AnvmA-7ecL2wggAgzohOKGIE/view?usp=sharing</p>
+                <p>Custom html</p>
+                <p>![[ftp-upload-the-54.png]]</p>
+                <p>Second embed try</p>
+                <p>[googleapps domain="drive" dir="file/d/1MNcQnIL3AnvmA-7ecL2wggAgzohOKGIE/preview" query="" width="640" height="480" /]</p>
+                <p>![[ftp-upload-the-55.png]]</p>
+                <p>![[ftp-upload-the-56.png]]</p>
+                <p>Google Drive embed fails at public view</p>
+                <p>![[ftp-upload-the-57.png]]</p>
+                <p>![[ftp-upload-the-58.png]]</p>
+                <p>https://support.google.com/blogger/thread/73184958/embed-google-drive-video-not-working?hl=en</p>
+                <p>When i wanna send the footage during the day than it is zero</p>
+                <p>![[ftp-upload-the-59.png]]</p>
+                <p>And there is going to be an overwrite problem</p>
+                <p>still every update bring a new problem</p>
+                <p>destinonation folders has to be renamed</p>
+                <p>![[ftp-upload-the-60.png]]</p>
+                <p>Fix the folder with one readme inside </p>
+                <p>![[ftp-upload-the-61.png]]</p>
+                <p>Noce to haves </p>
+                <blockquote></blockquote>
+                <p>I need upload count</p>
+                <p>![[ftp-upload-the-62.png]]</p>
+                <p><strong>References</strong></p>
+                <p>![[ftp-upload-the-63.png]]</p>
+                <p>https://www.howtogeek.com/devops/how-to-upload-files-over-ftp-with-powershell/</p>
+                <p>https://www.synology.com/en-global/dsm/feature/presto</p>
+                <p>https://stackoverflow.com/questions/19207991/how-to-exclude-list-of-items-from-get-childitem-result-in-powershell</p>
+                <hr />
+                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

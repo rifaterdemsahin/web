@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automate email sending over Logic apps - Rifat Erdem Sahin</title>
+    <meta name="description" content="Automate email sending over Logic apps Goal : Land global contracts with direct response marketing Ticket opened up Reference &gt; https://portal.azure.com/#view/Microsoft_Azure_Support/SupportRequest">
+    <meta name="keywords" content="Automate email sending over Logic apps">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2023/08/08/automate-email-sending/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2023/08/08/automate-email-sending/">
+    <meta property="og:title" content="Automate email sending over Logic apps">
+    <meta property="og:description" content="Automate email sending over Logic apps Goal : Land global contracts with direct response marketing Ticket opened up Reference &gt; https://portal.azure.com/#view/Microsoft_Azure_Support/SupportRequest">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2023/08/08/automate-email-sending/">
+    <meta property="twitter:title" content="Automate email sending over Logic apps">
+    <meta property="twitter:description" content="Automate email sending over Logic apps Goal : Land global contracts with direct response marketing Ticket opened up Reference &gt; https://portal.azure.com/#view/Microsoft_Azure_Support/SupportRequest">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Automate email sending over Logic apps",
+      "description": "Automate email sending over Logic apps Goal : Land global contracts with direct response marketing Ticket opened up Reference &gt; https://portal.azure.com/#view/Microsoft_Azure_Support/SupportRequest",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2023-08-08",
+      "dateModified": "2023-08-08",
+      "url": "https://www.rifaterdemsahin.com/2023/08/08/automate-email-sending/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2023/08/08/automate-email-sending/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Automate email sending over Logic apps</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>August 8, 2023</span>
+                    <span>&bull;</span>
+                    <span>14 min read</span>
+                </div>
+                <p class="article-excerpt">Automate email sending over Logic apps Goal : Land global contracts with direct response marketing Ticket opened up Reference &gt; https://portal.azure.com/#view/Microsoft_Azure_Support/SupportRequestDetails.ReactView/id/%2Fsubscriptions%2F15704bda-bb65-45ef-bd84-55b56bb32733%2Fp</p>
+            </header>
+            <article class="article-content">
+                <h1>Automate email sending over Logic apps</h1>
+                <p><strong>Goal </strong>: Land global contracts with direct response marketing</p>
+                <p>Ticket opened up</p>
+                <p><strong>Reference </strong>&gt;</p>
+                <p>https://portal.azure.com/#view/Microsoft_Azure_Support/SupportRequestDetails.ReactView/id/%2Fsubscriptions%2F15704bda-bb65-45ef-bd84-55b56bb32733%2Fproviders%2Fmicrosoft.support%2Fsupporttickets%<strong>2F2308250050001183</strong>/portalJourney~/true</p>
+                <p>https://portal.azure.com/#@pexabo.com/resource/subscriptions/15704bda-bb65-45ef-bd84-55b56bb32733/resourceGroups/PexaboAutomations/providers/Microsoft.Logic/workflows/ukcontractpexabo/logicApp</p>
+                <p>Obj : Direct response marketing actions automated</p>
+                <p>Key result : Monitored system</p>
+                <p>Key result : Pay as you go system</p>
+                <p>Key result : Embed cv </p>
+                <p>for the first stage</p>
+                <p>tools : Zapier or logic apps</p>
+                <p>![[automate-email-sending-1.png]]</p>
+                <p>Todo</p>
+                <ul>
+                <li>
+                <p>Stop the out of office replies</p>
+                </li>
+                <li>
+                <p>Send by geo &gt; markes find</p>
+                </li>
+                <li>
+                <p>Add files</p>
+                </li>
+                <li>
+                <p>Find an alternative to zapier</p>
+                </li>
+                <li>
+                <p>use ai to make it interesting</p>
+                </li>
+                <li>
+                <p>use the email filters</p>
+                </li>
+                </ul>
+                <p>Zapier</p>
+                <p>![[automate-email-sending-2.png]]</p>
+                <p>Label Zapier</p>
+                <p>![[automate-email-sending-3.png]]</p>
+                <p>Old Za</p>
+                <p>ps</p>
+                <p>![[automate-email-sending-4.png]]</p>
+                <p>Reconnect Accounts</p>
+                <p>![[automate-email-sending-5.png]]</p>
+                <p>Contract UK</p>
+                <p>![[automate-email-sending-6.png]]</p>
+                <p>Use this as attachments and CC to the asistant</p>
+                <p>https://drive.google.com/file/d/1dpVnaRj4A6ydvWbK11g7-eqrNeTwxWfE/view?usp=sharing</p>
+                <p>750 tasks a month is 750 emails</p>
+                <p>![[automate-email-sending-7.png]]</p>
+                <p>I need to process more emails</p>
+                <p><strong>100 emails a day</strong></p>
+                <p>![[automate-email-sending-8.png]]</p>
+                <p>Maybe logic apps ?</p>
+                <p>I had an email scanner</p>
+                <p>![[automate-email-sending-9.png]]</p>
+                <p>![[automate-email-sending-10.png]]</p>
+                <p>https://portal.azure.com/#@pexabo.com/resource/subscriptions/15704bda-bb65-45ef-bd84-55b56bb32733/resourcegroups/PexaboAutomations/providers/Microsoft.Logic/workflows/ukcontractpexabo/designer</p>
+                <p>Pay by usage</p>
+                <p>![[automate-email-sending-11.png]]</p>
+                <p>Get blob content from the emails</p>
+                <div class="video-embed"><iframe src="https://www.youtube.com/embed/1tua730k_mM" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
+                
+                <p>![[automate-email-sending-12.png]]</p>
+                <p>![[automate-email-sending-13.png]]</p>
+                <p>Poor man automation backup for marketing</p>
+                <p>![[automate-email-sending-14.png]]</p>
+                <p>Workflow hack</p>
+                <p>![[automate-email-sending-15.png]]</p>
+                <div class="video-embed"><iframe src="https://www.youtube.com/embed/1tua730k_mM" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
+                
+                <p>Download all and add them to the blob</p>
+                <p>![[automate-email-sending-16.png]]</p>
+                <p>Reference</p>
+                <p>https://drive.google.com/drive/folders/1vVk7UolcBdNp4KRT9fPY6ZCP_FazxTN6</p>
+                <p>Sending with the same name can reuse it</p>
+                <p>![[automate-email-sending-17.png]]</p>
+                <p>https://www.canva.com/design/DAFq_BggDX0/W2qERvFOmpsXU80dm5MPHw/edit</p>
+                <p>Click and check history</p>
+                <p>https://portal.azure.com/#@pexabo.com/resource/subscriptions/15704bda-bb65-45ef-bd84-55b56bb32733/resourceGroups/PexaboAutomations/providers/Microsoft.Logic/workflows/ukcontractpexabo/logicApp</p>
+                <p>![[automate-email-sending-18.png]]</p>
+                <p>Error with the zip file </p>
+                <p>todo : add an exclusion list &gt; <a href="mailto:do-not-reply@technojobs.co.uk">do-not-reply@technojobs.co.uk</a></p>
+                <p>![[automate-email-sending-19.png]]</p>
+                <p>![[automate-email-sending-20.png]]</p>
+                <p>Video is there &gt; I could also put the link for the google drive</p>
+                <p>![[automate-email-sending-21.png]]</p>
+                <p>![[automate-email-sending-22.png]]</p>
+                <p>Should have worked here</p>
+                <p>https://portal.azure.com/#view/Microsoft_Azure_EMA/LogicAppsMonitorBlade/runid/%2Fsubscriptions%2F15704bda-bb65-45ef-bd84-55b56bb32733%2FresourceGroups%2FPexaboAutomations%2Fproviders%2FMicrosoft.Logic%2Fworkflows%2Fukcontractpexabo%2Fruns%2F08585095727853239523848799772CU72</p>
+                <p>todo : add the filters on the top to be able to understand what this is ...with variables.</p>
+                <p>![[automate-email-sending-23.png]]</p>
+                <p>https://portal.azure.com/#view/Microsoft_Azure_EMA/LogicAppsDesignerBlade/id/%2Fsubscriptions%2F15704bda-bb65-45ef-bd84-55b56bb32733%2FresourceGroups%2FPexaboAutomations%2Fproviders%2FMicrosoft.Logic%2Fworkflows%2Fukcontractpexabo</p>
+                <p>Not Enough Time to send emails</p>
+                <p>![[automate-email-sending-24.png]]</p>
+                <p>initiliaze roles</p>
+                <p>![[automate-email-sending-25.png]]</p>
+                <p>set the values if and contains</p>
+                <p>![[automate-email-sending-26.png]]</p>
+                <p>Attachments ( make recruiters job easier )</p>
+                <p>https://learn.microsoft.com/en-us/answers/questions/650463/azure-logic-app-send-an-email-with-multiple-attach</p>
+                <p>![[automate-email-sending-27.png]]</p>
+                <p>move to a variable</p>
+                <p>![[automate-email-sending-28.png]]</p>
+                <p>still backing up with outof office messages</p>
+                <p>![[automate-email-sending-29.png]]</p>
+                <p>Learn and append</p>
+                <p>![[automate-email-sending-30.png]]</p>
+                <p>request too large</p>
+                <p>![[automate-email-sending-31.png]]</p>
+                <p>See one attachment that works</p>
+                <p>than map the attachments</p>
+                <p>![[automate-email-sending-32.png]]</p>
+                <p>Adapt</p>
+                <p>![[automate-email-sending-33.png]]</p>
+                <p>Reference</p>
+                <p>https://learn.microsoft.com/en-us/answers/questions/650463/azure-logic-app-send-an-email-with-multiple-attach</p>
+                <p>Self email sending error</p>
+                <p>![[automate-email-sending-34.png]]</p>
+                <p>Discard text</p>
+                <p>![[automate-email-sending-35.png]]</p>
+                <p>Failed actions</p>
+                <p>![[automate-email-sending-36.png]]</p>
+                <p>Terminate with your own codes</p>
+                <p>![[automate-email-sending-37.png]]</p>
+                <p>Google Api was smart enough to stop my error</p>
+                <p>![[automate-email-sending-38.png]]</p>
+                <p>Hindsight &gt; I should have tested from the hotmail account! ( todo )</p>
+                <p>todo : land to this tag</p>
+                <p>![[automate-email-sending-39.png]]</p>
+                <p>maybe one of these can be selected</p>
+                <p>![[automate-email-sending-40.png]]</p>
+                <p>Ece to bcc</p>
+                <p>![[automate-email-sending-41.png]]</p>
+                <p>one email sender is enough too much code too many errors</p>
+                <p>![[automate-email-sending-42.png]]</p>
+                <p>Reply checks the location</p>
+                <p>![[automate-email-sending-43.png]]</p>
+                <p>If attachments dont work use the links from the <strong>devops engineering</strong> which is direct for them with a concentracted website. ( could be a backup or updated version link )</p>
+                <p>Most races should be</p>
+                <p>![[automate-email-sending-44.png]]</p>
+                <p>Updated message</p>
+                <p>`----------------------------------------------------------<br />
+                Thank you for considering my application for this position. I am excited about the possibility of joining your team and contributing to the success of your company. In order to provide you with a more comprehensive understanding of my qualifications and experience, I have attached several documents for your review.</p>
+                <p>Please find my attached/linked CV, which includes both a short and detailed version of my work history and education. Additionally, I have included a document outlining my skills and specific areas of expertise that I believe would be valuable in this role.</p>
+                <p>In order to give you a better sense of my personality and communication style, I have also created an initial video that I hope you will find informative and engaging.</p>
+                <p>Finally, I would like to schedule a call to discuss my application further. Please use the following link to access my calendar and select a time that works for you: https://calendly.com/rifaterdem/schedule</p>
+                <p>Thank you again for your time and consideration. I look forward to speaking with you soon.</p>
+                <p>Best regards<br />
+                Erdem</p>
+                <p>Video for the most asked questions<br />
+                https:&#047;&#047;www.loom.com/share/3a0f58ccc99049d3b1519eb4598cd05d?sid=f370c96a-448e-4111-89e2-38a64bbbe2f4</p>
+                <p>Most recent CV,skillsets and answers to questions<br />
+                https://www.devops.engineering/hire</p>
+                <hr />
+                <p>`</p>
+                <p>make it easier to debug</p>
+                <p>![[automate-email-sending-45.png]]</p>
+                <p>backlog todo &gt; create an email list to promote the cv for the recruiters</p>
+                <p>![[automate-email-sending-46.png]]</p>
+                <p>Logic apps could create a vast amounts of email to block my email sending capability as well ( gmail has 2 circuit breakers / api and gmail send )</p>
+                <p>![[automate-email-sending-47.png]]</p>
+                <p>by pass when there is an error with scheduled send</p>
+                <p>![[automate-email-sending-48.png]]</p>
+                <p>tested self referencing email</p>
+                <p>![[automate-email-sending-49.png]]</p>
+                <p>![[automate-email-sending-50.png]]</p>
+                <p>Many use cases needs to be appended</p>
+                <p>![[automate-email-sending-51.png]]</p>
+                <p>Disable for now not to overload the gmail api</p>
+                <p>![[automate-email-sending-52.png]]</p>
+                <p>add a bottom exit if this email processed is not matching the creteria as i can get more then 500 emails a day</p>
+                <p>![[automate-email-sending-53.png]]</p>
+                <p>process before sending the emails</p>
+                <p>![[automate-email-sending-54.png]]</p>
+                <p>![[automate-email-sending-55.png]]</p>
+                <p>I would still look into gmail and check if the emaul has been replied in the follow through if not append the automation to find it and reply.</p>
+                <p>The back end content generation or push marketing team to apply globally</p>
+                <p>Reference &gt; Scheduled emails &gt; https://support.google.com/mail/answer/9214606?hl=en&amp;co=GENIE.Platform%3DDesktop</p>
+                <p>remove the ones that you know that should not be targeted</p>
+                <p>![[automate-email-sending-56.png]]</p>
+                <p>![[automate-email-sending-57.png]]</p>
+                <p>https://learn.microsoft.com/en-us/azure/logic-apps/logic-apps-create-variables-store-values?tabs=consumption</p>
+                <p>Add the monitoring ( stubbing system in here )</p>
+                <p>![[automate-email-sending-58.png]]</p>
+                <p>Found the skipped tab</p>
+                <p>![[automate-email-sending-59.png]]</p>
+                <p>![[automate-email-sending-60.png]]</p>
+                <p>the main followup main</p>
+                <p>![[automate-email-sending-61.png]]</p>
+                <p>update for an easier fix</p>
+                <p>![[automate-email-sending-62.png]]</p>
+                <p>As there is 44 of them and it is much better to use the filters of the gmail to make the life easier and daily process them</p>
+                <p>![[automate-email-sending-63.png]]</p>
+                <p>I can also have the scheduled send for them for it does not get send like an automation</p>
+                <p>![[automate-email-sending-64.png]]</p>
+                <p>maybe not at reply but i can make it important</p>
+                <p>![[automate-email-sending-65.png]]</p>
+                <p>rewatch the process remove the top than add it back in (todo )</p>
+                <p>![[automate-email-sending-66.png]]</p>
+                <p>making the simpliest</p>
+                <p>![[automate-email-sending-67.png]]</p>
+                <p>Self trigger maybe it is the api that denies it</p>
+                <p>![[automate-email-sending-68.png]]</p>
+                <p>Disabled for now ( todo enable in a day time )</p>
+                <p>![[automate-email-sending-69.png]]</p>
+                <p>Daily add action</p>
+                <p>![[automate-email-sending-70.png]]</p>
+                <p>![[automate-email-sending-71.png]]</p>
+                <p>Reference</p>
+                <p>https://portal.azure.com/#view/Microsoft_Azure_EMA/LogicAppsDesignerBlade/id/%2Fsubscriptions%2F15704bda-bb65-45ef-bd84-55b56bb32733%2FresourceGroups%2FPexaboAutomations%2Fproviders%2FMicrosoft.Logic%2Fworkflows%2Fukcontractpexabo</p>
+                <p>Start and stop till the logic is there</p>
+                <p>![[automate-email-sending-72.png]]</p>
+                <p>Wordpress dont send fail works</p>
+                <p>![[automate-email-sending-73.png]]</p>
+                <p>Make it easier to see at the line</p>
+                <p>![[automate-email-sending-74.png]]</p>
+                <p>![[automate-email-sending-75.png]]</p>
+                <p>new editor</p>
+                <p>![[automate-email-sending-76.png]]</p>
+                <p>I cant create it there</p>
+                <p>![[automate-email-sending-77.png]]</p>
+                <p>triggerBody()?['From']</p>
+                <p>start on top </p>
+                <p>![[automate-email-sending-78.png]]</p>
+                <p>![[automate-email-sending-79.png]]</p>
+                <p>![[automate-email-sending-80.png]]</p>
+                <p>After change enable and than check for the new one find error and stop&gt; iterate till it starts sending good direct response emails</p>
+                <p>![[automate-email-sending-81.png]]</p>
+                <p>Also check here as well to be double sure</p>
+                <p>![[automate-email-sending-82.png]]</p>
+                <p>Whjy you did not send it is important as well </p>
+                <p>![[automate-email-sending-83.png]]</p>
+                <p>Turn on and off and get one correct and many failed ones!</p>
+                <p>![[automate-email-sending-84.png]]</p>
+                <p>Maybe not terminate but skip ?</p>
+                <p>![[automate-email-sending-85.png]]</p>
+                <p>Make more usecases</p>
+                <p>![[automate-email-sending-86.png]]</p>
+                <p>![[automate-email-sending-87.png]]</p>
+                <p>Use the message Id to find &gt; <strong>18a03e082b61596c</strong></p>
+                <p>![[automate-email-sending-88.png]]</p>
+                <p>![[automate-email-sending-89.png]]</p>
+                <p>Check the top</p>
+                <p>![[automate-email-sending-90.png]]</p>
+                <p>Place in the middle</p>
+                <p>![[automate-email-sending-91.png]]</p>
+                <p>![[automate-email-sending-92.png]]</p>
+                <p>It was send </p>
+                <p>![[automate-email-sending-93.png]]</p>
+                <p>Check uk matched</p>
+                <p>![[automate-email-sending-94.png]]</p>
+                <p>![[automate-email-sending-95.png]]</p>
+                <p>1 AND and 3 ORS</p>
+                <p>![[automate-email-sending-96.png]]</p>
+                <p>Embed worked &gt; the recuriters use the email set for them for the email</p>
+                <p>![[automate-email-sending-97.png]]</p>
+                <p>Tactic &gt; apply with upwork &gt; your email auto replies it</p>
+                <p>maybe in future push all emails to one ?</p>
+                <p>![[automate-email-sending-98.png]]</p>
+                <p>inside is empty</p>
+                <p>![[automate-email-sending-99.png]]</p>
+                <p>it can not open that is an issue</p>
+                <p>![[automate-email-sending-100.png]]</p>
+                <p>Added the infer content type</p>
+                <p>![[automate-email-sending-101.png]]</p>
+                <p>Application octet stream</p>
+                <p>![[automate-email-sending-102.png]]</p>
+                <p>Fix the location</p>
+                <p>![[automate-email-sending-103.png]]</p>
+                <p>Infer content ios there</p>
+                <p>![[automate-email-sending-104.png]]</p>
+                <p>Email is there but not opening up</p>
+                <p>![[automate-email-sending-105.png]]</p>
+                <p>![[automate-email-sending-106.png]]</p>
+                <p>![[automate-email-sending-107.png]]</p>
+                <p>Watching</p>
+                <div class="video-embed"><iframe src="https://www.youtube.com/embed/1tua730k_mM" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
+                
+                <p>he used infer and not with the path</p>
+                <p>![[automate-email-sending-108.png]]</p>
+                <p>Lets check with the email on video</p>
+                <p>![[automate-email-sending-109.png]]</p>
+                <p>this also looks problematic</p>
+                <p>![[automate-email-sending-110.png]]</p>
+                <p>Content vbytes different implementation</p>
+                <p>![[automate-email-sending-111.png]]</p>
+                <p>![[automate-email-sending-112.png]]</p>
+                <p>too many enable disables...it would take time</p>
+                <p>![[automate-email-sending-113.png]]</p>
+                <p>Enable disable the email replies over the IVRto the logic apps =&gt; Craig proctor</p>
+                <p>![[automate-email-sending-114.png]]</p>
+                <p>Condition checks well too many emails filter over the gmail labels <strong>__followup</strong></p>
+                <p>![[automate-email-sending-115.png]]</p>
+                <p>Add parameter</p>
+                <p>![[automate-email-sending-116.png]]</p>
+                <p>Save the parameter &gt; less emails getting matched make sure they are first filtered by gmail not to overload logic apps</p>
+                <p>![[automate-email-sending-117.png]]</p>
+                <p>It takes 5 seconds to reach to the main filter =&gt; Learn the seconds relationship with the workflow engine.</p>
+                <p>![[automate-email-sending-118.png]]</p>
+                <p>Success only from yesterday</p>
+                <p>![[automate-email-sending-119.png]]</p>
+                <p>Followup main does not filled up that fast</p>
+                <p>![[automate-email-sending-120.png]]</p>
+                <p>Special marker needed to understand his is coming from logic apps</p>
+                <p>![[automate-email-sending-121.png]]</p>
+                <p>Basic hidden marker</p>
+                <p>![[automate-email-sending-122.png]]</p>
+                <p>More skipped after the main filter is on </p>
+                <p>![[automate-email-sending-123.png]]</p>
+                <p>Followup not getting caught added the london as well </p>
+                <p>![[automate-email-sending-124.png]]</p>
+                <p>Linkedin application triggers followup main but it does get skipped</p>
+                <p>![[automate-email-sending-125.png]]</p>
+                <p>Even there is followup main</p>
+                <p>![[automate-email-sending-126.png]]</p>
+                <p>it would get skipped &gt; of the marker comes later than the meail is not marked ( conclusion )</p>
+                <p>![[automate-email-sending-127.png]]</p>
+                <p>update to 4 minutes and remove the label filter as it does not get lableled instantly on gmail</p>
+                <p>![[automate-email-sending-128.png]]</p>
+                <p>Too many fails ?</p>
+                <p>![[automate-email-sending-129.png]]</p>
+                <p>Logic app monday check</p>
+                <p>![[automate-email-sending-130.png]]</p>
+                <p>No success all fails</p>
+                <p>![[automate-email-sending-131.png]]</p>
+                <p>Disable and test the system on the emails send</p>
+                <p>![[automate-email-sending-132.png]]</p>
+                <p>Goal reach this stage with AI automation in the middle </p>
+                <p>![[automate-email-sending-133.png]]</p>
+                <blockquote></blockquote>
+                <p>embedded and answered to the questions that are asked based on the data</p>
+                <p>Find the one hour ago</p>
+                <p>![[automate-email-sending-134.png]]</p>
+                <p>find the one</p>
+                <p>![[automate-email-sending-135.png]]</p>
+                <p>![[automate-email-sending-136.png]]</p>
+                <p>Minute matching find why it failed.</p>
+                <p>everything is false</p>
+                <p>is this a recuriter: False<br />
+                global role : False<br />
+                usa role : False<br />
+                dont send : False<br />
+                devopsrole : False<br />
+                iscontract: False<br />
+                isukrole : False<br />
+                isitaskingaresume: False</p>
+                <p>missed a shoe role</p>
+                <p>Keyword to catch </p>
+                <p>![[automate-email-sending-137.png]]</p>
+                <p>![[automate-email-sending-138.png]]</p>
+                <p>both versions</p>
+                <p>![[automate-email-sending-139.png]]</p>
+                <p>![[automate-email-sending-140.png]]</p>
+                <p>![[automate-email-sending-141.png]]</p>
+                <p>![[automate-email-sending-142.png]]</p>
+                <p>https://stackoverflow.com/questions/64211626/how-to-break-out-of-foreach-iteration-in-a-logic-app</p>
+                <p>If we need to process all at least lets count</p>
+                <p>![[automate-email-sending-143.png]]</p>
+                <p>Add both to the debugger</p>
+                <p>![[automate-email-sending-144.png]]</p>
+                <p>go to skills matrix and get them all</p>
+                <p>https://www.notion.so/pexabo/ed1d3bf66d044314a7fdf71f6418f79b?v=fab3e53ca97d41cda83764024df4fb50</p>
+                <p>a bit cheating</p>
+                <p>![[automate-email-sending-145.png]]</p>
+                <p>this is great</p>
+                <p><code>&amp;#091;"Natural Language Processing", ".NET", ".Net Core", "Adaptive Security", "Advanced Java", "Agile Coaching", "Agile Development", "AIOps", "Ajax", "Amazon RDS", "Angular", "Ansible", "AnyDesk", "AnyDesk", "Apache Hadoop", "Apache Zookeeper", "API", "API", "apim / api management gateway / app gateway", "appdynamics", "Apple", "Architect", "Architecture Systems", "Artifactory", "Artificial Intelligence", "Asp.NetASP.NET Core", "AWS", "AWS CloudFormation", "AWS CloudWatch", "AWS Dynamo DB", "AWS EC2", "AWS Fargate", "AWS Lambda", "AWS RDS", "AWS Route 53", "AWS S3", "AWS VPC", "Azure", "Azure AKS", "Azure App Service", "Azure Blob Storage", "Azure Cosmos DB", "Azure Data Factory", "Azure Database", "Azure DevOps", "Azure Devops", "Azure DNS", "Azure Functions", "Azure Pipelines", "Azure Virtual Machines", "Azure Virtual Network", "BackEnd", "Bash", "Bash", "BDD ( Behavior Driven Development )", "Bitbucket", "Biz Talk", "Blockchain", "Bootstrap", "Building Effective Teams", "C#", "C#", "Canva", "Canva", "CD Continuous Delivery", "CDN Content Delivery Networks", "Change Management", "Channel bonding", "Chatbot", "ChatOps", "Chef", "Chocolately", "Clean Code", "Cloud", "Cloud Budget Management", "Cloud Computing", "Cloud Front", "Cloud Native", "Cloud Security", "Cloudwatch", "Code Reviews", "Communication Skills", "Configuration automation", "Confluence", "Consulting", "Containers", "Containers", "Continuous Delivery", "Continuous Delivery", "Continuous Integration", "Core Java", "CRM", "CSS", "CSS", "Cybersecurity", "Dashboard", "Data Architecture", "Data Center", "Databricks", "Databricks", "datadog", "Datafactory", "Davinci Resolve", "Davinci Resolve", "Db40", "DDD", "Design patterns", "Design Patterns", "Development Tools", "Devops", "DevSecOps", "Digital Marketing", "DISC assessment", "Discord", "Discord", "Docker", "Docker Swarm", "Driving (UK Left Side )", "Driving (USA Right Side )", "Dynamodb", "Eclipse", "Effective Communication", "Elastic Search", "ELK Stack", "Embedded systems", "English", "Entity Framework", "ETL  ( Extract Transform Load )", "evmux", "Excel", "Games", "Gem", "Git", "Git", "Gitflow", "Github", "Gitlab", "GitlabCI", "Gmail", "Google Cloud Functions", "Google Compute Engine", "Google Enterprise", "Google Firebase", "Google Play", "Gpu", "Grafana", "Hadoop", "Helm", "HTML", "HTML5", "HTTP", "HTTPS", "IaaS", "IaC", "IaC", "IIS", "Infrastructure management", "Introduction to Programming", "Invoicing", "Iot", "Iso 27001", "Java", "Javascript", "JavaScript", "Jekyll", "Jenkins", "Jenkins", "Jira", "jQuery", "JSON", "Kanban", "Kanban", "Kubernetes", "Language Proficiency English", "Language Proficiency Turkish", "Lastpass", "Linux", "Logstash", "MacOs", "Management", "Maven", "Mercurial", "Microservices", "Microsoft SQL Server", "Microsoft Visual Studio", "Mindmaps", "Mindmeister", "Miro", "Mobility", "Mongodb", "Monolith", "MQ (Message Brokering/Message Queues)", "MSSQL SSIS", "MVC", "MVP", "MyGet", "MySQL", "Negotiation", "Neo4j", "Networking", "Networking", "New Relic", "NewRelic", "nginx", "Node.JS", "NodeJs", "Non-Relational Databases", "Nosql", "obs", "OBS", "Octopus", "Oculus", "Office 365", "Okta", "OO Programming", "Open ID", "Open Source Training", "OpenCL / CUDA", "Oracle", "Parsec", "Patterns of Enterprise Application Architecture", "Penetration Testing", "Pentest", "Perforce", "Personality Profiles", "Pipelines", "PostgreSQL", "PowerBI", "Powershell", "Presentation Skills", "Product Owner", "Professional Development", "Proxmox", "Puppet", "Python", "Python", "Quickbooks", "Quickbooks", "Raspberry Pi", "Rational Unified Process", "RDP", "Redis", "Redis", "Remote", "Responsive Design", "REST", "Restream.IO", "Router", "RPA", "Ruby", "S3", "Screenshot", "Script Programming", "Scripting", "Scrum", "Scrum", "Scrumban", "SDLC", "Search Engine Optimization (SEO)", "Secret Manager", "Secrets Management", "Security", "Server Administration", "Serverless", "Service Fabric", "SES", "Shell", "Site Reliability Engineering", "Slack", "SNS", "SOA", "Social Media Marketing", "Software Architecture Methodologies", "Software Design", "Software Engineering Training", "SOLR", "Sonarqube", "Splunk", "SQS", "SSH", "Strategy Communication / Storytelling", "Streaming", "System Architecture", "TDD", "TDD", "Teaching and mentoring skills", "Team Foundation Server", "Teams", "Teams", "Teamviewer", "Technical Writing", "Terraform", "Testing", "Trello", "Trunk Based Development", "Typescript", "Ubuntu", "Ubuntu", "Ubuntu", "UI", "UIPath", "UML modelling", "Unit Testing", "Unity 3D", "Unreal", "UX", "Vagrant", "VB.NET", "vdo.ninja", "Video Production", "Visa", "Visual Studio", "Visual Studio Code", "Vmware workstation", "Voicemeeter", "VoiceMeeter", "VR", "VR", "VSS", "VSTS", "WAF", "Web Access Firewall", "Web Design", "Web Performance", "Web Services", "WebEx", "Windows", "Wireshark", "Workflow", "Writing Technical White Papers", "WSDL", "XML", "XP", "XP (Extreme Programming)", "Xsplit", "Youtube", "Zoom"]</code></p>
+                <p>![[automate-email-sending-146.png]]</p>
+                <p>I have enabled again as ther eis much more change to hit the skills </p>
+                <p>![[automate-email-sending-147.png]]</p>
+                <p>take out calendlt</p>
+                <p>Still answers the calls where you get to get better at sales and entertainment</p>
+                <p>Main check if there is a reply</p>
+                <p>nope 5 days skills added no match !</p>
+                <p>![[automate-email-sending-148.png]]</p>
+                <p>Missed email at 7:23</p>
+                <p>![[automate-email-sending-149.png]]</p>
+                <p>Find the workflow</p>
+                <p>![[automate-email-sending-150.png]]</p>
+                <p>https://portal.azure.com/#view/Microsoft_Azure_EMA/LogicAppsMonitorBlade/runid/%2Fsubscriptions%2F15704bda-bb65-45ef-bd84-55b56bb32733%2FresourceGroups%2FPexaboAutomations%2Fproviders%2FMicrosoft.Logic%2Fworkflows%2Fukcontractpexabo%2Fruns%2F08585089214548346844898472952CU07</p>
+                <p>Skills match code is not working</p>
+                <p>![[automate-email-sending-151.png]]</p>
+                <p>![[automate-email-sending-152.png]]</p>
+                <p>Basic solution architect is not there</p>
+                <p>![[automate-email-sending-153.png]]</p>
+                <p>One tha false see as the debug</p>
+                <p>![[automate-email-sending-154.png]]</p>
+                <p>![[automate-email-sending-155.png]]</p>
+                <p>![[automate-email-sending-156.png]]</p>
+                <p>Code</p>
+                <p>`{<br />
+                  "type": "SetVariable",<br />
+                  "inputs": {<br />
+                    "name": "debugstringonwhatwecanfindintinemail",<br />
+                    "value": "@{triggerBody()}\n---------------- contains ------------------------\n@{item()}"<br />
+                  }<br />
+                }</p>
+                <p>`</p>
+                <p>All branch</p>
+                <p>![[automate-email-sending-157.png]]</p>
+                <p><code>{
+                  "type": "Foreach",
+                  "foreach": "@variables('matchingskills')",
+                  "actions": {
+                    "Condition_check_for_it": {
+                      "type": "If",
+                      "expression": {
+                        "and": &amp;#091;
+                          {
+                            "contains": &amp;#091;
+                              "@triggerBody()",
+                              "@item()"
+                            ]
+                          }
+                        ]
+                      },
+                      "actions": {
+                        "Set_variable_skills_match": {
+                          "type": "SetVariable",
+                          "inputs": {
+                            "name": "istherearematchingskill",
+                            "value": true
+                          }
+                        },
+                        "Increment_variable_skills": {
+                          "type": "IncrementVariable",
+                          "inputs": {
+                            "name": "matchskillcount",
+                            "value": 1
+                          },
+                          "runAfter": {
+                            "Set_variable_skills_match": &amp;#091;
+                              "Succeeded"
+                            ]
+                          }
+                        }
+                      },
+                      "else": {
+                        "actions": {
+                          "Set_variable_debugger_check": {
+                            "type": "SetVariable",
+                            "inputs": {
+                              "name": "debugstringonwhatwecanfindintinemail",
+                              "value": "@{triggerBody()}\n---------------- contains ------------------------\n@{item()}"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Initialize_variable_debug_string_email_seek_for_skill": &amp;#091;
+                      "Succeeded"
+                    ]
+                  },
+                  "trackedProperties": {}
+                }</code></p>
+                <p>Also Another Email &gt;&gt;&gt; Attahcment error</p>
+                <p>![[automate-email-sending-158.png]]</p>
+                <p>handbrake and resend it</p>
+                <p>Old Version ( 55 Mbytes )</p>
+                <p>![[automate-email-sending-159.png]]</p>
+                <p>New Version</p>
+                <p>![[automate-email-sending-160.png]]</p>
+                <p>less than 19</p>
+                <p>https://drive.google.com/drive/folders/1FC82YhVLw3C_W702K3ZqL94fXtm-yuPI</p>
+                <p>![[automate-email-sending-161.png]]</p>
+                <p>Remove the old video use the new one</p>
+                <p>![[automate-email-sending-162.png]]</p>
+                <p>todo : when one email is send properly do the other ones</p>
+                <p>![[automate-email-sending-163.png]]</p>
+                <p>Body is the problematic part</p>
+                <p>![[automate-email-sending-164.png]]</p>
+                <p>Convert this name and use this node not the body</p>
+                <p>![[automate-email-sending-165.png]]</p>
+                <p>Convert the email body </p>
+                <p>![[automate-email-sending-166.png]]</p>
+                <p>![[automate-email-sending-167.png]]</p>
+                <p>![[automate-email-sending-168.png]]</p>
+                <p>skill macth is here</p>
+                <p>![[automate-email-sending-169.png]]</p>
+                <p>fix the main logger name</p>
+                <p>![[automate-email-sending-170.png]]</p>
+                <p>color different the codeview</p>
+                <p>![[automate-email-sending-171.png]]</p>
+                <p>Now started to get success</p>
+                <p>![[automate-email-sending-172.png]]</p>
+                <p>Reply debug</p>
+                <p>![[automate-email-sending-173.png]]</p>
+                <p>Email correct bu the attachments have an issue</p>
+                <p>![[automate-email-sending-174.png]]</p>
+                <p>MessageID</p>
+                <p>![[automate-email-sending-175.png]]</p>
+                <p>uk CV &gt; embed did not work but synology link worked </p>
+                <p>http://gofile.me/4Vwuv/ItDjQzKik</p>
+                <p>risky of the cost in the blob with automation</p>
+                <p>![[automate-email-sending-176.png]]</p>
+                <p>![[automate-email-sending-177.png]]</p>
+                <p>![[automate-email-sending-178.png]]</p>
+                <p>![[automate-email-sending-179.png]]</p>
+                <p>![[automate-email-sending-180.png]]</p>
+                <p>![[automate-email-sending-181.png]]</p>
+                <p>![[automate-email-sending-182.png]]</p>
+                <p>![[automate-email-sending-183.png]]</p>
+                <p>![[automate-email-sending-184.png]]</p>
+                <p>maybe in future it would be even better lets start with this iteration &gt; talk on the phone and learn</p>
+                <p>back up with the uk link </p>
+                <p>![[automate-email-sending-185.png]]</p>
+                <p>uk cv http://gofile.me/4Vwuv/ItDjQzKik<br />
+                usa cv http://gofile.me/4Vwuv/DUAk9L60T<br />
+                global cv http://gofile.me/4Vwuv/0Hq9WDOcn</p>
+                <p>Complete the synology uploads</p>
+                <p>![[automate-email-sending-186.png]]</p>
+                <p>send to perm roles as they are backup</p>
+                <p>![[automate-email-sending-187.png]]</p>
+                <p>![[automate-email-sending-188.png]]</p>
+                <p>![[automate-email-sending-189.png]]</p>
+                <p>![[automate-email-sending-190.png]]</p>
+                <p>![[automate-email-sending-191.png]]</p>
+                <p>There could be more spacing</p>
+                <p>![[automate-email-sending-192.png]]</p>
+                <p>todo : change the text mention on the c2c contracts in usa</p>
+                <p>uk also focus inside ir35 roles &gt;&gt;&gt; but permanent roles gives you the practice ??? found the udemy way</p>
+                <p>20 hours and no success &gt; disable time api error risk</p>
+                <p>![[automate-email-sending-193.png]]</p>
+                <p>Short process mostly faster fails </p>
+                <p>![[automate-email-sending-194.png]]</p>
+                <p>Longer one and correct fail</p>
+                <p>![[automate-email-sending-195.png]]</p>
+                <p>syntax fail</p>
+                <p>![[automate-email-sending-196.png]]</p>
+                <p><strong>InvalidTemplate</strong>. Unable to process template language expressions for action 'Condition_global' at line '0' and column '0': 'The template function 'isukvariables' is not defined or not valid.'.</p>
+                <p>![[automate-email-sending-197.png]]</p>
+                <p>fix function to a variable</p>
+                <p>![[automate-email-sending-198.png]]</p>
+                <p>Enable again as it could not reach to the bottom</p>
+                <p>Also added the CV inside</p>
+                <p>https://rifaterdemsahin.com/2023/08/23/medium-is-the-message</p>
+                <p>Automation fail</p>
+                <p>![[automate-email-sending-199.png]]</p>
+                <p>the email formatting is the issue when the cv added more and more issue</p>
+                <p>![[automate-email-sending-200.png]]</p>
+                <p>https://mail.google.com/mail/u/0/#advanced-search/is_unread=true&amp;query=label%3A____followupmain&amp;isrefinement=true/FMfcgzGtwqFHSpkMHvFCqpvxhXhMglbf</p>
+                <p>todo convert into an html email. Collect all the links at the bottom to make life easier for the recruiter</p>
+                <p>basic P fix</p>
+                <p>![[automate-email-sending-201.png]]</p>
+                <p>![[automate-email-sending-202.png]]</p>
+                <p>div center can be used as well </p>
+                <p>![[automate-email-sending-203.png]]</p>
+                <p>https://learn.microsoft.com/en-us/azure/app-service/tutorial-send-email?tabs=dotnet</p>
+                <p>![[automate-email-sending-204.png]]</p>
+                <p>Many actions happening in my email for the direct response marketing ( too much bait in water )</p>
+                <p>![[automate-email-sending-205.png]]</p>
+                <p>p works in some sense at least to make it more readble it is a good start</p>
+                <p>![[automate-email-sending-206.png]]</p>
+                <p>add all the p</p>
+                <p>![[automate-email-sending-207.png]]</p>
+                <p>![[automate-email-sending-208.png]]</p>
+                <p>Looks good enough</p>
+                <p>![[automate-email-sending-209.png]]</p>
+                <p>More and more format coming in</p>
+                <p>![[automate-email-sending-210.png]]</p>
+                <p>Bold points</p>
+                <p>![[automate-email-sending-211.png]]</p>
+                <p>Talking to ms support as some recruiters are asking for the pdf and word emails</p>
+                <p>https://mail.google.com/mail/u/0/#advanced-search/is_unread=true&amp;query=label%3A____followupmain&amp;isrefinement=true/FMfcgzGtwqHZFRlGGbHmlkXVnqkBxgSK</p>
+                <p>todo : use ai to check if this is a job affer email yes or no question</p>
+                <p>todo : add cover letter generator on the fly </p>
+                <p>Multi mail attachments is failing</p>
+                <p>![[automate-email-sending-212.png]]</p>
+                <p>Mentioned to support</p>
+                <p>![[automate-email-sending-213.png]]</p>
+                <p>2 workflows ( first one sends the link second one for the blobs )</p>
+                <p>![[automate-email-sending-214.png]]</p>
+                <p>![[automate-email-sending-215.png]]</p>
+                <p>The action the kills it basic errors</p>
+                <p>![[automate-email-sending-216.png]]</p>
+                <p>After change of the top variables do a test run</p>
+                <p>![[automate-email-sending-217.png]]</p>
+                <p>Ask issues in the github and the support team</p>
+                <p>https://github.com/Azure/LogicAppsUX/issues/3282</p>
+                <p>![[automate-email-sending-218.png]]</p>
+                <p>4 minute difference adding the attachments</p>
+                <p>![[automate-email-sending-219.png]]</p>
+                <p>Also add the link to focus the direct response marketing </p>
+                <p>![[automate-email-sending-220.png]]</p>
+                <hr />
+                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Access with AnyDesk - Rifat Erdem Sahin</title>
+    <meta name="description" content="Remote Access with AnyDesk Any desk with great UI share with multi screen approach ![[remote-access-with-1.png]] ![[remote-access-with-2.png]] Rationale to install is to get the support ![[remote-acce">
+    <meta name="keywords" content="Remote Access with AnyDesk">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2023/08/16/remote-access/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2023/08/16/remote-access/">
+    <meta property="og:title" content="Remote Access with AnyDesk">
+    <meta property="og:description" content="Remote Access with AnyDesk Any desk with great UI share with multi screen approach ![[remote-access-with-1.png]] ![[remote-access-with-2.png]] Rationale to install is to get the support ![[remote-acce">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2023/08/16/remote-access/">
+    <meta property="twitter:title" content="Remote Access with AnyDesk">
+    <meta property="twitter:description" content="Remote Access with AnyDesk Any desk with great UI share with multi screen approach ![[remote-access-with-1.png]] ![[remote-access-with-2.png]] Rationale to install is to get the support ![[remote-acce">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Remote Access with AnyDesk",
+      "description": "Remote Access with AnyDesk Any desk with great UI share with multi screen approach ![[remote-access-with-1.png]] ![[remote-access-with-2.png]] Rationale to install is to get the support ![[remote-acce",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2023-08-16",
+      "dateModified": "2023-08-16",
+      "url": "https://www.rifaterdemsahin.com/2023/08/16/remote-access/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2023/08/16/remote-access/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Remote Access with AnyDesk</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>August 16, 2023</span>
+                    <span>&bull;</span>
+                    <span>2 min read</span>
+                </div>
+                <p class="article-excerpt">Remote Access with AnyDesk Any desk with great UI share with multi screen approach ![[remote-access-with-1.png]] ![[remote-access-with-2.png]] Rationale to install is to get the support ![[remote-access-with-3.png]] https://twitter.com/rifaterdemsahin/status/1691780723550704081 2</p>
+            </header>
+            <article class="article-content">
+                <h1>Remote Access with AnyDesk</h1>
+                <p>Any desk with great UI share with multi screen approach</p>
+                <p>![[remote-access-with-1.png]]</p>
+                <p>![[remote-access-with-2.png]]</p>
+                <p>Rationale to install is to get the support</p>
+                <p>![[remote-access-with-3.png]]</p>
+                <p>https://twitter.com/rifaterdemsahin/status/1691780723550704081</p>
+                <p>2 factor is there</p>
+                <p>![[remote-access-with-4.png]]</p>
+                <p>![[remote-access-with-5.png]]</p>
+                <p>![[remote-access-with-6.png]]</p>
+                <p>black screen on the m obile so update them</p>
+                <p>![[remote-access-with-7.png]]</p>
+                <p>Recordsings</p>
+                <p>![[remote-access-with-8.png]]</p>
+                <p>Wake on LAN</p>
+                <p>![[remote-access-with-9.png]]</p>
+                <p>Multi monitor not clearn on the mobile side</p>
+                <p>![[remote-access-with-10.png]]</p>
+                <p>![[remote-access-with-11.png]]</p>
+                <p>Splashtop &gt; mentiones similar features</p>
+                <div class="video-embed"><iframe src="https://www.youtube.com/embed/h8VfT-ap9oY" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
+                
+                <p>![[remote-access-with-12.png]]</p>
+                <p>![[remote-access-with-13.png]]</p>
+                <p>![[remote-access-with-14.png]]</p>
+                <p>goto proxmox and try on linux</p>
+                <p>![[remote-access-with-15.png]]</p>
+                <p>twingate server &gt; noip and anydesk to reach the premise over protectcl</p>
+                <p>![[remote-access-with-16.png]]</p>
+                <p>https://anydesk.com/en/downloads/linux</p>
+                <p>![[remote-access-with-17.png]]</p>
+                <p>https://anydesk.com/en/downloads/linux?dv=deb_64</p>
+                <p>![[remote-access-with-18.png]]</p>
+                <p>For wake on LAN Access this is needed</p>
+                <p>ubuntu not bad at all</p>
+                <p>![[remote-access-with-19.png]]</p>
+                <p>Display driver over proxmox not supported</p>
+                <p>![[remote-access-with-20.png]]</p>
+                <p>move to stanmdart vga</p>
+                <p>![[remote-access-with-21.png]]</p>
+                <p>Add entry</p>
+                <p>![[remote-access-with-22.png]]</p>
+                <p>![[remote-access-with-23.png]]</p>
+                <p>moved to spice</p>
+                <p>![[remote-access-with-24.png]]</p>
+                <p>Wake on lan attempted</p>
+                <p>![[remote-access-with-25.png]]</p>
+                <p>![[remote-access-with-26.png]]</p>
+                <p>trying this one</p>
+                <p>![[remote-access-with-27.png]]</p>
+                <p>![[remote-access-with-28.png]]</p>
+                <p>![[remote-access-with-29.png]]</p>
+                <p>it works with the vmware</p>
+                <p>Check your ip from the could as well </p>
+                <p>![[remote-access-with-30.png]]</p>
+                <p>https://twitter.com/anydesk/status/1691820139665076411</p>
+                <p>![[remote-access-with-31.png]]</p>
+                <p>https://anydesk.com/en/contact/sales</p>
+                <p>Questions not clear</p>
+                <p>https://twitter.com/rifaterdemsahin/status/1692083342793912741</p>
+                <p>Recent machines are here but owned machines?</p>
+                <p>![[remote-access-with-32.png]]</p>
+                <p>After hitting the lock the other part opened up</p>
+                <p>![[remote-access-with-33.png]]</p>
+                <p>![[remote-access-with-34.png]]</p>
+                <p>![[remote-access-with-35.png]]</p>
+                <p>![[remote-access-with-36.png]]</p>
+                <p>Recording feels like it is only in the paid version</p>
+                <p>![[remote-access-with-37.png]]</p>
+                <p>![[remote-access-with-38.png]]</p>
+                <p>![[remote-access-with-39.jpg]]</p>
+                <p>![[remote-access-with-40.jpg]]</p>
+                <p>All monitors 4k it works &gt; bottom monitor to 4k from 5k </p>
+                <p>also send one enter </p>
+                <p>Work with audio and mobile connectivity </p>
+                <p>![[remote-access-with-41.png]]</p>
+                <p>![[remote-access-with-42.png]]</p>
+                <p>![[remote-access-with-43.png]]</p>
+                <p>Annotation also works</p>
+                <p>![[remote-access-with-44.png]]</p>
+                <p>Also there is tcp tunneling</p>
+                <p>https://support.anydesk.com/knowledge/tcp-tunneling</p>
+                <p>![[remote-access-with-45.png]]</p>
+                <p>![[remote-access-with-46.png]]</p>
+                <p>https://support.anydesk.com/knowledge/wake-on-lan</p>
+                <p>network in 1080p</p>
+                <p>![[remote-access-with-47.png]]</p>
+                <p>shutdown</p>
+                <p>![[remote-access-with-48.png]]</p>
+                <p>everytime authentication is asked</p>
+                <p>![[remote-access-with-49.png]]</p>
+                <p>shutdown possible</p>
+                <p>![[remote-access-with-50.png]]</p>
+                <div class="video-embed"><iframe src="https://www.youtube.com/embed/hN_vKrfwCbo" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
+                
+                <p>Best reaction time</p>
+                <p>![[remote-access-with-51.png]]</p>
+                <p>No to teamviewer as cancellation with hassles and expensive</p>
+                <p>![[remote-access-with-52.png]]</p>
+                <p>![[remote-access-with-53.png]]</p>
+                <p>https://www.reddit.com/r/AnyDesk/comments/15uvplo/any_desk_subscription_questions/</p>
+                <p>Remote Desktop &gt; Open the port</p>
+                <p>Wake on lan only on the standart edition on any desk x2 price</p>
+                <p>![[remote-access-with-54.png]]</p>
+                <p>Solve the wake on lan before the action over the no-ip &gt;&gt;&gt; ddns.</p>
+                <p>it is unlike parsec &gt; focused on sharing the video processing. Parsec needs custom install based on gaming engine.</p>
+                <p>Any desk yearly cost still a blocker</p>
+                <p>![[remote-access-with-55.png]]</p>
+                <p>I need one machine to work great</p>
+                <p>![[remote-access-with-56.png]]</p>
+                <p>Parsec makes more sense &gt; but not on the quest mode &gt;&gt;&gt; maybe i need to retry it...as it is monthly and it would make more sense if that works and it can be closed and the video and audio both side transcoding would get the best experience</p>
+                <p>Great answers by community but why buy it is not so clear</p>
+                <p>https://www.reddit.com/r/AnyDesk/comments/15uvplo/comment/jwt448x/?%2524deep_link=true&amp;correlation_id=7c041841-04e4-4454-b1b6-26e7bc115a20&amp;ref=email_post_reply&amp;ref_campaign=email_post_reply&amp;ref_source=email&amp;%25243p=e_as&amp;_branch_match_id=1217382789480187819&amp;utm_medium=Email%20Amazon%20SES&amp;_branch_referrer=H4sIAAAAAAAAA3WO22rDMAyGnya7y8GOkpZBKYWy1zCOo7VeHduT7WV5%2Byk7XA4k%2BPgPSPecY3puW8J5trnRMTbO%2Bkfbx3MloY8nVDo9MQayN%2Bu1U4Xc6b63qv5SyReedV2b374JCwvEe%2FHbFdODibUFfU6MYigf0QUm7Tc1s69SmZIhG7MNXr0XTDvs2bc1Axw%2F9xM9X4EZMar9t6q%2FZipYydEEInT6u2pn1g%2BmA3EEUXeAUAMMUE9iGms54mEyQgxadtwjfOUwLto6FUPKijC67cdQRi9R25v%2FP5FCIYN%2F%2FheQoWLpQgEAAA%3D%3D</p>
+                <p>Zoom can be cancelled and the appshare is there</p>
+                <p>the remote editor wants to work on their system due to the shortcut access and the block footage and real time check</p>
+                <hr />
+                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Controlled Streaming Solution Comparison - Rifat Erdem Sahin</title>
+    <meta name="description" content="Remote Controlled Streaming Solution Comparison Solution 1 : Remote pull the action &gt; OBS Web Socket for a remote editor Use obs ninja and ingest on the remote editor One of the great features of O">
+    <meta name="keywords" content="Remote Controlled Streaming Solution Comparison">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2023/07/03/obs-web-socket/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2023/07/03/obs-web-socket/">
+    <meta property="og:title" content="Remote Controlled Streaming Solution Comparison">
+    <meta property="og:description" content="Remote Controlled Streaming Solution Comparison Solution 1 : Remote pull the action &gt; OBS Web Socket for a remote editor Use obs ninja and ingest on the remote editor One of the great features of O">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2023/07/03/obs-web-socket/">
+    <meta property="twitter:title" content="Remote Controlled Streaming Solution Comparison">
+    <meta property="twitter:description" content="Remote Controlled Streaming Solution Comparison Solution 1 : Remote pull the action &gt; OBS Web Socket for a remote editor Use obs ninja and ingest on the remote editor One of the great features of O">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Remote Controlled Streaming Solution Comparison",
+      "description": "Remote Controlled Streaming Solution Comparison Solution 1 : Remote pull the action &gt; OBS Web Socket for a remote editor Use obs ninja and ingest on the remote editor One of the great features of O",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2023-07-03",
+      "dateModified": "2023-07-03",
+      "url": "https://www.rifaterdemsahin.com/2023/07/03/obs-web-socket/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2023/07/03/obs-web-socket/",
+      "articleSection": "videoproduction",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img { max-width: 100%; height: auto; border-radius: var(--border-radius-md); margin: 1.5rem 0; display: block; }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Remote Controlled Streaming Solution Comparison</h1>
+                <div class="article-meta">
+                    <span class="article-category">videoproduction</span>
+                    <span>&bull;</span>
+                    <span>July 3, 2023</span>
+                    <span>&bull;</span>
+                    <span>5 min read</span>
+                </div>
+                <p class="article-excerpt">Remote Controlled Streaming Solution Comparison Solution 1 : Remote pull the action &gt; OBS Web Socket for a remote editor Use obs ninja and ingest on the remote editor One of the great features of OBS (Open Broadcaster Software) is the ability to remotely broadcast your content</p>
+            </header>
+            <article class="article-content">
+                <h1>Remote Controlled Streaming Solution Comparison</h1>
+                <p><strong>Solution 1 :  Remote pull the action &gt;  OBS Web Socket for a remote editor</strong></p>
+                <p>Use obs ninja and ingest on the remote editor</p>
+                <p>One of the great features of OBS (Open Broadcaster Software) is the ability to remotely broadcast your content. You can also in take the data with obs.ninja and try to composite it in the editor side</p>
+                <p>Example</p>
+                <p>https://rifaterdemsahin.com/2023/07/03/cut-post-production-time-by-half/</p>
+                <p><strong>Solution 2 : WebSockets ( Remote pull-push the action )</strong></p>
+                <p>This is made possible with the use of OBS WebSocket and the popular online broadcasting platform <a href="http://niek.tv/">niek.tv</a>. OBS WebSocket allows you to establish a connection between OBS and other devices, which in turn allows you to control OBS remotely. On the other hand, <a href="http://niek.tv/">niek.tv</a> is an online service that enables users to easily stream their content to a wider audience. By using these two tools in tandem, you can achieve seamless remote broadcasting without having to be physically present in the same location as your broadcasting equipment. So whether you're a content creator looking to expand your reach or a business looking to conduct remote meetings, OBS WebSocket and <a href="http://niek.tv/">niek.tv</a> make the process easier and more efficient.</p>
+                <p>![[remote-controlled-streaming-1.png]]</p>
+                <p>https://github.com/obsproject/obs-websocket/releases/tag/5.0.1</p>
+                <p>![[remote-controlled-streaming-2.png]]</p>
+                <div class="video-embed"><iframe src="https://www.youtube.com/embed/R3HXb-yBnig" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
+                
+                <p>Test with the existing structure</p>
+                <p>![[remote-controlled-streaming-3.png]]</p>
+                <p>main url  &gt; http://obs-web.niek.tv/</p>
+                <p>use twingate &gt; to give the access to the video editor &gt; book we are ready to go </p>
+                <p>Closed action</p>
+                <p>![[remote-controlled-streaming-4.png]]</p>
+                <p>Url &gt; ws://192.168.3.46:4455</p>
+                <p>Pass &gt; 56gvtqirS9Q3O91a ( dont worry only works with twingate )</p>
+                <p>See connections</p>
+                <p>![[remote-controlled-streaming-5.png]]</p>
+                <p>![[remote-controlled-streaming-6.png]]</p>
+                <p>Create multiple scenes</p>
+                <p>![[remote-controlled-streaming-7.png]]</p>
+                <p>See them in action</p>
+                <p>![[remote-controlled-streaming-8.png]]</p>
+                <p>Install the client</p>
+                <p>https://pexabo.twingate.com/client-auth-status</p>
+                <p>Add your resources</p>
+                <p>![[remote-controlled-streaming-9.png]]</p>
+                <p>Make sure you can connect to that network </p>
+                <p>![[remote-controlled-streaming-10.png]]</p>
+                <p>Add a remote network</p>
+                <p>![[remote-controlled-streaming-11.png]]</p>
+                <p>Have a runner enviroment to connect to your wifi</p>
+                <p>![[remote-controlled-streaming-12.png]]</p>
+                <p>Invite editor to the twingate use</p>
+                <p>![[remote-controlled-streaming-13.png]]</p>
+                <p>Find your ip in the network</p>
+                <p>![[remote-controlled-streaming-14.png]]</p>
+                <p>If you dont want over the wifi &gt; use normal network</p>
+                <p>![[remote-controlled-streaming-15.png]]</p>
+                <p>Ask editor to connect</p>
+                <p>![[remote-controlled-streaming-16.png]]</p>
+                <p>Record errors if there are any</p>
+                <p>![[remote-controlled-streaming-17.png]]</p>
+                <p>![[remote-controlled-streaming-18.png]]</p>
+                <p>Time to install helper containers ?</p>
+                <p>Check your NAS which runs the docker</p>
+                <p>![[remote-controlled-streaming-19.png]]</p>
+                <p>Install docker on the workstation remove the hubs and networks have the direct access</p>
+                <p>choco install docker-desktop</p>
+                <p>Use a notepad and copy tokens</p>
+                <p>![[remote-controlled-streaming-20.png]]</p>
+                <p>Closer network &gt; restart for the docker desktop</p>
+                <p>![[remote-controlled-streaming-21.png]]</p>
+                <p>Ypour goal see the container here</p>
+                <p>![[remote-controlled-streaming-22.png]]</p>
+                <p>Remote signature does not work use the file trigger tactic</p>
+                <p>![[remote-controlled-streaming-23.png]]</p>
+                <p>See error</p>
+                <p>![[remote-controlled-streaming-24.png]]</p>
+                <p>Look at the script at vscode</p>
+                <p>![[remote-controlled-streaming-25.png]]</p>
+                <p>![[remote-controlled-streaming-26.png]]</p>
+                <p>![[remote-controlled-streaming-27.png]]</p>
+                <p>Give up and trigger in bash</p>
+                <p>![[remote-controlled-streaming-28.png]]</p>
+                <p>![[remote-controlled-streaming-29.png]]</p>
+                <p>![[remote-controlled-streaming-30.png]]</p>
+                <p>Check logs for connection</p>
+                <p>![[remote-controlled-streaming-31.png]]</p>
+                <p>DElete images and containers and restart without wifi network</p>
+                <p>![[remote-controlled-streaming-32.png]]</p>
+                <p>See controller online</p>
+                <p>![[remote-controlled-streaming-33.png]]</p>
+                <p>![[remote-controlled-streaming-34.png]]</p>
+                <p>![[remote-controlled-streaming-35.png]]</p>
+                <p>add one more time</p>
+                <p>![[remote-controlled-streaming-36.png]]</p>
+                <p>check ip</p>
+                <p>![[remote-controlled-streaming-37.png]]</p>
+                <p>![[remote-controlled-streaming-38.png]]</p>
+                <p>with the second container</p>
+                <p>![[remote-controlled-streaming-39.png]]</p>
+                <p>![[remote-controlled-streaming-40.png]]</p>
+                <p>Access over master box make sure only one device has this access not 2 controller &gt; delete from one controller</p>
+                <p>Access from your mobile turning off the wifi and connecting to the twingate</p>
+                <p>![[remote-controlled-streaming-41.jpeg]]</p>
+                <p>![[remote-controlled-streaming-42.jpeg]]</p>
+                <p>![[remote-controlled-streaming-43.jpeg]]</p>
+                <p>![[remote-controlled-streaming-44.jpeg]]</p>
+                <p>![[remote-controlled-streaming-45.jpeg]]</p>
+                <p>![[remote-controlled-streaming-46.jpeg]]</p>
+                <p>![[remote-controlled-streaming-47.jpeg]]</p>
+                <p>![[remote-controlled-streaming-48.jpeg]]</p>
+                <p>![[remote-controlled-streaming-49.jpeg]]</p>
+                <p>![[remote-controlled-streaming-50.jpeg]]</p>
+                <p>![[remote-controlled-streaming-51.jpeg]]</p>
+                <p>![[remote-controlled-streaming-52.jpeg]]</p>
+                <p>![[remote-controlled-streaming-53.jpeg]]</p>
+                <p>![[remote-controlled-streaming-54.jpeg]]</p>
+                <p>![[remote-controlled-streaming-55.jpeg]]</p>
+                <p>![[remote-controlled-streaming-56.jpeg]]</p>
+                <p>![[remote-controlled-streaming-57.jpeg]]</p>
+                <p>Solution 3 : Remote pulls the desktop image</p>
+                <p>Docker love and hate relationship &gt; easier way use the <strong>any desk </strong>and the editor can watch easier and click with the mouse</p>
+                <p>![[remote-controlled-streaming-58.png]]</p>
+                <p>Even Chrome remote share could be an free option</p>
+                <p>![[remote-controlled-streaming-59.png]]</p>
+                <p>Get a code</p>
+                <p>![[remote-controlled-streaming-60.png]]</p>
+                <p>946417494806</p>
+                <p>https://remotedesktop.google.com/home</p>
+                <div class="video-embed"><iframe src="https://www.youtube.com/embed/fTiGI_amQpg" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
+                
+                <p>![[remote-controlled-streaming-61.png]]</p>
+                <p><strong>Solution 4 : Remote and local meets in the cloud</strong></p>
+                <p>Use restream.io as the middleware and the editor has no sync issue due to added delays</p>
+                <p>![[remote-controlled-streaming-62.png]]</p>
+                <p>Restream.io has 2 sources from my end and 2 sources from the editors and and the editor is directing it.</p>
+                <p>Video Storage ( upload the envato footages )</p>
+                <p>![[remote-controlled-streaming-63.png]]</p>
+                <p>Recording backedup to the cloud</p>
+                <p>![[remote-controlled-streaming-64.png]]</p>
+                <p>start with web studio which is already setup</p>
+                <p>![[remote-controlled-streaming-65.png]]</p>
+                <p>Rich sources</p>
+                <p>![[remote-controlled-streaming-66.png]]</p>
+                <p>Buffer not needed to promote to multi channels</p>
+                <p>![[remote-controlled-streaming-67.png]]</p>
+                <p>Links there</p>
+                <p>![[remote-controlled-streaming-68.png]]</p>
+                <p>Ready Graphics</p>
+                <p>![[remote-controlled-streaming-69.png]]</p>
+                <p>Clips and backgrounds</p>
+                <p>![[remote-controlled-streaming-70.png]]</p>
+                <p>Captions</p>
+                <p>![[remote-controlled-streaming-71.png]]</p>
+                <p>Ready transitions</p>
+                <p>![[remote-controlled-streaming-72.png]]</p>
+                <p>Guest with their channels</p>
+                <p>![[remote-controlled-streaming-73.png]]</p>
+                <p>Presentation management from the editor side</p>
+                <p>Ready shortcuts</p>
+                <p>![[remote-controlled-streaming-74.png]]</p>
+                <p>One team member to manage</p>
+                <p>![[remote-controlled-streaming-75.png]]</p>
+                <p>Schedule multi events</p>
+                <p>![[remote-controlled-streaming-76.png]]</p>
+                <p>Animated text ( can be updated from remote )</p>
+                <p>![[remote-controlled-streaming-77.png]]</p>
+                <p>Practical Tickers ( can be updated from remote )</p>
+                <p>![[remote-controlled-streaming-78.png]]</p>
+                <p>Practical Location Placement</p>
+                <p>![[remote-controlled-streaming-79.png]]</p>
+                <p>Brand Colors</p>
+                <p>![[remote-controlled-streaming-80.png]]</p>
+                <p>Guest as director ( static guest code &gt; daily start )</p>
+                <p>![[remote-controlled-streaming-81.png]]</p>
+                <p>Practical Logos</p>
+                <p>![[remote-controlled-streaming-82.png]]</p>
+                <p>Video with music</p>
+                <p>![[remote-controlled-streaming-83.png]]</p>
+                <p>Overlays ( add them using canva on remote )</p>
+                <p>![[remote-controlled-streaming-84.png]]</p>
+                <p>Transparents move to png</p>
+                <p>![[remote-controlled-streaming-85.png]]</p>
+                <p>Multi upload ready</p>
+                <p>![[remote-controlled-streaming-86.png]]</p>
+                <p>Composite Displays</p>
+                <p>![[remote-controlled-streaming-87.png]]</p>
+                <p>Production in but disabled</p>
+                <p>![[remote-controlled-streaming-88.png]]</p>
+                <p>Production extra camera</p>
+                <p>![[remote-controlled-streaming-89.png]]</p>
+                <p>Xsplit and OBS as input</p>
+                <p>![[remote-controlled-streaming-90.png]]</p>
+                <p>Rtmp ( may not be used )</p>
+                <p>![[remote-controlled-streaming-91.png]]</p>
+                <p>Ready music</p>
+                <p>![[remote-controlled-streaming-92.png]]</p>
+                <p>Production Listen end output</p>
+                <p>![[remote-controlled-streaming-93.png]]</p>
+                <p>Practical drag and drop location swap</p>
+                <p>![[remote-controlled-streaming-94.png]]</p>
+                <p>Admin but director ?</p>
+                <p>![[remote-controlled-streaming-95.png]]</p>
+                <p>Envato practical uploads</p>
+                <p>![[remote-controlled-streaming-96.png]]</p>
+                <p>Limited</p>
+                <p>![[remote-controlled-streaming-97.png]]</p>
+                <p>![[remote-controlled-streaming-98.png]]</p>
+                <p>Needs processing time</p>
+                <p>![[remote-controlled-streaming-99.png]]</p>
+                <p>Transition entry </p>
+                <p>![[remote-controlled-streaming-100.png]]</p>
+                <p>Practical mood changes</p>
+                <p>![[remote-controlled-streaming-101.png]]</p>
+                <p>Kids dancing talk &gt; not prompter</p>
+                <p>![[remote-controlled-streaming-102.png]]</p>
+                <p>Internal test live sessions with telegram</p>
+                <p>![[remote-controlled-streaming-103.png]]</p>
+                <p>Reload and keep settings</p>
+                <p>![[remote-controlled-streaming-104.png]]</p>
+                <p>Director can givce feedback with the screen share option</p>
+                <p>![[remote-controlled-streaming-105.png]]</p>
+                <p>there 2 producer seats</p>
+                <p>![[remote-controlled-streaming-106.png]]</p>
+                <p>Add the producers as cohost</p>
+                <p>![[remote-controlled-streaming-107.png]]</p>
+                <p>Comparison</p>
+                <p><strong>Solution 1</strong><br />
+                <strong>Obs Ninja</strong><strong>Solution 2 Web Socket</strong><strong>Solution 3 Desktop</strong><strong>Solution 4  Restream.io</strong><strong>Pro</strong>More control to the remote controllerweb page <br />
+                just send the necessary partEasy shareFast Stream<br />
+                Easy manage<br />
+                Good Monitor<br />
+                Reusable components<br />
+                Less skilled controller<strong>Con</strong>Complex local and remote setup. Sharing the source to destination. Mix in remote.Remote coordinate and the monitoring roleComplex local setupNot in sync due to lag<br />
+                Hard to manage on the remoteCost<br />
+                Limited Creativity</p>
+                <p><strong>Reference</strong></p>
+                <p>https://github.com/Niek/obs-web</p>
+                <p>https://www.canva.com/design/DAFnnIo8VOI/xmJyh7Jr7VsTSXdFZX3V5Q/edit?utm_content=DAFnnIo8VOI&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton</p>
+                <hr />
+                <p><em>Imported from [[rifaterdemsahin.com]] · [[2023]]</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>
