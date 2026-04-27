@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Script History Create - Rifat Erdem Sahin</title>
+    <meta name="description" content="Script History Create To write a script that adds specific commands to your PowerShell console history, you'll need to create a function that manually appends commands to the history.">
+    <meta name="keywords" content="Script History Create">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/06/18/script-history-create/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/06/18/script-history-create/">
+    <meta property="og:title" content="Script History Create">
+    <meta property="og:description" content="Script History Create To write a script that adds specific commands to your PowerShell console history, you'll need to create a function that manually appends commands to the history.">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/06/18/script-history-create/">
+    <meta property="twitter:title" content="Script History Create">
+    <meta property="twitter:description" content="Script History Create To write a script that adds specific commands to your PowerShell console history, you'll need to create a function that manually appends commands to the history.">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Script History Create",
+      "description": "Script History Create To write a script that adds specific commands to your PowerShell console history, you'll need to create a function that manually appends commands to the history.",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-06-18",
+      "dateModified": "2025-06-18",
+      "url": "https://www.rifaterdemsahin.com/2025/06/18/script-history-create/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/06/18/script-history-create/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Script History Create</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>June 18, 2025</span>
+                    <span>&bull;</span>
+                    <span>5 min read</span>
+                </div>
+                <p class="article-excerpt">Script History Create To write a script that adds specific commands to your PowerShell console history, you'll need to create a function that manually appends commands to the history.</p>
+            </header>
+            <article class="article-content">
+                <h1>Script History Create</h1>
+                <p><img src="images/script-history-create-1.png" alt="script history create 1" class="article-image" loading="lazy"></p>
+                <p>To write a script that adds specific commands to your PowerShell console history, you'll need to create a function that manually appends commands to the history. PowerShell maintains a history of commands that you've executed, and you can interact with this history using the <code>Add-History</code> cmdlet or by directly manipulating the history objects.</p>
+                <p>Here’s a step-by-step guide to creating such a script:</p>
+                <h3>Step 1: Create the Function</h3>
+                <p>You can create a PowerShell function that takes a command as a parameter and adds it to the console history.</p>
+                <p>function Add-ToHistory {<br />
+                    param (<br />
+                        [string]$Command<br />
+                    )</p>
+                <pre><code># Execute the command (optional)
+                Invoke-Expression $Command
+                
+                # Add the command to history
+                Add-History -CommandLine $Command
+                </code></pre>
+                <p>}</p>
+                <h1>Example usage:</h1>
+                <p>Add-ToHistory -Command "Get-Process"</p>
+                <h3>Step 2: Saving the Function in Your Profile</h3>
+                <p>If you want this function to be available in every PowerShell session, you can save it to your PowerShell profile.</p>
+                <ul>
+                <li>Open your PowerShell profile by executing:</li>
+                </ul>
+                <p>notepad $PROFILE</p>
+                <ul>
+                <li>
+                <p>Add the <code>Add-ToHistory</code> function script to your profile file.</p>
+                </li>
+                <li>
+                <p>Save and close the file. Now, every time you open a new PowerShell session, the function will be available.</p>
+                </li>
+                </ul>
+                <h3>Step 3: Using the Function</h3>
+                <p>Whenever you want to add a command to your console history, use the <code>Add-ToHistory</code> function.</p>
+                <p>Add-ToHistory -Command "Get-Process"<br />
+                Add-ToHistory -Command "Set-ExecutionPolicy RemoteSigned"</p>
+                <h3>Step 4: Automating History Addition for Specific Commands</h3>
+                <p>If you want to automate the process of adding specific commands to history without manually calling the function each time, you can create an alias or modify your profile to execute specific commands with history tracking:</p>
+                <p>Set-Alias -Name gp -Value { Add-ToHistory -Command "Get-Process"; Get-Process }</p>
+                <p>This alias will run the <code>Get-Process</code> command and automatically add it to your history.</p>
+                <h3>Step 5: Script to Add Multiple Commands</h3>
+                <p>If you want to add multiple specific commands to the history at once, you can create a script like this:</p>
+                <p>$commands = @(<br />
+                    "Get-Process",<br />
+                    "Set-ExecutionPolicy RemoteSigned",<br />
+                    "Get-Service"<br />
+                )</p>
+                <p>foreach ($cmd in $commands) {<br />
+                    Add-ToHistory -Command $cmd<br />
+                }</p>
+                <h3>Final Notes</h3>
+                <ul>
+                <li>
+                <p><strong>Persistent History</strong>: Ensure that the <code>$MaximumHistoryCount</code> setting in your PowerShell is set appropriately if you want to maintain a long history.</p>
+                </li>
+                <li>
+                <p><strong>PowerShell Version</strong>: The <code>Add-History</code> cmdlet is available in PowerShell 5.0 and later. If you're using an older version, consider updating or managing history differently.</p>
+                </li>
+                </ul>
+                <p>This approach allows you to selectively add commands to your PowerShell history, which can be particularly useful for logging important commands or for ensuring that critical steps are recorded.</p>
+                <blockquote>
+                <blockquote>
+                <blockquote>
+                <blockquote>
+                <p>Asking to add open shift commands</p>
+                </blockquote>
+                </blockquote>
+                </blockquote>
+                </blockquote>
+                <p><img src="images/script-history-create-2.png" alt="script history create 2" class="article-image" loading="lazy"></p>
+                <p>If you'd like to add common OpenShift commands to your PowerShell console history, you can extend the script to include those commands. Here's how you can do it:</p>
+                <h3>Step 1: Define Common OpenShift Commands</h3>
+                <p>Let's start by defining a list of common OpenShift commands that you might use frequently.</p>
+                <p>$openshiftCommands = @(<br />
+                    "oc login https://your-openshift-cluster --token=your-token",    # Login to OpenShift<br />
+                    "oc project your-project-name",                                  # Switch to a specific project<br />
+                    "oc get pods",                                                   # List all pods in the current project<br />
+                    "oc get services",                                               # List all services in the current project<br />
+                    "oc get routes",                                                 # List all routes in the current project<br />
+                    "oc describe pod pod-name",                                      # Describe a specific pod<br />
+                    "oc logs pod-name",                                              # Get logs from a specific pod<br />
+                    "oc rsh pod-name",                                               # Remote shell into a specific pod<br />
+                    "oc create -f your-file.yaml",                                   # Create resources from a YAML file<br />
+                    "oc delete pod pod-name",                                        # Delete a specific pod<br />
+                    "oc scale --replicas=3 deployment/deployment-name",              # Scale a deployment<br />
+                    "oc rollout restart deployment/deployment-name",                 # Restart a deployment<br />
+                    "oc rollout status deployment/deployment-name",                  # Check the status of a rollout<br />
+                    "oc expose svc/service-name",                                    # Expose a service to create a route<br />
+                    "oc apply -f your-file.yaml",                                    # Apply a configuration from a YAML file<br />
+                    "oc delete -f your-file.yaml"                                    # Delete resources defined in a YAML file<br />
+                )</p>
+                <h3>Step 2: Add Commands to History</h3>
+                <p>Now, you can iterate over the list of commands and add them to your PowerShell history using the <code>Add-ToHistory</code> function defined earlier.</p>
+                <p>function Add-ToHistory {<br />
+                    param (<br />
+                        [string]$Command<br />
+                    )</p>
+                <pre><code># Add the command to history without executing it
+                Add-History -CommandLine $Command
+                </code></pre>
+                <p>}</p>
+                <h1>Iterate over the OpenShift commands and add them to history</h1>
+                <p>foreach ($cmd in $openshiftCommands) {<br />
+                    Add-ToHistory -Command $cmd<br />
+                }</p>
+                <p>Write-Host "OpenShift commands have been added to your PowerShell history."</p>
+                <h3>Step 3: Save and Run the Script</h3>
+                <ul>
+                <li>
+                <p>Save this script to a <code>.ps1</code> file, for example, <code>Add-OpenShiftCommandsToHistory.ps1</code>.</p>
+                </li>
+                <li>
+                <p>Run the script in your PowerShell session to add the commands to your history.</p>
+                </li>
+                </ul>
+                <p>.\Add-OpenShiftCommandsToHistory.ps1</p>
+                <h3>Step 4: Check Your History</h3>
+                <p>You can check your PowerShell history to confirm that the commands have been added:</p>
+                <p>Get-History</p>
+                <h3>Step 5: Automating for Every Session</h3>
+                <p>If you want these commands to be added to your history every time you open a PowerShell session, you can add the script or the list of commands directly to your PowerShell profile.</p>
+                <p>notepad $PROFILE</p>
+                <p>Then, paste the script content or the loop that adds commands to history into the profile file and save it.</p>
+                <h3>Final Considerations</h3>
+                <ul>
+                <li>
+                <p>Ensure you replace placeholders like <code>your-openshift-cluster</code>, <code>your-project-name</code>, <code>pod-name</code>, <code>deployment-name</code>, and <code>your-file.yaml</code> with actual values relevant to your environment.</p>
+                </li>
+                <li>
+                <p>This setup helps you quickly recall commonly used OpenShift commands by accessing your command history.</p>
+                </li>
+                </ul>
+                <p>With this approach, you can easily keep track of important OpenShift commands in your PowerShell history and have them ready for quick access.</p>
+                <p>From project to another that would help </p>
+                <p><img src="images/script-history-create-3.png" alt="script history create 3" class="article-image" loading="lazy"></p>
+                <p><img src="images/script-history-create-4.png" alt="script history create 4" class="article-image" loading="lazy"></p>
+                <p>copy path and execute</p>
+                <p><img src="images/script-history-create-5.png" alt="script history create 5" class="article-image" loading="lazy"></p>
+                <p><img src="images/script-history-create-6.png" alt="script history create 6" class="article-image" loading="lazy"></p>
+                <p><img src="images/script-history-create-7.png" alt="script history create 7" class="article-image" loading="lazy"></p>
+                <p>https://github.com/rifaterdemsahin/openshiftonlocal/commit/a937ae70824e7ec9a2b87be3e0e40bc2d8b43266</p>
+                <p>Good idea bad execution it did not work &gt;&gt;&gt; maybe it should be done with autohotkey</p>
+                <p>Premise : have a system ready with the history</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

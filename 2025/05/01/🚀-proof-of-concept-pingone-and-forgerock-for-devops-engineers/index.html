@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Proof of Concept: PingOne and ForgeRock for DevOps Engineers - Rifat Erdem Sahin</title>
+    <meta name="description" content="🚀 Proof of Concept: PingOne and ForgeRock for DevOps Engineers As a DevOps engineer, managing identity and access systems in a secure and scalable way is critical.">
+    <meta name="keywords" content="🚀 Proof of Concept: PingOne and ForgeRock for DevOps Engineers">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/05/01/🚀-proof-of-concept-pingone-and-forgerock-for-devops-engineers/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/05/01/🚀-proof-of-concept-pingone-and-forgerock-for-devops-engineers/">
+    <meta property="og:title" content="🚀 Proof of Concept: PingOne and ForgeRock for DevOps Engineers">
+    <meta property="og:description" content="🚀 Proof of Concept: PingOne and ForgeRock for DevOps Engineers As a DevOps engineer, managing identity and access systems in a secure and scalable way is critical.">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/05/01/🚀-proof-of-concept-pingone-and-forgerock-for-devops-engineers/">
+    <meta property="twitter:title" content="🚀 Proof of Concept: PingOne and ForgeRock for DevOps Engineers">
+    <meta property="twitter:description" content="🚀 Proof of Concept: PingOne and ForgeRock for DevOps Engineers As a DevOps engineer, managing identity and access systems in a secure and scalable way is critical.">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "🚀 Proof of Concept: PingOne and ForgeRock for DevOps Engineers",
+      "description": "🚀 Proof of Concept: PingOne and ForgeRock for DevOps Engineers As a DevOps engineer, managing identity and access systems in a secure and scalable way is critical.",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-05-01",
+      "dateModified": "2025-05-01",
+      "url": "https://www.rifaterdemsahin.com/2025/05/01/🚀-proof-of-concept-pingone-and-forgerock-for-devops-engineers/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/05/01/🚀-proof-of-concept-pingone-and-forgerock-for-devops-engineers/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">🚀 Proof of Concept: PingOne and ForgeRock for DevOps Engineers</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>May 1, 2025</span>
+                    <span>&bull;</span>
+                    <span>5 min read</span>
+                </div>
+                <p class="article-excerpt">🚀 Proof of Concept: PingOne and ForgeRock for DevOps Engineers As a DevOps engineer, managing identity and access systems in a secure and scalable way is critical.</p>
+            </header>
+            <article class="article-content">
+                <h1>🚀 Proof of Concept: PingOne and ForgeRock for DevOps Engineers</h1>
+                <p><img src="images/proof-of-concept-1.png" alt="proof of concept 1" class="article-image" loading="lazy"></p>
+                <p>As a DevOps engineer, managing identity and access systems in a secure and scalable way is critical. This blog post explores building a proof of concept (PoC) using <strong>PingOne</strong> and <strong>ForgeRock</strong>—two leading identity management platforms. Let’s dive into how these tools can seamlessly integrate within a DevOps pipeline and bolster your IAM (Identity and Access Management) infrastructure. 🎯</p>
+                <hr />
+                <h3>🎯 <strong>Why PingOne and ForgeRock?</strong></h3>
+                <p>Both <strong>PingOne</strong> and <strong>ForgeRock</strong> offer robust, enterprise-grade solutions for managing identities, enabling single sign-on (SSO), multi-factor authentication (MFA), and more. Whether you're scaling up cloud-native applications or securing hybrid environments, these platforms help automate identity provisioning and ensure compliance with regulations like GDPR or HIPAA.</p>
+                <hr />
+                <h3>🚀 <strong>Step-by-Step Approach to the PoC</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Setting Up PingOne</strong> 💻<br />
+                Begin by setting up a PingOne tenant and configuring identity services. PingOne's cloud-based system integrates smoothly with your existing cloud infrastructure, making it a go-to for federated identity management.</p>
+                </li>
+                <li>
+                <p><strong>Action:</strong> Create a developer account on PingOne and configure SSO.</p>
+                </li>
+                <li>
+                <p><strong>Outcome:</strong> Achieve seamless authentication across your applications. <img alt="proof-of-concept-2.png" src="https://example.com/screenshot.png" /> (This is where your PingOne screenshot goes)</p>
+                </li>
+                <li>
+                <p><strong>Integrating ForgeRock</strong> 🔐<br />
+                ForgeRock provides open-source options to manage customer identities. For DevOps engineers, the open API architecture enables fast deployments and real-time scaling.</p>
+                </li>
+                <li>
+                <p><strong>Action:</strong> Set up a ForgeRock instance and create authentication trees to support dynamic user flows.</p>
+                </li>
+                <li>
+                <p><strong>Outcome:</strong> A customizable authentication flow for various DevOps environments. <img alt="proof-of-concept-3.png" src="https://example.com/screenshot.png" /> (Insert your ForgeRock screenshot here)</p>
+                </li>
+                <li>
+                <p><strong>CI/CD Pipeline Integration</strong> 🔄<br />
+                With your identity management systems in place, the next step is integrating them into your CI/CD pipelines. Automating IAM tasks can be done using scripts or Terraform configurations, ensuring rapid provisioning and security at every step.</p>
+                </li>
+                <li>
+                <p><strong>Testing and Security Checks</strong> ✔️<br />
+                Make sure to test the configurations in both a staging environment and with actual applications. Pay special attention to security audits, ensuring that only authorized users have access to critical resources.</p>
+                </li>
+                </ul>
+                <hr />
+                <p>To demonstrate a PingOne Advanced Identity Cloud interaction using mock objects in Python, we'll simulate how a developer might interact with the PingOne API to manage identity-related tasks such as checking the lock state of environments, promoting configuration changes, or managing user authentication flows.</p>
+                <p>This demo will use mock objects to imitate the behavior of PingOne’s API endpoints, ensuring we don't make actual HTTP requests but still verify the behavior of the application.</p>
+                <h3>Scenario:</h3>
+                <p>You want to simulate interacting with the PingOne Advanced Identity Cloud API to:</p>
+                <ul>
+                <li>
+                <p>Check if the environment is locked or unlocked.</p>
+                </li>
+                <li>
+                <p>Promote configuration changes between environments.</p>
+                </li>
+                <li>
+                <p>Manage a promotion status and handle errors.</p>
+                </li>
+                </ul>
+                <h3>Mock Example using Python and Mock Objects</h3>
+                <h4>Step 1: Define the Python script with mock objects</h4>
+                <p>import requests<br />
+                from unittest.mock import patch</p>
+                <h1>Constants representing API endpoint URLs for the demo</h1>
+                <p>PINGONE_API_BASE = "https://api.pingone.com/v1"<br />
+                TENANT_ID = "mocked-tenant-id"<br />
+                ACCESS_TOKEN = "mocked-access-token"<br />
+                LOCK_STATE_URL = f"{PINGONE_API_BASE}/environments/{TENANT_ID}/promotion/lock/state"<br />
+                PROMOTE_URL = f"{PINGONE_API_BASE}/environments/{TENANT_ID}/promotion/promote"</p>
+                <h1>Function to check lock status (Mocked)</h1>
+                <p>def check_lock_state():<br />
+                    headers = {<br />
+                        "Authorization": f"Bearer {ACCESS_TOKEN}",<br />
+                        "Content-Type": "application/json"<br />
+                    }<br />
+                    response = requests.get(LOCK_STATE_URL, headers=headers)<br />
+                    if response.status_code == 200:<br />
+                        return response.json()<br />
+                    else:<br />
+                        return {"error": "Failed to check lock status", "status_code": response.status_code}</p>
+                <h1>Function to promote configuration (Mocked)</h1>
+                <p>def promote_configuration(dry_run=True):<br />
+                    headers = {<br />
+                        "Authorization": f"Bearer {ACCESS_TOKEN}",<br />
+                        "Content-Type": "application/json"<br />
+                    }<br />
+                    payload = {<br />
+                        "dryRun": dry_run<br />
+                    }<br />
+                    response = requests.post(PROMOTE_URL, headers=headers, json=payload)<br />
+                    if response.status_code == 200:<br />
+                        return response.json()<br />
+                    else:<br />
+                        return {"error": "Failed to promote configuration", "status_code": response.status_code}</p>
+                <h1>Mock the requests for testing purposes</h1>
+                <p>@patch("requests.get")<br />
+                @patch("requests.post")<br />
+                def run_poc(mock_post, mock_get):<br />
+                    # Mock the GET response for lock state<br />
+                    mock_get.return_value.status_code = 200<br />
+                    mock_get.return_value.json.return_value = {<br />
+                        "description": "Environment unlocked",<br />
+                        "lowerEnv": {"state": "unlocked"},<br />
+                        "upperEnv": {"state": "unlocked"}<br />
+                    }</p>
+                <pre><code># Mock the POST response for promoting configurations
+                mock_post.return_value.status_code = 200
+                mock_post.return_value.json.return_value = {
+                    "result": "Promotion process initiated successfully",
+                    "status": "RUNNING"
+                }
+                
+                # Check the environment lock state
+                lock_status = check_lock_state()
+                print(f"Lock Status: {lock_status}")
+                
+                # Run a promotion (dry-run mode)
+                promotion_result = promote_configuration(dry_run=True)
+                print(f"Promotion Result (Dry Run): {promotion_result}")
+                
+                # Run the actual promotion
+                promotion_result_real = promote_configuration(dry_run=False)
+                print(f"Promotion Result (Real): {promotion_result_real}")
+                </code></pre>
+                <h1>Run the POC</h1>
+                <p>if <strong>name</strong> == "<strong>main</strong>":<br />
+                    run_poc()</p>
+                <h3>Explanation:</h3>
+                <ul>
+                <li>
+                <p><strong>API Endpoints</strong>: In the demo, <code>LOCK_STATE_URL</code> and <code>PROMOTE_URL</code> are mocked URLs representing the PingOne API. These are placeholders for actual API calls.</p>
+                </li>
+                <li>
+                <p><strong>Functions</strong>:</p>
+                </li>
+                <li>
+                <p><code>check_lock_state</code>: Sends a <code>GET</code> request to check the lock state of the environment.</p>
+                </li>
+                <li>
+                <p><code>promote_configuration</code>: Sends a <code>POST</code> request to promote configurations with a <code>dryRun</code> flag, allowing for a test promotion before making real changes.</p>
+                </li>
+                <li>
+                <p><strong>Mocking API Responses</strong>: The <code>@patch</code> decorator from the <code>unittest.mock</code> module is used to simulate responses from the PingOne API. We mock both <code>GET</code> and <code>POST</code> requests:</p>
+                </li>
+                <li>
+                <p><strong>GET request</strong>: Simulates the environment being unlocked.</p>
+                </li>
+                <li>
+                <p><strong>POST request</strong>: Simulates a successful promotion process.</p>
+                </li>
+                <li>
+                <p><strong>Output</strong>:</p>
+                </li>
+                <li>
+                <p>The script prints the mock lock state and promotion process for both dry-run and actual promotions.</p>
+                </li>
+                </ul>
+                <h3>Example Output:</h3>
+                <p>Lock Status: {'description': 'Environment unlocked', 'lowerEnv': {'state': 'unlocked'}, 'upperEnv': {'state': 'unlocked'}}<br />
+                Promotion Result (Dry Run): {'result': 'Promotion process initiated successfully', 'status': 'RUNNING'}<br />
+                Promotion Result (Real): {'result': 'Promotion process initiated successfully', 'status': 'RUNNING'}</p>
+                <h3>Benefits of this approach:</h3>
+                <ul>
+                <li>
+                <p><strong>Mocking</strong>: You can test your Python code without interacting with the actual PingOne API. This saves resources and avoids the risk of modifying production environments.</p>
+                </li>
+                <li>
+                <p><strong>Flexibility</strong>: You can easily extend this example by adding more mock responses to simulate additional API endpoints (like user authentication, SSO, or managing identities).</p>
+                </li>
+                <li>
+                <p><strong>Error Handling</strong>: Mocking allows you to test how your application behaves under different error conditions (e.g., failed API responses, timeouts).</p>
+                </li>
+                </ul>
+                <p>This approach provides a strong foundation for building more complex interaction systems with PingOne Advanced Identity Cloud or any other identity management API.</p>
+                <h3>💡 <strong>Lessons Learned</strong></h3>
+                <p>This PoC proved how easy it is to integrate enterprise-level IAM solutions into a DevOps pipeline. Here are a few key takeaways:</p>
+                <ul>
+                <li>
+                <p><strong>Seamless Integration:</strong> PingOne and ForgeRock both offer APIs that allow seamless integration into existing DevOps pipelines.</p>
+                </li>
+                <li>
+                <p><strong>Scalability:</strong> Whether your apps are on-prem or in the cloud, both solutions can scale with ease.</p>
+                </li>
+                <li>
+                <p><strong>Security First:</strong> Leveraging tools like MFA ensures compliance with industry standards while maintaining user convenience.</p>
+                </li>
+                </ul>
+                <hr />
+                <p>Repo &gt; </p>
+                <p><a href="https://github.com/rifaterdemsahin/PingOneAdvancedIdentityCloud">https://github.com/rifaterdemsahin/PingOneAdvancedIdentityCloud</a></p>
+                <p><strong>🔗 Connect with me:</strong></p>
+                <ul>
+                <li>
+                <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/rifaterdemsahin/">https://www.linkedin.com/in/rifaterdemsahin/</a></p>
+                </li>
+                <li>
+                <p>🐦 Twitter: <a href="https://x.com/rifaterdemsahin">https://x.com/rifaterdemsahin</a></p>
+                </li>
+                <li>
+                <p>🎥 YouTube: <a href="https://www.youtube.com/@RifatErdemSahin">https://www.youtube.com/@RifatErdemSahin</a></p>
+                </li>
+                <li>
+                <p>💻 GitHub: <a href="https://github.com/rifaterdemsahin">https://github.com/rifaterdemsahin</a></p>
+                </li>
+                </ul>
+                <p>👨‍💻 If you want to learn more about implementing secure identity solutions within a DevOps environment, don't hesitate to reach out!</p>
+                <hr />
+                <p>💥 <strong>Ready to build your own PoC?</strong></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

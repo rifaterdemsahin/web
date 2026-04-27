@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐋 How to Set Up kubeconfig for Rancher Desktop in WSL 🚀 - Rifat Erdem Sahin</title>
+    <meta name="description" content="🐋 How to Set Up kubeconfig for Rancher Desktop in WSL 🚀 Here’s how you can set up the kubeconfig in WSL to access Rancher Desktop’s Kubernetes environment: 🐋 How to Set Up kubeconfig for Rancher Deskt">
+    <meta name="keywords" content="🐋 How to Set Up kubeconfig for Rancher Desktop in WSL 🚀">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/03/02/🐋-how-to-set-up-kubeconfig-for-rancher-desktop-in-wsl-🚀/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/03/02/🐋-how-to-set-up-kubeconfig-for-rancher-desktop-in-wsl-🚀/">
+    <meta property="og:title" content="🐋 How to Set Up kubeconfig for Rancher Desktop in WSL 🚀">
+    <meta property="og:description" content="🐋 How to Set Up kubeconfig for Rancher Desktop in WSL 🚀 Here’s how you can set up the kubeconfig in WSL to access Rancher Desktop’s Kubernetes environment: 🐋 How to Set Up kubeconfig for Rancher Deskt">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/03/02/🐋-how-to-set-up-kubeconfig-for-rancher-desktop-in-wsl-🚀/">
+    <meta property="twitter:title" content="🐋 How to Set Up kubeconfig for Rancher Desktop in WSL 🚀">
+    <meta property="twitter:description" content="🐋 How to Set Up kubeconfig for Rancher Desktop in WSL 🚀 Here’s how you can set up the kubeconfig in WSL to access Rancher Desktop’s Kubernetes environment: 🐋 How to Set Up kubeconfig for Rancher Deskt">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "🐋 How to Set Up kubeconfig for Rancher Desktop in WSL 🚀",
+      "description": "🐋 How to Set Up kubeconfig for Rancher Desktop in WSL 🚀 Here’s how you can set up the kubeconfig in WSL to access Rancher Desktop’s Kubernetes environment: 🐋 How to Set Up kubeconfig for Rancher Deskt",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-03-02",
+      "dateModified": "2025-03-02",
+      "url": "https://www.rifaterdemsahin.com/2025/03/02/🐋-how-to-set-up-kubeconfig-for-rancher-desktop-in-wsl-🚀/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/03/02/🐋-how-to-set-up-kubeconfig-for-rancher-desktop-in-wsl-🚀/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">🐋 How to Set Up kubeconfig for Rancher Desktop in WSL 🚀</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>March 2, 2025</span>
+                    <span>&bull;</span>
+                    <span>2 min read</span>
+                </div>
+                <p class="article-excerpt">🐋 How to Set Up kubeconfig for Rancher Desktop in WSL 🚀 Here’s how you can set up the kubeconfig in WSL to access Rancher Desktop’s Kubernetes environment: 🐋 How to Set Up kubeconfig for Rancher Desktop in WSL 🚀 Step 1: Locate the kubeconfig File in Windows Open Rancher Desktop a</p>
+            </header>
+            <article class="article-content">
+                <h1>🐋 How to Set Up kubeconfig for Rancher Desktop in WSL 🚀</h1>
+                <p>Here’s how you can set up the kubeconfig in WSL to access Rancher Desktop’s Kubernetes environment:</p>
+                <hr />
+                <h2>🐋 How to Set Up kubeconfig for Rancher Desktop in WSL 🚀</h2>
+                <hr />
+                <h3>Step 1: Locate the <code>kubeconfig</code> File in Windows</h3>
+                <ul>
+                <li>
+                <p><strong>Open Rancher Desktop</strong> and verify that Kubernetes is running.</p>
+                </li>
+                <li>
+                <p><strong>Find the location</strong> of your <code>kubeconfig</code> file on Windows. By default, it is located here:</p>
+                </li>
+                </ul>
+                <p>C:\Users\<YourUsername>.kube\config</p>
+                <p>You’ll need to reference this file from within WSL.</p>
+                <hr />
+                <h3>Step 2: Access Windows Files from WSL</h3>
+                <p>WSL can access your Windows file system, so you can use the Windows path in WSL to set up the Kubernetes configuration.</p>
+                <ul>
+                <li>
+                <p>Open your <strong>WSL terminal</strong> (Ubuntu or any other distribution you use).</p>
+                </li>
+                <li>
+                <p>In your WSL shell, <strong>map the Windows path</strong> to where the <code>kubeconfig</code> file is stored. WSL mounts the Windows file system under <code>/mnt/</code>, so the path will look like this:</p>
+                </li>
+                </ul>
+                <p>export KUBECONFIG=/mnt/c/Users/<YourUsername>/.kube/config</p>
+                <ul>
+                <li>Run the command to verify the new <code>KUBECONFIG</code> environment variable is set correctly.</li>
+                </ul>
+                <p>echo $KUBECONFIG</p>
+                <hr />
+                <h3>Step 3: Test the Kubernetes Configuration</h3>
+                <ul>
+                <li>Now, try running a Kubernetes command to ensure the configuration is working. You can check the nodes in your cluster using the following:</li>
+                </ul>
+                <p>kubectl get nodes</p>
+                <p>If the setup is correct, you should see output like this, indicating your connection to Rancher Desktop’s Kubernetes cluster:</p>
+                <p>NAME              STATUS   ROLES    AGE   VERSION<br />
+                   rancher-desktop   Ready    master   Xm    v1.XX.X</p>
+                <ul>
+                <li>You can also verify the <code>kubectl</code> context with:</li>
+                </ul>
+                <p>kubectl config get-contexts<br />
+                kubectl config view </p>
+                <p>This should show the <code>rancher-desktop</code> context as your current configuration.</p>
+                <hr />
+                <h3>Step 4: Make the KUBECONFIG Persistent (Optional)</h3>
+                <p>To ensure that the <code>KUBECONFIG</code> environment variable is available every time you open your WSL terminal, you can add it to your shell’s configuration file:</p>
+                <ul>
+                <li>Open your <code>.bashrc</code> or <code>.zshrc</code> file (depending on your shell) in a text editor:</li>
+                </ul>
+                <p>nano ~/.bashrc</p>
+                <ul>
+                <li>Add the following line at the end of the file:</li>
+                </ul>
+                <p>export KUBECONFIG=/mnt/c/Users/<YourUsername>/.kube/config</p>
+                <ul>
+                <li>Save and exit the file. Then, source it to apply the changes immediately:</li>
+                </ul>
+                <p>source ~/.bashrc</p>
+                <p>Now, every time you open your WSL shell, it will automatically use the Rancher Desktop <code>kubeconfig</code>.</p>
+                <hr />
+                <h3>🎉 You’re All Set!</h3>
+                <p>You’ve successfully configured <strong>kubeconfig</strong> for Rancher Desktop on WSL. Now, you can use <code>kubectl</code> within WSL to manage and interact with your Kubernetes cluster running on Rancher Desktop in Windows.</p>
+                <hr />
+                <p>Feel free to reach out if you need further assistance or want to dive deeper into Rancher Desktop and Kubernetes!</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

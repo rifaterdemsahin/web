@@ -4,194 +4,336 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🚀 How to Apply YAML Configurations Using kubectl in Terminal - Rifat Erdem Sahin</title>
-    <meta name="description" content="Learn how to correctly paste and apply YAML configurations into your terminal using kubectl. Easy and efficient method using cat command with here document (<<EOF).">
-    <meta name="keywords" content="kubectl, YAML, Kubernetes, terminal, DevOps, cat command, here document, Elasticsearch, configuration">
+    <meta name="description" content="🚀 How to Apply YAML Configurations Using kubectl in Terminal In this blog post, I'll show you how to correctly paste and apply a YAML configuration into your terminal using kubectl . It's an easy and ">
+    <meta name="keywords" content="🚀 How to Apply YAML Configurations Using kubectl in Terminal">
     <meta name="author" content="Rifat Erdem Sahin">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/08/27/🚀-how-to-apply-yaml-configurations-using-kubectl-in-terminal/">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/08/27/🚀-how-to-apply-yaml-configurations-using-kubectl-in-terminal/">
     <meta property="og:title" content="🚀 How to Apply YAML Configurations Using kubectl in Terminal">
-    <meta property="og:description" content="Learn how to correctly paste and apply YAML configurations into your terminal using kubectl. Easy and efficient method using cat command with here document (<<EOF).">
+    <meta property="og:description" content="🚀 How to Apply YAML Configurations Using kubectl in Terminal In this blog post, I'll show you how to correctly paste and apply a YAML configuration into your terminal using kubectl . It's an easy and ">
     <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
     <meta property="og:site_name" content="Rifat Erdem Sahin">
     <meta property="og:locale" content="en_GB">
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/08/27/🚀-how-to-apply-yaml-configurations-using-kubectl-in-terminal/">
     <meta property="twitter:title" content="🚀 How to Apply YAML Configurations Using kubectl in Terminal">
-    <meta property="twitter:description" content="Learn how to correctly paste and apply YAML configurations into your terminal using kubectl. Easy and efficient method using cat command with here document (<<EOF).">
+    <meta property="twitter:description" content="🚀 How to Apply YAML Configurations Using kubectl in Terminal In this blog post, I'll show you how to correctly paste and apply a YAML configuration into your terminal using kubectl . It's an easy and ">
     <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
     <meta property="twitter:creator" content="@rifaterdemsahin">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": "🚀 How to Apply YAML Configurations Using kubectl in Terminal",
-      "description": "Learn how to correctly paste and apply YAML configurations into your terminal using kubectl. Easy and efficient method using cat command with here document (<<EOF).",
-      "author": {
-        "@type": "Person",
-        "name": "Rifat Erdem Sahin",
-        "jobTitle": "AI Solutions Architect"
-      },
-      "publisher": {
-        "@type": "Person",
-        "name": "Rifat Erdem Sahin"
-      },
+      "description": "🚀 How to Apply YAML Configurations Using kubectl in Terminal In this blog post, I'll show you how to correctly paste and apply a YAML configuration into your terminal using kubectl . It's an easy and ",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
       "datePublished": "2025-08-27",
       "dateModified": "2025-08-27",
       "url": "https://www.rifaterdemsahin.com/2025/08/27/🚀-how-to-apply-yaml-configurations-using-kubectl-in-terminal/",
       "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/08/27/🚀-how-to-apply-yaml-configurations-using-kubectl-in-terminal/",
-      "articleSection": "DevOps",
-      "keywords": ["kubectl", "YAML", "Kubernetes", "terminal", "DevOps", "cat command", "here document", "Elasticsearch", "configuration"]
+      "articleSection": "Blog",
+      "keywords": []
     }
     </script>
-    <link rel="stylesheet" href="../../../../assets/css/common-styles.css">
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="navbar-container container">
-            <a href="index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
             <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
             <ul class="nav-links">
-                <li><a href="../../../../pages/index.html">🏠 Home</a></li>
-                <li><a href="../../../../pages/delivery-pilot.html">🚀 Delivery Pilot</a></li>
-                <li><a href="../../../../pages/courses.html">🎓 Courses</a></li>
-                <li><a href="../../../../pages/early-bird-registration.html">🐦 Early Bird</a></li>
-                <li><a href="../../../../pages/ebook.html">📚 Ebook</a></li>
-                <li><a href="../../../../pages/newsletter.html">📧 Newsletter</a></li>
-                <li><a href="../../../../pages/investor.html">💼 Investors</a></li>
-                <li><a href="../../../../pages/about.html">👤 About</a></li>
-                <li><a href="../../../../pages/contact.html">📞 Contact</a></li>
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main class="main-content">
         <div class="container">
-            <!-- Back to Blog Link -->
-            <a href="../../../pages/blog.html" class="back-to-blog">
-                ← Back to Blog
-            </a>
-
-            <!-- Article Header -->
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
             <header class="article-header">
                 <h1 class="article-title">🚀 How to Apply YAML Configurations Using kubectl in Terminal</h1>
                 <div class="article-meta">
-                    <span class="article-category">DevOps</span>
-                    <span>•</span>
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
                     <span>August 27, 2025</span>
-                    <span>•</span>
-                    <span>5 min read</span>
+                    <span>&bull;</span>
+                    <span>2 min read</span>
                 </div>
-                <p class="article-excerpt">
-                    In this blog post, I'll show you how to correctly paste and apply a YAML configuration into your terminal using kubectl. 
-                    It's an easy and efficient method using the cat command with a here document (<<EOF). Let's dive in! 🎉
-                </p>
+                <p class="article-excerpt">🚀 How to Apply YAML Configurations Using kubectl in Terminal In this blog post, I'll show you how to correctly paste and apply a YAML configuration into your terminal using kubectl . It's an easy and efficient method using the cat command with a here document ( &lt;&lt;EOF ).</p>
             </header>
-
-            <!-- Article Content -->
             <article class="article-content">
+                <h1>🚀 How to Apply YAML Configurations Using kubectl in Terminal</h1>
+                <p>In this blog post, I'll show you how to correctly paste and apply a YAML configuration into your terminal using <code>kubectl</code>. It's an easy and efficient method using the <code>cat</code> command with a here document (<code>&lt;&lt;EOF</code>). Let’s dive in! 🎉</p>
+                <hr />
                 <h2>📋 Step-by-Step Guide</h2>
-                
                 <h3>1️⃣ Copy the YAML Configuration</h3>
-                <p>Here's a sample YAML configuration for creating an Elasticsearch resource:</p>
-                
-                <div class="code-block">
-                    <pre><span class="prompt">apiVersion:</span> elasticsearch.k8s.elastic.co/v1  
-<span class="prompt">kind:</span> Elasticsearch  
-<span class="prompt">metadata:</span>  
-  <span class="prompt">name:</span> quickstart  
-  <span class="prompt">namespace:</span> elasticsearch  
-<span class="prompt">spec:</span>  
-  <span class="prompt">version:</span> 7.10.0  
-  <span class="prompt">nodeSets:</span>  
-  - <span class="prompt">name:</span> default  
-    <span class="prompt">count:</span> 1  
-    <span class="prompt">config:</span>  
-      <span class="prompt">node.store.allow_mmap:</span> false</pre>
-                </div>
-
+                <p>Here’s a sample YAML configuration for creating an Elasticsearch resource:</p>
+                <p>apiVersion: elasticsearch.k8s.elastic.co/v1<br />
+                kind: Elasticsearch<br />
+                metadata:<br />
+                  name: quickstart<br />
+                  namespace: elasticsearch<br />
+                spec:<br />
+                  version: 7.10.0<br />
+                  nodeSets:<br />
+                  - name: default<br />
+                    count: 1<br />
+                    config:<br />
+                      node.store.allow_mmap: false  </p>
                 <h3>2️⃣ Paste the Configuration in Terminal</h3>
                 <p>Use the <code>cat</code> command with a here document to apply this YAML configuration directly in your terminal. Here's how:</p>
-                
-                <div class="code-block">
-                    <pre><span class="prompt">@rifaterdemsahin</span> <span class="command">➜</span> /workspaces/OpenShiftEventRouter (main) $ <span class="command">cat <<EOF | kubectl apply -f -</span>  
-<span class="prompt">apiVersion:</span> elasticsearch.k8s.elastic.co/v1  
-<span class="prompt">kind:</span> Elasticsearch  
-<span class="prompt">metadata:</span>  
-  <span class="prompt">name:</span> quickstart  
-  <span class="prompt">namespace:</span> elasticsearch  
-<span class="prompt">spec:</span>  
-  <span class="prompt">version:</span> 7.10.0  
-  <span class="prompt">nodeSets:</span>  
-  - <span class="prompt">name:</span> default  
-    <span class="prompt">count:</span> 1  
-    <span class="prompt">config:</span>  
-      <span class="prompt">node.store.allow_mmap:</span> false  
-<span class="command">EOF</span>  
-<span class="prompt">@rifaterdemsahin</span> <span class="command">➜</span> /workspaces/OpenShiftEventRouter (main) $</pre>
-                </div>
-
+                <p>@rifaterdemsahin ➜ /workspaces/OpenShiftEventRouter (main) $ cat &lt;&lt;EOF | kubectl apply -f -<br />
+                apiVersion: elasticsearch.k8s.elastic.co/v1<br />
+                kind: Elasticsearch<br />
+                metadata:<br />
+                  name: quickstart<br />
+                  namespace: elasticsearch<br />
+                spec:<br />
+                  version: 7.10.0<br />
+                  nodeSets:<br />
+                  - name: default<br />
+                    count: 1<br />
+                    config:<br />
+                      node.store.allow_mmap: false<br />
+                EOF<br />
+                @rifaterdemsahin ➜ /workspaces/OpenShiftEventRouter (main) $  </p>
                 <h3>3️⃣ Run the Command</h3>
-                <p>Once pasted, press Enter, and the configuration will be applied to your Kubernetes cluster. This will create the Elasticsearch resource as defined in the YAML.</p>
-
+                <p>Once pasted, press <strong>Enter</strong>, and the configuration will be applied to your Kubernetes cluster. This will create the Elasticsearch resource as defined in the YAML.</p>
+                <hr />
                 <h2>✨ Key Tips</h2>
                 <ul>
-                    <li><span class="emoji">🔒</span> Ensure you have the necessary permissions to apply resources in your Kubernetes cluster.</li>
-                    <li><span class="emoji">⚙️</span> Verify that your kubectl is configured and pointing to the correct cluster (<code>kubectl config view</code> is your friend!).</li>
-                    <li><span class="emoji">🚦</span> Validate the creation using <code>kubectl get elasticsearch -n elasticsearch</code>.</li>
+                <li>
+                <p>🔒 Ensure you have the necessary <strong>permissions</strong> to apply resources in your Kubernetes cluster.</p>
+                </li>
+                <li>
+                <p>⚙️ Verify that your <code>kubectl</code> is configured and pointing to the correct cluster (<code>kubectl config view</code> is your friend!).</p>
+                </li>
+                <li>
+                <p>🚦 Validate the creation using <code>kubectl get elasticsearch -n elasticsearch</code>.</p>
+                </li>
                 </ul>
-
-                <div class="tip-box">
-                    <h4>📸 Before applying:</h4>
-                    <p>Take a screenshot of your terminal right after pasting the command to verify your configuration.</p>
-                </div>
-
-                <div class="tip-box">
-                    <h4>📸 After applying:</h4>
-                    <p>Capture the output from kubectl get commands to confirm the resource has been created successfully.</p>
-                </div>
-
-                <h2>💡 Why Use cat <<EOF?</h2>
+                <hr />
+                <p><img src="images/how-to-apply-1.png" alt="how to apply 1" class="article-image" loading="lazy"></p>
+                <p>👉 <strong>Before applying:</strong><br />
+                📸 Take a screenshot of your terminal right after pasting the command to verify your configuration.</p>
+                <p>👉 <strong>After applying:</strong><br />
+                📸 Capture the output from <code>kubectl get</code> commands to confirm the resource has been created successfully.</p>
+                <hr />
+                <h2>💡 Why Use <code>cat &lt;&lt;EOF</code>?</h2>
                 <ul>
-                    <li><span class="emoji">🛠️</span> <strong>Convenience:</strong> Paste and apply YAML configurations without creating temporary files.</li>
-                    <li><span class="emoji">🚀</span> <strong>Efficiency:</strong> Reduces steps, keeping everything in your terminal.</li>
-                    <li><span class="emoji">🎯</span> <strong>Portability:</strong> Easily share and execute configurations in collaborative environments.</li>
+                <li>
+                <p>🛠️ <strong>Convenience</strong>: Paste and apply YAML configurations without creating temporary files.</p>
+                </li>
+                <li>
+                <p>🚀 <strong>Efficiency</strong>: Reduces steps, keeping everything in your terminal.</p>
+                </li>
+                <li>
+                <p>🎯 <strong>Portability</strong>: Easily share and execute configurations in collaborative environments.</p>
+                </li>
                 </ul>
-
-                <p>This method is particularly useful when working with Kubernetes configurations, as it allows you to quickly apply YAML files without the need to create temporary files on your system. The here document approach ensures that your configuration is applied exactly as intended, with proper formatting and indentation preserved.</p>
-
-                <p>Happy kubectl-ing! 🎉</p>
+                <hr />
+                <p><strong>🔗 Connect with me:</strong><br />
+                💼 <a href="https://www.linkedin.com/in/rifaterdemsahin/">LinkedIn</a><br />
+                🐦 <a href="https://x.com/rifaterdemsahin">Twitter</a><br />
+                🎥 <a href="https://www.youtube.com/@RifatErdemSahin">YouTube</a><br />
+                💻 <a href="https://github.com/rifaterdemsahin">GitHub</a></p>
+                <p>📣 <em>Let me know how this guide helped you!</em> 🌟</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
             </article>
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <p class="footer-text">Let's connect and grow together in the world of technology</p>
             <div class="footer-links">
-                <a href="../../../pages/index.html">🏠 Home</a>
-                <a href="../../../pages/about.html">👤 About</a>
-                <a href="../../../pages/contact.html">📞 Contact</a>
-                <a href="../../../pages/newsletter.html">📧 Newsletter</a>
-                <a href="../../../pages/courses.html">🎓 Courses</a>
-                <a href="../../../pages/email-form.html">🎫 Get Coupon</a>
-                <a href="../../../pages/early-bird-registration.html">🐦 Early Bird</a>
-                <a href="../../../pages/blog.html">📝 Blog</a>
-                <a href="../../../pages/delivery-pilot.html">🚀 Delivery Pilot</a>
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
@@ -200,31 +342,18 @@
     </footer>
 
     <script>
-        // Auto-update footer copyright year
         function updateCopyrightYear() {
             const currentYear = new Date().getFullYear();
-            const copyrightElements = document.querySelectorAll('.footer-bottom p');
-            copyrightElements.forEach(element => {
-                if (element.textContent.includes('©')) {
-                    element.textContent = element.textContent.replace(/\d{4}/, currentYear);
-                }
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
             });
         }
-
-        // Update copyright year when page loads
         document.addEventListener('DOMContentLoaded', updateCopyrightYear);
-
-        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
             });
         });
     </script>
@@ -232,12 +361,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const hamburger = document.querySelector('.hamburger');
             const navLinks = document.querySelector('.nav-links');
-
-            if (hamburger && navLinks) {
-                hamburger.addEventListener('click', () => {
-                    navLinks.classList.toggle('active');
-                });
-            }
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
         });
     </script>
 </body>

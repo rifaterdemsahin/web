@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grafana Project - Rifat Erdem Sahin</title>
+    <meta name="description" content="Grafana Project Creating a development project with Grafana that you can submit to GitHub and gain hands-on skills in saving and managing JSON files for dashboards is a great way to deepen your unders">
+    <meta name="keywords" content="Grafana Project">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/07/14/grafana-project/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/07/14/grafana-project/">
+    <meta property="og:title" content="Grafana Project">
+    <meta property="og:description" content="Grafana Project Creating a development project with Grafana that you can submit to GitHub and gain hands-on skills in saving and managing JSON files for dashboards is a great way to deepen your unders">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/07/14/grafana-project/">
+    <meta property="twitter:title" content="Grafana Project">
+    <meta property="twitter:description" content="Grafana Project Creating a development project with Grafana that you can submit to GitHub and gain hands-on skills in saving and managing JSON files for dashboards is a great way to deepen your unders">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Grafana Project",
+      "description": "Grafana Project Creating a development project with Grafana that you can submit to GitHub and gain hands-on skills in saving and managing JSON files for dashboards is a great way to deepen your unders",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-07-14",
+      "dateModified": "2025-07-14",
+      "url": "https://www.rifaterdemsahin.com/2025/07/14/grafana-project/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/07/14/grafana-project/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Grafana Project</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>July 14, 2025</span>
+                    <span>&bull;</span>
+                    <span>16 min read</span>
+                </div>
+                <p class="article-excerpt">Grafana Project Creating a development project with Grafana that you can submit to GitHub and gain hands-on skills in saving and managing JSON files for dashboards is a great way to deepen your understanding of both Grafana and version control.</p>
+            </header>
+            <article class="article-content">
+                <h1>Grafana Project</h1>
+                <p>Creating a development project with Grafana that you can submit to GitHub and gain hands-on skills in saving and managing JSON files for dashboards is a great way to deepen your understanding of both Grafana and version control. Here’s a step-by-step guide on how to create such a project:</p>
+                <h3>Project Overview</h3>
+                <p>The project will involve setting up a Grafana instance, creating custom dashboards, exporting these dashboards as JSON files, and managing these files using Git. Finally, you will upload the project to GitHub. The project will also include documentation to explain the setup, the purpose of each dashboard, and instructions on how to restore them.</p>
+                <h3>Steps to Complete the Project</h3>
+                <h4>1. <strong>Set Up a Grafana Instance</strong></h4>
+                <ul>
+                <li><strong>Install Grafana:</strong></li>
+                </ul>
+                <p>You can either install Grafana locally on your machine or use Docker.</p>
+                <ul>
+                <li>
+                <p>To install Grafana using <strong>Docker</strong>, you can use the following command:<br />
+                <code>bash docker run -d --name=grafana -p 3000:3000 grafana/grafana</code></p>
+                </li>
+                <li>
+                <p>Alternatively, follow the <a href="https://grafana.com/docs/grafana/latest/setup-grafana/installation/">Grafana installation guide</a> for your operating system.</p>
+                </li>
+                </ul>
+                <p><img src="images/grafana-project-1.png" alt="grafana project 1" class="article-image" loading="lazy"></p>
+                <p><img src="images/grafana-project-2.png" alt="grafana project 2" class="article-image" loading="lazy"></p>
+                <p>windows and docker enter</p>
+                <p><img src="images/grafana-project-3.png" alt="grafana project 3" class="article-image" loading="lazy"></p>
+                <p><img src="images/grafana-project-4.png" alt="grafana project 4" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Access Grafana:</strong></li>
+                </ul>
+                <p>Once installed, you can access Grafana by navigating to <code>http://localhost:3000</code> in your web browser.</p>
+                <p><img src="images/grafana-project-5.png" alt="grafana project 5" class="article-image" loading="lazy"></p>
+                <h4>power of docker and images</h4>
+                <p><img src="images/grafana-project-6.png" alt="grafana project 6" class="article-image" loading="lazy"></p>
+                <ol start="2">
+                <li><strong>Create Dashboards</strong></li>
+                </ol>
+                <ul>
+                <li><strong>Create Sample Data Sources:</strong></li>
+                </ul>
+                <p>Set up one or more data sources in Grafana. For example, you can use the built-in <code>Graphite</code>, <code>Prometheus</code>, or even a simple JSON data source.</p>
+                <hr />
+                <p>Setting up data sources in Grafana is a crucial step for visualizing data. Here, I'll guide you through setting up two common data sources: <strong>Prometheus</strong> and <strong>a simple JSON data source</strong>. I'll also provide an overview of setting up Graphite.</p>
+                <h3>1. <strong>Setting Up Prometheus as a Data Source</strong></h3>
+                <p><strong>Step 1: Install and Start Prometheus</strong></p>
+                <ul>
+                <li>
+                <p>If you don't have Prometheus installed, you can download it from the <a href="https://prometheus.io/download/">Prometheus website</a>.</p>
+                </li>
+                <li>
+                <p>Start Prometheus by running the following command in the directory where Prometheus is installed:</p>
+                </li>
+                </ul>
+                <p>./prometheus --config.file=prometheus.yml</p>
+                <ul>
+                <li>Prometheus should now be running on <code>http://localhost:9090</code>.</li>
+                </ul>
+                <p><strong>Step 2: Add Prometheus as a Data Source in Grafana</strong></p>
+                <ul>
+                <li>
+                <p>Open Grafana in your web browser (<code>http://localhost:3000</code>).</p>
+                </li>
+                <li>
+                <p>Log in using your credentials.</p>
+                </li>
+                <li>
+                <p>Navigate to <strong>Configuration</strong> &gt; <strong>Data Sources</strong> from the left-hand sidebar.</p>
+                </li>
+                <li>
+                <p>Click on <strong>Add data source</strong>.</p>
+                </li>
+                <li>
+                <p>Select <strong>Prometheus</strong> from the list of available data sources.</p>
+                </li>
+                <li>
+                <p>Configure the following settings:</p>
+                </li>
+                <li>
+                <p><strong>URL:</strong> <code>http://localhost:9090</code> (assuming Prometheus is running locally).</p>
+                </li>
+                <li>
+                <p>Other settings can be left at their default values.</p>
+                </li>
+                <li>
+                <p>Click <strong>Save &amp; Test</strong> to verify the connection.</p>
+                </li>
+                </ul>
+                <p>Grafana should confirm that the data source was successfully added.</p>
+                <h3>2. <strong>Setting Up a JSON Data Source</strong></h3>
+                <p>To use a JSON data source, you can either set up a simple JSON API or use existing JSON data.</p>
+                <p><strong>Step 1: Install SimpleJson Data Source Plugin</strong></p>
+                <ul>
+                <li>
+                <p>Grafana doesn’t support JSON as a built-in data source, so you need to install the <strong>SimpleJson</strong> plugin.</p>
+                </li>
+                <li>
+                <p>Run the following command to install it:</p>
+                </li>
+                </ul>
+                <p>grafana-cli plugins install grafana-simple-json-datasource</p>
+                <ul>
+                <li>Restart Grafana to load the new plugin:</li>
+                </ul>
+                <p>sudo service grafana-server restart</p>
+                <p><strong>Step 2: Add JSON Data Source in Grafana</strong></p>
+                <ul>
+                <li>
+                <p>In Grafana, go to <strong>Configuration</strong> &gt; <strong>Data Sources</strong>.</p>
+                </li>
+                <li>
+                <p>Click on <strong>Add data source</strong>.</p>
+                </li>
+                <li>
+                <p>Search for and select <strong>SimpleJson</strong>.</p>
+                </li>
+                <li>
+                <p>Configure the JSON data source:</p>
+                </li>
+                <li>
+                <p><strong>URL:</strong> Enter the URL of your JSON API. If you're using a local server, it might look something like <code>http://localhost:5000</code>.</p>
+                </li>
+                <li>
+                <p>Additional settings can be configured based on your JSON structure and requirements.</p>
+                </li>
+                <li>
+                <p>Click <strong>Save &amp; Test</strong> to verify the connection.</p>
+                </li>
+                </ul>
+                <h3>3. <strong>Setting Up Graphite as a Data Source</strong></h3>
+                <p><strong>Step 1: Install and Start Graphite</strong></p>
+                <ul>
+                <li>If you haven’t installed Graphite, you can do so using the following commands (assuming Ubuntu/Debian):</li>
+                </ul>
+                <p>sudo apt-get install graphite-web graphite-carbon<br />
+                  sudo apt-get install libapache2-mod-wsgi</p>
+                <ul>
+                <li>Configure Graphite and Carbon as per the documentation, then start the services.</li>
+                </ul>
+                <p><strong>Step 2: Add Graphite as a Data Source in Grafana</strong></p>
+                <ul>
+                <li>
+                <p>In Grafana, go to <strong>Configuration</strong> &gt; <strong>Data Sources</strong>.</p>
+                </li>
+                <li>
+                <p>Click <strong>Add data source</strong>.</p>
+                </li>
+                <li>
+                <p>Select <strong>Graphite</strong>.</p>
+                </li>
+                <li>
+                <p>Configure the following:</p>
+                </li>
+                <li>
+                <p><strong>URL:</strong> The default for Graphite running locally is usually <code>http://localhost:8080</code>.</p>
+                </li>
+                <li>
+                <p>Leave other settings at their default unless you have a specific configuration.</p>
+                </li>
+                <li>
+                <p>Click <strong>Save &amp; Test</strong>.</p>
+                </li>
+                </ul>
+                <h3>Conclusion</h3>
+                <p>Once you have set up one or more of these data sources, you can start creating dashboards and panels that query and visualize data from Prometheus, JSON, or Graphite. This setup will allow you to practice interacting with real-time data and integrating different data sources into Grafana, which is essential for building comprehensive monitoring solutions.</p>
+                <hr />
+                <ul>
+                <li><strong>Design Dashboards:</strong></li>
+                </ul>
+                <p>Create multiple dashboards with different panels (graphs, tables, alerts, etc.). These should demonstrate a range of Grafana’s visualization capabilities.</p>
+                <ul>
+                <li><strong>Export Dashboards as JSON:</strong></li>
+                </ul>
+                <p>After creating a dashboard, go to the dashboard settings, and select the "JSON Model" option. Click on "Export" to download the JSON file representing the dashboard.</p>
+                <p><img src="images/grafana-project-7.png" alt="grafana project 7" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>The default username for Grafana is usually:</p>
+                <ul>
+                <li>
+                <p><strong>Username:</strong> <code>admin</code></p>
+                </li>
+                <li>
+                <p><strong>Password:</strong> <code>admin</code></p>
+                </li>
+                </ul>
+                <p>Upon first login, Grafana will prompt you to change the password. If you're using a pre-configured setup or a cloud instance, the default credentials might be different, so it's always good to check any provided documentation for specific setups.</p>
+                <p><img src="images/grafana-project-8.png" alt="grafana project 8" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><img src="images/grafana-project-9.png" alt="grafana project 9" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>Setting up a simple JSON data source in Grafana involves creating a backend service that serves JSON data and then configuring Grafana to use this data via the SimpleJson plugin. Below are the steps to set this up:</p>
+                <h3>Step 1: Install the SimpleJson Data Source Plugin</h3>
+                <p>First, you need to install the SimpleJson plugin for Grafana, which allows you to use JSON data from a REST API as a data source.</p>
+                <ul>
+                <li>
+                <p>Open a terminal on your machine where Grafana is installed.</p>
+                </li>
+                <li>
+                <p>Run the following command to install the SimpleJson data source plugin:</p>
+                </li>
+                </ul>
+                <p>grafana-cli plugins install grafana-simple-json-datasource</p>
+                <ul>
+                <li>Restart the Grafana server to activate the plugin:</li>
+                </ul>
+                <p>sudo systemctl restart grafana-server</p>
+                <h3>Step 2: Set Up a Simple JSON API</h3>
+                <p>Next, you need to create a simple web service that returns JSON data. For simplicity, we'll use Python with Flask to create this service.</p>
+                <ul>
+                <li>Install Flask:</li>
+                </ul>
+                <p>pip install flask</p>
+                <ul>
+                <li>Create a Python script (<code>simple_json_api.py</code>):</li>
+                </ul>
+                <p>from flask import Flask, jsonify</p>
+                <p>app = Flask(<strong>name</strong>)</p>
+                <p>@app.route('/query', methods=['POST'])<br />
+                   def query():<br />
+                       data = {<br />
+                           "target": "sample_metric",<br />
+                           "datapoints": [<br />
+                               [100, 1622476800000],<br />
+                               [200, 1622480400000],<br />
+                               [300, 1622484000000],<br />
+                           ]<br />
+                       }<br />
+                       return jsonify([data])</p>
+                <p>@app.route('/search', methods=['POST'])<br />
+                   def search():<br />
+                       return jsonify(["sample_metric"])</p>
+                <p>@app.route('/annotations', methods=['POST'])<br />
+                   def annotations():<br />
+                       return jsonify([])</p>
+                <p>if <strong>name</strong> == '<strong>main</strong>':<br />
+                       app.run(host='0.0.0.0', port=5000)</p>
+                <ul>
+                <li>Run the Flask app:</li>
+                </ul>
+                <p>python simple_json_api.py</p>
+                <p>This script sets up a simple JSON API that listens on port 5000. The <code>/query</code> endpoint returns a JSON response that simulates metric data.</p>
+                <h3>Step 3: Configure the JSON Data Source in Grafana</h3>
+                <ul>
+                <li>
+                <p>Open Grafana in your web browser (<code>http://localhost:3000</code>).</p>
+                </li>
+                <li>
+                <p>Log in with your credentials.</p>
+                </li>
+                <li>
+                <p>Go to <strong>Configuration</strong> &gt; <strong>Data Sources</strong> from the left sidebar.</p>
+                </li>
+                <li>
+                <p>Click on <strong>Add data source</strong>.</p>
+                </li>
+                <li>
+                <p>Search for <strong>SimpleJson</strong> and select it.</p>
+                </li>
+                <li>
+                <p>Configure the JSON data source:</p>
+                </li>
+                <li>
+                <p><strong>Name:</strong> Enter a name for the data source, e.g., <code>Simple JSON API</code>.</p>
+                </li>
+                <li>
+                <p><strong>URL:</strong> Enter the URL of your Flask app, e.g., <code>http://localhost:5000</code>.</p>
+                </li>
+                <li>
+                <p>Leave other settings at their default values.</p>
+                </li>
+                <li>
+                <p>Click <strong>Save &amp; Test</strong> to verify the connection.</p>
+                </li>
+                </ul>
+                <h3>Step 4: Create a Dashboard in Grafana</h3>
+                <ul>
+                <li>
+                <p>Go to <strong>Dashboards</strong> &gt; <strong>New Dashboard</strong>.</p>
+                </li>
+                <li>
+                <p>Click <strong>Add new panel</strong>.</p>
+                </li>
+                <li>
+                <p>In the <strong>Query</strong> section of the panel editor, select your Simple JSON data source.</p>
+                </li>
+                <li>
+                <p>Type <code>sample_metric</code> in the metric field (this should match the metric returned by the <code>/search</code> endpoint of your API).</p>
+                </li>
+                <li>
+                <p>Adjust the time range as needed to ensure your data points are visible.</p>
+                </li>
+                <li>
+                <p>Customize the visualization options as you prefer.</p>
+                </li>
+                <li>
+                <p>Save the dashboard.</p>
+                </li>
+                </ul>
+                <h3>Conclusion</h3>
+                <p>You now have a simple JSON data source set up in Grafana. This allows you to pull data from any REST API that returns JSON and visualize it in Grafana. The SimpleJson plugin makes it easy to integrate custom data sources, which is particularly useful for environments where you might need to visualize data from non-standard or custom-built APIs.</p>
+                <hr />
+                <p>Plugins</p>
+                <p><img src="images/grafana-project-10.png" alt="grafana project 10" class="article-image" loading="lazy"></p>
+                <p><img src="images/grafana-project-11.png" alt="grafana project 11" class="article-image" loading="lazy"></p>
+                <p><img src="images/grafana-project-12.png" alt="grafana project 12" class="article-image" loading="lazy"></p>
+                <p><img src="images/grafana-project-13.png" alt="grafana project 13" class="article-image" loading="lazy"></p>
+                <p><img src="images/grafana-project-14.png" alt="grafana project 14" class="article-image" loading="lazy"></p>
+                <p><img src="images/grafana-project-15.png" alt="grafana project 15" class="article-image" loading="lazy"></p>
+                <p><img src="images/grafana-project-16.png" alt="grafana project 16" class="article-image" loading="lazy"></p>
+                <p><img src="images/grafana-project-17.png" alt="grafana project 17" class="article-image" loading="lazy"></p>
+                <p><img src="images/grafana-project-18.png" alt="grafana project 18" class="article-image" loading="lazy"></p>
+                <p><img src="images/grafana-project-19.png" alt="grafana project 19" class="article-image" loading="lazy"></p>
+                <p>Table view</p>
+                <p><img src="images/grafana-project-20.png" alt="grafana project 20" class="article-image" loading="lazy"></p>
+                <p>https://github.com/grafana/grafana-infinity-datasource/blob/main/testdata/users.json</p>
+                <p><img src="images/grafana-project-21.png" alt="grafana project 21" class="article-image" loading="lazy"></p>
+                <p><img src="images/grafana-project-22.png" alt="grafana project 22" class="article-image" loading="lazy"></p>
+                <p>Select table over there</p>
+                <p><img src="images/grafana-project-23.png" alt="grafana project 23" class="article-image" loading="lazy"></p>
+                <p><img src="images/grafana-project-24.png" alt="grafana project 24" class="article-image" loading="lazy"></p>
+                <p><img src="images/grafana-project-25.png" alt="grafana project 25" class="article-image" loading="lazy"></p>
+                <p><img src="images/grafana-project-26.png" alt="grafana project 26" class="article-image" loading="lazy"></p>
+                <h4>3. <strong>Save JSON Files in Git Repository</strong></h4>
+                <ul>
+                <li><strong>Initialize a Git Repository:</strong></li>
+                </ul>
+                <p>Create a new directory for your project.</p>
+                <ul>
+                <li>
+                <p>Initialize a Git repository in this directory:<br />
+                <code>bash git init</code></p>
+                </li>
+                <li>
+                <p><strong>Organize JSON Files:</strong></p>
+                </li>
+                </ul>
+                <p>Create a folder structure to store the JSON files. For example:<br />
+                <code>grafana-dashboards/ ├── dashboards/ │ ├── dashboard1.json │ ├── dashboard2.json │ └── ... └── README.md</code></p>
+                <ul>
+                <li><strong>Commit Changes:</strong></li>
+                </ul>
+                <p>Add your JSON files to the repository:<br />
+                <code>bash git add dashboards/*.json</code></p>
+                <ul>
+                <li>Commit the changes:<br />
+                <code>bash git commit -m "Initial commit of Grafana dashboards"</code></li>
+                </ul>
+                <p><img src="images/grafana-project-27.png" alt="grafana project 27" class="article-image" loading="lazy"></p>
+                <p><img src="images/grafana-project-28.png" alt="grafana project 28" class="article-image" loading="lazy"></p>
+                <h4>4. <strong>Upload to GitHub</strong></h4>
+                <ul>
+                <li><strong>Create a GitHub Repository:</strong></li>
+                </ul>
+                <p>Go to GitHub and create a new repository.</p>
+                <ul>
+                <li><strong>Push Local Repository to GitHub:</strong></li>
+                </ul>
+                <p>Add the remote URL to your local repository:<br />
+                <code>bash git remote add origin https://github.com/yourusername/grafana-dashboards.git</code></p>
+                <ul>
+                <li>Push the changes to GitHub:<br />
+                <code>bash git push -u origin master</code></li>
+                </ul>
+                <h4>5. <strong>Documentation</strong></h4>
+                <ul>
+                <li><strong>Create a README.md File:</strong></li>
+                </ul>
+                <p>Write a README file that explains the project, how to set up Grafana, and how to import the dashboards.</p>
+                <ul>
+                <li>Include instructions on how to clone the repository and load the JSON files into a Grafana instance.</li>
+                </ul>
+                <p><img src="images/grafana-project-29.png" alt="grafana project 29" class="article-image" loading="lazy"></p>
+                <h4>6. <strong>Enhancements (Optional)</strong></h4>
+                <ul>
+                <li><strong>Automate Dashboard Exports:</strong></li>
+                </ul>
+                <p>Write a script that periodically exports the dashboards as JSON files and commits them to the repository.</p>
+                <ul>
+                <li><strong>Add More Dashboards:</strong></li>
+                </ul>
+                <p>Create additional dashboards that connect to different data sources or use more advanced Grafana features.</p>
+                <ul>
+                <li><strong>Version Control for Dashboards:</strong>***</li>
+                </ul>
+                <p>Implement version control practices by tagging releases or using branches to manage different versions of the dashboards.</p>
+                <h3>Sample README.md Content</h3>
+                <h1>Grafana Dashboards Project</h1>
+                <p>This project contains a collection of Grafana dashboards, which are exported as JSON files. These dashboards can be imported into any Grafana instance.</p>
+                <h2>Getting Started</h2>
+                <h3>Prerequisites</h3>
+                <ul>
+                <li><a href="https://grafana.com/docs/grafana/latest/setup-grafana/installation/">Grafana</a> installed locally or via Docker.</li>
+                <li>Basic knowledge of Grafana and Git.</li>
+                </ul>
+                <h3>Installation</h3>
+                <ol>
+                <li>Clone this repository:</li>
+                </ol>
+                <p>bash<br />
+                git clone https://github.com/yourusername/grafana-dashboards.git<br />
+                cd grafana-dashboards</p>
+                <ol start="2">
+                <li>Import dashboards into Grafana:<br />
+                   - In Grafana, go to "Dashboards" &gt; "Manage" &gt; "Import".<br />
+                   - Upload the JSON files from the <code>dashboards/</code> directory.</li>
+                </ol>
+                <h3>Dashboard Descriptions</h3>
+                <ul>
+                <li><strong>dashboard1.json</strong>: Description of the first dashboard.</li>
+                <li><strong>dashboard2.json</strong>: Description of the second dashboard.</li>
+                <li>...</li>
+                </ul>
+                <h3>Contributing</h3>
+                <p>Contributions are welcome! Please fork this repository and submit a pull request with your improvements or additional dashboards.</p>
+                <h3>License</h3>
+                <p>This project is licensed under the MIT License - see the LICENSE.md file for details.</p>
+                <h3>Final Thoughts</h3>
+                <p>By following these steps, you will gain practical experience in setting up and managing Grafana dashboards, exporting and versioning them as JSON files, and collaborating on these files using Git and GitHub.</p>
+                <p><img src="images/grafana-project-30.png" alt="grafana project 30" class="article-image" loading="lazy"></p>
+                <p>**Test Docker and Other Features **</p>
+                <p><img src="images/grafana-project-31.png" alt="grafana project 31" class="article-image" loading="lazy"></p>
+                <p>Your Own Json </p>
+                <p><img src="images/grafana-project-32.png" alt="grafana project 32" class="article-image" loading="lazy"></p>
+                <p>To display the provided JSON data in Grafana, especially when the data does not contain a native time field but instead has a "year" field, you can use Grafana's transformation features to convert the "year" field into a time field. Here’s how you can set it up:</p>
+                <h3>Step 1: Prepare Your Data Source</h3>
+                <p>Before setting up the table in Grafana, ensure your JSON data is available via a data source. This could be through a custom API serving the JSON or by using the SimpleJson plugin, as explained earlier.</p>
+                <h3>Step 2: Add the Data Source to Grafana</h3>
+                <ul>
+                <li>
+                <p><strong>Add a Data Source:</strong></p>
+                </li>
+                <li>
+                <p>Go to <strong>Configuration</strong> &gt; <strong>Data Sources</strong> in Grafana.</p>
+                </li>
+                <li>
+                <p>Click on <strong>Add data source</strong> and select your JSON data source (e.g., SimpleJson).</p>
+                </li>
+                <li>
+                <p><strong>Test the Data Source:</strong></p>
+                </li>
+                <li>
+                <p>Ensure that the connection to the data source is successful.</p>
+                </li>
+                </ul>
+                <h3>Step 3: Create a New Dashboard and Add a Table Panel</h3>
+                <ul>
+                <li>
+                <p><strong>Create a New Dashboard:</strong></p>
+                </li>
+                <li>
+                <p>Go to <strong>Dashboards</strong> &gt; <strong>New Dashboard</strong>.</p>
+                </li>
+                <li>
+                <p>Click on <strong>Add new panel</strong>.</p>
+                </li>
+                <li>
+                <p><strong>Configure the Panel:</strong></p>
+                </li>
+                <li>
+                <p>Select <strong>Table</strong> as the visualization type.</p>
+                </li>
+                <li>
+                <p><strong>Query Your Data:</strong></p>
+                </li>
+                <li>
+                <p>In the <strong>Query</strong> editor, select your JSON data source.</p>
+                </li>
+                <li>
+                <p>Ensure that your query retrieves the data that includes the "country," "year," "sugar_production," "sugar_import," and "sugar_export" fields.</p>
+                </li>
+                </ul>
+                <h3>Step 4: Transform the Year Field into a Time Field</h3>
+                <p>Since Grafana expects a time field to plot time series data, you'll need to convert your "year" field into a time field.</p>
+                <ul>
+                <li>
+                <p><strong>Add a Transform:</strong></p>
+                </li>
+                <li>
+                <p>In the panel editor, go to the <strong>Transform</strong> tab.</p>
+                </li>
+                <li>
+                <p>Click <strong>Add transformation</strong> and choose <strong>"Add field from calculation"</strong>.</p>
+                </li>
+                <li>
+                <p><strong>Create a Time Field:</strong></p>
+                </li>
+                <li>
+                <p>Choose the <strong>"Time"</strong> calculation type.</p>
+                </li>
+                <li>
+                <p>Use the <strong>"Field Name"</strong> option to select your "year" field.</p>
+                </li>
+                <li>
+                <p>In the calculation, multiply the year by <code>31536000000</code> (the number of milliseconds in a year) and add the appropriate offset to match your desired start date. For example:<br />
+                <code>(year - 1970) * 31536000000</code><br />
+                This converts the "year" into a Unix timestamp.</p>
+                </li>
+                <li>
+                <p><strong>Organize Fields:</strong></p>
+                </li>
+                <li>
+                <p>You may want to use the <strong>Organize fields</strong> transformation to rename, reorder, or hide certain fields as necessary.</p>
+                </li>
+                </ul>
+                <h3>Step 5: Visualize the Data</h3>
+                <ul>
+                <li>
+                <p><strong>Adjust Time Range:</strong></p>
+                </li>
+                <li>
+                <p>Ensure your time range in the top-right corner of the Grafana interface is set appropriately to include the years you’re displaying.</p>
+                </li>
+                <li>
+                <p>You might need to manually adjust the range to cover the years (e.g., 2023-2030).</p>
+                </li>
+                <li>
+                <p><strong>Customize the Table:</strong></p>
+                </li>
+                <li>
+                <p>Configure the table’s columns, sorting, and other options to properly display the "country," "sugar_production," "sugar_import," and "sugar_export" fields.</p>
+                </li>
+                <li>
+                <p><strong>Save the Dashboard:</strong></p>
+                </li>
+                <li>
+                <p>Once everything is set up, click <strong>Save</strong> to store your dashboard.</p>
+                </li>
+                </ul>
+                <h3>Example Table Display</h3>
+                <p>Your table panel should now display rows with "country," "year," "sugar_production," "sugar_import," and "sugar_export," with the "year" correctly interpreted as a time field. This setup will allow Grafana to treat your data as time-series data, enabling further analysis and visualization.</p>
+                <p>By converting the "year" into a Unix timestamp, you ensure that Grafana can plot this data over time, even if your original JSON data didn’t have a native time field.</p>
+                <p><img src="images/grafana-project-33.png" alt="grafana project 33" class="article-image" loading="lazy"></p>
+                <p><img src="images/grafana-project-34.png" alt="grafana project 34" class="article-image" loading="lazy"></p>
+                <p>added images</p>
+                <p><img src="images/grafana-project-35.png" alt="grafana project 35" class="article-image" loading="lazy"></p>
+                <p><img src="images/grafana-project-36.png" alt="grafana project 36" class="article-image" loading="lazy"></p>
+                <p>GET UPDATED FILE </p>
+                <p><img src="images/grafana-project-37.png" alt="grafana project 37" class="article-image" loading="lazy"></p>
+                <p>FIX THE FOLDER STRUCTURE</p>
+                <p><img src="images/grafana-project-38.png" alt="grafana project 38" class="article-image" loading="lazy"></p>
+                <p>FINAL FOLDER STRUCTURE</p>
+                <p><img src="images/grafana-project-39.png" alt="grafana project 39" class="article-image" loading="lazy"></p>
+                <p>REUSE DOCKER TOMORROW</p>
+                <p>To save the state of a running Docker container as a new Docker image, you can use the <code>docker commit</code> command. This command creates a new image from the changes made to a running container. Here’s how you can do it:</p>
+                <h3>Step 1: Identify the Running Container</h3>
+                <p>First, you need to find the container ID or name of the running container whose state you want to save.</p>
+                <p>Run the following command to list all running containers:</p>
+                <p>docker ps</p>
+                <p>This will show you a list of all running containers, including their container ID and name.</p>
+                <h3>Step 2: Commit the Container to a New Image</h3>
+                <p>Once you have the container ID or name, you can use the <code>docker commit</code> command to create a new image.</p>
+                <p>The syntax is:</p>
+                <p>docker commit [OPTIONS] CONTAINER_ID_OR_NAME NEW_IMAGE_NAME</p>
+                <p>For example, if your container ID is <code>abc123def456</code> and you want to save it as an image named <code>my_saved_image</code>, you would run:</p>
+                <p>docker commit abc123def456 my_saved_image</p>
+                <h3>Step 3: Verify the New Image</h3>
+                <p>After committing the container to a new image, you can verify that the image has been created by listing all images:</p>
+                <p>docker images</p>
+                <p>You should see <code>my_saved_image</code> listed among your Docker images.</p>
+                <h3>Step 4: Use the New Image</h3>
+                <p>You can now use this new image to start new containers that start from the saved state of the original container. For example:</p>
+                <p>docker run -d my_saved_image</p>
+                <h3>Additional Options for <code>docker commit</code></h3>
+                <ul>
+                <li>
+                <p><strong>-m "message"</strong>: You can add a commit message to describe the changes.</p>
+                </li>
+                <li>
+                <p><strong>-a "author"</strong>: You can specify the author of the image.</p>
+                </li>
+                <li>
+                <p><strong>-c "command"</strong>: You can modify the Dockerfile instructions for the new image.</p>
+                </li>
+                </ul>
+                <p>Example with options:</p>
+                <p>docker commit -m "Updated config files" -a "John Doe" abc123def456 my_saved_image</p>
+                <p>This saves the state of the running container as a new image with a commit message and author information.</p>
+                <h3>Conclusion</h3>
+                <p>The <code>docker commit</code> command is a straightforward way to save the current state of a running container as a new Docker image. This is useful for capturing the state of a container after making changes or updates that you want to preserve.</p>
+                <p><img src="images/grafana-project-40.png" alt="grafana project 40" class="article-image" loading="lazy"></p>
+                <p><img src="images/grafana-project-41.png" alt="grafana project 41" class="article-image" loading="lazy"></p>
+                <p>new version for you to run </p>
+                <p><img src="images/grafana-project-42.png" alt="grafana project 42" class="article-image" loading="lazy"></p>
+                <p><img src="images/grafana-project-43.png" alt="grafana project 43" class="article-image" loading="lazy"></p>
+                <p>docker commit -m "Saved current state of Grafana container with 2 dashboards" -a "Erdem" b35b2e630a5f my_saved_grafana_image</p>
+                <p><img src="images/grafana-project-44.png" alt="grafana project 44" class="article-image" loading="lazy"></p>
+                <blockquote></blockquote>
+                <p>restart and try</p>
+                <p><code>docker run -d -p 3000:3000 my_saved_grafana_image</code></p>
+                <p>before restart check on docker terminal </p>
+                <p><img src="images/grafana-project-45.png" alt="grafana project 45" class="article-image" loading="lazy"></p>
+                <p>Reference &gt; https://github.com/rifaterdemsahin/graphanadevelopment</p>
+                <p>After Restart</p>
+                <p><img src="images/grafana-project-46.png" alt="grafana project 46" class="article-image" loading="lazy"></p>
+                <p>open docker desktop and than run the nysaved graphana</p>
+                <p><img src="images/grafana-project-47.png" alt="grafana project 47" class="article-image" loading="lazy"></p>
+                <p>and click on the link for the local host and it still works</p>
+                <p><img src="images/grafana-project-48.png" alt="grafana project 48" class="article-image" loading="lazy"></p>
+                <p>save the docker image to a file &gt;</p>
+                <p><img src="images/grafana-project-49.png" alt="grafana project 49" class="article-image" loading="lazy"></p>
+                <p><img src="images/grafana-project-50.png" alt="grafana project 50" class="article-image" loading="lazy"></p>
+                <p>It looks like you're providing a step-by-step guide to save a running Docker container as an image and then save that image to a file. Here's a refined version of the instructions, including the name of the image you mentioned (<code>my_saved_grafana_image:latest</code>):</p>
+                <ul>
+                <li><strong>Commit the running container to an image:</strong> First, commit the running container to a new Docker image. Replace <code>&lt;container_id&gt;</code> with your container's ID or name.</li>
+                </ul>
+                <p>docker commit <container_id> my_saved_grafana_image:latest</p>
+                <ul>
+                <li><strong>Save the image to a tar file:</strong> Next, save the Docker image to a tar file. Replace <code>&lt;file_name&gt;.tar</code> with the name of the tar file you want to create.</li>
+                </ul>
+                <p>docker save -o my_saved_grafana_image.tar my_saved_grafana_image:latest</p>
+                <p>This <code>my_saved_grafana_image.tar</code> file now contains your Docker image. You can transfer this file, back it up, or use it elsewhere.</p>
+                <p>To load this image back into Docker on another system, use the <code>docker load</code> command:</p>
+                <p>docker load -i my_saved_grafana_image.tar</p>
+                <p>This will make the image available on the new system, ready to be run as a container.</p>
+                <p><img src="images/grafana-project-51.png" alt="grafana project 51" class="article-image" loading="lazy"></p>
+                <p><img src="images/grafana-project-52.png" alt="grafana project 52" class="article-image" loading="lazy"></p>
+                <p><img src="images/grafana-project-53.png" alt="grafana project 53" class="article-image" loading="lazy"></p>
+                <p><img src="images/grafana-project-54.png" alt="grafana project 54" class="article-image" loading="lazy"></p>
+                <p><img src="images/grafana-project-55.png" alt="grafana project 55" class="article-image" loading="lazy"></p>
+                <p><img src="images/grafana-project-56.png" alt="grafana project 56" class="article-image" loading="lazy"></p>
+                <p>Inception everywhere </p>
+                <p><img src="images/grafana-project-57.png" alt="grafana project 57" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

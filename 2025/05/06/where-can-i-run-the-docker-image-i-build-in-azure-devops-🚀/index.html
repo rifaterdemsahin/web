@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where Can I Run the Docker Image I Build in Azure DevOps? 🚀 - Rifat Erdem Sahin</title>
+    <meta name="description" content="Where Can I Run the Docker Image I Build in Azure DevOps? 🚀 After building a Docker image in your Azure DevOps pipeline, you may wonder where you can run it.">
+    <meta name="keywords" content="Where Can I Run the Docker Image I Build in Azure DevOps? 🚀">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/05/06/where-can-i-run-the-docker-image-i-build-in-azure-devops-🚀/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/05/06/where-can-i-run-the-docker-image-i-build-in-azure-devops-🚀/">
+    <meta property="og:title" content="Where Can I Run the Docker Image I Build in Azure DevOps? 🚀">
+    <meta property="og:description" content="Where Can I Run the Docker Image I Build in Azure DevOps? 🚀 After building a Docker image in your Azure DevOps pipeline, you may wonder where you can run it.">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/05/06/where-can-i-run-the-docker-image-i-build-in-azure-devops-🚀/">
+    <meta property="twitter:title" content="Where Can I Run the Docker Image I Build in Azure DevOps? 🚀">
+    <meta property="twitter:description" content="Where Can I Run the Docker Image I Build in Azure DevOps? 🚀 After building a Docker image in your Azure DevOps pipeline, you may wonder where you can run it.">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Where Can I Run the Docker Image I Build in Azure DevOps? 🚀",
+      "description": "Where Can I Run the Docker Image I Build in Azure DevOps? 🚀 After building a Docker image in your Azure DevOps pipeline, you may wonder where you can run it.",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-05-06",
+      "dateModified": "2025-05-06",
+      "url": "https://www.rifaterdemsahin.com/2025/05/06/where-can-i-run-the-docker-image-i-build-in-azure-devops-🚀/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/05/06/where-can-i-run-the-docker-image-i-build-in-azure-devops-🚀/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Where Can I Run the Docker Image I Build in Azure DevOps? 🚀</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>May 6, 2025</span>
+                    <span>&bull;</span>
+                    <span>4 min read</span>
+                </div>
+                <p class="article-excerpt">Where Can I Run the Docker Image I Build in Azure DevOps? 🚀 After building a Docker image in your Azure DevOps pipeline, you may wonder where you can run it.</p>
+            </header>
+            <article class="article-content">
+                <h1>Where Can I Run the Docker Image I Build in Azure DevOps? 🚀</h1>
+                <p>After building a Docker image in your Azure DevOps pipeline, you may wonder where you can run it. Whether you're deploying an app or using containers for specific development tasks, Azure provides multiple options for running your Docker images efficiently. Here's a breakdown of some of the most popular ways to run your Docker images after building them in Azure DevOps.</p>
+                <hr />
+                <h3>1. <strong>Azure Kubernetes Service (AKS) 🐳 + ☁️</strong></h3>
+                <p>Azure Kubernetes Service (AKS) is a fully managed Kubernetes service, making it an ideal place to run Docker containers in a scalable, production-ready environment. AKS offers automatic scaling, load balancing, and self-healing capabilities, which makes it the go-to option for containerized applications that need high availability.</p>
+                <h4>How to Use:</h4>
+                <ul>
+                <li>
+                <p>Push your Docker image to <strong>Azure Container Registry</strong> (ACR).</p>
+                </li>
+                <li>
+                <p>Use your DevOps pipeline to deploy the image from ACR to AKS.</p>
+                </li>
+                <li>
+                <p>AKS will orchestrate and manage the containers, ensuring efficient resource allocation and scaling.</p>
+                </li>
+                </ul>
+                <h4>Pros:</h4>
+                <ul>
+                <li>
+                <p>Highly scalable and flexible.</p>
+                </li>
+                <li>
+                <p>Integrated with ACR and Azure Monitor for easy management and monitoring.</p>
+                </li>
+                <li>
+                <p>Suitable for large-scale, complex applications.</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>2. <strong>Azure App Service for Containers 🌐</strong></h3>
+                <p>If you're looking for a simpler alternative to Kubernetes, <strong>Azure App Service</strong> offers a platform-as-a-service (PaaS) option that lets you easily deploy and run Docker containers. It's ideal for web apps, APIs, and mobile backends.</p>
+                <h4>How to Use:</h4>
+                <ul>
+                <li>
+                <p>Push your image to a Docker registry like <strong>Docker Hub</strong> or <strong>Azure Container Registry</strong>.</p>
+                </li>
+                <li>
+                <p>Create an <strong>Azure App Service</strong> and point it to your Docker image.</p>
+                </li>
+                <li>
+                <p>Azure App Service will handle the deployment, scaling, and monitoring.</p>
+                </li>
+                </ul>
+                <h4>Pros:</h4>
+                <ul>
+                <li>
+                <p>Simple setup and deployment.</p>
+                </li>
+                <li>
+                <p>Built-in scaling and monitoring.</p>
+                </li>
+                <li>
+                <p>Perfect for web applications and APIs.</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>3. <strong>Azure Container Instances (ACI) 🖥️</strong></h3>
+                <p>If you want to run your Docker containers without the overhead of managing Kubernetes or a full VM, <strong>Azure Container Instances</strong> (ACI) is a lightweight option. ACI allows you to run containers on-demand in a serverless environment, making it ideal for simple use cases or temporary workloads like testing or short-term processing tasks.</p>
+                <h4>How to Use:</h4>
+                <ul>
+                <li>
+                <p>Push the Docker image to <strong>Azure Container Registry</strong>.</p>
+                </li>
+                <li>
+                <p>Use Azure DevOps to trigger a container deployment in ACI.</p>
+                </li>
+                </ul>
+                <h4>Pros:</h4>
+                <ul>
+                <li>
+                <p>Fast and simple to use.</p>
+                </li>
+                <li>
+                <p>Serverless: no need to manage infrastructure.</p>
+                </li>
+                <li>
+                <p>Ideal for lightweight, temporary tasks.</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>4. <strong>Azure Virtual Machines (VMs) 💻</strong></h3>
+                <p>For more control over your infrastructure, you can deploy your Docker images to <strong>Azure Virtual Machines</strong>. This is especially useful if you need to customize your environment or use specific operating systems.</p>
+                <h4>How to Use:</h4>
+                <ul>
+                <li>
+                <p>Install Docker on your Azure VM.</p>
+                </li>
+                <li>
+                <p>Use a DevOps pipeline to deploy the image to the VM, either by pulling it from Docker Hub or <strong>Azure Container Registry</strong>.</p>
+                </li>
+                </ul>
+                <h4>Pros:</h4>
+                <ul>
+                <li>
+                <p>Full control over the environment.</p>
+                </li>
+                <li>
+                <p>Ideal for complex or legacy applications.</p>
+                </li>
+                <li>
+                <p>Suitable for custom container runtime needs.</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>5. <strong>Azure Functions with Docker ⚡</strong></h3>
+                <p>For event-driven applications or microservices, <strong>Azure Functions</strong> can now run Docker containers. This is a powerful way to use serverless computing with custom containers, especially for apps that need to respond to triggers (like HTTP requests or queues).</p>
+                <h4>How to Use:</h4>
+                <ul>
+                <li>
+                <p>Build your image, push it to <strong>Azure Container Registry</strong> or <strong>Docker Hub</strong>.</p>
+                </li>
+                <li>
+                <p>Set up an Azure Function to use the custom container.</p>
+                </li>
+                </ul>
+                <h4>Pros:</h4>
+                <ul>
+                <li>
+                <p>Serverless: no need to manage scaling or infrastructure.</p>
+                </li>
+                <li>
+                <p>Ideal for event-driven apps or microservices.</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>6. <strong>On-Premise Docker Hosts or Private Cloud 🌍</strong></h3>
+                <p>You might want to run your Docker containers on an on-premise server or private cloud. In such cases, you can deploy your Docker image built in Azure DevOps to your private Docker host.</p>
+                <h4>How to Use:</h4>
+                <ul>
+                <li>
+                <p>Push the Docker image to a Docker registry (Docker Hub, ACR, or a private registry).</p>
+                </li>
+                <li>
+                <p>Pull the image and run it on your local or private cloud Docker host.</p>
+                </li>
+                </ul>
+                <h4>Pros:</h4>
+                <ul>
+                <li>
+                <p>Complete control over infrastructure.</p>
+                </li>
+                <li>
+                <p>Data sovereignty (data stays within your premises).</p>
+                </li>
+                <li>
+                <p>Suitable for environments with specific security or compliance needs.</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>Conclusion: Where Will You Run Your Docker Image? 🤔</h3>
+                <p>Azure provides multiple flexible options to run your Docker image based on your needs. From fully managed platforms like <strong>AKS</strong> and <strong>Azure App Service</strong> to lightweight options like <strong>ACI</strong>, or complete control with <strong>VMs</strong>, you have a wide range of choices for deploying your Docker container.</p>
+                <p>Each solution comes with its own strengths. If you're managing large, production-scale applications, <strong>AKS</strong> or <strong>App Service</strong> will be your best bet. For lightweight or short-term tasks, <strong>ACI</strong> or <strong>Functions</strong> are perfect. If you need full control, <strong>VMs</strong> or an <strong>on-premise Docker host</strong> can give you that freedom.</p>
+                <p>Choose the option that best fits your use case, and get the most out of your containerized applications with Azure. 🌐🛠️</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

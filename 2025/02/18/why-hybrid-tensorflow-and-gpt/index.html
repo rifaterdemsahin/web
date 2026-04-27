@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why hybrid ? TensorFlow and Gpt - Rifat Erdem Sahin</title>
+    <meta name="description" content="TensorFlow and Gpt TensorFlow is a powerful open-source machine learning framework developed by Google, and it can certainly be used to build a custom AI agent to identify recruiting emails.">
+    <meta name="keywords" content="Why hybrid ? TensorFlow and Gpt">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/02/18/why-hybrid-tensorflow-and-gpt/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/02/18/why-hybrid-tensorflow-and-gpt/">
+    <meta property="og:title" content="Why hybrid ? TensorFlow and Gpt">
+    <meta property="og:description" content="TensorFlow and Gpt TensorFlow is a powerful open-source machine learning framework developed by Google, and it can certainly be used to build a custom AI agent to identify recruiting emails.">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/02/18/why-hybrid-tensorflow-and-gpt/">
+    <meta property="twitter:title" content="Why hybrid ? TensorFlow and Gpt">
+    <meta property="twitter:description" content="TensorFlow and Gpt TensorFlow is a powerful open-source machine learning framework developed by Google, and it can certainly be used to build a custom AI agent to identify recruiting emails.">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Why hybrid ? TensorFlow and Gpt",
+      "description": "TensorFlow and Gpt TensorFlow is a powerful open-source machine learning framework developed by Google, and it can certainly be used to build a custom AI agent to identify recruiting emails.",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-02-18",
+      "dateModified": "2025-02-18",
+      "url": "https://www.rifaterdemsahin.com/2025/02/18/why-hybrid-tensorflow-and-gpt/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/02/18/why-hybrid-tensorflow-and-gpt/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Why hybrid ? TensorFlow and Gpt</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>February 18, 2025</span>
+                    <span>&bull;</span>
+                    <span>4 min read</span>
+                </div>
+                <p class="article-excerpt">TensorFlow and Gpt TensorFlow is a powerful open-source machine learning framework developed by Google, and it can certainly be used to build a custom AI agent to identify recruiting emails.</p>
+            </header>
+            <article class="article-content">
+                <h1>Why hybrid ? TensorFlow and Gpt</h1>
+                <p>TensorFlow is a powerful open-source machine learning framework developed by Google, and it can certainly be used to build a custom AI agent to identify recruiting emails. Let’s compare <strong>TensorFlow</strong> and <strong>GPT-based models</strong> (like OpenAI's GPT-4) for this task, along with their pros and cons.</p>
+                <hr />
+                <h3><strong>1. Using TensorFlow</strong></h3>
+                <p>TensorFlow is a framework for building and training machine learning models, including natural language processing (NLP) models. You can use TensorFlow to create a custom model for classifying emails as "recruiting" or "non-recruiting."</p>
+                <h4><strong>Steps to Build a TensorFlow Model:</strong></h4>
+                <ul>
+                <li>
+                <p><strong>Collect Data:</strong> Gather a labeled dataset of emails (recruiting vs. non-recruiting).</p>
+                </li>
+                <li>
+                <p><strong>Preprocess Data:</strong> Clean and preprocess the text (e.g., tokenization, removing stopwords).</p>
+                </li>
+                <li>
+                <p><strong>Build a Model:</strong> Use TensorFlow to create a text classification model (e.g., using LSTM, BERT, or a simple neural network).</p>
+                </li>
+                <li>
+                <p><strong>Train the Model:</strong> Train the model on your dataset.</p>
+                </li>
+                <li>
+                <p><strong>Deploy the Model:</strong> Integrate the trained model into your email system for real-time classification.</p>
+                </li>
+                </ul>
+                <h4><strong>Pros:</strong></h4>
+                <ul>
+                <li>
+                <p><strong>Full Control:</strong> You have complete control over the model architecture, training data, and fine-tuning.</p>
+                </li>
+                <li>
+                <p><strong>Customizable:</strong> You can tailor the model to your specific needs (e.g., identifying specific types of recruiting emails).</p>
+                </li>
+                <li>
+                <p><strong>Offline Use:</strong> Once trained, the model can run locally without relying on external APIs.</p>
+                </li>
+                <li>
+                <p><strong>Scalability:</strong> TensorFlow is designed for large-scale machine learning tasks.</p>
+                </li>
+                </ul>
+                <h4><strong>Cons:</strong></h4>
+                <ul>
+                <li>
+                <p><strong>Technical Expertise Required:</strong> You need strong knowledge of machine learning, NLP, and TensorFlow.</p>
+                </li>
+                <li>
+                <p><strong>Time-Consuming:</strong> Building, training, and fine-tuning a model from scratch can take significant time and effort.</p>
+                </li>
+                <li>
+                <p><strong>Data Requirements:</strong> You need a large, high-quality labeled dataset to train an accurate model.</p>
+                </li>
+                <li>
+                <p><strong>Maintenance:</strong> You’ll need to periodically retrain the model with new data to maintain accuracy.</p>
+                </li>
+                </ul>
+                <hr />
+                <h3><strong>2. Using GPT-Based Models (e.g., OpenAI's GPT-4)</strong></h3>
+                <p>GPT-based models are pre-trained language models that can be used for text classification tasks with minimal setup. You can use GPT-4 to classify emails by designing prompts or fine-tuning the model.</p>
+                <h4><strong>Steps to Use GPT-4:</strong></h4>
+                <ul>
+                <li>
+                <p><strong>Design a Prompt:</strong> Create a prompt that instructs GPT-4 to classify emails (e.g., "Is this email from a recruiter? Email: [insert email text]").</p>
+                </li>
+                <li>
+                <p><strong>API Integration:</strong> Use OpenAI's API to send emails to GPT-4 and receive classifications.</p>
+                </li>
+                <li>
+                <p><strong>Fine-Tuning (Optional):</strong> If needed, fine-tune GPT-4 on your specific dataset for better accuracy.</p>
+                </li>
+                </ul>
+                <h4><strong>Pros:</strong></h4>
+                <ul>
+                <li>
+                <p><strong>Ease of Use:</strong> GPT-4 is pre-trained and requires minimal setup for basic tasks.</p>
+                </li>
+                <li>
+                <p><strong>High Accuracy:</strong> GPT-4 is state-of-the-art for NLP tasks and can handle complex language patterns.</p>
+                </li>
+                <li>
+                <p><strong>Flexibility:</strong> You can use GPT-4 for other tasks beyond email classification.</p>
+                </li>
+                <li>
+                <p><strong>Rapid Prototyping:</strong> You can quickly test and deploy a solution without building a model from scratch.</p>
+                </li>
+                </ul>
+                <h4><strong>Cons:</strong></h4>
+                <ul>
+                <li>
+                <p><strong>API Costs:</strong> Using GPT-4 can become expensive if you’re processing a large volume of emails.</p>
+                </li>
+                <li>
+                <p><strong>Data Privacy:</strong> Sending sensitive email data to an external API may raise privacy concerns.</p>
+                </li>
+                <li>
+                <p><strong>Less Control:</strong> You rely on OpenAI's API, so you have limited control over the model's inner workings.</p>
+                </li>
+                <li>
+                <p><strong>Prompt Design:</strong> You need to carefully design prompts to ensure accurate classifications.</p>
+                </li>
+                </ul>
+                <hr />
+                <h3><strong>Comparison Table</strong></h3>
+                <p>Feature TensorFlow GPT-Based Model <strong>Ease of Use</strong> Requires technical expertise Easy to use with API <strong>Customization</strong> Fully customizable Limited by API and prompts <strong>Cost</strong> Free (open-source) Pay-per-use (API costs) <strong>Data Privacy</strong> Can run locally Requires sending data to OpenAI <strong>Accuracy</strong> Depends on dataset and training High (pre-trained on vast data) <strong>Development Time</strong> Longer (build and train model) Shorter (use pre-trained model)</p>
+                <hr />
+                <h3><strong>Which Should You Choose?</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Choose TensorFlow if:</strong></p>
+                </li>
+                <li>
+                <p>You have the technical expertise to build and train a model.</p>
+                </li>
+                <li>
+                <p>You want full control over the model and its training process.</p>
+                </li>
+                <li>
+                <p>You need to run the model locally for data privacy reasons.</p>
+                </li>
+                <li>
+                <p>You have a large, high-quality dataset for training.</p>
+                </li>
+                <li>
+                <p><strong>Choose GPT-4 if:</strong></p>
+                </li>
+                <li>
+                <p>You want a quick and easy solution with minimal setup.</p>
+                </li>
+                <li>
+                <p>You don’t have the resources or expertise to build a model from scratch.</p>
+                </li>
+                <li>
+                <p>You’re okay with using an external API and paying for usage.</p>
+                </li>
+                <li>
+                <p>You want high accuracy out-of-the-box without extensive training.</p>
+                </li>
+                </ul>
+                <hr />
+                <h3><strong>Hybrid Approach</strong></h3>
+                <p>You could also combine both approaches:</p>
+                <ul>
+                <li>
+                <p>Use <strong>TensorFlow</strong> to build a custom model for long-term, scalable, and privacy-conscious email classification.</p>
+                </li>
+                <li>
+                <p>Use <strong>GPT-4</strong> for rapid prototyping or to handle edge cases where your TensorFlow model is uncertain.</p>
+                </li>
+                </ul>
+                <p>This way, you can leverage the strengths of both tools while mitigating their weaknesses.</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

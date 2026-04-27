@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐳 Why Use Ingress in Kubernetes with Minio? - Rifat Erdem Sahin</title>
+    <meta name="description" content="🐳 Why Use Ingress in Kubernetes with Minio? 🐳 When working with Kubernetes, managing access to your services becomes crucial, especially when you want to expose a service externally.">
+    <meta name="keywords" content="🐳 Why Use Ingress in Kubernetes with Minio?">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/08/07/🐳-why-use-ingress-in-kubernetes-with-minio/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/08/07/🐳-why-use-ingress-in-kubernetes-with-minio/">
+    <meta property="og:title" content="🐳 Why Use Ingress in Kubernetes with Minio?">
+    <meta property="og:description" content="🐳 Why Use Ingress in Kubernetes with Minio? 🐳 When working with Kubernetes, managing access to your services becomes crucial, especially when you want to expose a service externally.">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/08/07/🐳-why-use-ingress-in-kubernetes-with-minio/">
+    <meta property="twitter:title" content="🐳 Why Use Ingress in Kubernetes with Minio?">
+    <meta property="twitter:description" content="🐳 Why Use Ingress in Kubernetes with Minio? 🐳 When working with Kubernetes, managing access to your services becomes crucial, especially when you want to expose a service externally.">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "🐳 Why Use Ingress in Kubernetes with Minio?",
+      "description": "🐳 Why Use Ingress in Kubernetes with Minio? 🐳 When working with Kubernetes, managing access to your services becomes crucial, especially when you want to expose a service externally.",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-08-07",
+      "dateModified": "2025-08-07",
+      "url": "https://www.rifaterdemsahin.com/2025/08/07/🐳-why-use-ingress-in-kubernetes-with-minio/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/08/07/🐳-why-use-ingress-in-kubernetes-with-minio/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">🐳 Why Use Ingress in Kubernetes with Minio?</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>August 7, 2025</span>
+                    <span>&bull;</span>
+                    <span>4 min read</span>
+                </div>
+                <p class="article-excerpt">🐳 Why Use Ingress in Kubernetes with Minio? 🐳 When working with Kubernetes, managing access to your services becomes crucial, especially when you want to expose a service externally.</p>
+            </header>
+            <article class="article-content">
+                <h1>🐳 Why Use Ingress in Kubernetes with Minio?</h1>
+                <hr />
+                <h1>🐳</h1>
+                <p>When working with Kubernetes, managing access to your services becomes crucial, especially when you want to expose a service externally. In this post, we'll explore why using Ingress is a smart choice for your Kubernetes setup when deploying services like Minio.</p>
+                <p><img alt="why-use-ingress-1.png" src="http://rifaterdemsahin.com/2025/08/07/%f0%9f%90%b3-why-use-ingress-in-kubernetes-with-minio/screenshot.png" /></p>
+                <hr />
+                <h2>🎯 What Is Ingress?</h2>
+                <p>Kubernetes <strong>Ingress</strong> is a collection of rules that allow external HTTP and HTTPS access to cluster services. It provides a way to expose your services to the outside world without needing to create an individual service with a load balancer for each one. Instead, you define a set of routing rules that Kubernetes Ingress Controller uses to direct traffic.</p>
+                <p><code>minikube service minio-console --url -n minio</code></p>
+                <hr />
+                <h2>🚀 Why Ingress Instead of NodePort?</h2>
+                <p>In the screenshot above, we can see a service like <code>minio-console</code> without an external IP, meaning it is only accessible within the Kubernetes cluster. While using <code>NodePort</code> or <code>ClusterIP</code> gives us access, it might not be ideal for external, public-facing services. Here's why you should consider using Ingress:</p>
+                <ul>
+                <li>
+                <p><strong>Centralized Control</strong>: Ingress allows centralized management of routing rules. You can expose multiple services through a single external IP address, each with different paths or subdomains.</p>
+                </li>
+                <li>
+                <p><strong>SSL Termination</strong>: Ingress can handle SSL/TLS termination, making your services secure without having to configure SSL for each service individually.</p>
+                </li>
+                <li>
+                <p><strong>Load Balancing</strong>: By using Ingress, you can apply load-balancing rules to distribute traffic across multiple backend pods.</p>
+                </li>
+                </ul>
+                <hr />
+                <h2>🔥 How Ingress Simplifies Minio Access</h2>
+                <p>Imagine you have several services like Minio, a database, and a web frontend running in the same Kubernetes cluster. Without Ingress, you'd have to expose each service using a <code>NodePort</code>, which means exposing high-range ports (30000-32767). This is not ideal from a security or management perspective. Instead, by setting up an Ingress resource, you can:</p>
+                <ul>
+                <li>
+                <p>Expose <strong>Minio</strong> at <code>https://minio.yourdomain.com</code></p>
+                </li>
+                <li>
+                <p>Expose <strong>Minio Console</strong> at <code>https://minio-console.yourdomain.com</code></p>
+                </li>
+                <li>
+                <p>Expose other services under similar subdomains or paths like <code>/minio-console</code></p>
+                </li>
+                </ul>
+                <hr />
+                <h2>🛠️ Configuring Ingress for Minio</h2>
+                <p>Here’s an example of what an Ingress resource for Minio might look like:</p>
+                <p>apiVersion: networking.k8s.io/v1<br />
+                kind: Ingress<br />
+                metadata:<br />
+                  name: minio-ingress<br />
+                  namespace: minio<br />
+                spec:<br />
+                  rules:<br />
+                  - host: "minio.yourdomain.com"<br />
+                    http:<br />
+                      paths:<br />
+                      - path: /<br />
+                        pathType: Prefix<br />
+                        backend:<br />
+                          service:<br />
+                            name: minio<br />
+                            port:<br />
+                              number: 9000<br />
+                  - host: "console.minio.yourdomain.com"<br />
+                    http:<br />
+                      paths:<br />
+                      - path: /<br />
+                        pathType: Prefix<br />
+                        backend:<br />
+                          service:<br />
+                            name: minio-console<br />
+                            port:<br />
+                              number: 9001</p>
+                <p>This YAML defines two routes: one for Minio's storage service and another for the Minio Console, each under a different subdomain. With this setup, Ingress simplifies routing and removes the need for individual NodePort services.</p>
+                <hr />
+                <h2>💡 Conclusion</h2>
+                <p>Ingress is a powerful tool in Kubernetes that makes managing external access to services like Minio efficient and scalable. By using it, you centralize your routing rules, secure your services with SSL, and optimize resource allocation without the complexity of multiple NodePorts.</p>
+                <hr />
+                <p><strong>🔗 Connect with me:</strong></p>
+                <ul>
+                <li>
+                <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/rifaterdemsahin/">Connect on LinkedIn</a></p>
+                </li>
+                <li>
+                <p>🐦 Twitter: <a href="https://x.com/rifaterdemsahin">Follow me on Twitter</a></p>
+                </li>
+                <li>
+                <p>🎥 YouTube: <a href="https://www.youtube.com/@RifatErdemSahin">Watch on YouTube</a></p>
+                </li>
+                <li>
+                <p>💻 GitHub: <a href="https://github.com/rifaterdemsahin">See my work on GitHub</a></p>
+                </li>
+                </ul>
+                <hr />
+                <p>This post leverages the screenshot for visual aid, and you can further expand on configuring Ingress controllers like Nginx or Traefik, depending on your Kubernetes setup.</p>
+                <p>Let me know if you'd like to tweak or add more details to the post!</p>
+                <p>UPDATE</p>
+                <p>It looks like you have uploaded another screenshot, likely showing the Minikube command to expose the <code>minio-console</code> service. Here's an updated snippet to add to the blog post for better clarity on how you're exposing the Minio Console service using Minikube.</p>
+                <hr />
+                <h3>🛠️ Exposing Minio Console Using Minikube</h3>
+                <p>To expose the Minio Console in a development environment like Minikube, you can use the following command:</p>
+                <p>minikube service minio-console --url -n minio</p>
+                <p>As shown in the screenshot, Minikube helps to expose the service by generating a local URL (e.g., <code>http://127.0.0.1:52582</code>). This allows you to access the Minio Console through a browser locally on your machine, which is particularly useful during development when you don’t need a public-facing service.</p>
+                <p>🚨 <strong>Note:</strong> The message <em>"Because you are using a Docker driver on darwin, the terminal needs to be open to run it."</em> indicates that you need to keep the terminal open while accessing the service, which is typical when using the Docker driver on macOS (Darwin).</p>
+                <p>For production setups, however, it's better to use an <strong>Ingress</strong> to avoid limitations like needing to keep the terminal open.</p>
+                <hr />
+                <p>This section can follow the explanation of the Ingress benefits and provide insight into how Minikube exposes services for testing.</p>
+                <p>Let me know if you want to make any other adjustments!</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

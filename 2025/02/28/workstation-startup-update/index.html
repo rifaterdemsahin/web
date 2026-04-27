@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorkStation Startup Update - Rifat Erdem Sahin</title>
+    <meta name="description" content="WorkStation Startup Update I'll enhance the PowerShell script by adding multi-color debugging and a prompt to close the terminal at the end.">
+    <meta name="keywords" content="WorkStation Startup Update">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/02/28/workstation-startup-update/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/02/28/workstation-startup-update/">
+    <meta property="og:title" content="WorkStation Startup Update">
+    <meta property="og:description" content="WorkStation Startup Update I'll enhance the PowerShell script by adding multi-color debugging and a prompt to close the terminal at the end.">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/02/28/workstation-startup-update/">
+    <meta property="twitter:title" content="WorkStation Startup Update">
+    <meta property="twitter:description" content="WorkStation Startup Update I'll enhance the PowerShell script by adding multi-color debugging and a prompt to close the terminal at the end.">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "WorkStation Startup Update",
+      "description": "WorkStation Startup Update I'll enhance the PowerShell script by adding multi-color debugging and a prompt to close the terminal at the end.",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-02-28",
+      "dateModified": "2025-02-28",
+      "url": "https://www.rifaterdemsahin.com/2025/02/28/workstation-startup-update/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/02/28/workstation-startup-update/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">WorkStation Startup Update</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>February 28, 2025</span>
+                    <span>&bull;</span>
+                    <span>12 min read</span>
+                </div>
+                <p class="article-excerpt">WorkStation Startup Update I'll enhance the PowerShell script by adding multi-color debugging and a prompt to close the terminal at the end.</p>
+            </header>
+            <article class="article-content">
+                <h1>WorkStation Startup Update</h1>
+                <p>I'll enhance the PowerShell script by adding multi-color debugging and a prompt to close the terminal at the end. Here's the improved version:</p>
+                <h1>🔙 Backup link: https://github.com/rifaterdemsahin/workstation/blob/master/6_Symbols/startup/start_up_script.ps1</h1>
+                <h1>Enable debugging</h1>
+                <p>$DebugPreference = "Continue"</p>
+                <h1>Function for colorful debugging</h1>
+                <p>function Write-ColorDebug {<br />
+                    param (<br />
+                        [Parameter(Mandatory=$true)]<br />
+                        [string]$Message,</p>
+                <pre><code>    [Parameter(Mandatory=$false)]
+                    [string]$Color = "Cyan"
+                )
+                
+                Write-Host "[DEBUG] $Message" -ForegroundColor $Color
+                </code></pre>
+                <p>}</p>
+                <p>Write-ColorDebug "Script started on $(Get-Date)" "Green"</p>
+                <h1>📱 Launch WhatsApp</h1>
+                <p>Write-ColorDebug "Launching WhatsApp" "Magenta"<br />
+                Start-Process "whatsapp:" -ErrorAction SilentlyContinue</p>
+                <h1>🖼️ Minimize all windows</h1>
+                <p>Write-ColorDebug "Minimizing all windows" "Yellow"<br />
+                (New-Object -ComObject Shell.Application).MinimizeAll()</p>
+                <h1>🌐 Define Chrome path</h1>
+                <p>$chromePath = "C:\Program Files\Google\Chrome\Application\chrome.exe"<br />
+                Write-ColorDebug "Chrome path set to: $chromePath" "Blue"</p>
+                <h1>🔗 URLs array</h1>
+                <p>$urls = @(<br />
+                    "https://chatgpt.com/?hints=search&amp;ref=ext&amp;model=auto",  # ChatGPT 🤖<br />
+                    "https://claude.ai/new",                                 # Claude AI 🧠<br />
+                    "https://to-do.office.com/tasks/",                       # Microsoft To-Do ✅<br />
+                    "https://www.perplexity.ai/",                            # Perplexity AI ❓<br />
+                    "https://www.linkedin.com/",                             # LinkedIn 💼<br />
+                    "https://www.gmail.com/",                                # Gmail 📧<br />
+                    "https://vdo.ninja/?director=rifaterdemsahin",           # VDO Ninja 🎥<br />
+                    "https://calendly.com/app/scheduled_events/user/me",     # Calendly 📅<br />
+                    "https://x.com/i/grok"                                   # Grok on X 🐦<br />
+                )</p>
+                <h1>🚀 Launch Chrome windows</h1>
+                <p>Write-ColorDebug "Launching $($urls.Count) Chrome windows" "Cyan"<br />
+                foreach ($url in $urls) {<br />
+                    if (Test-Path $chromePath) {<br />
+                        Write-ColorDebug "Opening: $url" "DarkCyan"<br />
+                        Start-Process $chromePath -ArgumentList "--new-window", $url -ErrorAction Continue<br />
+                    } else {<br />
+                        Write-Host "[WARNING] Chrome not found at: $chromePath" -ForegroundColor Red<br />
+                        break<br />
+                    }<br />
+                }</p>
+                <h1>🎬 Launch OBS Studio</h1>
+                <p>$obsPath = "C:\Program Files\obs-studio\bin\64bit\obs64.exe"<br />
+                $obsWorkingDirectory = "C:\Program Files\obs-studio\bin\64bit"<br />
+                Write-ColorDebug "Checking OBS at: $obsPath" "Blue"<br />
+                if (Test-Path $obsPath) {<br />
+                    Write-ColorDebug "Launching OBS Studio with admin privileges" "Green"<br />
+                    Start-Process -FilePath $obsPath -WorkingDirectory $obsWorkingDirectory -Verb RunAs -ErrorAction Continue<br />
+                } else {<br />
+                    Write-Host "[WARNING] 🎥 OBS Studio not found at: $obsPath" -ForegroundColor Red<br />
+                }</p>
+                <h1>🤖 Launch LM Studio</h1>
+                <p>$lmStudioPath = "C:\Users\Pexabo\AppData\Local\Programs\LM Studio\LM Studio.exe"<br />
+                Write-ColorDebug "Checking LM Studio at: $lmStudioPath" "Blue"<br />
+                if (Test-Path $lmStudioPath) {<br />
+                    Write-ColorDebug "Launching LM Studio with admin privileges" "Green"<br />
+                    Start-Process -FilePath $lmStudioPath -Verb RunAs -ErrorAction Continue<br />
+                } else {<br />
+                    Write-Host "[WARNING] 🤖 LM Studio not found at: $lmStudioPath" -ForegroundColor Red<br />
+                }</p>
+                <h1>📚 Launch AnythingLLM</h1>
+                <p>$anythingLLMPath = "C:\Users\Pexabo\AppData\Local\Programs\AnythingLLM\AnythingLLM.exe"<br />
+                Write-ColorDebug "Checking AnythingLLM at: $anythingLLMPath" "Blue"<br />
+                if (Test-Path $anythingLLMPath) {<br />
+                    Write-ColorDebug "Launching AnythingLLM" "Green"<br />
+                    Start-Process -FilePath $anythingLLMPath -ErrorAction Continue<br />
+                } else {<br />
+                    Write-Host "[WARNING] 📚 AnythingLLM not found at: $anythingLLMPath" -ForegroundColor Red<br />
+                }</p>
+                <h1>✍️ Launch Obsidian</h1>
+                <p>$obsidianPath = "C:\Users\Pexabo\AppData\Local\Programs\Obsidian\Obsidian.exe"<br />
+                Write-ColorDebug "Checking Obsidian at: $obsidianPath" "Blue"<br />
+                if (Test-Path $obsidianPath) {<br />
+                    Write-ColorDebug "Launching Obsidian" "Green"<br />
+                    Start-Process -FilePath $obsidianPath -ErrorAction Continue<br />
+                } else {<br />
+                    Write-Host "[WARNING] ✍️ Obsidian not found at: $obsidianPath" -ForegroundColor Red<br />
+                }</p>
+                <h1>🎮 Launch Stream Deck</h1>
+                <p>$streamDeckPath = "C:\Program Files\Elgato\StreamDeck\StreamDeck.exe"<br />
+                Write-ColorDebug "Checking Stream Deck at: $streamDeckPath" "Blue"<br />
+                if (Test-Path $streamDeckPath) {<br />
+                    Write-ColorDebug "Launching Stream Deck" "Green"<br />
+                    Start-Process -FilePath $streamDeckPath -ErrorAction Continue<br />
+                } else {<br />
+                    Write-Host "[WARNING] 🎮 Stream Deck not found at: $streamDeckPath" -ForegroundColor Red<br />
+                }</p>
+                <h1>🛠️ Launch Visual Studio Code</h1>
+                <p>$vscodePath = "C:\Users\Pexabo\AppData\Local\Programs\Microsoft VS Code\Code.exe"<br />
+                Write-ColorDebug "Checking VS Code at: $vscodePath" "Blue"<br />
+                if (Test-Path $vscodePath) {<br />
+                    Write-ColorDebug "Launching Visual Studio Code" "Green"<br />
+                    Start-Process -FilePath $vscodePath -ErrorAction Continue<br />
+                } else {<br />
+                    Write-Host "[WARNING] 🛠️ Visual Studio Code not found at: $vscodePath" -ForegroundColor Red<br />
+                }</p>
+                <h1>🖥️ Open PowerShell to Update Chocolatey Packages</h1>
+                <p>$powershellPath = "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe"<br />
+                Write-ColorDebug "Checking PowerShell at: $powershellPath" "Blue"<br />
+                if (Test-Path $powershellPath) {<br />
+                    Write-ColorDebug "Launching PowerShell to update Chocolatey packages" "Green"<br />
+                    $chocoUpdateCommand = "Start-Process choco -ArgumentList 'upgrade all -y' -Verb RunAs"<br />
+                    Start-Process -FilePath $powershellPath -ArgumentList "-NoExit", "-Command", $chocoUpdateCommand -ErrorAction Continue<br />
+                } else {<br />
+                    Write-Host "[WARNING] 🖥️ PowerShell not found at: $powershellPath" -ForegroundColor Red<br />
+                }</p>
+                <h1>⚙️ Open Windows Update Settings</h1>
+                <p>Write-ColorDebug "Opening Windows Update settings" "Yellow"<br />
+                Start-Process "ms-settings:windowsupdate" -ErrorAction Continue</p>
+                <h1>🐳 Start Docker Desktop</h1>
+                <p>$dockerDesktopPath = "C:\Program Files\Docker\Docker\Docker Desktop.exe"<br />
+                Write-ColorDebug "Checking Docker at: $dockerDesktopPath" "Blue"<br />
+                if (Test-Path $dockerDesktopPath) {<br />
+                    Write-ColorDebug "Launching Docker Desktop" "Green"<br />
+                    Start-Process -FilePath $dockerDesktopPath<br />
+                } else {<br />
+                    Write-Host "[WARNING] 🐳 Docker Desktop not found at: $dockerDesktopPath" -ForegroundColor Red<br />
+                }</p>
+                <p>Write-ColorDebug "Script completed on $(Get-Date)" "Green"</p>
+                <h1>Prompt to close terminal</h1>
+                <p>Write-Host "`n=======================================" -ForegroundColor Yellow<br />
+                Write-Host "✅ All startup applications launched!" -ForegroundColor Green<br />
+                Write-Host "=======================================" -ForegroundColor Yellow<br />
+                $close = Read-Host "Press Enter to close this terminal window or type 'stay' to keep it open"<br />
+                if ($close -ne "stay") {<br />
+                    Stop-Process -Id $PID<br />
+                }</p>
+                <p>I've enhanced your startup script with several improvements:</p>
+                <ul>
+                <li>
+                <p>Added a custom <code>Write-ColorDebug</code> function that displays debug messages in different colors</p>
+                </li>
+                <li>
+                <p>Used various colors for different types of operations:</p>
+                </li>
+                </ul>
+                <p>Green for successful operations and start/end messages</p>
+                <ul>
+                <li>
+                <p>Blue for path checks</p>
+                </li>
+                <li>
+                <p>Cyan/DarkCyan for Chrome-related operations</p>
+                </li>
+                <li>
+                <p>Magenta, Yellow for other operations</p>
+                </li>
+                <li>
+                <p>Red for warnings when applications aren't found</p>
+                </li>
+                <li>
+                <p>Added a Docker emoji (🐳) to match your emoji style for the Docker Desktop section</p>
+                </li>
+                <li>
+                <p>Added a terminal close prompt at the end that:</p>
+                </li>
+                </ul>
+                <p>Shows a completion message with visual separation</p>
+                <ul>
+                <li>
+                <p>Asks the user to press Enter to close or type 'stay' to keep the terminal open</p>
+                </li>
+                <li>
+                <p>Automatically closes the PowerShell window if the user presses Enter</p>
+                </li>
+                </ul>
+                <p>This script now provides better visual feedback during execution while maintaining all the functionality of the original script.</p>
+                <hr />
+                <p>Your PowerShell startup script is well-structured and effectively automates the launch of various applications and websites. To enhance its functionality and adhere to best practices, consider the following improvements:</p>
+                <ul>
+                <li><strong>Enhance Debugging Output</strong>:</li>
+                </ul>
+                <p>Replace <code>Write-Host</code> with <code>Write-Debug</code> for consistency in debugging messages. This allows for better control over the output, as <code>Write-Debug</code> messages can be toggled on or off using the <code>$DebugPreference</code> variable.</p>
+                <ul>
+                <li>
+                <p><strong>Implement Robust Error Handling</strong>:<br />
+                Utilize <code>Try-Catch</code> blocks around critical operations, such as launching applications or opening URLs. This approach ensures that errors are gracefully handled, and informative messages are provided.<br />
+                <code>Try { Start-Process -FilePath $chromePath -ArgumentList "--new-window", $url -ErrorAction Stop Write-Debug "Successfully opened: $url" } Catch { Write-Warning "Failed to open $url. Error: $_" }</code></p>
+                </li>
+                <li>
+                <p><strong>Use Meaningful Function Names</strong>:</p>
+                </li>
+                </ul>
+                <p>Rename <code>Write-ColorDebug</code> to <code>Write-DebugWithColor</code> to clearly convey its purpose.</p>
+                <ul>
+                <li>
+                <p><strong>Avoid Hardcoding Paths</strong>:<br />
+                Instead of hardcoding application paths, retrieve them dynamically to enhance portability and reduce maintenance. For example, to find the path of Google Chrome:<br />
+                <code>$chromePath = (Get-Command "chrome.exe").Source</code></p>
+                </li>
+                <li>
+                <p>Ensure that the necessary applications are included in the system's PATH environment variable for this method to work effectively.</p>
+                </li>
+                <li>
+                <p><strong>Minimize All Windows</strong>:</p>
+                </li>
+                </ul>
+                <p>Your current approach using <code>(New-Object -ComObject Shell.Application).MinimizeAll()</code> is effective. Ensure that the <code>Shell.Application</code> COM object is available on the system.</p>
+                <ul>
+                <li>
+                <p><strong>Launch Applications with Appropriate Privileges</strong>:<br />
+                When launching applications that require administrative privileges, ensure that the script checks for the necessary permissions and prompts the user if needed.<br />
+                <code>$obsPath = "C:\Program Files\obs-studio\bin\64bit\obs64.exe" If (Test-Path $obsPath) { Write-Debug "Launching OBS Studio with admin privileges" Start-Process -FilePath $obsPath -Verb RunAs -ErrorAction Stop } Else { Write-Warning "OBS Studio not found at: $obsPath" }</code></p>
+                </li>
+                <li>
+                <p><strong>Automate Package Updates with Caution</strong>:<br />
+                Automating package updates using Chocolatey is efficient. However, consider running updates in a controlled manner to prevent unintended disruptions.<br />
+                <code>$chocoUpdateCommand = "choco upgrade all -y" Start-Process -FilePath "cmd.exe" -ArgumentList "/c", $chocoUpdateCommand -Verb RunAs</code></p>
+                </li>
+                <li>
+                <p>Running the update command through <code>cmd.exe</code> can provide better handling of command-line operations.</p>
+                </li>
+                <li>
+                <p><strong>Prompt to Close Terminal</strong>:<br />
+                Instead of terminating the script abruptly, provide a clear prompt to the user, allowing them to decide whether to keep the terminal open.<br />
+                <code>$userInput = Read-Host "Press Enter to close this terminal window or type 'stay' to keep it open" If ($userInput -ne "stay") { Write-Debug "Closing terminal as per user input." Stop-Process -Id $PID } Else { Write-Debug "Terminal will remain open as per user request." }</code></p>
+                </li>
+                </ul>
+                <p>By incorporating these enhancements, your script will become more robust, maintainable, and aligned with PowerShell best practices.</p>
+                <hr />
+                <p>Certainly! Here's an enhanced version of your PowerShell startup script that incorporates best practices such as dynamic path retrieval, robust error handling, and consistent debugging output.</p>
+                <h1>Enable debugging output</h1>
+                <p>$DebugPreference = "Continue"</p>
+                <h1>Function to write colored debug messages</h1>
+                <p>function Write-DebugWithColor {<br />
+                    param (<br />
+                        [Parameter(Mandatory = $true)]<br />
+                        [string]$Message,</p>
+                <pre><code>    [Parameter(Mandatory = $false)]
+                    [string]$Color = "Cyan"
+                )
+                Write-Host "[DEBUG] $Message" -ForegroundColor $Color
+                </code></pre>
+                <p>}</p>
+                <p>Write-DebugWithColor "Script started on $(Get-Date)" "Green"</p>
+                <h1>Function to start a process with error handling</h1>
+                <p>function Start-ProcessWithCheck {<br />
+                    param (<br />
+                        [Parameter(Mandatory = $true)]<br />
+                        [string]$ProcessPath,</p>
+                <pre><code>    [Parameter(Mandatory = $false)]
+                    [string[]]$Arguments = @(),
+                
+                    [Parameter(Mandatory = $false)]
+                    [string]$Verb = "",
+                
+                    [Parameter(Mandatory = $false)]
+                    [string]$WorkingDirectory = ""
+                )
+                
+                if (Test-Path $ProcessPath) {
+                    try {
+                        $startInfo = New-Object System.Diagnostics.ProcessStartInfo
+                        $startInfo.FileName = $ProcessPath
+                        $startInfo.Arguments = $Arguments -join " "
+                        if ($Verb) { $startInfo.Verb = $Verb }
+                        if ($WorkingDirectory) { $startInfo.WorkingDirectory = $WorkingDirectory }
+                        [System.Diagnostics.Process]::Start($startInfo) | Out-Null
+                        Write-DebugWithColor "Successfully launched: $ProcessPath" "Green"
+                    } catch {
+                        Write-Host "[ERROR] Failed to start process: $ProcessPath. Error: $_" -ForegroundColor Red
+                    }
+                } else {
+                    Write-Host "[WARNING] Process not found at: $ProcessPath" -ForegroundColor Yellow
+                }
+                </code></pre>
+                <p>}</p>
+                <h1>Minimize all windows</h1>
+                <p>Write-DebugWithColor "Minimizing all windows" "Yellow"<br />
+                (New-Object -ComObject Shell.Application).MinimizeAll()</p>
+                <h1>Define URLs to open</h1>
+                <p>$urls = @(<br />
+                    "https://chatgpt.com/?hints=search&amp;ref=ext&amp;model=auto",  # ChatGPT<br />
+                    "https://claude.ai/new",                                 # Claude AI<br />
+                    "https://to-do.office.com/tasks/",                       # Microsoft To-Do<br />
+                    "https://www.perplexity.ai/",                            # Perplexity AI<br />
+                    "https://www.linkedin.com/",                             # LinkedIn<br />
+                    "https://www.gmail.com/",                                # Gmail<br />
+                    "https://vdo.ninja/?director=rifaterdemsahin",           # VDO Ninja<br />
+                    "https://calendly.com/app/scheduled_events/user/me",     # Calendly<br />
+                    "https://x.com/i/grok"                                   # Grok on X<br />
+                )</p>
+                <h1>Launch default browser with URLs</h1>
+                <p>foreach ($url in $urls) {<br />
+                    Write-DebugWithColor "Opening URL: $url" "DarkCyan"<br />
+                    try {<br />
+                        Start-Process $url<br />
+                        Write-DebugWithColor "Successfully opened: $url" "Green"<br />
+                    } catch {<br />
+                        Write-Host "[ERROR] Failed to open URL: $url. Error: $_" -ForegroundColor Red<br />
+                    }<br />
+                }</p>
+                <h1>Define applications to launch</h1>
+                <p>$applications = @(<br />
+                    @{<br />
+                        Name = "OBS Studio"<br />
+                        Path = "obs64.exe"<br />
+                        RequiresAdmin = $true<br />
+                    },<br />
+                    @{<br />
+                        Name = "LM Studio"<br />
+                        Path = "LM Studio.exe"<br />
+                        RequiresAdmin = $true<br />
+                    },<br />
+                    @{<br />
+                        Name = "AnythingLLM"<br />
+                        Path = "AnythingLLM.exe"<br />
+                        RequiresAdmin = $false<br />
+                    },<br />
+                    @{<br />
+                        Name = "Obsidian"<br />
+                        Path = "Obsidian.exe"<br />
+                        RequiresAdmin = $false<br />
+                    },<br />
+                    @{<br />
+                        Name = "Stream Deck"<br />
+                        Path = "StreamDeck.exe"<br />
+                        RequiresAdmin = $false<br />
+                    },<br />
+                    @{<br />
+                        Name = "Visual Studio Code"<br />
+                        Path = "Code.exe"<br />
+                        RequiresAdmin = $false<br />
+                    },<br />
+                    @{<br />
+                        Name = "Docker Desktop"<br />
+                        Path = "Docker Desktop.exe"<br />
+                        RequiresAdmin = $false<br />
+                    }<br />
+                )</p>
+                <h1>Launch applications</h1>
+                <p>foreach ($app in $applications) {<br />
+                    $appPath = (Get-Command $app.Path -ErrorAction SilentlyContinue)?.Source<br />
+                    if ($appPath) {<br />
+                        $verb = if ($app.RequiresAdmin) { "RunAs" } else { "" }<br />
+                        Write-DebugWithColor "Launching $($app.Name)" "Blue"<br />
+                        Start-ProcessWithCheck -ProcessPath $appPath -Verb $verb<br />
+                    } else {<br />
+                        Write-Host "[WARNING] $($app.Name) not found in system PATH." -ForegroundColor Yellow<br />
+                    }<br />
+                }</p>
+                <h1>Update Chocolatey packages</h1>
+                <p>Write-DebugWithColor "Updating Chocolatey packages" "Yellow"<br />
+                try {<br />
+                    Start-Process "cmd.exe" -ArgumentList "/c choco upgrade all -y" -Verb RunAs<br />
+                    Write-DebugWithColor "Chocolatey package update initiated" "Green"<br />
+                } catch {<br />
+                    Write-Host "[ERROR] Failed to initiate Chocolatey update. Error: $_" -ForegroundColor Red<br />
+                }</p>
+                <h1>Open Windows Update settings</h1>
+                <p>Write-DebugWithColor "Opening Windows Update settings" "Yellow"<br />
+                try {<br />
+                    Start-Process "ms-settings:windowsupdate"<br />
+                    Write-DebugWithColor "Windows Update settings opened" "Green"<br />
+                } catch {<br />
+                    Write-Host "[ERROR] Failed to open Windows Update settings. Error: $_" -ForegroundColor Red<br />
+                }</p>
+                <p>Write-DebugWithColor "Script completed on $(Get-Date)" "Green"</p>
+                <h1>Prompt to close terminal</h1>
+                <p>Write-Host "`n=======================================" -ForegroundColor Yellow<br />
+                Write-Host "✅ All startup applications launched!" -ForegroundColor Green<br />
+                Write-Host "=======================================" -ForegroundColor Yellow</p>
+                <p>$close = Read-Host "Press Enter to close this terminal window or type 'stay' to keep it open"</p>
+                <p>if ($close -ne "stay") {<br />
+                    Write-DebugWithColor "Closing terminal as per user input." "Green"<br />
+                    Stop-Process -Id $PID<br />
+                } else {<br />
+                    Write-DebugWithColor "Terminal will remain open as per user request." "Green"<br />
+                }</p>
+                <p><strong>Key Enhancements:</strong></p>
+                <ul>
+                <li>
+                <p><strong>Dynamic Path Retrieval</strong>: The script uses <code>Get-Command</code> to dynamically locate the executable paths of applications, reducing dependency on hardcoded paths.</p>
+                </li>
+                <li>
+                <p><strong>Robust Error Handling</strong>: Incorporates <code>try-catch</code> blocks to manage exceptions gracefully, providing informative error messages when operations fail.</p>
+                </li>
+                <li>
+                <p><strong>Consistent Debugging Output</strong>: Utilizes a custom <code>Write-DebugWithColor</code> function to standardize debug messages with color coding for better readability.</p>
+                </li>
+                <li>
+                <p><strong>Process Launch Function</strong>: Introduces <code>Start-ProcessWithCheck</code> function to handle the launching of processes with error checking and optional administrative privileges.</p>
+                </li>
+                <li>
+                <p><strong>User Prompt for Terminal Closure</strong>: Offers the user the choice to</p>
+                </li>
+                </ul>
+                <p>Output</p>
+                <pre><code>&amp;#091;DEBUG] Script started on 02/28/2025 09:47:47
+                &amp;#091;DEBUG] Minimizing all windows
+                &amp;#091;DEBUG] Opening URL: https://chatgpt.com/?hints=search&amp;ref=ext&amp;model=auto
+                &amp;#091;DEBUG] Successfully opened: https://chatgpt.com/?hints=search&amp;ref=ext&amp;model=auto
+                &amp;#091;DEBUG] Opening URL: https://claude.ai/new
+                &amp;#091;DEBUG] Successfully opened: https://claude.ai/new
+                &amp;#091;DEBUG] Opening URL: https://to-do.office.com/tasks/
+                &amp;#091;DEBUG] Successfully opened: https://to-do.office.com/tasks/
+                &amp;#091;DEBUG] Opening URL: https://www.perplexity.ai/
+                &amp;#091;DEBUG] Successfully opened: https://www.perplexity.ai/
+                &amp;#091;DEBUG] Opening URL: https://www.linkedin.com/
+                &amp;#091;DEBUG] Successfully opened: https://www.linkedin.com/
+                &amp;#091;DEBUG] Successfully opened: https://www.linkedin.com/
+                &amp;#091;DEBUG] Opening URL: https://www.gmail.com/
+                &amp;#091;DEBUG] Successfully opened: https://www.gmail.com/
+                &amp;#091;DEBUG] Opening URL: https://vdo.ninja/?director=rifaterdemsahin
+                &amp;#091;DEBUG] Successfully opened: https://vdo.ninja/?director=rifaterdemsahin
+                &amp;#091;DEBUG] Successfully opened: https://www.gmail.com/
+                &amp;#091;DEBUG] Opening URL: https://vdo.ninja/?director=rifaterdemsahin
+                &amp;#091;DEBUG] Successfully opened: https://vdo.ninja/?director=rifaterdemsahin
+                &amp;#091;DEBUG] Opening URL: https://calendly.com/app/scheduled_events/user/me
+                &amp;#091;DEBUG] Successfully opened: https://calendly.com/app/scheduled_events/user/me
+                &amp;#091;DEBUG] Opening URL: https://x.com/i/grok
+                &amp;#091;DEBUG] Successfully opened: https://x.com/i/grok
+                &amp;#091;WARNING] OBS Studio not found in system PATH.
+                &amp;#091;WARNING] LM Studio not found in system PATH.
+                &amp;#091;WARNING] AnythingLLM not found in system PATH.
+                &amp;#091;DEBUG] Opening URL: https://vdo.ninja/?director=rifaterdemsahin
+                &amp;#091;DEBUG] Successfully opened: https://vdo.ninja/?director=rifaterdemsahin
+                &amp;#091;DEBUG] Opening URL: https://calendly.com/app/scheduled_events/user/me
+                &amp;#091;DEBUG] Successfully opened: https://calendly.com/app/scheduled_events/user/me
+                &amp;#091;DEBUG] Opening URL: https://x.com/i/grok
+                &amp;#091;DEBUG] Successfully opened: https://x.com/i/grok
+                &amp;#091;WARNING] OBS Studio not found in system PATH.
+                &amp;#091;WARNING] LM Studio not found in system PATH.
+                &amp;#091;WARNING] AnythingLLM not found in system PATH.
+                &amp;#091;DEBUG] Opening URL: https://calendly.com/app/scheduled_events/user/me
+                &amp;#091;DEBUG] Successfully opened: https://calendly.com/app/scheduled_events/user/me
+                &amp;#091;DEBUG] Opening URL: https://x.com/i/grok
+                &amp;#091;DEBUG] Successfully opened: https://x.com/i/grok
+                &amp;#091;WARNING] OBS Studio not found in system PATH.
+                &amp;#091;WARNING] LM Studio not found in system PATH.
+                &amp;#091;WARNING] AnythingLLM not found in system PATH.
+                &amp;#091;DEBUG] Successfully opened: https://calendly.com/app/scheduled_events/user/me
+                &amp;#091;DEBUG] Opening URL: https://x.com/i/grok
+                &amp;#091;DEBUG] Successfully opened: https://x.com/i/grok
+                &amp;#091;WARNING] OBS Studio not found in system PATH.
+                &amp;#091;WARNING] LM Studio not found in system PATH.
+                &amp;#091;WARNING] AnythingLLM not found in system PATH.
+                &amp;#091;DEBUG] Opening URL: https://x.com/i/grok
+                &amp;#091;DEBUG] Successfully opened: https://x.com/i/grok
+                &amp;#091;WARNING] OBS Studio not found in system PATH.
+                &amp;#091;WARNING] LM Studio not found in system PATH.
+                &amp;#091;WARNING] AnythingLLM not found in system PATH.
+                &amp;#091;WARNING] Obsidian not found in system PATH.
+                &amp;#091;WARNING] OBS Studio not found in system PATH.
+                &amp;#091;WARNING] LM Studio not found in system PATH.
+                &amp;#091;WARNING] AnythingLLM not found in system PATH.
+                &amp;#091;WARNING] Obsidian not found in system PATH.
+                &amp;#091;WARNING] Stream Deck not found in system PATH.
+                &amp;#091;WARNING] AnythingLLM not found in system PATH.
+                &amp;#091;WARNING] Obsidian not found in system PATH.
+                &amp;#091;WARNING] Stream Deck not found in system PATH.
+                &amp;#091;WARNING] Obsidian not found in system PATH.
+                &amp;#091;WARNING] Stream Deck not found in system PATH.
+                &amp;#091;WARNING] Visual Studio Code not found in system PATH.
+                &amp;#091;WARNING] Stream Deck not found in system PATH.
+                &amp;#091;WARNING] Visual Studio Code not found in system PATH.
+                &amp;#091;WARNING] Visual Studio Code not found in system PATH.
+                &amp;#091;WARNING] Docker Desktop not found in system PATH.
+                &amp;#091;DEBUG] Updating Chocolatey packages
+                &amp;#091;DEBUG] Chocolatey package update initiated
+                &amp;#091;DEBUG] Opening Windows Update settings
+                &amp;#091;DEBUG] Chocolatey package update initiated
+                &amp;#091;DEBUG] Opening Windows Update settings
+                &amp;#091;DEBUG] Windows Update settings opened
+                &amp;#091;DEBUG] Opening Windows Update settings
+                &amp;#091;DEBUG] Windows Update settings opened
+                &amp;#091;DEBUG] Script completed on 02/28/2025 09:47:53
+                &amp;#091;DEBUG] Windows Update settings opened
+                &amp;#091;DEBUG] Script completed on 02/28/2025 09:47:53
+                &amp;#091;DEBUG] Script completed on 02/28/2025 09:47:53
+                
+                =======================================
+                âœ… All startup applications launched!
+                =======================================
+                Press Enter to close this terminal window or type 'stay' to keep it open:
+                
+                </code></pre>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Managing macOS Apps: A Proof of Concept for System Monitoring and Reporting 📱💻 - Rifat Erdem Sahin</title>
+    <meta name="description" content="Managing macOS Apps: A Proof of Concept for System Monitoring and Reporting 📱💻 Managing installed applications on your macOS can get tricky, especially when you want to track what's installed, manage ">
+    <meta name="keywords" content="Managing macOS Apps: A Proof of Concept for System Monitoring and Reporting 📱💻">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/02/26/managing-macos-apps-a-proof-of-concept-for-system-monitoring-and-reporting-📱💻/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/02/26/managing-macos-apps-a-proof-of-concept-for-system-monitoring-and-reporting-📱💻/">
+    <meta property="og:title" content="Managing macOS Apps: A Proof of Concept for System Monitoring and Reporting 📱💻">
+    <meta property="og:description" content="Managing macOS Apps: A Proof of Concept for System Monitoring and Reporting 📱💻 Managing installed applications on your macOS can get tricky, especially when you want to track what's installed, manage ">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/02/26/managing-macos-apps-a-proof-of-concept-for-system-monitoring-and-reporting-📱💻/">
+    <meta property="twitter:title" content="Managing macOS Apps: A Proof of Concept for System Monitoring and Reporting 📱💻">
+    <meta property="twitter:description" content="Managing macOS Apps: A Proof of Concept for System Monitoring and Reporting 📱💻 Managing installed applications on your macOS can get tricky, especially when you want to track what's installed, manage ">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Managing macOS Apps: A Proof of Concept for System Monitoring and Reporting 📱💻",
+      "description": "Managing macOS Apps: A Proof of Concept for System Monitoring and Reporting 📱💻 Managing installed applications on your macOS can get tricky, especially when you want to track what's installed, manage ",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-02-26",
+      "dateModified": "2025-02-26",
+      "url": "https://www.rifaterdemsahin.com/2025/02/26/managing-macos-apps-a-proof-of-concept-for-system-monitoring-and-reporting-📱💻/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/02/26/managing-macos-apps-a-proof-of-concept-for-system-monitoring-and-reporting-📱💻/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Managing macOS Apps: A Proof of Concept for System Monitoring and Reporting 📱💻</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>February 26, 2025</span>
+                    <span>&bull;</span>
+                    <span>7 min read</span>
+                </div>
+                <p class="article-excerpt">Managing macOS Apps: A Proof of Concept for System Monitoring and Reporting 📱💻 Managing installed applications on your macOS can get tricky, especially when you want to track what's installed, manage updates, and remove unnecessary apps.</p>
+            </header>
+            <article class="article-content">
+                <h1>Managing macOS Apps: A Proof of Concept for System Monitoring and Reporting 📱💻</h1>
+                <p>Managing installed applications on your macOS can get tricky, especially when you want to track what's installed, manage updates, and remove unnecessary apps. 😅 But fear not! I’ve got a solution for you — a simple <strong>Proof of Concept (PoC)</strong> that automates the process of monitoring installed applications, reporting on them, and even automating some management tasks.</p>
+                <p>Let’s dive in! 🏊‍♂️</p>
+                <hr />
+                <h3>1. Gathering Information about Installed Apps 📦</h3>
+                <p>First things first, we need to <strong>gather information</strong> about what’s installed on your system. Fortunately, macOS has built-in commands that allow you to do just that. Here’s a quick trick using <code>system_profiler</code> to get the details you need:</p>
+                <p>system_profiler SPApplicationsDataType &gt; installed_apps.txt</p>
+                <p><img src="images/managing-macos-apps-1.png" alt="managing macos apps 1" class="article-image" loading="lazy"></p>
+                <p>Alternatively, you can use Spotlight's <code>mdfind</code>:</p>
+                <p>mdfind 'kMDItemKind == "Application"' &gt; installed_apps_list.txt</p>
+                <p>Boom! 💥 You now have a list of installed applications that you can use for reporting. Want more structure? Let’s convert that into a <strong>JSON</strong> file for easier processing! 👇</p>
+                <p><img src="images/managing-macos-apps-2.png" alt="managing macos apps 2" class="article-image" loading="lazy"></p>
+                <hr />
+                <h3>2. Storing App Data in JSON for Easy Reporting 📊</h3>
+                <p>Once we’ve got the list, it’s time to <strong>store that information</strong> in a more structured format like <strong>JSON</strong>. With Python, this becomes super easy! 🐍</p>
+                <p>Here’s a Python snippet that runs <code>system_profiler</code> and saves the app data into a JSON file:</p>
+                <p>import os<br />
+                import subprocess<br />
+                import json</p>
+                <p>def get_installed_apps():<br />
+                    # Run system_profiler to get installed apps<br />
+                    result = subprocess.run(['system_profiler', 'SPApplicationsDataType', '-json'], capture_output=True, text=True)</p>
+                <pre><code># Parse the JSON output
+                installed_apps = json.loads(result.stdout)
+                
+                # Save to a JSON file for reporting
+                with open('installed_apps.json', 'w') as f:
+                    json.dump(installed_apps, f, indent=4)
+                
+                return installed_apps
+                </code></pre>
+                <p>installed_apps = get_installed_apps()<br />
+                print(f"Found {len(installed_apps['SPApplicationsDataType'])} installed applications.")</p>
+                <p><img src="images/managing-macos-apps-3.png" alt="managing macos apps 3" class="article-image" loading="lazy"></p>
+                <p>Now, your installed apps are saved in <code>installed_apps.json</code> for easy viewing and reporting later on. 📁✨</p>
+                <hr />
+                <h3>3. Automating App Management ⚙️</h3>
+                <p>Want to <strong>remove apps</strong> automatically or run updates? 🎯 You can use <strong>Homebrew</strong> or <strong>macOS commands</strong> to manage the apps installed on your system.</p>
+                <p>To uninstall an app via <strong>brew</strong>, simply run:</p>
+                <p>brew uninstall <app_name></p>
+                <p>For system apps (which might require admin permissions), you can go the more direct route:</p>
+                <p>sudo rm -rf /Applications/<AppName>.app</p>
+                <p>🛠️ By using Python scripts, you can automate these tasks, running bulk app removals or checking for outdated apps that you haven’t touched in a while.</p>
+                <hr />
+                <h3>4. Reporting with a Simple UI 🖥️</h3>
+                <p>Why stop at command-line tools? We can get <strong>fancy</strong> and build a small web interface to view your installed apps in your browser. With <strong>Flask</strong> (a lightweight Python web framework), you can display the app data directly in your browser:</p>
+                <p>from flask import Flask, jsonify</p>
+                <p>app = Flask(<strong>name</strong>)</p>
+                <p>@app.route('/apps', methods=['GET'])<br />
+                def get_apps():<br />
+                    with open('installed_apps.json') as f:<br />
+                        apps = json.load(f)<br />
+                    return jsonify(apps)</p>
+                <p>if <strong>name</strong> == '<strong>main</strong>':<br />
+                    app.run(port=5000)</p>
+                <p>After running this, visit <code>http://localhost:5000/apps</code>, and you’ll have a sleek JSON view of all installed apps in your browser! 🌐💻</p>
+                <hr />
+                <p>The error you're encountering (<code>ModuleNotFoundError: No module named 'flask'</code>) indicates that the <strong>Flask</strong> module is not installed in your Python environment.</p>
+                <p>To resolve this, you need to install Flask. You can do this by running the following command:</p>
+                <p>pip install flask</p>
+                <p>If you're using Python 3, make sure to use <code>pip3</code>:</p>
+                <p>pip3 install flask</p>
+                <p>Once Flask is installed, you should be able to run your <code>programweb.py</code> without issues:</p>
+                <p>python3 programweb.py</p>
+                <p>If you encounter further issues, feel free to reach out!</p>
+                <h3>Bonus Features 🎁</h3>
+                <p>Here are a few <strong>extra ideas</strong> to enhance your app management system:</p>
+                <ul>
+                <li>
+                <p><strong>Automated Updates</strong>: Use <strong>brew</strong> or <strong>Mac App Store CLI</strong> (<code>mas</code>) to check for available app updates and apply them. 🚀</p>
+                </li>
+                <li>
+                <p><strong>Scheduled Reports</strong>: Run the script regularly and send email reports of installed apps and their statuses. 📅✉️</p>
+                </li>
+                <li>
+                <p><strong>Alerts for Critical Updates</strong>: Integrate with macOS notification systems to <strong>alert you</strong> when critical updates are available for important apps. 🚨🔔</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>Conclusion 🎉</h3>
+                <p>With this PoC, you now have a basic system in place for <strong>managing and reporting</strong> on installed applications on your macOS system. Whether you’re looking to automate updates, uninstall unused apps, or generate regular reports, this solution gives you a foundation to build on. 🏗️</p>
+                <p>Go ahead, give it a try, and take control of your macOS app ecosystem like a pro! 🚀</p>
+                <p>The error message you're seeing indicates that macOS has an externally managed Python environment. This is related to recent changes in how macOS manages Python installations to prevent conflicts with system packages. To safely install packages like Flask, it's recommended to use a <strong>virtual environment</strong>.</p>
+                <p>Here are the steps to set up and use a virtual environment, which will allow you to install Flask and other packages without affecting the system Python installation:</p>
+                <h3>Step 1: Create a Virtual Environment</h3>
+                <p>Run the following command to create a new virtual environment:</p>
+                <p>python3 -m venv myenv</p>
+                <p>This creates a directory called <code>myenv</code> that contains a standalone Python installation.</p>
+                <p><img src="images/managing-macos-apps-4.png" alt="managing macos apps 4" class="article-image" loading="lazy"></p>
+                <h3>Step 2: Activate the Virtual Environment</h3>
+                <p>To activate the virtual environment, use the following command:</p>
+                <p>source myenv/bin/activate</p>
+                <p>Once activated, your terminal prompt should change to indicate that you are now working inside the virtual environment (e.g., <code>(myenv)</code>).</p>
+                <p><img src="images/managing-macos-apps-5.png" alt="managing macos apps 5" class="article-image" loading="lazy"></p>
+                <h3>Step 3: Install Flask</h3>
+                <p>Now that the virtual environment is activated, you can install Flask without any restrictions:</p>
+                <p>pip install flask</p>
+                <p><img src="images/managing-macos-apps-6.png" alt="managing macos apps 6" class="article-image" loading="lazy"></p>
+                <h3>Step 4: Run Your Flask App</h3>
+                <p>With Flask installed in the virtual environment, you can now run your Flask app:</p>
+                <p>python programweb.py</p>
+                <p><img src="images/managing-macos-apps-7.png" alt="managing macos apps 7" class="article-image" loading="lazy"></p>
+                <h3>Step 5: Deactivate the Virtual Environment (Optional)</h3>
+                <p>When you’re done working in the virtual environment, you can deactivate it by running:</p>
+                <p>deactivate</p>
+                <p>This will return your terminal to the system Python environment.</p>
+                <p>By using a virtual environment, you keep your system's Python environment clean and avoid potential conflicts. Let me know if you encounter any issues!</p>
+                <p>The error you're seeing (<code>"error": "apps.html"</code>) likely means that Flask cannot find the <code>apps.html</code> file in the <code>templates</code> directory. Here’s how you can troubleshoot and fix this issue:</p>
+                <h3>Steps to fix:</h3>
+                <ul>
+                <li><strong>Ensure Directory Structure</strong>:<br />
+                Flask looks for templates inside a folder named <code>templates</code> by default. Make sure your directory structure is like this:</li>
+                </ul>
+                <p>/your_project_directory/<br />
+                       app.py               # Your Flask application file<br />
+                       installed_apps.json   # Your JSON file<br />
+                       /templates/<br />
+                           apps.html         # Your HTML file</p>
+                <p>The <code>apps.html</code> file must be inside the <code>templates</code> folder, and both the <code>app.py</code> and <code>installed_apps.json</code> should be in the root of your project directory.</p>
+                <ul>
+                <li><strong>Move the HTML File</strong>:<br />
+                If your HTML is not already inside the <code>templates</code> folder, create the folder and place your <code>apps.html</code> file there.</li>
+                </ul>
+                <p>mkdir templates<br />
+                   touch templates/apps.html</p>
+                <p>Copy the HTML code I provided earlier into the <code>apps.html</code> file.</p>
+                <ul>
+                <li>
+                <p><strong>Check Flask Configuration</strong>:<br />
+                If you are running the Flask application in a non-standard way, ensure Flask is configured to look for templates in the correct location. By default, Flask will look in the <code>templates</code> folder, so this step should not be necessary unless you’ve customized the template path.</p>
+                </li>
+                <li>
+                <p><strong>Verify the Correct Template Path</strong>:<br />
+                In the code, you are using <code>render_template('apps.html')</code>. This assumes that the file is in <code>templates/apps.html</code>. Double-check that the filename matches exactly.</p>
+                </li>
+                <li>
+                <p><strong>Enable Debugging</strong>:<br />
+                If you're not already doing so, run Flask in debug mode. This will give you more detailed error information in the browser and console.</p>
+                </li>
+                </ul>
+                <p>if <strong>name</strong> == '<strong>main</strong>':<br />
+                       app.run(port=5005, debug=True)</p>
+                <ul>
+                <li><strong>Check the Console Logs</strong>:<br />
+                When Flask is running in debug mode, check the console for more detailed error messages. It should tell you exactly why it cannot find the template.</li>
+                </ul>
+                <p>If everything is in place and the template is correctly located, Flask should be able to load <code>apps.html</code> without any issues. Let me know how it goes!</p>
+                <p><img src="images/managing-macos-apps-8.png" alt="managing macos apps 8" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

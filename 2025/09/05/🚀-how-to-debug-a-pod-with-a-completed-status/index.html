@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 How to Debug a Pod with a Completed Status - Rifat Erdem Sahin</title>
+    <meta name="description" content="🚀 How to Debug a Pod with a Completed Status 🚀 When working with Kubernetes, it’s common to encounter pods that have a status of Completed .">
+    <meta name="keywords" content="🚀 How to Debug a Pod with a Completed Status">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/09/05/🚀-how-to-debug-a-pod-with-a-completed-status/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/09/05/🚀-how-to-debug-a-pod-with-a-completed-status/">
+    <meta property="og:title" content="🚀 How to Debug a Pod with a Completed Status">
+    <meta property="og:description" content="🚀 How to Debug a Pod with a Completed Status 🚀 When working with Kubernetes, it’s common to encounter pods that have a status of Completed .">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/09/05/🚀-how-to-debug-a-pod-with-a-completed-status/">
+    <meta property="twitter:title" content="🚀 How to Debug a Pod with a Completed Status">
+    <meta property="twitter:description" content="🚀 How to Debug a Pod with a Completed Status 🚀 When working with Kubernetes, it’s common to encounter pods that have a status of Completed .">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "🚀 How to Debug a Pod with a Completed Status",
+      "description": "🚀 How to Debug a Pod with a Completed Status 🚀 When working with Kubernetes, it’s common to encounter pods that have a status of Completed .",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-09-05",
+      "dateModified": "2025-09-05",
+      "url": "https://www.rifaterdemsahin.com/2025/09/05/🚀-how-to-debug-a-pod-with-a-completed-status/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/09/05/🚀-how-to-debug-a-pod-with-a-completed-status/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">🚀 How to Debug a Pod with a Completed Status</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>September 5, 2025</span>
+                    <span>&bull;</span>
+                    <span>6 min read</span>
+                </div>
+                <p class="article-excerpt">🚀 How to Debug a Pod with a Completed Status 🚀 When working with Kubernetes, it’s common to encounter pods that have a status of Completed .</p>
+            </header>
+            <article class="article-content">
+                <h1>🚀 How to Debug a Pod with a Completed Status</h1>
+                <hr />
+                <h1>🚀</h1>
+                <p>When working with Kubernetes, it’s common to encounter pods that have a status of <code>Completed</code>. This status often means the pod has run its intended task and exited normally, but sometimes you might want to debug and ensure everything worked as expected.</p>
+                <p>In this blog post, we’ll walk through the key steps to debug a pod with a <code>Completed</code> status using a real-life example! Let’s get started! 💡</p>
+                <hr />
+                <h2>🔎 1. Check the Pod Logs</h2>
+                <p>The first step in debugging a completed pod is to check the logs. This will show you what the pod did before it reached the <code>Completed</code> status.</p>
+                <p>Run this command to fetch the logs for the pod:</p>
+                <p>kubectl logs <pod-name> -n <namespace></p>
+                <p>In our example, the pod name is <code>minio-post-job-thkcq</code> and it’s in the <code>minio</code> namespace:</p>
+                <p>kubectl logs minio-post-job-thkcq -n minio</p>
+                <p>👉 <strong>Tip:</strong> The logs will provide insight into whether the pod completed its job successfully or if there were any errors during execution.</p>
+                <p><code>rifaterdemsahin@Rifats-MacBook-Pro code % kubectl logs minio-post-job-thkcq -n minio
+                Connecting to MinIO server: http://minio:9000
+                mc: &lt;ERROR&gt; Unable to initialize new alias from the provided credentials. Get "http://minio:9000/probe-bucket-sign-bqiyu0cfb5do/?location=": dial tcp 10.106.103.35:9000: i/o timeout.
+                "Failed attempts: 1"
+                Added</code>myminio<code>successfully.
+                Creating user 'console'
+                Added user</code>console<code>successfully.
+                Adding policy 'consoleAdmin' for 'console'
+                Policy</code>consoleAdmin<code>is set on user</code>console<code>rifaterdemsahin@Rifats-MacBook-Pro code %</code></p>
+                <hr />
+                <h2>🔍 2. Describe the Pod</h2>
+                <p>Next, use the <code>describe</code> command to get detailed information about the pod’s lifecycle and events. This command is super helpful in figuring out the reasons behind the pod’s state.</p>
+                <p>Run this command:</p>
+                <p>kubectl describe pod <pod-name> -n <namespace></p>
+                <p>For example:</p>
+                <p>kubectl describe pod minio-post-job-thkcq -n minio</p>
+                <p>This will give you a breakdown of the pod’s phases, conditions, and resource usage. It’s a handy tool to understand the overall behavior of the pod.</p>
+                <hr />
+                <h2>🔄 3. Check for Pod Restarts or Failures</h2>
+                <p>Sometimes, a pod may complete successfully, while other times it could have been restarted or failed before completion. You can check the <code>RESTARTS</code> column in your <code>kubectl get pods</code> output to see if the pod was restarted:</p>
+                <p>kubectl get pods -n minio</p>
+                <p>A restart count greater than 0 could indicate underlying issues.</p>
+                <hr />
+                <h2>📋 4. Inspect the Pod’s Exit Code</h2>
+                <p>One of the most useful pieces of information is the pod’s <strong>exit code</strong>. You can find this by inspecting the <code>describe</code> output under the <code>State</code> section of the container.</p>
+                <p>An <strong>exit code of <code>0</code></strong> generally means the pod completed successfully. If you see a non-zero exit code, it might indicate that something went wrong, and you’ll need to investigate further.</p>
+                <hr />
+                <h3>📝 Example Output with Screenshot</h3>
+                <p>Here’s a screenshot of a real debugging session for reference:</p>
+                <p>As you can see, the <code>minio-post-job-thkcq</code> pod is in a <code>Completed</code> state with no restarts, indicating that it likely finished its task successfully.</p>
+                <hr />
+                <h3>🔗 Connect with Me!</h3>
+                <p>Feel free to reach out to me for more Kubernetes tips or just to connect. I love collaborating with fellow tech enthusiasts! 😄</p>
+                <ul>
+                <li>
+                <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/rifaterdemsahin/">Rifat Erdem Sahin</a></p>
+                </li>
+                <li>
+                <p>🐦 Twitter: <a href="https://x.com/rifaterdemsahin">Rifat Erdem Sahin</a></p>
+                </li>
+                <li>
+                <p>🎥 YouTube: <a href="https://www.youtube.com/@RifatErdemSahin">Rifat Erdem Sahin</a></p>
+                </li>
+                <li>
+                <p>💻 GitHub: <a href="https://github.com/rifaterdemsahin">Rifat Erdem Sahin</a></p>
+                </li>
+                </ul>
+                <hr />
+                <p>By following these steps, you should now have a better idea of why your pod is in a <code>Completed</code> state and whether it encountered any issues during its lifecycle.</p>
+                <p>Happy debugging! 🛠️</p>
+                <hr />
+                <p>Error</p>
+                <p>It looks like the log output shows an error when the <code>minio-post-job</code> pod tried to connect to the MinIO server but encountered an I/O timeout:</p>
+                <p>mc: <ERROR> Unable to initialize new alias from the provided credentials. Get "http://minio:9000/probe-bucket-sign-bqiyu0cfb5do/?location=": dial tcp 10.106.103.35:9000: i/o timeout.</p>
+                <p>This indicates that the pod was unable to communicate with the MinIO server at <code>http://minio:9000</code> due to a network or service issue. Here are some steps you can take to further debug the problem:</p>
+                <h3>🛠️ 1. Check if the MinIO Service is Running</h3>
+                <p>First, check if the MinIO service is properly exposed and running by using this command:</p>
+                <p>kubectl get svc -n minio</p>
+                <p>Ensure that the service is up and running and that it is bound to the correct IP and port (<code>9000</code>).</p>
+                <h3>🔍 2. Verify Pod Connectivity to MinIO</h3>
+                <p>Try checking the network connectivity from within a running pod in the same namespace (<code>minio</code>) to see if you can reach the MinIO service:</p>
+                <p>kubectl exec -it <pod-name> -n minio -- curl http://minio:9000</p>
+                <p>If this fails, there may be a networking issue preventing the pods from communicating with each other.</p>
+                <h3>🔄 3. Check Network Policies</h3>
+                <p>If network policies are in place in your Kubernetes cluster, make sure they aren’t restricting communication between the MinIO server and the pods.</p>
+                <h3>🧪 4. Test the MinIO Endpoint Manually</h3>
+                <p>You can also test the MinIO endpoint manually from within any running pod using a basic <code>curl</code> or <code>wget</code> request to see if the service is reachable:</p>
+                <p>curl http://minio:9000/probe-bucket-sign-bqiyu0cfb5do/?location=</p>
+                <p>If this times out, you likely have a networking or service exposure issue that needs further troubleshooting.</p>
+                <p>By following these steps, you should be able to determine the root cause of the timeout and fix the communication issue with the MinIO service.</p>
+                <p>Error 2</p>
+                <p>From the output of the <code>kubectl describe pod minio-post-job-thkcq -n minio</code>, it looks like the pod <code>minio-post-job-thkcq</code> has successfully completed its job with an <strong>exit code of <code>0</code></strong>, which means it completed without any errors. Here's a breakdown of key details:</p>
+                <ul>
+                <li>
+                <p><strong>Pod Status:</strong></p>
+                </li>
+                <li>
+                <p><code>State: Terminated (Reason: Completed, Exit Code: 0)</code>: This indicates the pod ran successfully and exited without any issues.</p>
+                </li>
+                <li>
+                <p><strong>Started and Finished Times</strong>: The pod started and finished in around 23 seconds, which is typical for short-running jobs like this one.</p>
+                </li>
+                <li>
+                <p><strong>Events</strong>: The pod pulled the necessary image, created the container, and started it without any errors.</p>
+                </li>
+                </ul>
+                <h3>Summary:</h3>
+                <ul>
+                <li>
+                <p>The job completed successfully (<code>Exit Code 0</code>).</p>
+                </li>
+                <li>
+                <p>The error you encountered in the logs (<code>i/o timeout</code>) seems to be related to the pod's attempts to connect to the MinIO service. Despite the error, the job was able to proceed with adding the user and policies.</p>
+                </li>
+                </ul>
+                <h3>Next Steps:</h3>
+                <ul>
+                <li>
+                <p><strong>Verify MinIO Service:</strong><br />
+                Since the pod completed its task, the issue is likely with the connection to the MinIO service (<code>i/o timeout</code>). As mentioned earlier, you should:</p>
+                </li>
+                <li>
+                <p>Verify the MinIO service is running properly by checking the service status:<br />
+                <code>bash kubectl get svc -n minio</code></p>
+                </li>
+                <li>
+                <p><strong>Check MinIO Server Logs:</strong><br />
+                Investigate the logs of the MinIO server itself to see if there are any issues that prevented the connection:</p>
+                </li>
+                </ul>
+                <p>kubectl logs <minio-server-pod-name> -n minio</p>
+                <ul>
+                <li><strong>Check Network Connectivity:</strong><br />
+                If the service is up, there may be a network connectivity issue between the pods and the MinIO service. You can troubleshoot this by trying to ping or <code>curl</code> the MinIO service from within another pod in the same namespace.</li>
+                </ul>
+                <p>By addressing the connection issue with the MinIO server, you should be able to resolve the timeout problem seen in the logs.</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

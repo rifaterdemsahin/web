@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Bitnami Package for Grafana Setup Guide - Rifat Erdem Sahin</title>
+    <meta name="description" content="🚀 Bitnami Package for Grafana Setup Guide https://bitnami.com/stack/grafana/virtual-machine Intro messages is there Not on the admin line but it has to be over the url and the network is already bridg">
+    <meta name="keywords" content="🚀 Bitnami Package for Grafana Setup Guide">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/05/08/🚀-bitnami-package-for-grafana-setup-guide/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/05/08/🚀-bitnami-package-for-grafana-setup-guide/">
+    <meta property="og:title" content="🚀 Bitnami Package for Grafana Setup Guide">
+    <meta property="og:description" content="🚀 Bitnami Package for Grafana Setup Guide https://bitnami.com/stack/grafana/virtual-machine Intro messages is there Not on the admin line but it has to be over the url and the network is already bridg">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/05/08/🚀-bitnami-package-for-grafana-setup-guide/">
+    <meta property="twitter:title" content="🚀 Bitnami Package for Grafana Setup Guide">
+    <meta property="twitter:description" content="🚀 Bitnami Package for Grafana Setup Guide https://bitnami.com/stack/grafana/virtual-machine Intro messages is there Not on the admin line but it has to be over the url and the network is already bridg">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "🚀 Bitnami Package for Grafana Setup Guide",
+      "description": "🚀 Bitnami Package for Grafana Setup Guide https://bitnami.com/stack/grafana/virtual-machine Intro messages is there Not on the admin line but it has to be over the url and the network is already bridg",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-05-08",
+      "dateModified": "2025-05-08",
+      "url": "https://www.rifaterdemsahin.com/2025/05/08/🚀-bitnami-package-for-grafana-setup-guide/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/05/08/🚀-bitnami-package-for-grafana-setup-guide/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">🚀 Bitnami Package for Grafana Setup Guide</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>May 8, 2025</span>
+                    <span>&bull;</span>
+                    <span>29 min read</span>
+                </div>
+                <p class="article-excerpt">🚀 Bitnami Package for Grafana Setup Guide https://bitnami.com/stack/grafana/virtual-machine Intro messages is there Not on the admin line but it has to be over the url and the network is already bridged for it.</p>
+            </header>
+            <article class="article-content">
+                <h1>🚀 Bitnami Package for Grafana Setup Guide</h1>
+                <p><img src="images/bitnami-package-for-1.png" alt="bitnami package for 1" class="article-image" loading="lazy"></p>
+                <p><a href="https://bitnami.com/stack/grafana/virtual-machine">https://bitnami.com/stack/grafana/virtual-machine</a></p>
+                <p><img src="images/bitnami-package-for-2.png" alt="bitnami package for 2" class="article-image" loading="lazy"></p>
+                <p><img src="images/bitnami-package-for-3.png" alt="bitnami package for 3" class="article-image" loading="lazy"></p>
+                <p>Intro messages is there</p>
+                <p><img src="images/bitnami-package-for-4.png" alt="bitnami package for 4" class="article-image" loading="lazy"></p>
+                <p>Not on the admin line but it has to be over the url and the network is already bridged for it.</p>
+                <p>Access to console it even there </p>
+                <p>Basic password and Change is there </p>
+                <p>bitnami and bitnami</p>
+                <p>If you've ever wondered how to set up a Bitnami Grafana instance, you're in the right place! In this blog post, I’ll walk you through my recent experience with the Bitnami package for Grafana, running on Debian GNU/Linux 12 (Bookworm).</p>
+                <hr />
+                <p>** First Look at Bitnami Grafana**</p>
+                <p>Here’s a screenshot from the initial setup:</p>
+                <p><img alt="bitnami-package-for-5.png" src="http://rifaterdemsahin.com/mnt/data/image.png" /></p>
+                <p>This is the first screen you will encounter when booting up your Grafana VM instance. The setup is simple and straightforward, thanks to Bitnami’s efficient packaging. Let’s dive into the steps to get started!</p>
+                <hr />
+                <h3>🔧 <strong>Steps to Access Bitnami Grafana:</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Locate Your Instance</strong>:</p>
+                </li>
+                <li>
+                <p>Once your instance boots up, you'll see the IP address in the welcome screen. In this case, it's <code>192.168.3.179</code> (your IP might be different).</p>
+                </li>
+                <li>
+                <p><strong>Login Credentials</strong>:</p>
+                </li>
+                <li>
+                <p>By default, the login user is <code>bitnami</code> and the password is <code>bitnami</code>. These are easy to remember but make sure to change them later for security purposes.</p>
+                </li>
+                <li>
+                <p><strong>Admin Access</strong>:</p>
+                </li>
+                <li>
+                <p>The default Grafana admin username is <code>admin</code>, and the password is also provided on the screen (<code>sSo9:H:D=11</code> in this case). Make sure you keep this safe!</p>
+                </li>
+                <li>
+                <p><strong>Connect to the Dashboard</strong>:</p>
+                </li>
+                <li>
+                <p>Open your browser and enter the IP address, followed by port 3000, like this: <code>http://192.168.3.179:3000</code>.</p>
+                </li>
+                <li>
+                <p>Use the admin credentials to log in and start configuring your Grafana dashboards.</p>
+                </li>
+                </ul>
+                <p><img src="images/bitnami-package-for-6.png" alt="bitnami package for 6" class="article-image" loading="lazy"></p>
+                <hr />
+                <h3>🚀 <strong>Why I’m Excited About Grafana</strong></h3>
+                <p>Grafana is a powerful tool for monitoring and visualizing data. Whether you’re tracking infrastructure metrics, or just playing around with some cool data visualizations, it’s a game changer. With Bitnami, the setup becomes seamless, and you can jump straight to what matters most—monitoring your systems!</p>
+                <hr />
+                <p>💡 <strong>What I Want to Achieve</strong><br />
+                Through this setup, my goal is to build real-time monitoring dashboards that help me visualize key performance metrics of my infrastructure, all while leveraging Grafana’s integrations with various data sources such as Prometheus, InfluxDB, and more.</p>
+                <hr />
+                <p><strong>🔗 Connect with me:</strong></p>
+                <ul>
+                <li>
+                <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/rifaterdemsahin/">Connect on LinkedIn</a></p>
+                </li>
+                <li>
+                <p>🐦 Twitter: <a href="https://x.com/rifaterdemsahin">Follow me on Twitter</a></p>
+                </li>
+                <li>
+                <p>🎥 YouTube: <a href="https://www.youtube.com/@RifatErdemSahin">Subscribe to my YouTube</a></p>
+                </li>
+                <li>
+                <p>💻 GitHub: <a href="https://github.com/rifaterdemsahin">Check out my GitHub</a></p>
+                </li>
+                </ul>
+                <hr />
+                <p>That’s it for this quick guide! Stay tuned for more updates as I explore Grafana’s features and showcase some awesome dashboards.</p>
+                <p><strong>Errors </strong>&gt; </p>
+                <p>Not Turning on </p>
+                <p><img src="images/bitnami-package-for-7.png" alt="bitnami package for 7" class="article-image" loading="lazy"></p>
+                <p><img src="images/bitnami-package-for-8.png" alt="bitnami package for 8" class="article-image" loading="lazy"></p>
+                <p><img src="images/bitnami-package-for-9.png" alt="bitnami package for 9" class="article-image" loading="lazy"></p>
+                <p>ip looks different</p>
+                <p><img src="images/bitnami-package-for-10.png" alt="bitnami package for 10" class="article-image" loading="lazy"></p>
+                <p>Dasbhboard reconnect retry reread the blog</p>
+                <p><img src="images/bitnami-package-for-11.png" alt="bitnami package for 11" class="article-image" loading="lazy"></p>
+                <p>Error : Edge also does not work </p>
+                <p><img src="images/bitnami-package-for-12.png" alt="bitnami package for 12" class="article-image" loading="lazy"></p>
+                <p>DEBUG</p>
+                <p>If <code>http://192.168.3.179:3000/</code> isn't working, there could be a few possible reasons. Here are some troubleshooting steps you can try:</p>
+                <h3>1. <strong>Check if Grafana is Running</strong></h3>
+                <ul>
+                <li>Ensure that the Grafana service is actually running on your machine. You can check by running the following command:<br />
+                <code>sudo systemctl status grafana</code></li>
+                </ul>
+                <p><img src="images/bitnami-package-for-13.png" alt="bitnami package for 13" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>If it's not running, start it with:<br />
+                <code>sudo systemctl start grafana</code></li>
+                </ul>
+                <p><img src="images/bitnami-package-for-14.png" alt="bitnami package for 14" class="article-image" loading="lazy"></p>
+                <h3>2. <strong>Firewall and Network Configuration</strong></h3>
+                <ul>
+                <li>
+                <p>Make sure the necessary ports (especially port 3000) are open in your firewall settings. To allow traffic through port 3000, run:<br />
+                <code>sudo ufw allow 3000/tcp</code></p>
+                </li>
+                <li>
+                <p>Also, check that your server is properly connected to the network, and the IP <code>192.168.3.179</code> is correct and accessible from your current device.</p>
+                </li>
+                </ul>
+                <h3>3. <strong>Confirm the IP Address</strong></h3>
+                <ul>
+                <li>
+                <p>The IP address may have changed. You can check your server's current IP address by running:<br />
+                <code>ip a</code></p>
+                </li>
+                <li>
+                <p>Ensure you are using the correct IP address when accessing the Grafana dashboard.</p>
+                </li>
+                </ul>
+                <h3>4. <strong>Browser Issues</strong></h3>
+                <ul>
+                <li>
+                <p>Clear your browser's cache or try accessing the URL from another browser or device.</p>
+                </li>
+                <li>
+                <p>Ensure there are no proxy settings or VPNs that might be affecting your connection.</p>
+                </li>
+                </ul>
+                <h3>5. <strong>Logs and Errors</strong></h3>
+                <ul>
+                <li>Check the Grafana logs for any errors that might give more clues:<br />
+                <code>sudo journalctl -u grafana</code></li>
+                </ul>
+                <p><img src="images/bitnami-package-for-15.png" alt="bitnami package for 15" class="article-image" loading="lazy"></p>
+                <h3>6. <strong>Restart the VM</strong></h3>
+                <ul>
+                <li>If nothing works, consider restarting the entire VM and try again:<br />
+                <code>sudo reboot</code></li>
+                </ul>
+                <p>Let me know how it goes!</p>
+                <p>**REDEBUG AS THE GRAFANA NOT RUNNING **</p>
+                <p>It seems like the Grafana service is not recognized by <code>systemctl</code> on your system, which could mean that it's not properly installed as a service, or the package may not have been configured correctly. Since Bitnami packages often bundle services differently, here's what you can try:</p>
+                <h3>1. <strong>Check if Grafana is Running from Bitnami Stack</strong></h3>
+                <p>Since you're using the Bitnami package, the services might be managed differently. Instead of using <code>systemctl</code>, Bitnami often uses its own scripts. You can try checking if Grafana is running through the Bitnami control script:</p>
+                <p>Run the following command to check the services:</p>
+                <p>sudo /opt/bitnami/ctlscript.sh status</p>
+                <p><img src="images/bitnami-package-for-16.png" alt="bitnami package for 16" class="article-image" loading="lazy"></p>
+                <p>If Grafana is not running, you can start it by using:</p>
+                <p>sudo /opt/bitnami/ctlscript.sh start grafana</p>
+                <h3>2. <strong>Check the Installed Path</strong></h3>
+                <p>If the above doesn’t work, make sure Grafana is installed correctly. Navigate to where Bitnami packages are usually installed:</p>
+                <p>cd /opt/bitnami/</p>
+                <p>Check if the Grafana directory exists:</p>
+                <p>ls</p>
+                <p>If it’s missing, Grafana might not have been properly installed.</p>
+                <p><img src="images/bitnami-package-for-17.png" alt="bitnami package for 17" class="article-image" loading="lazy"></p>
+                <p>aDDING IT THERE </p>
+                <p><img src="images/bitnami-package-for-18.png" alt="bitnami package for 18" class="article-image" loading="lazy"></p>
+                <h3>3. <strong>Use the Correct Service Name</strong></h3>
+                <p>Bitnami packages may use non-standard service names. If <code>grafana.service</code> isn't found, the service might be named differently. You can list all services with the following command to identify the exact name:</p>
+                <p>sudo systemctl list-units --type=service | grep grafana</p>
+                <h3>4. <strong>Reinstall Grafana (Optional)</strong></h3>
+                <p>If nothing works, you may need to reinstall the Bitnami Grafana package to ensure everything is properly set up.</p>
+                <p>Let me know how it goes!</p>
+                <hr />
+                <p><strong>HOW DO I DEBUG WHERE IT IS STUCK</strong></p>
+                <p>To debug the issue where your host machine cannot access <code>http://192.168.3.179:3000/</code>, <strong>despite VMware Workstatio</strong>n running the VM, there are a few steps you can follow to identify where the problem might be. This could be a network configuration issue, a firewall blocking access, or<strong> Grafana not running properly inside the VM.</strong></p>
+                <h3>Steps to Debug the Issue</h3>
+                <h4>1. <strong>Check Network Configuration</strong></h4>
+                <p>Make sure that the VM is connected to the correct network type. VMware Workstation can use several different network types (NAT, Bridged, Host-only). Here's how to verify that:</p>
+                <ul>
+                <li>
+                <p><strong>NAT Mode</strong>: The VM shares the host's IP but cannot be accessed from outside.</p>
+                </li>
+                <li>
+                <p><strong>Bridged Mode</strong>: The VM gets its own IP on the same network as the host, and it should be accessible directly.</p>
+                </li>
+                </ul>
+                <p><img src="images/bitnami-package-for-19.png" alt="bitnami package for 19" class="article-image" loading="lazy"></p>
+                <p>To check and modify the network mode in VMware Workstation:</p>
+                <ul>
+                <li>
+                <p>Go to your VM settings.</p>
+                </li>
+                <li>
+                <p>Select the "Network Adapter" option.</p>
+                </li>
+                <li>
+                <p>Ensure the VM is set to <strong>Bridged Mode</strong> for direct network access. Save the settings and reboot the VM.</p>
+                </li>
+                </ul>
+                <h4>2. <strong>Verify VM's IP Address</strong></h4>
+                <p>Ensure the VM’s IP address is indeed <code>192.168.3.179</code>. You can check the current IP address from within the VM using:</p>
+                <p>ip a</p>
+                <p><img src="images/bitnami-package-for-20.png" alt="bitnami package for 20" class="article-image" loading="lazy"></p>
+                <p>or</p>
+                <p>ifconfig</p>
+                <p><img src="images/bitnami-package-for-21.png" alt="bitnami package for 21" class="article-image" loading="lazy"></p>
+                <p>Verify the correct IP address and ensure it matches what you're trying to access in the browser.</p>
+                <h4>3. <strong>Test Connectivity from the Host</strong></h4>
+                <p>Check if the host machine can reach the VM by pinging it:</p>
+                <p>ping 192.168.3.179</p>
+                <p>If the ping is successful, that means the network connection between the host and VM is working. <strong>If not, there might be a network misconfiguration or firewall issue.</strong></p>
+                <p><img src="images/bitnami-package-for-22.png" alt="bitnami package for 22" class="article-image" loading="lazy"></p>
+                <h4>4. <strong>Check if Grafana is Listening on Port 3000</strong></h4>
+                <p>Log into the VM and check if Grafana is running and listening on port 3000:</p>
+                <p>sudo netstat -tulnp | grep 3000</p>
+                <p>This should return the Grafana process if it is running. If there is no result, Grafana might not be running, or it might be using a different port.</p>
+                <h4>5. <strong>Check Firewall Configuration</strong></h4>
+                <p>Check if there's a firewall on the VM or host that could be blocking port 3000:</p>
+                <ul>
+                <li>On the VM, check the firewall status:</li>
+                </ul>
+                <p>sudo ufw status</p>
+                <p>If the firewall is active, allow traffic on port 3000:</p>
+                <p>sudo ufw allow 3000/tcp</p>
+                <ul>
+                <li>On the host machine, make sure that no firewall is blocking incoming traffic to the VM.</li>
+                </ul>
+                <p><img src="images/bitnami-package-for-23.png" alt="bitnami package for 23" class="article-image" loading="lazy"></p>
+                <h4>6. <strong>Check if Grafana is Running Properly</strong></h4>
+                <p>Since the previous command showed the Grafana service wasn't found, try running Grafana manually:</p>
+                <p>sudo /opt/bitnami/ctlscript.sh start grafana</p>
+                <p>If this command does not work or returns an error, reinstall the Bitnami package for Grafana or debug further using the logs:</p>
+                <p>sudo tail -f /opt/bitnami/grafana/logs/grafana.log</p>
+                <p><img src="images/bitnami-package-for-24.png" alt="bitnami package for 24" class="article-image" loading="lazy"></p>
+                <h4>7. <strong>Access Logs for Networking Issues</strong></h4>
+                <p>If none of the above steps work, check the system logs for network-related issues on the VM:</p>
+                <p>sudo dmesg | grep eth<br />
+                sudo journalctl -xe</p>
+                <p>These logs can show you if there are issues with the network adapter or services failing to start.</p>
+                <p><img src="images/bitnami-package-for-25.png" alt="bitnami package for 25" class="article-image" loading="lazy"></p>
+                <hr />
+                <h3><strong>Common Fixes</strong></h3>
+                <ul>
+                <li>
+                <p><strong>IP Conflict</strong>: Ensure no other device on the network is using the same IP address.</p>
+                </li>
+                <li>
+                <p><strong>NAT to Bridged</strong>: If your VM is in NAT mode, switch to Bridged mode and assign the VM a local IP that the host can access.</p>
+                </li>
+                <li>
+                <p><strong>Port Conflict</strong>: Verify that another service isn't using port 3000 by using <code>netstat</code>.</p>
+                </li>
+                </ul>
+                <p>By going through these steps, you should be able to pinpoint where the issue lies and why your host machine cannot access the VM on port 3000.</p>
+                <p>Let me know which step yields the best results, and I can assist you further!</p>
+                <p>INSTALLS</p>
+                <p>It seems that the <code>netstat</code> command is not installed on your Debian system. In Debian (and other Linux distributions), <code>netstat</code> is part of the <code>net-tools</code> package, which might not be installed by default on newer distributions. Here's how you can install it:</p>
+                <ul>
+                <li>
+                <p><strong>Open a terminal</strong> on your Debian system.</p>
+                </li>
+                <li>
+                <p><strong>Run the following command</strong> to install <code>net-tools</code>:</p>
+                </li>
+                </ul>
+                <p>sudo apt update<br />
+                   sudo apt install net-tools</p>
+                <p>Once installed, you should be able to use the <code>netstat</code> command. Alternatively, you can use newer tools like <code>ss</code>, which is part of the <code>iproute2</code> package and provides similar functionality:</p>
+                <p><img src="images/bitnami-package-for-26.png" alt="bitnami package for 26" class="article-image" loading="lazy"></p>
+                <p>ss -tuln</p>
+                <p>This command will display listening ports and their associated services.</p>
+                <p>Let me know if you need further assistance!</p>
+                <p><img src="images/bitnami-package-for-27.png" alt="bitnami package for 27" class="article-image" loading="lazy"></p>
+                <p>POWERSHELL TO ENABLE 3000 ON THE HOST</p>
+                <p>To allow incoming traffic on port 3000 through the Windows Defender Firewall using PowerShell, you can use the following script. This will create a new inbound rule to allow TCP traffic on port 3000:</p>
+                <h3>PowerShell Script:</h3>
+                <h1>Open PowerShell as Administrator and run the following commands:</h1>
+                <h1>Allow TCP traffic on port 3000</h1>
+                <p>New-NetFirewallRule -DisplayName "Allow Port 3000" -Direction Inbound -LocalPort 3000 -Protocol TCP -Action Allow</p>
+                <h1>Allow UDP traffic on port 3000 (if needed)</h1>
+                <h1>New-NetFirewallRule -DisplayName "Allow Port 3000 UDP" -Direction Inbound -LocalPort 3000 -Protocol UDP -Action Allow</h1>
+                <p><img src="images/bitnami-package-for-28.png" alt="bitnami package for 28" class="article-image" loading="lazy"></p>
+                <h3></h3>
+                <p><img src="images/bitnami-package-for-29.png" alt="bitnami package for 29" class="article-image" loading="lazy"></p>
+                <p>Explanation:</p>
+                <ul>
+                <li>
+                <p><code>New-NetFirewallRule</code> creates a new firewall rule.</p>
+                </li>
+                <li>
+                <p><code>-DisplayName</code> specifies the name of the rule (you can customize this).</p>
+                </li>
+                <li>
+                <p><code>-Direction Inbound</code> specifies that this rule is for incoming traffic.</p>
+                </li>
+                <li>
+                <p><code>-LocalPort 3000</code> specifies the port to open (in this case, 3000).</p>
+                </li>
+                <li>
+                <p><code>-Protocol TCP</code> specifies that this rule applies to TCP traffic (you can also allow UDP if needed).</p>
+                </li>
+                <li>
+                <p><code>-Action Allow</code> allows the traffic that matches this rule.</p>
+                </li>
+                </ul>
+                <h3>Steps to Execute:</h3>
+                <ul>
+                <li>
+                <p>Open <strong>PowerShell as Administrator</strong>.</p>
+                </li>
+                <li>
+                <p>Copy and paste the script into the PowerShell window and press <strong>Enter</strong>.</p>
+                </li>
+                </ul>
+                <p>This will create the firewall rule that allows traffic on port 3000. If you also need to allow UDP traffic, uncomment the second command.</p>
+                <p>Let me know if you need any further assistance!</p>
+                <h2>TAKE LOCAL FIREWALL DOWN <strong>AND </strong>DEBUG</h2>
+                <p>If <code>http://192.168.3.179:3000/</code> is not opening after configuring the firewall rule, there could be several reasons for this issue. Let's troubleshoot and resolve the problem step by step.</p>
+                <h3>1. <strong>Check if the Service is Running on Port 3000</strong></h3>
+                <p>Ensure that there is a service (like a web server or an application) listening on port 3000 on the VM or host. You can check if the port is in use by running the following command in <strong>PowerShell</strong> or <strong>Command Prompt</strong>:</p>
+                <p>netstat -an | findstr :3000</p>
+                <p>You should see an entry like this if a service is running on port 3000:</p>
+                <p>TCP    0.0.0.0:3000    0.0.0.0:0    LISTENING</p>
+                <p>If nothing is returned, it means no application is running on port 3000. Ensure that your application or web server is started and bound to the correct IP address and port.</p>
+                <h3>2. <strong>Verify Binding Address</strong></h3>
+                <p>Ensure that the application running on port 3000 is bound to the correct IP address (<code>192.168.3.179</code>) or to <code>0.0.0.0</code> (which allows access from any IP address). If the application is bound to <code>localhost</code> (127.0.0.1), it won't accept connections from external sources.</p>
+                <p>Check your application's configuration to ensure it is set to listen on <code>0.0.0.0</code> or <code>192.168.3.179</code> instead of <code>127.0.0.1</code>.</p>
+                <h3>3. <strong>Test the Port Locally</strong></h3>
+                <p>Check if the port is accessible locally on the machine where the service is running:</p>
+                <ul>
+                <li>Open a browser or use <code>curl</code> on the machine and try to access <code>http://localhost:3000</code> or <code>http://127.0.0.1:3000</code>.</li>
+                </ul>
+                <p>curl http://localhost:3000</p>
+                <p>If this works locally but not remotely, then the issue might be related to networking or firewall rules.</p>
+                <h3>4. <strong>Check Network Adapter and IP Address</strong></h3>
+                <p>Ensure that the virtual machine or host has the correct IP address (<code>192.168.3.179</code>). Use the following command to confirm the IP address on the machine where the service is running:</p>
+                <p>ipconfig</p>
+                <p>Ensure that the IP address is within the <code>192.168.3.x</code> range and that the network adapter is configured correctly.</p>
+                <h3>5. <strong>Verify Firewall Rules</strong></h3>
+                <p>Ensure that the firewall rule you created is active and correct. Run the following command in <strong>PowerShell</strong> to confirm:</p>
+                <p>Get-NetFirewallRule -DisplayName "Allow Port 3000"</p>
+                <p>Also, confirm that the port is allowed for inbound traffic using:</p>
+                <p>Get-NetFirewallPortFilter | Where-Object { $_.LocalPort -eq 3000 }</p>
+                <h3>6. <strong>Disable Windows Firewall Temporarily (for Testing)</strong></h3>
+                <p>If the firewall rule seems correct but the port is still not accessible, try temporarily disabling the Windows Firewall to rule out firewall issues:</p>
+                <p>Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False</p>
+                <p>Check if you can access <code>http://192.168.3.179:3000/</code> with the firewall disabled. If it works, the issue is with the firewall configuration.</p>
+                <p><strong>Re-enable the firewall after testing:</strong></p>
+                <p>Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled True</p>
+                <h3>7. <strong>Check Router/Network Configuration</strong></h3>
+                <p>If the VM is behind a NAT or firewall (in a different network zone), ensure that port 3000 is forwarded correctly and that no other network restrictions exist.</p>
+                <h3>8. <strong>Check VM's Network Mode (Bridged/NAT)</strong></h3>
+                <p>Ensure that your VM is in <strong>Bridged Mode</strong> (if using a VM) so that it is directly accessible from the local network. If the VM is in <strong>NAT Mode</strong>, it may not be reachable externally without configuring port forwarding in your virtualization software.</p>
+                <hr />
+                <p>Try these steps and see if the issue is resolved. If you are still unable to access <code>http://192.168.3.179:3000/</code>, let me know, and we can further troubleshoot!</p>
+                <p>MORE DEBUG AFTER CURL <strong>SCREENSHOT</strong></p>
+                <p>From the image, I can see that you're running a command <code>curl http://localhost:3000</code> on a Debian system, and it returned a 302 redirect to <code>/login</code>, which indicates that the service running on port 3000 is functioning correctly <strong>locally</strong>. However, you're having trouble accessing it from outside the VM.</p>
+                <h3>Checklist for External Access:</h3>
+                <ul>
+                <li>
+                <p><strong>Firewall Configuration:</strong><br />
+                Since <code>curl</code> is working locally, the issue may be with external access. Verify that the firewall on your host machine or the VM allows traffic on port 3000, as discussed earlier. Double-check that the firewall rule allows <strong>inbound traffic</strong> for port 3000 using both the <code>TCP</code> protocol and your external IP.</p>
+                </li>
+                <li>
+                <p><strong>Network Adapter Configuration:</strong><br />
+                Make sure that your VM's network adapter is set to <strong>Bridged Mode</strong> instead of <strong>NAT</strong>. In <strong>NAT Mode</strong>, external access is blocked by default.</p>
+                </li>
+                <li>
+                <p>If you're using <strong>VirtualBox</strong>, go to the VM's settings → <strong>Network</strong> and select <strong>Bridged Adapter</strong>.</p>
+                </li>
+                <li>
+                <p>If you're using <strong>VMware</strong> or another virtualization platform, follow similar steps to ensure the VM has a network adapter that allows external access.</p>
+                </li>
+                <li>
+                <p><strong>Service Binding Address:</strong><br />
+                Your service is running on <code>localhost</code> (127.0.0.1), meaning it’s only accessible within the VM itself. You need to bind the service to the VM's external IP address (<code>192.168.3.179</code> in this case) or to <code>0.0.0.0</code> (which allows access from any address).</p>
+                </li>
+                <li>
+                <p>Check the configuration of your application (Grafana or whatever is running on port 3000) and ensure it is bound to the correct IP address. For example, in a typical Node.js application, you would change this:</p>
+                </li>
+                </ul>
+                <p>app.listen(3000, '127.0.0.1');</p>
+                <p>to:</p>
+                <p>app.listen(3000, '0.0.0.0');</p>
+                <ul>
+                <li><strong>Test Access via IP:</strong><br />
+                Once you've ensured the service is bound to <code>0.0.0.0</code> and the firewall allows traffic on port 3000, try accessing the service from an external machine by visiting <code>http://192.168.3.179:3000/</code> in a browser or using <code>curl</code> from another machine on the same network.</li>
+                </ul>
+                <p>Let me know if you need help with any specific step, and we can troubleshoot further!</p>
+                <p>INSTALL FINDSTR(WINDOWS) &gt; GREP( LINUX)</p>
+                <p>On Debian, <code>findstr</code> is a Windows command, and there is no direct equivalent of <code>findstr</code> in Linux distributions like Debian. However, you can use <code>grep</code>, which provides similar functionality.</p>
+                <p>To install <code>grep</code> on Debian (though it’s usually pre-installed), follow these steps:</p>
+                <h3>Step 1: Update Package Lists</h3>
+                <p>sudo apt update</p>
+                <h3>Step 2: Install <code>grep</code> (if not installed)</h3>
+                <p>sudo apt install grep</p>
+                <h3>Step 3: Use <code>grep</code> Instead of <code>findstr</code></h3>
+                <p>For example, if you want to search for port 3000 in <code>netstat</code>, you can use the following command:</p>
+                <p>netstat -an | grep :3000</p>
+                <p>This will give you similar output to what <code>findstr</code> does in Windows, showing you the lines that contain <code>:3000</code>.</p>
+                <p>Let me know if you need further help with <code>grep</code> or any other Debian commands!</p>
+                <p><img src="images/bitnami-package-for-30.png" alt="bitnami package for 30" class="article-image" loading="lazy"></p>
+                <p>CHANGE 127.0.0.1 <strong>TO </strong>0.0.0.0</p>
+                <p>To change the service binding address so that the application running on port 3000 can be accessed externally, you'll need to modify the configuration file or code of the application you are running (for example, Node.js, Grafana, or any other server).</p>
+                <p>Here’s a general guide depending on the application:</p>
+                <h3>For a <strong>Node.js</strong> Application:</h3>
+                <ul>
+                <li>
+                <p><strong>Locate the File Where Your Server is Listening</strong> (often <code>app.js</code>, <code>server.js</code>, or similar).</p>
+                </li>
+                <li>
+                <p><strong>Find the <code>app.listen</code> or equivalent function</strong> that starts the server, and check the second argument (which may be <code>127.0.0.1</code> or <code>localhost</code>). Example:</p>
+                </li>
+                </ul>
+                <p>app.listen(3000, '127.0.0.1');</p>
+                <ul>
+                <li><strong>Change the IP Address</strong> to <code>0.0.0.0</code> (which allows the service to accept connections from any external IP):</li>
+                </ul>
+                <p>app.listen(3000, '0.0.0.0');</p>
+                <ul>
+                <li>
+                <p><strong>Restart the Server</strong> after making the change to apply it.</p>
+                </li>
+                <li>
+                <p>If you're running a Node.js application, you can restart it with:<br />
+                <code>bash node app.js</code><br />
+                (or whichever command you use to start your server).</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>For a <strong>Grafana</strong> Instance:</h3>
+                <p>Grafana typically runs on port 3000, and to allow external access, you would change its binding address in the configuration file:</p>
+                <ul>
+                <li>
+                <p><strong>Locate the Grafana Configuration File</strong>:</p>
+                </li>
+                <li>
+                <p>The configuration file is typically located at <code>/etc/grafana/grafana.ini</code> or in the installation directory of Grafana.</p>
+                </li>
+                <li>
+                <p><strong>Edit the Configuration File</strong>:</p>
+                </li>
+                </ul>
+                <p>sudo nano /etc/grafana/grafana.ini</p>
+                <ul>
+                <li><strong>Find the HTTP Server Section</strong>:<br />
+                Look for the <code>[server]</code> section and modify the following line:</li>
+                </ul>
+                <p>http_addr = 127.0.0.1</p>
+                <p><img src="images/bitnami-package-for-31.png" alt="bitnami package for 31" class="article-image" loading="lazy"></p>
+                <p>Change it to:</p>
+                <p>http_addr = 0.0.0.0</p>
+                <ul>
+                <li>
+                <p><strong>Save and Exit</strong> (<code>Ctrl + X</code> to exit, then <code>Y</code> to confirm).</p>
+                </li>
+                <li>
+                <p><strong>Restart Grafana</strong> to apply the changes:</p>
+                </li>
+                </ul>
+                <p>sudo systemctl restart grafana-server</p>
+                <hr />
+                <p><img src="images/bitnami-package-for-32.png" alt="bitnami package for 32" class="article-image" loading="lazy"></p>
+                <p>maybe a host error</p>
+                <h3>General Steps for Other Applications:</h3>
+                <ul>
+                <li>
+                <p><strong>Check the Configuration File or Code</strong> for a line where the service is bound to <code>localhost</code> or <code>127.0.0.1</code>.</p>
+                </li>
+                <li>
+                <p><strong>Modify</strong> it to bind to <code>0.0.0.0</code> instead.</p>
+                </li>
+                <li>
+                <p><strong>Restart the Service</strong>.</p>
+                </li>
+                </ul>
+                <p>Let me know which application you are running (if it's not Node.js or Grafana), and I can give more specific instructions if needed.</p>
+                <p>''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''</p>
+                <p>blaze</p>
+                <p>'''''''''''''</p>
+                <p>VMWARE START ERRORS ON THE GRAFANA AFTER FORCES STOP</p>
+                <p>The image shows an error message in a virtual machine environment, possibly in VMware Workstation. Here's what the error indicates:</p>
+                <ul>
+                <li>
+                <p><strong>Firmware Bug - APIC520 (IVT offset 2)</strong>:<br />
+                This part of the message indicates that the CPU tried to use an interrupt vector that is already in use. It's usually related to the Advanced Programmable Interrupt Controller (APIC). It's not critical but can cause the system to log the error. This issue is often related to a bug in the BIOS firmware or kernel.</p>
+                </li>
+                <li>
+                <p><strong>SMBus Host Controller not enabled</strong>:<br />
+                The SMBus (System Management Bus) controller, responsible for communication between system components like sensors and power management hardware, is not enabled. This is usually harmless unless specific hardware needs SMBus for monitoring or control.</p>
+                </li>
+                <li>
+                <p><strong>/dev/sda1: clean</strong>:<br />
+                This message indicates that the root filesystem on the virtual machine (<code>/dev/sda1</code>) has been checked and is clean, which means the disk file system is not corrupted and doesn't need any repairs.</p>
+                </li>
+                </ul>
+                <h3>How to resolve:</h3>
+                <ul>
+                <li>
+                <p><strong>Firmware Bug</strong>: This can usually be ignored unless you see performance or stability issues. However, ensuring that the BIOS/UEFI firmware and VMware tools are up-to-date might help prevent it from appearing.</p>
+                </li>
+                <li>
+                <p><strong>SMBus Host Controller Error</strong>: This can typically be ignored in virtual machines because SMBus is often not required. However, installing or updating VMware tools might resolve this issue.</p>
+                </li>
+                <li>
+                <p><strong>No action needed for <code>/dev/sda1: clean</code></strong> as this indicates that the file system is in good condition.</p>
+                </li>
+                </ul>
+                <p>If the virtual machine boots normally after this screen, these messages can typically be ignored unless they are causing performance issues. Let me know if there's a specific issue you're facing with the VM!</p>
+                <p>==========================================<br />
+                    *** add another instance and retry ***<br />
+                ==========================================</p>
+                <p><img src="images/bitnami-package-for-33.png" alt="bitnami package for 33" class="article-image" loading="lazy"></p>
+                <p>while importing theold one came online </p>
+                <p><img src="images/bitnami-package-for-34.png" alt="bitnami package for 34" class="article-image" loading="lazy"></p>
+                <p>lost after the grafana updates i did on the domain </p>
+                <p><img src="images/bitnami-package-for-35.png" alt="bitnami package for 35" class="article-image" loading="lazy"></p>
+                <p>this time second machine does not shbow url</p>
+                <p><img src="images/bitnami-package-for-36.png" alt="bitnami package for 36" class="article-image" loading="lazy"></p>
+                <p>unable to get an ip the second machine as well </p>
+                <p><img src="images/bitnami-package-for-37.png" alt="bitnami package for 37" class="article-image" loading="lazy"></p>
+                <p>==========================================<br />
+                    *** GRAFANA IP NOT GIVEN IN THE MACHINE ***<br />
+                ==========================================</p>
+                <p>From the screenshot, it seems that the Bitnami Grafana virtual machine inside VMware Workstation is not getting an IP address for the network interface. The output of the <code>ip a</code> command shows the <code>ens192</code> interface is up, but there is no valid IP assigned, and the state is <code>UNKNOWN</code>.</p>
+                <p>Here are some possible reasons and solutions for this issue:</p>
+                <p><img src="images/bitnami-package-for-38.png" alt="bitnami package for 38" class="article-image" loading="lazy"></p>
+                <h3>1. <strong>Network Adapter Configuration:</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Check the network adapter settings in VMware:</strong> Ensure that the VM’s network adapter is configured correctly. If you want the VM to receive an IP address automatically, the adapter should be set to <strong>NAT</strong> or <strong>Bridged</strong>.</p>
+                </li>
+                <li>
+                <p><strong>NAT vs. Bridged:</strong></p>
+                </li>
+                </ul>
+                <p><strong>NAT:</strong> Allows the VM to share the host's IP address and connect to external networks.</p>
+                <ul>
+                <li><strong>Bridged:</strong> Allows the VM to behave like an independent device on the network with its own IP.</li>
+                </ul>
+                <h3>2. <strong>DHCP Not Working:</strong></h3>
+                <ul>
+                <li>It’s possible that DHCP is not working correctly for the VM. You can try manually requesting an IP address by running:<br />
+                <code>sudo dhclient ens192</code><br />
+                This command will attempt to acquire an IP address via DHCP.</li>
+                </ul>
+                <p><img src="images/bitnami-package-for-39.png" alt="bitnami package for 39" class="article-image" loading="lazy"></p>
+                <h3>3. <strong>Network Driver or Service Issue:</strong></h3>
+                <ul>
+                <li>
+                <p>Verify that the network services are running correctly on the VM. Sometimes network drivers or related services might not start correctly after boot. Restarting the networking service could help:<br />
+                <code>sudo systemctl restart networking</code></p>
+                </li>
+                <li>
+                <p>Alternatively, you can check if all required network drivers are installed.</p>
+                </li>
+                </ul>
+                <h3>4. <strong>Static IP Configuration:</strong></h3>
+                <ul>
+                <li>If DHCP is not available or misconfigured, you could try setting a static IP for the network interface by editing the <code>/etc/network/interfaces</code> file (on older systems) or the netplan configuration for newer Debian systems.</li>
+                </ul>
+                <h3>5. <strong>VMware Tools:</strong></h3>
+                <ul>
+                <li>Ensure VMware Tools are installed on the VM. Sometimes network integration issues can occur if VMware Tools are not installed or not running properly.</li>
+                </ul>
+                <p>You can start by verifying the network adapter settings in VMware Workstation and then try restarting the network services or assigning an IP manually. Let me know if you'd like more detailed instructions on any of these steps.</p>
+                <p>2 DIFFERENT NETWORKS</p>
+                <p>hOST 37 NOT 4?</p>
+                <p><img src="images/bitnami-package-for-40.png" alt="bitnami package for 40" class="article-image" loading="lazy"></p>
+                <p><img src="images/bitnami-package-for-41.png" alt="bitnami package for 41" class="article-image" loading="lazy"></p>
+                <p>==================================================================<br />
+                    *** SHUTDOWN ***<br />
+                ==================================================================<br />
+                If you're looking to turn off a Debian system, you can do it with the following command:</p>
+                <ol>
+                <li>Open a terminal.</li>
+                <li>Run the shutdown command:</li>
+                </ol>
+                <pre><code class="language-bash">sudo shutdown now
+                </code></pre>
+                <p>Alternatively, you can use this command to reboot:</p>
+                <pre><code class="language-bash">sudo reboot
+                </code></pre>
+                <p>Let me know if this helps or if you're looking for something specific!</p>
+                <p>==================================================================<br />
+                    *** REBOOT AND COMEBACK MAYBE IT IS RELATED TO WINDOWS ***<br />
+                ==================================================================</p>
+                <p>MY OPENSHIFT RUNS ITS OWN ACTION &gt;&gt;&gt; PROCESS EASY TO FAIL AND FASTER TO RUN!</p>
+                <p>maybe this is the issue </p>
+                <p><img src="images/bitnami-package-for-42.png" alt="bitnami package for 42" class="article-image" loading="lazy"></p>
+                <p>no install this time only one UNKNOWN and other is in action</p>
+                <p><img src="images/bitnami-package-for-43.png" alt="bitnami package for 43" class="article-image" loading="lazy"></p>
+                <p>tried and failed &gt; <a href="http://192.168.3.180:3000/">http://192.168.3.180:3000/</a></p>
+                <p>ssh connect fails </p>
+                <p><img src="images/bitnami-package-for-44.png" alt="bitnami package for 44" class="article-image" loading="lazy"></p>
+                <p>==================================================================<br />
+                    *** ssh connect to the bitnami box ***<br />
+                ==================================================================</p>
+                <p><img src="images/bitnami-package-for-45.png" alt="bitnami package for 45" class="article-image" loading="lazy"></p>
+                <p>The error message <code>ssh: connect to host 192.168.3.180 port 22: Connection refused</code> suggests that the SSH server on the host machine (192.168.3.180) might not be running, or the SSH port (default is 22) is being blocked by a firewall or not configured properly. Here's how you can troubleshoot the issue:</p>
+                <h3>1. Check if SSH service is running on the server</h3>
+                <p>If you have access to the host machine, you can check whether the SSH service is running.</p>
+                <ul>
+                <li><strong>For Linux (including Bitnami stacks):</strong><br />
+                Run the following command:</li>
+                </ul>
+                <p>sudo systemctl status ssh</p>
+                <p>If it’s not running, start the SSH service:</p>
+                <p>sudo systemctl start ssh</p>
+                <ul>
+                <li><strong>For Ubuntu (Bitnami Stack)</strong>:</li>
+                </ul>
+                <p>sudo systemctl status sshd</p>
+                <p>If the service is not active, start it:</p>
+                <p>sudo systemctl start sshd</p>
+                <h3>2. Check if the firewall allows SSH (port 22)</h3>
+                <ul>
+                <li>On the host machine, check if a firewall is blocking the SSH port (22). You can allow SSH through the firewall using:</li>
+                </ul>
+                <p>sudo ufw allow ssh</p>
+                <p>Or manually open port 22:</p>
+                <p>sudo ufw allow 22/tcp</p>
+                <h3>3. Verify SSH configuration</h3>
+                <p>Check if the SSH server is configured to listen on port 22. Open the SSH configuration file (<code>/etc/ssh/sshd_config</code>):</p>
+                <p>sudo nano /etc/ssh/sshd_config</p>
+                <p>Make sure the following line is present and not commented out:</p>
+                <p>Port 22</p>
+                <p>After modifying the configuration file, restart the SSH service:</p>
+                <p>sudo systemctl restart ssh</p>
+                <h3>4. Ensure the host machine’s IP is correct</h3>
+                <p>Make sure that <code>192.168.3.180</code> is the correct IP address of the machine you’re trying to connect to. You can verify the local IP address of the server using:</p>
+                <p>ifconfig   # or ip a</p>
+                <h3>5. Check if port 22 is open on the host</h3>
+                <p>Use <code>nmap</code> to see if port 22 is open on the remote machine:</p>
+                <p>nmap 192.168.3.180 -p 22</p>
+                <p>If it shows that port 22 is closed, there might be an issue with the SSH server or firewall.</p>
+                <p>Let me know if any of these steps help or if the problem persists!</p>
+                <p><img src="images/bitnami-package-for-46.png" alt="bitnami package for 46" class="article-image" loading="lazy"></p>
+                <p>==================================================================<br />
+                    *** WORKS AFTER THE SSH BLOKER REOMOVAL ***<br />
+                ==================================================================</p>
+                <p><img src="images/bitnami-package-for-47.png" alt="bitnami package for 47" class="article-image" loading="lazy"></p>
+                <p>==================================================================<br />
+                    *** TAKE IT FROM WINDOWS AND MOVE TO LINUX ***<br />
+                ==================================================================</p>
+                <p>To copy your SSH public key from a Windows machine and move it to the Linux server for passwordless authentication, you can follow these steps:</p>
+                <h3>1. <strong>Generate an SSH Key on Windows (if not already available)</strong></h3>
+                <p>First, ensure you have an SSH key pair on your Windows machine. If you haven't generated one, follow these steps:</p>
+                <ul>
+                <li>
+                <p>Open PowerShell or Command Prompt (as administrator).</p>
+                </li>
+                <li>
+                <p>Run the following command to generate the SSH key:</p>
+                </li>
+                </ul>
+                <p>ssh-keygen -t rsa -b 4096</p>
+                <p>You can press <code>Enter</code> to accept the default location (which is <code>C:\Users\&lt;YourUsername&gt;\.ssh\id_rsa</code>) and create the key.</p>
+                <p>This will generate two files:</p>
+                <ul>
+                <li>
+                <p><code>id_rsa</code>: the private key</p>
+                </li>
+                <li>
+                <p><code>id_rsa.pub</code>: the public key</p>
+                </li>
+                </ul>
+                <h3>2. <strong>Find the Public Key on Windows</strong></h3>
+                <p>Locate your public key (<code>id_rsa.pub</code>). By default, it will be in:</p>
+                <p>C:\Users\<YourUsername>.ssh\id_rsa.pub</p>
+                <p>You can open this file with Notepad or any text editor:</p>
+                <p>notepad C:\Users\<YourUsername>.ssh\id_rsa.pub</p>
+                <p>Copy the entire contents of the <code>id_rsa.pub</code> file to your clipboard.</p>
+                <p>NOTEPAD IT</p>
+                <p><img src="images/bitnami-package-for-48.png" alt="bitnami package for 48" class="article-image" loading="lazy"></p>
+                <h3>3. <strong>Transfer the Public Key to the Linux Server</strong></h3>
+                <p>Now, you need to transfer this public key to the remote Linux server. Follow these steps:</p>
+                <ul>
+                <li><strong>Login to your Linux server (using a password or alternative method):</strong> Use the following command in PowerShell or Command Prompt to log in to your server using a password or another form of authentication (if it's still possible):</li>
+                </ul>
+                <p>ssh bitnami@192.168.3.180</p>
+                <ul>
+                <li><strong>Create the <code>.ssh</code> directory on the Linux server (if it doesn’t exist):</strong> Once logged in, make sure the <code>.ssh</code> directory exists:</li>
+                </ul>
+                <p>mkdir -p ~/.ssh</p>
+                <ul>
+                <li>
+                <p><strong>Move the public key to <code>authorized_keys</code> on the Linux server:</strong></p>
+                </li>
+                <li>
+                <p>Open the <code>authorized_keys</code> file (create it if it doesn’t exist): <code>nano ~/.ssh/authorized_keys</code></p>
+                </li>
+                <li>
+                <p>Paste the contents of the public key (<code>id_rsa.pub</code> from Windows) that you copied earlier.</p>
+                </li>
+                <li>
+                <p>Save and close the file by pressing <code>CTRL+X</code>, then <code>Y</code>, and finally <code>Enter</code>.</p>
+                </li>
+                <li>
+                <p><strong>Set the correct permissions on the Linux server:</strong> Make sure the permissions on the <code>.ssh</code> directory and <code>authorized_keys</code> file are correct:</p>
+                </li>
+                </ul>
+                <p>chmod 700 ~/.ssh<br />
+                   chmod 600 ~/.ssh/authorized_keys</p>
+                <p><img src="images/bitnami-package-for-49.png" alt="bitnami package for 49" class="article-image" loading="lazy"></p>
+                <h3>4. <strong>Test the SSH Connection from Windows</strong></h3>
+                <p>Now, go back to your Windows machine and test the SSH connection by running:</p>
+                <p>ssh bitnami@192.168.3.180</p>
+                <p><img src="images/bitnami-package-for-50.png" alt="bitnami package for 50" class="article-image" loading="lazy"></p>
+                <p>This time, you should be able to connect without entering a password, as the public key is now configured for authentication.</p>
+                <h3>5. <strong>Optional: Disable Password Authentication (for security)</strong></h3>
+                <p>If you want to force public key authentication and disable password authentication for increased security, you can edit the SSH configuration file on the Linux server:</p>
+                <ul>
+                <li>Edit the SSH configuration file:</li>
+                </ul>
+                <p>sudo nano /etc/ssh/sshd_config</p>
+                <ul>
+                <li>Find and modify (or add) the following lines:</li>
+                </ul>
+                <p>PasswordAuthentication no<br />
+                   PubkeyAuthentication yes</p>
+                <ul>
+                <li>Save and close the file, then restart the SSH service:</li>
+                </ul>
+                <p>sudo systemctl restart ssh</p>
+                <p>This will ensure that only public key authentication is allowed, and no passwords can be used to log in.</p>
+                <p>Let me know if you need further assistance!</p>
+                <p>==================================================================<br />
+                    *** ask question better ***<br />
+                ==================================================================</p>
+                <p><img src="images/bitnami-package-for-51.png" alt="bitnami package for 51" class="article-image" loading="lazy"></p>
+                <p><img src="images/bitnami-package-for-52.png" alt="bitnami package for 52" class="article-image" loading="lazy"></p>
+                <p><img src="images/bitnami-package-for-53.png" alt="bitnami package for 53" class="article-image" loading="lazy"></p>
+                <p>From what I can observe in the screenshot, it looks like you are able to SSH into the machine at <code>192.168.3.180</code> and confirmed that Grafana is running since you can access it locally using <code>curl 127.0.0.1:3000</code>. However, you are unable to access it through your browser via <code>192.168.3.180:3000</code>.</p>
+                <p>Here are a few things you can check:</p>
+                <ul>
+                <li><strong>Grafana Binding</strong>: Ensure that Grafana is not only listening on <code>127.0.0.1</code> (localhost) but also on all interfaces (<code>0.0.0.0</code>). Check the Grafana configuration file (<code>grafana.ini</code> or wherever your Grafana config is stored) and look for the <code>http_addr</code> setting under <code>[server]</code>. It should look like this:</li>
+                </ul>
+                <p>[server]<br />
+                   http_addr = 0.0.0.0<br />
+                   http_port = 3000</p>
+                <p>This will allow external connections, not just from <code>localhost</code>.</p>
+                <ul>
+                <li>
+                <p><strong>Firewall/Network Configuration</strong>:</p>
+                </li>
+                <li>
+                <p>You mentioned that the Windows firewall is off, but double-check if any internal Linux firewall (like <code>iptables</code> or <code>ufw</code>) is blocking connections to port 3000. You can temporarily disable it to test:<br />
+                <code>sudo ufw disable</code></p>
+                </li>
+                <li>
+                <p><strong>Port Exposure in VMware/Virtual Environment</strong>:</p>
+                </li>
+                <li>
+                <p>If you are using VMware, ensure that the port forwarding rules or network configurations allow external access to port <code>3000</code> from the host (your Windows machine) to the virtual machine.</p>
+                </li>
+                </ul>
+                <p><img src="images/bitnami-package-for-54.png" alt="bitnami package for 54" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>
+                <p><strong>Grafana Logs</strong>:</p>
+                </li>
+                <li>
+                <p>Review Grafana logs (<code>/var/log/grafana/grafana.log</code> or equivalent depending on your setup) to ensure there are no errors related to networking or access control.</p>
+                </li>
+                <li>
+                <p><strong>DNS Resolution or Proxy</strong>:</p>
+                </li>
+                <li>
+                <p>Check if any proxy settings in your Windows system or browser could be interfering with your connection to <code>192.168.3.180</code>.</p>
+                </li>
+                </ul>
+                <p>Try these steps, and if the issue persists, I can help you further troubleshoot based on your findings.</p>
+                <p>==================================================================<br />
+                    *** FIND ALL GRAFANA INIS ***<br />
+                ==================================================================</p>
+                <p>To find the <code>grafana.ini</code> configuration file in a Linux box, you can try the following steps:</p>
+                <ul>
+                <li>
+                <p><strong>Default Location:</strong><br />
+                Grafana’s default configuration file is usually located in one of the following directories:</p>
+                </li>
+                <li>
+                <p><code>/etc/grafana/grafana.ini</code></p>
+                </li>
+                <li>
+                <p><code>/usr/share/grafana/conf/defaults.ini</code> (less commonly modified, but you can check here for reference)</p>
+                </li>
+                <li>
+                <p><strong>Search for the File:</strong><br />
+                If you are unsure of the location, you can use the <code>find</code> command to search for the <code>grafana.ini</code> file:</p>
+                </li>
+                </ul>
+                <p>sudo find / -name grafana.ini 2&gt;/dev/null</p>
+                <p><img src="images/bitnami-package-for-55.png" alt="bitnami package for 55" class="article-image" loading="lazy"></p>
+                <p>This command will search your entire system for the <code>grafana.ini</code> file. The <code>2&gt;/dev/null</code> part is optional and just suppresses permission-related errors during the search.</p>
+                <ul>
+                <li><strong>Check Running Process Configuration:</strong><br />
+                You can also check how Grafana was started by viewing the running process with <code>ps</code>:</li>
+                </ul>
+                <p>ps aux | grep grafana</p>
+                <p><img src="images/bitnami-package-for-56.png" alt="bitnami package for 56" class="article-image" loading="lazy"></p>
+                <p>This may show the full command line used to start Grafana, which sometimes includes the path to the configuration file if specified with the <code>--config</code> flag.</p>
+                <ul>
+                <li><strong>Check Grafana Service:</strong><br />
+                If Grafana is running as a service, you can check the service file for configuration file details:</li>
+                </ul>
+                <p>sudo systemctl status grafana-server</p>
+                <p>This will show the status of the Grafana service, and might provide additional information about its configuration.</p>
+                <p><img src="images/bitnami-package-for-57.png" alt="bitnami package for 57" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Docker/VM Note:</strong><br />
+                If you’re running Grafana inside a container or virtualized environment, the file paths might be different. In that case, you might need to inspect the container or VM setup.</li>
+                </ul>
+                <p>Once you locate the <code>grafana.ini</code>, you can edit it using your preferred text editor (e.g., <code>nano</code> or <code>vi</code>):</p>
+                <p>sudo nano /etc/grafana/grafana.ini</p>
+                <p>Let me know if you need more assistance!</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

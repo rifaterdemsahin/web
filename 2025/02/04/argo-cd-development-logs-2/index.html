@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Argo CD Development Logs 2 - Rifat Erdem Sahin</title>
+    <meta name="description" content="Argo CD Development Logs 2 Continue from &gt; https://rifaterdemsahin.com/?p=39514 Setting Up ArgoCD on OpenShift: A Step-by-Step Guide ArgoCD is a popular GitOps tool for managing your Kubernetes app">
+    <meta name="keywords" content="Argo CD Development Logs 2">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/02/04/argo-cd-development-logs-2/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/02/04/argo-cd-development-logs-2/">
+    <meta property="og:title" content="Argo CD Development Logs 2">
+    <meta property="og:description" content="Argo CD Development Logs 2 Continue from &gt; https://rifaterdemsahin.com/?p=39514 Setting Up ArgoCD on OpenShift: A Step-by-Step Guide ArgoCD is a popular GitOps tool for managing your Kubernetes app">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/02/04/argo-cd-development-logs-2/">
+    <meta property="twitter:title" content="Argo CD Development Logs 2">
+    <meta property="twitter:description" content="Argo CD Development Logs 2 Continue from &gt; https://rifaterdemsahin.com/?p=39514 Setting Up ArgoCD on OpenShift: A Step-by-Step Guide ArgoCD is a popular GitOps tool for managing your Kubernetes app">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Argo CD Development Logs 2",
+      "description": "Argo CD Development Logs 2 Continue from &gt; https://rifaterdemsahin.com/?p=39514 Setting Up ArgoCD on OpenShift: A Step-by-Step Guide ArgoCD is a popular GitOps tool for managing your Kubernetes app",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-02-04",
+      "dateModified": "2025-02-04",
+      "url": "https://www.rifaterdemsahin.com/2025/02/04/argo-cd-development-logs-2/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/02/04/argo-cd-development-logs-2/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Argo CD Development Logs 2</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>February 4, 2025</span>
+                    <span>&bull;</span>
+                    <span>15 min read</span>
+                </div>
+                <p class="article-excerpt">Argo CD Development Logs 2 Continue from &gt; https://rifaterdemsahin.com/?p=39514 Setting Up ArgoCD on OpenShift: A Step-by-Step Guide ArgoCD is a popular GitOps tool for managing your Kubernetes applications.</p>
+            </header>
+            <article class="article-content">
+                <h1>Argo CD Development Logs 2</h1>
+                <p>Continue from &gt;<a href="https://rifaterdemsahin.com/?p=39514">https://rifaterdemsahin.com/?p=39514</a></p>
+                <h3>Setting Up ArgoCD on OpenShift: A Step-by-Step Guide</h3>
+                <p>ArgoCD is a popular GitOps tool for managing your Kubernetes applications. This blog post will walk you through the steps to set up ArgoCD on an OpenShift cluster.</p>
+                <h4>1. Delete an Existing ArgoCD Project (if needed)</h4>
+                <p>To start fresh, you may need to delete an existing ArgoCD project. Use the following command to delete the project:</p>
+                <p>oc delete project argocd</p>
+                <p><img src="images/argo-cd-development-1.png" alt="argo cd development 1" class="article-image" loading="lazy"></p>
+                <h4>2. Create a New ArgoCD Project</h4>
+                <p>Next, create a new project in OpenShift for ArgoCD:</p>
+                <p>oc new-project argocd</p>
+                <p><img src="images/argo-cd-development-2.png" alt="argo cd development 2" class="article-image" loading="lazy"></p>
+                <h4>3. Add Secret Keys</h4>
+                <p>Add the necessary secret keys for ArgoCD, such as the server secret key and Redis password: ( before system fails )</p>
+                <p>oc create secret generic argocd-secret --from-literal=server.secretkey=5HbERIVentK9xid1N8OgzmWafPTCvBQo --from-literal=redis.password=50kQ9NTyhVazFoLtbAsfiYrpGwl8BjxC -n argocd</p>
+                <p><img src="images/argo-cd-development-3.png" alt="argo cd development 3" class="article-image" loading="lazy"></p>
+                <h4>4. Apply the ArgoCD YAML Configuration</h4>
+                <p>Install ArgoCD by applying the provided YAML file:</p>
+                <p>oc apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml</p>
+                <p><img src="images/argo-cd-development-4.png" alt="argo cd development 4" class="article-image" loading="lazy"></p>
+                <p>4.B Patch the system</p>
+                <p><code>oc patch deployment argocd-server -n argocd -p '{\"spec\": {\"template\": {\"spec\": {\"containers\": &amp;#091;{\"name\": \"argocd-server\",\"command\": &amp;#091;\"argocd-server\", \"--insecure\", \"--auth-mode\", \"server\"]}]}}}}'</code></p>
+                <h4>5. Verify the Deployment</h4>
+                <p>Check that the ArgoCD pods and services are running:</p>
+                <p>oc get pods -n argocd<br />
+                oc get svc -n argocd</p>
+                <p><img src="images/argo-cd-development-5.png" alt="argo cd development 5" class="article-image" loading="lazy"></p>
+                <p><img src="images/argo-cd-development-6.png" alt="argo cd development 6" class="article-image" loading="lazy"></p>
+                <h4>6. Update the Redis Deployment YAML</h4>
+                <p>Modify the Redis deployment configuration to ensure compliance with OpenShift’s Security Context Constraints (SCC):</p>
+                <p>apiVersion: apps/v1<br />
+                kind: Deployment<br />
+                metadata:<br />
+                  name: argocd-redis<br />
+                  namespace: argocd<br />
+                spec:<br />
+                  selector:<br />
+                    matchLabels:<br />
+                      app: argocd-redis<br />
+                  template:<br />
+                    metadata:<br />
+                      labels:<br />
+                        app: argocd-redis<br />
+                    spec:<br />
+                      securityContext:<br />
+                        runAsUser: 1000700000 # Use a valid UID range as per OpenShift's SCC<br />
+                      containers:<br />
+                        - name: redis<br />
+                          image: redis:6.2-alpine<br />
+                          ports:<br />
+                            - containerPort: 6379<br />
+                              name: redis</p>
+                <h4>7. Apply the Updated Redis Configuration</h4>
+                <p>Apply the updated Redis deployment configuration:</p>
+                <p>oc delete deployment argocd-redis -n argocd</p>
+                <p>oc apply -f redis-deployment.yaml -n argocd</p>
+                <p><img src="images/argo-cd-development-7.png" alt="argo cd development 7" class="article-image" loading="lazy"></p>
+                <h4>8. Expose the ArgoCD Service</h4>
+                <p>Finally, expose the ArgoCD server service to access it externally:</p>
+                <p>oc expose svc/argocd-server -n argocd --port=443 --name=argocd-route<br />
+                oc get route argocd-route -n argocd</p>
+                <p><img src="images/argo-cd-development-8.png" alt="argo cd development 8" class="article-image" loading="lazy"></p>
+                <p>Finally, expose the ArgoCD server service to access it externally:</p>
+                <h4>8. Delete pods in ArgoCD namespace to recreate them all</h4>
+                <p>oc delete pods --all -n argocd</p>
+                <p><strong>9.Check All pods</strong></p>
+                <p>oc get pods -n argocd</p>
+                <p><strong>10. Check reds stateful pod</strong></p>
+                <p>oc get statefulset -n argocd</p>
+                <p>11.<strong>get all services</strong></p>
+                <p>oc get svc -n argocd</p>
+                <p><img src="images/argo-cd-development-9.png" alt="argo cd development 9" class="article-image" loading="lazy"></p>
+                <p><strong>12.force stateful set to restart</strong></p>
+                <p>oc rollout restart deployment/argocd-redis -n argocd</p>
+                <p><strong>13.all errors in pods</strong></p>
+                <p><img src="images/argo-cd-development-10.png" alt="argo cd development 10" class="article-image" loading="lazy"></p>
+                <p>**14.Configmap check **</p>
+                <p>oc get configmap -n argocd<br />
+                oc get secret -n argocd</p>
+                <p><img src="images/argo-cd-development-11.png" alt="argo cd development 11" class="article-image" loading="lazy"></p>
+                <p><img src="images/argo-cd-development-12.png" alt="argo cd development 12" class="article-image" loading="lazy"></p>
+                <p>Following these steps, you should have a fully functional ArgoCD setup running on OpenShift, ready to manage your Kubernetes applications efficiently using GitOps principles.</p>
+                <p>$namespace = "argocd"; oc get pods -n $namespace -o jsonpath="{.items[*].metadata.name}" | % { $<em>.Split(" ") | % { Write-Host "### Logs for pod: $</em> ###"; oc logs $_ -n $namespace; "`n" } } | clip</p>
+                <p>**15.Check ui **</p>
+                <p>Delete and recreate it cant fin the secrets</p>
+                <p><img src="images/argo-cd-development-13.png" alt="argo cd development 13" class="article-image" loading="lazy"></p>
+                <p><img src="images/argo-cd-development-14.png" alt="argo cd development 14" class="article-image" loading="lazy"></p>
+                <p><img src="images/argo-cd-development-15.png" alt="argo cd development 15" class="article-image" loading="lazy"></p>
+                <ol start="16">
+                <li>Get the error from the  deployment of the pod in the same context</li>
+                </ol>
+                <p><img src="images/argo-cd-development-16.png" alt="argo cd development 16" class="article-image" loading="lazy"></p>
+                <p>The error you're encountering is related to the <code>Security Context Constraints</code> (SCC) in OpenShift. The <code>argocd-redis</code> pod is failing to start because the user specified in the <code>runAsUser</code> field (<code>1000700000</code>) is not within the allowed range for the SCCs assigned to the service account that the pod is running under.</p>
+                <h3>Steps to Resolve the Issue:</h3>
+                <h4>1. <strong>Adjust the <code>runAsUser</code> Value</strong></h4>
+                <ul>
+                <li>
+                <p>The error message indicates that the allowed user ID range is <code>[1000720000, 1000729999]</code>. To resolve this, you can adjust the <code>runAsUser</code> value within this range.</p>
+                </li>
+                <li>
+                <p>Update the <code>securityContext</code> in your deployment to use a valid UID: <code>securityContext: runAsUser: 1000720000</code></p>
+                </li>
+                <li>
+                <p>Apply the updated deployment: <code>oc apply -f &lt;your-deployment-file&gt;.yaml</code></p>
+                </li>
+                </ul>
+                <h4>2. <strong>Use a Different Security Context Constraint (SCC)</strong></h4>
+                <ul>
+                <li>
+                <p>If adjusting the <code>runAsUser</code> is not an option, or if you need to use a specific user ID, you might need to assign a different SCC to the service account running the pod.</p>
+                </li>
+                <li>
+                <p>For example, you could use the <code>anyuid</code> SCC, which allows any user ID: <code>oc adm policy add-scc-to-user anyuid -z &lt;service-account-name&gt; -n argocd</code> Replace <code>&lt;service-account-name&gt;</code> with the service account name under which the pod is running.</p>
+                </li>
+                </ul>
+                <h4>3. <strong>Create a Custom SCC</strong></h4>
+                <ul>
+                <li>
+                <p>If the predefined SCCs don’t meet your requirements, you can create a custom SCC that allows the specific <code>runAsUser</code> value or range that you need.</p>
+                </li>
+                <li>
+                <p>Example of creating a custom SCC: <code>apiVersion: security.openshift.io/v1 kind: SecurityContextConstraints metadata: name: custom-scc runAsUser: type: MustRunAsRange uidRangeMin: 1000700000 uidRangeMax: 1000709999</code> Apply this SCC and then assign it to the necessary service account: <code>oc adm policy add-scc-to-user custom-scc -z &lt;service-account-name&gt; -n argocd</code></p>
+                </li>
+                </ul>
+                <h4>4. <strong>Reapply the Deployment</strong></h4>
+                <ul>
+                <li>After making the necessary changes to either the SCC or the <code>runAsUser</code>, reapply the deployment: <code>oc apply -f &lt;your-deployment-file&gt;.yaml</code></li>
+                </ul>
+                <h4>5. <strong>Verify the Deployment</strong></h4>
+                <ul>
+                <li>Check the status of the pods to ensure that they are now running correctly: <code>oc get pods -n argocd</code></li>
+                </ul>
+                <h3>Summary:</h3>
+                <p>Adjust the <code>runAsUser</code> value to match the allowed UID range or assign an appropriate SCC that allows the required user ID. After making these adjustments, reapply the deployment, and verify that the pods start successfully.</p>
+                <p><img src="images/argo-cd-development-17.png" alt="argo cd development 17" class="article-image" loading="lazy"></p>
+                <p>To update your <code>redis-deployment.yaml</code> to align with the valid UID range required by OpenShift's Security Context Constraints (SCC), you can modify the <code>runAsUser</code> value within the allowed range or change the SCC as needed.</p>
+                <p>Here's the updated <code>redis-deployment.yaml</code> file with the <code>runAsUser</code> set to a valid UID within the default SCC range (<code>1000720000</code> to <code>1000729999</code>):</p>
+                <p>apiVersion: apps/v1<br />
+                kind: Deployment<br />
+                metadata:<br />
+                  name: argocd-redis<br />
+                  namespace: argocd<br />
+                spec:<br />
+                  selector:<br />
+                    matchLabels:<br />
+                      app: argocd-redis<br />
+                  template:<br />
+                    metadata:<br />
+                      labels:<br />
+                        app: argocd-redis<br />
+                    spec:<br />
+                      securityContext:<br />
+                        runAsUser: 1000720000  # Updated to a valid UID range as per OpenShift's SCC<br />
+                      containers:<br />
+                      - name: redis<br />
+                        image: redis:6.2-alpine<br />
+                        ports:<br />
+                        - containerPort: 6379<br />
+                          name: redis</p>
+                <h3>Steps After Update:</h3>
+                <ul>
+                <li>
+                <p><strong>Save the Updated YAML</strong>: Make sure to save the changes to the <code>redis-deployment.yaml</code> file.</p>
+                </li>
+                <li>
+                <p><strong>Apply the Updated Deployment</strong>:</p>
+                </li>
+                <li>
+                <p>Apply the updated deployment configuration to the OpenShift cluster: <code>oc apply -f redis-deployment.yaml -n argocd</code></p>
+                </li>
+                <li>
+                <p><strong>Verify the Deployment</strong>:</p>
+                </li>
+                <li>
+                <p>Check the status of the <code>argocd-redis</code> pod to ensure that it is running correctly: <code>oc get pods -n argocd</code></p>
+                </li>
+                </ul>
+                <p>By updating the <code>runAsUser</code> to a valid UID, the deployment should now pass the SCC checks, and the pod should be able to start successfully.</p>
+                <p><img src="images/argo-cd-development-18.png" alt="argo cd development 18" class="article-image" loading="lazy"></p>
+                <p><img src="images/argo-cd-development-19.png" alt="argo cd development 19" class="article-image" loading="lazy"></p>
+                <p>one pod redis accepts it </p>
+                <p><img src="images/argo-cd-development-20.png" alt="argo cd development 20" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><strong>Web Page Login</strong><br />
+                Login to Argo CD:<br />
+                Username:<br />
+                admin<br />
+                Password:<br />
+                Use the password retrieved in the previous step.</p>
+                <p>oc get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 --decode; ech</p>
+                <hr />
+                <p>The<br />
+                server.secretkey<br />
+                should be specified in the Argo CD<br />
+                argocd-cm<br />
+                ConfigMap.</p>
+                <hr />
+                <p>apiVersion: v1<br />
+                kind: ConfigMap<br />
+                metadata:<br />
+                annotations:<br />
+                kubectl.kubernetes.io/last-applied-configuration: |<br />
+                creationTimestamp: "2024-08-21T15:58:10Z"<br />
+                labels:<br />
+                app.kubernetes.io/name: argocd-cm<br />
+                app.kubernetes.io/part-of: argocd<br />
+                name: argocd-cm<br />
+                namespace: argocd<br />
+                resourceVersion: "67030"<br />
+                uid: 7438f615-2055-4443-9696-49a0056ca612<br />
+                data:<br />
+                redis.password: NTBrUTlOVHloVmF6Rm9MdGJBc2ZpWXJwR3dsOEJqeEM=<br />
+                server.secretkey: NUhiRVJJVmVudEs5eGlkMU44T2d6bVdhZlBUQ3ZCUW8=</p>
+                <p><img src="images/argo-cd-development-21.png" alt="argo cd development 21" class="article-image" loading="lazy"></p>
+                <p>ConfigMap updated with the secret as well not just secret</p>
+                <p><img src="images/argo-cd-development-22.png" alt="argo cd development 22" class="article-image" loading="lazy"></p>
+                <p><img src="images/argo-cd-development-23.png" alt="argo cd development 23" class="article-image" loading="lazy"></p>
+                <p>oc edit configmap argocd-cm -n argocd</p>
+                <p>oc patch configmap argocd-cm -n argocd --patch '{\"data\":{\"server.secretkey\":\"5HbERIVentK9xid1N8OgzmWafPTCvBQo\"}}'</p>
+                <p>oc patch configmap argocd-cm -n argocd --patch '{\"data\":{\"redis.password\":\"50kQ9NTyhVazFoLtbAsfiYrpGwl8BjxC\"}}'</p>
+                <p><img src="images/argo-cd-development-24.png" alt="argo cd development 24" class="article-image" loading="lazy"></p>
+                <p>oc create secret generic argocd-secret --from-literal=server.secretkey=5HbERIVentK9xid1N8OgzmWafPTCvBQo --from-literal=redis.password=50kQ9NTyhVazFoLtbAsfiYrpGwl8BjxC -n argocd</p>
+                <hr />
+                <p>When configuring Argo CD, you have a few options for managing secrets such as <code>server.secretkey</code> and <code>redis.password</code>. Here's a guide to help you decide whether to create these secrets yourself or obtain them from the server:</p>
+                <h3>1. <strong>Generating Secrets Yourself</strong></h3>
+                <p>If you are setting up Argo CD from scratch or need to specify your own secrets, you can generate them yourself. Here’s how to handle this:</p>
+                <h4>Generating and Creating Secrets</h4>
+                <ul>
+                <li><strong>Generate Random Secret Key:</strong><br />
+                You can use a command to generate a base64-encoded secret key. For example, using <code>openssl</code>:</li>
+                </ul>
+                <p>openssl rand -base64 32</p>
+                <p>This command generates a 32-byte base64-encoded key.</p>
+                <ul>
+                <li><strong>Create Kubernetes Secrets:</strong> Use <code>kubectl</code> or <code>oc</code> to create the secret in Kubernetes:</li>
+                </ul>
+                <p>kubectl create secret generic argocd-secret --from-literal=server.secretkey=<your-generated-key> --from-literal=redis.password=<your-generated-password> -n argocd</p>
+                <p>or for PowerShell:</p>
+                <p>oc create secret generic argocd-secret --from-literal=server.secretkey=<your-generated-key> --from-literal=redis.password=<your-generated-password> -n argocd</p>
+                <ul>
+                <li><strong>Update ConfigMap:</strong> After creating the secret, ensure the ConfigMap (<code>argocd-cm</code>) references the correct secret values.</li>
+                </ul>
+                <h3>2. <strong>Obtaining Secrets from the Server</strong></h3>
+                <p>If you’re not starting from scratch and you need to obtain existing secrets or configure them based on server-provided values:</p>
+                <h4>Access Existing Secrets</h4>
+                <ul>
+                <li><strong>View Existing Secrets:</strong> You can view the existing secrets in your Kubernetes cluster. For example:</li>
+                </ul>
+                <p>kubectl get secret -n argocd</p>
+                <p>or for PowerShell:</p>
+                <p>oc get secret -n argocd</p>
+                <ul>
+                <li><strong>Decode Secret Values:</strong> If you need to decode a base64-encoded value from an existing secret:</li>
+                </ul>
+                <p>kubectl get secret argocd-secret -n argocd -o jsonpath='{.data.server.secretkey}' | base64 --decode</p>
+                <p>or for PowerShell:</p>
+                <p>$secret = oc get secret argocd-secret -n argocd -o jsonpath='{.data.server.secretkey}'</p>
+                <ul>
+                <li><strong>Use Existing Secret Values:</strong> If the secrets are already in place and properly configured, you can use the existing values directly in your <code>argocd-cm</code> ConfigMap or other configuration files.</li>
+                </ul>
+                <h3>Key Points to Remember</h3>
+                <ul>
+                <li>
+                <p><strong>Security Best Practices:</strong> Always ensure that sensitive information such as secret keys and passwords are handled securely. Avoid hardcoding secrets in files and use Kubernetes Secrets for storing them securely.</p>
+                </li>
+                <li>
+                <p><strong>Consistency:</strong> If you’re using generated secrets, ensure that they are consistent across all configurations that depend on them. For instance, both the <code>argocd-cm</code> ConfigMap and <code>argocd-secret</code> Secret should be synchronized.</p>
+                </li>
+                <li>
+                <p><strong>Validation:</strong> After configuring or updating secrets, validate the setup by restarting relevant pods and checking logs to ensure that the changes have taken effect and no errors are present.</p>
+                </li>
+                </ul>
+                <p>By following these guidelines, you can effectively manage secrets for Argo CD, whether you generate them yourself or obtain them from the server.</p>
+                <p>CHECK FAILING YAML</p>
+                <p>Your Kubernetes Pod <code>argocd-application-controller-0</code> is failing to start due to a <code>CreateContainerConfigError</code>, specifically because the secret <code>argocd-redis</code> is not found. This secret is referenced in the environment variables of the container, which means the Pod can't retrieve its configuration correctly.</p>
+                <p>Here are the steps to resolve the issue:</p>
+                <ul>
+                <li><strong>Verify Secret Exists</strong>: Ensure that the secret <code>argocd-redis</code> exists in the <code>argocd</code> namespace. You can check this by running:</li>
+                </ul>
+                <p>kubectl get secret argocd-redis -n argocd</p>
+                <ul>
+                <li><strong>Create the Secret if Missing</strong>: If the secret does not exist, you need to create it. You can do this by using a YAML file or <code>kubectl</code> command. For example, to create a secret with a key <code>auth</code>, you might use:</li>
+                </ul>
+                <p>kubectl create secret generic argocd-redis --from-literal=auth=<redis-password> -n argocd</p>
+                <p>Replace <code>&lt;redis-password&gt;</code> with the actual password for Redis.</p>
+                <ul>
+                <li><strong>Verify Secret Content</strong>: Ensure the secret contains the correct keys and values required by your application. You can inspect the content of a secret by running:</li>
+                </ul>
+                <p>kubectl describe secret argocd-redis -n argocd</p>
+                <ul>
+                <li>
+                <p><strong>Check Pod Configuration</strong>: Make sure that the environment variable referring to the secret is correctly configured. According to your Pod definition, the secret should be referenced like this:</p>
+                </li>
+                <li>
+                <p>name: REDIS_PASSWORD<br />
+                     valueFrom:<br />
+                       secretKeyRef:<br />
+                         name: argocd-redis<br />
+                         key: auth</p>
+                </li>
+                </ul>
+                <p>Ensure that the <code>name</code> and <code>key</code> fields are accurate.</p>
+                <ul>
+                <li><strong>Restart the Pod</strong>: After creating or correcting the secret, restart the Pod to ensure it picks up the new configuration:</li>
+                </ul>
+                <p>kubectl delete pod argocd-application-controller-0 -n argocd</p>
+                <p>The StatefulSet will automatically create a new Pod instance.</p>
+                <ul>
+                <li><strong>Monitor Logs</strong>: If the Pod still fails to start, check the logs for more details:</li>
+                </ul>
+                <p>kubectl logs argocd-application-controller-0 -n argocd</p>
+                <p>Addressing the missing secret should resolve the <code>CreateContainerConfigError</code> and allow your Pod to start successfully. If you encounter further issues, reviewing logs and configurations for additional clues will be helpful.</p>
+                <p>Created one from ui called argocd-redis</p>
+                <p><img src="images/argo-cd-development-25.png" alt="argo cd development 25" class="article-image" loading="lazy"></p>
+                <p>different error </p>
+                <p><img src="images/argo-cd-development-26.png" alt="argo cd development 26" class="article-image" loading="lazy"></p>
+                <p>2 different usecases</p>
+                <p>Error: couldn't find key auth in Secret argocd/argocd-redis</p>
+                <hr />
+                <p>run with 4o mini</p>
+                <p>Setting up Argo CD in an OpenShift cluster involves several steps. Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes. Here’s a step-by-step guide to help you deploy Argo CD in an OpenShift cluster:</p>
+                <h3>Prerequisites</h3>
+                <ul>
+                <li>
+                <p><strong>OpenShift Cluster:</strong> Ensure you have an OpenShift cluster up and running.</p>
+                </li>
+                <li>
+                <p><strong>CLI Tools:</strong> You need <code>oc</code> (OpenShift CLI) and <code>kubectl</code> (Kubernetes CLI) installed and configured to interact with your cluster.</p>
+                </li>
+                <li>
+                <p><strong>Admin Access:</strong> Ensure you have admin access to the OpenShift cluster to create resources and namespaces.</p>
+                </li>
+                </ul>
+                <h3>Steps to Deploy Argo CD</h3>
+                <h4>1. Create a Namespace for Argo CD</h4>
+                <p>First, create a namespace (or project) for Argo CD in your OpenShift cluster:</p>
+                <p>oc create namespace argocd</p>
+                <h4>2. Deploy Argo CD</h4>
+                <p>You can deploy Argo CD using a Kubernetes manifest. The official Argo CD manifests can be found on their GitHub repository. Apply the manifests to your cluster:</p>
+                <p>kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml</p>
+                <p>This will deploy Argo CD and its components, such as the API server, repo server, and controller.</p>
+                <h4>3. Expose the Argo CD API Server</h4>
+                <p>By default, Argo CD's API server is not exposed externally. You can expose it using a route in OpenShift:</p>
+                <p>oc expose svc argocd-server -n argocd</p>
+                <p>This command creates a route that allows you to access the Argo CD API server from outside the cluster. You can check the route with:</p>
+                <p>oc get routes -n argocd</p>
+                <p>The URL shown in the output will be used to access the Argo CD web UI.</p>
+                <h4>4. Retrieve the Admin Password ( MYMISTAKE EVERYTIME NEW)</h4>
+                <p>Argo CD generates a default admin password that is stored in a Kubernetes secret. Retrieve it using the following command:</p>
+                <p>$secret = oc get secret argocd-initial-admin-secret -n argocd -o jsonpath='{.data.password}' | Out-String; <a href=":UTF8.GetString([System.Convert]::FromBase64String($secret))">System.Text.Encoding</a>::UTF8.GetString([System.Convert]::FromBase64String($secret.Trim()))</p>
+                <p>This will output the initial admin password for Argo CD.</p>
+                <p><img src="images/argo-cd-development-27.png" alt="argo cd development 27" class="article-image" loading="lazy"></p>
+                <h4>5. Access the Argo CD Web UI</h4>
+                <p>Open a browser and go to the route URL obtained earlier. Use the username <code>admin</code> and the password retrieved in the previous step to log in.</p>
+                <h4>6. (Optional) Configure Argo CD</h4>
+                <p>You can now start configuring Argo CD to manage your applications. Typically, you will:</p>
+                <ul>
+                <li>
+                <p>Connect Argo CD to your Git repositories.</p>
+                </li>
+                <li>
+                <p>Create and manage applications using the Argo CD web UI or CLI.</p>
+                </li>
+                </ul>
+                <h4>7. Install the Argo CD CLI (Optional)</h4>
+                <p>You may also want to install the Argo CD CLI for managing Argo CD from the command line. Follow these instructions to install the CLI:</p>
+                <h1>On macOS</h1>
+                <p>brew install argocd</p>
+                <h1>On Linux</h1>
+                <p>curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/download/v2.6.6/argocd-linux-amd64<br />
+                chmod +x argocd<br />
+                sudo mv argocd /usr/local/bin/</p>
+                <p>Replace the version (<code>v2.6.6</code>) with the latest version from the <a href="https://github.com/argoproj/argo-cd/releases">Argo CD GitHub releases page</a>.</p>
+                <h4>8. Log in Using the CLI</h4>
+                <p>You can use the Argo CD CLI to log in to your Argo CD instance:</p>
+                <p>argocd login <ARGOCD_SERVER> --username admin --password <PASSWORD> --insecure</p>
+                <p>Replace <code>&lt;ARGOCD_SERVER&gt;</code> with the route URL obtained earlier and <code>&lt;PASSWORD&gt;</code> with the initial admin password.</p>
+                <hr />
+                <p>That's it! You should now have Argo CD running in your OpenShift cluster, ready to manage your deployments using GitOps principles. If you have any specific questions or run into issues, feel free to ask!</p>
+                <hr />
+                <p>To create ArgoCD in an OpenShift cluster, you'll need to follow these general steps:</p>
+                <ul>
+                <li>
+                <p>Install the OpenShift GitOps operator</p>
+                </li>
+                <li>
+                <p>Create an ArgoCD instance</p>
+                </li>
+                <li>
+                <p>Access the ArgoCD UI</p>
+                </li>
+                <li>
+                <p>Configure ArgoCD</p>
+                </li>
+                </ul>
+                <p>Here's a more detailed breakdown:</p>
+                <ul>
+                <li>
+                <p>Install the OpenShift GitOps operator:</p>
+                </li>
+                <li>
+                <p>Log in to your OpenShift web console</p>
+                </li>
+                <li>
+                <p>Navigate to Operators &gt; OperatorHub</p>
+                </li>
+                <li>
+                <p>Search for "OpenShift GitOps"</p>
+                </li>
+                <li>
+                <p>Click on the OpenShift GitOps tile and then click "Install"</p>
+                </li>
+                <li>
+                <p>Choose the namespace for the operator (typically "openshift-operators")</p>
+                </li>
+                <li>
+                <p>Click "Install" to proceed</p>
+                </li>
+                <li>
+                <p>Create an ArgoCD instance: After the operator is installed, you can create an ArgoCD instance using a YAML manifest:</p>
+                </li>
+                </ul>
+                <p>apiVersion: argoproj.io/v1alpha1<br />
+                   kind: ArgoCD<br />
+                   metadata:<br />
+                     name: argocd<br />
+                     namespace: openshift-gitops<br />
+                   spec:<br />
+                     server:<br />
+                       route:<br />
+                         enabled: true</p>
+                <p>Apply this manifest using:</p>
+                <p>oc apply -f argocd.yaml</p>
+                <ul>
+                <li>
+                <p>Access the ArgoCD UI:</p>
+                </li>
+                <li>
+                <p>Find the ArgoCD route:<br />
+                <code>oc get route argocd-server -n openshift-gitops</code></p>
+                </li>
+                <li>
+                <p>Use the URL from the output to access the ArgoCD web interface</p>
+                </li>
+                <li>
+                <p>Configure ArgoCD:</p>
+                </li>
+                <li>
+                <p>Get the initial admin password:<br />
+                <code>oc extract secret/openshift-gitops-cluster -n openshift-gitops --to=-</code></p>
+                </li>
+                <li>
+                <p>Log in to the ArgoCD UI using "admin" as the username and the extracted password</p>
+                </li>
+                <li>
+                <p>Change the password after first login</p>
+                </li>
+                <li>
+                <p>Start configuring your applications and repositories</p>
+                </li>
+                </ul>
+                <p>Remember to adjust resource requests and limits, configure RBAC, and set up any necessary integrations based on your specific requirements.</p>
+                <p>Would you like me to elaborate on any part of this process?</p>
+                <p><img src="images/argo-cd-development-28.png" alt="argo cd development 28" class="article-image" loading="lazy"></p>
+                <p><img src="images/argo-cd-development-29.png" alt="argo cd development 29" class="article-image" loading="lazy"></p>
+                <p><img src="images/argo-cd-development-30.png" alt="argo cd development 30" class="article-image" loading="lazy"></p>
+                <p><img src="images/argo-cd-development-31.png" alt="argo cd development 31" class="article-image" loading="lazy"></p>
+                <p>Tested yaml </p>
+                <p><img src="images/argo-cd-development-32.png" alt="argo cd development 32" class="article-image" loading="lazy"></p>
+                <p>Subs</p>
+                <p><img src="images/argo-cd-development-33.png" alt="argo cd development 33" class="article-image" loading="lazy"></p>
+                <p>Create instance and multi enviroment and multi instances</p>
+                <p><img src="images/argo-cd-development-34.png" alt="argo cd development 34" class="article-image" loading="lazy"></p>
+                <p><img src="images/argo-cd-development-35.png" alt="argo cd development 35" class="article-image" loading="lazy"></p>
+                <p><img src="images/argo-cd-development-36.png" alt="argo cd development 36" class="article-image" loading="lazy"></p>
+                <p><img src="images/argo-cd-development-37.png" alt="argo cd development 37" class="article-image" loading="lazy"></p>
+                <p>Direct application creation is also possible in argocd</p>
+                <p><img src="images/argo-cd-development-38.png" alt="argo cd development 38" class="article-image" loading="lazy"></p>
+                <p>AMD GPU is there </p>
+                <p><img src="images/argo-cd-development-39.png" alt="argo cd development 39" class="article-image" loading="lazy"></p>
+                <p><img src="images/argo-cd-development-40.png" alt="argo cd development 40" class="article-image" loading="lazy"></p>
+                <p><img src="images/argo-cd-development-41.png" alt="argo cd development 41" class="article-image" loading="lazy"></p>
+                <p><img src="images/argo-cd-development-42.png" alt="argo cd development 42" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

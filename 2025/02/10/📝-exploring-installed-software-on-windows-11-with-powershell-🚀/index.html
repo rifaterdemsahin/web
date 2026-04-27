@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📝 Exploring Installed Software on Windows 11 with PowerShell 🚀 - Rifat Erdem Sahin</title>
+    <meta name="description" content="📝 Exploring Installed Software on Windows 11 with PowerShell 🚀 📝 Exploring Installed Software on Windows 11 with PowerShell 🚀 As someone who works in tech or is simply curious about the inner workings">
+    <meta name="keywords" content="📝 Exploring Installed Software on Windows 11 with PowerShell 🚀">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/02/10/📝-exploring-installed-software-on-windows-11-with-powershell-🚀/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/02/10/📝-exploring-installed-software-on-windows-11-with-powershell-🚀/">
+    <meta property="og:title" content="📝 Exploring Installed Software on Windows 11 with PowerShell 🚀">
+    <meta property="og:description" content="📝 Exploring Installed Software on Windows 11 with PowerShell 🚀 📝 Exploring Installed Software on Windows 11 with PowerShell 🚀 As someone who works in tech or is simply curious about the inner workings">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/02/10/📝-exploring-installed-software-on-windows-11-with-powershell-🚀/">
+    <meta property="twitter:title" content="📝 Exploring Installed Software on Windows 11 with PowerShell 🚀">
+    <meta property="twitter:description" content="📝 Exploring Installed Software on Windows 11 with PowerShell 🚀 📝 Exploring Installed Software on Windows 11 with PowerShell 🚀 As someone who works in tech or is simply curious about the inner workings">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "📝 Exploring Installed Software on Windows 11 with PowerShell 🚀",
+      "description": "📝 Exploring Installed Software on Windows 11 with PowerShell 🚀 📝 Exploring Installed Software on Windows 11 with PowerShell 🚀 As someone who works in tech or is simply curious about the inner workings",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-02-10",
+      "dateModified": "2025-02-10",
+      "url": "https://www.rifaterdemsahin.com/2025/02/10/📝-exploring-installed-software-on-windows-11-with-powershell-🚀/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/02/10/📝-exploring-installed-software-on-windows-11-with-powershell-🚀/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">📝 Exploring Installed Software on Windows 11 with PowerShell 🚀</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>February 10, 2025</span>
+                    <span>&bull;</span>
+                    <span>9 min read</span>
+                </div>
+                <p class="article-excerpt">📝 Exploring Installed Software on Windows 11 with PowerShell 🚀 📝 Exploring Installed Software on Windows 11 with PowerShell 🚀 As someone who works in tech or is simply curious about the inner workings of your system, it’s often useful to know what’s installed on your Windows 11 m</p>
+            </header>
+            <article class="article-content">
+                <h1>📝 Exploring Installed Software on Windows 11 with PowerShell 🚀</h1>
+                <p><img src="images/exploring-installed-software-1.png" alt="exploring installed software 1" class="article-image" loading="lazy"></p>
+                <h1>📝 Exploring Installed Software on Windows 11 with PowerShell 🚀</h1>
+                <p>As someone who works in tech or is simply curious about the inner workings of your system, it’s often useful to know what’s installed on your Windows 11 machine. PowerShell provides a powerful and easy way to do this using one-liner scripts.</p>
+                <p>Let’s walk through the steps to list installed software on your machine using PowerShell. We'll be pausing between each major section for a screenshot, so let’s get started!</p>
+                <h2>💡 What I Want to Achieve</h2>
+                <p>🔍 We’ll explore how to:</p>
+                <ul>
+                <li>
+                <p>List software installed through Windows Installer.</p>
+                </li>
+                <li>
+                <p>Check for apps installed from the Microsoft Store.</p>
+                </li>
+                <li>
+                <p>Display installed software versions and more.</p>
+                </li>
+                </ul>
+                <h2>🚀 One-liner Scripts with PowerShell</h2>
+                <h3>1️⃣ Listing Installed Programs via Windows Installer</h3>
+                <p>The easiest way to get a list of software installed via traditional Windows Installer is to use the following command:</p>
+                <p>Get-WmiObject -Class Win32_Product | Select-Object Name, Version</p>
+                <p><img src="images/exploring-installed-software-2.png" alt="exploring installed software 2" class="article-image" loading="lazy"></p>
+                <p>`PS C:\Windows\system32&gt; Get-WmiObject -Class Win32_Product | Select-Object Name, Version</p>
+                <p>Name                                                           Version<br />
+                ----                                                           -------<br />
+                Microsoft Teams Meeting Add-in for Microsoft Office            1.24.14501<br />
+                DaVinci Resolve                                                19.0.00069<br />
+                VirtualDJ 2023                                                 8.5.7607.0<br />
+                Office 16 Click-to-Run Extensibility Component                 16.0.17928.20156<br />
+                Office 16 Click-to-Run Licensing Component                     16.0.17928.20156<br />
+                3Dconnexion Navigation Library Server                          1.4.4.19928<br />
+                SoftwareUpdateNotification                                     1.0.21.0<br />
+                AMD Ryzen Balanced Driver                                      8.0.0.13<br />
+                3Dconnexion Plug-In for 3ds Max 2014 - 2023                    7.0.15.19966<br />
+                ClickOnce Bootstrapper Package for Microsoft .NET Framework    4.8.09256<br />
+                Microsoft .NET SDK 8.0.400 (x64) from Visual Studio            8.4.24.37502<br />
+                Intel Driver &amp;&amp; Support Assistant                              24.4.32.8<br />
+                Intel(R) Wireless Bluetooth(R)                                 23.60.0.1<br />
+                3Dconnexion Trainer                                            3.2.7.17569<br />
+                3Dconnexion LCD Applets for SpacePilot Pro                     1.5.1<br />
+                Microsoft Visual C++ 2022 X86 Minimum Runtime - 14.40.33810    14.40.33810<br />
+                Imaging Edge Desktop (Remote/Viewer/Edit)                      3.7.01.02290<br />
+                Microsoft.NET.Sdk.iOS.Manifest-8.0.100 (x64)                   17.5.8030<br />
+                Microsoft Visual C++ 2008 Redistributable - x64 9.0.30729.4148 9.0.30729.4148<br />
+                Microsoft Visual Studio Setup WMI Provider                     3.11.2133.16870<br />
+                Microsoft.NET.Sdk.macOS.Manifest-8.0.100 (x64)                 14.5.8020<br />
+                Microsoft.NET.Sdk.Maui.Manifest-6.0.300                        24.78.0<br />
+                vs_communitysharedmsi                                          17.11.35103<br />
+                Microsoft .NET Framework 4.8 Targeting Pack                    4.8.03761<br />
+                Microsoft.NET.Workload.Mono.Toolchain.Current.Manifest (x64)   64.32.18380<br />
+                Microsoft .NET AppHost Pack - 6.0.33 (x64_x86)                 48.132.18378<br />
+                Microsoft Visual C++ 2010  x64 Redistributable - 10.0.40219    10.0.40219<br />
+                vs_minshellx64msi                                              17.11.35102<br />
+                Microsoft ASP.NET Core 6.0.33 Targeting Pack (x64)             6.0.33.24379<br />
+                Microsoft Visual C++ 2013 x86 Minimum Runtime - 12.0.40664     12.0.40664<br />
+                Microsoft Visual C++ 2010  x86 Redistributable - 10.0.40219    10.0.40219<br />
+                3Dconnexion Plug-In for Photoshop                              2.11.0.19618<br />
+                THX V3 APO Presets                                             3.0.14<br />
+                Chrome Remote Desktop Host                                     129.0.6668.14<br />
+                BrSupportTools                                                 1.0.28.0<br />
+                Microsoft .NET Runtime - 6.0.33 (x64)                          48.132.18378<br />
+                Windows Subsystem for Linux                                    2.2.4.0<br />
+                Python 3.13.0b3 Development Libraries (64-bit)                 3.13.113.0<br />
+                Red Hat OpenShift Local                                        2.40.0<br />
+                vs_communityx64msi                                             17.11.35103<br />
+                Microsoft .NET Host - 8.0.8 (x86)                              64.32.18380<br />
+                64 Bit HP CIO Components Installer                             22.2.1<br />
+                Microsoft .NET Targeting Pack - 8.0.8 (x64)                    64.32.18380<br />
+                Google Chrome                                                  128.0.6613.138<br />
+                3Dconnexion Add-In for Revit                                   1.0.2.35<br />
+                Microsoft.NET.Sdk.Android.Manifest-6.0.300                     128.75.16384<br />
+                DriverInstaller                                                1.0.3.1<br />
+                IntelliTraceProfilerProxy                                      15.0.21225.01<br />
+                Microsoft Azure Authoring Tools - v2.9.7                       2.9.8999.45<br />
+                Microsoft .NET AppHost Pack - 6.0.33 (x64_arm64)               48.132.18378<br />
+                Camtasia 2023                                                  23.4.8.53233<br />
+                3Dconnexion Assembly Demo                                      0.9.8.0<br />
+                Brother Scanner Driver                                         1.0.27.1<br />
+                THX Spatial Audio USB 1532-0555                                3.0.36.0<br />
+                vs_communitymsires                                             17.11.35103<br />
+                vs_githubprotocolhandlermsi                                    17.11.35102<br />
+                Microsoft Windows Desktop Runtime - 8.0.8 (x64)                64.32.18376<br />
+                Microsoft ASP.NET Core 6.0.33 Shared Framework (x64)           6.0.33.24379<br />
+                VS Script Debugging Common                                     17.0.157.0<br />
+                Microsoft .NET Host FX Resolver - 7.0.20 (x86)                 56.80.15184<br />
+                3Dconnexion Plug-In for Maya                                   6.0.15.19971<br />
+                Microsoft Web Deploy 4.0                                       10.0.8305<br />
+                vs_SQLClickOnceBootstrappermsi                                 17.11.35102<br />
+                Microsoft Azure Libraries for .NET – v2.9                      3.0.2310.23<br />
+                Microsoft .NET Framework 4.7.2 Targeting Pack (ENU)            4.7.03062<br />
+                Logi Tune 3.6.373                                              3.6.373.0<br />
+                Microsoft ASP.NET Core Module for IIS Express                  12.2.18292.0<br />
+                BrLauncher                                                     2.0.23.0<br />
+                Microsoft GameInput                                            10.1.22621.3036<br />
+                DriverInstaller                                                1.0.4.1<br />
+                AMD WVR64                                                      1.0.2<br />
+                Microsoft Visual C++ 2013 x64 Minimum Runtime - 12.0.40664     12.0.40664<br />
+                Minecraft Launcher                                             2.0.0.0<br />
+                Microsoft Azure Libraries for .NET – v2.9                      3.0.2404.2502<br />
+                Microsoft ASP.NET Core 8.0.8 Shared Framework (x64)            8.0.8.24369<br />
+                Apple Mobile Device Support                                    18.0.0.32<br />
+                Microsoft .NET Host FX Resolver - 6.0.33 (x64)                 48.132.18378<br />
+                Aspire.ProjectTemplates (x64)                                  8.1.0.0<br />
+                Microsoft .NET AppHost Pack - 6.0.33 (x64)                     48.132.18378<br />
+                vs_clickoncebootstrappermsi                                    17.11.35103<br />
+                Microsoft .NET Targeting Pack - 8.0.8 (x86)                    64.32.18380<br />
+                THX Spatial Audio USB 1532-0528                                3.0.36.0<br />
+                Node.js                                                        22.8.0<br />
+                Microsoft .NET Runtime - 8.0.8 (x86)                           64.32.18380<br />
+                Microsoft.NET.Sdk.Android.Manifest-8.0.100 (x64)               34.0.113<br />
+                Blackmagic ATEM Switchers                                      9.0.2.0<br />
+                Microsoft.NET.Workload.Emscripten.Manifest (x64)               48.132.18161<br />
+                PowerToys (Preview)                                            0.84.1<br />
+                Microsoft .NET Framework 4.8 SDK                               4.8.03928<br />
+                Microsoft.NET.Workload.Mono.Toolchain.net6.Manifest (x64)      64.32.18380<br />
+                icecap_collection_x64                                          17.11.35102<br />
+                THX Spatial Audio USB 1532-0555                                3.0.30.0<br />
+                Microsoft .NET Host - 6.0.33 (x86)                             48.132.18378<br />
+                Python 3.13.0b3 Core Interpreter (64-bit)                      3.13.113.0<br />
+                Loupedeck UI 5.9.1.19364                                       5.9.1.19364<br />
+                3Dconnexion Plugin for Cinema 4D                               1.0.1.38<br />
+                Microsoft.NET.Sdk.MacCatalyst.Manifest-8.0.100 (x64)           17.5.8020<br />
+                Microsoft .NET Framework 4.8 Targeting Pack (ENU)              4.8.03761<br />
+                vs_filehandler_x86                                             17.11.35102<br />
+                Microsoft.NET.Sdk.Aspire.Manifest-8.0.100 (x64)                64.64.18482<br />
+                Microsoft ASP.NET Core 2.1.0 Shared Framework (x64)            2.1.12916.0<br />
+                Microsoft.NET.Sdk.macOS.Manifest-8.0.100 (x64)                 14.5.8030<br />
+                Adobe Acrobat (64-bit)                                         24.003.20112<br />
+                Adobe Refresh Manager                                          1.8.0<br />
+                Aspire.Hosting.Orchestration.win-x64 (x64)                     8.1.0.0<br />
+                IIS 10.0 Express                                               10.0.08608<br />
+                Microsoft Windows Desktop Runtime - 6.0.33 (x64)               48.132.18374<br />
+                VMware Workstation                                             17.5.2<br />
+                vs_minshellinteropsharedmsi                                    17.11.35102<br />
+                paint.net                                                      5.0.13<br />
+                AMD DVR64                                                      1.0.2<br />
+                Microsoft .NET Host FX Resolver - 8.0.8 (x86)                  64.32.18380<br />
+                Microsoft .NET Core Host - 2.1.0 (x64)                         16.64.26515<br />
+                Microsoft ASP.NET Core Module V2 for IIS Express               17.0.22116.0<br />
+                Microsoft.NET.Workload.Mono.Toolchain.Manifest                 48.3.40665<br />
+                Camtasia 2024                                                  24.0.4.2964<br />
+                Microsoft NetStandard SDK                                      15.0.51105<br />
+                Synology Drive Client                                          7.3.0.15082<br />
+                BrLogRx                                                        1.0.3.1<br />
+                vs_vswebprotocolselectormsi                                    17.11.35102<br />
+                Microsoft .NET Toolset 6.0.425 (x64)                           24.14.29999<br />
+                AMD_Chipset_Drivers                                            6.07.22.037<br />
+                Microsoft .NET Host FX Resolver - 6.0.33 (x86)                 48.132.18378<br />
+                Microsoft Command Line Utilities 15 for SQL Server             15.0.1300.359<br />
+                Logitech LCD Manager                                           3.06.109<br />
+                iCloud Outlook                                                 15.0.0.215<br />
+                Microsoft .NET Host FX Resolver - 8.0.8 (x64)                  64.32.18380<br />
+                Microsoft SQL Server 2019 LocalDB                              15.0.4382.1<br />
+                Microsoft Visual C++ 2022 X86 Additional Runtime - 14.40.33810 14.40.33810<br />
+                XSplit Broadcaster                                             4.5.2402.2307<br />
+                AMD PSP Driver                                                 5.30.0.0<br />
+                Bonjour                                                        3.1.0.1<br />
+                IntelliTraceProfilerProxy                                      15.0.21225.01<br />
+                Microsoft.NET.Sdk.MacCatalyst.Manifest-6.0.300                 125.191.42208<br />
+                MobaXterm                                                      24.2.0.5220<br />
+                Microsoft .NET Toolset 8.0.400 (x64)                           32.8.13214<br />
+                Microsoft Windows Desktop Targeting Pack - 8.0.8 (x64)         64.32.18376<br />
+                Microsoft .NET Host - 8.0.8 (x64)                              64.32.18380<br />
+                AMD Settings                                                   2024.0823.115...<br />
+                RemoteSetup                                                    1.1.11.0<br />
+                Zoom Workplace (64-bit)                                        6.1.45504<br />
+                3Dconnexion Add-In for Autodesk Inventor                       2.4.1.19400<br />
+                DaVinci Resolve Control Panels                                 2.3.0.0<br />
+                Microsoft.NET.Sdk.macOS.Manifest-6.0.300                       100.255.42208<br />
+                icecap_collectionresourcesx64                                  17.11.35102<br />
+                Microsoft .NET AppHost Pack - 6.0.33 (x64_arm)                 48.132.18378<br />
+                Microsoft .NET AppHost Pack - 8.0.8 (x64_x86)                  64.32.18380</p>
+                <p>Microsoft Azure PowerShell - April 2018                        5.7.0.18831<br />
+                Cyberduck                                                      6.4.6.27773<br />
+                AMD I2C Driver                                                 1.2.0.124<br />
+                THX V3 APO Presets                                             3.0.36.1<br />
+                Microsoft .NET AppHost Pack - 8.0.8 (x64_arm64)                64.32.18380<br />
+                Microsoft ASP.NET Web Tools Packages 17.0 - ENU                17.0.40305.0<br />
+                Elgato 4K Capture Utility                                      1.7.13.6046<br />
+                Microsoft .NET AppHost Pack - 8.0.8 (x64)                      64.32.18380<br />
+                VS JIT Debugger                                                17.0.157.0<br />
+                Microsoft .NET Framework Cumulative Intellisense Pack for V... 4.8.09037<br />
+                Microsoft .NET Runtime - 7.0.20 (x64)                          56.80.15184<br />
+                3Dconnexion Add-In for Solid Edge                              3.6.3<br />
+                vs_devenx64vmsi                                                17.11.35102<br />
+                Microsoft Visual C++ 2022 X64 Minimum Runtime - 14.40.33810    14.40.33810<br />
+                VS Immersive Activate Helper                                   17.0.157.0<br />
+                Microsoft ASP.NET Core 8.0.8 Targeting Pack (x64)              8.0.8.24369<br />
+                Loupedeck 5.9.1.19364                                          5.9.1.19364<br />
+                vs_minshellmsires                                              17.11.35102<br />
+                Microsoft.NET.Workload.Mono.Toolchain.net7.Manifest (x64)      64.32.18380<br />
+                3Dconnexion Add-In for SOLIDWORKS                              3.5.14.19609<br />
+                Microsoft .NET Core SDK 2.1.300 (x64)                          8.91.8884<br />
+                Microsoft Visual C++ 2013 x64 Additional Runtime - 12.0.40664  12.0.40664<br />
+                Microsoft TestPlatform SDK Local Feed                          17.10.0.9037153<br />
+                Microsoft.NET.Workload.Emscripten.net6.Manifest (x64)          64.32.18242<br />
+                3Dconnexion Plugin for Unreal Editor                           1.1.7.92<br />
+                3Dconnexion 3DxWinCore                                         17.8.15.20373<br />
+                Microsoft.NET.Sdk.tvOS.Manifest-8.0.100 (x64)                  17.5.8030<br />
+                Aspire.Hosting (x64)                                           8.1.0.0<br />
+                Microsoft .NET Host - 7.0.20 (x86)                             56.80.15184<br />
+                THX V3 APO Presets                                             3.0.36.1<br />
+                Microsoft.NET.Workload.Emscripten.Current.Manifest (x64)       64.32.18242<br />
+                Microsoft .NET Host - 7.0.20 (x64)                             56.80.15184<br />
+                Python 3.13.0b3 Test Suite (64-bit)                            3.13.113.0<br />
+                vs_FileTracker_Singleton                                       17.11.35102<br />
+                Microsoft ASP.NET Core 8.0.8 Targeting Pack (x86)              8.0.8.24369<br />
+                Documentation Manager                                          23.70.2.3<br />
+                Brother iPrint&amp;Scan                                            10.6.1.1<br />
+                Microsoft .NET 8.0 Templates 8.0.400 (x64)                     32.10.13214<br />
+                Microsoft .NET Runtime - 8.0.8 (x64)                           64.32.18380<br />
+                Elgato Stream Deck                                             6.7.3.21005<br />
+                Microsoft System CLR Types for SQL Server 2019                 15.0.2000.5<br />
+                Microsoft .NET Standard Targeting Pack - 2.1.0 (x64)           24.0.28113<br />
+                icecap_collection_neutral                                      17.11.35103<br />
+                3Dconnexion Plug-In for Creo 2.0 - 9.0                         2.4.6.19972<br />
+                Microsoft Visual Studio Setup Configuration                    3.11.2133.16870<br />
+                3Dconnexion Add-In for AutoCAD                                 5.7.3.19836<br />
+                Microsoft Azure Compute Emulator - v2.9.7                      2.9.8999.43<br />
+                Microsoft .NET Host - 6.0.33 (x64)                             48.132.18378<br />
+                Microsoft Windows Desktop Targeting Pack - 6.0.33 (x64)        48.132.18374<br />
+                Aspire.Hosting.Sdk (x64)                                       8.1.0.0<br />
+                Imaging Edge Desktop                                           1.2.01.04031<br />
+                Aspire.Dashboard.Sdk.win-x64 (x64)                             8.1.0.0<br />
+                3Dconnexion 3DxSoftware                                        10.8.15.3625<br />
+                Microsoft .NET Runtime - 7.0.20 (x86)                          56.80.15184<br />
+                Microsoft.NET.Sdk.tvOS.Manifest-8.0.100 (x64)                  17.5.8020<br />
+                DriverInstaller                                                1.0.3.1<br />
+                3Dconnexion Add-In for Microsoft Office                        1.1.2.19333<br />
+                Python Launcher                                                3.13.113.0<br />
+                Microsoft ODBC Driver 17 for SQL Server                        17.10.6.1<br />
+                Entity Framework 6.2.0 Tools  for Visual Studio 2022           6.2.0.0<br />
+                vs_devenvsharedmsi                                             17.11.35102<br />
+                vs_filehandler_amd64                                           17.11.35102<br />
+                Microsoft.NET.Sdk.iOS.Manifest-6.0.300                         125.191.42208<br />
+                3Dconnexion Plug-in for Unity Editor                           1.0.0.18<br />
+                Microsoft Visual C++ 2013 x86 Additional Runtime - 12.0.40664  12.0.40664<br />
+                Microsoft Visual C++ 2008 Redistributable - x86 9.0.30729.17   9.0.30729<br />
+                HttpToUsbBridge                                                2.0.33.1<br />
+                Elgato Camera Hub                                              1.6.1.999<br />
+                AMD SBxxx SMBus Driver                                         5.12.0.44<br />
+                Microsoft ASP.NET Diagnostic Pack for Visual Studio            17.11.231.19466<br />
+                Microsoft ASP.NET Core 8.0.8 Shared Framework (x86)            8.0.8.24369<br />
+                THX V3 APO Presets                                             3.0.18<br />
+                Python 3.13.0b3 Executables (64-bit)                           3.13.113.0<br />
+                DiagnosticsHub_CollectionService                               17.10.34627<br />
+                Microsoft Windows Desktop Runtime - 6.0.33 (x86)               48.132.18374<br />
+                vs_tipsmsi                                                     17.11.35102<br />
+                Microsoft .NET Framework 4.7.2 Targeting Pack                  4.7.03062<br />
+                Microsoft.NET.Workload.Emscripten.net7.Manifest (x64)          64.32.18242<br />
+                Microsoft Windows Desktop Runtime - 7.0.20 (x64)               56.80.15245<br />
+                Microsoft .NET Targeting Pack - 6.0.33 (x64)                   48.132.18378<br />
+                vs_CoreEditorFonts                                             17.7.40001<br />
+                3Dconnexion Extension for SketchUp                             5.4.0.19831<br />
+                Microsoft Update Health Tools                                  5.72.0.0<br />
+                Microsoft .NET Core Host FX Resolver - 2.1.0 (x64)             16.64.26515<br />
+                icecap_collectionresources                                     17.11.35103<br />
+                Microsoft.NET.Sdk.MacCatalyst.Manifest-8.0.100 (x64)           17.5.8030<br />
+                vs_clickoncesigntoolmsi                                        17.11.35102<br />
+                vs_minshellinteropx64msi                                       17.11.35102<br />
+                3Dconnexion Viewer                                             1.1.0.44<br />
+                Microsoft.NET.Sdk.Maui.Manifest-8.0.100 (x64)                  8.0.72<br />
+                Microsoft .NET 6.0 Templates 6.0.425 (x64)                     24.8.29999<br />
+                vs_minshellsharedmsi                                           17.11.35102<br />
+                Microsoft Windows Desktop Targeting Pack - 8.0.8 (x86)         64.32.18376<br />
+                3Dconnexion Plug-In for Acrobat 3D                             1.5.1.763<br />
+                Microsoft Windows Desktop Runtime - 8.0.8 (x86)                64.32.18376<br />
+                vs_BlendMsi                                                    17.11.35102<br />
+                Camtasia 2019                                                  19.0.7.5034<br />
+                Branding64                                                     1.00.0009<br />
+                AMD PCI Driver                                                 1.0.0.90<br />
+                Microsoft Windows Desktop Runtime - 7.0.20 (x86)               56.80.15245<br />
+                3Dconnexion Plug-In for NX 8.0 - 2212 Series                   3.5.2.19884<br />
+                Microsoft.NET.Sdk.tvOS.Manifest-6.0.300                        125.191.42208<br />
+                3Dconnexion Add-In for Navisworks                              1.0.1.36<br />
+                Microsoft .NET Core Runtime - 2.1.0 (x64)                      16.64.26515<br />
+                Snagit 2022                                                    22.1.0<br />
+                Python 3.13.0b3 Standard Library (64-bit)                      3.13.113.0<br />
+                iTunes                                                         12.13.3.2<br />
+                DaVinci Resolve Renderer                                       19.0.00069<br />
+                Microsoft .NET Host FX Resolver - 7.0.20 (x64)                 56.80.15184<br />
+                Microsoft Visual C++ 2022 X64 Additional Runtime - 14.40.33810 14.40.33810<br />
+                AppLogLibSetup                                                 1.0.3.0<br />
+                AMD GPIO2 Driver                                               2.2.0.133<br />
+                Microsoft .NET Runtime - 6.0.33 (x86)                          48.132.18378<br />
+                Blackmagic RAW Common Components                               4.2<br />
+                vcpp_crt.redist.clickonce                                      14.40.33810<br />
+                vs_clickoncebootstrappermsires                                 17.11.35102<br />
+                Microsoft.NET.Sdk.iOS.Manifest-8.0.100 (x64)                   17.5.8020`</p>
+                <h3>2️⃣ Listing Apps Installed from Microsoft Store</h3>
+                <p>You might also want to list the applications installed from the Microsoft Store. This is possible with the <code>Get-AppxPackage</code> cmdlet:</p>
+                <p>Get-AppxPackage | Select-Object Name, PackageFullName</p>
+                <p><img src="images/exploring-installed-software-3.png" alt="exploring installed software 3" class="article-image" loading="lazy"></p>
+                <h3>3️⃣ Listing All Installed Software with Registry Query</h3>
+                <p>Some software may not show up in <code>Win32_Product</code>. Instead, you can check the registry for installed programs:</p>
+                <p>Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall* | Select-Object DisplayName, DisplayVersion</p>
+                <p><img src="images/exploring-installed-software-4.png" alt="exploring installed software 4" class="article-image" loading="lazy"></p>
+                <h2>🚀 Combining the Output in One Script</h2>
+                <p>If you want to combine everything into a single script to have a detailed overview of all installed software, here’s how you can do it:</p>
+                <h1>Windows Installer software</h1>
+                <p>Get-WmiObject -Class Win32_Product | Select-Object Name, Version</p>
+                <h1>Microsoft Store apps</h1>
+                <p>Get-AppxPackage | Select-Object Name, PackageFullName</p>
+                <h1>Registry query for installed software</h1>
+                <p>Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall* | Select-Object DisplayName, DisplayVersion</p>
+                <p><img src="images/exploring-installed-software-5.png" alt="exploring installed software 5" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>💡 <strong>Pro Tip</strong>: You can also export these results into a CSV file if you need to document them:</p>
+                <p>Get-WmiObject -Class Win32_Product | Select-Object Name, Version | Export-Csv -Path "C:\InstalledSoftware.csv" -NoTypeInformation</p>
+                <p><img src="images/exploring-installed-software-6.png" alt="exploring installed software 6" class="article-image" loading="lazy"></p>
+                <p><img src="images/exploring-installed-software-7.png" alt="exploring installed software 7" class="article-image" loading="lazy"></p>
+                <p>https://github.com/rifaterdemsahin/workstation/commit/e5a379b5aa1192a9992c420f9ecbd7b4a43d2d3f</p>
+                <h2>🔗 Connect with me:</h2>
+                <ul>
+                <li>
+                <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/rifaterdemsahin/">Rifat Erdem Sahin</a></p>
+                </li>
+                <li>
+                <p>🐦 Twitter: <a href="https://x.com/rifaterdemsahin">@RifatErdemSahin</a></p>
+                </li>
+                <li>
+                <p>🎥 YouTube: <a href="https://www.youtube.com/@RifatErdemSahin">RifatErdemSahin</a></p>
+                </li>
+                <li>
+                <p>💻 GitHub: <a href="https://github.com/rifaterdemsahin">rifaterdemsahin</a></p>
+                </li>
+                </ul>
+                <hr />
+                <p>🎉 Now you have the tools to inspect what’s installed on your Windows 11 machine, whether from the Microsoft Store or traditional installers. Let me know if you’ve found anything surprising!</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

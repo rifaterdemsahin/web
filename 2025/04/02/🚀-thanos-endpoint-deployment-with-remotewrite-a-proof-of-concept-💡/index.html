@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Thanos Endpoint Deployment with RemoteWrite: A Proof of Concept 💡 - Rifat Erdem Sahin</title>
+    <meta name="description" content="🚀 Thanos Endpoint Deployment with RemoteWrite: A Proof of Concept 💡 In this blog post, I’m sharing the steps and insights gained while deploying a Thanos endpoint with RemoteWrite enabled.">
+    <meta name="keywords" content="🚀 Thanos Endpoint Deployment with RemoteWrite: A Proof of Concept 💡">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/04/02/🚀-thanos-endpoint-deployment-with-remotewrite-a-proof-of-concept-💡/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/04/02/🚀-thanos-endpoint-deployment-with-remotewrite-a-proof-of-concept-💡/">
+    <meta property="og:title" content="🚀 Thanos Endpoint Deployment with RemoteWrite: A Proof of Concept 💡">
+    <meta property="og:description" content="🚀 Thanos Endpoint Deployment with RemoteWrite: A Proof of Concept 💡 In this blog post, I’m sharing the steps and insights gained while deploying a Thanos endpoint with RemoteWrite enabled.">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/04/02/🚀-thanos-endpoint-deployment-with-remotewrite-a-proof-of-concept-💡/">
+    <meta property="twitter:title" content="🚀 Thanos Endpoint Deployment with RemoteWrite: A Proof of Concept 💡">
+    <meta property="twitter:description" content="🚀 Thanos Endpoint Deployment with RemoteWrite: A Proof of Concept 💡 In this blog post, I’m sharing the steps and insights gained while deploying a Thanos endpoint with RemoteWrite enabled.">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "🚀 Thanos Endpoint Deployment with RemoteWrite: A Proof of Concept 💡",
+      "description": "🚀 Thanos Endpoint Deployment with RemoteWrite: A Proof of Concept 💡 In this blog post, I’m sharing the steps and insights gained while deploying a Thanos endpoint with RemoteWrite enabled.",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-04-02",
+      "dateModified": "2025-04-02",
+      "url": "https://www.rifaterdemsahin.com/2025/04/02/🚀-thanos-endpoint-deployment-with-remotewrite-a-proof-of-concept-💡/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/04/02/🚀-thanos-endpoint-deployment-with-remotewrite-a-proof-of-concept-💡/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">🚀 Thanos Endpoint Deployment with RemoteWrite: A Proof of Concept 💡</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>April 2, 2025</span>
+                    <span>&bull;</span>
+                    <span>7 min read</span>
+                </div>
+                <p class="article-excerpt">🚀 Thanos Endpoint Deployment with RemoteWrite: A Proof of Concept 💡 In this blog post, I’m sharing the steps and insights gained while deploying a Thanos endpoint with RemoteWrite enabled.</p>
+            </header>
+            <article class="article-content">
+                <h1>🚀 Thanos Endpoint Deployment with RemoteWrite: A Proof of Concept 💡</h1>
+                <p>In this blog post, I’m sharing the steps and insights gained while deploying a Thanos endpoint with RemoteWrite enabled. This proof-of-concept is aimed at achieving a scalable, high-availability solution for your monitoring stack. Let's dive into how I made this happen and how you can replicate it.</p>
+                <hr />
+                <h3>🎯 <strong>Objective</strong></h3>
+                <p>Deploy Thanos endpoint and ensure it connects seamlessly with Prometheus via RemoteWrite for a highly available, efficient metric storage and query solution.</p>
+                <p>Start the Engines</p>
+                <hr />
+                <h3>🛠️ <strong>Tools and Technologies</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Thanos</strong>: A highly available Prometheus setup</p>
+                </li>
+                <li>
+                <p><strong>Prometheus</strong>: Collects and stores time-series data</p>
+                </li>
+                <li>
+                <p><strong>RemoteWrite</strong>: Prometheus feature for writing metrics to external storage</p>
+                </li>
+                <li>
+                <p><strong>Docker/Kubernetes</strong>: Container orchestration for deployment</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>🚀 <strong>Step-by-Step Process</strong></h3>
+                <ul>
+                <li>
+                <p><strong>🛑 Pause and Plan</strong><br />
+                Before jumping into deployment, I took a moment to sketch out the architecture—ensuring I understood how Prometheus, Thanos sidecar, and the store API would interact with each other. This is critical to avoid misconfigurations later.</p>
+                </li>
+                <li>
+                <p><strong>📦 Deploying Prometheus</strong><br />
+                You’ll need a running instance of Prometheus. For my deployment, I used Kubernetes. Make sure to include the <code>remote_write</code> configuration in your <code>prometheus.yml</code>. Here’s a snippet:</p>
+                </li>
+                </ul>
+                <p>remote_write:<br />
+                     - url: "http://thanos-receive:19291/api/v1/receive"</p>
+                <ul>
+                <li>
+                <p><strong>🧩 Installing Thanos</strong><br />
+                Next, I deployed Thanos Receiver, Query, and Sidecar in my Kubernetes cluster using Helm charts. This creates a centralized place for all Prometheus metrics.</p>
+                </li>
+                <li>
+                <p><strong>📡 Setting Up RemoteWrite</strong><br />
+                Now for the key part! I configured Prometheus to send metrics to the Thanos Receiver through RemoteWrite. This ensures that metrics are sent in near real-time for storage and querying.</p>
+                </li>
+                <li>
+                <p><strong>🖥️ Thanos Query Setup</strong><br />
+                The Thanos Query component lets you query data across all Prometheus instances. I configured it to connect with Thanos Store and Prometheus so I could get a single-pane-of-glass view of all my metrics.</p>
+                </li>
+                <li>
+                <p><strong>🔧 Testing the Setup</strong><br />
+                After deployment, I tested the entire setup by generating synthetic traffic. The goal was to check if metrics were successfully written and queried from Thanos.</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>💡 <strong>Key Insights</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Scaling with RemoteWrite</strong>: RemoteWrite was efficient in transferring metrics to the Thanos Receiver, proving to be a highly scalable solution for large datasets.</p>
+                </li>
+                <li>
+                <p><strong>Pausing for Planning</strong>: Taking that extra time to plan architecture upfront saved me a lot of debugging time later. I recommend sketching out your architecture, even if it's on a napkin! 📝</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>📸 <strong>Screenshot of Setup</strong></h3>
+                <p><em>Here’s a snapshot of the Thanos query interface with real-time data flowing in from Prometheus.</em></p>
+                <hr />
+                <h3>🚀 <strong>Future Enhancements</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Adding AlertManager</strong>: I'll be integrating AlertManager for better alerting capabilities next.</p>
+                </li>
+                <li>
+                <p><strong>Scaling Up</strong>: Testing the setup with more Prometheus instances and expanding Thanos storage for long-term retention.</p>
+                </li>
+                </ul>
+                <hr />
+                <p>To deploy Thanos with RemoteWrite on an <strong>OpenShift</strong> cluster, follow these commands and YAML files. The setup includes deploying Prometheus, Thanos components (Receiver, Sidecar, Query, and Store), and configuring RemoteWrite.</p>
+                <h3>1. <strong>Deploy Prometheus Operator</strong></h3>
+                <p>Prometheus will collect metrics and send them to Thanos using RemoteWrite. First, install the Prometheus Operator:</p>
+                <p>oc apply -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/main/bundle.yaml</p>
+                <h3>2. <strong>Create Prometheus Instance</strong></h3>
+                <p>Create a namespace for Prometheus:</p>
+                <p>oc create namespace monitoring</p>
+                <p>Now, create a <code>Prometheus</code> Custom Resource (CR) instance:</p>
+                <p>apiVersion: monitoring.coreos.com/v1<br />
+                kind: Prometheus<br />
+                metadata:<br />
+                  name: prometheus-instance<br />
+                  namespace: monitoring<br />
+                spec:<br />
+                  replicas: 1<br />
+                  serviceAccountName: prometheus<br />
+                  serviceMonitorSelector:<br />
+                    matchLabels:<br />
+                      team: frontend<br />
+                  remoteWrite:<br />
+                    - url: "http://thanos-receive.monitoring:19291/api/v1/receive"<br />
+                  resources:<br />
+                    requests:<br />
+                      memory: 400Mi</p>
+                <p>Apply the configuration:</p>
+                <p>oc apply -f prometheus-instance.yaml</p>
+                <h3>3. <strong>Thanos Sidecar Configuration</strong></h3>
+                <p>Next, deploy the Thanos Sidecar. This sidecar will be attached to Prometheus and send the data to the Thanos Receiver.</p>
+                <p>apiVersion: apps/v1<br />
+                kind: Deployment<br />
+                metadata:<br />
+                  name: thanos-sidecar<br />
+                  namespace: monitoring<br />
+                spec:<br />
+                  replicas: 1<br />
+                  selector:<br />
+                    matchLabels:<br />
+                      app: thanos<br />
+                  template:<br />
+                    metadata:<br />
+                      labels:<br />
+                        app: thanos<br />
+                    spec:<br />
+                      containers:<br />
+                        - name: thanos-sidecar<br />
+                          image: thanosio/thanos:v0.31.0<br />
+                          args:<br />
+                            - sidecar<br />
+                            - --tsdb.path=/prometheus<br />
+                            - --prometheus.url=http://localhost:9090<br />
+                            - --objstore.config-file=/etc/thanos/config.yaml<br />
+                          ports:<br />
+                            - containerPort: 10902<br />
+                          volumeMounts:<br />
+                            - name: prometheus-data<br />
+                              mountPath: /prometheus<br />
+                            - name: thanos-config<br />
+                              mountPath: /etc/thanos<br />
+                      volumes:<br />
+                        - name: prometheus-data<br />
+                          emptyDir: {}<br />
+                        - name: thanos-config<br />
+                          configMap:<br />
+                            name: thanos-config</p>
+                <p>Create the Thanos configuration:</p>
+                <p>apiVersion: v1<br />
+                kind: ConfigMap<br />
+                metadata:<br />
+                  name: thanos-config<br />
+                  namespace: monitoring<br />
+                data:<br />
+                  config.yaml: |<br />
+                    type: S3<br />
+                    config:<br />
+                      bucket: "your-s3-bucket-name"<br />
+                      endpoint: "s3.amazonaws.com"<br />
+                      access_key: "your-access-key"<br />
+                      secret_key: "your-secret-key"<br />
+                      insecure: false</p>
+                <p>Apply the configuration:</p>
+                <p>oc apply -f thanos-sidecar.yaml<br />
+                oc apply -f thanos-config.yaml</p>
+                <h3>4. <strong>Thanos Receiver Deployment</strong></h3>
+                <p>Thanos Receiver will collect metrics via RemoteWrite from Prometheus.</p>
+                <p>apiVersion: apps/v1<br />
+                kind: Deployment<br />
+                metadata:<br />
+                  name: thanos-receiver<br />
+                  namespace: monitoring<br />
+                spec:<br />
+                  replicas: 1<br />
+                  selector:<br />
+                    matchLabels:<br />
+                      app: thanos-receiver<br />
+                  template:<br />
+                    metadata:<br />
+                      labels:<br />
+                        app: thanos-receiver<br />
+                    spec:<br />
+                      containers:<br />
+                        - name: thanos-receiver<br />
+                          image: thanosio/thanos:v0.31.0<br />
+                          args:<br />
+                            - receive<br />
+                            - --receive.local-endpoint=0.0.0.0:19291<br />
+                            - --tsdb.path=/var/thanos/data<br />
+                          ports:<br />
+                            - containerPort: 19291<br />
+                          volumeMounts:<br />
+                            - name: thanos-data<br />
+                              mountPath: /var/thanos/data<br />
+                      volumes:<br />
+                        - name: thanos-data<br />
+                          emptyDir: {}</p>
+                <p>Apply the deployment:</p>
+                <p>oc apply -f thanos-receiver.yaml</p>
+                <h3>5. <strong>Thanos Query Deployment</strong></h3>
+                <p>Thanos Query allows querying metrics from all Thanos instances.</p>
+                <p>apiVersion: apps/v1<br />
+                kind: Deployment<br />
+                metadata:<br />
+                  name: thanos-query<br />
+                  namespace: monitoring<br />
+                spec:<br />
+                  replicas: 1<br />
+                  selector:<br />
+                    matchLabels:<br />
+                      app: thanos-query<br />
+                  template:<br />
+                    metadata:<br />
+                      labels:<br />
+                        app: thanos-query<br />
+                    spec:<br />
+                      containers:<br />
+                        - name: thanos-query<br />
+                          image: thanosio/thanos:v0.31.0<br />
+                          args:<br />
+                            - query<br />
+                            - --http-address=0.0.0.0:9090<br />
+                            - --store=thanos-receiver.monitoring:10902<br />
+                          ports:<br />
+                            - containerPort: 9090</p>
+                <p>Apply the configuration:</p>
+                <p>oc apply -f thanos-query.yaml</p>
+                <h3>6. <strong>Expose Thanos Query Service</strong></h3>
+                <p>You can expose Thanos Query as a service to allow access:</p>
+                <p>apiVersion: v1<br />
+                kind: Service<br />
+                metadata:<br />
+                  name: thanos-query<br />
+                  namespace: monitoring<br />
+                spec:<br />
+                  ports:<br />
+                    - name: http<br />
+                      port: 9090<br />
+                      targetPort: 9090<br />
+                  selector:<br />
+                    app: thanos-query<br />
+                  type: LoadBalancer</p>
+                <p>Apply the service:</p>
+                <p>oc apply -f thanos-query-service.yaml</p>
+                <h3>7. <strong>Thanos Store Gateway (Optional)</strong></h3>
+                <p>If you plan to store metrics long-term in object storage (S3, GCS), deploy the Thanos Store component to query old data.</p>
+                <p>apiVersion: apps/v1<br />
+                kind: Deployment<br />
+                metadata:<br />
+                  name: thanos-store<br />
+                  namespace: monitoring<br />
+                spec:<br />
+                  replicas: 1<br />
+                  selector:<br />
+                    matchLabels:<br />
+                      app: thanos-store<br />
+                  template:<br />
+                    metadata:<br />
+                      labels:<br />
+                        app: thanos-store<br />
+                    spec:<br />
+                      containers:<br />
+                        - name: thanos-store<br />
+                          image: thanosio/thanos:v0.31.0<br />
+                          args:<br />
+                            - store<br />
+                            - --data-dir=/var/thanos/store<br />
+                            - --objstore.config-file=/etc/thanos/config.yaml<br />
+                          ports:<br />
+                            - containerPort: 10901<br />
+                          volumeMounts:<br />
+                            - name: thanos-data<br />
+                              mountPath: /var/thanos/store<br />
+                            - name: thanos-config<br />
+                              mountPath: /etc/thanos<br />
+                      volumes:<br />
+                        - name: thanos-data<br />
+                          emptyDir: {}<br />
+                        - name: thanos-config<br />
+                          configMap:<br />
+                            name: thanos-config</p>
+                <p>Apply the deployment:</p>
+                <p>oc apply -f thanos-store.yaml</p>
+                <p>To trigger these OpenShift commands on macOS, you'll need to have several prerequisites in place to ensure smooth execution. Here's a practical guide to set this up:</p>
+                <h3>Prerequisites</h3>
+                <ul>
+                <li>
+                <p><strong>Install OpenShift CLI (OC Tool):</strong></p>
+                </li>
+                <li>
+                <p>Download and install OpenShift CLI from <a href="https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/">here</a>.</p>
+                </li>
+                <li>
+                <p>After downloading, place the <code>oc</code> binary in <code>/usr/local/bin/</code> for easy access.</p>
+                </li>
+                </ul>
+                <p>chmod +x oc<br />
+                   sudo mv oc /usr/local/bin/</p>
+                <ul>
+                <li>
+                <p><strong>Install Kubernetes CLI (Kubectl):</strong></p>
+                </li>
+                <li>
+                <p>You might also want <code>kubectl</code> to manage Kubernetes resources alongside OpenShift.</p>
+                </li>
+                </ul>
+                <p>brew install kubectl</p>
+                <ul>
+                <li>
+                <p><strong>Ensure Access to OpenShift Cluster:</strong></p>
+                </li>
+                <li>
+                <p>Make sure you have access to an OpenShift cluster and are authenticated. You can use the following command to authenticate:<br />
+                <code>bash oc login --server=&lt;openshift_cluster_url&gt; --token=&lt;token&gt;</code></p>
+                </li>
+                <li>
+                <p><strong>Prometheus Operator and Thanos Setup:</strong></p>
+                </li>
+                <li>
+                <p>Install the necessary Prometheus and Thanos components using the commands provided.</p>
+                </li>
+                </ul>
+                <h3>Execution</h3>
+                <ul>
+                <li><strong>Apply Prometheus Operator:</strong><br />
+                This will install the Prometheus operator which will manage Prometheus instances in the cluster.</li>
+                </ul>
+                <p>oc apply -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/main/bundle.yaml</p>
+                <ul>
+                <li><strong>Create Monitoring Namespace:</strong><br />
+                Create the <code>monitoring</code> namespace where the Prometheus and Thanos instances will run.</li>
+                </ul>
+                <p>oc create namespace monitoring</p>
+                <ul>
+                <li><strong>Apply Prometheus and Thanos Configuration:</strong><br />
+                You'll need the YAML files (<code>prometheus-instance.yaml</code>, <code>thanos-sidecar.yaml</code>, etc.) prepared. Apply each configuration file in sequence to set up Prometheus, Thanos sidecar, and other components.</li>
+                </ul>
+                <p>oc apply -f prometheus-instance.yaml<br />
+                   oc apply -f thanos-sidecar.yaml<br />
+                   oc apply -f thanos-config.yaml<br />
+                   oc apply -f thanos-receiver.yaml<br />
+                   oc apply -f thanos-query.yaml<br />
+                   oc apply -f thanos-query-service.yaml<br />
+                   oc apply -f thanos-store.yaml</p>
+                <h3>Practical Tips:</h3>
+                <ul>
+                <li>
+                <p><strong>YAML File Availability</strong>: Ensure the <code>.yaml</code> files you reference are accessible either on your local machine or via a URL.</p>
+                </li>
+                <li>
+                <p><strong>Monitoring the Setup</strong>: After applying the configurations, you can monitor the status of Prometheus and Thanos by running:</p>
+                </li>
+                </ul>
+                <p>oc get pods -n monitoring</p>
+                <p>This process will deploy Prometheus with Thanos integration on your OpenShift cluster on macOS.</p>
+                <h3>Conclusion</h3>
+                <p>With these steps and YAML files, you have a working OpenShift deployment of Thanos with Prometheus using RemoteWrite. You can now query, store, and manage metrics from multiple Prometheus instances in a highly scalable way.</p>
+                <p>Let me know if you'd like more specific details or troubleshooting tips! 😊</p>
+                <p><strong>🔗 Connect with me:</strong></p>
+                <ul>
+                <li>
+                <p>💼 <a href="https://www.linkedin.com/in/rifaterdemsahin/">LinkedIn</a></p>
+                </li>
+                <li>
+                <p>🐦 <a href="https://x.com/rifaterdemsahin">Twitter</a></p>
+                </li>
+                <li>
+                <p>🎥 <a href="https://www.youtube.com/@RifatErdemSahin">YouTube</a></p>
+                </li>
+                <li>
+                <p>💻 <a href="https://github.com/rifaterdemsahin">GitHub</a></p>
+                </li>
+                </ul>
+                <p>Have you tried deploying Thanos or using RemoteWrite? Drop a comment below, and let’s discuss your experience! 🎉</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

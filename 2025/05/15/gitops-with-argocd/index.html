@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gitops With Argocd - Rifat Erdem Sahin</title>
+    <meta name="description" content="Gitops With Argocd GitOps is a set of practices that leverages Git as the single source of truth for declarative infrastructure and applications.">
+    <meta name="keywords" content="Gitops With Argocd">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/05/15/gitops-with-argocd/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/05/15/gitops-with-argocd/">
+    <meta property="og:title" content="Gitops With Argocd">
+    <meta property="og:description" content="Gitops With Argocd GitOps is a set of practices that leverages Git as the single source of truth for declarative infrastructure and applications.">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/05/15/gitops-with-argocd/">
+    <meta property="twitter:title" content="Gitops With Argocd">
+    <meta property="twitter:description" content="Gitops With Argocd GitOps is a set of practices that leverages Git as the single source of truth for declarative infrastructure and applications.">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Gitops With Argocd",
+      "description": "Gitops With Argocd GitOps is a set of practices that leverages Git as the single source of truth for declarative infrastructure and applications.",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-05-15",
+      "dateModified": "2025-05-15",
+      "url": "https://www.rifaterdemsahin.com/2025/05/15/gitops-with-argocd/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/05/15/gitops-with-argocd/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Gitops With Argocd</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>May 15, 2025</span>
+                    <span>&bull;</span>
+                    <span>3 min read</span>
+                </div>
+                <p class="article-excerpt">Gitops With Argocd GitOps is a set of practices that leverages Git as the single source of truth for declarative infrastructure and applications.</p>
+            </header>
+            <article class="article-content">
+                <h1>Gitops With Argocd</h1>
+                <p><strong>GitOps is a set of practices that leverages Git as the single source of truth for declarative infrastructure and applications. With ArgoCD, a popular continuous delivery tool for Kubernetes, you can implement GitOps to automatically sync your Kubernetes clusters with your desired state as defined in Git.</strong></p>
+                <p>Here’s a simple example to demonstrate GitOps with ArgoCD:</p>
+                <h3>Prerequisites</h3>
+                <ul>
+                <li>
+                <p><strong>Kubernetes Cluster</strong>: You should have a running Kubernetes cluster.</p>
+                </li>
+                <li>
+                <p><strong>ArgoCD Installed</strong>: Install ArgoCD in your Kubernetes cluster if not already installed.</p>
+                </li>
+                <li>
+                <p><strong>Git Repository</strong>: A Git repository that contains the Kubernetes manifests or Helm charts.</p>
+                </li>
+                </ul>
+                <h3>Step-by-Step Example</h3>
+                <h4>1. <strong>Install ArgoCD</strong></h4>
+                <p>First, if you haven't installed ArgoCD, you can install it using the following commands:<code>kubectl create namespace argocd kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml</code></p>
+                <h4>2. <strong>Access ArgoCD UI</strong></h4>
+                <p>After installation, access the ArgoCD UI by port-forwarding the ArgoCD server:<code>kubectl port-forward svc/argocd-server -n argocd 8080:443</code></p>
+                <p>Visit <code>https://localhost:8080</code> and log in with the initial admin password, which you can retrieve with:<code>kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -d</code></p>
+                <h4>3. <strong>Prepare Your Git Repository</strong></h4>
+                <p>Your Git repository should have a directory structure like this:<code>├── argocd-apps/ │ └── my-app/ │ ├── deployment.yaml │ ├── service.yaml │ └── ...</code></p>
+                <p>In this example, <code>my-app</code> contains the Kubernetes manifests for your application.</p>
+                <h4>4. <strong>Create an ArgoCD Application</strong></h4>
+                <p>You can create an ArgoCD application using the CLI or UI. Below is an example of using the CLI:<code>argocd app create my-app \ --repo https://github.com/your-repo/your-app-config-repo.git \ --path argocd-apps/my-app \ --dest-server https://kubernetes.default.svc \ --dest-namespace default</code></p>
+                <p>Here’s what the flags mean:</p>
+                <ul>
+                <li>
+                <p><code>--repo</code>: The URL of your Git repository.</p>
+                </li>
+                <li>
+                <p><code>--path</code>: The path within the repo where your manifests are located.</p>
+                </li>
+                <li>
+                <p><code>--dest-server</code>: The address of the Kubernetes API server.</p>
+                </li>
+                <li>
+                <p><code>--dest-namespace</code>: The namespace where your application will be deployed.</p>
+                </li>
+                </ul>
+                <h4>5. <strong>Sync Your Application</strong></h4>
+                <p>You can manually sync your application using the ArgoCD CLI or UI, or let ArgoCD automatically sync when it detects changes in the Git repository.</p>
+                <p>To sync manually:<code>argocd app sync my-app</code></p>
+                <p>This will apply the Kubernetes manifests defined in your Git repository to your Kubernetes cluster.</p>
+                <h4>6. <strong>Monitor and Manage</strong></h4>
+                <p>You can monitor the state of your application through the ArgoCD UI. ArgoCD will show you whether the deployed state in the cluster matches the desired state in the Git repository. If there are differences, you can choose to sync them.</p>
+                <h4>7. <strong>Automated Syncing and Self-Healing</strong></h4>
+                <p>You can enable automated syncing and self-healing (to revert manual changes in the cluster that aren't reflected in Git):<code>argocd app set my-app --sync-policy automated argocd app set my-app --self-heal</code></p>
+                <p>With these settings, ArgoCD will automatically apply changes when it detects updates in the Git repository and will revert any changes made directly in the cluster that deviate from the Git state.</p>
+                <h3>Summary</h3>
+                <ul>
+                <li>
+                <p><strong>ArgoCD</strong> is used to deploy applications to Kubernetes by syncing the desired state from a Git repository.</p>
+                </li>
+                <li>
+                <p>The <strong>Git repository</strong> is the single source of truth for application manifests.</p>
+                </li>
+                <li>
+                <p><strong>ArgoCD</strong> automatically ensures that the live state in the Kubernetes cluster matches the desired state defined in Git.</p>
+                </li>
+                </ul>
+                <p>This is a basic example, but ArgoCD supports more advanced use cases, such as managing multiple applications and clusters, using Helm charts, and integrating with CI/CD pipelines.</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

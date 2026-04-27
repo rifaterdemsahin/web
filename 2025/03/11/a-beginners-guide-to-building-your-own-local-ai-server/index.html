@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Beginner’s Guide to Building Your Own Local AI Server - Rifat Erdem Sahin</title>
+    <meta name="description" content="A Beginner’s Guide to Building Your Own Local AI Server A Beginner’s Guide to Building Your Own Local AI Server 🌟 Artificial Intelligence (AI) is changing the game—whether it’s for work, learning, or ">
+    <meta name="keywords" content="A Beginner’s Guide to Building Your Own Local AI Server">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/03/11/a-beginners-guide-to-building-your-own-local-ai-server/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/03/11/a-beginners-guide-to-building-your-own-local-ai-server/">
+    <meta property="og:title" content="A Beginner’s Guide to Building Your Own Local AI Server">
+    <meta property="og:description" content="A Beginner’s Guide to Building Your Own Local AI Server A Beginner’s Guide to Building Your Own Local AI Server 🌟 Artificial Intelligence (AI) is changing the game—whether it’s for work, learning, or ">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/03/11/a-beginners-guide-to-building-your-own-local-ai-server/">
+    <meta property="twitter:title" content="A Beginner’s Guide to Building Your Own Local AI Server">
+    <meta property="twitter:description" content="A Beginner’s Guide to Building Your Own Local AI Server A Beginner’s Guide to Building Your Own Local AI Server 🌟 Artificial Intelligence (AI) is changing the game—whether it’s for work, learning, or ">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "A Beginner’s Guide to Building Your Own Local AI Server",
+      "description": "A Beginner’s Guide to Building Your Own Local AI Server A Beginner’s Guide to Building Your Own Local AI Server 🌟 Artificial Intelligence (AI) is changing the game—whether it’s for work, learning, or ",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-03-11",
+      "dateModified": "2025-03-11",
+      "url": "https://www.rifaterdemsahin.com/2025/03/11/a-beginners-guide-to-building-your-own-local-ai-server/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/03/11/a-beginners-guide-to-building-your-own-local-ai-server/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">A Beginner’s Guide to Building Your Own Local AI Server</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>March 11, 2025</span>
+                    <span>&bull;</span>
+                    <span>9 min read</span>
+                </div>
+                <p class="article-excerpt">A Beginner’s Guide to Building Your Own Local AI Server A Beginner’s Guide to Building Your Own Local AI Server 🌟 Artificial Intelligence (AI) is changing the game—whether it’s for work, learning, or creativity. But cloud-based tools can feel slow and raise privacy red flags 🚨.</p>
+            </header>
+            <article class="article-content">
+                <h1>A Beginner’s Guide to Building Your Own Local AI Server</h1>
+                <h2>A Beginner’s Guide to Building Your Own Local AI Server 🌟</h2>
+                <p>Artificial Intelligence (AI) is changing the game—whether it’s for work, learning, or creativity. But cloud-based tools can feel slow and raise privacy red flags 🚨. What if you could run AI on your own hardware, totally under your control? Let’s dive into building a local AI server that’s perfect for personal projects, helping kids with school, or just geeking out—<em>no internet required</em>! 🚀</p>
+                <h3>Why Build a Local AI Server? 🤔</h3>
+                <p>It often starts with a spark of curiosity ✨ and a need for control. Picture this: a fast, customizable system that keeps your data private—great for your own experiments or guiding your kids’ homework without the cloud. With local AI, you ditch online dependencies and get speed that’ll make your jaw drop! 😮</p>
+                <h3>Hardware: From Beastly to Basic ⚙️</h3>
+                <p>You don’t need a supercomputer to start, though power helps! A dream setup might rock a killer CPU (think AMD Ryzen 9), 128 GB of RAM, and dual Nvidia GPUs for turbo speed. But here’s the kicker: your everyday laptop—yep, the one you’re on now—can handle it too! Scale up as you go! 💪</p>
+                <h3>Choosing an Operating System 🖱️</h3>
+                <p>Any OS works—Windows, Mac, or Linux—but Linux is a champ here. Pop!_OS 🐧 stands out with its smooth install and Nvidia driver support out of the box. On Windows? Use WSL with one command to run Linux. Mac folks can tap those M1-M3 chips for a sweet boost! 🍎</p>
+                <h3>Step 1: Install Ollama, Your AI Foundation 🤖</h3>
+                <p>Ollama is the heart of your setup, letting you run AI models locally. Grab it with a quick download or a single Linux command (like <code>curl</code>). Pull models like Llama 2 or CodeGemma, and boom—you’re chatting with an AI like ChatGPT, no Wi-Fi needed. GPU detected? Even better! ⚡</p>
+                <h3>Step 2: Add a Slick Web Interface with Open Web UI 🌐</h3>
+                <p>Command lines are cool, but a pretty interface is cooler! Open Web UI, powered by Docker, brings chat histories, multi-model support, and admin tricks—like locking down features for curious kids. Set it up, hit <code>localhost:8080</code>, and start chatting in style! 😎</p>
+                <h3>Step 3: Generate Images with Stable Diffusion 🎨</h3>
+                <p>Love creating art? Stable Diffusion with Automatic1111 UI makes it happen locally—and fast! Install it with a few commands (Python 3.10 via PyEnv helps), and you’re crafting images in real time. Got a beefy GPU? It’s practically instant. Hook it into Open Web UI for extra fun! 🖌️</p>
+                <h3>Customization: Tailor It to Your Needs 🔧</h3>
+                <p>Control is king here. Craft custom models—like one that guides homework instead of doing it—with specific rules. Admin settings let you whitelist models or block features, perfect for keeping things kid-friendly. Tie it to Obsidian 📝, and you’ve got an AI note-taking buddy! 🧠</p>
+                <h3>The Payoff: Privacy and Power 🔒⚡</h3>
+                <p>Local AI isn’t just geeky—it’s smart. No internet means your data stays yours, and the speed? It’s wicked fast—often outrunning ChatGPT or GPT-4 for text and images. You’re in charge, and it feels awesome! 😊</p>
+                <h3>Get Started and Join the Fun! 👥</h3>
+                <p>All you need is a computer and some excitement! Kick off with Ollama, layer on Open Web UI, and play with Stable Diffusion. Share your wild creations with a community—think quirky AI art or neat project ideas. The sky’s the limit, and it’s all on your turf! 🌍</p>
+                <p><strong>What will you build with your local AI server?</strong> Drop your stories and ideas below—we’re dying to hear them! 🗣️</p>
+                <p>To install Ollama on Windows using Chocolatey (often abbreviated as "choco"), follow these steps. I'll assume you already have Chocolatey installed on your system. If not, you'll need to install it first.</p>
+                <p>Step 1: Ensure Chocolatey is Installed</p>
+                <p>If you haven't installed Chocolatey yet, open PowerShell as an Administrator and run the following command:</p>
+                <p>Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))</p>
+                <p>Wait for the installation to complete, then verify it by typing choco --version in your command prompt or PowerShell. You should see the Chocolatey version number.</p>
+                <p>Step 2: Install Ollama Using Chocolatey</p>
+                <p>As of my last update, there isn't an official Ollama package maintained by the Ollama team in the Chocolatey community repository. However, there are community-maintained packages available. One such package is ollama, which installs the Ollama Large Language Models software.</p>
+                <p>To install Ollama using Chocolatey, open a command prompt or PowerShell as an Administrator and run:</p>
+                <p>choco install ollama -y</p>
+                <ul>
+                <li>The -y flag automatically confirms the installation without prompting you.</li>
+                </ul>
+                <p>This command downloads the Ollama installer from the official source (typically the GitHub releases page) and runs it silently. The version installed will depend on the latest package available in the Chocolatey community repository as of March 11, 2025. For example, version 0.5.7 was available as of January 17, 2025, according to community.chocolatey.org.</p>
+                <p>Step 3: Verify the Installation</p>
+                <p>After installation, verify that Ollama is installed by running:</p>
+                <p>ollama --version</p>
+                <p>If installed correctly, this will display the version of Ollama. You can then start using it by running a model, for example:</p>
+                <p>ollama run llama2</p>
+                <p>Notes</p>
+                <ul>
+                <li>
+                <p><strong>Community Package</strong>: The ollama package on Chocolatey is maintained by the community, not officially by the Ollama team. Check the package page on community.chocolatey.org for the latest version and any specific instructions or issues.</p>
+                </li>
+                <li>
+                <p><strong>Manual Alternative</strong>: If the Chocolatey package is outdated or unavailable, you can manually download the Ollama installer from ollama.com and run it by double-clicking, as mentioned in posts on X and the official site.</p>
+                </li>
+                <li>
+                <p><strong>Troubleshooting</strong>: If the choco install ollama command fails, ensure your Chocolatey sources are correctly configured (choco source list) and that you have an internet connection. You can also search for the package explicitly with choco search ollama to confirm its availability.</p>
+                </li>
+                </ul>
+                <p>Current Date Consideration</p>
+                <p>Since today is March 11, 2025, the Chocolatey package might have been updated since my last knowledge cutoff. I recommend checking the official Chocolatey package page for ollama (search "Ollama Large Language Models" on community.chocolatey.org) to ensure you're getting the latest version.</p>
+                <p>Source : <a href="https://www.youtube.com/watch?v=Wjrdr0NU4Sk&amp;ab_channel=NetworkChuck">https://www.youtube.com/watch?v=Wjrdr0NU4Sk&amp;ab_channel=NetworkChuck</a></p>
+                <p>`PS C:\Windows\system32&gt; choco install ollama -y<br />
+                Chocolatey v2.4.3<br />
+                Installing the following packages:<br />
+                ollama<br />
+                By installing, you accept licenses for the packages.<br />
+                Downloading package from source 'https://community.chocolatey.org/api/v2/'<br />
+                Progress: Downloading Ollama 0.5.13... 100%</p>
+                <p>ollama v0.5.13 &#091;Approved]<br />
+                ollama package files install completed. Performing other installation steps.<br />
+                Downloading Ollama<br />
+                  from 'https://github.com/ollama/ollama/releases/download/v0.5.13/OllamaSetup.exe'<br />
+                Progress: 100% - Completed download of C:\Users\Pexabo\AppData\Local\Temp\chocolatey\Ollama\0.5.13\OllamaSetup.exe (1000.33 MB).<br />
+                Download of OllamaSetup.exe (1000.33 MB) completed.<br />
+                Hashes match.<br />
+                Installing Ollama...<br />
+                Ollama has been installed.<br />
+                  ollama can be automatically uninstalled.<br />
+                Environment Vars (like PATH) have changed. Close/reopen your shell to<br />
+                 see the changes (or in powershell/cmd.exe just type <code>refreshenv</code>).<br />
+                 The install of ollama was successful.<br />
+                  Deployed to 'C:\Users\Pexabo\AppData\Local\Programs\Ollama\'</p>
+                <p>Chocolatey installed 1/1 packages.<br />
+                 See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).<br />
+                PS C:\Windows\system32&gt;</p>
+                <p>---`</p>
+                <p>MAchine Spects</p>
+                <p>It seems like you’re asking for the machine specifications required to run Ollama on Windows, especially since your previous question was about installing Ollama via Chocolatey. However, you didn’t specify if you want the minimum/recommended specs for Ollama or something else (like my "own" specs as an AI, which I don’t have since I’m cloud-based). I’ll assume you mean the hardware requirements for running Ollama on a Windows machine. If I got this wrong, please clarify!</p>
+                <p>Machine Specs for Running Ollama on Windows</p>
+                <p>Ollama is a tool designed to run large language models locally, and its hardware requirements depend on the model you intend to use (e.g., LLaMA 2, Mistral, etc.) and whether you’re running it with CPU, GPU, or both. Since you’re installing it via Chocolatey on Windows, here’s a breakdown based on official documentation from ollama.com and community insights (e.g., GitHub discussions and X posts):</p>
+                <p>Minimum Requirements</p>
+                <p>These specs allow you to run smaller models (e.g., 7B parameter models like LLaMA 2 7B or Mistral 7B) with basic performance:</p>
+                <ul>
+                <li>
+                <p><strong>OS</strong>: Windows 10 or later (64-bit)</p>
+                </li>
+                <li>
+                <p><strong>CPU</strong>: A modern multi-core processor (e.g., Intel i5/i7 or AMD Ryzen 5/7, 4+ cores recommended)</p>
+                </li>
+                <li>
+                <p><strong>RAM</strong>: 8 GB minimum (16 GB strongly recommended for smoother operation)</p>
+                </li>
+                <li>
+                <p><strong>Storage</strong>: At least 10 GB of free space (for the app and a small model; larger models need more)</p>
+                </li>
+                <li>
+                <p><strong>GPU</strong>: Optional, but if present, NVIDIA GPU with CUDA support (e.g., GTX 970 or better) for acceleration</p>
+                </li>
+                </ul>
+                <p>Recommended Requirements</p>
+                <p>For better performance with larger models (e.g., 13B or 70B parameter models) or if you want GPU acceleration:</p>
+                <ul>
+                <li>
+                <p><strong>OS</strong>: Windows 11 (64-bit) for optimal compatibility</p>
+                </li>
+                <li>
+                <p><strong>CPU</strong>: High-performance multi-core processor (e.g., Intel i9, AMD Ryzen 9, 8+ cores)</p>
+                </li>
+                <li>
+                <p><strong>RAM</strong>: 32 GB or more (64 GB ideal for 70B models)</p>
+                </li>
+                <li>
+                <p><strong>Storage</strong>: 50+ GB free SSD space (NVMe SSD preferred for faster loading)</p>
+                </li>
+                <li>
+                <p><strong>GPU</strong>: NVIDIA GPU with at least 8 GB VRAM (e.g., RTX 3060 or better) and CUDA 11.7+ installed</p>
+                </li>
+                <li>
+                <p><strong>Additional Software</strong>:</p>
+                </li>
+                </ul>
+                <p>NVIDIA CUDA Toolkit (for GPU support)</p>
+                <ul>
+                <li>NVIDIA cuDNN (optional, for enhanced GPU performance)</li>
+                </ul>
+                <p>Model-Specific Needs</p>
+                <ul>
+                <li>
+                <p><strong>7B Models</strong>: ~4-6 GB RAM/VRAM with GPU, ~8-10 GB RAM without GPU</p>
+                </li>
+                <li>
+                <p><strong>13B Models</strong>: ~8-12 GB VRAM with GPU, ~16-20 GB RAM without GPU</p>
+                </li>
+                <li>
+                <p><strong>70B Models</strong>: ~40+ GB VRAM (e.g., RTX 3090/4090 or A100), ~64+ GB RAM without GPU</p>
+                </li>
+                </ul>
+                <p>Notes</p>
+                <ul>
+                <li>
+                <p><strong>GPU Support</strong>: Ollama supports NVIDIA GPUs on Windows via CUDA. Ensure your GPU drivers and CUDA Toolkit are installed (check nvidia-smi in a command prompt to verify). As of March 11, 2025, AMD GPU support (via ROCm) is primarily for Linux, with limited Windows compatibility.</p>
+                </li>
+                <li>
+                <p><strong>Disk Space</strong>: Models are downloaded separately after installation. For example, a 7B model might be ~4-5 GB, while a 70B model can exceed 40 GB.</p>
+                </li>
+                <li>
+                <p><strong>Performance</strong>: Without a GPU, larger models will run slowly or fail due to memory constraints on a typical Windows machine.</p>
+                </li>
+                </ul>
+                <p>How to Check Your Specs on Windows</p>
+                <p>To confirm your machine meets these requirements:</p>
+                <ul>
+                <li>
+                <p><strong>CPU/RAM</strong>: Press Ctrl + Shift + Esc → Task Manager → Performance tab.</p>
+                </li>
+                <li>
+                <p><strong>GPU</strong>: Run dxdiag from the Start menu → Display tab (for basic info) or nvidia-smi if you have an NVIDIA GPU.</p>
+                </li>
+                <li>
+                <p><strong>Storage</strong>: Open File Explorer → Right-click "This PC" → Properties.</p>
+                </li>
+                </ul>
+                <p>Example Setup</p>
+                <p>A decent mid-range setup for Ollama (e.g., running a 13B model comfortably):</p>
+                <ul>
+                <li>
+                <p>Intel i7-12700 / Ryzen 7 5800X</p>
+                </li>
+                <li>
+                <p>32 GB DDR4/DDR5 RAM</p>
+                </li>
+                <li>
+                <p>NVIDIA RTX 3070 (8 GB VRAM)</p>
+                </li>
+                <li>
+                <p>1 TB NVMe SSD</p>
+                </li>
+                <li>
+                <p>Windows 11 Pro</p>
+                </li>
+                </ul>
+                <p>If you’d like me to tailor this further (e.g., for a specific model or your hardware), let me know your intended use case or current machine details!</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

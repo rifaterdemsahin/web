@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planning Rollouts with Routes vs. Ingress in Kubernetes - Rifat Erdem Sahin</title>
+    <meta name="description" content="Planning Rollouts with Routes vs. Ingress in Kubernetes When rolling out new versions of services in Kubernetes, managing external traffic carefully is crucial to ensure smooth transitions, avoid down">
+    <meta name="keywords" content="Planning Rollouts with Routes vs. Ingress in Kubernetes">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/07/08/planning-rollouts-with-routes-vs-ingress-in-kubernetes/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/07/08/planning-rollouts-with-routes-vs-ingress-in-kubernetes/">
+    <meta property="og:title" content="Planning Rollouts with Routes vs. Ingress in Kubernetes">
+    <meta property="og:description" content="Planning Rollouts with Routes vs. Ingress in Kubernetes When rolling out new versions of services in Kubernetes, managing external traffic carefully is crucial to ensure smooth transitions, avoid down">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/07/08/planning-rollouts-with-routes-vs-ingress-in-kubernetes/">
+    <meta property="twitter:title" content="Planning Rollouts with Routes vs. Ingress in Kubernetes">
+    <meta property="twitter:description" content="Planning Rollouts with Routes vs. Ingress in Kubernetes When rolling out new versions of services in Kubernetes, managing external traffic carefully is crucial to ensure smooth transitions, avoid down">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Planning Rollouts with Routes vs. Ingress in Kubernetes",
+      "description": "Planning Rollouts with Routes vs. Ingress in Kubernetes When rolling out new versions of services in Kubernetes, managing external traffic carefully is crucial to ensure smooth transitions, avoid down",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-07-08",
+      "dateModified": "2025-07-08",
+      "url": "https://www.rifaterdemsahin.com/2025/07/08/planning-rollouts-with-routes-vs-ingress-in-kubernetes/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/07/08/planning-rollouts-with-routes-vs-ingress-in-kubernetes/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Planning Rollouts with Routes vs. Ingress in Kubernetes</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>July 8, 2025</span>
+                    <span>&bull;</span>
+                    <span>4 min read</span>
+                </div>
+                <p class="article-excerpt">Planning Rollouts with Routes vs. Ingress in Kubernetes When rolling out new versions of services in Kubernetes, managing external traffic carefully is crucial to ensure smooth transitions, avoid downtime, and maintain a great user experience.</p>
+            </header>
+            <article class="article-content">
+                <h1>Planning Rollouts with Routes vs. Ingress in Kubernetes</h1>
+                <p>When rolling out new versions of services in Kubernetes, managing external traffic carefully is crucial to ensure smooth transitions, avoid downtime, and maintain a great user experience. <strong>Routes</strong> (in OpenShift) and <strong>Ingress</strong> (in standard Kubernetes) both provide ways to control traffic flow, but their approaches to handling rollouts differ slightly.</p>
+                <p>Let’s walk through how to plan rollouts using both <strong>Routes</strong> and <strong>Ingress</strong>!</p>
+                <p><strong>🎯 Rollouts with Ingress (Kubernetes)</strong></p>
+                <p><strong>Ingress</strong> provides a flexible, configurable way to control how traffic reaches your services. For rollouts, you can leverage various techniques like <strong>Blue-Green Deployments</strong>, <strong>Canary Releases</strong>, or <strong>Traffic Splitting</strong> using annotations, custom Ingress controllers, or third-party tools like <strong>Istio</strong> or <strong>NGINX</strong>.</p>
+                <p><strong>Key Approaches:</strong></p>
+                <ol>
+                <li><strong>Blue-Green Deployment:</strong></li>
+                </ol>
+                <p>• Deploy the new version alongside the current one (two versions run simultaneously).</p>
+                <p>• Switch traffic from the old version to the new one by modifying the Ingress rules to point to the new service.</p>
+                <ol start="2">
+                <li><strong>Canary Deployment:</strong></li>
+                </ol>
+                <p>• Gradually shift a small percentage of traffic to the new version.</p>
+                <p>• Use annotations in your Ingress controller (like NGINX) to define weight-based traffic splitting between old and new versions.</p>
+                <ol start="3">
+                <li><strong>Ingress Controllers &amp; Traffic Splitting:</strong></li>
+                </ol>
+                <p>• <strong>NGINX Ingress Controller</strong> supports traffic splitting through annotations that define how much traffic goes to each service version.</p>
+                <p>• <strong>Istio</strong> or other service meshes can also provide finer-grained traffic control and observability.</p>
+                <p><strong>Example (Canary Release using NGINX Ingress):</strong></p>
+                <p>apiVersion: networking.k8s.io/v1</p>
+                <p>kind: Ingress</p>
+                <p>metadata:</p>
+                <p>name: my-ingress</p>
+                <p>annotations:</p>
+                <p>nginx.ingress.kubernetes.io/canary: "true"</p>
+                <p>nginx.ingress.kubernetes.io/canary-weight: "10"</p>
+                <p>spec:</p>
+                <p>rules:</p>
+                <ul>
+                <li>host: example.com</li>
+                </ul>
+                <p>http:</p>
+                <p>paths:</p>
+                <ul>
+                <li>path: /</li>
+                </ul>
+                <p>backend:</p>
+                <p>service:</p>
+                <p>name: old-service</p>
+                <p>port:</p>
+                <p>number: 80</p>
+                <ul>
+                <li>path: /</li>
+                </ul>
+                <p>backend:</p>
+                <p>service:</p>
+                <p>name: new-service</p>
+                <p>port:</p>
+                <p>number: 80</p>
+                <p>This configuration routes 10% of traffic to the <strong>new-service</strong> and 90% to the <strong>old-service</strong>, allowing you to monitor the new version before fully switching over.</p>
+                <p><strong>Planning Steps:</strong></p>
+                <ol>
+                <li>
+                <p><strong>Deploy the new version</strong> as a separate service.</p>
+                </li>
+                <li>
+                <p><strong>Update Ingress annotations</strong> to control traffic flow between the old and new versions.</p>
+                </li>
+                <li>
+                <p><strong>Monitor performance</strong> and adjust traffic weights as needed.</p>
+                </li>
+                <li>
+                <p>Once satisfied, <strong>shift all traffic</strong> to the new service and remove the old one.</p>
+                </li>
+                </ol>
+                <p><strong>🎯 Rollouts with Routes (OpenShift)</strong></p>
+                <p><strong>Routes</strong> in OpenShift are simpler but still powerful for managing rollouts. OpenShift doesn’t have native traffic-splitting functionality built into Routes, but you can achieve it through custom configurations using labels, <strong>Route sharding</strong>, or third-party tools.</p>
+                <p><strong>Key Approaches:</strong></p>
+                <ol>
+                <li><strong>Blue-Green Deployment:</strong></li>
+                </ol>
+                <p>• Create two Routes: one for the old version and one for the new version.</p>
+                <p>• Gradually shift traffic by updating the DNS or switching the active Route.</p>
+                <ol start="2">
+                <li><strong>Canary Deployment via Weighting:</strong></li>
+                </ol>
+                <p>• OpenShift supports weighted Route traffic splitting, where you can direct a percentage of traffic to each service version by setting <strong>weights</strong> on the Route objects.</p>
+                <ol start="3">
+                <li><strong>Route Sharding:</strong></li>
+                </ol>
+                <p>• Create separate Routes for each version of the service, then adjust traffic routing at the DNS or load balancer level.</p>
+                <p><strong>Example (Weighted Route in OpenShift):</strong></p>
+                <p>apiVersion: route.openshift.io/v1</p>
+                <p>kind: Route</p>
+                <p>metadata:</p>
+                <p>name: canary-route</p>
+                <p>spec:</p>
+                <p>host: example.com</p>
+                <p>to:</p>
+                <p>kind: Service</p>
+                <p>name: new-service</p>
+                <p>weight: 10</p>
+                <p>alternateBackends:</p>
+                <ul>
+                <li>kind: Service</li>
+                </ul>
+                <p>name: old-service</p>
+                <p>weight: 90</p>
+                <p>tls:</p>
+                <p>termination: edge</p>
+                <p>This configuration directs 10% of traffic to <strong>new-service</strong> and 90% to <strong>old-service</strong>. As with Ingress, this approach allows you to gradually shift traffic to the new version while monitoring performance.</p>
+                <p><strong>Planning Steps:</strong></p>
+                <ol>
+                <li>
+                <p><strong>Deploy the new version</strong> and create a corresponding Route.</p>
+                </li>
+                <li>
+                <p><strong>Adjust Route weights</strong> to control how much traffic goes to each version.</p>
+                </li>
+                <li>
+                <p><strong>Monitor the rollout</strong> and tweak the weights as needed.</p>
+                </li>
+                <li>
+                <p>Once stable, <strong>shift all traffic</strong> to the new Route and remove the old one.</p>
+                </li>
+                </ol>
+                <p><strong>🔑 Best Practices for Rollouts:</strong></p>
+                <p>• <strong>Monitor closely:</strong> Whether using Ingress or Routes, monitor your services’ health and performance during rollouts to catch any issues early.</p>
+                <p>• <strong>Gradual rollouts:</strong> Avoid switching all traffic at once—use a canary or blue-green approach to minimize risk.</p>
+                <p>• <strong>Rollback readiness:</strong> Always be prepared to roll back to the previous version if issues arise.</p>
+                <p>• <strong>Automation tools:</strong> Leverage CI/CD tools (like ArgoCD or Jenkins) to automate rollouts and rollbacks, making the process smoother and faster.</p>
+                <p><strong>🚀 Which to Use:</strong></p>
+                <p>• If you’re using <strong>standard Kubernetes</strong>, Ingress with traffic-splitting annotations or service mesh tools (like Istio) gives you more flexibility.</p>
+                <p>• If you’re on <strong>OpenShift</strong>, Routes provide a more straightforward way to manage rollouts, especially with built-in weight-based traffic control.</p>
+                <p>Both methods ensure that your Kubernetes services are ready for smooth, zero-downtime rollouts. Happy deploying! 🎉</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

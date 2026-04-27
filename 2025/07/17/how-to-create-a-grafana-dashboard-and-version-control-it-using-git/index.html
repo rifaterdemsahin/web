@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create a Grafana Dashboard and Version Control It Using Git - Rifat Erdem Sahin</title>
+    <meta name="description" content="How to Create a Grafana Dashboard and Version Control It Using Git Grafana is a powerful open-source platform for monitoring and observability. It allows you to create dynamic, visually appealing dash">
+    <meta name="keywords" content="How to Create a Grafana Dashboard and Version Control It Using Git">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/07/17/how-to-create-a-grafana-dashboard-and-version-control-it-using-git/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/07/17/how-to-create-a-grafana-dashboard-and-version-control-it-using-git/">
+    <meta property="og:title" content="How to Create a Grafana Dashboard and Version Control It Using Git">
+    <meta property="og:description" content="How to Create a Grafana Dashboard and Version Control It Using Git Grafana is a powerful open-source platform for monitoring and observability. It allows you to create dynamic, visually appealing dash">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/07/17/how-to-create-a-grafana-dashboard-and-version-control-it-using-git/">
+    <meta property="twitter:title" content="How to Create a Grafana Dashboard and Version Control It Using Git">
+    <meta property="twitter:description" content="How to Create a Grafana Dashboard and Version Control It Using Git Grafana is a powerful open-source platform for monitoring and observability. It allows you to create dynamic, visually appealing dash">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "How to Create a Grafana Dashboard and Version Control It Using Git",
+      "description": "How to Create a Grafana Dashboard and Version Control It Using Git Grafana is a powerful open-source platform for monitoring and observability. It allows you to create dynamic, visually appealing dash",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-07-17",
+      "dateModified": "2025-07-17",
+      "url": "https://www.rifaterdemsahin.com/2025/07/17/how-to-create-a-grafana-dashboard-and-version-control-it-using-git/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/07/17/how-to-create-a-grafana-dashboard-and-version-control-it-using-git/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">How to Create a Grafana Dashboard and Version Control It Using Git</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>July 17, 2025</span>
+                    <span>&bull;</span>
+                    <span>5 min read</span>
+                </div>
+                <p class="article-excerpt">How to Create a Grafana Dashboard and Version Control It Using Git Grafana is a powerful open-source platform for monitoring and observability. It allows you to create dynamic, visually appealing dashboards to track metrics from various data sources.</p>
+            </header>
+            <article class="article-content">
+                <h1>How to Create a Grafana Dashboard and Version Control It Using Git</h1>
+                <p><img src="images/how-to-create-1.png" alt="how to create 1" class="article-image" loading="lazy"></p>
+                <p>Grafana is a powerful open-source platform for monitoring and observability. It allows you to create dynamic, visually appealing dashboards to track metrics from various data sources. Once you've crafted the perfect dashboard, it's crucial to version control it to keep track of changes and collaborate with your team. In this blog post, we'll walk you through the process of creating a Grafana dashboard, exporting it as a JSON file, and committing it to a Git repository for version control.</p>
+                <h4>Table of Contents</h4>
+                <ul>
+                <li>
+                <p><a href="#why-version-control-your-grafana-dashboards">Why Version Control Your Grafana Dashboards?</a></p>
+                </li>
+                <li>
+                <p><a href="#step-1-creating-a-grafana-dashboard">Step 1: Creating a Grafana Dashboard</a></p>
+                </li>
+                <li>
+                <p><a href="#step-2-exporting-the-dashboard-as-json">Step 2: Exporting the Dashboard as JSON</a></p>
+                </li>
+                <li>
+                <p><a href="#step-3-committing-the-dashboard-json-to-git">Step 3: Committing the Dashboard JSON to Git</a></p>
+                </li>
+                <li>
+                <p><a href="#step-4-automating-the-process-optional">Step 4: Automating the Process (Optional)</a></p>
+                </li>
+                <li>
+                <p><a href="#conclusion">Conclusion</a></p>
+                </li>
+                </ul>
+                <h3>Why Version Control Your Grafana Dashboards?</h3>
+                <p>Version control is essential for managing changes to any project, and Grafana dashboards are no exception. Here are a few reasons why you should version control your Grafana dashboards:</p>
+                <ul>
+                <li>
+                <p><strong>Track Changes</strong>: Easily track changes made to the dashboard over time, allowing you to revert to a previous version if needed.</p>
+                </li>
+                <li>
+                <p><strong>Collaborate</strong>: Work on dashboards with your team in a seamless manner by using Git, making sure everyone is on the same page.</p>
+                </li>
+                <li>
+                <p><strong>Backup</strong>: Having your dashboards in a Git repository provides a reliable backup in case of accidental deletions or other issues.</p>
+                </li>
+                </ul>
+                <h3>Step 1: Creating a Grafana Dashboard</h3>
+                <p>To start, you'll need to create a Grafana dashboard. Here’s a quick guide:</p>
+                <ul>
+                <li>
+                <p><strong>Log in to Grafana:</strong></p>
+                </li>
+                <li>
+                <p>Open your web browser and navigate to your Grafana instance.</p>
+                </li>
+                <li>
+                <p>Log in using your credentials.</p>
+                </li>
+                <li>
+                <p><strong>Create a New Dashboard:</strong></p>
+                </li>
+                <li>
+                <p>On the Grafana home page, click the "+" icon on the left sidebar to create a new dashboard.</p>
+                </li>
+                <li>
+                <p>Select "Dashboard" to start with a blank dashboard.</p>
+                </li>
+                <li>
+                <p><strong>Add Panels to the Dashboard:</strong></p>
+                </li>
+                <li>
+                <p>Click "Add New Panel" to create visualizations. Choose a data source and configure the query to fetch data.</p>
+                </li>
+                <li>
+                <p>Select the visualization type (e.g., graph, table, heatmap) and customize the panel settings.</p>
+                </li>
+                <li>
+                <p>Add more panels as needed to complete your dashboard.</p>
+                </li>
+                <li>
+                <p><strong>Customize the Dashboard:</strong></p>
+                </li>
+                <li>
+                <p>Arrange the panels, set time ranges, and configure other settings according to your preferences.</p>
+                </li>
+                <li>
+                <p>Name your dashboard by clicking on the title at the top and editing it.</p>
+                </li>
+                <li>
+                <p><strong>Save the Dashboard:</strong></p>
+                </li>
+                <li>
+                <p>Click the "Save" button at the top right.</p>
+                </li>
+                <li>
+                <p>Choose a folder to save the dashboard in or save it in the default "General" folder.</p>
+                </li>
+                <li>
+                <p>Optionally, add a description and tags.</p>
+                </li>
+                </ul>
+                <h3>Step 2: Exporting the Dashboard as JSON</h3>
+                <p>Once your dashboard is ready, the next step is to export it as a JSON file. This JSON file will contain all the configurations and settings of your dashboard.</p>
+                <ul>
+                <li>
+                <p><strong>Open the Dashboard:</strong></p>
+                </li>
+                <li>
+                <p>Navigate to the dashboard you want to export.</p>
+                </li>
+                <li>
+                <p><strong>Export the Dashboard:</strong></p>
+                </li>
+                <li>
+                <p>Click on the dashboard title to open the options menu.</p>
+                </li>
+                <li>
+                <p>Select "Share dashboard."</p>
+                </li>
+                <li>
+                <p>Go to the "Export" tab, then click "Export for sharing externally."</p>
+                </li>
+                <li>
+                <p>Click "Save to file" to download the dashboard JSON file.</p>
+                </li>
+                </ul>
+                <h3>Step 3: Committing the Dashboard JSON to Git</h3>
+                <p>Now that you have the JSON file, it's time to commit it to a Git repository.</p>
+                <ul>
+                <li>
+                <p><strong>Initialize a Git Repository (if not already initialized):</strong></p>
+                </li>
+                <li>
+                <p>Open your terminal and navigate to the directory where you want to store the dashboard JSON file.</p>
+                </li>
+                <li>
+                <p>Run the following command to initialize a Git repository:<br />
+                <code>bash git init</code></p>
+                </li>
+                <li>
+                <p><strong>Move the JSON File to the Repository:</strong></p>
+                </li>
+                <li>
+                <p>Move or copy the downloaded JSON file to your Git repository directory.</p>
+                </li>
+                <li>
+                <p><strong>Stage the File for Commit:</strong></p>
+                </li>
+                <li>
+                <p>Stage the JSON file by running the following command:<br />
+                <code>bash git add your_dashboard.json</code></p>
+                </li>
+                <li>
+                <p><strong>Commit the File:</strong></p>
+                </li>
+                <li>
+                <p>Commit the file with a meaningful commit message:<br />
+                <code>bash git commit -m "Add Grafana dashboard JSON file"</code></p>
+                </li>
+                <li>
+                <p><strong>Push the Commit to a Remote Repository (Optional):</strong></p>
+                </li>
+                <li>
+                <p>If you have a remote repository (e.g., GitHub, GitLab), push the commit:<br />
+                <code>bash git remote add origin &lt;remote_repository_url&gt; git push -u origin master</code></p>
+                </li>
+                </ul>
+                <h3>Step 4: Automating the Process (Optional)</h3>
+                <p>If you're frequently updating your dashboards, it may be worth automating the process of exporting and committing the JSON file.</p>
+                <ul>
+                <li>
+                <p><strong>Automate JSON Export:</strong></p>
+                </li>
+                <li>
+                <p>Grafana’s HTTP API allows you to automate the export of dashboards. You can write a script that fetches the JSON file from Grafana and commits it to your Git repository.</p>
+                </li>
+                <li>
+                <p><strong>Set Up a CI/CD Pipeline:</strong></p>
+                </li>
+                <li>
+                <p>Integrate your repository with a CI/CD tool like Jenkins, GitLab CI, or GitHub Actions to automatically validate or deploy the dashboard configuration when changes are pushed to the repository.</p>
+                </li>
+                </ul>
+                <h3>Example Dashboard JSON Code</h3>
+                <p>Here's an example of what a simple Grafana dashboard JSON might look like:</p>
+                <p>{<br />
+                  "title": "Sample Dashboard",<br />
+                  "panels": [<br />
+                    {<br />
+                      "type": "graph",<br />
+                      "title": "HTTP Requests Rate",<br />
+                      "targets": [<br />
+                        {<br />
+                          "expr": "rate(http_requests_total[5m])",<br />
+                          "legendFormat": "{{method}} {{status}}",<br />
+                          "refId": "A"<br />
+                        }<br />
+                      ],<br />
+                      "xaxis": {<br />
+                        "mode": "time"<br />
+                      },<br />
+                      "yaxis": {<br />
+                        "format": "short"<br />
+                      }<br />
+                    }<br />
+                  ],<br />
+                  "time": {<br />
+                    "from": "now-15m",<br />
+                    "to": "now"<br />
+                  },<br />
+                  "refresh": "5s"<br />
+                }</p>
+                <h3>Conclusion</h3>
+                <p>By following these steps, you can efficiently manage your Grafana dashboards with version control, ensuring that every change is tracked, and backups are readily available. Whether you're working solo or as part of a team, version controlling your dashboards with Git is a best practice that will save you time and headaches in the long run. Happy monitoring!</p>
+                <hr />
+                <p>This guide should help you streamline the creation and version control of your Grafana dashboards, making them easier to manage and collaborate on. Whether you're new to Grafana or a seasoned pro, these steps provide a solid foundation for better dashboard management.</p>
+                <div class="video-embed"><iframe src="https://www.youtube.com/embed/EPLvB1eVJJk" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
+                
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

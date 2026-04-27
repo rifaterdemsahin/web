@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automating Video Editing with YAML, Whisper, and Confidence Monitors 🎥🤖 - Rifat Erdem Sahin</title>
+    <meta name="description" content="Automating Video Editing with YAML, Whisper, and Confidence Monitors 🎥🤖 In the world of content creation, efficiency is key. Whether you're a YouTuber, a filmmaker, or a corporate video producer, auto">
+    <meta name="keywords" content="Automating Video Editing with YAML, Whisper, and Confidence Monitors 🎥🤖">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/09/16/automating-video-editing-with-yaml-whisper-and-confidence-monitors-🎥🤖/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/09/16/automating-video-editing-with-yaml-whisper-and-confidence-monitors-🎥🤖/">
+    <meta property="og:title" content="Automating Video Editing with YAML, Whisper, and Confidence Monitors 🎥🤖">
+    <meta property="og:description" content="Automating Video Editing with YAML, Whisper, and Confidence Monitors 🎥🤖 In the world of content creation, efficiency is key. Whether you're a YouTuber, a filmmaker, or a corporate video producer, auto">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/09/16/automating-video-editing-with-yaml-whisper-and-confidence-monitors-🎥🤖/">
+    <meta property="twitter:title" content="Automating Video Editing with YAML, Whisper, and Confidence Monitors 🎥🤖">
+    <meta property="twitter:description" content="Automating Video Editing with YAML, Whisper, and Confidence Monitors 🎥🤖 In the world of content creation, efficiency is key. Whether you're a YouTuber, a filmmaker, or a corporate video producer, auto">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Automating Video Editing with YAML, Whisper, and Confidence Monitors 🎥🤖",
+      "description": "Automating Video Editing with YAML, Whisper, and Confidence Monitors 🎥🤖 In the world of content creation, efficiency is key. Whether you're a YouTuber, a filmmaker, or a corporate video producer, auto",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-09-16",
+      "dateModified": "2025-09-16",
+      "url": "https://www.rifaterdemsahin.com/2025/09/16/automating-video-editing-with-yaml-whisper-and-confidence-monitors-🎥🤖/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/09/16/automating-video-editing-with-yaml-whisper-and-confidence-monitors-🎥🤖/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Automating Video Editing with YAML, Whisper, and Confidence Monitors 🎥🤖</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>September 16, 2025</span>
+                    <span>&bull;</span>
+                    <span>4 min read</span>
+                </div>
+                <p class="article-excerpt">Automating Video Editing with YAML, Whisper, and Confidence Monitors 🎥🤖 In the world of content creation, efficiency is key. Whether you're a YouTuber, a filmmaker, or a corporate video producer, automating repetitive tasks can save you hours of work.</p>
+            </header>
+            <article class="article-content">
+                <h1>Automating Video Editing with YAML, Whisper, and Confidence Monitors 🎥🤖</h1>
+                <h1></h1>
+                <p><img src="images/automating-video-editing-1.jpg" alt="automating video editing 1" class="article-image" loading="lazy"></p>
+                <p><img src="images/automating-video-editing-2.jpg" alt="automating video editing 2" class="article-image" loading="lazy"></p>
+                <p><img src="images/automating-video-editing-3.jpg" alt="automating video editing 3" class="article-image" loading="lazy"></p>
+                <p><img src="images/automating-video-editing-4.jpg" alt="automating video editing 4" class="article-image" loading="lazy"></p>
+                <p><img src="images/automating-video-editing-5.jpg" alt="automating video editing 5" class="article-image" loading="lazy"></p>
+                <p><img src="images/automating-video-editing-6.jpg" alt="automating video editing 6" class="article-image" loading="lazy"></p>
+                <p><img src="images/automating-video-editing-7.jpg" alt="automating video editing 7" class="article-image" loading="lazy"></p>
+                <p>In the world of content creation, efficiency is key. Whether you're a YouTuber, a filmmaker, or a corporate video producer, automating repetitive tasks can save you hours of work. In this blog post, we'll explore how to automate video editing by leveraging <strong>YAML</strong> for configuration, <strong>Whisper</strong> for audio transcription, and a <strong>confidence monitor</strong> to display key artifacts triggered by audio cues. Let’s dive in! 🚀</p>
+                <hr />
+                <h2>The Problem: Manual Video Editing is Time-Consuming ⏳</h2>
+                <p>Video editing often involves:</p>
+                <ul>
+                <li>
+                <p>Identifying key moments in audio (e.g., specific phrases or keywords).</p>
+                </li>
+                <li>
+                <p>Inserting corresponding visuals, text, or effects at those moments.</p>
+                </li>
+                <li>
+                <p>Ensuring everything is synchronized perfectly.</p>
+                </li>
+                </ul>
+                <p>Doing this manually is tedious and error-prone. But what if we could automate this process? 🤔</p>
+                <hr />
+                <h2>The Solution: Automate with YAML, Whisper, and Triggers 🛠️</h2>
+                <p>Here’s how we can automate video editing:</p>
+                <ul>
+                <li><strong>Record Key Values in YAML</strong> 📝<br />
+                Use a YAML file to define the key moments in your video. For example:</li>
+                </ul>
+                <p><code>triggers: - phrase: "Let's talk about AI" artifact: "ai_image.png" start_time: 0:10 - phrase: "Here’s the graph" artifact: "graph.png" start_time: 1:30</code></p>
+                <p>This YAML file acts as a blueprint for your video, specifying what visuals to display when certain phrases are detected.</p>
+                <ul>
+                <li>
+                <p><strong>Transcribe Audio with Whisper 🎤</strong><br />
+                Use OpenAI’s Whisper model to transcribe the audio from your video. Whisper is highly accurate and can detect specific phrases or keywords in real-time.</p>
+                </li>
+                <li>
+                <p><strong>Trigger Artifacts with Audio Cues 🎯</strong><br />
+                As Whisper transcribes the audio, it matches the detected phrases with the triggers defined in your YAML file. When a match is found, the corresponding artifact (e.g., an image, text, or video clip) is displayed on a <strong>confidence monitor</strong>.</p>
+                </li>
+                <li>
+                <p><strong>Display Artifacts on a Confidence Monitor 🖥️</strong><br />
+                A confidence monitor is a screen that displays the triggered artifacts in real-time. This ensures that the visuals are perfectly synchronized with the audio.</p>
+                </li>
+                </ul>
+                <hr />
+                <h2>How It Works: Step-by-Step 🛠️</h2>
+                <h3>Step 1: Set Up Your Environment</h3>
+                <ul>
+                <li>Install Python and required libraries:</li>
+                </ul>
+                <p><code>pip install openai-whisper pyyaml opencv-python</code></p>
+                <ul>
+                <li>Download and configure FFmpeg for Whisper.</li>
+                </ul>
+                <h3>Step 2: Create Your YAML Configuration</h3>
+                <p>Define your triggers and artifacts in a YAML file (e.g., <code>config.yaml</code>):<code>triggers: - phrase: "Welcome to the show" artifact: "welcome_image.png" start_time: 0:05 - phrase: "Let’s dive into the data" artifact: "data_graph.png" start_time: 1:15</code></p>
+                <h3>Step 3: Transcribe Audio and Detect Triggers</h3>
+                <p>Write a Python script to:</p>
+                <ul>
+                <li>
+                <p>Load the YAML configuration.</p>
+                </li>
+                <li>
+                <p>Transcribe the audio using Whisper.</p>
+                </li>
+                <li>
+                <p>Match detected phrases with the triggers in the YAML file.</p>
+                </li>
+                </ul>
+                <p><code>import whisper import yaml import cv2 # Load YAML config with open("config.yaml", "r") as file: config = yaml.safe_load(file) # Load Whisper model model = whisper.load_model("base") # Transcribe audio audio_file = "your_audio.wav" result = model.transcribe(audio_file) # Process transcription for segment in result["segments"]: text = segment["text"] start_time = segment["start"] for trigger in config["triggers"]: if trigger["phrase"].lower() in text.lower(): print(f"Trigger detected: {trigger['phrase']} at {start_time}") # Display artifact on confidence monitor artifact = cv2.imread(trigger["artifact"]) cv2.imshow("Confidence Monitor", artifact) cv2.waitKey(3000) # Display for 3 seconds</code></p>
+                <h3>Step 4: Display Artifacts on a Confidence Monitor</h3>
+                <p>Use OpenCV to display the triggered artifacts on a screen. This acts as your confidence monitor, ensuring the visuals are synced with the audio.</p>
+                <hr />
+                <h2>Benefits of This Approach 🌟</h2>
+                <ul>
+                <li>
+                <p><strong>Save Time ⏰</strong>: Automate repetitive tasks and focus on creativity.</p>
+                </li>
+                <li>
+                <p><strong>Improve Accuracy 🎯</strong>: Whisper ensures precise transcription and trigger detection.</p>
+                </li>
+                <li>
+                <p><strong>Enhance Production Quality 🎬</strong>: Confidence monitors make it easy to visualize and sync artifacts.</p>
+                </li>
+                </ul>
+                <hr />
+                <h2>Future Enhancements 🚀</h2>
+                <ul>
+                <li>
+                <p><strong>Real-Time Processing</strong>: Integrate with live video feeds for real-time automation.</p>
+                </li>
+                <li>
+                <p><strong>Advanced Triggers</strong>: Use AI to detect emotions, tone, or context in the audio.</p>
+                </li>
+                <li>
+                <p><strong>Dynamic Artifacts</strong>: Generate visuals on-the-fly using AI tools like DALL·E or Stable Diffusion.</p>
+                </li>
+                </ul>
+                <hr />
+                <h2>Conclusion 🎉</h2>
+                <p>Automating video editing with YAML, Whisper, and confidence monitors is a game-changer for content creators. By leveraging these tools, you can streamline your workflow, reduce errors, and produce high-quality videos with ease. So why not give it a try? Your future self will thank you! 🙌</p>
+                <hr />
+                <p>Let me know if you’d like a detailed tutorial or help implementing this system! 😊</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

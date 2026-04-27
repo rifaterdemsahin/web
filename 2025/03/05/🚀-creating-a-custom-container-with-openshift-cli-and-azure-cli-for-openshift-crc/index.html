@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Creating a Custom Container with OpenShift CLI and Azure CLI for OpenShift CRC - Rifat Erdem Sahin</title>
+    <meta name="description" content="🚀 Creating a Custom Container with OpenShift CLI and Azure CLI for OpenShift CRC In this blog post, I’ll guide you through how to create a custom container that includes both the OpenShift CLI (oc) an">
+    <meta name="keywords" content="🚀 Creating a Custom Container with OpenShift CLI and Azure CLI for OpenShift CRC">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/03/05/🚀-creating-a-custom-container-with-openshift-cli-and-azure-cli-for-openshift-crc/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/03/05/🚀-creating-a-custom-container-with-openshift-cli-and-azure-cli-for-openshift-crc/">
+    <meta property="og:title" content="🚀 Creating a Custom Container with OpenShift CLI and Azure CLI for OpenShift CRC">
+    <meta property="og:description" content="🚀 Creating a Custom Container with OpenShift CLI and Azure CLI for OpenShift CRC In this blog post, I’ll guide you through how to create a custom container that includes both the OpenShift CLI (oc) an">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/03/05/🚀-creating-a-custom-container-with-openshift-cli-and-azure-cli-for-openshift-crc/">
+    <meta property="twitter:title" content="🚀 Creating a Custom Container with OpenShift CLI and Azure CLI for OpenShift CRC">
+    <meta property="twitter:description" content="🚀 Creating a Custom Container with OpenShift CLI and Azure CLI for OpenShift CRC In this blog post, I’ll guide you through how to create a custom container that includes both the OpenShift CLI (oc) an">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "🚀 Creating a Custom Container with OpenShift CLI and Azure CLI for OpenShift CRC",
+      "description": "🚀 Creating a Custom Container with OpenShift CLI and Azure CLI for OpenShift CRC In this blog post, I’ll guide you through how to create a custom container that includes both the OpenShift CLI (oc) an",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-03-05",
+      "dateModified": "2025-03-05",
+      "url": "https://www.rifaterdemsahin.com/2025/03/05/🚀-creating-a-custom-container-with-openshift-cli-and-azure-cli-for-openshift-crc/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/03/05/🚀-creating-a-custom-container-with-openshift-cli-and-azure-cli-for-openshift-crc/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">🚀 Creating a Custom Container with OpenShift CLI and Azure CLI for OpenShift CRC</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>March 5, 2025</span>
+                    <span>&bull;</span>
+                    <span>2 min read</span>
+                </div>
+                <p class="article-excerpt">🚀 Creating a Custom Container with OpenShift CLI and Azure CLI for OpenShift CRC In this blog post, I’ll guide you through how to create a custom container that includes both the OpenShift CLI (oc) and the Azure CLI (az) , which can be used within OpenShift CRC (CodeReady Contain</p>
+            </header>
+            <article class="article-content">
+                <h1>🚀 Creating a Custom Container with OpenShift CLI and Azure CLI for OpenShift CRC</h1>
+                <p>In this blog post, I’ll guide you through <strong>how to create a custom container</strong> that includes both the <strong>OpenShift CLI (oc)</strong> and the <strong>Azure CLI (az)</strong>, which can be used within <strong>OpenShift CRC (CodeReady Containers)</strong>. This setup is essential if you want to streamline your development environment by having all the necessary tools in one container.</p>
+                <p><img src="images/creating-a-custom-1.png" alt="creating a custom 1" class="article-image" loading="lazy"></p>
+                <hr />
+                <h3>💡 Why Do You Need This?</h3>
+                <p>If you're working with OpenShift on your local machine using CRC and need to interact with Azure resources (like AKS clusters, storage, or other services), having both the <code>oc</code> and <code>az</code> CLI tools installed in a single container will make your workflow smoother and more efficient. Here's how you can achieve this.</p>
+                <hr />
+                <h2>🛠️ Steps to Create the Container</h2>
+                <h3>1️⃣ <strong>Create a Dockerfile</strong></h3>
+                <p>First, let's define a <code>Dockerfile</code> that installs both <strong>OpenShift CLI</strong> and <strong>Azure CLI</strong>. This Dockerfile is based on an Ubuntu image.</p>
+                <h1>Use Ubuntu as the base image</h1>
+                <p>FROM ubuntu:20.04</p>
+                <h1>Install curl, apt-utils, and dependencies</h1>
+                <p>RUN apt-get update &amp;&amp; apt-get install -y \<br />
+                    curl \<br />
+                    apt-utils \<br />
+                    gnupg2 \<br />
+                    ca-certificates \<br />
+                    lsb-release \<br />
+                    sudo</p>
+                <h1>Install OpenShift CLI (oc)</h1>
+                <p>RUN curl -LO https://mirror.openshift.com/pub/openshift-v4/clients/oc/latest/linux/oc.tar.gz &amp;&amp; \<br />
+                    tar -xzf oc.tar.gz -C /usr/local/bin &amp;&amp; \<br />
+                    chmod +x /usr/local/bin/oc</p>
+                <h1>Install Azure CLI (az)</h1>
+                <p>RUN curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash</p>
+                <h1>Verify installation</h1>
+                <p>RUN oc version &amp;&amp; az version</p>
+                <h3>2️⃣ <strong>Build the Container</strong></h3>
+                <p><img src="images/creating-a-custom-2.png" alt="creating a custom 2" class="article-image" loading="lazy"></p>
+                <p><img src="images/creating-a-custom-3.png" alt="creating a custom 3" class="article-image" loading="lazy"></p>
+                <p><img src="images/creating-a-custom-4.png" alt="creating a custom 4" class="article-image" loading="lazy"></p>
+                <p><img src="images/creating-a-custom-5.png" alt="creating a custom 5" class="article-image" loading="lazy"></p>
+                <p>Once your Dockerfile is ready, navigate to the directory where the file is located and build the container image using the following command:</p>
+                <p>docker build -t my-openshift-azure-cli .</p>
+                <p><img src="images/creating-a-custom-6.png" alt="creating a custom 6" class="article-image" loading="lazy"></p>
+                <h3>3️⃣ <strong>Run the Container</strong></h3>
+                <p><img src="images/creating-a-custom-7.png" alt="creating a custom 7" class="article-image" loading="lazy"></p>
+                <p>To run the container with both <code>oc</code> and <code>az</code> CLI tools installed, use this command:</p>
+                <p>docker run -it my-openshift-azure-cli /bin/bash</p>
+                <p>Now, you'll have a containerized environment where you can use both <strong>OpenShift</strong> and <strong>Azure</strong> CLI tools seamlessly.</p>
+                <hr />
+                <p><img src="images/creating-a-custom-8.png" alt="creating a custom 8" class="article-image" loading="lazy"></p>
+                <p>Here’s a screenshot of the container in action, showing the <code>oc</code> and <code>az</code> CLI tools up and running:</p>
+                <p><img src="images/creating-a-custom-9.png" alt="creating a custom 9" class="article-image" loading="lazy"></p>
+                <hr />
+                <h2>🔄 <strong>Next Steps:</strong></h2>
+                <ul>
+                <li>Connect to your <strong>OpenShift CRC</strong> cluster using the <code>oc</code> tool by logging in:</li>
+                </ul>
+                <p>oc login --token=<your-token> --server=<your-server></p>
+                <ul>
+                <li>Use <strong>Azure CLI</strong> to authenticate and interact with Azure resources:</li>
+                </ul>
+                <p>az login</p>
+                <hr />
+                <h3>🔗 <strong>Connect with Me:</strong></h3>
+                <ul>
+                <li>
+                <p>💼 <a href="https://www.linkedin.com/in/rifaterdemsahin/">LinkedIn</a></p>
+                </li>
+                <li>
+                <p>🐦 <a href="https://x.com/rifaterdemsahin">Twitter</a></p>
+                </li>
+                <li>
+                <p>🎥 <a href="https://www.youtube.com/@RifatErdemSahin">YouTube</a></p>
+                </li>
+                <li>
+                <p>💻 <a href="https://github.com/rifaterdemsahin">GitHub</a></p>
+                </li>
+                </ul>
+                <hr />
+                <p>Now, you’re all set to work with OpenShift and Azure simultaneously from within your container! Let me know if you have any questions or need further guidance.</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

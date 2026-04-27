@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using Whisper for Real-Time Audio Translation on AMD Threadripper 3995X with AMD 6900XT - Rifat Erdem Sahin</title>
+    <meta name="description" content="Using Whisper for Real-Time Audio Translation on AMD Threadripper 3995X with AMD 6900XT This blog post will guide you through setting up OpenAI's Whisper for real-time audio transcription and translat">
+    <meta name="keywords" content="Using Whisper for Real-Time Audio Translation on AMD Threadripper 3995X with AMD 6900XT">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/02/13/using-whisper-for-real-time-audio-translation-on-amd-threadripper-3995x-with-amd-6900xt/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/02/13/using-whisper-for-real-time-audio-translation-on-amd-threadripper-3995x-with-amd-6900xt/">
+    <meta property="og:title" content="Using Whisper for Real-Time Audio Translation on AMD Threadripper 3995X with AMD 6900XT">
+    <meta property="og:description" content="Using Whisper for Real-Time Audio Translation on AMD Threadripper 3995X with AMD 6900XT This blog post will guide you through setting up OpenAI's Whisper for real-time audio transcription and translat">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/02/13/using-whisper-for-real-time-audio-translation-on-amd-threadripper-3995x-with-amd-6900xt/">
+    <meta property="twitter:title" content="Using Whisper for Real-Time Audio Translation on AMD Threadripper 3995X with AMD 6900XT">
+    <meta property="twitter:description" content="Using Whisper for Real-Time Audio Translation on AMD Threadripper 3995X with AMD 6900XT This blog post will guide you through setting up OpenAI's Whisper for real-time audio transcription and translat">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Using Whisper for Real-Time Audio Translation on AMD Threadripper 3995X with AMD 6900XT",
+      "description": "Using Whisper for Real-Time Audio Translation on AMD Threadripper 3995X with AMD 6900XT This blog post will guide you through setting up OpenAI's Whisper for real-time audio transcription and translat",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-02-13",
+      "dateModified": "2025-02-13",
+      "url": "https://www.rifaterdemsahin.com/2025/02/13/using-whisper-for-real-time-audio-translation-on-amd-threadripper-3995x-with-amd-6900xt/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/02/13/using-whisper-for-real-time-audio-translation-on-amd-threadripper-3995x-with-amd-6900xt/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Using Whisper for Real-Time Audio Translation on AMD Threadripper 3995X with AMD 6900XT</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>February 13, 2025</span>
+                    <span>&bull;</span>
+                    <span>4 min read</span>
+                </div>
+                <p class="article-excerpt">Using Whisper for Real-Time Audio Translation on AMD Threadripper 3995X with AMD 6900XT This blog post will guide you through setting up OpenAI's Whisper for real-time audio transcription and translation, running efficiently on an AMD Threadripper 3995X and AMD 6900XT.</p>
+            </header>
+            <article class="article-content">
+                <h1>Using Whisper for Real-Time Audio Translation on AMD Threadripper 3995X with AMD 6900XT</h1>
+                <p>This blog post will guide you through setting up OpenAI's <strong>Whisper</strong> for real-time audio transcription and translation, running efficiently on an AMD Threadripper 3995X and AMD 6900XT. We'll also integrate text-to-speech (TTS) for real-time audio output.</p>
+                <hr />
+                <h2>Prerequisites</h2>
+                <ul>
+                <li>
+                <p><strong>Hardware</strong>:</p>
+                </li>
+                <li>
+                <p>AMD Threadripper 3995X</p>
+                </li>
+                <li>
+                <p>AMD Radeon RX 6900XT (ensure ROCm is installed for GPU acceleration).</p>
+                </li>
+                <li>
+                <p><strong>Software</strong>:</p>
+                </li>
+                <li>
+                <p>Python 3.10 or higher</p>
+                </li>
+                <li>
+                <p>ROCm-compatible PyTorch</p>
+                </li>
+                <li>
+                <p>Required libraries: <code>openai-whisper</code>, <code>ffmpeg</code>, <code>SpeechRecognition</code>, <code>gTTS</code>, and <code>playsound</code>.</p>
+                </li>
+                </ul>
+                <hr />
+                <h2>Step 1: Environment Setup</h2>
+                <ul>
+                <li>Install dependencies:</li>
+                </ul>
+                <p><code>conda create --name whisper_env python=3.10 conda activate whisper_env conda install -c conda-forge ffmpeg pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.6 pip install openai-whisper SpeechRecognition gTTS playsound</code></p>
+                <ul>
+                <li>Verify GPU compatibility:</li>
+                </ul>
+                <p><code>import torch print(torch.cuda.is_available()) # Should return True if ROCm is set up correctly.</code></p>
+                <hr />
+                <h2>Step 2: Real-Time Transcription and Translation</h2>
+                <ul>
+                <li>Create a Python script (<code>real_time_translator.py</code>):</li>
+                </ul>
+                <p><code>import whisper import speech_recognition as sr from gtts import gTTS from playsound import playsound import tempfile # Load Whisper model (optimized for GPU) model = whisper.load_model("large") def transcribe_and_translate(audio_data, target_lang="es"): # Save audio to temp file with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as temp_audio: temp_audio.write(audio_data.get_wav_data()) temp_audio_path = temp_audio.name # Transcribe and translate using Whisper result = model.transcribe(temp_audio_path, task="translate", language=target_lang) return result["text"] def text_to_speech(text, lang="es"): tts = gTTS(text=text, lang=lang) with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as temp_audio: tts.save(temp_audio.name) playsound(temp_audio.name) def main(): recognizer = sr.Recognizer() mic = sr.Microphone() print("Listening...") while True: with mic as source: recognizer.adjust_for_ambient_noise(source) audio = recognizer.listen(source) try: translated_text = transcribe_and_translate(audio, target_lang="es") print(f"Translated Text: {translated_text}") text_to_speech(translated_text, lang="es") except Exception as e: print(f"Error: {e}") if __name__ == "__main__": main()</code></p>
+                <ul>
+                <li>Run the script:</li>
+                </ul>
+                <p><code>python real_time_translator.py</code></p>
+                <hr />
+                <h2>Step 3: Optimizing for AMD GPUs</h2>
+                <ul>
+                <li>
+                <p>Ensure ROCm libraries are correctly installed to leverage the AMD Radeon RX 6900XT.</p>
+                </li>
+                <li>
+                <p>Use <code>torch.device("cuda")</code> to confirm the model runs on GPU.</p>
+                </li>
+                </ul>
+                <hr />
+                <p>This setup enables real-time transcription, translation, and audio output with Whisper on powerful AMD hardware, providing seamless performance for multilingual applications!</p>
+                <p>Sources<br />
+                [1] How to use Whisper in Python - @nicobytes https://nicobytes.com/blog/en/how-to-use-whisper/<br />
+                [2] jahnavirishikesh/Real-Time-Voice-Translator-in-Python - GitHub https://github.com/jahnavirishikesh/Real-Time-Voice-Translator-in-Python<br />
+                [3] Starting with Whisper Large V3 for Real-Time Audio Transcription in … https://blog.gopenai.com/starting-with-whisper-large-v3-for-real-time-audio-transcription-in-python-8ff3e8df34d3<br />
+                [4] How to use open source Whisper ASR in Python - Educative.io https://www.educative.io/answers/how-to-use-open-source-whisper-asr-in-python<br />
+                [5] [PDF] Real-Time Speech Translation with Python - ijrpr https://ijrpr.com/uploads/V5ISSUE6/IJRPR30511.pdf<br />
+                [6] Speech-to-Text on an AMD GPU with Whisper — ROCm Blogs https://rocm.blogs.amd.com/artificial-intelligence/whisper/README.html<br />
+                [7] openai/whisper: Robust Speech Recognition via Large … - GitHub https://github.com/openai/whisper<br />
+                [8] SamirPaulb/real-time-voice-translator - GitHub https://github.com/SamirPaulb/real-time-voice-translator</p>
+                <hr />
+                <p>When using Whisper for real-time audio transcription and translation on an AMD Threadripper 3995X with an AMD 6900XT, <strong>latency</strong> is a critical factor to consider. Here's an overview of latency performance and optimization:</p>
+                <ul>
+                <li>
+                <p><strong>Whisper Latency</strong>:</p>
+                </li>
+                <li>
+                <p>Whisper is not inherently designed for real-time transcription, but implementations like <strong>Whisper-Streaming</strong> achieve around <strong>3.3 seconds latency</strong> for unsegmented long-form speech transcription[1].</p>
+                </li>
+                <li>
+                <p>Optimized APIs like Gladia’s Whisper-based solution can reduce latency to <strong>300 milliseconds</strong>, making it suitable for real-time applications[3].</p>
+                </li>
+                <li>
+                <p>Fireworks' Whisper-based API achieves even lower latency, around <strong>200 milliseconds</strong>, by leveraging advanced optimizations[5].</p>
+                </li>
+                <li>
+                <p><strong>Hardware Impact</strong>:</p>
+                </li>
+                <li>
+                <p>The AMD Threadripper 3995X, with its high core count and octa-channel memory bandwidth, ensures efficient processing of Whisper's computationally heavy tasks. However, the memory latency (~100ns for octa-channel setups) may slightly impact real-time responsiveness[2].</p>
+                </li>
+                <li>
+                <p>The AMD 6900XT can accelerate model inference via ROCm-compatible PyTorch, minimizing GPU-related delays.</p>
+                </li>
+                <li>
+                <p><strong>Challenges and Recommendations</strong>:</p>
+                </li>
+                <li>
+                <p>Latency in Whisper depends on factors like input chunking and emitted tokens. For real-time use, chunking smaller audio segments (~1-2 seconds) is recommended[7][9].</p>
+                </li>
+                <li>
+                <p>Translation tasks introduce additional delays since Whisper often waits to process complete sentences for accuracy, which can add <strong>1-2 seconds</strong> depending on language structure[9].</p>
+                </li>
+                </ul>
+                <p>By combining Whisper-Streaming or optimized APIs with Threadripper's multi-core capabilities and GPU acceleration, you can achieve low-latency transcription and translation suitable for real-time audio output.</p>
+                <p>Sources<br />
+                [1] ufal/whisper_streaming: Whisper realtime streaming for … - GitHub https://github.com/ufal/whisper_streaming<br />
+                [2] AMD Threadripper Pro 3995WX Review: Ripping With 8 Memory … https://www.tomshardware.com/reviews/amd-threadripper-pro-3995wx-review/3<br />
+                [3] Real-Time Audio Transcription API: What it is, How it works - Gladia https://www.gladia.io/blog/real-time-transcription-powered-by-whisper-asr<br />
+                [4] AMD Ryzen Threadripper 3990X review (Page 29) - www.guru3d.com https://www.guru3d.com/review/amd-ryzen-threadripper-3990x-review/page-29/<br />
+                [5] 20x faster Whisper than OpenAI - Fireworks audio transcribes 1 hour … https://fireworks.ai/blog/audio-transcription-launch<br />
+                [6] AMD Threadripper Pro 3995WX Review: Ripping With 8 Memory … https://www.reddit.com/r/hardware/comments/kymsw3/amd_threadripper_pro_3995wx_review_ripping_with_8/<br />
+                [7] Can Whisper be used for real-time speech to text? - Hugging Face https://huggingface.co/spaces/openai/whisper/discussions/76<br />
+                [8] How to maximize Threadripper Pro 3995WX memory bandwidth? https://forum.level1techs.com/t/how-to-maximize-threadripper-pro-3995wx-memory-bandwidth/171367<br />
+                [9] Whisper Real-time Language Translation : r/OpenAIDev - Reddit https://www.reddit.com/r/OpenAIDev/comments/15yqx9w/whisper_realtime_language_translation/</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

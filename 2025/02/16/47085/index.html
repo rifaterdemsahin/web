@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Unleashing AI Power: Running Large Language Models on Mac M1 Pro/Max with 64GB RAM - Rifat Erdem Sahin</title>
+    <meta name="description" content="🚀 Unleashing AI Power: Running Large Language Models on Mac M1 Pro/Max with 64GB RAM 🔮 The Motivation Behind Running LLMs Locally In today's rapidly evolving AI landscape, the ability to run large la">
+    <meta name="keywords" content="🚀 Unleashing AI Power: Running Large Language Models on Mac M1 Pro/Max with 64GB RAM">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/02/16/47085/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/02/16/47085/">
+    <meta property="og:title" content="🚀 Unleashing AI Power: Running Large Language Models on Mac M1 Pro/Max with 64GB RAM">
+    <meta property="og:description" content="🚀 Unleashing AI Power: Running Large Language Models on Mac M1 Pro/Max with 64GB RAM 🔮 The Motivation Behind Running LLMs Locally In today's rapidly evolving AI landscape, the ability to run large la">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/02/16/47085/">
+    <meta property="twitter:title" content="🚀 Unleashing AI Power: Running Large Language Models on Mac M1 Pro/Max with 64GB RAM">
+    <meta property="twitter:description" content="🚀 Unleashing AI Power: Running Large Language Models on Mac M1 Pro/Max with 64GB RAM 🔮 The Motivation Behind Running LLMs Locally In today's rapidly evolving AI landscape, the ability to run large la">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "🚀 Unleashing AI Power: Running Large Language Models on Mac M1 Pro/Max with 64GB RAM",
+      "description": "🚀 Unleashing AI Power: Running Large Language Models on Mac M1 Pro/Max with 64GB RAM 🔮 The Motivation Behind Running LLMs Locally In today's rapidly evolving AI landscape, the ability to run large la",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-02-16",
+      "dateModified": "2025-02-16",
+      "url": "https://www.rifaterdemsahin.com/2025/02/16/47085/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/02/16/47085/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">🚀 Unleashing AI Power: Running Large Language Models on Mac M1 Pro/Max with 64GB RAM</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>February 16, 2025</span>
+                    <span>&bull;</span>
+                    <span>8 min read</span>
+                </div>
+                <p class="article-excerpt">🚀 Unleashing AI Power: Running Large Language Models on Mac M1 Pro/Max with 64GB RAM 🔮 The Motivation Behind Running LLMs Locally In today's rapidly evolving AI landscape, the ability to run large language models (LLMs) locally offers unparalleled advantage.</p>
+            </header>
+            <article class="article-content">
+                <h1>🚀 Unleashing AI Power: Running Large Language Models on Mac M1 Pro/Max with 64GB RAM</h1>
+                <h2>🔮 The Motivation Behind Running LLMs Locally</h2>
+                <p>In today's rapidly evolving AI landscape, the ability to run large language models (LLMs) locally offers unparalleled advantage. Whether you're a developer seeking faster iteration cycles, a researcher aiming for enhanced data privacy, or an enthusiast eager to explore AI capabilities without cloud dependencies, local deployment provides control and immediac. Apple's M1 Pro and M1 Max chips, equipped with 64GB of unified memory, present a compelling option for this purpos</p>
+                <h2>🎯 Achieving Optimal Performance: Tools and Strategies</h2>
+                <p>To harness the full potential of LLMs on your Mac, consider the following roadmap:</p>
+                <ul>
+                <li>
+                <p>*<em>Utilize Efficient Tools</em>: Leverage platforms like <a href="https://lmstudio.com/">LM Studio</a> that are optimized for Apple Silicon, ensuring seamless integration and performan.</p>
+                </li>
+                <li>
+                <p>*<em>Stay Updated with the Latest Environment</em>: Regularly update your macOS and development tools to benefit from performance improvements and new featur.</p>
+                </li>
+                <li>
+                <p>*<em>Adopt Model Quantization</em>: Implement 4-bit quantization techniques to reduce model size, enabling the handling of models up to approximately 46 billion parameters within the available 64GB RM. citeturn0searc1</p>
+                </li>
+                <li>
+                <p>*<em>Monitor System Resources</em>: Use activity monitors to keep an eye on CPU and GPU usage, ensuring that your system operates within optimal paramete.</p>
+                </li>
+                </ul>
+                <h2>🗺 Key Steps to Running LLMs on M1 Pro/Max</h2>
+                <ul>
+                <li><strong>Model Selection and Preparation</strong>:</li>
+                </ul>
+                <p>*<em>Choose the Right Model</em>: Select a model that aligns with your project requirements and is compatible with your hardware capabilits.</p>
+                <ul>
+                <li>
+                <p>*<em>Apply Quantization</em>: Utilize tools to convert models to 4-bit precision, balancing performance with resource consumptn.</p>
+                </li>
+                <li>
+                <p><strong>Setting Up the Environment</strong>:</p>
+                </li>
+                </ul>
+                <p>*<em>Install Necessary Dependencies</em>: Ensure that you have the latest versions of Python, TensorFlow, or PyTorch instald.</p>
+                <ul>
+                <li>
+                <p>*<em>Optimize for Apple Silicon</em>: Use libraries and tools that are specifically optimized for M1 architecture to maximize efficiey.</p>
+                </li>
+                <li>
+                <p><strong>Benchmarking and Performance Tuning</strong>:</p>
+                </li>
+                </ul>
+                <p>*<em>Conduct Initial Benchmarks</em>: Measure token generation speeds to establish a performance basele.</p>
+                <ul>
+                <li>
+                <p>*<em>Adjust Parameters</em>: Fine-tune batch sizes, sequence lengths, and other parameters to achieve optimal throught.</p>
+                </li>
+                <li>
+                <p><strong>Leveraging Advanced Hardware</strong>:</p>
+                </li>
+                </ul>
+                <p>*<em>Consider Upgraded Configurations</em>: For more demanding applications, explore options like the M1 Ultra chip, which offers increased GPU cores and memory bandwidth, potentially enhancing performach1</p>
+                <h2>✨ Web References</h2>
+                <ul>
+                <li>
+                <p>*<em>Hardware Corner</em>: Insights on running large language models on Mac systms. citeturn0searh1</p>
+                </li>
+                <li>
+                <p>*<em>Apple Support</em>: Technical specifications of Mac Studio with M1 Ultra cih1</p>
+                </li>
+                </ul>
+                <h2>🔗 Connect with Me</h2>
+                <ul>
+                <li>
+                <p>💼 <strong>LinkedIn</strong>: <a href="https://www.linkedin.com/in/rifaterdemsahin/">https://www.linkedin.com/in/rifaterdemsahin/</a></p>
+                </li>
+                <li>
+                <p>🐦 <strong>Twitter</strong>: <a href="https://x.com/rifaterdemsahin">https://x.com/rifaterdemsahin</a></p>
+                </li>
+                <li>
+                <p>🎥 <strong>YouTube</strong>: <a href="https://www.youtube.com/@RifatErdemSahin">https://www.youtube.com/@RifatErdemSahin</a></p>
+                </li>
+                <li>
+                <p>💻 <strong>GitHub</strong>: <a href="https://github.com/rifaterdemahin">https://github.com/rifaterdemsahin</a></p>
+                </li>
+                </ul>
+                <p><em>This document was prepared with the assistance of OpenAI's GPT-4 model on February 6 2025.</em></p>
+                <p><img src="images/unleashing-ai-power-1.png" alt="unleashing ai power 1" class="article-image" loading="lazy"></p>
+                <p><img src="images/unleashing-ai-power-2.png" alt="unleashing ai power 2" class="article-image" loading="lazy"></p>
+                <p><img src="images/unleashing-ai-power-3.png" alt="unleashing ai power 3" class="article-image" loading="lazy"></p>
+                <p>output</p>
+                <pre><code>&lt;think&gt;
+                Alright, the user asked for a Python code to build a Bitcoin trading app. I need to figure out what kind of app they're looking for. Since they didn't specify much, I'll assume it's a basic trading simulation tool.
+                
+                First, I should outline the essential features such an app would need. Real-time data is crucial, so integrating a WebSocket service like Websockets.io makes sense. That way, price updates happen as they occur without delay.
+                
+                Next, order book functionality is important for traders to see buy and sell offers. I'll include methods to add orders and display them.
+                
+                A backtester would be useful for users to develop strategies based on historical data. So, I'll add a function that simulates trades according to a given strategy.
+                
+                An order summary will help track individual trades' details like price, amount, and profit or loss. This is important for transparency.
+                
+                Visualization is key in trading, so I'll use Plotly to create line charts showing Bitcoin's historical prices. This gives users a visual trend to base their decisions on.
+                
+                For the frontend, I'll structure it with a simple HTML layout using basic elements like input fields, buttons, and dropdowns. This keeps it user-friendly without overcomplicating things.
+                
+                In terms of dependencies, I know Websockets.io requires their library, websockets, which provides WebSocket support in Python. Including this as a dependency is necessary for the code to run smoothly.
+                
+                I'll structure the code by importing necessary libraries at the top. Then, create a class-based application with attributes for price data, order book, orders, and strategy parameters.
+                
+                The main loop will handle connecting to the WebSocket server and updating prices in real-time. Each new price message will trigger the display of current Bitcoin price.
+                
+                For handling orders, I'll define methods to add buy and sell orders, update their status, and remove them when they're filled or canceled. The order book will be a dictionary showing all active orders with their statuses.
+                
+                The backtester function uses the provided strategy to determine positions at each price point, simulating trades accordingly. This helps users test their strategies without actual market impact.
+                
+                Including an order summary allows tracking individual trade executions, which is essential for monitoring performance and calculating profits or losses.
+                
+                The visualize Bitcoin price section will use Plotly's line chart to display historical data stored in a list. This provides a clear trend visualization based on past prices.
+                
+                Finally, I'll set up the event listeners for price changes, order updates, and strategy execution. When a user makes a decision (like buy, sell, or hold), it triggers an event that sends the corresponding message to the server.
+                
+                I also considered adding error handling and logging but kept it basic since the code is a starting point. The user can expand upon it with more features as needed.
+                
+                Overall, this code provides a foundation for a Bitcoin trading app, allowing users to simulate trading, backtest strategies, manage orders, and visualize price trends. It's a good starting point that can be enhanced with additional functionalities.
+                &lt;/think&gt;
+                
+                Here's a basic Python code outline for a Bitcoin trading app using WebSocket and Plotly:
+                
+                ```python
+                import websockets
+                import asyncio
+                from typing import Dict, List, Union
+                import pandas as pd
+                import numpy as np
+                import time
+                import yfinance as yf
+                import plotly.graph_objects as go
+                
+                class TradingApp:
+                    def __init__(self):
+                        self.price_data = &amp;#091;]
+                        self.order_book = {}  # {order_id: {'price': price, 'amount': amount, 'status': status}}
+                        self.orders = &amp;#091;]      # &amp;#091;{'side': side, 'price': price, 'amount': amount, 'status': status}]
+                        self.strategy = None
+                        self.position = {
+                            &quot;long&quot;: 0,
+                            &quot;short&quot;: 0,
+                            &quot;equity&quot;: 0
+                        }
+                        self.current_price = 0
+                
+                    async def connect(self, websocket: str):
+                        self.ws = await websockets.connect(websocket)
+                        self.subscribes = &amp;#091;'price']  # Add other subscriptions as needed
+                
+                    async def send(self, message: str):
+                        await self.ws.send(message)
+                
+                    async def receive(self):
+                        async for msg in self.ws:
+                            if msg&amp;#091;'e'] == 'connect':
+                                print(&quot;Connected to server&quot;)
+                            elif msg&amp;#091;'e'] == 'price':
+                                self.current_price = float(msg&amp;#091;'data'])
+                                self.price_data.append({
+                                    'timestamp': time.time(),
+                                    'price': self.current_price
+                                await asyncio.sleep(0.5)  # Adjust based on desired refresh rate
+                
+                    def update_order_book(self, order):
+                        if order&amp;#091;'status'] in &amp;#091;'filled', 'partially_filled']:
+                            del self.order_book&amp;#091;order&amp;#091;'id']]
+                        elif order&amp;#091;'status'] == 'open':
+                            self.order_book&amp;#091;order&amp;#091;'id']] = order
+                        else:
+                            pass  # For canceled orders
+                
+                    def add_order(self, side: str, amount: float):
+                        order = {
+                            'id': len(self.orders) + 1,
+                            'side': side,
+                            'amount': amount,
+                            'status': 'open'
+                        }
+                        self.orders.append(order)
+                        self.update_order_book(order)
+                
+                    def update_order_status(self, order_id: int, status: str):
+                        if order_id in self.order_book:
+                            self.order_book&amp;#091;order_id]&amp;#091;'status'] = status
+                            # Trigger an event when the order status changes
+                            self.send(f&quot;update_order_status.{order_id}.{status}&quot;)
+                
+                    def remove_order(self, order_id: int):
+                        del self.order_book.get(order_id, None)
+                        if order_id in &amp;#091;order&amp;#091;'id'] for order in self.orders]:
+                            index = &amp;#091;i for i, o in enumerate(self.orders) if o&amp;#091;'id'] == order_id]&amp;#091;0]
+                            del self.orders&amp;#091;index]
+                
+                    def backtester(self, price_data: List&amp;#091;Dict], strategy_func):
+                        # Implement backtesting logic
+                        pass
+                
+                    def order_summary(self, order_id: int):
+                        return next((order for order in self.orders if order&amp;#091;'id'] == order_id), None)
+                
+                    def visualize_price(self):
+                        # Create a line chart of historical Bitcoin prices
+                        df = pd.DataFrame(self.price_data)
+                        fig = go.Figure()
+                        fig.add_trace(go.Scatter(x=df&amp;#091;'timestamp'], y=df&amp;#091;'price'],
+                                                 mode='lines', name='Bitcoin Price'))
+                        fig.update_layout(title='Bitcoin Historical Prices',
+                                         xaxis_title='Time',
+                                         yaxis_title='Price (USD)')
+                        fig.show()
+                
+                    async def main(self):
+                        while True:
+                            # Simulate price changes
+                            current_price = self.current_price + np.random.normal(0, 5)
+                            await self.send(f&quot;price.{current_price}&quot;)
+                
+                            # Backtest strategy at fixed intervals
+                            if len(self.price_data) % 10 == 0:
+                                if self.strategy and self.position&amp;#091;'equity'] &gt; 0:
+                                    position_size = abs(float(self.strategy()))
+                                    lot_size = (position_size * 0.01) / current_price
+                                    amount = lot_size
+                                    print(f&quot;Simulating trade: {lot_size:.4f} BTC at {current_price:.2f}&quot;)
+                
+                            await asyncio.sleep(0.5)
+                
+                # Start the application
+                async def run():
+                    app = TradingApp()
+                    app.connect(&quot;ws://socket.example.com/criptowalid&quot;)  # Replace with actual server URL
+                    await app.main()
+                
+                if __name__ == &quot;__main__&quot;:
+                    asyncio.run(run())
+                </code></pre>
+                <p>To use this code:</p>
+                <ol>
+                <li>Install required dependencies:</li>
+                </ol>
+                <pre><code class="language-bash">pip install websockets yfinance plotly
+                </code></pre>
+                <ol start="2">
+                <li>
+                <p>Modify the server URL in <code>connect</code> method to point to your Bitcoin trading WebSocket server.</p>
+                </li>
+                <li>
+                <p>The app includes basic features like:<br />
+                   - Real-time price updates using WebSockets<br />
+                   - Order book functionality<br />
+                   - Backtester for strategy development<br />
+                   - Order summary tracking<br />
+                   - Price visualization</p>
+                </li>
+                <li>
+                <p>The code is modular and can be extended with more features such as:<br />
+                   - Slippage simulation<br />
+                   - Position sizing calculations<br />
+                   - Risk management tools<br />
+                   - Multiple charting libraries (Candlesticks, OHLC)<br />
+                   - Historical data analysis<br />
+                   - Risk metrics calculation</p>
+                </li>
+                </ol>
+                <p>Note: This is a simplified version of a Bitcoin trading app. In a production environment, you would need to:<br />
+                - Implement proper error handling<br />
+                - Add logging and monitoring<br />
+                - Use secure WebSocket authentication<br />
+                - Integrate with real Bitcoin exchange APIs (like Binance API)<br />
+                - Add risk management features<br />
+                - Include order matching functionality</p>
+                <p>You can enhance this code by adding more trading strategies, indicators, and machine learning models for price prediction.<br />
+                ```</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hands On Prometheus With Thanos RemoteWrite EndPoint - Rifat Erdem Sahin</title>
+    <meta name="description" content="Hands On Prometheus With Thanos RemoteWrite EndPoint Introduction Clearly explain the need for highly available and scalable storage solutions for Prometheus metrics in a cloud-native environment. The">
+    <meta name="keywords" content="Hands On Prometheus With Thanos RemoteWrite EndPoint">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/04/05/hands-on-prometheus-with-thanos-remotewrite-endpoint/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/04/05/hands-on-prometheus-with-thanos-remotewrite-endpoint/">
+    <meta property="og:title" content="Hands On Prometheus With Thanos RemoteWrite EndPoint">
+    <meta property="og:description" content="Hands On Prometheus With Thanos RemoteWrite EndPoint Introduction Clearly explain the need for highly available and scalable storage solutions for Prometheus metrics in a cloud-native environment. The">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/04/05/hands-on-prometheus-with-thanos-remotewrite-endpoint/">
+    <meta property="twitter:title" content="Hands On Prometheus With Thanos RemoteWrite EndPoint">
+    <meta property="twitter:description" content="Hands On Prometheus With Thanos RemoteWrite EndPoint Introduction Clearly explain the need for highly available and scalable storage solutions for Prometheus metrics in a cloud-native environment. The">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Hands On Prometheus With Thanos RemoteWrite EndPoint",
+      "description": "Hands On Prometheus With Thanos RemoteWrite EndPoint Introduction Clearly explain the need for highly available and scalable storage solutions for Prometheus metrics in a cloud-native environment. The",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-04-05",
+      "dateModified": "2025-04-05",
+      "url": "https://www.rifaterdemsahin.com/2025/04/05/hands-on-prometheus-with-thanos-remotewrite-endpoint/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/04/05/hands-on-prometheus-with-thanos-remotewrite-endpoint/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Hands On Prometheus With Thanos RemoteWrite EndPoint</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>April 5, 2025</span>
+                    <span>&bull;</span>
+                    <span>31 min read</span>
+                </div>
+                <p class="article-excerpt">Hands On Prometheus With Thanos RemoteWrite EndPoint Introduction Clearly explain the need for highly available and scalable storage solutions for Prometheus metrics in a cloud-native environment. The intro should set the context for using Thanos in an OpenShift setup.</p>
+            </header>
+            <article class="article-content">
+                <h1>Hands On Prometheus With Thanos RemoteWrite EndPoint</h1>
+                <p><strong>Introduction</strong></p>
+                <ul>
+                <li>Clearly explain the need for highly <strong>available </strong>and scalable storage solutions for Prometheus metrics in a<strong> cloud-native environment. </strong>The intro should set the context for using Thanos in an OpenShift setup.</li>
+                </ul>
+                <p>Source &gt; <a href="https://github.com/rifaterdemsahin/thanosremotewriteendpoint">https://github.com/rifaterdemsahin/thanosremotewriteendpoint</a></p>
+                <p>Start Journey on CRC &gt; The <strong>environment </strong>you have!</p>
+                <p><img src="images/hands-on-prometheus-1.png" alt="hands on prometheus 1" class="article-image" loading="lazy"></p>
+                <p>**Objectives **</p>
+                <p>In <strong>Thanos</strong>, the <strong>Remote Write</strong> feature is used to send metrics from multiple <strong>Prometheus</strong> instances to a centralized <strong>Thanos Store</strong> or object storage. This setup enables the <strong>global querying</strong> of metrics across several Prometheus instances, providing a unified view of all metrics data.</p>
+                <h3>How <strong>Remote Write</strong> Works in Thanos:</h3>
+                <ul>
+                <li>
+                <p><strong>Prometheus Instance</strong>: Each Prometheus instance collects and stores its own local metrics data.</p>
+                </li>
+                <li>
+                <p><strong>Remote Write</strong>: Prometheus uses the <code>remote_write</code> feature to send the metrics data to a <strong>Thanos Receiver</strong> or <strong>Thanos Sidecar</strong> for long-term storage and querying.</p>
+                </li>
+                <li>
+                <p><strong>Thanos Store Gateway</strong>: Thanos Store Gateway acts as a query layer to access these distributed metrics across different Prometheus instances.</p>
+                </li>
+                <li>
+                <p><strong>Global Metrics Access</strong>: With <strong>Thanos Querier</strong>, you can query metrics stored across various Prometheus instances, making it possible to gather insights from all your systems without accessing each Prometheus instance individually.</p>
+                </li>
+                </ul>
+                <h3>Benefits:</h3>
+                <ul>
+                <li>
+                <p><strong>Scalability</strong>: You can scale your metrics infrastructure by adding more Prometheus instances without worrying about centralized storage limitations.</p>
+                </li>
+                <li>
+                <p><strong>Durability</strong>: Metrics are written to long-term storage, allowing you to retain data for long periods.</p>
+                </li>
+                <li>
+                <p><strong>Federated Queries</strong>: Access metrics globally from multiple instances, making troubleshooting, monitoring, and optimizing systems much more efficient.</p>
+                </li>
+                </ul>
+                <p>In short, <strong>Thanos Remote Write</strong> allows you to gather metrics from several Prometheus instances <em>and </em>aggregate them in one central place for easier querying and long-term storage.</p>
+                <p><strong>Components Overview</strong></p>
+                <p>⚡ <strong>Thanos</strong></p>
+                <p>Image Reference &gt; <a href="https://www.redhat.com/en/blog/federated-prometheus-with-thanos-receive">https://www.redhat.com/en/blog/federated-prometheus-with-thanos-receive</a></p>
+                <p><img src="images/hands-on-prometheus-2.png" alt="hands on prometheus 2" class="article-image" loading="lazy"></p>
+                <p>A highly scalable system for global querying and long-term storage of Prometheus data. It extends Prometheus by providing an additional layer for multi-cluster aggregation and high availability.</p>
+                <ul>
+                <li>
+                <p><strong>Key Feature</strong>: Enables global querying of metrics across multiple Prometheus instances with minimal performance overhead.</p>
+                </li>
+                <li>
+                <p><strong>Use Case</strong>: When you need to retain metrics for long periods and query data from multiple Prometheus setups across different clusters.</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>🔍 <strong>Query</strong></h3>
+                <p><img src="images/hands-on-prometheus-3.png" alt="hands on prometheus 3" class="article-image" loading="lazy"></p>
+                <p>Image Reference &gt; <a href="https://developers.redhat.com/articles/2024/07/09/get-started-openshift-cluster-observability-operator">https://developers.redhat.com/articles/2024/07/09/get-started-openshift-cluster-observability-operator</a></p>
+                <p>This component serves as the user interface to perform <strong>queries</strong> against Prometheus and Thanos systems.<strong>BOTH SYSTEMS!</strong> It acts as the central gateway for retrieving and visualizing your metrics data.</p>
+                <ul>
+                <li>
+                <p><strong>Key Feature</strong>: It unifies all queries, enabling users to aggregate metrics from multiple sources seamlessly.</p>
+                </li>
+                <li>
+                <p><strong>Use Case</strong>: Perfect for when you need quick insights into your system’s performance by querying data from both current and long-term storage.</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>🏎️ <strong>Sidecar</strong></h3>
+                <p><img src="images/hands-on-prometheus-4.png" alt="hands on prometheus 4" class="article-image" loading="lazy"></p>
+                <p>Image Reference &gt; <a href="https://www.redhat.com/en/blog/thanos-long-term-storage-for-your-prometheus-metrics-on-openshift">https://www.redhat.com/en/blog/thanos-long-term-storage-for-your-prometheus-metrics-on-openshift</a></p>
+                <p>A <strong>sidecar</strong> is deployed alongside Prometheus to stream metrics data into <strong>Thanos object storage for long-term archiving</strong>. It also enables the <strong>federation </strong>of Prometheus instances.</p>
+                <ul>
+                <li>
+                <p><strong>Key Feature</strong>: Efficient data transfer from Prometheus to Thanos object storage for high availability and durability.</p>
+                </li>
+                <li>
+                <p><strong>Use Case</strong>: Use this when you need to make Prometheus metrics available for longer-term storage and global querying.</p>
+                </li>
+                </ul>
+                <p>Image Reference &gt; <a href="https://medium.com/@yakuphanbilgic3/thanos-for-multi-cluster-monitoring-in-aws-eks-clusters-using-s3-storage-09c684e05e2b">https://medium.com/@yakuphanbilgic3/thanos-for-multi-cluster-monitoring-in-aws-eks-clusters-using-s3-storage-09c684e05e2b</a></p>
+                <p>Observability Cluster Idea</p>
+                <p><img src="images/hands-on-prometheus-5.png" alt="hands on prometheus 5" class="article-image" loading="lazy"></p>
+                <hr />
+                <h3>📈 <strong>Prometheus</strong></h3>
+                <p><img src="images/hands-on-prometheus-6.png" alt="hands on prometheus 6" class="article-image" loading="lazy"></p>
+                <p>Reference &gt; <a href="https://uk.devoteam.com/expert-view/observability-in-openshift-with-prometheus/">https://uk.devoteam.com/expert-view/observability-in-openshift-with-prometheus/</a></p>
+                <p>An open-source systems monitoring and alerting toolkit. It scrapes metrics from services at defined intervals, evaluates rule expressions, and triggers alerts based on thresholds.</p>
+                <ul>
+                <li>
+                <p><strong>Key Feature</strong>: Powerful, flexible, and designed to handle large volumes of time-series data in a cloud-native environment.</p>
+                </li>
+                <li>
+                <p><strong>Use Case</strong>: Central tool for collecting <strong>metrics </strong>and enabling real-time monitoring and alerting.</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>📊 <strong>Metrics</strong></h3>
+                <p>Metrics are the key data points collected by Prometheus, representing system or application performance. They can be scraped from various services and visualized to monitor trends or trigger alerts.</p>
+                <ul>
+                <li>
+                <p><strong>Key Feature</strong>: Provides critical insights into the operational health of your infrastructure.</p>
+                </li>
+                <li>
+                <p><strong>Use Case</strong>: Use metrics to ensure your applications and systems are running smoothly, efficiently, and within acceptable thresholds.</p>
+                </li>
+                </ul>
+                <p>Image Reference &gt; <a href="https://uk.devoteam.com/expert-view/observability-in-openshift-with-prometheus/">https://uk.devoteam.com/expert-view/observability-in-openshift-with-prometheus/</a></p>
+                <p><img src="images/hands-on-prometheus-7.png" alt="hands on prometheus 7" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>This overview with emojis provides a quick and enjoyable snapshot of each component! 😊</p>
+                <p>To enhance the prerequisites section for deploying Prometheus and Thanos on OpenShift using CRC, you could include a brief overview of setting up an OpenShift cluster with CRC and links to relevant documentation. Here's how you can structure it:</p>
+                <hr />
+                <h3>Prerequisites</h3>
+                <p>Before starting the deployment of Prometheus and Thanos on OpenShift using CRC, make sure you meet the following prerequisites:</p>
+                <ul>
+                <li>
+                <p><strong>OpenShift Cluster with CRC (CodeReady Containers)</strong>:</p>
+                </li>
+                <li>
+                <p>Ensure you have CRC installed and set up for OpenShift. CRC is a tool that enables you to run a local OpenShift cluster on your machine.</p>
+                </li>
+                <li>
+                <p><a href="https://crc.dev/crc/#getting-started">CRC Installation Guide</a></p>
+                </li>
+                <li>
+                <p><a href="https://docs.openshift.com/container-platform/latest/installation/installing-preparing.html">Setting Up an OpenShift Cluster using CRC</a></p>
+                </li>
+                <li>
+                <p><strong>User Permissions</strong>:</p>
+                </li>
+                <li>
+                <p>You must have the appropriate permissions to deploy and manage resources in OpenShift. Ensure your user account has the <strong><code>cluster-admin</code> </strong>role or the necessary permissions to manage projects, namespaces, and cluster resources.</p>
+                </li>
+                </ul>
+                <p><img src="images/hands-on-prometheus-8.png" alt="hands on prometheus 8" class="article-image" loading="lazy"></p>
+                <p><img src="images/hands-on-prometheus-9.png" alt="hands on prometheus 9" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><a href="https://docs.openshift.com/container-platform/latest/authentication/using-rbac.html">Managing Permissions in OpenShift</a></li>
+                </ul>
+                <p>To see your role and assigned permissions in OpenShift, you can use the following <code>oc</code> command:</p>
+                <p>oc whoami --show-console</p>
+                <p>This command will show the currently logged-in user. To see the roles or permissions assigned to your user, you can use:</p>
+                <h3>To view your roles in a specific project (namespace):</h3>
+                <p>oc get rolebinding -n default --user $(oc whoami)</p>
+                <p>To convert the following command from Bash to PowerShell:</p>
+                <p>oc get rolebinding -n default --user $(oc whoami)</p>
+                <p>The equivalent PowerShell command would look like this:</p>
+                <p>$whoami = oc whoami<br />
+                oc get rolebinding -n default --user $whoami</p>
+                <p>In PowerShell, <code>$whoami</code> stores the output of the <code>oc whoami</code> command, and then you pass it to the <code>--user</code> option of the <code>oc get rolebinding</code> command. This should work similarly to the Bash version.</p>
+                <p>Replace <code>&lt;namespace&gt;</code> with the project name you're interested in.</p>
+                <p><img src="images/hands-on-prometheus-10.png" alt="hands on prometheus 10" class="article-image" loading="lazy"></p>
+                <h3>To view all roles assigned to your user:</h3>
+                <p>oc get clusterrolebindings --all-namespaces | grep $(oc whoami)</p>
+                <p>This will show all cluster-wide role bindings associated with your user.</p>
+                <p>Let me know if you need further help with these!</p>
+                <ul>
+                <li>
+                <p><strong>Prometheus Operator &amp; Thanos Setup</strong>:</p>
+                </li>
+                <li>
+                <p>You'll need the Prometheus Operator to manage Prometheus instances, and Thanos for long-term storage and scaling.</p>
+                </li>
+                <li>
+                <p><a href="https://docs.openshift.com/container-platform/latest/monitoring/configuring-the-monitoring-stack.html">Installing the Prometheus Operator</a></p>
+                </li>
+                <li>
+                <p><a href="https://thanos.io/tip/thanos/getting-started.md/">Thanos Quickstart</a></p>
+                </li>
+                <li>
+                <p><strong>Sufficient Resources</strong>:</p>
+                </li>
+                <li>
+                <p>Ensure your system has sufficient resources (CPU, memory) to run CRC, Prometheus, and Thanos. Typically, CRC requires a minimum of 4 CPUs and 9GB of RAM.</p>
+                </li>
+                </ul>
+                <p><img src="images/hands-on-prometheus-11.png" alt="hands on prometheus 11" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>To install the <strong>Prometheus Operator</strong> on OpenShift using <code>oc</code>, you can follow these steps:</p>
+                <h3>1. <strong>Ensure OpenShift Monitoring is Enabled</strong></h3>
+                <p>Ensure that your OpenShift cluster has the monitoring stack enabled. The Prometheus Operator is part of the OpenShift Monitoring stack.</p>
+                <p>At the end we are going to get pod monitors enabled</p>
+                <p><img src="images/hands-on-prometheus-12.png" alt="hands on prometheus 12" class="article-image" loading="lazy"></p>
+                <h3>2. <strong>Create a Namespace for Monitoring</strong></h3>
+                <p>If you want to install the Prometheus Operator in a specific namespace, you can create one. For example, you can create a <code>monitoring</code> namespace:</p>
+                <p>oc create namespace monitoring</p>
+                <p><img src="images/hands-on-prometheus-13.png" alt="hands on prometheus 13" class="article-image" loading="lazy"></p>
+                <h3>3. <strong>Install Prometheus Operator using OperatorHub</strong></h3>
+                <p>OpenShift includes an integrated OperatorHub where you can install the Prometheus Operator. If you want to install it via the CLI, follow these steps:</p>
+                <h4>Option 1: Using the CLI with <code>oc</code></h4>
+                <ul>
+                <li>Create a <code>Subscription</code> to the Prometheus Operator:</li>
+                </ul>
+                <p>cat &lt;&lt;EOF | oc apply -f -<br />
+                apiVersion: operators.coreos.com/v1alpha1<br />
+                kind: Subscription<br />
+                metadata:<br />
+                  name: prometheus<br />
+                  namespace: openshift-operators<br />
+                spec:<br />
+                  channel: stable<br />
+                  installPlanApproval: Automatic<br />
+                  name: prometheus<br />
+                  source: community-operators<br />
+                  sourceNamespace: openshift-marketplace<br />
+                EOF</p>
+                <p>This will create a subscription to install Prometheus from the <strong>Community Operators</strong> catalog.</p>
+                <p>In PowerShell, there is no direct equivalent to the <code>cat &lt;&lt;EOF | ...</code> syntax used in Bash. Instead, you can use PowerShell's <code>@</code>-here strings to construct the YAML file content and pipe it to the <code>oc apply -f -</code> command. Here's the PowerShell equivalent:</p>
+                <p>$yaml = @"<br />
+                apiVersion: operators.coreos.com/v1alpha1<br />
+                kind: Subscription<br />
+                metadata:<br />
+                  name: prometheus<br />
+                  namespace: openshift-operators<br />
+                spec:<br />
+                  channel: stable<br />
+                  installPlanApproval: Automatic<br />
+                  name: prometheus<br />
+                  source: community-operators<br />
+                  sourceNamespace: openshift-marketplace<br />
+                "@</p>
+                <h1>Apply the YAML to OpenShift</h1>
+                <p>$yaml | oc apply -f -</p>
+                <p>This PowerShell script defines the YAML content in the <code>@</code>-here string and then pipes it directly to the <code>oc apply -f -</code> command, just as you would in the Bash version.</p>
+                <p>Copy paste is ready and it works</p>
+                <p><img src="images/hands-on-prometheus-14.png" alt="hands on prometheus 14" class="article-image" loading="lazy"></p>
+                <p>Operator Coming in </p>
+                <p><img src="images/hands-on-prometheus-15.png" alt="hands on prometheus 15" class="article-image" loading="lazy"></p>
+                <p>Still test the oc command with a linux box is an option</p>
+                <p><img src="images/hands-on-prometheus-16.png" alt="hands on prometheus 16" class="article-image" loading="lazy"></p>
+                <p>Try installing from this side </p>
+                <p><img src="images/hands-on-prometheus-17.png" alt="hands on prometheus 17" class="article-image" loading="lazy"></p>
+                <p><img src="images/hands-on-prometheus-18.png" alt="hands on prometheus 18" class="article-image" loading="lazy"></p>
+                <p>Operator install more success &gt; why people use the operators</p>
+                <p><img src="images/hands-on-prometheus-19.png" alt="hands on prometheus 19" class="article-image" loading="lazy"></p>
+                <p><img src="images/hands-on-prometheus-20.png" alt="hands on prometheus 20" class="article-image" loading="lazy"></p>
+                <p><img src="images/hands-on-prometheus-21.png" alt="hands on prometheus 21" class="article-image" loading="lazy"></p>
+                <p><img src="images/hands-on-prometheus-22.png" alt="hands on prometheus 22" class="article-image" loading="lazy"></p>
+                <p><img src="images/hands-on-prometheus-23.png" alt="hands on prometheus 23" class="article-image" loading="lazy"></p>
+                <h4>Service Running</h4>
+                <p><img src="images/hands-on-prometheus-24.png" alt="hands on prometheus 24" class="article-image" loading="lazy"></p>
+                <p><img src="images/hands-on-prometheus-25.png" alt="hands on prometheus 25" class="article-image" loading="lazy"></p>
+                <p>Option 2: Using OperatorHub in the OpenShift Console</p>
+                <ul>
+                <li>
+                <p>Navigate to <strong>OperatorHub</strong> in the OpenShift web console.</p>
+                </li>
+                <li>
+                <p>Search for <strong>Prometheus</strong>.</p>
+                </li>
+                <li>
+                <p>Install the <strong>Prometheus Operator</strong> from the available options.</p>
+                </li>
+                </ul>
+                <p><img src="images/hands-on-prometheus-26.png" alt="hands on prometheus 26" class="article-image" loading="lazy"></p>
+                <h3>4. <strong>Verify Installation</strong></h3>
+                <p>After the installation, you can check if the Prometheus Operator is running by verifying the <code>ClusterServiceVersion</code> (CSV) status:</p>
+                <p>oc get clusterserviceversion -n openshift-operators</p>
+                <p><img src="images/hands-on-prometheus-27.png" alt="hands on prometheus 27" class="article-image" loading="lazy"></p>
+                <p>You should see the Prometheus Operator CSV with a status of <code>Succeeded</code>.</p>
+                <p><img src="images/hands-on-prometheus-28.png" alt="hands on prometheus 28" class="article-image" loading="lazy"></p>
+                <p><img src="images/hands-on-prometheus-29.png" alt="hands on prometheus 29" class="article-image" loading="lazy"></p>
+                <p><img src="images/hands-on-prometheus-30.png" alt="hands on prometheus 30" class="article-image" loading="lazy"></p>
+                <blockquote></blockquote>
+                <p>To create</p>
+                <p><img src="images/hands-on-prometheus-31.png" alt="hands on prometheus 31" class="article-image" loading="lazy"></p>
+                <p><img src="images/hands-on-prometheus-32.png" alt="hands on prometheus 32" class="article-image" loading="lazy"></p>
+                <p><img src="images/hands-on-prometheus-33.png" alt="hands on prometheus 33" class="article-image" loading="lazy"></p>
+                <p><img src="images/hands-on-prometheus-34.png" alt="hands on prometheus 34" class="article-image" loading="lazy"></p>
+                <h3>5. <strong>Deploy Prometheus and Alertmanager Instances</strong></h3>
+                <p><img src="images/hands-on-prometheus-35.png" alt="hands on prometheus 35" class="article-image" loading="lazy"></p>
+                <p>Once the Prometheus Operator is installed, you can deploy Prometheus instances. Here's an example of deploying Prometheus using a custom resource:</p>
+                <p>cat &lt;&lt;EOF | oc apply -f -<br />
+                apiVersion: monitoring.coreos.com/v1<br />
+                kind: Prometheus<br />
+                metadata:<br />
+                  name: example-prometheus<br />
+                  namespace: monitoring<br />
+                spec:<br />
+                  replicas: 1<br />
+                  serviceAccountName: prometheus<br />
+                  serviceMonitorSelector: {}<br />
+                EOF</p>
+                <p>This will deploy a Prometheus instance in the <code>monitoring</code> namespace.</p>
+                <p>The given code snippet in PowerShell is using a <code>heredoc</code> style to pass a YAML configuration to the <code>oc</code> (OpenShift command-line tool) via the <code>apply</code> command. However, PowerShell doesn't natively support <code>heredoc</code> syntax (like the <code>cat &lt;&lt;EOF</code> you might see in a Unix shell). To achieve the same result in PowerShell, you'll need to handle multi-line strings differently.</p>
+                <p>Here’s how you can adapt it in PowerShell:</p>
+                <p>$yaml = @"<br />
+                apiVersion: monitoring.coreos.com/v1<br />
+                kind: Prometheus<br />
+                metadata:<br />
+                  name: example-prometheus<br />
+                  namespace: monitoring<br />
+                spec:<br />
+                  replicas: 1<br />
+                  serviceAccountName: prometheus<br />
+                  serviceMonitorSelector: {}<br />
+                "@</p>
+                <p>$yaml | oc apply -f -</p>
+                <p>This script stores the YAML content in the <code>$yaml</code> variable and then pipes it to the <code>oc apply -f -</code> command, which should apply the configuration to your OpenShift cluster.</p>
+                <p><img src="images/hands-on-prometheus-36.png" alt="hands on prometheus 36" class="article-image" loading="lazy"></p>
+                <p>Let me know if you need further details or explanation!</p>
+                <h3>6. <strong>Access Prometheus</strong></h3>
+                <p>Once deployed, you can expose the Prometheus instance via a route to access the web UI:</p>
+                <p>oc expose svc example-prometheus -n monitoring</p>
+                <p>Then, you can access Prometheus at the URL provided by OpenShift.</p>
+                <p><img src="images/hands-on-prometheus-37.png" alt="hands on prometheus 37" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>This should get the Prometheus Operator and instance running on your OpenShift cluster using <code>oc</code>. Let me know if you need more details!</p>
+                <p>This way, you provide clear, actionable steps for users who are setting up CRC and configuring OpenShift permissions, along with links to documentation.</p>
+                <p>Stuck at installing </p>
+                <p><img src="images/hands-on-prometheus-38.png" alt="hands on prometheus 38" class="article-image" loading="lazy"></p>
+                <p>**Deployment **</p>
+                <p>In OpenShift, a <strong>Subscription</strong> is a key resource related to the Operator Lifecycle Manager (OLM), which is responsible for managing the lifecycle of Operators in your cluster. It automates the process of installing, updating, and managing Operators and their associated services.</p>
+                <p>A <strong>Subscription</strong> resource defines which version of an Operator should be installed and kept up to date on your OpenShift cluster. Here's what it does:</p>
+                <ul>
+                <li>
+                <p><strong>Operator Version Management</strong>: The Subscription specifies the desired version (or channel) of an Operator to be installed or updated automatically. The OLM will monitor this and ensure that the specified version is installed or updated when new versions are available.</p>
+                </li>
+                <li>
+                <p><strong>Tracking Updates</strong>: By creating a Subscription, the OLM keeps track of the Operator and ensures that future updates from the specified channel are applied automatically.</p>
+                </li>
+                <li>
+                <p><strong>Association with CatalogSources</strong>: The Subscription is linked to a specific <code>CatalogSource</code>, which contains a list of Operators available for installation. The Subscription references this catalog to find the Operator to install or update.</p>
+                </li>
+                </ul>
+                <h3>Example: Subscription YAML</h3>
+                <p>Here’s a simplified YAML example of a Subscription:</p>
+                <p>apiVersion: operators.coreos.com/v1alpha1<br />
+                kind: Subscription<br />
+                metadata:<br />
+                  name: my-operator-subscription<br />
+                  namespace: openshift-operators<br />
+                spec:<br />
+                  channel: stable<br />
+                  name: my-operator<br />
+                  source: operatorhubio-catalog<br />
+                  sourceNamespace: openshift-marketplace<br />
+                  installPlanApproval: Automatic</p>
+                <ul>
+                <li>
+                <p><strong>channel</strong>: Defines the update stream (e.g., "stable", "beta") that the OLM should track for the Operator.</p>
+                </li>
+                <li>
+                <p><strong>name</strong>: Specifies the name of the Operator from the catalog.</p>
+                </li>
+                <li>
+                <p><strong>source</strong>: Specifies the <code>CatalogSource</code> to look for the Operator (e.g., from OperatorHub).</p>
+                </li>
+                <li>
+                <p><strong>sourceNamespace</strong>: Namespace where the catalog is available (usually <code>openshift-marketplace</code>).</p>
+                </li>
+                <li>
+                <p><strong>installPlanApproval</strong>: Controls whether updates are applied automatically (<code>Automatic</code>) or manually (<code>Manual</code>).</p>
+                </li>
+                </ul>
+                <h3>Key Concepts Related to Subscription:</h3>
+                <ul>
+                <li>
+                <p><strong>CatalogSource</strong>: Contains the list of Operators that OLM can install.</p>
+                </li>
+                <li>
+                <p><strong>InstallPlan</strong>: A plan created to track the actions needed to install or upgrade an Operator.</p>
+                </li>
+                <li>
+                <p><strong>OperatorGroup</strong>: Defines the scope where an Operator is available, such as a specific namespace or cluster-wide.</p>
+                </li>
+                </ul>
+                <p>In summary, a Subscription in OpenShift is how you specify which Operators should be installed and updated, and the OLM takes care of the rest, ensuring your cluster is always running the desired version of an Operator.</p>
+                <p>Thanos is not here &gt; lets reboot and restart</p>
+                <p><img src="images/hands-on-prometheus-39.png" alt="hands on prometheus 39" class="article-image" loading="lazy"></p>
+                <p>Uninstall is not very straight forward ?</p>
+                <p><img src="images/hands-on-prometheus-40.png" alt="hands on prometheus 40" class="article-image" loading="lazy"></p>
+                <p>Operands are left inside </p>
+                <p><img src="images/hands-on-prometheus-41.png" alt="hands on prometheus 41" class="article-image" loading="lazy"></p>
+                <p>The error message in the screenshot indicates that when attempting to uninstall the <strong>Cluster Observability Operator</strong> in OpenShift, there is an issue with loading the operands (which are the resources managed by the operator). The detailed error message explains:</p>
+                <ul>
+                <li>
+                <p><strong>Cannot load Operands</strong>: The operator failed to load its operands, and these will need to be deleted manually.</p>
+                </li>
+                <li>
+                <p><strong>Error loading Operands for cluster-observability-operator</strong>: The message says that the ClusterServiceVersion (CSV) of the operator is not in a "succeeded state," meaning there could be a problem with the operator’s installation or its current state, which has affected its ability to list custom resources (the operands).</p>
+                </li>
+                </ul>
+                <h3>Possible Reasons:</h3>
+                <ul>
+                <li>
+                <p><strong>CSV in Failed or Incorrect State</strong>: The operator's CSV might be incomplete or failed, making it impossible for OpenShift to gather the operand details.</p>
+                </li>
+                <li>
+                <p><strong>Operator Malfunction</strong>: The underlying operator might be malfunctioning or in an unstable state, which affects its ability to track resources it deployed.</p>
+                </li>
+                <li>
+                <p><strong>Cluster Issues</strong>: There may be cluster-wide issues that prevent the operator from working correctly, or it could be a misconfiguration of resources.</p>
+                </li>
+                </ul>
+                <h3>Next Steps:</h3>
+                <ul>
+                <li>
+                <p><strong>Manual Cleanup</strong>: Since the error says operands need to be deleted manually, you may need to find and delete the custom resources created by this operator manually. This can include CRDs (Custom Resource Definitions) or other resources related to the Cluster Observability Operator.</p>
+                </li>
+                <li>
+                <p><strong>Check CSV</strong>: You may want to inspect the status of the ClusterServiceVersion (CSV) for the operator by running:</p>
+                </li>
+                </ul>
+                <p>oc get csv -n <namespace></p>
+                <p>This will help you verify the state of the operator and troubleshoot further.</p>
+                <ul>
+                <li><strong>Check Logs</strong>: You can check the operator logs to find additional details about what might be wrong with the CSV.</li>
+                </ul>
+                <p>This is a typical OpenShift operator uninstallation issue when the operator's state isn't "healthy," but you can proceed with careful manual cleanup and investigation.</p>
+                <p>Delete with the remaining action</p>
+                <p><img src="images/hands-on-prometheus-42.png" alt="hands on prometheus 42" class="article-image" loading="lazy"></p>
+                <p>The deployment steps are well-structured. For each command, provide some context on why the action is necessary (e.g., what each Thanos component does during deployment).</p>
+                <ul>
+                <li>Consider expanding on troubleshooting tips or common errors (e.g., permission issues with the Prometheus Operator or networking for Thanos Query).</li>
+                </ul>
+                <p>Files to deploy &gt; <a href="https://github.com/rifaterdemsahin/thanosremotewriteendpoint/tree/main/Code">https://github.com/rifaterdemsahin/thanosremotewriteendpoint/tree/main/Code</a></p>
+                <p>Monitoring Still not clear</p>
+                <p><img src="images/hands-on-prometheus-43.png" alt="hands on prometheus 43" class="article-image" loading="lazy"></p>
+                <p>To delete the <code>monitoring</code> namespace in OpenShift using <code>oc</code>, you can use the following command:</p>
+                <p>oc delete namespace monitoring</p>
+                <p>However, keep in mind the following important aspects:</p>
+                <h3>1. <strong>Namespace Deletion Can Take Time</strong>:</h3>
+                <p>Deleting a namespace in OpenShift can take some time as it attempts to clean up all the resources within it. If there are lingering resources or issues with certain objects, it might get stuck in the <code>Terminating</code> state.</p>
+                <h3>2. <strong>Force Deletion (if Necessary)</strong>:</h3>
+                <p>If the namespace is stuck in <code>Terminating</code> state, you might need to forcefully remove the finalizers from the resources that are preventing the namespace from being deleted. You can do this by manually editing the resources within the namespace.</p>
+                <p>To force delete a namespace stuck in <code>Terminating</code>:</p>
+                <ul>
+                <li>First, get the namespace details:</li>
+                </ul>
+                <p>oc get namespace monitoring -o json</p>
+                <ul>
+                <li>Edit the JSON output and remove the <code>"kubernetes" finalizer</code>. Save the JSON to a file called <code>monitoring.json</code>, for example. Example:</li>
+                </ul>
+                <p>"metadata": {<br />
+                       "finalizers": [<br />
+                           "kubernetes"<br />
+                       ]<br />
+                   }</p>
+                <ul>
+                <li>After removing the finalizer, apply the change:</li>
+                </ul>
+                <p>oc replace --raw "/api/v1/namespaces/monitoring/finalize" -f ./monitoring.json</p>
+                <h3>3. <strong>Alternative Cleanup</strong>:</h3>
+                <p>If you need to clean up specific resources inside the namespace first (like Operators, CRDs, etc.) before deleting the namespace, you can run:</p>
+                <p>oc delete all --all -n monitoring</p>
+                <p>This will delete all resources (Pods, Services, Deployments, etc.) inside the namespace, making it easier for the namespace to be deleted.</p>
+                <p>If the deletion is successful, you should see confirmation, and the namespace will be cleaned up. If you face any issues, let me know the error message, and I can assist further!</p>
+                <p><img src="images/hands-on-prometheus-44.png" alt="hands on prometheus 44" class="article-image" loading="lazy"></p>
+                <p>Nurture and Nature waiting together ( dev and ops )</p>
+                <p><img src="images/hands-on-prometheus-45.png" alt="hands on prometheus 45" class="article-image" loading="lazy"></p>
+                <p><strong>Architecture Diagram</strong></p>
+                <ul>
+                <li>Visual aids such as the architecture diagram make it easier to understand how the pieces fit together. Encourage readers to adapt the architecture to their needs (e.g., optional long-term storage with S3).</li>
+                </ul>
+                <p><strong>Optional Enhancements</strong></p>
+                <ul>
+                <li>The deployment of the Thanos Store Gateway is listed as optional, which is good. Add a note on when it's recommended (e.g., for long-term storage needs).</li>
+                </ul>
+                <p><strong>Conclusion</strong></p>
+                <ul>
+                <li>Reiterate the value of using Thanos and Prometheus in OpenShift, especially for enterprises looking to scale monitoring and storage while maintaining performance.</li>
+                </ul>
+                <p><strong>Call to Action</strong></p>
+                <p><strong>🔗 Connect with me:</strong></p>
+                <ul>
+                <li>
+                <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/rifaterdemsahin/">https://www.linkedin.com/in/rifaterdemsahin/</a></p>
+                </li>
+                <li>
+                <p>🐦 Twitter: <a href="https://x.com/rifaterdemsahin">https://x.com/rifaterdemsahin</a></p>
+                </li>
+                <li>
+                <p>🎥 YouTube: <a href="https://www.youtube.com/@RifatErdemSahin">https://www.youtube.com/@RifatErdemSahin</a></p>
+                </li>
+                <li>
+                <p>💻 GitHub: <a href="https://github.com/rifaterdemsahin">https://github.com/rifaterdemsahin</a></p>
+                </li>
+                </ul>
+                <p><strong>-------------------------------------------------------</strong></p>
+                <h2>ERRORS</h2>
+                <p><strong>WSL Did Not Work #</strong></p>
+                <p>It seems that the <code>crc</code> command is not installed or not available in your current environment, which is necessary for managing CodeReady Containers (CRC). To resolve this issue, follow these steps:</p>
+                <h3>1. <strong>Install CRC</strong></h3>
+                <p>If CRC is not installed, you need to install it. Here are the steps for installing CRC on a Linux machine:</p>
+                <h1>Download CRC</h1>
+                <p>curl -LO https://mirror.openshift.com/pub/openshift-v4/clients/crc/latest/crc-linux-amd64.tar.xz</p>
+                <h1>Extract the tarball</h1>
+                <p>tar -xvf crc-linux-amd64.tar.xz</p>
+                <h1>Move CRC to your bin directory for easy access</h1>
+                <p>sudo mv crc-linux-*/crc /usr/local/bin/</p>
+                <h1>Check CRC version</h1>
+                <p>crc version</p>
+                <p><img src="images/hands-on-prometheus-46.png" alt="hands on prometheus 46" class="article-image" loading="lazy"></p>
+                <p>Here’s a one-liner version of your commands in Bash:</p>
+                <p>tar -xvf crc-linux-amd64.tar.xz &amp;&amp; sudo mv crc-linux-*/crc /usr/local/bin/ &amp;&amp; crc version</p>
+                <p>This command extracts the tarball, moves the CRC binary to the <code>/usr/local/bin/</code> directory, and checks the CRC version, all in a single line.</p>
+                <p><img src="images/hands-on-prometheus-47.png" alt="hands on prometheus 47" class="article-image" loading="lazy"></p>
+                <h3>2. <strong>Set Up CRC</strong></h3>
+                <p><img src="images/hands-on-prometheus-48.png" alt="hands on prometheus 48" class="article-image" loading="lazy"></p>
+                <p>Once CRC is installed, you'll need to configure it and start the local OpenShift cluster:</p>
+                <h1>Set up CRC (this will download the necessary OpenShift images and set up the environment)</h1>
+                <p>crc setup</p>
+                <h1>Start CRC</h1>
+                <p>crc start</p>
+                <p>Make sure you have sufficient resources (at least 4 CPUs and 9GB RAM) for CRC to run.</p>
+                <h3>3. <strong>Log in to OpenShift</strong></h3>
+                <p>Once CRC is running, you can log in to the OpenShift cluster. Use the credentials provided during the <code>crc start</code> process or run the following to get them:</p>
+                <p>crc console --credentials</p>
+                <p>This will give you the correct server URL and token to log in.</p>
+                <p>Now try logging in again using the <code>oc login</code> command with the correct URL and token.</p>
+                <hr />
+                <p>If the issue persists after installing CRC, check for network configuration issues or port conflicts on your machine.</p>
+                <p>Let me know how this goes!</p>
+                <p><img src="images/hands-on-prometheus-49.png" alt="hands on prometheus 49" class="article-image" loading="lazy"></p>
+                <p>To set up the OpenShift <code>oc</code> client on a Red Hat system, follow these steps:</p>
+                <h3>Step 1: Download the <code>oc</code> Client</h3>
+                <p>OpenShift's <code>oc</code> command-line tool is available as part of the OpenShift client package.</p>
+                <p>You can download the latest version of the <code>oc</code> client by running the following commands:</p>
+                <h1>Download the latest oc client for Linux (Red Hat)</h1>
+                <p>curl -LO https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz</p>
+                <h1>Extract the tarball</h1>
+                <p>tar -xvzf openshift-client-linux.tar.gz</p>
+                <h3>Step 2: Move the <code>oc</code> Client to a Location in Your PATH</h3>
+                <p>Move the <code>oc</code> binary to <code>/usr/local/bin/</code> or another directory that is in your system’s <code>$PATH</code> so that it can be executed from anywhere:</p>
+                <p>sudo mv oc /usr/local/bin/<br />
+                sudo mv kubectl /usr/local/bin/  # kubectl is also included in the package if you need it</p>
+                <h3>Step 3: Verify the Installation</h3>
+                <p>You can verify that <code>oc</code> is properly installed by checking the version:</p>
+                <p>oc version</p>
+                <p>This will display the client version and information about the OpenShift server if connected.</p>
+                <h3>Step 4: Log in to OpenShift</h3>
+                <p>To log in to your OpenShift cluster, use the following command with your cluster API URL and authentication token:</p>
+                <p>oc login --server=https://<openshift-api-url>:6443 --token=<your-token></p>
+                <p>Replace <code>&lt;openshift-api-url&gt;</code> with your OpenShift API server URL and <code>&lt;your-token&gt;</code> with the OpenShift login token.</p>
+                <p>If you don't have a token, you can generate one by logging into the OpenShift web console, going to <strong>"Copy Login Command"</strong>, and following the instructions.</p>
+                <h3>Step 5: Use <code>oc</code> Commands</h3>
+                <p>Once logged in, you can start using <code>oc</code> commands to interact with your OpenShift cluster. Some useful commands include:</p>
+                <ul>
+                <li>List projects:</li>
+                </ul>
+                <p>oc get projects</p>
+                <ul>
+                <li>Create a new project:</li>
+                </ul>
+                <p>oc new-project <project-name></p>
+                <ul>
+                <li>View cluster status:</li>
+                </ul>
+                <p>oc status</p>
+                <hr />
+                <p>This setup should allow you to use the OpenShift <code>oc</code> client on your Red Hat system. Let me know if you encounter any issues!</p>
+                <p>Here's a one-liner to download, extract, and install the OpenShift <code>oc</code> client on a Red Hat system:</p>
+                <p>curl -LO https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz &amp;&amp; tar -xvzf openshift-client-linux.tar.gz &amp;&amp; sudo mv oc kubectl /usr/local/bin/ &amp;&amp; oc version</p>
+                <p>This will download the <code>oc</code> client, extract it, move the binaries to <code>/usr/local/bin/</code>, and display the <code>oc</code> version to verify the installation.</p>
+                <p>Move to host only </p>
+                <p><img src="images/hands-on-prometheus-50.png" alt="hands on prometheus 50" class="article-image" loading="lazy"></p>
+                <p>In the screenshot, I see that you have set the virtual machine's network adapter to <strong>NAT</strong>. With <strong>NAT</strong> (Network Address Translation), your virtual machine (VM) shares the host's IP address for external communication, but sometimes it can cause DNS issues, especially when trying to resolve external hosts like <code>api.crc.testing</code>.</p>
+                <p>Here’s what you can try to resolve this:</p>
+                <h3>1. <strong>Switch to Bridged Network Adapter</strong>:</h3>
+                <p>Instead of using NAT, try switching to <strong>Bridged</strong> mode. This will allow your VM to directly connect to the same network as the host machine, making it easier to resolve DNS and external IP addresses.</p>
+                <p>Steps:</p>
+                <ul>
+                <li>
+                <p>In VMware Workstation, open the <strong>Virtual Machine Settings</strong>.</p>
+                </li>
+                <li>
+                <p>Go to the <strong>Network Adapter</strong> section.</p>
+                </li>
+                <li>
+                <p>Change the connection from <strong>NAT</strong> to <strong>Bridged</strong>.</p>
+                </li>
+                <li>
+                <p>Click <strong>OK</strong> to save your settings.</p>
+                </li>
+                </ul>
+                <p>After making the change:</p>
+                <ul>
+                <li>
+                <p>Restart the virtual machine.</p>
+                </li>
+                <li>
+                <p>Test the connection again using the <code>oc login</code> command.</p>
+                </li>
+                </ul>
+                <h3>2. <strong>Check DNS Configuration</strong>:</h3>
+                <p>If you prefer using NAT, you can manually update the DNS settings in your VM to ensure proper name resolution.</p>
+                <ul>
+                <li>
+                <p>Open the terminal in your VM.</p>
+                </li>
+                <li>
+                <p>Edit the <code>/etc/resolv.conf</code> file to use a known DNS server like Google’s:</p>
+                </li>
+                </ul>
+                <p>sudo nano /etc/resolv.conf</p>
+                <p>Add or modify the following line:</p>
+                <p>nameserver 8.8.8.8</p>
+                <ul>
+                <li>
+                <p>Save and exit.</p>
+                </li>
+                <li>
+                <p>Try logging in again using <code>oc login</code>.</p>
+                </li>
+                </ul>
+                <h3>3. <strong>Restart Network Services</strong>:</h3>
+                <p>If you’ve already changed settings, sometimes network services need to be restarted. You can restart the networking service inside your VM with:</p>
+                <p>sudo systemctl restart NetworkManager</p>
+                <p>Let me know if this helps!</p>
+                <p>Based on your <code>ipconfig</code> output, you have several network interfaces. Since you're working with a virtual machine in VMware and your setup seems to involve OpenShift on a Red Hat VM, here’s how you can choose the appropriate IP address:</p>
+                <h3>Steps to determine the right IP address:</h3>
+                <ul>
+                <li>
+                <p><strong>Using Bridged Mode</strong>: If your VM is set to <strong>Bridged</strong> mode, it will connect directly to your local network, so you should use the host machine's <strong>Ethernet 3</strong> IP address. In your case:</p>
+                </li>
+                <li>
+                <p><strong>192.168.3.46</strong> is the IPv4 address assigned to your physical network interface. This IP is part of your LAN, and your VM will get a similar IP address if it is in <strong>Bridged</strong> mode.</p>
+                </li>
+                <li>
+                <p>You can use this IP to access services on your VM from your host machine.</p>
+                </li>
+                <li>
+                <p><strong>Using NAT Mode</strong>: If your VM is configured in <strong>NAT</strong> mode (as per your current VMware settings):</p>
+                </li>
+                <li>
+                <p>The VM will use the host’s NAT adapter to connect to external networks. The relevant IP address for NAT is usually associated with VMware's <strong>VMnet8</strong> adapter.</p>
+                </li>
+                <li>
+                <p>The IP for NAT is <strong>192.168.28.1</strong> (VMware Network Adapter VMnet8). Your VM will be assigned an IP address within the same <strong>192.168.28.x</strong> range.</p>
+                </li>
+                <li>
+                <p>To find out your VM's IP address in NAT mode, inside the VM, run the following command:<br />
+                <code>bash ip addr show</code><br />
+                Look for the IP address associated with your virtual network interface (typically <code>eth0</code> or <code>ens33</code>).</p>
+                </li>
+                <li>
+                <p><strong>WSL/Hyper-V Interfaces</strong>: The interfaces like <code>vEthernet</code> and <code>WSL</code> are for internal communication between Hyper-V or WSL instances and shouldn't be used for your VMware VM networking.</p>
+                </li>
+                </ul>
+                <h3>Steps:</h3>
+                <ul>
+                <li>If you’re using <strong>NAT mode</strong>, check your VM’s IP by running:</li>
+                </ul>
+                <p>ip addr show</p>
+                <p>Find the IP that corresponds to <strong>VMnet8’s</strong> subnet (192.168.28.x), which is what the VM will be assigned. Use that IP to communicate with your VM.</p>
+                <ul>
+                <li>
+                <p>If you switch to <strong>Bridged mode</strong> (recommended for external connectivity):</p>
+                </li>
+                <li>
+                <p>Use an IP similar to your host’s <strong>192.168.3.x</strong> subnet for the VM. This IP can be found inside the VM after switching to bridged mode.</p>
+                </li>
+                </ul>
+                <p>Let me know how it goes!</p>
+                <p><img src="images/hands-on-prometheus-51.png" alt="hands on prometheus 51" class="article-image" loading="lazy"></p>
+                <p>The error message you're seeing, <strong>"No connection could be made because the target machine actively refused it"</strong>, suggests that the OpenShift API server is either not running or not properly listening on the provided IP and port (<code>192.168.3.46:6443</code>).</p>
+                <h3>Here’s how to troubleshoot and resolve the issue:</h3>
+                <h3>1. <strong>Verify CRC (CodeReady Containers) is Running</strong></h3>
+                <p>Since you're using OpenShift with CRC, ensure that CRC is properly started on your Red Hat VM. Run the following command inside your VM to check the status of CRC:</p>
+                <p>crc status</p>
+                <p>If CRC is not running, start it with:</p>
+                <p>crc start</p>
+                <p>If CRC starts successfully, it will provide the correct API URL and login credentials (token). Use the API URL from the <code>crc start</code> output.</p>
+                <h3>2. <strong>Check if the OpenShift API Server is Listening</strong></h3>
+                <p>Verify that the OpenShift API server is running and listening on port <code>6443</code>. Run the following command on your Red Hat VM:</p>
+                <p>sudo netstat -tuln | grep 6443</p>
+                <p>This command will check if any service is listening on port <code>6443</code>. You should see a line similar to this:</p>
+                <p>tcp   0   0 0.0.0.0:6443   0.0.0.0:*    LISTEN</p>
+                <p>If nothing is shown, it means that the OpenShift API server is not running properly.</p>
+                <h3>3. <strong>Confirm the Correct API Server URL</strong></h3>
+                <p>After ensuring CRC is running, you can get the exact OpenShift API URL by running:</p>
+                <p>crc console --credentials</p>
+                <p>This will display the correct URL to use with the <code>oc login</code> command. Make sure you’re using this URL when logging in from your host machine.</p>
+                <h3>4. <strong>Ensure the VM's Firewall is Open (if necessary)</strong></h3>
+                <p>If the API server is running but the host still cannot connect, check if the Red Hat VM’s firewall is blocking the connection. You can temporarily stop the firewall to check if that resolves the issue:</p>
+                <p>sudo systemctl stop firewalld</p>
+                <p>After stopping the firewall, try logging in again with:</p>
+                <p>oc login --token=<your-token> --server=https://<your-vm-ip>:6443</p>
+                <p>If that works, you might need to configure your firewall rules to allow traffic on port <code>6443</code>.</p>
+                <h3>5. <strong>Test Network Connectivity</strong></h3>
+                <p>From your host machine (Windows), check if you can reach the OpenShift API server by pinging the VM:</p>
+                <p>ping 192.168.3.46</p>
+                <p>If you cannot ping it, it means there's a network connectivity issue. Ensure that the VM is properly networked using <strong>Bridged mode</strong> or <strong>NAT</strong>, and the appropriate IP addresses are used.</p>
+                <hr />
+                <p>Let me know how these steps work for you, or if you need further help!</p>
+                <p>It appears that the OpenShift API server on your Red Hat VM (or CRC instance) is still unreachable despite disabling the firewall on your Windows machine. This means the issue likely lies within the VM configuration or the OpenShift service itself, rather than the firewall on your host machine.</p>
+                <p>Here are some additional steps you can take to troubleshoot:</p>
+                <h3>1. <strong>Verify CRC is Running Properly</strong></h3>
+                <p>Since you're working with CRC (CodeReady Containers) to run OpenShift, you need to ensure that it is properly running inside your Red Hat VM. Inside the VM, run the following:</p>
+                <p>crc status</p>
+                <p>If CRC is not running, start it with:</p>
+                <p>crc start</p>
+                <p>Make sure that it successfully starts, and take note of the API server address and port.</p>
+                <h3>2. <strong>Check the OpenShift API Server URL</strong></h3>
+                <p>If CRC is running, it should provide you with the correct API server URL after starting. You can also retrieve the URL using:</p>
+                <p>crc console --credentials</p>
+                <p>Ensure that you are using the correct URL in your <code>oc login</code> command. If the <code>192.168.3.46:6443</code> address is not correct, CRC will give you the correct API endpoint.</p>
+                <h3>3. <strong>Check if the OpenShift API Server is Listening</strong></h3>
+                <p>Inside the VM, you need to verify that the OpenShift API server is actually listening on port <code>6443</code>. Run:</p>
+                <p>sudo netstat -tuln | grep 6443</p>
+                <p>If the output does not show that the server is listening on port <code>6443</code>, there may be a problem with the OpenShift or CRC configuration. In this case, restarting CRC or fixing the cluster setup might be required.</p>
+                <h3>4. <strong>Test Connectivity from Windows to the VM</strong></h3>
+                <p>You should ensure that your Windows host can reach the Red Hat VM. Try to <code>ping</code> the VM from your Windows machine:</p>
+                <p>ping 192.168.3.46</p>
+                <p>If <code>ping</code> fails, it means there’s a network connectivity issue. In that case:</p>
+                <ul>
+                <li>
+                <p>Ensure that your VM network adapter is correctly set to <strong>Bridged</strong> mode if you’re trying to use the <code>192.168.3.x</code> network.</p>
+                </li>
+                <li>
+                <p>If the VM is in <strong>NAT</strong> mode, use the IP that the VM has been assigned within the NAT range (which is usually different).</p>
+                </li>
+                </ul>
+                <p>You can verify the IP of the VM from within the VM by running:</p>
+                <p>ip addr show</p>
+                <h3>5. <strong>Ensure the VM Firewall Allows Port 6443</strong></h3>
+                <p>If the VM has a firewall running (like <code>firewalld</code> on Red Hat), you need to ensure that it is not blocking the OpenShift API port (<code>6443</code>).</p>
+                <p>To temporarily disable the firewall on your Red Hat VM for testing, you can run:</p>
+                <p>sudo systemctl stop firewalld</p>
+                <p>Then, try logging in again from Windows using:</p>
+                <p>oc login --token=<your-token> --server=https://<correct-vm-ip>:6443</p>
+                <h3>6. <strong>Review CRC Logs (if needed)</strong></h3>
+                <p>If CRC is running but you continue to face issues, you can check the logs to see if there are any errors related to the OpenShift API server:</p>
+                <p>crc logs</p>
+                <hr />
+                <p>By verifying these steps, you should be able to pinpoint where the connection issue lies and resolve it. Let me know if you need further guidance!</p>
+                <p><img src="images/hands-on-prometheus-52.png" alt="hands on prometheus 52" class="article-image" loading="lazy"></p>
+                <p>To find the <strong>direct connection IP</strong> of your CRC (CodeReady Containers) OpenShift instance, follow these steps:</p>
+                <h3>1. <strong>Check IP Address in CRC VM</strong></h3>
+                <p>If you have a local CRC setup and need to find the IP address for direct access, use the following commands inside your Red Hat VM (or the terminal where CRC is running):</p>
+                <h4>Option 1: Check IP address using <code>ip a</code></h4>
+                <p>You can use the <code>ip a</code> command to find the IP address of the CRC virtual machine's network interfaces:</p>
+                <p>ip a</p>
+                <p>Look for the interface with an IP in a range like <code>192.168.x.x</code>, which corresponds to the network segment CRC uses (typically <code>192.168.130.x</code> or similar). This is the IP used for direct access.</p>
+                <h4>Option 2: Check CRC VM Networking Settings</h4>
+                <p>Alternatively, you can run the following command to check the exact IP address that CRC is using:</p>
+                <p>crc ip</p>
+                <p>This will return the IP address of the CRC instance, which you can use to access the OpenShift API directly.</p>
+                <h3>2. <strong>Check the API Server Address via CRC Console</strong></h3>
+                <p>When CRC starts, it provides details about the OpenShift web console and API server URL. If you missed this output, you can retrieve it with the following command:</p>
+                <p>crc console --credentials</p>
+                <p>This will give you the correct API server URL (IP and port) that you can use with <code>oc login</code>.</p>
+                <h3>3. <strong>Determine the Network Mode (NAT vs. Bridged)</strong></h3>
+                <p>If you're using CRC in a virtual machine (VM) and want to find the IP address on your host network, ensure your VM is configured correctly:</p>
+                <ul>
+                <li>
+                <p><strong>For Bridged Mode</strong>: Your VM will be assigned an IP address from your local network, usually in the same range as your host machine.</p>
+                </li>
+                <li>
+                <p><strong>For NAT Mode</strong>: CRC will use an internal NAT network. To find the correct IP, use the <code>crc ip</code> command.</p>
+                </li>
+                </ul>
+                <h3>Example of Direct Connection Command:</h3>
+                <p>Once you have the IP address from <code>crc ip</code>, you can try logging in to OpenShift using:</p>
+                <p>oc login --token=<your-token> --server=https://<crc-ip>:6443</p>
+                <p>Replace <code>&lt;crc-ip&gt;</code> with the IP returned from <code>crc ip</code>.</p>
+                <p>Let me know if this helps or if you need more guidance!</p>
+                <p>Pinging the host machine (your physical Windows machine) using <code>127.0.0.1</code> <strong>from inside a VMware virtual machine</strong> will not work because <code>127.0.0.1</code> refers to the <strong>loopback address</strong> or <strong>localhost</strong> of the machine itself, whether it's your host or the virtual machine. So, when you try to ping <code>127.0.0.1</code> from inside the VM, it will simply ping the VM itself.</p>
+                <p>If you want to ping your <strong>host machine</strong> (the Windows machine) from within a <strong>VMware virtual machine</strong>, follow these steps:</p>
+                <h3>1. <strong>Identify the Host's Local IP Address</strong></h3>
+                <p>You need to use the host machine's <strong>real network IP address</strong> (not <code>127.0.0.1</code>). You can find this by running the <code>ipconfig</code> command on your host (Windows) machine.</p>
+                <p>For example, in the <code>ipconfig</code> output you provided earlier:</p>
+                <p>Ethernet adapter Ethernet 3:</p>
+                <p>IPv4 Address. . . . . . . . . . . : 192.168.3.46</p>
+                <p>Here, <code>192.168.3.46</code> is the IP address of your host machine on your local network.</p>
+                <h3>2. <strong>Ping the Host from the VM</strong></h3>
+                <p>Once you have the host machine’s IP address, you can ping it from your virtual machine. In the terminal inside your VM, run:</p>
+                <p>ping 192.168.3.46</p>
+                <h3>3. <strong>Ensure Proper Networking Configuration</strong></h3>
+                <p>The VM and host machine need to be on the same network, and this depends on how your <strong>VMware network adapter</strong> is configured. VMware typically uses two main network configurations for VMs:</p>
+                <ul>
+                <li>
+                <p><strong>NAT Mode</strong>: The VM shares the host’s IP for external communication. It can ping the host using the local network IP (e.g., <code>192.168.3.46</code>).</p>
+                </li>
+                <li>
+                <p><strong>Bridged Mode</strong>: The VM gets its own IP address on the local network and can communicate directly with the host and other devices on the network.</p>
+                </li>
+                </ul>
+                <h4>To Check and Set Network Mode in VMware:</h4>
+                <ul>
+                <li>
+                <p>In VMware Workstation, go to <strong>Virtual Machine Settings</strong>.</p>
+                </li>
+                <li>
+                <p>Under <strong>Network Adapter</strong>, check if it is set to <strong>NAT</strong> or <strong>Bridged</strong>.</p>
+                </li>
+                <li>
+                <p><strong>Bridged</strong>: If you want the VM to act like it's directly connected to your local network.</p>
+                </li>
+                <li>
+                <p><strong>NAT</strong>: If you want the VM to share the host’s IP but still access external networks.</p>
+                </li>
+                </ul>
+                <h3>4. <strong>Firewall Considerations</strong></h3>
+                <p>Ensure that the firewall on your <strong>host machine</strong> (Windows) is not blocking ICMP (ping) requests. You can temporarily disable the firewall or allow ICMP requests using the following PowerShell command:</p>
+                <p>New-NetFirewallRule -DisplayName "Allow ICMPv4-In" -Protocol ICMPv4 -Direction Inbound -Action Allow</p>
+                <p>This allows ICMP (ping) requests to pass through the firewall.</p>
+                <hr />
+                <p>By using the host machine’s actual network IP address (like <code>192.168.3.46</code> in your case), you should be able to successfully ping it from within the VM. Let me know if this works for you!</p>
+                <p><img src="images/hands-on-prometheus-53.png" alt="hands on prometheus 53" class="article-image" loading="lazy"></p>
+                <p>UnKnown Status </p>
+                <p><img src="images/hands-on-prometheus-54.png" alt="hands on prometheus 54" class="article-image" loading="lazy"></p>
+                <p><img src="images/hands-on-prometheus-55.png" alt="hands on prometheus 55" class="article-image" loading="lazy"></p>
+                <p><img src="images/hands-on-prometheus-56.png" alt="hands on prometheus 56" class="article-image" loading="lazy"></p>
+                <p><img src="images/hands-on-prometheus-57.png" alt="hands on prometheus 57" class="article-image" loading="lazy"></p>
+                <p><img src="images/hands-on-prometheus-58.png" alt="hands on prometheus 58" class="article-image" loading="lazy"></p>
+                <p><img src="images/hands-on-prometheus-59.png" alt="hands on prometheus 59" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

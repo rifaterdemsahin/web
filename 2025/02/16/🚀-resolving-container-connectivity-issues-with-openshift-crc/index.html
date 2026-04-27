@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Resolving Container Connectivity Issues with OpenShift CRC - Rifat Erdem Sahin</title>
+    <meta name="description" content="🚀 Resolving Container Connectivity Issues with OpenShift CRC If you’ve ever tried to run a container with OpenShift CRC (CodeReady Containers) and faced connectivity issues, particularly when your con">
+    <meta name="keywords" content="🚀 Resolving Container Connectivity Issues with OpenShift CRC">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/02/16/🚀-resolving-container-connectivity-issues-with-openshift-crc/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/02/16/🚀-resolving-container-connectivity-issues-with-openshift-crc/">
+    <meta property="og:title" content="🚀 Resolving Container Connectivity Issues with OpenShift CRC">
+    <meta property="og:description" content="🚀 Resolving Container Connectivity Issues with OpenShift CRC If you’ve ever tried to run a container with OpenShift CRC (CodeReady Containers) and faced connectivity issues, particularly when your con">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/02/16/🚀-resolving-container-connectivity-issues-with-openshift-crc/">
+    <meta property="twitter:title" content="🚀 Resolving Container Connectivity Issues with OpenShift CRC">
+    <meta property="twitter:description" content="🚀 Resolving Container Connectivity Issues with OpenShift CRC If you’ve ever tried to run a container with OpenShift CRC (CodeReady Containers) and faced connectivity issues, particularly when your con">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "🚀 Resolving Container Connectivity Issues with OpenShift CRC",
+      "description": "🚀 Resolving Container Connectivity Issues with OpenShift CRC If you’ve ever tried to run a container with OpenShift CRC (CodeReady Containers) and faced connectivity issues, particularly when your con",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-02-16",
+      "dateModified": "2025-02-16",
+      "url": "https://www.rifaterdemsahin.com/2025/02/16/🚀-resolving-container-connectivity-issues-with-openshift-crc/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/02/16/🚀-resolving-container-connectivity-issues-with-openshift-crc/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">🚀 Resolving Container Connectivity Issues with OpenShift CRC</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>February 16, 2025</span>
+                    <span>&bull;</span>
+                    <span>18 min read</span>
+                </div>
+                <p class="article-excerpt">🚀 Resolving Container Connectivity Issues with OpenShift CRC If you’ve ever tried to run a container with OpenShift CRC (CodeReady Containers) and faced connectivity issues, particularly when your container can’t reach the CRC cluster, you’re not alone!</p>
+            </header>
+            <article class="article-content">
+                <h1>🚀 Resolving Container Connectivity Issues with OpenShift CRC</h1>
+                <p>If you’ve ever tried to run a container with OpenShift CRC (CodeReady Containers) and faced connectivity issues, particularly when your container can’t reach the CRC cluster, you’re not alone! This common issue occurs because of how Docker containers manage networking.</p>
+                <p>Here’s a step-by-step guide to fix the problem and get your container connected to the CRC cluster.</p>
+                <hr />
+                <h2>💡 <strong>Understanding the Issue</strong></h2>
+                <p>When you try to connect your container to the CRC cluster, you might encounter an error like this:</p>
+                <p>error: dial tcp 127.0.0.1:6443: connect: connection refused</p>
+                <p><strong>This happens because the container's internal <code>127.0.0.1</code> or <code>localhost</code> refers to the container's network, not your host machine. The container needs to reach the cluster running on your host. Below are the solutions that can help.</strong></p>
+                <hr />
+                <h2>🔧 Solutions</h2>
+                <h3>1️⃣ <strong>Use Host Network Mode</strong></h3>
+                <p>To allow the container to communicate with services running on the host (like CRC), you can run the container in the host’s network namespace using the <code>--network="host"</code> option.</p>
+                <p>docker run --network="host" -it my-openshift-azure-cli /bin/bash</p>
+                <p>This will grant the container direct access to your host's network, allowing it to communicate with the CRC cluster as if it were running directly on the host.</p>
+                <h3>2️⃣ <strong>Check the CRC IP Address</strong></h3>
+                <p>If your CRC cluster isn’t reachable via <code>localhost</code>, it may be running on a different IP. You can retrieve the CRC cluster’s IP address using the following command:</p>
+                <p>crc ip</p>
+                <p><img src="images/resolving-container-connectivity-1.png" alt="resolving container connectivity 1" class="article-image" loading="lazy"></p>
+                <p>Once you have the correct IP, use it in the <code>oc login</code> command to connect to your CRC cluster:</p>
+                <p>oc login --token=sha256~Kgwa3j6UQZFXQCq_IHNITHNdRf7IduFDJTL2DnQRYZY --server=https://<CRC_IP>:6443</p>
+                <p>oc login --token=sha256~Kgwa3j6UQZFXQCq_IHNITHNdRf7IduFDJTL2DnQRYZY --server=https://127.0.0.1:6443</p>
+                <p><img src="images/resolving-container-connectivity-2.png" alt="resolving container connectivity 2" class="article-image" loading="lazy"></p>
+                <h3>3️⃣ <strong>Expose CRC API to the Docker Network</strong></h3>
+                <p>You can also expose the CRC API port to the Docker network by mapping the required port when running your container. Use the <code>-p</code> flag to forward the port between the host and the container:</p>
+                <p>docker run -p 6443:6443 -it my-openshift-azure-cli /bin/bash</p>
+                <p>This maps the container’s port 6443 to your host’s port 6443, enabling communication between your container and the CRC API.</p>
+                <hr />
+                <p><img src="images/resolving-container-connectivity-3.png" alt="resolving container connectivity 3" class="article-image" loading="lazy"></p>
+                <p>Here’s a screenshot showing the common error when trying to connect to CRC from within a container:</p>
+                <p><img src="images/resolving-container-connectivity-4.png" alt="resolving container connectivity 4" class="article-image" loading="lazy"></p>
+                <hr />
+                <h2>🔄 <strong>Summary</strong></h2>
+                <p>Using one of the methods above should solve your connectivity issue and allow you to connect your container to the CRC cluster seamlessly. Whether you choose to run your container in host network mode, check the CRC IP address, or map ports, each solution has its own use case depending on your setup.</p>
+                <p>Let me know which solution worked for you or if you need any further help!</p>
+                <hr />
+                <p>It looks like the CRC IP is still showing as <code>127.0.0.1</code>, which refers to the <strong>loopback address, </strong>meaning the container is trying to connect to itself, not the host. This is a common issue when using CRC on Windows or macOS, where CRC runs in a virtual machine, and the IP address can sometimes be misreported as <code>127.0.0.1</code>.</p>
+                <p>To resolve this, we need to:</p>
+                <h3>1️⃣ <strong>Check the Actual IP of the CRC VM</strong></h3>
+                <p>On Windows, CRC often runs inside a VM (using Hyper-V or VirtualBox), and the actual IP of the CRC VM might be different from <code>127.0.0.1</code>.</p>
+                <p>Here’s how to find the real IP of the CRC VM:</p>
+                <h4>Using <code>crc</code> command:</h4>
+                <ul>
+                <li>If you are using a virtual machine (like Hyper-V), try using the command <code>crc status</code>. This may show the correct IP address of the VM.</li>
+                </ul>
+                <p><img src="images/resolving-container-connectivity-5.png" alt="resolving container connectivity 5" class="article-image" loading="lazy"></p>
+                <h4>Using <code>ipconfig</code>:</h4>
+                <ul>
+                <li>Run <code>ipconfig</code> on your host machine and check for any new interfaces that correspond to the CRC VM. You’re looking for an interface that has an IP address different from <code>127.0.0.1</code>.</li>
+                </ul>
+                <p>Once you have the correct IP of the CRC VM, try using that IP in your <code>oc login</code> command instead of <code>127.0.0.1</code>.</p>
+                <p>`e Directory: C:\Users\Pexabo.crc\cache<br />
+                PS C:\projects\clusterstatus&gt; ipconfig </p>
+                <p>Windows IP Configuration</p>
+                <p>Ethernet adapter vEthernet (Default Switch):</p>
+                <p>Connection-specific DNS Suffix  . : <br />
+                   Link-local IPv6 Address . . . . . : fe80::c992:6bc:fe69:750c%47<br />
+                   IPv4 Address. . . . . . . . . . . : 172.24.128.1<br />
+                   Subnet Mask . . . . . . . . . . . : 255.255.240.0<br />
+                   Default Gateway . . . . . . . . . : </p>
+                <p>Ethernet adapter Ethernet 3:</p>
+                <p>Connection-specific DNS Suffix  . : <br />
+                   Link-local IPv6 Address . . . . . : fe80::b809:8fef:506a:ba52%22<br />
+                   IPv4 Address. . . . . . . . . . . : <strong>192.168.3.46</strong><br />
+                   Subnet Mask . . . . . . . . . . . : 255.255.255.0<br />
+                   Default Gateway . . . . . . . . . : 192.168.3.1</p>
+                <p>Ethernet adapter Ethernet 4:</p>
+                <p>Connection-specific DNS Suffix  . : <br />
+                   Link-local IPv6 Address . . . . . : fe80::bab2:4f00:44b8:4fbe%12<br />
+                   Autoconfiguration IPv4 Address. . : 169.254.189.40<br />
+                   Subnet Mask . . . . . . . . . . . : 255.255.0.0<br />
+                   Default Gateway . . . . . . . . . :</p>
+                <p>Wireless LAN adapter Local Area Connection* 1:</p>
+                <p>Media State . . . . . . . . . . . : Media disconnected<br />
+                   Connection-specific DNS Suffix  . :</p>
+                <p>Wireless LAN adapter Local Area Connection* 2:</p>
+                <p>Media State . . . . . . . . . . . : Media disconnected<br />
+                   Connection-specific DNS Suffix  . : </p>
+                <p>Ethernet adapter VMware Network Adapter VMnet1:</p>
+                <p>Connection-specific DNS Suffix  . :<br />
+                   Link-local IPv6 Address . . . . . : fe80::c021:1963:32f4:171f%21<br />
+                   IPv4 Address. . . . . . . . . . . : 192.168.37.1<br />
+                   Subnet Mask . . . . . . . . . . . : 255.255.255.0<br />
+                   Default Gateway . . . . . . . . . :</p>
+                <p>Ethernet adapter VMware Network Adapter VMnet8:</p>
+                <p>Connection-specific DNS Suffix  . : <br />
+                   Link-local IPv6 Address . . . . . : fe80::477:7d40:ca2b:e5ab%10<br />
+                   IPv4 Address. . . . . . . . . . . : 192.168.28.1<br />
+                   Subnet Mask . . . . . . . . . . . : 255.255.255.0<br />
+                   Default Gateway . . . . . . . . . :</p>
+                <p>Wireless LAN adapter WiFi:</p>
+                <p>Media State . . . . . . . . . . . : Media disconnected<br />
+                   Connection-specific DNS Suffix  . : </p>
+                <p>Ethernet adapter Bluetooth Network Connection 4:</p>
+                <p>Media State . . . . . . . . . . . : Media disconnected<br />
+                   Connection-specific DNS Suffix  . :</p>
+                <p>Ethernet adapter vEthernet (WSL (Hyper-V firewall)):</p>
+                <p>Connection-specific DNS Suffix  . :<br />
+                   Link-local IPv6 Address . . . . . : fe80::1f3d:fec6:55f5:989f%69<br />
+                   IPv4 Address. . . . . . . . . . . : 172.25.176.1<br />
+                   Subnet Mask . . . . . . . . . . . : 255.255.240.0<br />
+                   Default Gateway . . . . . . . . .`</p>
+                <p><img src="images/resolving-container-connectivity-6.png" alt="resolving container connectivity 6" class="article-image" loading="lazy"></p>
+                <p><img src="images/resolving-container-connectivity-7.png" alt="resolving container connectivity 7" class="article-image" loading="lazy"></p>
+                <pre><code>oc login --token=sha256~ZE7SOmu_PIR3-V4xJYnRAOPWV1UmVSfY0mw32GeAdhE --server=https://api.crc.testing:6443
+                </code></pre>
+                <p>oc login --token=sha256~ZE7SOmu_PIR3-V4xJYnRAOPWV1UmVSfY0mw32GeAdhE --server=https://<strong>192.168.3.46</strong>:6443</p>
+                <p><img src="images/resolving-container-connectivity-8.png" alt="resolving container connectivity 8" class="article-image" loading="lazy"></p>
+                <p>The error you're seeing (<code>unknown command "login\u00a0--token=..."</code>) suggests that there are <strong>non-breaking spaces (<code>\u00a0</code>)</strong> in the command. These characters can be introduced when copying and pasting commands from certain text editors or websites.</p>
+                <p>To fix this:</p>
+                <ul>
+                <li><strong>Re-type the command manually</strong>, or ensure that any space characters are actual spaces (<code>\u0020</code>) rather than non-breaking spaces.</li>
+                </ul>
+                <p>Here's the correct command:</p>
+                <p>oc login --token=sha256~ZE7SOmu_PIR3-V4xJYnRAOPWV1UmVSfY0mw32GeAdhE --server=https://192.168.3.46:6443</p>
+                <p>Make sure that:</p>
+                <ul>
+                <li>
+                <p>There are <strong>no extra characters or invisible spaces</strong> between <code>login</code>, <code>--token</code>, and <code>--server</code>.</p>
+                </li>
+                <li>
+                <p>Ensure all spaces are plain spaces (not non-breaking or any other special character).</p>
+                </li>
+                </ul>
+                <p>You can also try typing the command line directly into the terminal rather than pasting it to avoid this issue.</p>
+                <p>Let me know how it goes after retyping the command!</p>
+                <h3>2️⃣ <strong>Use a Port Mapping Tool</strong></h3>
+                <p>If you're still unable to get the actual IP, you could use a port forwarding tool such as <strong>socat</strong> or <strong>SSH tunneling</strong> to forward traffic between your container and the CRC VM.</p>
+                <p>For example, you could forward traffic from <code>localhost:6443</code> to the actual CRC IP address like this:</p>
+                <p>socat TCP-LISTEN:6443,fork TCP:<CRC_VM_IP>:6443</p>
+                <p>This will forward any requests made to <code>localhost:6443</code> to the correct CRC VM IP.</p>
+                <h3>3️⃣ <strong>Test Connectivity with Curl</strong></h3>
+                <p>To verify if the CRC API is reachable from within the container, you can use <code>curl</code>:</p>
+                <p>curl https://<CRC_IP>:6443</p>
+                <p>If the connection is successful, you should see a response from the OpenShift API server.</p>
+                <hr />
+                <p>After identifying the correct CRC IP or setting up port forwarding, try running your <code>oc login</code> command again using the correct IP:</p>
+                <p>oc login --token=sha256~Kgwa3j6UQZFXQCq_IHNITHNdRf7IduFDJTL2DnQRYZY --server=https://<CRC_IP>:6443</p>
+                <p>Let me know how it goes!</p>
+                <hr />
+                <hr />
+                <p>It seems that the issue with the command (<code>unknown command "login\u00a0--token=..."</code>) is still caused by non-breaking spaces (<code>\u00a0</code>). However, when you fixed that, you're encountering the <code>error: EOF</code> issue, which we discussed earlier.</p>
+                <h3>1️⃣ <strong>Fixing Non-Breaking Spaces:</strong></h3>
+                <p>Before addressing the <code>EOF</code> issue again, let's ensure you're inputting a clean command. It's possible that the terminal still includes non-visible characters from previous inputs. Here's what to try:</p>
+                <ul>
+                <li>
+                <p><strong>Re-type the entire command</strong> manually in the terminal, ensuring there are no copy-paste issues.</p>
+                </li>
+                <li>
+                <p>If you prefer to copy and paste, first <strong>paste it into a simple text editor</strong> (like Notepad) to strip out any hidden formatting before pasting it into your terminal.</p>
+                </li>
+                </ul>
+                <p>The correct command (ensure no invisible spaces):</p>
+                <p>oc login --token=sha256~ZE7SOmu_PIR3-V4xJYnRAOPWV1UmVSfY0mw32GeAdhE --server=https://192.168.3.46:6443</p>
+                <h3>2️⃣ <strong>Investigating the <code>EOF</code> Issue:</strong></h3>
+                <p>Once the command structure is clean, the <code>EOF</code> error could be happening due to the following reasons:</p>
+                <ul>
+                <li>
+                <p><strong>Network connectivity issues</strong> between your container and the OpenShift CRC API.</p>
+                </li>
+                <li>
+                <p><strong>Firewall restrictions</strong> that prevent the container from accessing the CRC IP.</p>
+                </li>
+                <li>
+                <p><strong>Incorrect configuration or certificate issues</strong> on the OpenShift CRC cluster.</p>
+                </li>
+                </ul>
+                <p>Here’s how you can further troubleshoot:</p>
+                <h4>a) <strong>Test Network Connectivity</strong></h4>
+                <p>From within the container, try to <strong>ping the CRC IP</strong> (<code>192.168.3.46</code>) to see if it’s reachable:</p>
+                <p>ping 192.168.3.46</p>
+                <p>If you don’t get a response, it suggests a network issue.</p>
+                <h4>b) <strong>Test API Access with <code>curl</code></strong></h4>
+                <p>Try using <code>curl</code> from within the container to see if you can access the CRC API endpoint:</p>
+                <p>curl -k https://192.168.3.46:6443</p>
+                <p>If this also fails with an <code>EOF</code> error or no response, it indicates that the API is not reachable from the container.</p>
+                <h4>c) <strong>Check CRC Status</strong></h4>
+                <p>On your host machine, run the following commands to ensure CRC is running and the API is accessible:</p>
+                <p>crc status<br />
+                crc start</p>
+                <p>Ensure the CRC cluster is running and accessible on the correct IP address.</p>
+                <h4>d) <strong>Port Mapping</strong></h4>
+                <p>Since CRC is running inside a VM, there might be issues with Docker networking. You can try <strong>port forwarding</strong> again:</p>
+                <p>socat TCP-LISTEN:6443,fork TCP:192.168.3.46:6443</p>
+                <p>This will forward requests made to <code>localhost:6443</code> on your Docker container to the CRC VM.</p>
+                <h3>Summary:</h3>
+                <ul>
+                <li>
+                <p>Ensure the <code>oc login</code> command is correctly typed (no non-breaking spaces).</p>
+                </li>
+                <li>
+                <p>Check network connectivity between the container and the CRC IP (<code>ping</code> and <code>curl</code>).</p>
+                </li>
+                <li>
+                <p>Verify the CRC cluster status on your host machine.</p>
+                </li>
+                <li>
+                <p>Use <code>socat</code> for port forwarding if needed.</p>
+                </li>
+                </ul>
+                <p>Let me know if any of these steps work, or if you need further assistance!</p>
+                <p><img src="images/resolving-container-connectivity-9.png" alt="resolving container connectivity 9" class="article-image" loading="lazy"></p>
+                <p>Ping needs to be in the machne </p>
+                <p>It looks like the <code>ping</code> command isn't available in your container. You can install it by installing the <code>iputils-ping</code> package. Here’s how to install and use <code>ping</code> in your container:</p>
+                <h3>1️⃣ <strong>Install <code>ping</code> in the Container</strong></h3>
+                <p>Run the following command to install the necessary package:</p>
+                <p>apt-get update &amp;&amp; apt-get install -y iputils-ping</p>
+                <h3>2️⃣ <strong>Ping the CRC IP</strong></h3>
+                <p>Once <code>ping</code> is installed, try pinging the CRC IP to test connectivity:</p>
+                <p>ping 192.168.3.46</p>
+                <p>This will allow you to check if the container can reach the CRC VM.</p>
+                <h3>3️⃣ <strong>Next Steps</strong></h3>
+                <ul>
+                <li>
+                <p>If the ping is successful, then the issue is likely SSL-related, and you can focus on troubleshooting the certificate issue or network forwarding.</p>
+                </li>
+                <li>
+                <p>If the ping fails, this suggests a networking issue between the Docker container and the CRC VM, which would require adjusting the network settings or using port forwarding.</p>
+                </li>
+                </ul>
+                <p><img src="images/resolving-container-connectivity-10.png" alt="resolving container connectivity 10" class="article-image" loading="lazy"></p>
+                <p>The <code>SSL_ERROR_SYSCALL</code> indicates that the connection was terminated unexpectedly, and since the network connectivity (as confirmed by the ping) is fine, this points to a problem either with:</p>
+                <ul>
+                <li>
+                <p>The OpenShift API server (CRC) not running or misconfigured.</p>
+                </li>
+                <li>
+                <p>SSL/TLS issues between the container and the CRC API.</p>
+                </li>
+                </ul>
+                <h3>Troubleshooting Steps:</h3>
+                <h4>1️⃣ <strong>Check CRC Logs and Status:</strong></h4>
+                <p>Ensure that the CRC OpenShift API is actually running. Run the following commands on your <strong>host machine</strong> (outside the container):</p>
+                <p>crc status<br />
+                crc log</p>
+                <ul>
+                <li>
+                <p><strong>crc status</strong>: This will show if the OpenShift cluster is running and reachable.</p>
+                </li>
+                <li>
+                <p><strong>crc log</strong>: This will provide details on whether the API server is experiencing any issues.</p>
+                </li>
+                </ul>
+                <p>If you see anything in the logs indicating that the API is not running or encountering errors, restarting the CRC might help:</p>
+                <p>crc stop<br />
+                crc start</p>
+                <p>After restarting, try accessing the API again with <code>curl</code> from the container:</p>
+                <p>curl -k https://192.168.3.46:6443</p>
+                <h4>2️⃣ <strong>Check for Firewall or Security Group Rules:</strong></h4>
+                <p>Since the <code>ping</code> works, but <code>curl</code> doesn't, it’s possible that traffic on port <code>6443</code> is being blocked. Check for any <strong>firewall rules</strong> on your host machine that might prevent access to the OpenShift API.</p>
+                <p>You can try disabling your firewall temporarily and testing the connection again:</p>
+                <p>netsh advfirewall set allprofiles state off</p>
+                <p>Then run <code>curl</code> again from the container to see if the connection works without the firewall.</p>
+                <h4>3️⃣ <strong>SSL/TLS Version Mismatch:</strong></h4>
+                <p>Sometimes the issue may arise due to incompatibilities between the SSL/TLS versions supported by the CRC API and the version of OpenSSL or <code>curl</code> in the container. Try updating the container’s SSL packages:</p>
+                <p>apt-get update &amp;&amp; apt-get upgrade -y openssl curl</p>
+                <p>Then retry the <code>curl</code> command.</p>
+                <h4>4️⃣ <strong>Check Certificate Configuration:</strong></h4>
+                <p>Since you're ignoring SSL verification with <code>-k</code>, it could still indicate a deeper SSL issue. You could also try to access the API from <strong>outside</strong> the container (on the host machine) using:</p>
+                <p>curl -k https://192.168.3.46:6443</p>
+                <p>This helps determine whether the issue is specific to the container or affects the whole system.</p>
+                <hr />
+                <h3>If None of These Work:</h3>
+                <p>If the problem persists after checking the API status, firewall, and SSL versions, you could try using port forwarding with <strong>socat</strong> as a workaround:</p>
+                <p>socat TCP-LISTEN:6443,fork TCP:192.168.3.46:6443</p>
+                <p>Then attempt logging in from the container with <code>localhost</code> as the server:</p>
+                <p>oc login --token=sha256~ZE7SOmu_PIR3-V4xJYnRAOPWV1UmVSfY0mw32GeAdhE --server=https://localhost:6443</p>
+                <p>Let me know what the CRC logs say or if any of these steps help solve the issue!</p>
+                <p>Let me know the result of the ping test, and we can proceed from there!</p>
+                <p>apt-get update &amp;&amp; apt-get upgrade -y openssl curl</p>
+                <p>CRC STOPPED?</p>
+                <p><img src="images/resolving-container-connectivity-11.png" alt="resolving container connectivity 11" class="article-image" loading="lazy"></p>
+                <p><code>oc login --token=sha256~r9LQqe-ivxEG0-LnjdA2oXQ7fuU_5Y4HViHq-3bWE3A --server=https://192.168.3.46:6443</code></p>
+                <p>not in openshift this is running in docker engine desktop</p>
+                <p><img src="images/resolving-container-connectivity-12.png" alt="resolving container connectivity 12" class="article-image" loading="lazy"></p>
+                <p>When running a container inside Docker Desktop (on Windows or macOS) and trying to connect to a CRC instance, you may face network isolation issues since Docker Desktop containers and the CRC VM might not be on the same network. Here’s a breakdown of how you can resolve this:</p>
+                <h3>1️⃣ <strong>Understand the Network Setup</strong></h3>
+                <p>When you run CRC on Docker Desktop, CRC typically runs in its own virtual machine (VM), and Docker containers are isolated within their own network. As a result, Docker containers cannot directly access services running on the CRC VM via <code>localhost</code> or <code>127.0.0.1</code>.</p>
+                <p>To make the connection work, you’ll need to:</p>
+                <ul>
+                <li>
+                <p>Use the actual IP address of the CRC VM.</p>
+                </li>
+                <li>
+                <p>Ensure Docker containers can reach the CRC VM.</p>
+                </li>
+                </ul>
+                <h3>2️⃣ <strong>Find the Actual IP Address of the CRC VM</strong></h3>
+                <p>On Windows or macOS, the IP of the CRC VM may not be <code>127.0.0.1</code>, but rather a different network address. You can get the real IP of the CRC instance by running the following command on your host (outside the container):</p>
+                <p>crc ip</p>
+                <p>The IP address provided by this command is the one you should use to connect from the container, not <code>127.0.0.1</code>. However, there might still be some network isolation issues between Docker containers and CRC, so read on for how to resolve this.</p>
+                <h3>3️⃣ <strong>Enable Docker Container Access to CRC</strong></h3>
+                <h4>Option 1: <strong>Use Host Network Mode (Linux)</strong></h4>
+                <p>If you're using Docker on <strong>Linux</strong>, you can run the Docker container in <strong>host network mode</strong> so it shares the host's network stack:</p>
+                <p>docker run --network="host" -it my-openshift-azure-cli /bin/bash</p>
+                <p>In this mode, the container will be able to access any services running on the host or its VM (like CRC) using <code>localhost</code> or the VM’s IP.</p>
+                <p>However, <strong>Docker Desktop on Windows and macOS</strong> does not support <code>--network=host</code>, so you'll need to try other options.</p>
+                <h4>Option 2: <strong>Port Forwarding</strong></h4>
+                <p>For Windows and macOS Docker Desktop, you can forward the CRC API port from the CRC VM to the host machine’s localhost using <code>socat</code> or similar tools.</p>
+                <ul>
+                <li><strong>Install Socat on the Host</strong>:<br />
+                If <code>socat</code> is not already installed, you can install it on your <strong>host machine</strong>: For Windows, you might need a tool like WSL (Windows Subsystem for Linux) or use a socat Windows binary. For macOS:</li>
+                </ul>
+                <p>brew install socat</p>
+                <ul>
+                <li><strong>Set up port forwarding</strong>:<br />
+                Use <code>socat</code> to forward the CRC API port from the VM to the Docker host:</li>
+                </ul>
+                <p>socat TCP-LISTEN:6443,fork TCP:<CRC_IP>:6443</p>
+                <p>This command will forward traffic from the local machine's port 6443 to the CRC API's port 6443.</p>
+                <ul>
+                <li><strong>Login from the Docker Container</strong>:<br />
+                Inside your Docker container, connect to <code>localhost:6443</code> (which is now forwarded to the CRC VM’s API) instead of the CRC IP:</li>
+                </ul>
+                <p>oc login --token=<your-token> --server=https://localhost:6443</p>
+                <h4>Option 3: <strong>Bridge Docker and Host Network (Windows/macOS)</strong></h4>
+                <p>You can create a custom Docker network and ensure that the CRC VM and the Docker container are on the same subnet.</p>
+                <ul>
+                <li><strong>Find the CRC IP</strong>:<br />
+                As mentioned, get the CRC VM's IP using:</li>
+                </ul>
+                <p>crc ip</p>
+                <ul>
+                <li><strong>Create a Custom Docker Network</strong>:<br />
+                Create a Docker network that matches the CRC VM's subnet.</li>
+                </ul>
+                <p>docker network create --subnet=<your-subnet> mynetwork</p>
+                <p>Example: If your CRC VM IP is <code>192.168.3.46</code>, and its subnet is <code>192.168.3.0/24</code>, then create a Docker network within that subnet:</p>
+                <p>docker network create --subnet=192.168.3.0/24 mynetwork</p>
+                <ul>
+                <li><strong>Run the Container in the Custom Network</strong>:<br />
+                Launch your Docker container in the custom network:</li>
+                </ul>
+                <p>docker run --network=mynetwork -it my-openshift-azure-cli /bin/bash</p>
+                <p>Now the container should be able to communicate with CRC at its actual IP.</p>
+                <p><img src="images/resolving-container-connectivity-13.png" alt="resolving container connectivity 13" class="article-image" loading="lazy"></p>
+                <p><img src="images/resolving-container-connectivity-14.png" alt="resolving container connectivity 14" class="article-image" loading="lazy"></p>
+                <p>my ip is wring at the start</p>
+                <p><img src="images/resolving-container-connectivity-15.png" alt="resolving container connectivity 15" class="article-image" loading="lazy"></p>
+                <p><img src="images/resolving-container-connectivity-16.png" alt="resolving container connectivity 16" class="article-image" loading="lazy"></p>
+                <p>It looks like your <strong>Hyper-V CRC VM</strong> is running, but it shows <strong>"No network adapters"</strong> in the VM summary, which is likely why you're unable to connect to the CRC instance from Docker. The VM needs a virtual network adapter to communicate with the host and external systems.</p>
+                <p>Here are the steps to check and configure the network adapter for the CRC VM:</p>
+                <p><img src="images/resolving-container-connectivity-17.png" alt="resolving container connectivity 17" class="article-image" loading="lazy"></p>
+                <h3>1️⃣ <strong>Add a Network Adapter to the CRC VM</strong></h3>
+                <ul>
+                <li>
+                <p>In <strong>Hyper-V Manager</strong>, select your CRC VM.</p>
+                </li>
+                <li>
+                <p>In the right-hand <strong>Actions</strong> panel, click on <strong>Settings</strong>.</p>
+                </li>
+                <li>
+                <p>In the settings window, under <strong>Hardware</strong>, click <strong>Add Hardware</strong> and select <strong>Network Adapter</strong>.</p>
+                </li>
+                <li>
+                <p>Connect the network adapter to a <strong>Virtual Switch</strong> (preferably the default or the one connected to your host machine's network).</p>
+                </li>
+                <li>
+                <p>Apply the changes and <strong>restart the CRC VM</strong>.</p>
+                </li>
+                </ul>
+                <p><img src="images/resolving-container-connectivity-18.png" alt="resolving container connectivity 18" class="article-image" loading="lazy"></p>
+                <p><img src="images/resolving-container-connectivity-19.png" alt="resolving container connectivity 19" class="article-image" loading="lazy"></p>
+                <h3>2️⃣ <strong>Verify the IP Address</strong></h3>
+                <p>Once the CRC VM has a network adapter, it should get an IP address from the virtual switch's network. You can retrieve this IP address using the following methods:</p>
+                <ul>
+                <li><strong>Inside the CRC VM</strong>: If you can connect to the VM console, use this command to check the IP:</li>
+                </ul>
+                <p>ip addr show</p>
+                <p>Look for the network interface that is connected to your virtual switch and note the IP address.</p>
+                <ul>
+                <li>
+                <p><strong>Using Hyper-V Manager</strong>: Sometimes, the IP address might be displayed in the VM's summary page after it gets a network adapter and is restarted.</p>
+                </li>
+                <li>
+                <p><strong>On your Host</strong>: You can use the <code>crc ip</code> command on your host machine:</p>
+                </li>
+                </ul>
+                <p>CRC IP IS THE ISSUE</p>
+                <p><img src="images/resolving-container-connectivity-20.png" alt="resolving container connectivity 20" class="article-image" loading="lazy"></p>
+                <p>crc ip</p>
+                <h3>3️⃣ <strong>Check Network Connectivity</strong></h3>
+                <p>Once the network adapter is added and the CRC VM gets an IP address, try:</p>
+                <ul>
+                <li><strong>Ping the CRC IP</strong> from your Docker container or host to ensure the connection is established:</li>
+                </ul>
+                <p>ping <CRC_IP></p>
+                <ul>
+                <li><strong>Run the <code>oc login</code> command</strong> again using the correct CRC IP:</li>
+                </ul>
+                <p>oc login --token=<your-token> --server=https://<CRC_IP>:6443</p>
+                <p>If the CRC VM is now properly configured with a network adapter, your Docker container should be able to communicate with the CRC OpenShift API.</p>
+                <p>Let me know if adding the network adapter resolves the issue!</p>
+                <h3>4️⃣ <strong>Check Firewall Settings</strong></h3>
+                <p>If you still can't connect, check whether the <strong>host machine’s firewall</strong> is blocking connections on port <code>6443</code>. You can temporarily disable the firewall to test connectivity.</p>
+                <h4>On Windows:</h4>
+                <ul>
+                <li>
+                <p>Open <strong>Windows Defender Firewall</strong> and disable it temporarily.</p>
+                </li>
+                <li>
+                <p>Alternatively, use PowerShell to turn off the firewall:</p>
+                </li>
+                </ul>
+                <p>netsh advfirewall set allprofiles state off</p>
+                <p>Once the firewall is disabled, try logging in again from the container.</p>
+                <hr />
+                <h3>Summary of Steps:</h3>
+                <ul>
+                <li>
+                <p><strong>Find the actual IP of the CRC VM</strong> using <code>crc ip</code>.</p>
+                </li>
+                <li>
+                <p><strong>If using Linux</strong>, try running Docker with <code>--network="host"</code>.</p>
+                </li>
+                <li>
+                <p><strong>For Windows/macOS</strong>, use <code>socat</code> to forward the CRC API port to the local machine, and connect using <code>localhost:6443</code>.</p>
+                </li>
+                <li>
+                <p><strong>Create a custom Docker network</strong> on the same subnet as the CRC VM if port forwarding isn’t an option.</p>
+                </li>
+                <li>
+                <p><strong>Check firewall settings</strong> to ensure they aren’t blocking access.</p>
+                </li>
+                </ul>
+                <p>Let me know how it goes or if you run into any issues!</p>
+                <h3>🔗 <strong>Connect with Me:</strong></h3>
+                <ul>
+                <li>
+                <p>💼 <a href="https://www.linkedin.com/in/rifaterdemsahin/">LinkedIn</a></p>
+                </li>
+                <li>
+                <p>🐦 <a href="https://x.com/rifaterdemsahin">Twitter</a></p>
+                </li>
+                <li>
+                <p>🎥 <a href="https://www.youtube.com/@RifatErdemSahin">YouTube</a></p>
+                </li>
+                <li>
+                <p>💻 <a href="https://github.com/rifaterdemsahin">GitHub</a></p>
+                </li>
+                </ul>
+                <hr />
+                <p>Happy coding and troubleshooting! 🛠️</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

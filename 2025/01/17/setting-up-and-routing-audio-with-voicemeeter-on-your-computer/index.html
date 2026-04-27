@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setting Up and Routing Audio with Voicemeeter on Your Computer - Rifat Erdem Sahin</title>
+    <meta name="description" content="Setting Up and Routing Audio with Voicemeeter on Your Computer Voicemeeter is a versatile virtual audio mixer that allows you to manage and route audio from different applications on your computer.">
+    <meta name="keywords" content="Setting Up and Routing Audio with Voicemeeter on Your Computer">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/01/17/setting-up-and-routing-audio-with-voicemeeter-on-your-computer/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/01/17/setting-up-and-routing-audio-with-voicemeeter-on-your-computer/">
+    <meta property="og:title" content="Setting Up and Routing Audio with Voicemeeter on Your Computer">
+    <meta property="og:description" content="Setting Up and Routing Audio with Voicemeeter on Your Computer Voicemeeter is a versatile virtual audio mixer that allows you to manage and route audio from different applications on your computer.">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/01/17/setting-up-and-routing-audio-with-voicemeeter-on-your-computer/">
+    <meta property="twitter:title" content="Setting Up and Routing Audio with Voicemeeter on Your Computer">
+    <meta property="twitter:description" content="Setting Up and Routing Audio with Voicemeeter on Your Computer Voicemeeter is a versatile virtual audio mixer that allows you to manage and route audio from different applications on your computer.">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Setting Up and Routing Audio with Voicemeeter on Your Computer",
+      "description": "Setting Up and Routing Audio with Voicemeeter on Your Computer Voicemeeter is a versatile virtual audio mixer that allows you to manage and route audio from different applications on your computer.",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-01-17",
+      "dateModified": "2025-01-17",
+      "url": "https://www.rifaterdemsahin.com/2025/01/17/setting-up-and-routing-audio-with-voicemeeter-on-your-computer/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/01/17/setting-up-and-routing-audio-with-voicemeeter-on-your-computer/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Setting Up and Routing Audio with Voicemeeter on Your Computer</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>January 17, 2025</span>
+                    <span>&bull;</span>
+                    <span>3 min read</span>
+                </div>
+                <p class="article-excerpt">Setting Up and Routing Audio with Voicemeeter on Your Computer Voicemeeter is a versatile virtual audio mixer that allows you to manage and route audio from different applications on your computer.</p>
+            </header>
+            <article class="article-content">
+                <h1>Setting Up and Routing Audio with Voicemeeter on Your Computer</h1>
+                <p><img src="images/setting-up-and-1.png" alt="setting up and 1" class="article-image" loading="lazy"></p>
+                <h1></h1>
+                <p>Voicemeeter is a versatile virtual audio mixer that allows you to manage and route audio from different applications on your computer. Whether you're a podcaster, streamer, or just looking to enhance your audio setup, Voicemeeter offers a range of features to help you achieve professional-quality sound. In this blog post, we'll walk you through the process of setting up Voicemeeter and configuring it to route your audio effectively.</p>
+                <h2>What You'll Need</h2>
+                <ul>
+                <li>
+                <p>A computer running Windows</p>
+                </li>
+                <li>
+                <p>Voicemeeter software (Voicemeeter Standard, Voicemeeter Banana, or Voicemeeter Potato)</p>
+                </li>
+                <li>
+                <p>Audio devices (microphone, headphones, speakers, etc.)</p>
+                </li>
+                </ul>
+                <h2>Step 1: Download and Install Voicemeeter</h2>
+                <ul>
+                <li>
+                <p><strong>Download Voicemeeter</strong>:<br />
+                Visit the <a href="https://vb-audio.com/Voicemeeter/">Voicemeeter website</a> and choose the version that suits your needs. Voicemeeter Banana is the most commonly used version as it offers a good balance of features.</p>
+                </li>
+                <li>
+                <p><strong>Install Voicemeeter</strong>:<br />
+                Run the installer and follow the on-screen instructions. After installation, restart your computer to ensure that all changes take effect.</p>
+                </li>
+                </ul>
+                <h2>Step 2: Configure Your Audio Hardware</h2>
+                <ul>
+                <li>
+                <p><strong>Set Up Input and Output Devices</strong>:</p>
+                </li>
+                <li>
+                <p>Open Voicemeeter. You'll see multiple strips labeled Hardware Input and Virtual Input.</p>
+                </li>
+                <li>
+                <p>Click on the first Hardware Input strip and select your primary microphone or audio input device.</p>
+                </li>
+                <li>
+                <p>For the output, click on the A1 Hardware Out strip and select your primary playback device (e.g., headphones or speakers).</p>
+                </li>
+                <li>
+                <p><strong>Additional Inputs and Outputs</strong>:</p>
+                </li>
+                <li>
+                <p>If you have more input devices (e.g., a second microphone), select them on the subsequent Hardware Input strips.</p>
+                </li>
+                <li>
+                <p>Similarly, you can configure additional output devices on the A2 and A3 strips if needed.</p>
+                </li>
+                </ul>
+                <h2>Step 3: Routing Audio in Voicemeeter</h2>
+                <ul>
+                <li>
+                <p><strong>Understanding Strips and Buses</strong>:</p>
+                </li>
+                <li>
+                <p>Each input strip can be routed to one or more output buses (A1, A2, A3, B1, B2).</p>
+                </li>
+                <li>
+                <p>Hardware Outputs (A1, A2, A3) are physical output devices.</p>
+                </li>
+                <li>
+                <p>Virtual Outputs (B1, B2) are used to send audio to virtual devices or software applications.</p>
+                </li>
+                <li>
+                <p><strong>Routing Audio</strong>:</p>
+                </li>
+                <li>
+                <p>For each input strip, you'll see buttons labeled A1, A2, A3, B1, and B2. These buttons determine where the audio from each input is sent.</p>
+                </li>
+                <li>
+                <p>For example, if you want your microphone audio to go to your headphones (A1) and to a recording software (B1), you would enable both A1 and B1 buttons on the microphone input strip.</p>
+                </li>
+                </ul>
+                <h2>Step 4: Configuring Windows Audio Settings</h2>
+                <ul>
+                <li>
+                <p><strong>Set Default Playback Device</strong>:</p>
+                </li>
+                <li>
+                <p>Go to the Windows sound settings (right-click the speaker icon in the system tray and select Sound settings).</p>
+                </li>
+                <li>
+                <p>Set Voicemeeter Input (VB-Audio Voicemeeter VAIO) as the default playback device. This routes all system audio through Voicemeeter.</p>
+                </li>
+                <li>
+                <p><strong>Set Default Recording Device</strong>:</p>
+                </li>
+                <li>
+                <p>In the sound settings, set Voicemeeter Output (VB-Audio Voicemeeter VAIO) as the default recording device. This routes audio from Voicemeeter to applications that record audio.</p>
+                </li>
+                </ul>
+                <h2>Step 5: Fine-Tuning Your Setup</h2>
+                <ul>
+                <li>
+                <p><strong>Adjusting Levels</strong>:</p>
+                </li>
+                <li>
+                <p>Use the sliders on each strip to adjust the input and output levels. Ensure that the audio levels are not peaking (indicated by red on the level meters).</p>
+                </li>
+                <li>
+                <p><strong>Applying Effects</strong>:</p>
+                </li>
+                <li>
+                <p>Voicemeeter offers various effects such as EQ, compression, and reverb. Explore these options to enhance the audio quality as needed.</p>
+                </li>
+                <li>
+                <p><strong>Saving Your Configuration</strong>:</p>
+                </li>
+                <li>
+                <p>Once you have configured everything to your liking, save your setup by going to Menu &gt; Save Settings in Voicemeeter. This ensures that your settings are preserved for future sessions.</p>
+                </li>
+                </ul>
+                <h2>Conclusion</h2>
+                <p>Voicemeeter is a powerful tool that can greatly enhance your audio management capabilities. By following these steps, you can set up Voicemeeter to route audio from multiple sources to various destinations, giving you precise control over your audio environment. Experiment with different configurations to find the setup that works best for you, and enjoy the improved audio experience!</p>
+                <hr />
+                <p>Feel free to reach out with any questions or share your experiences with Voicemeeter in the comments below. Happy mixing!</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

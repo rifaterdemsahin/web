@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Must-Gather for Troubleshooting OpenShift Clusters - Rifat Erdem Sahin</title>
+    <meta name="description" content="How to Use Must-Gather for Troubleshooting OpenShift Clusters If you're an OpenShift administrator or a developer working with Kubernetes clusters, you've likely encountered scenarios where you need t">
+    <meta name="keywords" content="How to Use Must-Gather for Troubleshooting OpenShift Clusters">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/02/05/how-to-use-must-gather-for-troubleshooting-openshift-clusters/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/02/05/how-to-use-must-gather-for-troubleshooting-openshift-clusters/">
+    <meta property="og:title" content="How to Use Must-Gather for Troubleshooting OpenShift Clusters">
+    <meta property="og:description" content="How to Use Must-Gather for Troubleshooting OpenShift Clusters If you're an OpenShift administrator or a developer working with Kubernetes clusters, you've likely encountered scenarios where you need t">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/02/05/how-to-use-must-gather-for-troubleshooting-openshift-clusters/">
+    <meta property="twitter:title" content="How to Use Must-Gather for Troubleshooting OpenShift Clusters">
+    <meta property="twitter:description" content="How to Use Must-Gather for Troubleshooting OpenShift Clusters If you're an OpenShift administrator or a developer working with Kubernetes clusters, you've likely encountered scenarios where you need t">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "How to Use Must-Gather for Troubleshooting OpenShift Clusters",
+      "description": "How to Use Must-Gather for Troubleshooting OpenShift Clusters If you're an OpenShift administrator or a developer working with Kubernetes clusters, you've likely encountered scenarios where you need t",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-02-05",
+      "dateModified": "2025-02-05",
+      "url": "https://www.rifaterdemsahin.com/2025/02/05/how-to-use-must-gather-for-troubleshooting-openshift-clusters/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/02/05/how-to-use-must-gather-for-troubleshooting-openshift-clusters/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">How to Use Must-Gather for Troubleshooting OpenShift Clusters</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>February 5, 2025</span>
+                    <span>&bull;</span>
+                    <span>4 min read</span>
+                </div>
+                <p class="article-excerpt">How to Use Must-Gather for Troubleshooting OpenShift Clusters If you're an OpenShift administrator or a developer working with Kubernetes clusters, you've likely encountered scenarios where you need to debug cluster issues.</p>
+            </header>
+            <article class="article-content">
+                <h1>How to Use Must-Gather for Troubleshooting OpenShift Clusters</h1>
+                <p>If you're an OpenShift administrator or a developer working with Kubernetes clusters, you've likely encountered scenarios where you need to debug cluster issues. OpenShift provides a powerful diagnostic tool called <strong>must-gather</strong>, which helps<strong> collect logs</strong>, configurations, and other important data from your cluster. In this blog post, we'll walk through what must-gather is, how it works, and how you can use it step-by-step to troubleshoot and resolve issues in your OpenShift environment.</p>
+                <h4>What is Must-Gather?</h4>
+                <p>Must-gather is a command-line tool provided by OpenShift that collects a variety of diagnostic data from your cluster. It gathers logs, resource information, and configuration files from different parts of the cluster, including nodes, pods, services, and operators. This data is invaluable for identifying and resolving issues in a Kubernetes-based environment.</p>
+                <h4>Why Use Must-Gather?</h4>
+                <p>When something goes wrong in an OpenShift cluster, the first step is often to collect data to understand the issue. Must-gather simplifies this process by providing a comprehensive snapshot of your cluster's state, which you can use for:</p>
+                <ul>
+                <li>
+                <p><strong>Troubleshooting</strong>: Quickly gather relevant logs and configurations to diagnose problems.</p>
+                </li>
+                <li>
+                <p><strong>Support</strong>: Provide detailed information to Red Hat or other support teams.</p>
+                </li>
+                <li>
+                <p><strong>Compliance and Auditing</strong>: Collect configurations and state information for auditing purposes.</p>
+                </li>
+                </ul>
+                <h4>Step-by-Step Guide to Using Must-Gather</h4>
+                <p>Let's go through the steps to effectively use must-gather in an OpenShift environment.</p>
+                <h5>Step 1: Install the OpenShift CLI (oc)</h5>
+                <p>To use must-gather, you first need the OpenShift CLI (<code>oc</code>). You can download it from the OpenShift web console or the Red Hat Customer Portal. Follow the instructions specific to your operating system to install it.</p>
+                <h5>Step 2: Authenticate with Your OpenShift Cluster</h5>
+                <p>Before running must-gather, ensure you're authenticated with your OpenShift cluster. Use the following command to log in:</p>
+                <p>oc login --server=<your-server-url> --token=<your-token></p>
+                <p>Replace <code>&lt;your-server-url&gt;</code> with the API server URL of your OpenShift cluster and <code>&lt;your-token&gt;</code> with your access token.</p>
+                <h5>Step 3: Run the Must-Gather Command</h5>
+                <p>Once authenticated, you can run the must-gather command:</p>
+                <p>oc adm must-gather</p>
+                <p>This command initiates the data collection process. By default, it collects logs and configurations from the entire cluster.</p>
+                <h5>Step 4: Specify a Custom Must-Gather Image (Optional)</h5>
+                <p>You can customize the must-gather operation by using a specific image. For example, if you're troubleshooting networking issues, you might use a networking-focused must-gather image:</p>
+                <p>oc adm must-gather --image=quay.io/openshift/origin-must-gather:latest</p>
+                <p>This command will pull the specified image and use it to collect data tailored to the image's purpose.</p>
+                <h5>Step 5: WAIT for Data Collection to Complete</h5>
+                <p>Must-gather runs as a pod in your cluster and collects data from various nodes and components. This process might take some time, depending on the size and complexity of your cluster. You can monitor the progress by checking the status of the must-gather pod:</p>
+                <p>oc get pods -n openshift-must-gather</p>
+                <p>Once the pod completes its task, the collected data will be downloaded to your local machine in a timestamped directory.</p>
+                <h5>Step 6: Analyze the Collected Data</h5>
+                <p>Navigate to the directory where the must-gather output was saved. You'll see a folder structure that resembles your cluster components, such as nodes, pods, services, and namespaces:</p>
+                <p>cd must-gather.local.<timestamp></p>
+                <p>Inside this directory, you'll find logs, YAML files, and configuration data. Here's a quick overview of what you might see:</p>
+                <ul>
+                <li>
+                <p><strong>Logs</strong>: Detailed logs for various components and operators (<code>current.log</code>, <code>previous.log</code>, etc.).</p>
+                </li>
+                <li>
+                <p><strong>Configuration Files</strong>: YAML files that show the current configuration of resources (<code>keepalived</code>, <code>render-config-keepalived</code>, etc.).</p>
+                </li>
+                <li>
+                <p><strong>Cluster State Information</strong>: Details about the current state of the cluster and its components.</p>
+                </li>
+                </ul>
+                <h5>Step 7: Identify Issues and Take Action</h5>
+                <p>Using the collected data, you can start troubleshooting your cluster. For instance:</p>
+                <ul>
+                <li>
+                <p><strong>Log Files</strong>: Check log files for error messages, warnings, or other indicators of what might be going wrong.</p>
+                </li>
+                <li>
+                <p><strong>Configuration Mismatches</strong>: Compare current configurations with your desired state or documentation to identify discrepancies.</p>
+                </li>
+                <li>
+                <p><strong>Resource Health</strong>: Review the state of cluster resources to detect failed pods, misconfigured services, or network issues.</p>
+                </li>
+                </ul>
+                <h5>Step 8: Clean Up After Must-Gather</h5>
+                <p>Once you've gathered and analyzed the necessary information, clean up the must-gather pod and any other resources it created:</p>
+                <p>oc delete project openshift-must-gather</p>
+                <p>This command will remove the project and all related resources, helping to keep your cluster tidy.</p>
+                <h4>Tips for Effective Troubleshooting with Must-Gather</h4>
+                <ul>
+                <li>
+                <p><strong>Use Specific Must-Gather Images</strong>: Different images are available for specific areas like networking, storage, etc. Using a tailored image can help focus your data collection and analysis.</p>
+                </li>
+                <li>
+                <p><strong>Automate Repetitive Tasks</strong>: Consider scripting the must-gather process for repeated use, especially in environments where you frequently need to collect data.</p>
+                </li>
+                <li>
+                <p><strong>Keep a Record of Past Must-Gathers</strong>: Store previous must-gather outputs for historical comparisons and auditing purposes.</p>
+                </li>
+                </ul>
+                <h4>Conclusion</h4>
+                <p>Must-gather is an essential tool for any OpenShift administrator or developer. By following these steps, you can quickly collect the necessary data to troubleshoot and resolve issues in your cluster. Remember to regularly update your skills and knowledge about OpenShift and Kubernetes, as these tools continuously evolve with new features and improvements.</p>
+                <p>With this guide, you're now equipped to handle common cluster issues effectively using must-gather. Happy troubleshooting!</p>
+                <p><strong>🔗 Connect with me:</strong></p>
+                <ul>
+                <li>
+                <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/rifaterdemsahin/">https://www.linkedin.com/in/rifaterdemsahin/</a></p>
+                </li>
+                <li>
+                <p>🐦 Twitter: <a href="https://x.com/rifaterdemsahin">https://x.com/rifaterdemsahin</a></p>
+                </li>
+                <li>
+                <p>🎥 YouTube: <a href="https://www.youtube.com/@RifatErdemSahin">https://www.youtube.com/@RifatErdemSahin</a></p>
+                </li>
+                <li>
+                <p>💻 GitHub: <a href="https://github.com/rifaterdemsahin">https://github.com/rifaterdemsahin</a></p>
+                </li>
+                </ul>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

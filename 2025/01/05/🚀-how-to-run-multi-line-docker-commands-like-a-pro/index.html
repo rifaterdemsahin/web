@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 How to Run Multi-Line Docker Commands Like a Pro - Rifat Erdem Sahin</title>
+    <meta name="description" content="🚀 How to Run Multi-Line Docker Commands Like a Pro Running multi-line commands in the terminal can significantly enhance the readability of complex commands. Here’s how you can split long Docker comma">
+    <meta name="keywords" content="🚀 How to Run Multi-Line Docker Commands Like a Pro">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/01/05/🚀-how-to-run-multi-line-docker-commands-like-a-pro/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/01/05/🚀-how-to-run-multi-line-docker-commands-like-a-pro/">
+    <meta property="og:title" content="🚀 How to Run Multi-Line Docker Commands Like a Pro">
+    <meta property="og:description" content="🚀 How to Run Multi-Line Docker Commands Like a Pro Running multi-line commands in the terminal can significantly enhance the readability of complex commands. Here’s how you can split long Docker comma">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/01/05/🚀-how-to-run-multi-line-docker-commands-like-a-pro/">
+    <meta property="twitter:title" content="🚀 How to Run Multi-Line Docker Commands Like a Pro">
+    <meta property="twitter:description" content="🚀 How to Run Multi-Line Docker Commands Like a Pro Running multi-line commands in the terminal can significantly enhance the readability of complex commands. Here’s how you can split long Docker comma">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "🚀 How to Run Multi-Line Docker Commands Like a Pro",
+      "description": "🚀 How to Run Multi-Line Docker Commands Like a Pro Running multi-line commands in the terminal can significantly enhance the readability of complex commands. Here’s how you can split long Docker comma",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-01-05",
+      "dateModified": "2025-01-05",
+      "url": "https://www.rifaterdemsahin.com/2025/01/05/🚀-how-to-run-multi-line-docker-commands-like-a-pro/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/01/05/🚀-how-to-run-multi-line-docker-commands-like-a-pro/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">🚀 How to Run Multi-Line Docker Commands Like a Pro</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>January 5, 2025</span>
+                    <span>&bull;</span>
+                    <span>4 min read</span>
+                </div>
+                <p class="article-excerpt">🚀 How to Run Multi-Line Docker Commands Like a Pro Running multi-line commands in the terminal can significantly enhance the readability of complex commands. Here’s how you can split long Docker commands into multiple lines using the backslash ( \ ).</p>
+            </header>
+            <article class="article-content">
+                <h1>🚀 How to Run Multi-Line Docker Commands Like a Pro</h1>
+                <p>Running multi-line commands in the terminal can significantly enhance the readability of complex commands. Here’s how you can split long Docker commands into multiple lines using the backslash (<code>\</code>).</p>
+                <p>💡 <strong>Why Multi-Line Commands?</strong><br />
+                Sometimes, Docker commands can get long, and it’s much easier to read and debug them when they're broken into multiple lines. The backslash (<code>\</code>) at the end of each line tells the terminal that the command is not yet finished.</p>
+                <h3>Example: Running Jenkins in Docker 🐋</h3>
+                <p>Here’s an example of how you can run a Jenkins instance in Docker with a multi-line command:</p>
+                <p>docker run \<br />
+                  --name jenkins-poc \<br />
+                  -p 8080:8080 \<br />
+                  -v jenkins-data:/var/jenkins_home \<br />
+                  jenkins/jenkins:lts</p>
+                <p><img src="images/how-to-run-1.png" alt="how to run 1" class="article-image" loading="lazy"></p>
+                <p>💡 <strong>Explanation:</strong></p>
+                <ul>
+                <li>
+                <p><code>docker run</code>: Starts a new Docker container.</p>
+                </li>
+                <li>
+                <p><code>--name jenkins-poc</code>: Names the container <code>jenkins-poc</code>.</p>
+                </li>
+                <li>
+                <p><code>-p 8080:8080</code>: Maps port 8080 from the container to the host, so you can access Jenkins via <code>localhost:8080</code>.</p>
+                </li>
+                <li>
+                <p><code>-v jenkins-data:/var/jenkins_home</code>: Mounts a volume to persist Jenkins data.</p>
+                </li>
+                <li>
+                <p><code>jenkins/jenkins:lts</code>: Pulls the latest long-term support (LTS) version of Jenkins.</p>
+                </li>
+                </ul>
+                <p>💻 <strong>Running the Command</strong><br />
+                Just copy and paste the command into your terminal, and Docker will launch Jenkins for you! 🚀</p>
+                <h3></h3>
+                <p><img src="images/how-to-run-2.png" alt="how to run 2" class="article-image" loading="lazy"></p>
+                <p>📸</p>
+                <p>Make sure to pause after each step for clarity—this will help in identifying any issues. Here's an example of what the terminal looks like when running this command:</p>
+                <p>🔧 <strong>Pro Tips:</strong></p>
+                <ul>
+                <li>
+                <p><strong>No Trailing Spaces!</strong> Make sure there are no spaces after the backslash (<code>\</code>), or the command might break.</p>
+                </li>
+                <li>
+                <p><strong>For Scripting:</strong> If you’re using this in a shell script, the backslashes will make your commands clean and easy to edit later.</p>
+                </li>
+                </ul>
+                <hr />
+                <p>**🔗 **</p>
+                <p>The difference in how copy-pasting works between macOS Terminal and Windows PowerShell is primarily due to the way these operating systems and their terminal environments handle clipboard operations and input methods.</p>
+                <h3>💻 macOS Terminal:</h3>
+                <p>In macOS Terminal, the copy-paste mechanism is very straightforward:</p>
+                <ul>
+                <li>
+                <p><strong>Copy</strong>: You can simply use <code>Command + C</code> to copy text.</p>
+                </li>
+                <li>
+                <p><strong>Paste</strong>: To paste text into the terminal, use <code>Command + V</code>, and it works smoothly because macOS Terminal handles this directly and has a more integrated clipboard system with the operating system.</p>
+                </li>
+                </ul>
+                <h3>💻 Windows PowerShell:</h3>
+                <p>In Windows PowerShell, the behavior of copy-pasting can be a bit more complicated, depending on the version of PowerShell and its settings:</p>
+                <ul>
+                <li>
+                <p><strong>Copy</strong>: Use <code>Ctrl + C</code> or right-click to copy, but if you use <code>Ctrl + C</code> while in PowerShell, it may behave as a command to <strong>cancel the running process</strong> rather than copying text.</p>
+                </li>
+                <li>
+                <p><strong>Paste</strong>: To paste text, traditionally you had to right-click inside PowerShell (or use <strong><code>Shift + Insert</code>)</strong>, but <code>Ctrl + V</code> might not work by default.</p>
+                </li>
+                </ul>
+                <h3>Why the Difference?</h3>
+                <ul>
+                <li>
+                <p><strong>Default Key Bindings</strong>:</p>
+                </li>
+                <li>
+                <p>On macOS, the terminal uses standard system-wide shortcuts like <code>Command + V</code> for pasting.</p>
+                </li>
+                <li>
+                <p>In older versions of PowerShell, <code>Ctrl + C</code> and <code>Ctrl + V</code> were reserved for interrupting processes and didn’t handle copy-paste operations by default. Newer versions of PowerShell (Windows 10 onwards) allow <code>Ctrl + V</code> for pasting, but the experience can vary based on your version and settings.</p>
+                </li>
+                <li>
+                <p><strong>Right-Click Behavior</strong>:</p>
+                </li>
+                <li>
+                <p><strong>macOS</strong>: Right-click brings up a context menu that lets you copy/paste easily.</p>
+                </li>
+                <li>
+                <p><strong>Windows PowerShell</strong>: By default, right-click pastes the content into the terminal. This can be confusing, as right-clicking typically opens a menu in most other Windows apps.</p>
+                </li>
+                <li>
+                <p><strong>Clipboard Interaction</strong>:</p>
+                </li>
+                <li>
+                <p>macOS Terminal has better integration with the system clipboard.</p>
+                </li>
+                <li>
+                <p>PowerShell's interaction with the clipboard can feel less intuitive, particularly in older versions, where right-click pasting was the norm, and key combinations like <code>Ctrl + V</code> were not enabled by default.</p>
+                </li>
+                </ul>
+                <h3>How to Fix It in PowerShell 🚀</h3>
+                <p>If you're using an older version of PowerShell, you can enable better copy-pasting with a few adjustments:</p>
+                <ul>
+                <li>
+                <p><strong>Enable Ctrl + V for pasting</strong>:</p>
+                </li>
+                <li>
+                <p>Right-click the <strong>title bar</strong> of PowerShell.</p>
+                </li>
+                <li>
+                <p>Select <strong>Properties</strong>.</p>
+                </li>
+                <li>
+                <p>Check the option <strong>"Enable Ctrl key shortcuts"</strong>.</p>
+                </li>
+                <li>
+                <p><strong>Use Windows Terminal</strong>:</p>
+                </li>
+                <li>
+                <p>The new <strong>Windows Terminal</strong> app, which you can download from the Microsoft Store, fully supports <code>Ctrl + C</code> for copy and <code>Ctrl + V</code> for paste, offering a much smoother experience.</p>
+                </li>
+                </ul>
+                <p>By using these tips, you can make copy-paste behavior more consistent across different environments!</p>
+                <p>Let me know if you need more details on setting this up! 😊</p>
+                <p><strong>🔗 Connect with me:</strong></p>
+                <ul>
+                <li>
+                <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/rifaterdemsahin/">https://www.linkedin.com/in/rifaterdemsahin/</a></p>
+                </li>
+                <li>
+                <p>🐦 Twitter: <a href="https://x.com/rifaterdemsahin">https://x.com/rifaterdemsahin</a></p>
+                </li>
+                <li>
+                <p>🎥 YouTube: <a href="https://www.youtube.com/@RifatErdemSahin">https://www.youtube.com/@RifatErdemSahin</a></p>
+                </li>
+                <li>
+                <p>💻 GitHub: <a href="https://github.com/rifaterdemsahin">https://github.com/rifaterdemsahin</a></p>
+                </li>
+                </ul>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

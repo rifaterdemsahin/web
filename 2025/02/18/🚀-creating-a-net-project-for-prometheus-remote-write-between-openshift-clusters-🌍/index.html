@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Creating a .NET Project for Prometheus Remote Write Between OpenShift Clusters 🌍 - Rifat Erdem Sahin</title>
+    <meta name="description" content="🚀 Creating a .NET Project for Prometheus Remote Write Between OpenShift Clusters 🌍 In this blog post, I'll guide you through setting up a .NET project to demonstrate how to send Prometheus metrics usi">
+    <meta name="keywords" content="🚀 Creating a .NET Project for Prometheus Remote Write Between OpenShift Clusters 🌍">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/02/18/🚀-creating-a-net-project-for-prometheus-remote-write-between-openshift-clusters-🌍/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/02/18/🚀-creating-a-net-project-for-prometheus-remote-write-between-openshift-clusters-🌍/">
+    <meta property="og:title" content="🚀 Creating a .NET Project for Prometheus Remote Write Between OpenShift Clusters 🌍">
+    <meta property="og:description" content="🚀 Creating a .NET Project for Prometheus Remote Write Between OpenShift Clusters 🌍 In this blog post, I'll guide you through setting up a .NET project to demonstrate how to send Prometheus metrics usi">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/02/18/🚀-creating-a-net-project-for-prometheus-remote-write-between-openshift-clusters-🌍/">
+    <meta property="twitter:title" content="🚀 Creating a .NET Project for Prometheus Remote Write Between OpenShift Clusters 🌍">
+    <meta property="twitter:description" content="🚀 Creating a .NET Project for Prometheus Remote Write Between OpenShift Clusters 🌍 In this blog post, I'll guide you through setting up a .NET project to demonstrate how to send Prometheus metrics usi">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "🚀 Creating a .NET Project for Prometheus Remote Write Between OpenShift Clusters 🌍",
+      "description": "🚀 Creating a .NET Project for Prometheus Remote Write Between OpenShift Clusters 🌍 In this blog post, I'll guide you through setting up a .NET project to demonstrate how to send Prometheus metrics usi",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-02-18",
+      "dateModified": "2025-02-18",
+      "url": "https://www.rifaterdemsahin.com/2025/02/18/🚀-creating-a-net-project-for-prometheus-remote-write-between-openshift-clusters-🌍/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/02/18/🚀-creating-a-net-project-for-prometheus-remote-write-between-openshift-clusters-🌍/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">🚀 Creating a .NET Project for Prometheus Remote Write Between OpenShift Clusters 🌍</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>February 18, 2025</span>
+                    <span>&bull;</span>
+                    <span>22 min read</span>
+                </div>
+                <p class="article-excerpt">🚀 Creating a .NET Project for Prometheus Remote Write Between OpenShift Clusters 🌍 In this blog post, I'll guide you through setting up a .NET project to demonstrate how to send Prometheus metrics using Remote Write between OpenShift clusters, while also representing relationship</p>
+            </header>
+            <article class="article-content">
+                <h1>🚀 Creating a .NET Project for Prometheus Remote Write Between OpenShift Clusters 🌍</h1>
+                <p>In this blog post, I'll guide you through setting up a .NET project to demonstrate how to send Prometheus metrics using Remote Write between OpenShift clusters, while also representing relationships similar to Thanos in Prometheus architecture. Whether you're looking to improve your monitoring or just streamline metric management, this is for you!</p>
+                <hr />
+                <h2>🎯 Goal</h2>
+                <p>💡 <strong>What I want to achieve:</strong> I want to create a .NET project that shows relationships (like Thanos in Prometheus) and implement remote write for Prometheus metrics to move data between OpenShift clusters.</p>
+                <hr />
+                <h2>🛠️ Prerequisites</h2>
+                <p>Before starting, make sure you have:</p>
+                <ul>
+                <li>
+                <p>🖥️ A working OpenShift cluster (or use CRC, CodeReady Containers for local development)</p>
+                </li>
+                <li>
+                <p>🧑‍💻 .NET SDK installed (<a href="https://dotnet.microsoft.com/download">Download here</a>)</p>
+                </li>
+                <li>
+                <p>🛠️ Prometheus installed on your clusters</p>
+                </li>
+                </ul>
+                <hr />
+                <h2>📝 Step-by-Step Guide</h2>
+                <h3>1. <strong>Create a New .NET Project</strong></h3>
+                <p>start location and environment</p>
+                <p><img src="images/creating-a-net-1.png" alt="creating a net 1" class="article-image" loading="lazy"></p>
+                <p>First, create a new .NET console project using the following command:</p>
+                <p>dotnet new console -n PrometheusRemoteWrite<br />
+                cd PrometheusRemoteWrite</p>
+                <p><img src="images/creating-a-net-2.png" alt="creating a net 2" class="article-image" loading="lazy"></p>
+                <p>🔧 This will set up the basic structure for our project. We will focus on setting up an API to send metrics to Prometheus from one OpenShift cluster to another.</p>
+                <p><img src="images/creating-a-net-3.png" alt="creating a net 3" class="article-image" loading="lazy"></p>
+                <p><img src="images/creating-a-net-4.png" alt="creating a net 4" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>Toolkit Login</p>
+                <p><img src="images/creating-a-net-5.png" alt="creating a net 5" class="article-image" loading="lazy"></p>
+                <p><img src="images/creating-a-net-6.png" alt="creating a net 6" class="article-image" loading="lazy"></p>
+                <p>run and see</p>
+                <p><img src="images/creating-a-net-7.png" alt="creating a net 7" class="article-image" loading="lazy"></p>
+                <h3>CODE2. <strong>Install Prometheus Client Libraries</strong></h3>
+                <p>For this project, you need the Prometheus client library to easily push metrics. Add the Prometheus NuGet package:</p>
+                <p>dotnet add package prometheus-net</p>
+                <p>This package provides us with necessary methods to expose and send metrics.</p>
+                <p><img src="images/creating-a-net-8.png" alt="creating a net 8" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>Fills up</p>
+                <p><img src="images/creating-a-net-9.png" alt="creating a net 9" class="article-image" loading="lazy"></p>
+                <h3>3. <strong>Code Your Metric Exporter</strong></h3>
+                <p>Now, we’ll modify the <code>Program.cs</code> file to expose some metrics and push them via Remote Write:</p>
+                <p>using Prometheus;<br />
+                using System.Threading.Tasks;</p>
+                <p>class Program<br />
+                {<br />
+                    static async Task Main(string[] args)<br />
+                    {</p>
+                <pre><code>    for (int i = 0; i &lt; 10; i++)
+                    {
+                        counter.Inc();
+                        await Task.Delay(1000); // Push every second
+                    }
+                
+                    server.Start();
+                
+                    await Task.Delay(-1); // Keep the server running
+                }
+                </code></pre>
+                <p>}</p>
+                <p>In this example, we create a simple counter that increments every second and exposes it for Prometheus to scrape. 🚀</p>
+                <p>build and see the metrics coming in</p>
+                <p><img src="images/creating-a-net-10.png" alt="creating a net 10" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>thanks to gpt the comments are written out as well </p>
+                <p><img src="images/creating-a-net-11.png" alt="creating a net 11" class="article-image" loading="lazy"></p>
+                <p>Run and see threads going online</p>
+                <p><img src="images/creating-a-net-12.png" alt="creating a net 12" class="article-image" loading="lazy"></p>
+                <h3>4. <strong>Set Up Remote Write in Prometheus</strong></h3>
+                <p>For Remote Write, you need to configure Prometheus to push metrics from one cluster to another. Here’s how to modify your <code>prometheus.yml</code> file:</p>
+                <p>remote_write:<br />
+                  - url: "http://<target-cluster>:9091/api/v1/write"<br />
+                    queue_config:<br />
+                      max_samples_per_send: 100<br />
+                      batch_send_deadline: 5s</p>
+                <p>This tells Prometheus to send all metrics to the remote cluster using the Remote Write API.</p>
+                <p><img src="images/creating-a-net-13.png" alt="creating a net 13" class="article-image" loading="lazy"></p>
+                <hr />
+                <h3>5. <strong>Deploy Your .NET Project to OpenShift</strong></h3>
+                <p>We now need to containerize the .NET application and deploy it to OpenShift:</p>
+                <ul>
+                <li>Create a Dockerfile:</li>
+                </ul>
+                <p>FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base<br />
+                WORKDIR /app<br />
+                EXPOSE 80</p>
+                <p>FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build<br />
+                WORKDIR /src<br />
+                COPY . .<br />
+                RUN dotnet restore<br />
+                RUN dotnet publish -c Release -o /app</p>
+                <p>FROM base AS final<br />
+                WORKDIR /app<br />
+                COPY --from=build /app .<br />
+                ENTRYPOINT ["dotnet", "PrometheusRemoteWrite.dll"]</p>
+                <p>Jump between folders and that is fine </p>
+                <p><img src="images/creating-a-net-14.png" alt="creating a net 14" class="article-image" loading="lazy"></p>
+                <p>2 ways to make it work </p>
+                <p><img src="images/creating-a-net-15.png" alt="creating a net 15" class="article-image" loading="lazy"></p>
+                <p>Your files are here</p>
+                <p><img src="images/creating-a-net-16.png" alt="creating a net 16" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>Build the container and push it to OpenShift:</li>
+                </ul>
+                <p>start engines</p>
+                <p><img src="images/creating-a-net-17.png" alt="creating a net 17" class="article-image" loading="lazy"></p>
+                <p><img src="images/creating-a-net-18.png" alt="creating a net 18" class="article-image" loading="lazy"></p>
+                <p>docker build -t yourregistry/PrometheusRemoteWrite .<br />
+                docker push yourregistry/PrometheusRemoteWrite</p>
+                <p><img src="images/creating-a-net-19.png" alt="creating a net 19" class="article-image" loading="lazy"></p>
+                <p>It looks like you're encountering a couple of issues when trying to build your Docker image. Here are some suggestions to help you resolve them:</p>
+                <ul>
+                <li>
+                <p><strong>Docker Connection Error</strong>: The first error indicates that Docker is having trouble connecting to the Docker Engine. Make sure that Docker Desktop is running. You might want to restart Docker Desktop or your computer to see if that resolves the connection issue.</p>
+                </li>
+                <li>
+                <p><strong>Invalid Tag Error</strong>: The second error is about the image tag needing to be lowercase. Docker image names and tags must be in lowercase. Try changing your command to use a lowercase repository name. For example:</p>
+                </li>
+                </ul>
+                <p>docker build -t rifaterdemsahin/prometheusremotewrite .</p>
+                <p>Once you've made those adjustments, try running the command again. Let me know if you need further assistance!</p>
+                <p>Go to Code</p>
+                <p><img src="images/creating-a-net-20.png" alt="creating a net 20" class="article-image" loading="lazy"></p>
+                <p><img src="images/creating-a-net-21.png" alt="creating a net 21" class="article-image" loading="lazy"></p>
+                <p><img src="images/creating-a-net-22.png" alt="creating a net 22" class="article-image" loading="lazy"></p>
+                <p>The error message indicates that the <code>dotnet restore</code> command can't find a project or solution file in the current directory. This typically happens when the Docker build context doesn't include the necessary files or when the project file is in a different location. Here are some steps to troubleshoot and resolve this issue:</p>
+                <ul>
+                <li>
+                <p><strong>Check Project Structure</strong>: Ensure that your project file (e.g., <code>*.csproj</code>) is in the correct directory. The Dockerfile assumes that your project file is in the root of the context being copied.</p>
+                </li>
+                <li>
+                <p><strong>Adjust COPY Command</strong>: If your project file is in a subdirectory, modify the <code>COPY</code> command in your Dockerfile to specify the correct path. For example, if your project is in a folder called <code>src</code>, you might need to change:</p>
+                </li>
+                </ul>
+                <p>COPY src/*.csproj ./<br />
+                   COPY src/ ./</p>
+                <ul>
+                <li><strong>Specify Project File</strong>: You can also specify the project file directly in the <code>dotnet restore</code> command. For example:</li>
+                </ul>
+                <p>RUN dotnet restore PrometheusRemoteWrite.csproj</p>
+                <ul>
+                <li><strong>Build Context</strong>: Make sure you're running the <code>docker build</code> command from the correct context. The command should be run from the directory that contains the Dockerfile, or you should specify the correct context using the <code>-f</code> option:</li>
+                </ul>
+                <p>docker build -f path/to/Dockerfile -t rifaterdemsahin/prometheusremotewrite .</p>
+                <p>After making these adjustments, try building the Docker image again. Let me know if you need further help!</p>
+                <p>Here's a revised version of your Dockerfile that addresses the issues related to the project file location and ensures that the necessary files are copied correctly:</p>
+                <h1>Use the ASP.NET runtime image as the base</h1>
+                <p>FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base<br />
+                WORKDIR /app<br />
+                EXPOSE 80</p>
+                <h1>Use the .NET SDK image for building the application</h1>
+                <p>FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build<br />
+                WORKDIR /src</p>
+                <h1>Copy the project file and restore dependencies</h1>
+                <p>COPY PrometheusRemoteWriteOpenShiftClusters/PrometheusRemoteWriteOpenShiftClusters.csproj PrometheusRemoteWriteOpenShiftClusters/</p>
+                <h1>List the contents of the directory to see the copied files</h1>
+                <p>RUN ls -la PrometheusRemoteWriteOpenShiftClusters/<br />
+                RUN dotnet restore PrometheusRemoteWriteOpenShiftClusters/PrometheusRemoteWriteOpenShiftClusters.csproj</p>
+                <h1>Copy the rest of the application code</h1>
+                <p>COPY PrometheusRemoteWriteOpenShiftClusters/. PrometheusRemoteWriteOpenShiftClusters/<br />
+                WORKDIR /src/PrometheusRemoteWriteOpenShiftClusters</p>
+                <h1>Publish the application</h1>
+                <p>RUN dotnet publish -c Release -o /app</p>
+                <h1>Final stage to run the application</h1>
+                <p>FROM base AS final<br />
+                WORKDIR /app<br />
+                COPY --from=build /app ./<br />
+                ENTRYPOINT ["dotnet", "PrometheusRemoteWriteOpenShiftClusters.dll"]</p>
+                <h3>Changes Made:</h3>
+                <ul>
+                <li>
+                <p><strong>COPY Commands</strong>: Explicitly copy the project file before running <code>dotnet restore</code> to ensure the dependencies can be restored.</p>
+                </li>
+                <li>
+                <p><strong>Project Structure</strong>: The Dockerfile assumes that your project is located in a folder named <code>PrometheusRemoteWrite</code>. Adjust this path according to your actual project structure if needed.</p>
+                </li>
+                <li>
+                <p><strong>Work Directory Changes</strong>: The working directory is set to the correct path before running the <code>dotnet publish</code> command.</p>
+                </li>
+                </ul>
+                <p>Make sure your project structure matches the paths used in the Dockerfile. If your project is structured differently, adjust the paths accordingly. Let me know if you need further modifications!</p>
+                <p>Commits are coming in </p>
+                <p><img src="images/creating-a-net-23.png" alt="creating a net 23" class="article-image" loading="lazy"></p>
+                <p>The error suggests that the Docker build process cannot find the specified directories or files. Here’s an updated version of the Dockerfile that should help resolve the issues. Make sure your project structure is correct before proceeding:</p>
+                <h3>Updated Dockerfile</h3>
+                <h1>Use the ASP.NET runtime image as the base</h1>
+                <p>FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base<br />
+                WORKDIR /app<br />
+                EXPOSE 80</p>
+                <h1>Use the .NET SDK image for building the application</h1>
+                <p>FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build<br />
+                WORKDIR /src</p>
+                <h1>Copy the project file and restore dependencies</h1>
+                <p>COPY PrometheusRemoteWriteOpenShiftClusters/PrometheusRemoteWriteOpenShiftClusters.csproj PrometheusRemoteWriteOpenShiftClusters/</p>
+                <h1>List the contents of the directory to see the copied files</h1>
+                <p>RUN ls -la PrometheusRemoteWriteOpenShiftClusters/<br />
+                RUN dotnet restore PrometheusRemoteWriteOpenShiftClusters/PrometheusRemoteWriteOpenShiftClusters.csproj</p>
+                <h1>Copy the rest of the application code</h1>
+                <p>COPY PrometheusRemoteWriteOpenShiftClusters/. PrometheusRemoteWriteOpenShiftClusters/<br />
+                WORKDIR /src/PrometheusRemoteWriteOpenShiftClusters</p>
+                <h1>Publish the application</h1>
+                <p>RUN dotnet publish -c Release -o /app</p>
+                <h1>Final stage to run the application</h1>
+                <p>FROM base AS final<br />
+                WORKDIR /app<br />
+                COPY --from=build /app ./<br />
+                ENTRYPOINT ["dotnet", "PrometheusRemoteWriteOpenShiftClusters.dll"]</p>
+                <h3>Key Points to Check:</h3>
+                <ul>
+                <li><strong>Project Structure</strong>: Ensure that the directory <code>PrometheusRemoteWrite</code> exists at the same level as your Dockerfile and contains the <code>PrometheusRemoteWrite.csproj</code> file and all necessary code files.</li>
+                </ul>
+                <p><img src="images/creating-a-net-24.png" alt="creating a net 24" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>
+                <p><strong>Correct Paths</strong>: Make sure the paths in the <code>COPY</code> commands correctly reflect your project's structure. Adjust the paths if your project files are located differently.</p>
+                </li>
+                <li>
+                <p><strong>Build Context</strong>: Run the <code>docker build</code> command from the <code>Code</code> directory where your Dockerfile is located, like this:</p>
+                </li>
+                </ul>
+                <p>docker build -t rifaterdemsahin/prometheusremotewriteopenshiftclusters .</p>
+                <p>After making these adjustments, try building the Docker image again. Let me know if you encounter any more issues!</p>
+                <p>Add the names to console and part that needs to work</p>
+                <p><img src="images/creating-a-net-25.png" alt="creating a net 25" class="article-image" loading="lazy"></p>
+                <p>The error indicates that the Docker build process can't find the specified <code>PrometheusRemoteWrite.csproj</code> file. This usually means that the file path in the <code>COPY</code> command doesn't match your actual directory structure. Let's troubleshoot this step by step:</p>
+                <ul>
+                <li>
+                <p><strong>Verify Directory Structure</strong>: Make sure your project directory structure looks something like this:</p>
+                </li>
+                <li>
+                <p><strong>Adjust the Dockerfile</strong>: If your project structure is correct, make sure your <code>COPY</code> commands reflect that. Here’s a modified Dockerfile assuming the structure is as above:</p>
+                </li>
+                </ul>
+                <h1>Use the ASP.NET runtime image as the base</h1>
+                <p>FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base<br />
+                WORKDIR /app<br />
+                EXPOSE 80</p>
+                <h1>Use the .NET SDK image for building the application</h1>
+                <p>FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build<br />
+                WORKDIR /src</p>
+                <h1>Copy the project file and restore dependencies</h1>
+                <p>COPY PrometheusRemoteWriteOpenShiftClusters/PrometheusRemoteWriteOpenShiftClusters.csproj PrometheusRemoteWriteOpenShiftClusters/</p>
+                <h1>List the contents of the directory to see the copied files</h1>
+                <p>RUN ls -la PrometheusRemoteWriteOpenShiftClusters/<br />
+                RUN dotnet restore PrometheusRemoteWriteOpenShiftClusters/PrometheusRemoteWriteOpenShiftClusters.csproj</p>
+                <h1>Copy the rest of the application code</h1>
+                <p>COPY PrometheusRemoteWriteOpenShiftClusters/. PrometheusRemoteWriteOpenShiftClusters/<br />
+                WORKDIR /src/PrometheusRemoteWriteOpenShiftClusters</p>
+                <h1>Publish the application</h1>
+                <p>RUN dotnet publish -c Release -o /app</p>
+                <h1>Final stage to run the application</h1>
+                <p>FROM base AS final<br />
+                WORKDIR /app<br />
+                COPY --from=build /app ./<br />
+                ENTRYPOINT ["dotnet", "PrometheusRemoteWriteOpenShiftClusters.dll"]</p>
+                <ul>
+                <li><strong>Run Docker Build Command</strong>: Ensure you are in the correct directory where your Dockerfile is located when running the build command:</li>
+                </ul>
+                <p>cd C:\projects\PrometheusRemoteWriteOpenShiftClusters\Code<br />
+                   docker build -t rifaterdemsahin/prometheusremotewrite .</p>
+                <ul>
+                <li><strong>Check for Typos</strong>: Double-check for any typos in your file names or paths.</li>
+                </ul>
+                <p>After making sure everything is correct, try building the Docker image again. If the issue persists, please provide the exact structure of your <code>PrometheusRemoteWrite</code> directory, and I can help you further!</p>
+                <p>my miss spellings and read the gpt </p>
+                <p><img src="images/creating-a-net-26.png" alt="creating a net 26" class="article-image" loading="lazy"></p>
+                <p>It seems there might be some confusion with the file paths in your Dockerfile. Based on the error messages, it looks like the paths might not be correctly set relative to your build context. Let's adjust the Dockerfile and clarify how to structure the project for successful building.</p>
+                <h3>Revised Dockerfile</h3>
+                <p>Here’s an updated version that assumes your <code>PrometheusRemoteWrite.csproj</code> file is inside the <code>PrometheusRemoteWriteOpenShiftClusters</code> directory:</p>
+                <h1>Use the ASP.NET runtime image as the base</h1>
+                <p>FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base<br />
+                WORKDIR /app<br />
+                EXPOSE 80</p>
+                <h1>Use the .NET SDK image for building the application</h1>
+                <p>FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build<br />
+                WORKDIR /src</p>
+                <h1>Copy the project file and restore dependencies</h1>
+                <p>COPY PrometheusRemoteWriteOpenShiftClusters/PrometheusRemoteWriteOpenShiftClusters.csproj PrometheusRemoteWriteOpenShiftClusters/</p>
+                <h1>List the contents of the directory to see the copied files</h1>
+                <p>RUN ls -la PrometheusRemoteWriteOpenShiftClusters/<br />
+                RUN dotnet restore PrometheusRemoteWriteOpenShiftClusters/PrometheusRemoteWriteOpenShiftClusters.csproj</p>
+                <h1>Copy the rest of the application code</h1>
+                <p>COPY PrometheusRemoteWriteOpenShiftClusters/. PrometheusRemoteWriteOpenShiftClusters/<br />
+                WORKDIR /src/PrometheusRemoteWriteOpenShiftClusters</p>
+                <h1>Publish the application</h1>
+                <p>RUN dotnet publish -c Release -o /app</p>
+                <h1>Final stage to run the application</h1>
+                <p>FROM base AS final<br />
+                WORKDIR /app<br />
+                COPY --from=build /app ./<br />
+                ENTRYPOINT ["dotnet", "PrometheusRemoteWriteOpenShiftClusters.dll"]</p>
+                <h3>Key Adjustments</h3>
+                <ul>
+                <li>
+                <p><strong>COPY Commands</strong>: Ensure that the <code>COPY</code> commands reflect the correct paths. The project file is copied to a subdirectory named <code>PrometheusRemoteWrite</code>.</p>
+                </li>
+                <li>
+                <p><strong>Work Directory</strong>: Set the working directory correctly after copying the files.</p>
+                </li>
+                <li>
+                <p><strong>Entry Point</strong>: The <code>ENTRYPOINT</code> command uses the correct DLL name based on your project file.</p>
+                </li>
+                </ul>
+                <h3>Steps to Build</h3>
+                <ul>
+                <li>
+                <p><strong>Check Directory Structure</strong>: Make sure your project files are structured like this:</p>
+                </li>
+                <li>
+                <p><strong>Run the Build Command</strong>: Navigate to the directory containing the Dockerfile and run:</p>
+                </li>
+                </ul>
+                <p>docker build -t rifaterdemsahin/prometheusremotewrite .</p>
+                <p>This should resolve the issues you’re facing. If there are still errors, please double-check the file names and directory structure, or let me know the exact structure, and we can troubleshoot further!</p>
+                <p>Use OpenShift to deploy the container via <code>oc</code> commands:</p>
+                <p><img src="images/creating-a-net-27.png" alt="creating a net 27" class="article-image" loading="lazy"></p>
+                <p>oc new-app --docker-image=rifaterdemsahin/PrometheusRemoteWriteOpenShiftClusters</p>
+                <hr />
+                <p>Based on your folder structure, it looks like your Dockerfile and other relevant files (like <code>program.cs</code> and <code>prometheus.yml</code>) are in the <code>Code</code> directory, but you don't seem to have a project file (like <code>*.csproj</code>) present.</p>
+                <p>To build a .NET application, you'll need a project file. Here's how you can proceed:</p>
+                <h3>Step 1: Create a Project File</h3>
+                <p>If you haven't created a project yet, you can do so by running the following command in your terminal from the <code>Code</code> directory:</p>
+                <p>dotnet new console -n PrometheusRemoteWriteOpenShiftClusters</p>
+                <p>This will create a new folder named <code>PrometheusRemoteWrite</code> containing a project file (<code>PrometheusRemoteWrite.csproj</code>) and a <code>Program.cs</code> file.</p>
+                <p>Restart</p>
+                <p><img src="images/creating-a-net-28.png" alt="creating a net 28" class="article-image" loading="lazy"></p>
+                <h3>Step 2: Move Your Existing Code</h3>
+                <p>If you want to use your existing <code>program.cs</code> file, move it into the newly created <code>PrometheusRemoteWrite</code> directory:</p>
+                <ul>
+                <li>Move the <code>program.cs</code> file:</li>
+                </ul>
+                <p>Move-Item program.cs PrometheusRemoteWriteOpenShiftClusters/</p>
+                <p><img src="images/creating-a-net-29.png" alt="creating a net 29" class="article-image" loading="lazy"></p>
+                <p>Manual add</p>
+                <p><img src="images/creating-a-net-30.png" alt="creating a net 30" class="article-image" loading="lazy"></p>
+                <p>It looks like you're running into issues with missing references in your .NET project related to Prometheus. The errors indicate that the <code>Metrics</code> class and <code>MetricServer</code> are not being recognized. Here are some steps to troubleshoot and resolve the issue:</p>
+                <ul>
+                <li><strong>Ensure the Prometheus NuGet Package is Installed</strong>: Make sure you have the Prometheus.NET package installed. You can do this by running the following command in your project directory:</li>
+                </ul>
+                <p>dotnet add package Prometheus</p>
+                <p>Time Elapsed 00:00:01.05<br />
+                PS C:\projects\PrometheusRemoteWriteOpenShiftClusters\Code\PrometheusRemoteWriteOpenShiftClusters&gt;    dotnet add package Prometheus<br />
+                  Determining projects to restore...<br />
+                  Writing C:\Users\Pexabo\AppData\Local\Temp\tmpqyh0il.tmp<br />
+                info : X.509 certificate chain validation will use the default trust store selected by .NET for code signing.<br />
+                info : X.509 certificate chain validation will use the default trust store selected by .NET for timestamping.<br />
+                info : Adding PackageReference for package 'Prometheus' into project 'C:\projects\PrometheusRemoteWriteOpenShiftClusters\Code\PrometheusRemoteWriteOpenShiftClusters\PrometheusRemoteWriteOpenShiftClusters.csproj'.<br />
+                info :   GET https://api.nuget.org/v3/registration5-gz-semver2/prometheus/index.json<br />
+                info :   OK https://api.nuget.org/v3/registration5-gz-semver2/prometheus/index.json 288ms<br />
+                info :   CACHE https://api.nuget.org/v3/registration5-gz-semver2/prometheus/index.json<br />
+                error: There are no versions available for the package 'Prometheus'.</p>
+                <p><img src="images/creating-a-net-31.png" alt="creating a net 31" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Check Using Directives</strong>: Make sure your using directives at the top of your <code>Program.cs</code> file include:</li>
+                </ul>
+                <p>using Prometheus;</p>
+                <ul>
+                <li><strong>Verify Project File</strong>: Check your <code>.csproj</code> file to ensure that the package reference for Prometheus is present. It should look something like this:</li>
+                </ul>
+                <p><ItemGroup><br />
+                       <PackageReference Include="Prometheus" Version="x.x.x" /><br />
+                   </ItemGroup></p>
+                <p>Your project file looks mostly correct, but you'll need to replace <code>x.x.x</code> with the actual version of the Prometheus package you want to use. You can find the latest version on <a href="https://www.nuget.org/packages/Prometheus/">NuGet.org</a>.</p>
+                <p>Here's an updated example:</p>
+                <p><Project Sdk="Microsoft.NET.Sdk"></p>
+                <p><PropertyGroup><br />
+                    <OutputType>Exe</OutputType><br />
+                    <TargetFramework>net8.0</TargetFramework><br />
+                    <ImplicitUsings>enable</ImplicitUsings><br />
+                    <Nullable>enable</Nullable><br />
+                  </PropertyGroup></p>
+                <p><ItemGroup><br />
+                    <PackageReference Include="Prometheus" Version="8.0.0" /> <!-- Replace with the latest version --><br />
+                  </ItemGroup></p>
+                <p></Project></p>
+                <p>2 versions of it </p>
+                <p><img src="images/creating-a-net-32.png" alt="creating a net 32" class="article-image" loading="lazy"></p>
+                <p>After updating the version, run the following commands to restore packages and publish your project:</p>
+                <p>dotnet restore<br />
+                dotnet publish -c Release -o /app</p>
+                <p>Packaged libraries</p>
+                <p><img src="images/creating-a-net-33.png" alt="creating a net 33" class="article-image" loading="lazy"></p>
+                <p>If you continue to see errors, please let me know!</p>
+                <p>Replace <code>x.x.x</code> with the actual version you want to use.</p>
+                <p><img src="images/creating-a-net-34.png" alt="creating a net 34" class="article-image" loading="lazy"></p>
+                <p>The errors you're encountering indicate that the <code>Metrics</code> and <code>MetricServer</code> classes from the Prometheus package are still not recognized. This may be due to a couple of reasons:</p>
+                <ul>
+                <li><strong>Check for Correct Namespace</strong>: Ensure that you're using the correct namespace. Based on the version you have, your using directive should be:</li>
+                </ul>
+                <p>using Prometheus;</p>
+                <p>Ensure it's at the top of your <code>Program.cs</code> file.</p>
+                <ul>
+                <li>
+                <p><strong>Inspect the Installed Version</strong>: Since you're using an alpha version, it's possible that the APIs or classes might differ from the stable releases. Check the documentation or source code of <code>Prometheus</code> to confirm that <code>Metrics</code> and <code>MetricServer</code> exist in <code>1.0.0-alpha5</code>.</p>
+                </li>
+                <li>
+                <p><strong>Verify Dependencies</strong>: Sometimes, alpha versions can have different dependencies or issues. Consider switching to the latest stable version if one exists. As of now, it seems <code>1.0.0-alpha5</code> is the only one available, so checking their <a href="https://github.com/PrometheusClientNet/Prometheus">GitHub repository</a> for more details could help.</p>
+                </li>
+                <li>
+                <p><strong>Clean and Rebuild</strong>: Try cleaning your project and then rebuilding:</p>
+                </li>
+                </ul>
+                <p>dotnet clean<br />
+                   dotnet build</p>
+                <ul>
+                <li><strong>Check for Typos</strong>: Ensure there are no typos in the class names and that you're using them correctly in your code.</li>
+                </ul>
+                <p>If you've checked all of these and are still having issues, you might want to consider looking for a different library or an updated stable version of Prometheus if it becomes available. Let me know how it goes!</p>
+                <p>The errors you're encountering indicate that the <code>Metrics</code> and <code>MetricServer</code> classes from the Prometheus package are still not recognized. This may be due to a couple of reasons:</p>
+                <ul>
+                <li><strong>Check for Correct Namespace</strong>: Ensure that you're using the correct namespace. Based on the version you have, your using directive should be:</li>
+                </ul>
+                <p>using Prometheus;</p>
+                <p>Ensure it's at the top of your <code>Program.cs</code> file.</p>
+                <ul>
+                <li>
+                <p><strong>Inspect the Installed Version</strong>: Since you're using an alpha version, it's possible that the APIs or classes might differ from the stable releases. Check the documentation or source code of <code>Prometheus</code> to confirm that <code>Metrics</code> and <code>MetricServer</code> exist in <code>1.0.0-alpha5</code>.</p>
+                </li>
+                <li>
+                <p><strong>Verify Dependencies</strong>: Sometimes, alpha versions can have different dependencies or issues. Consider switching to the latest stable version if one exists. As of now, it seems <code>1.0.0-alpha5</code> is the only one available, so checking their <a href="https://github.com/PrometheusClientNet/Prometheus">GitHub repository</a> for more details could help.</p>
+                </li>
+                <li>
+                <p><strong>Clean and Rebuild</strong>: Try cleaning your project and then rebuilding:</p>
+                </li>
+                </ul>
+                <p>dotnet clean<br />
+                   dotnet build</p>
+                <ul>
+                <li><strong>Check for Typos</strong>: Ensure there are no typos in the class names and that you're using them correctly in your code.</li>
+                </ul>
+                <p>If you've checked all of these and are still having issues, you might want to consider looking for a different library or an updated stable version of Prometheus if it becomes available. Let me know how it goes!</p>
+                <p>It says not found even when you can build with vs code...so build script is important</p>
+                <p>Different debug options &gt; <a href="https://code.visualstudio.com/docs/csharp/debugging">https://code.visualstudio.com/docs/csharp/debugging</a></p>
+                <p>To create a solution (<code>.sln</code>) file from a <code>.csproj</code> project file in .NET, you can use the following steps:</p>
+                <h3>Method 1: Using Visual Studio</h3>
+                <ul>
+                <li>
+                <p><strong>Open Visual Studio</strong>.</p>
+                </li>
+                <li>
+                <p>Go to <strong>File</strong> &gt; <strong>Open</strong> &gt; <strong>Project/Solution</strong>.</p>
+                </li>
+                <li>
+                <p>Navigate to your <code>.csproj</code> file and open it.</p>
+                </li>
+                <li>
+                <p>Once the project is loaded, go to <strong>File</strong> &gt; <strong>Save As Solution</strong>.</p>
+                </li>
+                <li>
+                <p>This will generate a <code>.sln</code> (solution) file that groups your <code>.csproj</code> and any future projects you want to add.</p>
+                </li>
+                </ul>
+                <h3>Method 2: Using Command Line (.NET CLI)</h3>
+                <ul>
+                <li>
+                <p>Open a terminal or command prompt.</p>
+                </li>
+                <li>
+                <p>Navigate to the directory containing your <code>.csproj</code> file.</p>
+                </li>
+                <li>
+                <p>Run the following command to create a new solution:</p>
+                </li>
+                </ul>
+                <p>dotnet new sln</p>
+                <p><img src="images/creating-a-net-35.png" alt="creating a net 35" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>Once the solution file is created, add your project to it using:</li>
+                </ul>
+                <p>dotnet sln add PrometheusRemoteWriteOpenShiftClusters.csproj</p>
+                <p>Project now added to the solution</p>
+                <p><img src="images/creating-a-net-36.png" alt="creating a net 36" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>The <code>.sln</code> file will now contain your project, and you can open it in Visual Studio or other IDEs.</li>
+                </ul>
+                <p>This will create a solution file from your existing project. Let me know if you need further assistance!</p>
+                <p>run and debug on server does not work </p>
+                <p><img src="images/creating-a-net-37.png" alt="creating a net 37" class="article-image" loading="lazy"></p>
+                <p><img src="images/creating-a-net-38.png" alt="creating a net 38" class="article-image" loading="lazy"></p>
+                <p><img src="images/creating-a-net-39.png" alt="creating a net 39" class="article-image" loading="lazy"></p>
+                <p><img src="images/creating-a-net-40.png" alt="creating a net 40" class="article-image" loading="lazy"></p>
+                <p><img src="images/creating-a-net-41.png" alt="creating a net 41" class="article-image" loading="lazy"></p>
+                <p>Runner program</p>
+                <p><img src="images/creating-a-net-42.png" alt="creating a net 42" class="article-image" loading="lazy"></p>
+                <p>turn off and build it </p>
+                <p><img src="images/creating-a-net-43.png" alt="creating a net 43" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Rebuild the Project</strong>: After ensuring the package is correctly referenced, try restoring the packages and rebuilding the project:</li>
+                </ul>
+                <p>Run and see in vs2022</p>
+                <p><img src="images/creating-a-net-44.png" alt="creating a net 44" class="article-image" loading="lazy"></p>
+                <p><img src="images/creating-a-net-45.png" alt="creating a net 45" class="article-image" loading="lazy"></p>
+                <p>Have a structure to build it</p>
+                <p><img src="images/creating-a-net-46.png" alt="creating a net 46" class="article-image" loading="lazy"></p>
+                <p>dotnet restore<br />
+                   dotnet build</p>
+                <p><img src="images/creating-a-net-47.png" alt="creating a net 47" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Check Target Framework</strong>: Make sure your project is targeting a compatible .NET version. Prometheus.NET typically supports .NET Core 2.1 and above.</li>
+                </ul>
+                <p>Framework 8.0</p>
+                <p><img src="images/creating-a-net-48.png" alt="creating a net 48" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Inspect for Other Errors</strong>: If there are still errors, ensure there are no conflicting namespaces or classes within your project that might cause confusion.</li>
+                </ul>
+                <p><img src="images/creating-a-net-49.png" alt="creating a net 49" class="article-image" loading="lazy"></p>
+                <p>After making these changes, try running the <code>dotnet publish</code> command again. Let me know if you need further assistance!</p>
+                <p><img src="images/creating-a-net-50.png" alt="creating a net 50" class="article-image" loading="lazy"></p>
+                <p>You can also move any other files you need, like <code>prometheus.yml</code>, into that directory if necessary.</p>
+                <p><img src="images/creating-a-net-51.png" alt="creating a net 51" class="article-image" loading="lazy"></p>
+                <p>GraphQL</p>
+                <p><img src="images/creating-a-net-52.png" alt="creating a net 52" class="article-image" loading="lazy"></p>
+                <h3>Step 3: Update the Dockerfile</h3>
+                <p>Assuming your project file is now in the <code>PrometheusRemoteWrite</code> directory, here's the updated Dockerfile:</p>
+                <h1>Use the ASP.NET runtime image as the base</h1>
+                <p>FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base<br />
+                WORKDIR /app<br />
+                EXPOSE 80</p>
+                <h1>Use the .NET SDK image for building the application</h1>
+                <p>FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build<br />
+                WORKDIR /src</p>
+                <h1>Copy the project file and restore dependencies</h1>
+                <p>COPY PrometheusRemoteWriteOpenShiftClusters/PrometheusRemoteWriteOpenShiftClusters.csproj PrometheusRemoteWriteOpenShiftClusters/</p>
+                <h1>List the contents of the directory to see the copied files</h1>
+                <p>RUN ls -la PrometheusRemoteWriteOpenShiftClusters/<br />
+                RUN dotnet restore PrometheusRemoteWriteOpenShiftClusters/PrometheusRemoteWriteOpenShiftClusters.csproj</p>
+                <h1>Copy the rest of the application code</h1>
+                <p>COPY PrometheusRemoteWriteOpenShiftClusters/. PrometheusRemoteWriteOpenShiftClusters/<br />
+                WORKDIR /src/PrometheusRemoteWriteOpenShiftClusters</p>
+                <h1>Publish the application</h1>
+                <p>RUN dotnet publish -c Release -o /app</p>
+                <h1>Final stage to run the application</h1>
+                <p>FROM base AS final<br />
+                WORKDIR /app<br />
+                COPY --from=build /app ./<br />
+                ENTRYPOINT ["dotnet", "PrometheusRemoteWriteOpenShiftClusters.dll"]</p>
+                <h3>Step 4: Build the Docker Image</h3>
+                <p>Finally, from the <code>Code</code> directory, run:</p>
+                <p>docker build -t yourregistry/prometheusremotewrite .</p>
+                <p>Let me know if you need further assistance!</p>
+                <h2>📸 Adding Pauses and Screenshots</h2>
+                <p>Now, let’s integrate some <strong>pauses</strong> in your coding process for debugging or screenshots.</p>
+                <ul>
+                <li>When incrementing the counter, add a pause for taking a screenshot:</li>
+                </ul>
+                <p>await Task.Delay(10000); // 10 second pause</p>
+                <ul>
+                <li>Take a screenshot of the Prometheus UI once it starts scraping metrics.</li>
+                </ul>
+                <hr />
+                <h2>💡 Final Thoughts</h2>
+                <p>This project showcases how easy it is to set up a relationship similar to Thanos in Prometheus and implement Prometheus Remote Write to move data across OpenShift clusters using a .NET project.</p>
+                <p>🚀 <strong>Want to keep improving your monitoring system?</strong> Keep an eye on new features in Prometheus and Thanos for distributed metrics and scaling!</p>
+                <hr />
+                <p><strong>🔗 Connect with me:</strong></p>
+                <ul>
+                <li>
+                <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/rifaterdemsahin/">https://www.linkedin.com/in/rifaterdemsahin/</a></p>
+                </li>
+                <li>
+                <p>🐦 Twitter: <a href="https://x.com/rifaterdemsahin">https://x.com/rifaterdemsahin</a></p>
+                </li>
+                <li>
+                <p>🎥 YouTube: <a href="https://www.youtube.com/@RifatErdemSahin">https://www.youtube.com/@RifatErdemSahin</a></p>
+                </li>
+                <li>
+                <p>💻 GitHub: <a href="https://github.com/rifaterdemsahin">https://github.com/rifaterdemsahin</a></p>
+                </li>
+                </ul>
+                <hr />
+                <p>Let me know if you want any other technical deep dives! 😄</p>
+                <p>Regular Cleanup</p>
+                <p><img src="images/creating-a-net-53.png" alt="creating a net 53" class="article-image" loading="lazy"></p>
+                <p>fix image name </p>
+                <p><img src="images/creating-a-net-54.png" alt="creating a net 54" class="article-image" loading="lazy"></p>
+                <p>Add on double sides</p>
+                <p><img src="images/creating-a-net-55.png" alt="creating a net 55" class="article-image" loading="lazy"></p>
+                <p>Reference</p>
+                <p>https://github.com/prometheus</p>
+                <p>Open One and Retry to build</p>
+                <p>why are you failing </p>
+                <p><img src="images/creating-a-net-56.png" alt="creating a net 56" class="article-image" loading="lazy"></p>
+                <p>gpt collect logs and reask &gt;</p>
+                <p>It looks like you're encountering two issues in your C# code for the Prometheus Remote Write project. Let's break them down:</p>
+                <ul>
+                <li><strong>Warning CS1998</strong>: This warning indicates that the <code>Main</code> method is defined as <code>async</code>, but it doesn't use any <code>await</code> statements. If you don't have any asynchronous operations in <code>Main</code>, you can change it to a synchronous method:</li>
+                </ul>
+                <p>static void Main(string[] args)<br />
+                   {<br />
+                   }</p>
+                <p>If you plan to keep it asynchronous for future use, you could add an <code>await</code> on a Task or use <code>Task.Run()</code> for CPU-bound operations.</p>
+                <ul>
+                <li><strong>Error CS0103</strong>: This error states that the name <code>Metrics</code> does not exist in the current context. This usually means that you haven't included the appropriate namespace or the necessary NuGet package. Make sure you have the Prometheus-net NuGet package installed in your project. You can install it via the Package Manager Console with the following command:</li>
+                </ul>
+                <p>Install-Package prometheus-net</p>
+                <p>After installing, ensure you have the correct using directive at the top of your file:</p>
+                <p>using Prometheus;</p>
+                <p>Once you've addressed these issues, your code should compile without errors. Let me know if you need further assistance!</p>
+                <hr />
+                <p>It seems that the <code>Install-Package</code> command couldn't find the <code>prometheus-net</code> package. This could be due to a few reasons, such as package sources not being configured correctly. Here’s how to troubleshoot and install the package:</p>
+                <ul>
+                <li><strong>Check Package Sources</strong>: Run the following command to list the available package sources:</li>
+                </ul>
+                <p>Get-PackageSource</p>
+                <p>Ensure that you have the NuGet package source listed. If it's missing, you can add it with:</p>
+                <p><img src="images/creating-a-net-57.png" alt="creating a net 57" class="article-image" loading="lazy"></p>
+                <p>Register-PackageSource -Name nuget.org -Provider NuGet -Location https://api.nuget.org/v3/index.json</p>
+                <ul>
+                <li><strong>Install the Package</strong>: After confirming that the NuGet source is available, try to install the package again:</li>
+                </ul>
+                <p>Install-Package prometheus-net</p>
+                <p>I used this one </p>
+                <p>dotnet add package prometheus-net</p>
+                <p><img src="images/creating-a-net-58.png" alt="creating a net 58" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Use the .NET CLI (if applicable)</strong>: If you're still having issues with PowerShell, you can try using the .NET CLI instead. Run this command in your project directory:</li>
+                </ul>
+                <p>dotnet add package prometheus-net</p>
+                <p>After installing the package, try rebuilding your project to see if the issues are resolved. Let me know how it goes!v</p>
+                <p><img src="images/creating-a-net-59.png" alt="creating a net 59" class="article-image" loading="lazy"></p>
+                <p>opened up all and build it</p>
+                <p><img src="images/creating-a-net-60.png" alt="creating a net 60" class="article-image" loading="lazy"></p>
+                <p>rebuild and push the latest version to the docker</p>
+                <p><img src="images/creating-a-net-61.png" alt="creating a net 61" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>Outline and Summary Again and get the gap</p>
+                <h4>6. <strong>Deploy Your Container to OpenShift</strong></h4>
+                <ul>
+                <li>Use <code>oc</code> commands to deploy the container:bashCopy code</li>
+                </ul>
+                <p><code>oc new-app --docker-image=rifaterdemsahin/prometheusremotewrite</code>openshiftclusters</p>
+                <p><img src="images/creating-a-net-62.png" alt="creating a net 62" class="article-image" loading="lazy"></p>
+                <p>update the action </p>
+                <p><img src="images/creating-a-net-63.png" alt="creating a net 63" class="article-image" loading="lazy"></p>
+                <p>And add the breadcrumbs on what you are trying to do </p>
+                <p><img src="images/creating-a-net-64.png" alt="creating a net 64" class="article-image" loading="lazy"></p>
+                <p>https://github.com/rifaterdemsahin/PrometheusRemoteWriteOpenShiftClusters/blob/main/outputs.md</p>
+                <p>docker update coming on </p>
+                <p><img src="images/creating-a-net-65.png" alt="creating a net 65" class="article-image" loading="lazy"></p>
+                <p>update desktop and the crc and restart &gt;&gt; workstation slowed down</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

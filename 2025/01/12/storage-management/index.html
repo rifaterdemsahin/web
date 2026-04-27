@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0Storage Management - Rifat Erdem Sahin</title>
+    <meta name="description" content="0Storage Management Managing 36TB of NAS storage, while syncing only 5TB with Google and handling an additional 10TB on Apple, requires a clear and structured approach. Here's a step-by-step plan tail">
+    <meta name="keywords" content="0Storage Management">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/01/12/storage-management/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/01/12/storage-management/">
+    <meta property="og:title" content="0Storage Management">
+    <meta property="og:description" content="0Storage Management Managing 36TB of NAS storage, while syncing only 5TB with Google and handling an additional 10TB on Apple, requires a clear and structured approach. Here's a step-by-step plan tail">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/01/12/storage-management/">
+    <meta property="twitter:title" content="0Storage Management">
+    <meta property="twitter:description" content="0Storage Management Managing 36TB of NAS storage, while syncing only 5TB with Google and handling an additional 10TB on Apple, requires a clear and structured approach. Here's a step-by-step plan tail">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "0Storage Management",
+      "description": "0Storage Management Managing 36TB of NAS storage, while syncing only 5TB with Google and handling an additional 10TB on Apple, requires a clear and structured approach. Here's a step-by-step plan tail",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-01-12",
+      "dateModified": "2025-01-12",
+      "url": "https://www.rifaterdemsahin.com/2025/01/12/storage-management/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/01/12/storage-management/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">0Storage Management</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>January 12, 2025</span>
+                    <span>&bull;</span>
+                    <span>6 min read</span>
+                </div>
+                <p class="article-excerpt">0Storage Management Managing 36TB of NAS storage, while syncing only 5TB with Google and handling an additional 10TB on Apple, requires a clear and structured approach. Here's a step-by-step plan tailored to your needs: 1.</p>
+            </header>
+            <article class="article-content">
+                <h1>0Storage Management</h1>
+                <p>Managing 36TB of NAS storage, while syncing only 5TB with Google and handling an additional 10TB on Apple, requires a clear and structured approach. Here's a step-by-step plan tailored to your needs:</p>
+                <hr />
+                <h3><strong>1. Analyze and Categorize Your Data</strong></h3>
+                <ul>
+                <li><strong>Categorize Data by Type:</strong></li>
+                </ul>
+                <p>Media (movies, TV shows, music)</p>
+                <ul>
+                <li>
+                <p>Documents</p>
+                </li>
+                <li>
+                <p>Photos</p>
+                </li>
+                <li>
+                <p>Backups</p>
+                </li>
+                <li>
+                <p>Miscellaneous files</p>
+                </li>
+                <li>
+                <p><strong>Identify Storage Priorities:</strong></p>
+                </li>
+                </ul>
+                <p>Decide which files need frequent access (sync with Google or Apple) versus those that can remain on the NAS for archival purposes.</p>
+                <hr />
+                <h3><strong>2. Optimize NAS Storage</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Delete Redundant Files:</strong> Use tools like Synology’s <strong>Storage Analyzer</strong> to find and remove duplicate files or unused data.</p>
+                </li>
+                <li>
+                <p><strong>Compress Files:</strong> Archive infrequently used files with compression tools.</p>
+                </li>
+                <li>
+                <p><strong>Tier Storage:</strong> Keep high-priority or frequently accessed files on faster NAS drives, and archival files on slower drives.</p>
+                </li>
+                </ul>
+                <hr />
+                <h3><strong>3. Plan Google Sync (5TB Limit)</strong></h3>
+                <ul>
+                <li><strong>Selective Sync Strategy:</strong></li>
+                </ul>
+                <p>Use Synology Drive or Google Drive to sync only essential files.</p>
+                <ul>
+                <li>
+                <p>Prioritize syncing work documents, critical backups, and personal photos.</p>
+                </li>
+                <li>
+                <p>Not all is usefull to sync</p>
+                </li>
+                <li>
+                <p><strong>Exclude Media Files:</strong></p>
+                </li>
+                </ul>
+                <p>Avoid syncing large media files like movies and TV shows with Google; keep them on the NAS for Plex.</p>
+                <ul>
+                <li>
+                <p><strong>Google Workspace Alternative:</strong> Upgrade to a Google Workspace plan with increased storage if needed.</p>
+                </li>
+                <li>
+                <p>Increase storage can it be an option i am at 5 tb</p>
+                </li>
+                </ul>
+                <hr />
+                <h3><strong>4. Organize Apple Storage (10TB Limit)</strong></h3>
+                <ul>
+                <li><strong>Sync Specific Content:</strong></li>
+                </ul>
+                <p>Use Apple’s storage for photo libraries, family backups, and key documents.</p>
+                <ul>
+                <li>
+                <p><strong>Offload Media:</strong> Avoid syncing large Plex libraries or low-priority content.</p>
+                </li>
+                <li>
+                <p><strong>Enable Optimize Storage on Apple Devices:</strong></p>
+                </li>
+                </ul>
+                <p>Use Apple’s built-in storage optimization to free up space automatically.</p>
+                <hr />
+                <h3><strong>5. Manage Plex Media Library</strong></h3>
+                <ul>
+                <li><strong>Storage Strategy for Plex:</strong></li>
+                </ul>
+                <p>Store all media files (movies, TV shows, music) exclusively on the NAS.</p>
+                <ul>
+                <li>Use Plex’s <strong>Optimize Feature</strong> to create lower-resolution versions of media for faster streaming and reduced storage usage.</li>
+                </ul>
+                <p><img src="images/0storage-management-1.png" alt="0storage management 1" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Regular Cleanup:</strong></li>
+                </ul>
+                <p>Remove old, unwatched media or use Plex’s “Watched” status to identify files that can be archived or deleted.</p>
+                <hr />
+                <h3><strong>6. Set Up Backups</strong></h3>
+                <ul>
+                <li><strong>Primary NAS Backup:</strong></li>
+                </ul>
+                <p>Use another Synology NAS, external drives, or cloud storage for incremental backups of critical data.</p>
+                <p><img src="images/0storage-management-2.png" alt="0storage management 2" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Cloud Backup Priorities:</strong></li>
+                </ul>
+                <p>Ensure backups of essential documents and irreplaceable data (photos, personal files) to Google or Apple.</p>
+                <ul>
+                <li><strong>Archive Non-Essential Data:</strong></li>
+                </ul>
+                <p>Archive older, less important files to cold storage (e.g., external drives or offline HDDs).</p>
+                <hr />
+                <h3><strong>7. Monitor and Maintain</strong></h3>
+                <ul>
+                <li><strong>Use Synology Tools:</strong></li>
+                </ul>
+                <p>Regularly monitor storage usage with <strong>Storage Manager</strong> and set up alerts for low space.</p>
+                <ul>
+                <li><strong>Implement Quotas:</strong></li>
+                </ul>
+                <p>Set user quotas or folder-level quotas to prevent uncontrolled growth in storage usage.</p>
+                <ul>
+                <li><strong>Automated Cleanup:</strong></li>
+                </ul>
+                <p>Schedule regular deletion or archiving of logs, temp files, and old data.</p>
+                <hr />
+                <h3><strong>8. Plan for Growth</strong></h3>
+                <ul>
+                <li><strong>Expand NAS Storage:</strong></li>
+                </ul>
+                <p>If you foresee continued storage needs, consider expanding your NAS with larger drives or adding a second unit.</p>
+                <ul>
+                <li><strong>Third-Party Cloud Storage:</strong></li>
+                </ul>
+                <p>Explore other cloud options (e.g., Dropbox, Amazon S3, Backblaze) for affordable storage expansion.</p>
+                <hr />
+                <p>This approach ensures efficient use of your 36TB NAS, while managing the 5TB Google and 10TB Apple limits. Let me know if you'd like help implementing specific steps or choosing tools!</p>
+                <p>Google blocks all the action </p>
+                <p>Lastpass Email does not come in </p>
+                <p><img src="images/0storage-management-3.png" alt="0storage management 3" class="article-image" loading="lazy"></p>
+                <p>Google Drive is the case</p>
+                <p><img src="images/0storage-management-4.png" alt="0storage management 4" class="article-image" loading="lazy"></p>
+                <p>Google Drive :57 GB</p>
+                <p><img src="images/0storage-management-5.png" alt="0storage management 5" class="article-image" loading="lazy"></p>
+                <p>Over use and files can be seen</p>
+                <p><img src="images/0storage-management-6.png" alt="0storage management 6" class="article-image" loading="lazy"></p>
+                <p>Pause Sync before the Google Drive Deletion ?</p>
+                <p><img src="images/0storage-management-7.png" alt="0storage management 7" class="article-image" loading="lazy"></p>
+                <p>Sync Would Get ReOpened </p>
+                <p>Why not Recategorise with PARA again</p>
+                <ul>
+                <li>
+                <p>Project</p>
+                </li>
+                <li>
+                <p>Areas</p>
+                </li>
+                <li>
+                <p>Resources</p>
+                </li>
+                <li>
+                <p>Archieve</p>
+                </li>
+                </ul>
+                <p>Start with 20 TB</p>
+                <p><img src="images/0storage-management-8.png" alt="0storage management 8" class="article-image" loading="lazy"></p>
+                <p>Go Down to 15 GB and open up</p>
+                <p><img src="images/0storage-management-9.png" alt="0storage management 9" class="article-image" loading="lazy"></p>
+                <p>Moved one file lets see if it does the sync</p>
+                <p><img src="images/0storage-management-10.png" alt="0storage management 10" class="article-image" loading="lazy"></p>
+                <p>it did sync the deleted file so well played by google &gt; deletion is accesible </p>
+                <p><img src="images/0storage-management-11.png" alt="0storage management 11" class="article-image" loading="lazy"></p>
+                <p>Promising &gt;&gt;&gt; Took Time but that is allright </p>
+                <p><img src="images/0storage-management-12.png" alt="0storage management 12" class="article-image" loading="lazy"></p>
+                <p>Todo : Find ways to backup to another media or to the cloud again!</p>
+                <p>Not much to become a resource so if i would not touch them likely they are landing there</p>
+                <p><img src="images/0storage-management-13.png" alt="0storage management 13" class="article-image" loading="lazy"></p>
+                <p>Project is time bound.</p>
+                <p>Areas is recurring work on items.</p>
+                <p>Bulk moves are also ok</p>
+                <p><img src="images/0storage-management-14.png" alt="0storage management 14" class="article-image" loading="lazy"></p>
+                <p>Check storage manager &gt; do only what is needed </p>
+                <p><img src="images/0storage-management-15.png" alt="0storage management 15" class="article-image" loading="lazy"></p>
+                <p>Recycle might need to be cleaned!</p>
+                <p><img src="images/0storage-management-16.png" alt="0storage management 16" class="article-image" loading="lazy"></p>
+                <p>Cleanup Storage Cleans it up</p>
+                <p><img src="images/0storage-management-17.png" alt="0storage management 17" class="article-image" loading="lazy"></p>
+                <blockquote>
+                <blockquote>
+                <p>Good part of para like moving out of the studio rethink on what you are doing !</p>
+                </blockquote>
+                </blockquote>
+                <p>Cost to storage offsite &gt; </p>
+                <p><img src="images/0storage-management-18.png" alt="0storage management 18" class="article-image" loading="lazy"></p>
+                <p>Easy backup and the storage gets x2 cheaper by every year so i would be able to have it stored onsite in the storage unit with a m</p>
+                <p>some not clear if an area or a resource</p>
+                <p><img src="images/0storage-management-19.png" alt="0storage management 19" class="article-image" loading="lazy"></p>
+                <p>Video Production into the area makes more sense</p>
+                <p><img src="images/0storage-management-20.png" alt="0storage management 20" class="article-image" loading="lazy"></p>
+                <p>Test a downloaded item from time to time to understand</p>
+                <p>Merge as one works</p>
+                <p><img src="images/0storage-management-21.png" alt="0storage management 21" class="article-image" loading="lazy"></p>
+                <p>Some folders are empty in google drive &gt;&gt;&gt; so not much ther e</p>
+                <p>And dont worry that much Synology nas is the backup at the end of the day </p>
+                <p><img src="images/0storage-management-22.png" alt="0storage management 22" class="article-image" loading="lazy"></p>
+                <p>Emptied the google drive to receive emails </p>
+                <p><img src="images/0storage-management-23.png" alt="0storage management 23" class="article-image" loading="lazy"></p>
+                <p>after sync check it </p>
+                <p><img src="images/0storage-management-24.png" alt="0storage management 24" class="article-image" loading="lazy"></p>
+                <p>multiple times empty trash is needed</p>
+                <p><img src="images/0storage-management-25.png" alt="0storage management 25" class="article-image" loading="lazy"></p>
+                <p>Docs from drive did not land there directly</p>
+                <p><img src="images/0storage-management-26.png" alt="0storage management 26" class="article-image" loading="lazy"></p>
+                <p>Deletion looks like it is still taking time </p>
+                <p><img src="images/0storage-management-27.png" alt="0storage management 27" class="article-image" loading="lazy"></p>
+                <p>Not used email &gt; Make the email backup to the takeout and add it to the backup </p>
+                <p><img src="images/0storage-management-28.png" alt="0storage management 28" class="article-image" loading="lazy"></p>
+                <p>Solve this problem </p>
+                <p><img src="images/0storage-management-29.png" alt="0storage management 29" class="article-image" loading="lazy"></p>
+                <p>Mail takes time &gt; it is a best practice to clean up cloud and pull it to local </p>
+                <p><img src="images/0storage-management-30.png" alt="0storage management 30" class="article-image" loading="lazy"></p>
+                <blockquote>
+                <blockquote>
+                <blockquote>
+                <p>use the takeout &gt;&gt;&gt; <a href="https://takeout.google.com/?pli=1">https://takeout.google.com/?pli=1</a></p>
+                <p>after the local download is complete one harddrive to be used to archieve the data</p>
+                </blockquote>
+                </blockquote>
+                </blockquote>
+                <pre><code>Cost of Terabyte Storage
+                
+                    table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        margin: 20px 0;
+                    }
+                    th, td {
+                        border: 1px solid #ddd;
+                        padding: 8px;
+                        text-align: centre;
+                    }
+                    th {
+                        background-color: #f2f2f2;
+                    }
+                </code></pre>
+                <h1>Cost of Terabyte Storage Over Time</h1>
+                <pre><code>            Year
+                            Estimated Cost per Terabyte (USD)
+                            Projected Cost of 100 TB Storage (USD)
+                
+                
+                
+                
+                            2015
+                            $30
+                            $3,000
+                
+                
+                            2016
+                            $25
+                            $2,500
+                
+                
+                            2017
+                            $20
+                            $2,000
+                
+                
+                            2018
+                            $18
+                            $1,800
+                
+                
+                            2019
+                            $15
+                            $1,500
+                
+                
+                            2020
+                            $12
+                            $1,200
+                
+                
+                            2021
+                            $10
+                            $1,000
+                
+                
+                            2022
+                            $8
+                            $800
+                
+                
+                            2023
+                            $6
+                            $600
+                
+                
+                            2024
+                            $5
+                            $500
+                
+                
+                            2025
+                            $20 for 1 TB
+                            $200 for 10 TB
+                
+                
+                            2030
+                            $3
+                            $300
+                
+                
+                            2035
+                            $1
+                            $100
+                </code></pre>
+                <p>Based on current trends, storage &gt;100 TB may be available for $100 around 2035, assuming a continued steady decline in cost due to technological advancements and mass adoption.</p>
+                <p>Happiness &gt; while cleanup</p>
+                <p><img src="images/0storage-management-31.png" alt="0storage management 31" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Moving Docker Images to OpenShift on CRC - Rifat Erdem Sahin</title>
+    <meta name="description" content="🚀 Moving Docker Images to OpenShift on CRC docker build -t rifaterdemsahin/prometheusremotewriteopenshiftclusters . In this guide, I’ll walk you through moving a Docker image to your OpenShift instanc">
+    <meta name="keywords" content="🚀 Moving Docker Images to OpenShift on CRC">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/02/01/🚀-moving-docker-images-to-openshift-on-crc/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/02/01/🚀-moving-docker-images-to-openshift-on-crc/">
+    <meta property="og:title" content="🚀 Moving Docker Images to OpenShift on CRC">
+    <meta property="og:description" content="🚀 Moving Docker Images to OpenShift on CRC docker build -t rifaterdemsahin/prometheusremotewriteopenshiftclusters . In this guide, I’ll walk you through moving a Docker image to your OpenShift instanc">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/02/01/🚀-moving-docker-images-to-openshift-on-crc/">
+    <meta property="twitter:title" content="🚀 Moving Docker Images to OpenShift on CRC">
+    <meta property="twitter:description" content="🚀 Moving Docker Images to OpenShift on CRC docker build -t rifaterdemsahin/prometheusremotewriteopenshiftclusters . In this guide, I’ll walk you through moving a Docker image to your OpenShift instanc">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "🚀 Moving Docker Images to OpenShift on CRC",
+      "description": "🚀 Moving Docker Images to OpenShift on CRC docker build -t rifaterdemsahin/prometheusremotewriteopenshiftclusters . In this guide, I’ll walk you through moving a Docker image to your OpenShift instanc",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-02-01",
+      "dateModified": "2025-02-01",
+      "url": "https://www.rifaterdemsahin.com/2025/02/01/🚀-moving-docker-images-to-openshift-on-crc/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/02/01/🚀-moving-docker-images-to-openshift-on-crc/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">🚀 Moving Docker Images to OpenShift on CRC</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>February 1, 2025</span>
+                    <span>&bull;</span>
+                    <span>11 min read</span>
+                </div>
+                <p class="article-excerpt">🚀 Moving Docker Images to OpenShift on CRC docker build -t rifaterdemsahin/prometheusremotewriteopenshiftclusters . In this guide, I’ll walk you through moving a Docker image to your OpenShift instance running on CRC (CodeReady Containers) using the OpenShift CLI.</p>
+            </header>
+            <article class="article-content">
+                <h1>🚀 Moving Docker Images to OpenShift on CRC</h1>
+                <p><code>docker build -t rifaterdemsahin/prometheusremotewriteopenshiftclusters .</code></p>
+                <p>In this guide, I’ll walk you through moving a Docker image to your OpenShift instance running on CRC (CodeReady Containers) using the OpenShift CLI. This quick process ensures that your image is deployed efficiently and can be monitored through tools like Prometheus.</p>
+                <h3>💡 What You'll Achieve:</h3>
+                <p>We'll be creating a new application in OpenShift from a Docker image. The command we’ll use is <code>oc new-app --docker-image=rifaterdemsahin/prometheusremotewriteopenshiftclusters</code>, which pulls the image from Docker Hub and sets up the application on your OpenShift cluster.</p>
+                <p>Use the docker desktop registry is the environment to use</p>
+                <p><img src="images/moving-docker-images-1.png" alt="moving docker images 1" class="article-image" loading="lazy"></p>
+                <hr />
+                <h3>🚀 Step-by-Step Process:</h3>
+                <ul>
+                <li><strong>Make sure CRC is running</strong>:<br />
+                Before we begin, ensure that your OpenShift CRC is up and running. If it's not, you can start it by running:</li>
+                </ul>
+                <p>crc start</p>
+                <ul>
+                <li><strong>Log into OpenShift CLI (oc)</strong>:<br />
+                Open your terminal and log into your OpenShift cluster using:</li>
+                </ul>
+                <p>oc login -u developer -p developer https://api.crc.testing:6443</p>
+                <p>Make sure you're authenticated and connected to your cluster.</p>
+                <ul>
+                <li><strong>Create a new app using the Docker image</strong>:<br />
+                Now, you can deploy your Docker image by running the following command:</li>
+                </ul>
+                <p>oc new-app --docker-image=rifaterdemsahin/prometheusremotewriteopenshiftclusters</p>
+                <p>OpenShift will automatically pull the Docker image from Docker Hub and set up the application.</p>
+                <p>`rifaterdemsahin@Rifats-MacBook-Pro code % oc new-app --docker-image=rifaterdemsahin/prometheusremotewriteopenshiftclusters<br />
+                Flag --docker-image has been deprecated, Deprecated flag use --image<br />
+                error: can't lookup images: imagestreamimports.image.openshift.io is forbidden: User "developer" cannot create resource "imagestreamimports" in API group "image.openshift.io" in the namespace "default"<br />
+                error: unable to locate any local docker images with name "rifaterdemsahin/prometheusremotewriteopenshiftclusters"</p>
+                <p>The 'oc new-app' command will match arguments to the following types:</p>
+                <ol>
+                <li>Images tagged into image streams in the current project or the 'openshift' project<ul>
+                <li>if you don't specify a tag, we'll add ':latest'</li>
+                </ul>
+                </li>
+                <li>Images in the container storage, on remote registries, or on the local container engine</li>
+                <li>Templates in the current project or the 'openshift' project</li>
+                <li>Git repository URLs or local paths that point to Git repositories</li>
+                </ol>
+                <p>--allow-missing-images can be used to point to an image that does not exist yet.</p>
+                <p>See 'oc new-app -h' for examples.<br />
+                rifaterdemsahin@Rifats-MacBook-Pro code % <br />
+                `</p>
+                <ul>
+                <li><strong>Check the status of the deployment</strong>:<br />
+                To ensure everything is running smoothly, check the status of the newly deployed application using:</li>
+                </ul>
+                <p>oc status</p>
+                <p>You should see output indicating that your application is up and running.</p>
+                <ul>
+                <li><strong>Access your application</strong>:<br />
+                Once deployed, OpenShift will expose the app with a route. You can find the URL using:</li>
+                </ul>
+                <p>oc get routes</p>
+                <p>This command will return the external URL where you can access your application.</p>
+                <ul>
+                <li><strong>Monitor with Prometheus</strong>:<br />
+                Now that your app is deployed, you can start integrating Prometheus to monitor your infrastructure metrics. The deployed image has PrometheusRemoteWrite functionality built-in, making it easier to push the cluster's state to your Prometheus setup.</li>
+                </ul>
+                <hr />
+                <h3>🔧 Troubleshooting Tips:</h3>
+                <ul>
+                <li>
+                <p>If you encounter any issues with pulling the Docker image, make sure that your CRC has internet access, and the Docker Hub image is public.</p>
+                </li>
+                <li>
+                <p>You can always use <code>oc logs</code> on your pods to diagnose any application issues.</p>
+                </li>
+                </ul>
+                <hr />
+                <p><strong>🔗 Connect with me:</strong></p>
+                <ul>
+                <li>
+                <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/rifaterdemsahin/">Rifat Erdem Sahin</a></p>
+                </li>
+                <li>
+                <p>🐦 Twitter: <a href="https://x.com/rifaterdemsahin">Rifat on Twitter</a></p>
+                </li>
+                <li>
+                <p>🎥 YouTube: <a href="https://www.youtube.com/@RifatErdemSahin">Rifat on YouTube</a></p>
+                </li>
+                <li>
+                <p>💻 GitHub: <a href="https://github.com/rifaterdemsahin">Rifat on GitHub</a></p>
+                </li>
+                </ul>
+                <p>Stay tuned for more OpenShift and DevOps tips! 🚀</p>
+                <hr />
+                <p>It seems like you're encountering a few issues while trying to deploy the Docker image to OpenShift using the <code>oc new-app</code> command. Let's address each problem step-by-step.</p>
+                <h3>1. <strong>Flag Deprecation Warning:</strong></h3>
+                <p>The <code>--docker-image</code> flag has been deprecated. You should use <code>--image</code> instead.</p>
+                <p>Updated command:</p>
+                <p>oc new-app --image=rifaterdemsahin/prometheusremotewriteopenshiftclusters</p>
+                <p>Admin Login</p>
+                <p><img src="images/moving-docker-images-2.png" alt="moving docker images 2" class="article-image" loading="lazy"></p>
+                <h3>2. <strong>Permission Issue:</strong></h3>
+                <p>The error message <code>imagestreamimports.image.openshift.io is forbidden</code> indicates that the user <code>developer</code> doesn't have the required permissions to create <code>imagestreamimports</code> in the default namespace. This often happens because CRC or OpenShift instances have limited permissions for the default developer user.</p>
+                <p>You can try switching to a project or namespace where you have more permissions or try giving yourself elevated access by running:</p>
+                <p>oc adm policy add-role-to-user admin developer -n <your-namespace></p>
+                <p>Replace <code>&lt;your-namespace&gt;</code> with the namespace you're working in (you can check your current namespace by running <code>oc project</code>).</p>
+                <p><img src="images/moving-docker-images-3.png" alt="moving docker images 3" class="article-image" loading="lazy"></p>
+                <h3>3. <strong>Image Not Found Locally:</strong></h3>
+                <p>The error <code>unable to locate any local docker images with name "rifaterdemsahin/prometheusremotewriteopenshiftclusters"</code> suggests that the Docker image you're trying to deploy doesn't exist locally. If you're using a remote Docker registry (like Docker Hub), make sure you're connected and that the image is public and accessible.</p>
+                <p>To ensure you're pulling from the Docker Hub registry, use:</p>
+                <p>oc new-app --image=docker.io/rifaterdemsahin/prometheusremotewriteopenshiftclusters</p>
+                <h3>4. <strong>Allow Missing Images:</strong></h3>
+                <p>If the image is still being built or isn't yet available in the registry, you can use the <code>--allow-missing-images</code> flag to allow OpenShift to proceed with the setup, even if the image is missing:</p>
+                <p>oc new-app --image=docker.io/rifaterdemsahin/prometheusremotewriteopenshiftclusters --allow-missing-images</p>
+                <h3>Final Command:</h3>
+                <p>If you've confirmed that the image is public and the namespace permissions are resolved, try this final command:</p>
+                <p>oc new-app --image=docker.io/rifaterdemsahin/prometheusremotewriteopenshiftclusters</p>
+                <p>Let me know if you encounter any more issues!</p>
+                <p><img src="images/moving-docker-images-4.png" alt="moving docker images 4" class="article-image" loading="lazy"></p>
+                <p><img src="images/moving-docker-images-5.png" alt="moving docker images 5" class="article-image" loading="lazy"></p>
+                <p>It looks like you're encountering an image pull error: "requested access to the resource is denied." This indicates that OpenShift is having trouble pulling the Docker image from Docker Hub, likely due to one of the following reasons:</p>
+                <h3>Possible Causes and Solutions:</h3>
+                <h4>1. <strong>The Image is Private</strong>:</h4>
+                <p>If the Docker image you're trying to pull is set to private on Docker Hub, OpenShift won't be able to access it without proper authentication.</p>
+                <p><strong>Solution</strong>:<br />
+                You can either:</p>
+                <ul>
+                <li>
+                <p>Make the image public on Docker Hub.</p>
+                </li>
+                <li>
+                <p>Authenticate to Docker Hub in OpenShift using a pull secret. Here's how to create a secret in OpenShift to allow pulling private images:</p>
+                </li>
+                </ul>
+                <p>oc create secret docker-registry my-dockerhub-secret \<br />
+                       --docker-server=https://index.docker.io/v1/ \<br />
+                       --docker-username=<your-dockerhub-username> \<br />
+                       --docker-password=<your-dockerhub-password> \<br />
+                       --docker-email=<your-email></p>
+                <p>Then link the secret to your service account:</p>
+                <p>oc secrets link default my-dockerhub-secret --for=pull</p>
+                <p>This allows OpenShift to use your Docker Hub credentials when pulling the image.</p>
+                <h4>2. <strong>Tag Issues</strong>:</h4>
+                <p>The error mentions that it's trying to pull the <code>latest</code> tag. If you haven't pushed a <code>latest</code> tag for the image, Docker Hub won't be able to find it.</p>
+                <p><strong>Solution</strong>:<br />
+                Check if you've tagged the image as <code>latest</code> or specify a specific tag when deploying:</p>
+                <p>oc new-app --image=docker.io/rifaterdemsahin/prometheusremotewriteopenshiftclusters:<specific-tag></p>
+                <p>Replace <code>&lt;specific-tag&gt;</code> with the appropriate tag you’ve used, such as <code>v1</code>, <code>1.0</code>, etc.</p>
+                <h4>3. <strong>Docker Hub Access Issues</strong>:</h4>
+                <p>If the issue is due to general access problems with Docker Hub, you could try pulling the image manually on your local machine to verify the access:</p>
+                <p>docker pull rifaterdemsahin/prometheusremotewriteopenshiftclusters</p>
+                <p>If this fails, it confirms there’s an issue with the image access.</p>
+                <h4>4. <strong>Docker Hub Rate Limiting</strong>:</h4>
+                <p>Docker Hub applies rate limits on anonymous users. If you've exceeded the pull rate limit, OpenShift will also encounter issues.</p>
+                <p><strong>Solution</strong>:</p>
+                <ul>
+                <li>
+                <p>Authenticate using Docker Hub credentials as shown above to avoid rate limits.</p>
+                </li>
+                <li>
+                <p>Or try again after the rate limit period resets.</p>
+                </li>
+                </ul>
+                <p>Once the authentication and access issues are resolved, your OpenShift deployment should be able to pull the image successfully.</p>
+                <p>Let me know how it goes!</p>
+                <hr />
+                <p>If you already have the Docker image in your local Docker Desktop engine, you can follow these steps to push it to your OpenShift cluster running on CRC (CodeReady Containers). OpenShift by default does not directly pull from the local Docker Desktop engine, but you can load the image into the OpenShift internal registry and then deploy it.</p>
+                <h3>Steps to Use a Locally Built Docker Image on OpenShift CRC</h3>
+                <h4>1. <strong>Log in to OpenShift from CLI</strong>:</h4>
+                <p>Make sure you're logged into OpenShift and pointing to the correct project:</p>
+                <p>oc login -u developer -p developer https://api.crc.testing:6443<br />
+                oc project default</p>
+                <p><img src="images/moving-docker-images-6.png" alt="moving docker images 6" class="article-image" loading="lazy"></p>
+                <p><img src="images/moving-docker-images-7.png" alt="moving docker images 7" class="article-image" loading="lazy"></p>
+                <h4>2. <strong>Tag the Local Docker Image for OpenShift</strong>:</h4>
+                <p>Tag your local Docker image to point to the internal OpenShift registry. CRC exposes a local registry where images can be pushed.</p>
+                <p><img src="images/moving-docker-images-8.png" alt="moving docker images 8" class="article-image" loading="lazy"></p>
+                <p>First, get the OpenShift registry URL by running:</p>
+                <p>oc get service docker-registry -n default</p>
+                <p>You should get a response similar to:</p>
+                <p>docker-registry.default.svc:5000</p>
+                <p>Now, tag your local image so it can be pushed to the OpenShift internal registry:</p>
+                <p>docker tag rifaterdemsahin/prometheusremotewriteopenshiftclusters:latest \<br />
+                docker-registry.default.svc:5000/<your-project-name>/prometheusremotewriteopenshiftclusters:latest</p>
+                <h4>3. <strong>Log in to the OpenShift Internal Docker Registry</strong>:</h4>
+                <p>Log in to the OpenShift internal Docker registry:</p>
+                <p>docker login -u developer -p $(oc whoami -t) docker-registry.default.svc:5000</p>
+                <h4>4. <strong>Push the Image to the OpenShift Internal Registry</strong>:</h4>
+                <p>Now, push the image to OpenShift's internal registry:</p>
+                <p>docker push docker-registry.default.svc:5000/<your-project-name>/prometheusremotewriteopenshiftclusters:latest</p>
+                <h4>5. <strong>Deploy the Image in OpenShift</strong>:</h4>
+                <p>Once the image is pushed to the OpenShift internal registry, you can deploy it by referencing the internal image stream.</p>
+                <p>Create a new app using the image you just pushed:</p>
+                <p>oc new-app default/prometheusremotewriteopenshiftclusters:latest</p>
+                <p><img src="images/moving-docker-images-9.png" alt="moving docker images 9" class="article-image" loading="lazy"></p>
+                <p><img src="images/moving-docker-images-10.png" alt="moving docker images 10" class="article-image" loading="lazy"></p>
+                <h4>6. <strong>Expose the Service</strong> (Optional):</h4>
+                <p>To expose your app and create a route so it can be accessed externally, run:</p>
+                <p>oc expose svc/prometheusremotewriteopenshiftclusters</p>
+                <p><img src="images/moving-docker-images-11.png" alt="moving docker images 11" class="article-image" loading="lazy"></p>
+                <p>This will create a route, and you can check the external URL with:</p>
+                <p><img src="images/moving-docker-images-12.png" alt="moving docker images 12" class="article-image" loading="lazy"></p>
+                <p>oc get routes</p>
+                <hr />
+                <p><img src="images/moving-docker-images-13.png" alt="moving docker images 13" class="article-image" loading="lazy"></p>
+                <p><img src="images/moving-docker-images-14.png" alt="moving docker images 14" class="article-image" loading="lazy"></p>
+                <p><img src="images/moving-docker-images-15.png" alt="moving docker images 15" class="article-image" loading="lazy"></p>
+                <p>This should allow you to deploy your locally built Docker image to your OpenShift CRC instance. Let me know if you encounter any issues!</p>
+                <hr />
+                <p>It looks like OpenShift CRC (CodeReady Containers) no longer uses the <code>docker-registry</code> service that was commonly found in older versions of OpenShift. OpenShift 4.x and CRC typically use an integrated image registry that doesn’t have the same service exposed as earlier versions.</p>
+                <p>Here’s how to proceed with deploying a local image in the new setup of OpenShift CRC:</p>
+                <h3>Steps for Pushing a Local Image to OpenShift CRC</h3>
+                <h4>1. <strong>Get the OpenShift Integrated Registry URL</strong></h4>
+                <p>To get the internal image registry URL for OpenShift, use the following command:</p>
+                <p>oc get route default-route -n openshift-image-registry --template='{{ .spec.host }}'</p>
+                <p><img src="images/moving-docker-images-16.png" alt="moving docker images 16" class="article-image" loading="lazy"></p>
+                <p>This should return something like:</p>
+                <p>default-route-openshift-image-registry.apps-crc.testing</p>
+                <h4>2. <strong>Tag the Local Docker Image for OpenShift</strong></h4>
+                <p>Once you have the registry URL, tag your local image to be compatible with the OpenShift internal registry.</p>
+                <p>docker tag rifaterdemsahin/prometheusremotewriteopenshiftclusters:latest <br />
+                default-route-openshift-image-registry.apps-crc.testing/default/prometheusremotewriteopenshiftclusters:latest</p>
+                <p>Make sure to replace <code>&lt;your-project-name&gt;</code> with your actual project name in OpenShift.</p>
+                <p><code>rifaterdemsahin@Rifats-MacBook-Pro code % docker tag rifaterdemsahin/prometheusremotewriteopenshiftclusters:latest default-route-openshift-image-registry.apps-crc.testing/default/prometheusremotewriteopenshiftclusters:latest                                        
+                rifaterdemsahin@Rifats-MacBook-Pro code %</code></p>
+                <h4>3. <strong>Log in to the OpenShift Image Registry</strong></h4>
+                <p>Next, log in to the OpenShift image registry using the credentials from OpenShift:</p>
+                <p>docker login -u developer -p $(oc whoami -t) default-route-openshift-image-registry.apps-crc.testing</p>
+                <h4>4. <strong>Push the Image to OpenShift's Internal Registry</strong></h4>
+                <p>Once you are logged in, push the image to the internal OpenShift registry:</p>
+                <p>docker push default-route-openshift-image-registry.apps-crc.testing/default/prometheusremotewriteopenshiftclusters:latest</p>
+                <p><img src="images/moving-docker-images-17.png" alt="moving docker images 17" class="article-image" loading="lazy"></p>
+                <p><img src="images/moving-docker-images-18.png" alt="moving docker images 18" class="article-image" loading="lazy"></p>
+                <h4>5. <strong>Deploy the Image in OpenShift</strong></h4>
+                <p>Now, you can create a new app in OpenShift using the image that you pushed to the internal registry:</p>
+                <p>oc new-app default/prometheusremotewriteopenshiftclusters:latest</p>
+                <h4>6. <strong>Expose the Application (Optional)</strong></h4>
+                <p>If you want to expose the application with an external route so that it can be accessed from outside the OpenShift cluster, you can create a route:</p>
+                <p>oc expose svc/prometheusremotewriteopenshiftclusters</p>
+                <p>Check the route with:</p>
+                <p>oc get routes</p>
+                <hr />
+                <p>These steps should allow you to successfully push and deploy a locally built image to OpenShift CRC. Let me know if you need any further clarification!</p>
+                <p>The <code>unauthorized: authentication required</code> error suggests that Docker is not properly authenticated to push the image to OpenShift's internal registry. Let’s make sure that you are correctly logged in to the OpenShift internal registry.</p>
+                <h3>Steps to Fix the Issue:</h3>
+                <h4>1. <strong>Ensure You're Logged in to OpenShift Registry</strong></h4>
+                <p>You need to log in to OpenShift's internal image registry using the <code>docker login</code> command, which uses the OpenShift token for authentication. Run the following command:</p>
+                <p>docker login -u developer -p $(oc whoami -t) default-route-openshift-image-registry.apps-crc.testing</p>
+                <p>This command retrieves your OpenShift token (<code>$(oc whoami -t)</code>) and uses it to log in to the internal registry. If you’re using a different user, replace <code>developer</code> with your username.</p>
+                <p><img src="images/moving-docker-images-19.png" alt="moving docker images 19" class="article-image" loading="lazy"></p>
+                <h4>2. <strong>Push the Image Again</strong></h4>
+                <p>Now that you're authenticated, retry pushing the image:</p>
+                <p>docker push default-route-openshift-image-registry.apps-crc.testing/default/prometheusremotewriteopenshiftclusters:latest</p>
+                <h4></h4>
+                <p><img src="images/moving-docker-images-20.png" alt="moving docker images 20" class="article-image" loading="lazy"></p>
+                <ol start="3">
+                <li><strong>Verify Push</strong></li>
+                </ol>
+                <p>If the push is successful, you can verify that the image has been uploaded to the OpenShift registry by checking the image stream:</p>
+                <p>oc get is prometheusremotewriteopenshiftclusters</p>
+                <p>This should show the image as available in your OpenShift project.</p>
+                <p><img src="images/moving-docker-images-21.png" alt="moving docker images 21" class="article-image" loading="lazy"></p>
+                <p>Let me know if you encounter further issues!</p>
+                <p>Delete pod in openshift still there is an error</p>
+                <p><img src="images/moving-docker-images-22.png" alt="moving docker images 22" class="article-image" loading="lazy"></p>
+                <p><strong>🔗 Connect with me:</strong></p>
+                <ul>
+                <li>
+                <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/rifaterdemsahin/">https://www.linkedin.com/in/rifaterdemsahin/</a></p>
+                </li>
+                <li>
+                <p>🐦 Twitter: <a href="https://x.com/rifaterdemsahin">https://x.com/rifaterdemsahin</a></p>
+                </li>
+                <li>
+                <p>🎥 YouTube: <a href="https://www.youtube.com/@RifatErdemSahin">https://www.youtube.com/@RifatErdemSahin</a></p>
+                </li>
+                <li>
+                <p>💻 GitHub: <a href="https://github.com/rifaterdemsahin">https://github.com/rifaterdemsahin</a></p>
+                </li>
+                </ul>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poc Openshift On Windows Enviroment with CRC - Rifat Erdem Sahin</title>
+    <meta name="description" content="Poc Openshift On Windows Enviroment with CRC Setting Up OpenShift on Windows with CodeReady Containers (CRC) If you're a developer or IT professional looking to experiment with Red Hat OpenShift on a ">
+    <meta name="keywords" content="Poc Openshift On Windows Enviroment with CRC">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/03/20/poc-openshift-on-windows-enviroment-with-crc/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/03/20/poc-openshift-on-windows-enviroment-with-crc/">
+    <meta property="og:title" content="Poc Openshift On Windows Enviroment with CRC">
+    <meta property="og:description" content="Poc Openshift On Windows Enviroment with CRC Setting Up OpenShift on Windows with CodeReady Containers (CRC) If you're a developer or IT professional looking to experiment with Red Hat OpenShift on a ">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/03/20/poc-openshift-on-windows-enviroment-with-crc/">
+    <meta property="twitter:title" content="Poc Openshift On Windows Enviroment with CRC">
+    <meta property="twitter:description" content="Poc Openshift On Windows Enviroment with CRC Setting Up OpenShift on Windows with CodeReady Containers (CRC) If you're a developer or IT professional looking to experiment with Red Hat OpenShift on a ">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Poc Openshift On Windows Enviroment with CRC",
+      "description": "Poc Openshift On Windows Enviroment with CRC Setting Up OpenShift on Windows with CodeReady Containers (CRC) If you're a developer or IT professional looking to experiment with Red Hat OpenShift on a ",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-03-20",
+      "dateModified": "2025-03-20",
+      "url": "https://www.rifaterdemsahin.com/2025/03/20/poc-openshift-on-windows-enviroment-with-crc/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/03/20/poc-openshift-on-windows-enviroment-with-crc/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Poc Openshift On Windows Enviroment with CRC</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>March 20, 2025</span>
+                    <span>&bull;</span>
+                    <span>6 min read</span>
+                </div>
+                <p class="article-excerpt">Poc Openshift On Windows Enviroment with CRC Setting Up OpenShift on Windows with CodeReady Containers (CRC) If you're a developer or IT professional looking to experiment with Red Hat OpenShift on a Windows environment, CodeReady Containers (CRC) is your gateway to a streamlined</p>
+            </header>
+            <article class="article-content">
+                <h1>Poc Openshift On Windows Enviroment with CRC</h1>
+                <h1>Setting Up OpenShift on Windows with CodeReady Containers (CRC)</h1>
+                <p>If you're a developer or IT professional looking to experiment with Red Hat OpenShift on a Windows environment, CodeReady Containers (CRC) is your gateway to a streamlined, local OpenShift setup. CRC is designed to provide a minimal OpenShift cluster for development and testing purposes on your local machine. Here’s a comprehensive guide to get you started.</p>
+                <h2>What is <strong>CodeReady </strong>Containers (CRC)?</h2>
+                <p>CodeReady Containers is a tool provided by Red Hat that allows you to run OpenShift in a local environment. It provides a single-node OpenShift cluster that’s suitable for development and testing. This setup is ideal for developers who want to experience the full OpenShift platform without setting up a full-blown cluster.</p>
+                <h2>Prerequisites</h2>
+                <p>Before you begin, ensure that you have the following prerequisites in place:</p>
+                <ul>
+                <li>
+                <p><strong>Windows 10/11 (64-bit) or Windows Server 2019/2022</strong>: CRC supports these versions of Windows.</p>
+                </li>
+                <li>
+                <p><strong>Virtualization Support</strong>: Ensure that virtualization is enabled in your BIOS/UEFI settings.</p>
+                </li>
+                <li>
+                <p><strong>Hardware Requirements</strong>:</p>
+                </li>
+                <li>
+                <p><strong>CPU</strong>: 4 cores (recommended)</p>
+                </li>
+                <li>
+                <p><strong>RAM</strong>: 8 GB (minimum); 16 GB (recommended)</p>
+                </li>
+                <li>
+                <p><strong>Disk</strong>: 35 GB of free space (recommended)</p>
+                </li>
+                </ul>
+                <h2>Installation Steps</h2>
+                <h3>1. Install WSL 2 (Windows Subsystem for Linux)</h3>
+                <p>CRC requires WSL 2 to run. To install WSL 2:</p>
+                <ul>
+                <li>Open PowerShell as an administrator and run:</li>
+                </ul>
+                <p>wsl --install</p>
+                <ul>
+                <li>
+                <p>Restart your machine if prompted.</p>
+                </li>
+                <li>
+                <p>Verify the installation by running:</p>
+                </li>
+                </ul>
+                <p>wsl --list --verbose</p>
+                <p>Ensure that WSL 2 is the default version.</p>
+                <h3>2. Install a Linux Distribution</h3>
+                <p>You need a Linux distribution for WSL 2. The most common choice is Ubuntu.</p>
+                <ul>
+                <li>
+                <p>Open the Microsoft Store, search for "Ubuntu", and install it (e.g., Ubuntu 20.04).</p>
+                </li>
+                <li>
+                <p>Launch Ubuntu from the Start menu and complete the setup.</p>
+                </li>
+                </ul>
+                <h3>3. Install Virtualization Software</h3>
+                <p>CRC uses a virtualization solution. Install <strong>Hyper-V</strong> or <strong>VirtualBox</strong>:</p>
+                <ul>
+                <li>
+                <p><strong>For Hyper-V</strong>:</p>
+                </li>
+                <li>
+                <p>Open PowerShell as an administrator and run:<br />
+                <code>powershell dism.exe /Online /Enable-Feature:Microsoft-Hyper-V /All</code></p>
+                </li>
+                <li>
+                <p>Restart your machine.</p>
+                </li>
+                </ul>
+                <p><img src="images/poc-openshift-on-1.png" alt="poc openshift on 1" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>
+                <p><strong>For VirtualBox</strong> (if you prefer not to use Hyper-V):</p>
+                </li>
+                <li>
+                <p>Download and install VirtualBox from the <a href="https://www.virtualbox.org/">official website</a>.</p>
+                </li>
+                </ul>
+                <h3>4. Download and Install CodeReady Containers</h3>
+                <ul>
+                <li>
+                <p>Go to the <a href="https://developers.redhat.com/products/codeready-containers/overview">Red Hat CodeReady Containers download page</a> and download the CRC binary for Windows.</p>
+                </li>
+                <li>
+                <p>Extract the downloaded ZIP file to a directory of your choice.</p>
+                </li>
+                <li>
+                <p>Open a Command Prompt or PowerShell window and navigate to the extracted directory.</p>
+                </li>
+                <li>
+                <p>Run the installer script:</p>
+                </li>
+                </ul>
+                <p>.\crc-windows-amd64.exe setup</p>
+                <h3></h3>
+                <p><img src="images/poc-openshift-on-2.png" alt="poc openshift on 2" class="article-image" loading="lazy"></p>
+                <ol start="5">
+                <li>Start and Configure CRC</li>
+                </ol>
+                <ul>
+                <li>Initialize CRC with the following command:</li>
+                </ul>
+                <p>.\crc-windows-amd64.exe start</p>
+                <p><img src="images/poc-openshift-on-3.png" alt="poc openshift on 3" class="article-image" loading="lazy"></p>
+                <p>This command will download and set up the OpenShift cluster, which may take some time depending on your internet connection and system performance.</p>
+                <p><img src="images/poc-openshift-on-4.png" alt="poc openshift on 4" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>Once the setup is complete, you will receive the OpenShift cluster's URL, and credentials to log in.</li>
+                </ul>
+                <hr />
+                <p>The error message you're encountering suggests that the <code>crc daemon</code> is not running or cannot be reached, which is necessary for starting Red Hat OpenShift Local (CRC). This issue can occur due to several reasons, such as the daemon not being started automatically, a problem with the installation, or configuration issues.</p>
+                <p>Here are some steps you can try to resolve the issue:</p>
+                <h3>1. <strong>Manually Start the CRC Daemon</strong></h3>
+                <ul>
+                <li>
+                <p>First, try to manually start the CRC daemon:<br />
+                <code>.\crc.exe daemon</code></p>
+                </li>
+                <li>
+                <p>After starting the daemon, try running <code>.\crc.exe start</code> again.</p>
+                </li>
+                </ul>
+                <h3>2. <strong>Check for Proper Installation</strong></h3>
+                <ul>
+                <li>
+                <p>Ensure that the installation of Red Hat OpenShift Local (CRC) is complete and correct. You can try reinstalling it if necessary.</p>
+                </li>
+                <li>
+                <p>Make sure that all required dependencies are installed and configured properly.</p>
+                </li>
+                </ul>
+                <h3>3. <strong>Run as Administrator</strong></h3>
+                <ul>
+                <li>
+                <p>Run the terminal or command prompt as an administrator. Right-click on the terminal or command prompt and choose "Run as administrator."</p>
+                </li>
+                <li>
+                <p>Try running the <code>.\crc.exe start</code> command again.</p>
+                </li>
+                </ul>
+                <p><img src="images/poc-openshift-on-5.png" alt="poc openshift on 5" class="article-image" loading="lazy"></p>
+                <p>Setup first &gt; no admin run </p>
+                <p><img src="images/poc-openshift-on-6.png" alt="poc openshift on 6" class="article-image" loading="lazy"></p>
+                <h3>4.</h3>
+                <p><strong>Check Windows Services</strong></p>
+                <ul>
+                <li>Make sure that the required services are running on your system. Open the Services management console (<code>services.msc</code>) and look for any services related to CRC or virtualization that might need to be started.</li>
+                </ul>
+                <p><img src="images/poc-openshift-on-7.png" alt="poc openshift on 7" class="article-image" loading="lazy"></p>
+                <h3>maybe ubuntu run expedted but it is an exe</h3>
+                <p><img src="images/poc-openshift-on-8.png" alt="poc openshift on 8" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-openshift-on-9.png" alt="poc openshift on 9" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-openshift-on-10.png" alt="poc openshift on 10" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-openshift-on-11.png" alt="poc openshift on 11" class="article-image" loading="lazy"></p>
+                <p><code>PS C:\Program Files\Red Hat OpenShift Local&gt; .\crc.exe daemon
+                INFO listening vsock://00000400-FACB-11E6-BD58-64006A7986D3
+                INFO listening \\.\pipe\crc-http
+                \\.\pipe\crc-http - - &amp;#091;13/Aug/2024:13:04:48 +0100] "GET /api/version HTTP/1.1" 200 101</code></p>
+                <p><strong>Verify Environment Variables</strong></p>
+                <ul>
+                <li>Ensure that the environment variables required by CRC are set correctly. Sometimes the <code>PATH</code> variable might not be configured correctly after installation.</li>
+                </ul>
+                <h3>6. <strong>Firewall/Antivirus</strong></h3>
+                <ul>
+                <li>Check if your firewall or antivirus software is blocking the CRC daemon. Temporarily disable them and see if it resolves the issue.</li>
+                </ul>
+                <h3>7. <strong>Logs and Detailed Error Information</strong></h3>
+                <ul>
+                <li>
+                <p>You can also check the CRC logs for more detailed error information:<br />
+                <code>.\crc.exe start --log-level debug</code></p>
+                </li>
+                <li>
+                <p>Reviewing the logs might provide more insight into what is causing the issue.</p>
+                </li>
+                </ul>
+                <h3>8. <strong>Update CRC</strong></h3>
+                <ul>
+                <li>Ensure that you are using the latest version of CRC. If not, consider updating to the latest version.</li>
+                </ul>
+                <h3>9. <strong>Check for Conflicts</strong></h3>
+                <ul>
+                <li>Sometimes, other virtualization software (e.g., Docker Desktop, VirtualBox) can conflict with CRC. Make sure there are no conflicts.</li>
+                </ul>
+                <h3>10. <strong>System Reboot</strong></h3>
+                <ul>
+                <li>A simple system reboot might help if a required process or service didn't start correctly during the initial boot.</li>
+                </ul>
+                <p>If the problem persists after trying these steps, you may need to consult the <a href="https://access.redhat.com/documentation/en-us/red_hat_openshift_local">Red Hat OpenShift Local documentation</a> or seek further assistance from Red Hat support.</p>
+                <p><img src="images/poc-openshift-on-12.png" alt="poc openshift on 12" class="article-image" loading="lazy"></p>
+                <hr />
+                <h3>6. Access the OpenShift Cluster</h3>
+                <ul>
+                <li>
+                <p>To access the OpenShift web console, open your web browser and navigate to the provided URL.</p>
+                </li>
+                <li>
+                <p>Use the credentials provided during the CRC setup to log in.</p>
+                </li>
+                <li>
+                <p>To interact with OpenShift from the command line, use the <code>oc</code> CLI tool provided by CRC. To log in to the cluster using <code>oc</code>, run:</p>
+                </li>
+                </ul>
+                <p>.\crc-windows-amd64.exe oc login <cluster-url> --token=<token></p>
+                <h2>Troubles</h2>
+                <p><img src="images/poc-openshift-on-13.png" alt="poc openshift on 13" class="article-image" loading="lazy"></p>
+                <p>hooting Tips</p>
+                <ul>
+                <li>
+                <p><strong>Virtualization Issues</strong>: Ensure that virtualization is enabled in your BIOS/UEFI settings. If using Hyper-V, ensure that it’s properly configured.</p>
+                </li>
+                <li>
+                <p><strong>WSL 2 Issues</strong>: Verify that WSL 2 is correctly installed and set as the default version.</p>
+                </li>
+                <li>
+                <p><strong>Performance</strong>: Ensure your machine meets the hardware requirements for CRC to run efficiently.</p>
+                </li>
+                </ul>
+                <p><img src="images/poc-openshift-on-14.png" alt="poc openshift on 14" class="article-image" loading="lazy"></p>
+                <p>Conclusion</p>
+                <p>Setting up OpenShift on a Windows environment with CodeReady Containers is a powerful way to get hands-on experience with OpenShift without needing a full-blown cluster. By following these steps, you’ll have a local OpenShift instance up and running, ready for development and testing. Enjoy exploring OpenShift in your local environment!</p>
+                <p>Feel free to leave a comment or ask questions if you encounter any issues or need further clarification on the setup process.</p>
+                <p><img src="images/poc-openshift-on-15.png" alt="poc openshift on 15" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-openshift-on-16.png" alt="poc openshift on 16" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-openshift-on-17.png" alt="poc openshift on 17" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-openshift-on-18.png" alt="poc openshift on 18" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-openshift-on-19.png" alt="poc openshift on 19" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARGOCD Development Logs and Summary 1 - Rifat Erdem Sahin</title>
+    <meta name="description" content="ARGOCD Development Logs and Summary 1 Existing app. Deployed via &gt; https://github.com/rifaterdemsahin/openshift-basic-app-deploy Starting point &gt; Start where you are !">
+    <meta name="keywords" content="ARGOCD Development Logs and Summary 1">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2025/02/15/argo-cd/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2025/02/15/argo-cd/">
+    <meta property="og:title" content="ARGOCD Development Logs and Summary 1">
+    <meta property="og:description" content="ARGOCD Development Logs and Summary 1 Existing app. Deployed via &gt; https://github.com/rifaterdemsahin/openshift-basic-app-deploy Starting point &gt; Start where you are !">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2025/02/15/argo-cd/">
+    <meta property="twitter:title" content="ARGOCD Development Logs and Summary 1">
+    <meta property="twitter:description" content="ARGOCD Development Logs and Summary 1 Existing app. Deployed via &gt; https://github.com/rifaterdemsahin/openshift-basic-app-deploy Starting point &gt; Start where you are !">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "ARGOCD Development Logs and Summary 1",
+      "description": "ARGOCD Development Logs and Summary 1 Existing app. Deployed via &gt; https://github.com/rifaterdemsahin/openshift-basic-app-deploy Starting point &gt; Start where you are !",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2025-02-15",
+      "dateModified": "2025-02-15",
+      "url": "https://www.rifaterdemsahin.com/2025/02/15/argo-cd/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2025/02/15/argo-cd/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">ARGOCD Development Logs and Summary 1</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>February 15, 2025</span>
+                    <span>&bull;</span>
+                    <span>47 min read</span>
+                </div>
+                <p class="article-excerpt">ARGOCD Development Logs and Summary 1 Existing app. Deployed via &gt; https://github.com/rifaterdemsahin/openshift-basic-app-deploy Starting point &gt; Start where you are !</p>
+            </header>
+            <article class="article-content">
+                <h1>ARGOCD Development Logs and Summary 1</h1>
+                <p>Existing app.</p>
+                <p><img src="images/argocd-development-logs-1.png" alt="argocd development logs 1" class="article-image" loading="lazy"></p>
+                <p>Deployed via &gt; <a href="https://github.com/rifaterdemsahin/openshift-basic-app-deploy">https://github.com/rifaterdemsahin/openshift-basic-app-deploy</a></p>
+                <p><img src="images/argocd-development-logs-2.png" alt="argocd development logs 2" class="article-image" loading="lazy"></p>
+                <p>Starting point &gt;</p>
+                <p><img src="images/argocd-development-logs-3.png" alt="argocd development logs 3" class="article-image" loading="lazy"></p>
+                <p>Start where you are !</p>
+                <p>resend if the context is too big </p>
+                <p><img src="images/argocd-development-logs-4.png" alt="argocd development logs 4" class="article-image" loading="lazy"></p>
+                <p>To set up Argo CD for managing the deployment of your applications on OpenShift using the steps you've provided, follow these instructions:</p>
+                <h3>Step 1: Install Argo CD on OpenShift✅</h3>
+                <ul>
+                <li><strong>Create a new project/namespace for Argo CD:</strong></li>
+                </ul>
+                <p>oc new-project argocd</p>
+                <p><img src="images/argocd-development-logs-5.png" alt="argocd development logs 5" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Install Argo CD:</strong> You can install Argo CD on OpenShift using the following command, which deploys Argo CD and its components into the <code>argocd</code> namespace:</li>
+                </ul>
+                <p>oc apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml</p>
+                <p><img src="images/argocd-development-logs-6.png" alt="argocd development logs 6" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Expose the Argo CD API Server:</strong> By default, the Argo CD API server is not exposed outside of the cluster. To access it externally, you need to create a route:</li>
+                </ul>
+                <p>oc expose svc/argocd-server -n argocd --port=443 --target-port=8080 --name=argocd-server</p>
+                <p><img src="images/argocd-development-logs-7.png" alt="argocd development logs 7" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Patch the Argo CD server for OpenShift OAuth:</strong> To use OpenShift's OAuth for authentication, patch the Argo CD server:</li>
+                </ul>
+                <p>oc patch deployment argocd-server \<br />
+                       -n argocd \<br />
+                       -p '{"spec": {"template": {"spec": {"containers": [{"name": "argocd-server", "command": ["argocd-server", "--insecure", "--auth-mode", "server"]}]}}}}'</p>
+                <p><img src="images/argocd-development-logs-8.png" alt="argocd development logs 8" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-development-logs-9.png" alt="argocd development logs 9" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-development-logs-10.png" alt="argocd development logs 10" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Retrieve the initial admin password:</strong> The initial password for the <code>admin</code> user is stored in a Kubernetes secret. Retrieve it using:</li>
+                </ul>
+                <p>oc get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 --decode; echo</p>
+                <p><img src="images/argocd-development-logs-11.png" alt="argocd development logs 11" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-development-logs-12.png" alt="argocd development logs 12" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>The "Back-off restarting failed container" error typically indicates that a container in a pod is repeatedly failing to start and Kubernetes is backing off from trying to restart it too frequently. In your case, this is happening with the <code>dex</code> container in the <code>argocd-dex-server</code> pod.</p>
+                <p>To troubleshoot and resolve this issue, follow these steps:</p>
+                <h3>Step 1: Check Pod Logs</h3>
+                <p>The first step is to check the logs of the failing container to understand why it is failing.</p>
+                <ul>
+                <li><strong>Get the logs from the failing <code>dex</code> container:</strong></li>
+                </ul>
+                <p>oc logs pod/argocd-dex-server-69bb969bd7-7gt7k -c dex -n argocd</p>
+                <p>This command will show you the logs of the <code>dex</code> container. Look for any error messages or issues that might explain why the container is failing.</p>
+                <p><img src="images/argocd-development-logs-13.png" alt="argocd development logs 13" class="article-image" loading="lazy"></p>
+                <h3>Step 2: Describe the Pod</h3>
+                <p>Describing the pod can provide additional information, such as events that might be affecting the container.</p>
+                <ul>
+                <li><strong>Describe the pod:</strong></li>
+                </ul>
+                <p>oc describe pod argocd-dex-server-69bb969bd7-7gt7k -n argocd</p>
+                <p>Review the output, particularly under the "Events" section, to see if there are any Kubernetes events that indicate why the container is failing to start.</p>
+                <h3>Step 3: Review Dex Configuration</h3>
+                <p>The <code>dex</code> container is part of the Argo CD's identity management system and is responsible for handling authentication requests. Issues with the configuration, such as incorrect OAuth settings or problems with connecting to an external identity provider, can cause the <code>dex</code> container to fail.</p>
+                <ul>
+                <li><strong>Check the Dex configuration:</strong> If the logs indicate configuration issues, verify the Dex configuration stored in the <code>argocd-cm</code> ConfigMap:</li>
+                </ul>
+                <p>oc get configmap argocd-cm -n argocd -o yaml</p>
+                <p>Look for the <code>dex.config</code> section and ensure that all the settings, such as OAuth2 client IDs, secrets, and connectors, are correctly configured.</p>
+                <h3>Step 4: Check Resource Limits</h3>
+                <p>Sometimes, containers fail because they do not have enough resources (CPU, memory) allocated.</p>
+                <ul>
+                <li><strong>Check the resource requests and limits:</strong> Ensure that the <code>dex</code> container has sufficient CPU and memory resources allocated. You can do this by checking the pod definition:</li>
+                </ul>
+                <p>oc get pod argocd-dex-server-69bb969bd7-7gt7k -n argocd -o yaml</p>
+                <p>Look for the <code>resources</code> section under the <code>dex</code> container and adjust if necessary.</p>
+                <h3>Step 5: Restart the Pod</h3>
+                <p>If the issue seems to be transient or due to a temporary misconfiguration, try restarting the pod to see if the issue resolves itself.</p>
+                <ul>
+                <li><strong>Delete the failing pod to force a restart:</strong></li>
+                </ul>
+                <p>oc delete pod argocd-dex-server-69bb969bd7-7gt7k -n argocd</p>
+                <p>Kubernetes will automatically create a new pod to replace the one you deleted. Monitor the new pod to see if the <code>dex</code> container starts successfully.</p>
+                <h3>Step 6: Upgrade Argo CD (If Necessary)</h3>
+                <p>If the issue persists and is not related to configuration or resource limits, it might be due to a bug in the specific version of Argo CD you are using. Consider upgrading Argo CD to the latest stable version:</p>
+                <ul>
+                <li><strong>Upgrade Argo CD:</strong> Follow the upgrade instructions from the <a href="https://argo-cd.readthedocs.io/en/stable/operator-manual/upgrading/">Argo CD documentation</a>.</li>
+                </ul>
+                <h3>Step 7: Additional Debugging</h3>
+                <p>If all else fails, you might need to delve deeper into Kubernetes and Argo CD diagnostics:</p>
+                <ul>
+                <li>
+                <p><strong>Check the Kubernetes cluster health</strong> to ensure there are no underlying issues affecting the cluster.</p>
+                </li>
+                <li>
+                <p><strong>Examine network policies</strong> or other security settings that might be preventing the <code>dex</code> container from functioning properly.</p>
+                </li>
+                </ul>
+                <p>By following these steps, you should be able to identify and resolve the issue with the <code>dex</code> container in the Argo CD pod.</p>
+                <hr />
+                <h3>Step 2: Access the Argo CD UI</h3>
+                <ul>
+                <li><strong>Access the Argo CD UI:</strong> Open a web browser and navigate to the route created for the Argo CD server. You can find the route with:</li>
+                </ul>
+                <p>oc get route argocd-server -n argocd</p>
+                <p>The route URL will look something like <code>https://argocd-server-&lt;project&gt;.&lt;cluster-domain&gt;</code>.</p>
+                <ul>
+                <li>
+                <p><strong>Login to Argo CD:</strong></p>
+                </li>
+                <li>
+                <p><strong>Username:</strong> <code>admin</code></p>
+                </li>
+                <li>
+                <p><strong>Password:</strong> Use the password retrieved in the previous step.</p>
+                </li>
+                </ul>
+                <h3>Step 3: Configure Argo CD to Manage Your Applications</h3>
+                <ul>
+                <li><strong>Add a Git Repository:</strong> Add the Git repository that contains your application manifests or Helm charts. This repository should include the necessary configurations for your OpenShift applications.</li>
+                </ul>
+                <p>argocd repo add https://github.com/your-username/openshift-basic-app-deploy.git --username <your-username> --password <your-password></p>
+                <ul>
+                <li><strong>Create an Argo CD Application:</strong> Create an Argo CD Application that will track and manage the deployment of your OpenShift applications:</li>
+                </ul>
+                <p>argocd app create myapp \<br />
+                   --repo https://github.com/your-username/openshift-basic-app-deploy.git \<br />
+                   --path <path-to-k8s-manifests-or-helm-chart> \<br />
+                   --dest-server https://kubernetes.default.svc \<br />
+                   --dest-namespace myapp-project</p>
+                <p>Replace <code>&lt;path-to-k8s-manifests-or-helm-chart&gt;</code> with the correct path in your Git repository where the Kubernetes manifests or Helm chart are stored.</p>
+                <ul>
+                <li><strong>Synchronize the Application:</strong> Sync the application to deploy the resources defined in your Git repository:</li>
+                </ul>
+                <p>argocd app sync myapp</p>
+                <p>This will deploy your applications to OpenShift according to the configurations in your Git repository.</p>
+                <h3>Step 4: Monitor and Manage Deployments</h3>
+                <ul>
+                <li>
+                <p><strong>Monitor Application Status:</strong> You can monitor the status of your deployments via the Argo CD UI. It will show you whether your applications are in sync with the Git repository.</p>
+                </li>
+                <li>
+                <p><strong>Make Changes via GitOps:</strong> To update your application, make changes in your Git repository. Argo CD will detect these changes and sync them to your OpenShift cluster.</p>
+                </li>
+                </ul>
+                <h3>Step 5: Clean Up (Optional)</h3>
+                <p>If you need to remove the Argo CD setup:</p>
+                <ul>
+                <li><strong>Delete the Argo CD project:</strong></li>
+                </ul>
+                <p>oc delete project argocd</p>
+                <p>This setup allows you to manage your OpenShift application deployments using Argo CD with a GitOps approach. Argo CD will continuously monitor your Git repository and ensure that the state of your OpenShift cluster matches the desired state defined in your Git repository.</p>
+                <hr />
+                <p>The error message <code>server.secretkey is missing</code> indicates that the <code>dex</code> container is failing to start because it requires a <code>server.secretkey</code> configuration that is currently missing. This <code>secretkey</code> is essential for the security of the Dex server, as it is used to sign tokens and ensure the integrity of communications.</p>
+                <h3>Steps to Resolve the Issue:</h3>
+                <h4>Step 1: Check the Argo CD ConfigMap</h4>
+                <p>The <code>server.secretkey</code> should be specified in the Argo CD <code>argocd-cm</code> ConfigMap. This ConfigMap contains the configuration for the Dex server.</p>
+                <p><img src="images/argocd-development-logs-14.png" alt="argocd development logs 14" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Inspect the Argo CD ConfigMap:</strong></li>
+                </ul>
+                <p>oc get configmap argocd-cm -n argocd -o yaml</p>
+                <p><img src="images/argocd-development-logs-15.png" alt="argocd development logs 15" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>
+                <p><strong>Look for the <code>dex.config</code> section:</strong></p>
+                </li>
+                <li>
+                <p>The <code>dex.config</code> section should contain a <code>server.secretkey</code>. If this key is missing, it needs to be added. Example <code>dex.config</code> snippet with <code>server.secretkey</code>:</p>
+                </li>
+                </ul>
+                <p>dex.config: |<br />
+                     issuer: https://argocd.example.com/api/dex<br />
+                     storage:<br />
+                       type: kubernetes<br />
+                       config:<br />
+                         inCluster: true<br />
+                     web:<br />
+                       http: 0.0.0.0:5556<br />
+                     oauth2:<br />
+                       skipApprovalScreen: true<br />
+                       responseTypes: ["code", "token", "id_token"]<br />
+                     staticClients:<br />
+                     - id: argo-cd<br />
+                       redirectURIs:<br />
+                       - 'https://argocd.example.com/auth/callback'<br />
+                       name: Argo CD<br />
+                       secret: <client-secret><br />
+                     server:<br />
+                       secretKey: <your-secret-key></p>
+                <ul>
+                <li>Replace <code>&lt;your-secret-key&gt;</code> with a securely generated key. This can be any random string but should be kept secret.</li>
+                </ul>
+                <p><img src="images/argocd-development-logs-16.png" alt="argocd development logs 16" class="article-image" loading="lazy"></p>
+                <h4>Step 2: Generate a Secret Key</h4>
+                <p>If the <code>server.secretkey</code> is missing, you need to generate a secure key.</p>
+                <ul>
+                <li><strong>Generate a secret key:</strong> You can generate a random string as the secret key using a command like:</li>
+                </ul>
+                <p>openssl rand -hex 32</p>
+                <p>Copy the generated key and use it in the <code>server.secretkey</code> configuration.</p>
+                <p><img src="images/argocd-development-logs-17.png" alt="argocd development logs 17" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-development-logs-18.png" alt="argocd development logs 18" class="article-image" loading="lazy"></p>
+                <h4>Step 3: Update the ConfigMap</h4>
+                <p>If the <code>server.secretkey</code> is missing, update the <code>argocd-cm</code> ConfigMap.</p>
+                <ul>
+                <li><strong>Edit the ConfigMap:</strong></li>
+                </ul>
+                <p>oc edit configmap argocd-cm -n argocd</p>
+                <p><img src="images/argocd-development-logs-19.png" alt="argocd development logs 19" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Add or update the <code>server.secretkey</code>:</strong> Add the <code>server.secretkey</code> under the <code>dex.config</code> section as shown in the example above.</li>
+                </ul>
+                <h4>Step 4: Restart the Dex Pod</h4>
+                <p>After updating the ConfigMap, restart the Dex server pod to apply the changes.</p>
+                <ul>
+                <li><strong>Delete the Dex server pod to force a restart:</strong></li>
+                </ul>
+                <p>oc delete pod argocd-dex-server-69bb969bd7-7gt7k -n argocd</p>
+                <p>Kubernetes will automatically create a new pod with the updated configuration.</p>
+                <h4>Step 5: Verify the Dex Server</h4>
+                <p>Once the Dex server pod restarts, check the logs again to ensure it starts successfully without errors.</p>
+                <ul>
+                <li><strong>Check the pod logs:</strong></li>
+                </ul>
+                <p>oc logs pod/argocd-dex-server-69bb969bd7-<new-pod-id> -c dex -n argocd</p>
+                <p>If the <code>dex</code> container starts without errors, the issue should be resolved, and Argo CD should function correctly.</p>
+                <h3>Additional Considerations</h3>
+                <ul>
+                <li>
+                <p>Ensure that any changes to the ConfigMap are carefully reviewed to avoid introducing other configuration errors.</p>
+                </li>
+                <li>
+                <p>It is recommended to store the <code>server.secretkey</code> and other sensitive information securely, possibly in a Kubernetes Secret rather than directly in a ConfigMap, depending on your security requirements.</p>
+                </li>
+                </ul>
+                <p>It seems that the <code>openssl</code> command is not available on your system. If you're using Windows and don't have OpenSSL installed, you can generate a random secret key using PowerShell or other methods. Here's how you can do it in PowerShell:</p>
+                <h3>Step 1: Generate a Random Secret Key Using PowerShell</h3>
+                <p>You can use the following PowerShell command to generate a random 32-byte (256-bit) hexadecimal string:</p>
+                <p>-join ((65..90) + (97..122) + (48..57) | Get-Random -Count 32 | ForEach-Object {[char]$_})</p>
+                <p>This command will produce a string of random alphanumeric characters. You can use this string as your <code>server.secretkey</code>.</p>
+                <h3>Step 2: Use the Generated Key</h3>
+                <p>Once you have the generated key, you can follow the steps to update the <code>argocd-cm</code> ConfigMap:</p>
+                <ul>
+                <li><strong>Edit the ConfigMap:</strong></li>
+                </ul>
+                <p>oc edit configmap argocd-cm -n argocd</p>
+                <ul>
+                <li><strong>Add or update the <code>server.secretkey</code> in the <code>dex.config</code> section:</strong></li>
+                </ul>
+                <p>dex.config: |<br />
+                     ...<br />
+                     server:<br />
+                       secretKey: <your-generated-secret-key></p>
+                <p>Replace <code>&lt;your-generated-secret-key&gt;</code> with the string you generated using PowerShell.</p>
+                <h3>Step 3: Restart the Dex Pod</h3>
+                <p>After updating the ConfigMap, delete the Dex server pod to apply the changes:</p>
+                <p>oc delete pod argocd-dex-server-69bb969bd7-7gt7k -n argocd</p>
+                <p>This should resolve the issue and allow the Dex container to start properly.</p>
+                <hr />
+                <p>To update the <code>ConfigMap</code> by adding the <code>server.secretkey</code> under the <code>dex.config</code> section, you would edit the <code>ConfigMap</code> as follows:</p>
+                <p>apiVersion: v1<br />
+                kind: ConfigMap<br />
+                metadata:<br />
+                  annotations:<br />
+                    kubectl.kubernetes.io/last-applied-configuration: |<br />
+                  creationTimestamp: "2024-08-21T13:20:52Z"<br />
+                  labels:<br />
+                    app.kubernetes.io/name: argocd-cm<br />
+                    app.kubernetes.io/part-of: argocd<br />
+                  name: argocd-cm<br />
+                  namespace: argocd<br />
+                  resourceVersion: "39734"<br />
+                  uid: 79146225-4ba4-4919-ab89-6e4b205ddc81<br />
+                data:<br />
+                  dex.config: |<br />
+                    connectors:<br />
+                    - type: github<br />
+                      id: github<br />
+                      name: GitHub<br />
+                      config:<br />
+                        clientID: $dex.github.clientID<br />
+                        clientSecret: $dex.github.clientSecret<br />
+                    server.secretkey: 5HbERIVentK9xid1N8OgzmWafPTCvBQo</p>
+                <h3>Key Points:</h3>
+                <ul>
+                <li>
+                <p>The <code>server.secretkey</code> was added to the <code>dex.config</code> section.</p>
+                </li>
+                <li>
+                <p>Ensure the indentation is correct, as YAML is indentation-sensitive.</p>
+                </li>
+                <li>
+                <p>The <code>server.secretkey</code> value is placed under the main <code>dex.config</code> section.</p>
+                </li>
+                </ul>
+                <p>This YAML snippet should be included in the <code>ConfigMap</code>, and after saving, it should apply the necessary configuration.</p>
+                <p><img src="images/argocd-development-logs-20.png" alt="argocd development logs 20" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><img src="images/argocd-development-logs-21.png" alt="argocd development logs 21" class="article-image" loading="lazy"></p>
+                <p>config map opened in notepad and gpt added the part that was needed</p>
+                <p><img src="images/argocd-development-logs-22.png" alt="argocd development logs 22" class="article-image" loading="lazy"></p>
+                <p>Deleted the pod</p>
+                <p><img src="images/argocd-development-logs-23.png" alt="argocd development logs 23" class="article-image" loading="lazy"></p>
+                <p>still loupe back </p>
+                <p><img src="images/argocd-development-logs-24.png" alt="argocd development logs 24" class="article-image" loading="lazy"></p>
+                <p>still the configmap updated it did not collect it </p>
+                <p><img src="images/argocd-development-logs-25.png" alt="argocd development logs 25" class="article-image" loading="lazy"></p>
+                <p>the data is there </p>
+                <p><img src="images/argocd-development-logs-26.png" alt="argocd development logs 26" class="article-image" loading="lazy"></p>
+                <p>restart rollout </p>
+                <p><img src="images/argocd-development-logs-27.png" alt="argocd development logs 27" class="article-image" loading="lazy"></p>
+                <p>Delete the pod &gt;&gt;&gt; it is back online back crashing </p>
+                <p><code>apiVersion: v1
+                kind: ConfigMap
+                metadata:
+                  annotations:
+                    kubectl.kubernetes.io/last-applied-configuration: |
+                  creationTimestamp: "2024-08-21T13:20:52Z"
+                  labels:
+                    app.kubernetes.io/name: argocd-cm
+                    app.kubernetes.io/part-of: argocd
+                  name: argocd-cm
+                  namespace: argocd
+                  resourceVersion: "39734"
+                  uid: 79146225-4ba4-4919-ab89-6e4b205ddc81
+                data:
+                  dex.config: |
+                    connectors:
+                    - type: github
+                      id: github
+                      name: GitHub
+                      config:
+                        clientID: $dex.github.clientID
+                        clientSecret: $dex.github.clientSecret
+                    server.secretkey: 5HbERIVentK9xid1N8OgzmWafPTCvBQo</code></p>
+                <hr />
+                <p>IS THE CONNECTOR THE ISSUE OR THE SERVER SECRET KEY ?</p>
+                <p>It looks like there are some log messages that have been mistakenly included in the metadata section of the ConfigMap. I'll clean up the object for you, removing the unintended log lines. Here's the edited ConfigMap:</p>
+                <pre><code class="language-yaml">apiVersion: v1
+                data:
+                  dex.config: |
+                    connectors:
+                    - type: github
+                      id: github
+                      name: GitHub
+                      config:
+                        clientID: $dex.github.clientID
+                        clientSecret: $dex.github.clientSecret
+                    server.secretkey: 5HbERIVentK9xid1N8OgzmWafPTCvBQo
+                kind: ConfigMap
+                metadata:
+                  annotations:
+                    kubectl.kubernetes.io/last-applied-configuration: |
+                  creationTimestamp: &quot;2024-08-21T13:20:52Z&quot;
+                  labels:
+                    app.kubernetes.io/name: argocd-cm
+                    app.kubernetes.io/part-of: argocd
+                  name: argocd-cm
+                  namespace: argocd
+                  resourceVersion: &quot;42663&quot;
+                  uid: 79146225-4ba4-4919-ab89-6e4b205ddc81
+                </code></pre>
+                <p>This should resolve any issues with unintended content in the metadata section.</p>
+                <hr />
+                <p>It seems that the edit command you're using in the OpenShift CLI (<code>oc edit configmap argocd-cm -n argocd</code>) is not saving the changes you are trying to make. This could be due to several reasons, such as the editing process not detecting any changes, or there might be an issue with the text editor being used.</p>
+                <p>Here are a few steps you can try to resolve this:</p>
+                <h3>1. <strong>Ensure Changes Are Made:</strong></h3>
+                <p>Make sure you are making changes within the file after opening it with the <code>oc edit</code> command. If no actual edits are made, the operation might cancel automatically.</p>
+                <h3>2. <strong>Force the Editor to Save Changes:</strong></h3>
+                <p>When in the editor, you can force a save even if the changes seem minor. For example, add a comment or make a trivial change and then save the file.</p>
+                <h3>3. <strong>Use a Different Editor:</strong></h3>
+                <p>If the editor associated with <code>oc edit</code> is not working properly, you can set a different one. For example:</p>
+                <p>export KUBE_EDITOR="nano"<br />
+                   oc edit configmap argocd-cm -n argocd</p>
+                <p>Replace <code>"nano"</code> with your preferred text editor (e.g., <code>"vi"</code>, <code>"vim"</code>, <code>"code"</code>).</p>
+                <p><img src="images/argocd-development-logs-28.png" alt="argocd development logs 28" class="article-image" loading="lazy"></p>
+                <h3>4. <strong>Manually Apply Changes:</strong></h3>
+                <p>If editing directly is still problematic, consider exporting the current config, manually editing it in your preferred editor, and then reapplying it:</p>
+                <p>oc get configmap argocd-cm -n argocd -o yaml &gt; argocd-cm.yaml</p>
+                <p>Edit the <code>argocd-cm.yaml</code> file, then apply the changes:</p>
+                <p>oc apply -f argocd-cm.yaml</p>
+                <h3>5. <strong>Use <code>oc patch</code>:</strong></h3>
+                <p>If the change is small, you can also use <code>oc patch</code> to update specific fields in the ConfigMap:</p>
+                <p>oc patch configmap argocd-cm -n argocd --patch '{"data":{"server.secretkey":"newSecretKey"}}'</p>
+                <p><img src="images/argocd-development-logs-29.png" alt="argocd development logs 29" class="article-image" loading="lazy"></p>
+                <p>If you follow these steps, you should be able to apply your changes successfully. If the issue persists, it might be a good idea to investigate any potential permissions issues or conflicts with the OpenShift cluster.</p>
+                <p><img src="images/argocd-development-logs-30.png" alt="argocd development logs 30" class="article-image" loading="lazy"></p>
+                <p>The <code>export</code> command is typically used in Unix-like systems (e.g., Linux or macOS), so it won’t work in a Windows command prompt or PowerShell. Here’s how you can set the editor for <code>oc edit</code> in Windows:</p>
+                <h3>1. <strong>Setting the Editor in PowerShell</strong></h3>
+                <p>If you are using PowerShell, you can set the <code>KUBE_EDITOR</code> environment variable by using:</p>
+                <p>$env:KUBE_EDITOR="nano"<br />
+                oc edit configmap argocd-cm -n argocd</p>
+                <p>You can replace <code>"notepad"</code> with any other text editor available on your system, like <code>"notepad++"</code>, <code>"code"</code> for Visual Studio Code, or any other editor installed on your system.</p>
+                <p><img src="images/argocd-development-logs-31.png" alt="argocd development logs 31" class="article-image" loading="lazy"></p>
+                <h3>2. <strong>Setting the Editor in Command Prompt</strong></h3>
+                <p>If you are using the Windows command prompt (cmd.exe), you can set the <code>KUBE_EDITOR</code> environment variable like this:</p>
+                <p>set KUBE_EDITOR=notepad<br />
+                oc edit configmap argocd-cm -n argocd</p>
+                <p>Again, replace <code>"notepad"</code> with the editor of your choice.</p>
+                <h3>3. <strong>Editing the ConfigMap Directly</strong></h3>
+                <p>If the <code>oc edit</code> command is still not working as expected, you might want to manually edit the ConfigMap as described earlier:</p>
+                <ul>
+                <li><strong>Export the ConfigMap:</strong></li>
+                </ul>
+                <p>oc get configmap argocd-cm -n argocd -o yaml &gt; argocd-cm.yaml</p>
+                <ul>
+                <li><strong>Edit the YAML file using Notepad or any other editor:</strong></li>
+                </ul>
+                <p>notepad argocd-cm.yaml</p>
+                <ul>
+                <li><strong>Apply the changes:</strong></li>
+                </ul>
+                <p>oc apply -f argocd-cm.yaml</p>
+                <p>This process should allow you to modify the ConfigMap successfully on a Windows machine.</p>
+                <p>Changes not getting saved running app maybe the case</p>
+                <p><img src="images/argocd-development-logs-32.png" alt="argocd development logs 32" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-development-logs-33.png" alt="argocd development logs 33" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>The error message you're encountering occurs when you try to apply a patch to a Kubernetes resource, but the resource has been modified since you last retrieved it. This can happen when multiple processes or users are modifying the same resource, or if the resource was changed automatically by some other system process.</p>
+                <p>Here’s how you can resolve this issue:</p>
+                <ul>
+                <li><strong>Retrieve the Latest Version:</strong><br />
+                Since the resource has been modified, you need to get the latest version of it. You can do this by using <code>kubectl get configmap</code> (or <code>oc get configmap</code> in OpenShift) to retrieve the current state of the ConfigMap.</li>
+                </ul>
+                <p>oc get configmap argocd-cm -n argocd -o yaml &gt; latest-argocd-cm.yaml</p>
+                <p><img src="images/argocd-development-logs-34.png" alt="argocd development logs 34" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Apply Your Changes to the Latest Version:</strong><br />
+                Edit the <code>latest-argocd-cm.yaml</code> file to include your changes. You can manually apply your changes to this file or use a text editor to update it.</li>
+                </ul>
+                <p>vi latest-argocd-cm.yaml</p>
+                <p><img src="images/argocd-development-logs-35.png" alt="argocd development logs 35" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Apply the Updated ConfigMap:</strong><br />
+                After making your changes, apply the updated ConfigMap back to the cluster.</li>
+                </ul>
+                <p>oc apply -f latest-argocd-cm.yaml</p>
+                <p><img src="images/argocd-development-logs-36.png" alt="argocd development logs 36" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>
+                <p><strong>Use <code>kubectl edit</code>/<code>oc edit</code> for Simpler Edits:</strong><br />
+                If you only need to make a small change, you can use the <code>oc edit</code> command. This command will allow you to edit the resource in place. However, since you already tried this and it failed, the above steps to retrieve and apply the latest version should resolve the conflict.</p>
+                </li>
+                <li>
+                <p><strong>Force Apply (Caution):</strong><br />
+                If you're confident that the changes in your <code>argocd-cm.yaml</code> should override the current state, you can use the <code>--force</code> flag to delete and recreate the resource. This is a destructive operation and should be used with caution.</p>
+                </li>
+                </ul>
+                <p>oc replace --force -f argocd-cm.yaml</p>
+                <p>Using these steps, you should be able to resolve the conflict and successfully apply your changes.</p>
+                <hr />
+                <p>to copy in Vim </p>
+                <p><img src="images/argocd-development-logs-37.png" alt="argocd development logs 37" class="article-image" loading="lazy"></p>
+                <p>paste issue notepad push </p>
+                <p><img src="images/argocd-development-logs-38.png" alt="argocd development logs 38" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-development-logs-39.png" alt="argocd development logs 39" class="article-image" loading="lazy"></p>
+                <p>it has the secret </p>
+                <p><img src="images/argocd-development-logs-40.png" alt="argocd development logs 40" class="article-image" loading="lazy"></p>
+                <p>update in portal </p>
+                <p><img src="images/argocd-development-logs-41.png" alt="argocd development logs 41" class="article-image" loading="lazy"></p>
+                <p>saved one </p>
+                <p><img src="images/argocd-development-logs-42.png" alt="argocd development logs 42" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-development-logs-43.png" alt="argocd development logs 43" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-development-logs-44.png" alt="argocd development logs 44" class="article-image" loading="lazy"></p>
+                <p>Delete and restart &gt; with the secret inplace</p>
+                <p><img src="images/argocd-development-logs-45.png" alt="argocd development logs 45" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-development-logs-46.png" alt="argocd development logs 46" class="article-image" loading="lazy"></p>
+                <p>New prompt &gt; recreate argocd with the secret server.secretkey: 5HbERIVentK9xid1N8OgzmWafPTCvBQo</p>
+                <hr />
+                <p>To recreate the ArgoCD project in OpenShift with the specified secret key, you can follow these steps:</p>
+                <h3>1. Create the <code>argocd</code> Project (Namespace)</h3>
+                <p>First, recreate the <code>argocd</code> project (namespace):✅</p>
+                <p>oc new-project argocd</p>
+                <h3>2. Create a Secret with the Server Secret Key</h3>
+                <p><img src="images/argocd-development-logs-47.png" alt="argocd development logs 47" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-development-logs-48.png" alt="argocd development logs 48" class="article-image" loading="lazy"></p>
+                <p>Create a Kubernetes Secret in the <code>argocd</code> namespace with the provided <code>server.secretkey</code>:</p>
+                <p>oc create secret generic argocd-secret \<br />
+                  --from-literal=server.secretkey=5HbERIVentK9xid1N8OgzmWafPTCvBQo \<br />
+                  -n argocd</p>
+                <h3>3. Install ArgoCD into the <code>argocd</code> Namespace</h3>
+                <p><img src="images/argocd-development-logs-49.png" alt="argocd development logs 49" class="article-image" loading="lazy"></p>
+                <p>You can then install ArgoCD into this namespace. If you have a manifest or a Helm chart, you can apply it directly. Here’s an example using the official ArgoCD installation manifest:</p>
+                <p><img src="images/argocd-development-logs-50.png" alt="argocd development logs 50" class="article-image" loading="lazy"></p>
+                <p>oc apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml</p>
+                <h3>4. Verify the Installation</h3>
+                <p>Once the installation is complete, ensure all the pods are running in the <code>argocd</code> namespace:</p>
+                <p>oc get pods -n argocd</p>
+                <p><img src="images/argocd-development-logs-51.png" alt="argocd development logs 51" class="article-image" loading="lazy"></p>
+                <h3>5. Configure ArgoCD to Use the Secret Key</h3>
+                <p>If you need to ensure ArgoCD uses the secret key provided, you can modify the <code>argocd-cm</code> ConfigMap or confirm that the installation process picked up the secret correctly.</p>
+                <p>oc edit configmap argocd-cm -n argocd</p>
+                <p>Ensure that the <code>server.secretkey</code> in the <code>argocd-cm</code> matches the key you've provided:</p>
+                <p>data:<br />
+                  dex.config: |<br />
+                    connectors:<br />
+                    - type: github<br />
+                      id: github<br />
+                      name: GitHub<br />
+                      config:<br />
+                        clientID: $dex.github.clientID<br />
+                        clientSecret: $dex.github.clientSecret<br />
+                    server.secretkey: 5HbERIVentK9xid1N8OgzmWafPTCvBQo</p>
+                <p>After these steps, your ArgoCD should be running with the specified secret key in your OpenShift cluster.</p>
+                <p><img src="images/argocd-development-logs-52.png" alt="argocd development logs 52" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-development-logs-53.png" alt="argocd development logs 53" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-development-logs-54.png" alt="argocd development logs 54" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-development-logs-55.png" alt="argocd development logs 55" class="article-image" loading="lazy"></p>
+                <p>Error: secret "argocd-redis" not found</p>
+                <p>The error <code>secret "argocd-redis" not found</code> suggests that the ArgoCD installation is expecting a secret for Redis, but it hasn't been created. This secret is usually automatically created during the installation of ArgoCD, but it might be missing or was deleted.</p>
+                <h3>To resolve this issue, follow these steps:</h3>
+                <h4>1. <strong>Recreate the Missing Secret</strong></h4>
+                <p>If the secret was accidentally deleted or not created, you can recreate it. Here’s how to manually create a basic Redis secret:</p>
+                <p>oc create secret generic argocd-redis \<br />
+                  --from-literal=password=$(openssl rand -base64 16) \<br />
+                  -n argocd</p>
+                <p>This command generates a random password and stores it in the <code>argocd-redis</code> secret under the key <code>password</code>.</p>
+                <h4>2. <strong>Reinstall or Reapply the ArgoCD Installation Manifests</strong></h4>
+                <p>If recreating the secret manually doesn't solve the problem, you might need to reapply the ArgoCD installation manifests. This process should recreate all necessary secrets, including <code>argocd-redis</code>.</p>
+                <p>oc apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml</p>
+                <h4>3. <strong>Verify the Installation</strong></h4>
+                <p>After creating the secret or reinstalling, check the status of the ArgoCD components:</p>
+                <p>oc get pods -n argocd</p>
+                <p>Ensure all pods are running, particularly those associated with Redis (e.g., <code>argocd-redis</code>).</p>
+                <h3>4. <strong>Access the ArgoCD UI Again</strong></h3>
+                <p>Once the secret is in place and the pods are running, you can retry accessing the ArgoCD UI by following the previous steps to forward the port and log in.</p>
+                <p>If you encounter any further issues, please provide the error details, and I can assist you further.</p>
+                <p>secret/argocd-redis created<br />
+                PS C:\projects\argocd&gt; -join ((65..90) + (97..122) + (48..57) | Get-Random -Count 32 | ForEach-Object {[char]$_})<br />
+                50kQ9NTyhVazFoLtbAsfiYrpGwl8BjxC</p>
+                <p>recreate and add this at start </p>
+                <p>argocd-redis 50kQ9NTyhVazFoLtbAsfiYrpGwl8BjxC</p>
+                <p><img src="images/argocd-development-logs-56.png" alt="argocd development logs 56" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>Redo </p>
+                <p>Setting up ArgoCD on CodeReady Containers (CRC), which is Red Hat's local OpenShift environment, involves several steps. CRC provides a full OpenShift cluster on your local machine, which is ideal for development and testing. Here's how you can set up ArgoCD on CRC:</p>
+                <h3>Prerequisites</h3>
+                <ul>
+                <li>
+                <p>CRC installed and running on your local machine.</p>
+                </li>
+                <li>
+                <p><code>oc</code> command-line tool configured to interact with your CRC instance.</p>
+                </li>
+                </ul>
+                <h3>Steps to Set Up ArgoCD on CRC</h3>
+                <h4>1. <strong>Start CRC and Log In</strong></h4>
+                <p>Ensure CRC is running and that you are logged into the OpenShift cluster:</p>
+                <p>crc start<br />
+                oc login -u developer -p developer https://api.crc.testing:6443</p>
+                <h4>2. <strong>Create a New Project for ArgoCD</strong></h4>
+                <p>Create a new project (namespace) for ArgoCD:</p>
+                <p>oc new-project argocd</p>
+                <h4>3. <strong>Install ArgoCD</strong></h4>
+                <p>Apply the ArgoCD installation manifests to deploy ArgoCD into the <code>argocd</code> namespace:</p>
+                <p>oc apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml</p>
+                <p>This command installs all necessary ArgoCD components, including the server, application controller, Redis, and others.</p>
+                <h4>4. <strong>Create the Required Secrets</strong></h4>
+                <p>You need to create the <code>argocd-secret</code> secret with the server secret key and Redis password:</p>
+                <p>oc create secret generic argocd-secret \<br />
+                  --from-literal=server.secretkey=5HbERIVentK9xid1N8OgzmWafPTCvBQo \<br />
+                  --from-literal=redis.password=50kQ9NTyhVazFoLtbAsfiYrpGwl8BjxC \<br />
+                  -n argocd</p>
+                <p><img src="images/argocd-development-logs-57.png" alt="argocd development logs 57" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-development-logs-58.png" alt="argocd development logs 58" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-development-logs-59.png" alt="argocd development logs 59" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-development-logs-60.png" alt="argocd development logs 60" class="article-image" loading="lazy"></p>
+                <h4>5. <strong>Expose the ArgoCD Server</strong></h4>
+                <p>Since CRC is a local environment, the easiest way to access the ArgoCD UI is through port forwarding or by creating an OpenShift route.</p>
+                <h5><strong>Option 1: Port Forwarding</strong></h5>
+                <p>Port forward the ArgoCD server service to your local machine:</p>
+                <p>oc port-forward svc/argocd-server -n argocd 8080:443</p>
+                <p><img src="images/argocd-development-logs-61.png" alt="argocd development logs 61" class="article-image" loading="lazy"></p>
+                <p>Access ArgoCD UI at <code>https://localhost:8080</code>.</p>
+                <h5><strong>Option 2: Expose ArgoCD via a Route</strong></h5>
+                <p>Expose the ArgoCD server via a route:</p>
+                <p>oc expose svc/argocd-server -n argocd --port=443 --name=argocd-route</p>
+                <p><img src="images/argocd-development-logs-62.png" alt="argocd development logs 62" class="article-image" loading="lazy"></p>
+                <p>Get the route URL:</p>
+                <p>oc get route argocd-route -n argocd</p>
+                <p>Use the URL under <code>HOST/PORT</code> to access the ArgoCD UI in your browser.</p>
+                <p><img src="images/argocd-development-logs-63.png" alt="argocd development logs 63" class="article-image" loading="lazy"></p>
+                <h4>6. <strong>Log In to ArgoCD</strong></h4>
+                <ul>
+                <li><strong>Get the initial admin password:</strong></li>
+                </ul>
+                <p>oc get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 --decode</p>
+                <ul>
+                <li>
+                <p><strong>Log in to the ArgoCD UI:</strong></p>
+                </li>
+                <li>
+                <p>Username: <code>admin</code></p>
+                </li>
+                <li>
+                <p>Password: The output from the command above.</p>
+                </li>
+                <li>
+                <p><strong>Change the default admin password:</strong> Once logged in, change the default admin password:</p>
+                </li>
+                </ul>
+                <p>argocd account update-password</p>
+                <h4>7. <strong>Verify the Installation</strong></h4>
+                <p>Ensure that all ArgoCD pods are running:</p>
+                <p>oc get pods -n argocd</p>
+                <p>Check the status of the ArgoCD components to make sure everything is up and running.</p>
+                <h3>Summary</h3>
+                <ul>
+                <li>
+                <p>Start CRC and log in.</p>
+                </li>
+                <li>
+                <p>Create an <code>argocd</code> project.</p>
+                </li>
+                <li>
+                <p>Install ArgoCD using the official manifests.</p>
+                </li>
+                <li>
+                <p>Create the required secrets (<code>argocd-secret</code>).</p>
+                </li>
+                <li>
+                <p>Expose the ArgoCD server (via port forwarding or a route).</p>
+                </li>
+                <li>
+                <p>Log in to the ArgoCD UI with the default credentials.</p>
+                </li>
+                <li>
+                <p>Change the default admin password and start managing applications.</p>
+                </li>
+                </ul>
+                <p>This setup should give you a fully functional ArgoCD instance running in your CRC environment. You can now start using ArgoCD to manage your applications on your local OpenShift cluster.</p>
+                <p>To get the full URL of the route in OpenShift, you can use the following command:</p>
+                <p>oc get route argocd-route -n argocd -o jsonpath='{.spec.host}{"\n"}'</p>
+                <p>This command extracts the host part of the route, which represents the full URL of the <code>argocd-route</code>. If the route uses HTTPS, prepend <code>https://</code> to the output; otherwise, prepend <code>http://</code>.</p>
+                <p>Here's how you could combine it into a full URL with the HTTPS protocol:</p>
+                <p>echo https://$(oc get route argocd-route -n argocd -o jsonpath='{.spec.host}')</p>
+                <p>This command will output the complete URL, assuming it's an HTTPS route. If it's HTTP, replace <code>https://</code> with <code>http://</code>.</p>
+                <p><img src="images/argocd-development-logs-64.png" alt="argocd development logs 64" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-development-logs-65.png" alt="argocd development logs 65" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><img src="images/argocd-development-logs-66.png" alt="argocd development logs 66" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-development-logs-67.png" alt="argocd development logs 67" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-development-logs-68.png" alt="argocd development logs 68" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>The <code>CreateContainerConfigError</code> typically occurs due to issues with the configuration, such as missing environment variables, secrets, or misconfigured volume mounts. To troubleshoot this, you'll want to examine the detailed configuration and logs of the affected pods.</p>
+                <h3>Steps to Troubleshoot:</h3>
+                <ul>
+                <li><strong>Describe the Pod to Get More Details</strong> Run the following command to describe the pod and get more information about why the container is failing to start:</li>
+                </ul>
+                <p>oc describe pod argocd-application-controller-0 -n argocd</p>
+                <p>Do the same for the other pods (<code>argocd-repo-server</code> and <code>argocd-server</code>):</p>
+                <p>oc describe pod argocd-repo-server-7c7d8b549d-fr2lq -n argocd<br />
+                   oc describe pod argocd-server-79df9f976c-5v4zx -n argocd</p>
+                <p>Look for sections that indicate failed mounts, missing environment variables, or failed secret access. Key areas to inspect are:</p>
+                <ul>
+                <li>
+                <p><strong>Events:</strong> This section at the bottom usually gives a summary of errors.</p>
+                </li>
+                <li>
+                <p><strong>Volumes:</strong> Check if all volumes required by the pod are available and correctly mounted.</p>
+                </li>
+                <li>
+                <p><strong>Environment Variables:</strong> Ensure all required environment variables are set and point to valid secrets or values.</p>
+                </li>
+                <li>
+                <p><strong>Check the Logs of the Pod</strong> If the describe command doesn't provide enough information, check the logs for the failing pod:</p>
+                </li>
+                </ul>
+                <p>oc logs argocd-application-controller-0 -n argocd</p>
+                <p>Repeat for the other pods:</p>
+                <p>oc logs argocd-repo-server-7c7d8b549d-fr2lq -n argocd<br />
+                   oc logs argocd-server-79df9f976c-5v4zx -n argocd</p>
+                <p>The logs will often contain error messages related to missing files, configuration issues, or permission problems.</p>
+                <ul>
+                <li>
+                <p><strong>Verify the Required Secrets and ConfigMaps</strong> Based on the common issues, check the required secrets or ConfigMaps:</p>
+                </li>
+                <li>
+                <p>List all secrets in the <code>argocd</code> namespace: <code>oc get secrets -n argocd</code></p>
+                </li>
+                <li>
+                <p>List all ConfigMaps in the <code>argocd</code> namespace: <code>oc get configmaps -n argocd</code> Compare these with what the pods are expecting (as shown in the describe command output). Ensure all expected secrets and ConfigMaps are present and correctly configured.</p>
+                </li>
+                <li>
+                <p><strong>Inspect Volumes and Volume Mounts</strong> If the error is related to volumes (e.g., missing mount points or incorrect paths), verify that the volumes are correctly defined in the pod specification. This can often be traced back to the ConfigMap or Secret configuration.</p>
+                </li>
+                <li>
+                <p><strong>Recreate the Secret if Necessary</strong> If the issue is with the <code>argocd-secret</code>, you can recreate it:</p>
+                </li>
+                </ul>
+                <p>oc delete secret argocd-secret -n argocd<br />
+                   oc create secret generic argocd-secret \<br />
+                     --from-literal=server.secretkey=5HbERIVentK9xid1N8OgzmWafPTCvBQo \<br />
+                     --from-literal=redis.password=50kQ9NTyhVazFoLtbAsfiYrpGwl8BjxC \<br />
+                     -n argocd</p>
+                <ul>
+                <li><strong>Restart the Pods</strong> After making any corrections (e.g., fixing secrets or ConfigMaps), restart the affected pods to apply the changes:</li>
+                </ul>
+                <p>oc delete pod argocd-application-controller-0 -n argocd<br />
+                   oc delete pod argocd-repo-server-7c7d8b549d-fr2lq -n argocd<br />
+                   oc delete pod argocd-server-79df9f976c-5v4zx -n argocd</p>
+                <h3>Conclusion</h3>
+                <p>By following these steps, you should be able to identify the cause of the <code>CreateContainerConfigError</code> and resolve it. If the describe or log output reveals specific issues, feel free to share them, and I can provide more targeted guidance.</p>
+                <p><img src="images/argocd-development-logs-69.png" alt="argocd development logs 69" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-development-logs-70.png" alt="argocd development logs 70" class="article-image" loading="lazy"></p>
+                <p><code>Name:             argocd-application-controller-0
+                Namespace:        argocd
+                Priority:         0
+                Service Account:  argocd-application-controller
+                Node:             crc/192.168.126.11
+                Start Time:       Wed, 21 Aug 2024 15:37:31 +0100
+                Labels:           app.kubernetes.io/name=argocd-application-controller
+                                  apps.kubernetes.io/pod-index=0
+                                  controller-revision-hash=argocd-application-controller-6d9cf868c6
+                                  statefulset.kubernetes.io/pod-name=argocd-application-controller-0
+                Annotations:      k8s.ovn.org/pod-networks:
+                                  k8s.v1.cni.cncf.io/network-status:
+                                    &amp;#091;{
+                                        "name": "ovn-kubernetes",
+                                        "interface": "eth0",
+                                        "ips": &amp;#091;
+                                            "10.217.0.142"
+                                        ],
+                                        "mac": "0a:58:0a:d9:00:8e",
+                                        "default": true,
+                                        "dns": {}
+                                    }]
+                                  openshift.io/scc: restricted-v2
+                                  seccomp.security.alpha.kubernetes.io/pod: runtime/default
+                Status:           Pending
+                SeccompProfile:   RuntimeDefault
+                IP:               10.217.0.142
+                IPs:
+                  IP:           10.217.0.142
+                Controlled By:  StatefulSet/argocd-application-controller
+                Containers:
+                  argocd-application-controller:
+                    Container ID:    
+                    Image:           quay.io/argoproj/argocd:v2.12.1
+                    Image ID:        
+                    Port:            8082/TCP
+                    Host Port:       0/TCP
+                    SeccompProfile:  RuntimeDefault
+                    Args:
+                      /usr/local/bin/argocd-application-controller
+                    State:          Waiting
+                      Reason:       CreateContainerConfigError
+                    Ready:          False
+                    Restart Count:  0
+                    Readiness:      http-get http://:8082/healthz delay=5s timeout=1s period=10s #success=1 #failure=3
+                    Environment:
+                      REDIS_PASSWORD:                                             &lt;set to the key 'auth' in secret 'argocd-redis'&gt;  Optional: false
+                      ARGOCD_CONTROLLER_REPLICAS:                                 1
+                      ARGOCD_RECONCILIATION_TIMEOUT:                              &lt;set to the key 'timeout.reconciliation' of config map 'argocd-cm'&gt;                                 Optional: true
+                      ARGOCD_HARD_RECONCILIATION_TIMEOUT:                         &lt;set to the key 'timeout.hard.reconciliation' of config map 'argocd-cm'&gt;                            Optional: true
+                      ARGOCD_RECONCILIATION_JITTER:                               &lt;set to the key 'timeout.reconciliation.jitter' of config map 'argocd-cm'&gt;                          Optional: true
+                      ARGOCD_REPO_ERROR_GRACE_PERIOD_SECONDS:                     &lt;set to the key 'controller.repo.error.grace.period.seconds' of config map 'argocd-cmd-params-cm'&gt;  Optional: true
+                      ARGOCD_APPLICATION_CONTROLLER_REPO_SERVER:                  &lt;set to the key 'repo.server' of config map 'argocd-cmd-params-cm'&gt;                                 Optional: true
+                      ARGOCD_APPLICATION_CONTROLLER_REPO_SERVER_TIMEOUT_SECONDS:  &lt;set to the key 'controller.repo.server.timeout.seconds' of config map 'argocd-cmd-params-cm'&gt;      Optional: true
+                      ARGOCD_APPLICATION_CONTROLLER_STATUS_PROCESSORS:            &lt;set to the key 'controller.status.processors' of config map 'argocd-cmd-params-cm'&gt;                Optional: true
+                      ARGOCD_APPLICATION_CONTROLLER_OPERATION_PROCESSORS:         &lt;set to the key 'controller.operation.processors' of config map 'argocd-cmd-params-cm'&gt;             Optional: true
+                      ARGOCD_APPLICATION_CONTROLLER_LOGFORMAT:                    &lt;set to the key 'controller.log.format' of config map 'argocd-cmd-params-cm'&gt;                       Optional: true
+                      ARGOCD_APPLICATION_CONTROLLER_LOGLEVEL:                     &lt;set to the key 'controller.log.level' of config map 'argocd-cmd-params-cm'&gt;                        Optional: true
+                      ARGOCD_APPLICATION_CONTROLLER_METRICS_CACHE_EXPIRATION:     &lt;set to the key 'controller.metrics.cache.expiration' of config map 'argocd-cmd-params-cm'&gt;         Optional: true
+                      ARGOCD_APPLICATION_CONTROLLER_SELF_HEAL_TIMEOUT_SECONDS:    &lt;set to the key 'controller.self.heal.timeout.seconds' of config map 'argocd-cmd-params-cm'&gt;        Optional: true
+                      ARGOCD_APPLICATION_CONTROLLER_REPO_SERVER_PLAINTEXT:        &lt;set to the key 'controller.repo.server.plaintext' of config map 'argocd-cmd-params-cm'&gt;            Optional: true
+                      ARGOCD_APPLICATION_CONTROLLER_REPO_SERVER_STRICT_TLS:       &lt;set to the key 'controller.repo.server.strict.tls' of config map 'argocd-cmd-params-cm'&gt;           Optional: true
+                      ARGOCD_APPLICATION_CONTROLLER_PERSIST_RESOURCE_HEALTH:      &lt;set to the key 'controller.resource.health.persist' of config map 'argocd-cmd-params-cm'&gt;          Optional: true
+                      ARGOCD_APP_STATE_CACHE_EXPIRATION:                          &lt;set to the key 'controller.app.state.cache.expiration' of config map 'argocd-cmd-params-cm'&gt;       Optional: true
+                      REDIS_SERVER:                                               &lt;set to the key 'redis.server' of config map 'argocd-cmd-params-cm'&gt;                                Optional: true
+                      REDIS_COMPRESSION:                                          &lt;set to the key 'redis.compression' of config map 'argocd-cmd-params-cm'&gt;                           Optional: true
+                      REDISDB:                                                    &lt;set to the key 'redis.db' of config map 'argocd-cmd-params-cm'&gt;                                    Optional: true
+                      ARGOCD_DEFAULT_CACHE_EXPIRATION:                            &lt;set to the key 'controller.default.cache.expiration' of config map 'argocd-cmd-params-cm'&gt;         Optional: true
+                      ARGOCD_APPLICATION_CONTROLLER_OTLP_ADDRESS:                 &lt;set to the key 'otlp.address' of config map 'argocd-cmd-params-cm'&gt;                                Optional: true
+                      ARGOCD_APPLICATION_CONTROLLER_OTLP_INSECURE:                &lt;set to the key 'otlp.insecure' of config map 'argocd-cmd-params-cm'&gt;                               Optional: true
+                      ARGOCD_APPLICATION_CONTROLLER_OTLP_HEADERS:                 &lt;set to the key 'otlp.headers' of config map 'argocd-cmd-params-cm'&gt;                                Optional: true
+                      ARGOCD_APPLICATION_NAMESPACES:                              &lt;set to the key 'application.namespaces' of config map 'argocd-cmd-params-cm'&gt;                      Optional: true
+                      ARGOCD_CONTROLLER_SHARDING_ALGORITHM:                       &lt;set to the key 'controller.sharding.algorithm' of config map 'argocd-cmd-params-cm'&gt;               Optional: true
+                      ARGOCD_APPLICATION_CONTROLLER_KUBECTL_PARALLELISM_LIMIT:    &lt;set to the key 'controller.kubectl.parallelism.limit' of config map 'argocd-cmd-params-cm'&gt;        Optional: true
+                      ARGOCD_K8SCLIENT_RETRY_MAX:                                 &lt;set to the key 'controller.k8sclient.retry.max' of config map 'argocd-cmd-params-cm'&gt;              Optional: true
+                      ARGOCD_K8SCLIENT_RETRY_BASE_BACKOFF:                        &lt;set to the key 'controller.k8sclient.retry.base.backoff' of config map 'argocd-cmd-params-cm'&gt;     Optional: true
+                      ARGOCD_APPLICATION_CONTROLLER_SERVER_SIDE_DIFF:             &lt;set to the key 'controller.diff.server.side' of config map 'argocd-cmd-params-cm'&gt;                 Optional: true
+                      ARGOCD_IGNORE_NORMALIZER_JQ_TIMEOUT:                        &lt;set to the key 'controller.ignore.normalizer.jq.timeout' of config map 'argocd-cmd-params-cm'&gt;     Optional: true
+                    Mounts:
+                      /app/config/controller/tls from argocd-repo-server-tls (rw)
+                      /home/argocd from argocd-home (rw)
+                      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-lt659 (ro)
+                Conditions:
+                  Type                        Status
+                  PodReadyToStartContainers   True 
+                  Initialized                 True 
+                  Ready                       False 
+                  ContainersReady             False 
+                  PodScheduled                True 
+                Volumes:
+                  argocd-home:
+                    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+                    Medium:     
+                    SizeLimit:  &lt;unset&gt;
+                  argocd-repo-server-tls:
+                    Type:        Secret (a volume populated by a Secret)
+                    SecretName:  argocd-repo-server-tls
+                    Optional:    true
+                  kube-api-access-lt659:
+                    Type:                    Projected (a volume that contains injected data from multiple sources)
+                    TokenExpirationSeconds:  3607
+                    ConfigMapName:           kube-root-ca.crt
+                    ConfigMapOptional:       &lt;nil&gt;
+                    DownwardAPI:             true
+                    ConfigMapName:           openshift-service-ca.crt
+                    ConfigMapOptional:       &lt;nil&gt;
+                QoS Class:                   BestEffort
+                Node-Selectors:              &lt;none&gt;
+                Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+                Events:
+                  Type     Reason          Age                  From               Message
+                  ----     ------          ----                 ----               -------
+                  Normal   Scheduled       11m                  default-scheduler  Successfully assigned argocd/argocd-application-controller-0 to crc
+                  Normal   AddedInterface  11m                  multus             Add eth0 &amp;#091;10.217.0.142/23] from ovn-kubernetes
+                  Normal   Pulled          11m                  kubelet            Successfully pulled image "quay.io/argoproj/argocd:v2.12.1" in 1.022s (1.022s including waiting)
+                  Normal   Pulled          11m                  kubelet            Successfully pulled image "quay.io/argoproj/argocd:v2.12.1" in 997ms (997ms including waiting)
+                  Normal   Pulled          11m                  kubelet            Successfully pulled image "quay.io/argoproj/argocd:v2.12.1" in 1.05s (1.05s including waiting)
+                  Normal   Pulled          11m                  kubelet            Successfully pulled image "quay.io/argoproj/argocd:v2.12.1" in 1.018s (1.018s including waiting)
+                  Normal   Pulled          11m                  kubelet            Successfully pulled image "quay.io/argoproj/argocd:v2.12.1" in 1.138s (1.138s including waiting)
+                  Normal   Pulled          10m                  kubelet            Successfully pulled image "quay.io/argoproj/argocd:v2.12.1" in 1.182s (1.182s including waiting)
+                  Normal   Pulled          10m                  kubelet            Successfully pulled image "quay.io/argoproj/argocd:v2.12.1" in 1.072s (1.072s including waiting)
+                  Warning  Failed          10m (x8 over 11m)    kubelet            Error: secret "argocd-redis" not found
+                  Normal   Pulled          10m                  kubelet            Successfully pulled image "quay.io/argoproj/argocd:v2.12.1" in 1.141s (1.141s including waiting)
+                  Normal   Pulling         102s (x45 over 11m)  kubelet            Pulling image "quay.io/argoproj/argocd:v2.12.1"</code></p>
+                <hr />
+                <p>The error message <code>Error: secret "argocd-redis" not found</code> indicates that the <code>argocd-application-controller</code> pod is failing to start because it cannot find the <code>argocd-redis</code> secret. This secret is crucial because it typically contains the Redis password that ArgoCD components use to communicate with Redis.</p>
+                <h3>Steps to Resolve:</h3>
+                <ul>
+                <li><strong>Create the <code>argocd-redis</code> Secret:</strong> You can manually create the missing <code>argocd-redis</code> secret with the necessary password. Use the following command:</li>
+                </ul>
+                <p>oc create secret generic argocd-redis \<br />
+                     --from-literal=auth=50kQ9NTyhVazFoLtbAsfiYrpGwl8BjxC \<br />
+                     -n argocd</p>
+                <p>Replace <code>50kQ9NTyhVazFoLtbAsfiYrpGwl8BjxC</code> with the actual Redis password you want to use.</p>
+                <ul>
+                <li><strong>Restart the Pods:</strong> After creating the secret, you may need to restart the affected pods so that they can pick up the new secret:</li>
+                </ul>
+                <p>oc delete pod argocd-application-controller-0 -n argocd<br />
+                   oc delete pod argocd-repo-server-7c7d8b549d-fr2lq -n argocd<br />
+                   oc delete pod argocd-server-79df9f976c-5v4zx -n argocd</p>
+                <p>Feeling my old days of appservice deletion</p>
+                <p><img src="images/argocd-development-logs-71.png" alt="argocd development logs 71" class="article-image" loading="lazy"></p>
+                <p>The pods will automatically restart and should now be able to find the <code>argocd-redis</code> secret.</p>
+                <ul>
+                <li><strong>Verify the Pods:</strong> Check the status of the pods again to ensure they are now running:</li>
+                </ul>
+                <p>oc get pods -n argocd</p>
+                <p>If the pods start successfully, the issue should be resolved. If there are any further issues, please let me know the details, and I can assist you further.</p>
+                <p><img src="images/argocd-development-logs-72.png" alt="argocd development logs 72" class="article-image" loading="lazy"></p>
+                <p>Describe did the whoile trick </p>
+                <hr />
+                <p><img src="images/argocd-development-logs-73.png" alt="argocd development logs 73" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-development-logs-74.png" alt="argocd development logs 74" class="article-image" loading="lazy"></p>
+                <p>95atip-oCfcINmcX</p>
+                <p>Here's the PowerShell command you can use to get the initial admin password for ArgoCD:</p>
+                <p>$base64Password = oc get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}"<br />
+                $decodedPassword = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($base64Password))<br />
+                $decodedPassword</p>
+                <h3>Explanation:</h3>
+                <ul>
+                <li>
+                <p><strong>Retrieve the Base64-encoded password:</strong> The first command retrieves the encoded password from the Kubernetes secret.</p>
+                </li>
+                <li>
+                <p><strong>Decode the password:</strong> The second command decodes the Base64 string to plain text.</p>
+                </li>
+                <li>
+                <p><strong>Output the password:</strong> The final command outputs the decoded password.</p>
+                </li>
+                </ul>
+                <p>You can then use this password to log in to the ArgoCD UI.</p>
+                <p><img src="images/argocd-development-logs-75.png" alt="argocd development logs 75" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-development-logs-76.png" alt="argocd development logs 76" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>To access the ArgoCD UI from your workstation after confirming that all the ArgoCD pods are running, follow these steps:</p>
+                <h3>1. <strong>Expose ArgoCD Server via an OpenShift Route</strong></h3>
+                <p>Since you’re on CRC, you should expose the ArgoCD server using an OpenShift route to make it accessible from your workstation.</p>
+                <p>Run the following command to create the route:</p>
+                <p>oc expose svc/argocd-server -n argocd --port=443 --name=argocd-route</p>
+                <p><img src="images/argocd-development-logs-77.png" alt="argocd development logs 77" class="article-image" loading="lazy"></p>
+                <h3>2. <strong>Get the Route URL</strong></h3>
+                <p>Retrieve the URL that was created for the ArgoCD server:</p>
+                <p>oc get route argocd-route -n argocd</p>
+                <p>The output will show the <code>HOST/PORT</code>, which will be something like:</p>
+                <p>argocd-route-argocd.apps-crc.testing</p>
+                <h3>3. <strong>Access ArgoCD UI</strong></h3>
+                <p>Open a web browser on your workstation and navigate to:</p>
+                <p>https://<hostname-from-previous-step></p>
+                <p>For example:</p>
+                <p>https:&#047;&#047;argocd-route-argocd.apps-crc.testing</p>
+                <p>You might encounter a warning about the connection not being secure because ArgoCD uses a self-signed certificate by default. You can proceed past this warning.</p>
+                <h3>4. <strong>Log In to ArgoCD</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Username:</strong> <code>admin</code></p>
+                </li>
+                <li>
+                <p><strong>Password:</strong> Use the password you retrieved earlier using the PowerShell command.</p>
+                </li>
+                </ul>
+                <h3>5. <strong>Change the Default Admin Password</strong></h3>
+                <p>After logging in for the first time, it's recommended to change the default admin password for security reasons. You can do this in the ArgoCD UI under the account settings.</p>
+                <h3>Summary:</h3>
+                <ul>
+                <li>
+                <p>Expose ArgoCD via a route.</p>
+                </li>
+                <li>
+                <p>Access ArgoCD UI using the provided route URL.</p>
+                </li>
+                <li>
+                <p>Log in with the default admin credentials.</p>
+                </li>
+                <li>
+                <p>Optionally, change the admin password.</p>
+                </li>
+                </ul>
+                <p>This should allow you to access and manage ArgoCD from your workstation.</p>
+                <p><img src="images/argocd-development-logs-78.png" alt="argocd development logs 78" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-development-logs-79.png" alt="argocd development logs 79" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-development-logs-80.png" alt="argocd development logs 80" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>The error message you're seeing indicates that although the route has been created, the ArgoCD application is not yet accessible at that endpoint. Let's troubleshoot this step by step:</p>
+                <h3>1. <strong>Verify the Route</strong></h3>
+                <p>First, make sure the route has been created correctly and is pointing to the right service:</p>
+                <p>oc get route argocd-route -n argocd</p>
+                <p>Ensure that the route is pointing to the correct service (<code>argocd-server</code>) and that the hostname is correct.</p>
+                <p><img src="images/argocd-development-logs-81.png" alt="argocd development logs 81" class="article-image" loading="lazy"></p>
+                <h3>2. <strong>Check the ArgoCD Server Service</strong></h3>
+                <p>Verify that the ArgoCD server service is correctly set up and is pointing to the running ArgoCD server pod:</p>
+                <p>oc get svc argocd-server -n argocd</p>
+                <p>The output should show that the service is pointing to the correct port (443) and is associated with the running <code>argocd-server</code> pod.</p>
+                <p><img src="images/argocd-development-logs-82.png" alt="argocd development logs 82" class="article-image" loading="lazy"></p>
+                <h3>3. <strong>Check the ArgoCD Server Pod</strong></h3>
+                <p>Ensure that the ArgoCD server pod is running and ready:</p>
+                <p>oc get pods -n argocd</p>
+                <p>Look specifically at the <code>argocd-server</code> pod. It should have a <code>STATUS</code> of <code>Running</code> and <code>READY</code> should be <code>1/1</code>. If the pod is not in a running state or is crashing, this could explain why the application is not available.</p>
+                <p><img src="images/argocd-development-logs-83.png" alt="argocd development logs 83" class="article-image" loading="lazy"></p>
+                <h3>4. <strong>Check Pod Logs</strong></h3>
+                <p>If the <code>argocd-server</code> pod is running but you're still encountering issues, check the logs for the ArgoCD server pod to see if there are any errors:</p>
+                <p>oc logs <argocd-server-pod-name> -n argocd</p>
+                <p>Replace <code>&lt;argocd-server-pod-name&gt;</code> with the actual name of the ArgoCD server pod, such as <code>argocd-server-79df9f976c-4fc9l</code>.</p>
+                <p><img src="images/argocd-development-logs-84.png" alt="argocd development logs 84" class="article-image" loading="lazy"></p>
+                <p>one liner</p>
+                <p>Certainly! Here's how you can achieve merging all logs from the ArgoCD pods into a single output directly to the console in one line without creating a file:</p>
+                <p>$namespace = "argocd"; oc get pods -n $namespace -o jsonpath="{.items[*].metadata.name}" | % { $<em>.Split(" ") | % { Write-Host "### Logs for pod: $</em> ###"; oc logs $_ -n $namespace; "`n" } }</p>
+                <h3>Explanation:</h3>
+                <ul>
+                <li>
+                <p><strong><code>$namespace = "argocd"</code>:</strong> Sets the namespace where your ArgoCD pods are running.</p>
+                </li>
+                <li>
+                <p><strong><code>oc get pods -n $namespace -o jsonpath="{.items[*].metadata.name}"</code>:</strong> Retrieves all pod names in the specified namespace.</p>
+                </li>
+                <li>
+                <p><strong><code>% { $_.Split(" ") | % { ... }}</code>:</strong> Iterates over each pod name.</p>
+                </li>
+                <li>
+                <p><strong><code>Write-Host "### Logs for pod: $_ ###"</code>:</strong> Outputs a header for each pod's logs.</p>
+                </li>
+                <li>
+                <p><strong><code>oc logs $_ -n $namespace</code>:</strong> Fetches and outputs the logs for each pod.</p>
+                </li>
+                <li>
+                <p><strong>"<code>n"</code>:</strong> Adds a newline between logs of different pods.</p>
+                </li>
+                </ul>
+                <p>This command will print all logs sequentially for all ArgoCD-related pods directly in your console.</p>
+                <p>`time="2024-08-21T14:50:59Z" level=info msg="ArgoCD Application Controller is starting" built="2024-08-16T16:42:13Z" commit=26b2039a55b9bdf807a70d344af8ade5171d3d39 namespace=argocd version=v2.12.1+26b2039<br />
+                time="2024-08-21T14:50:59Z" level=info msg="Processing all cluster shards"<br />
+                time="2024-08-21T14:50:59Z" level=info msg="Processing all cluster shards"<br />
+                time="2024-08-21T14:50:59Z" level=info msg="appResyncPeriod=3m0s, appHardResyncPeriod=0s, appResyncJitter=0s"<br />
+                time="2024-08-21T14:50:59Z" level=info msg="Starting configmap/secret informers"<br />
+                time="2024-08-21T14:50:59Z" level=info msg="Configmap/secret informer synced"<br />
+                time="2024-08-21T14:50:59Z" level=warning msg="The cluster https://kubernetes.default.svc has no assigned shard."<br />
+                time="2024-08-21T14:50:59Z" level=info msg="Cluster https://kubernetes.default.svc has been assigned to shard 0"<br />
+                time="2024-08-21T14:50:59Z" level=info msg="Starting secretInformer forcluster"<br />
+                time="2024-08-21T14:50:59Z" level=info msg="0xc000ba0f60 subscribed to settings updates"<br />
+                time="2024-08-21T14:50:59Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:51:10Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:51:30Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:51:50Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:52:10Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:52:30Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:52:50Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:53:10Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:53:30Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:53:50Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:54:10Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:54:30Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:54:50Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:55:10Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:55:30Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:55:50Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:56:10Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:56:30Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:56:50Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:57:10Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:57:30Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:57:50Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:58:10Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:58:30Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:58:50Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:59:10Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:59:30Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:59:50Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:00:10Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:00:30Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:00:50Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:00:59Z" level=info msg="Alloc=15549 TotalAlloc=53667 Sys=35157 NumGC=7 Goroutines=106"<br />
+                time="2024-08-21T15:01:10Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:01:30Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:01:50Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:02:10Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:02:30Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:02:50Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:03:10Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:03:30Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:03:50Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:04:10Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:04:30Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:04:50Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:05:10Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:05:30Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:05:50Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:06:10Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:06:30Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:06:50Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:07:10Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:07:30Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:07:50Z" level=warning msg="Failed to save cluster info: dial tcp 10.217.5.79:6379: connect: connection refused"</p>
+                <p>time="2024-08-21T14:37:33Z" level=info msg="ArgoCD ApplicationSet Controller is starting" built="2024-08-16T16:42:13Z" commit=26b2039a55b9bdf807a70d344af8ade5171d3d39 namespace=argocd version=v2.12.1+26b2039<br />
+                time="2024-08-21T14:37:33Z" level=info msg="Starting configmap/secret informers"<br />
+                time="2024-08-21T14:37:33Z" level=info msg="Configmap/secret informer synced"<br />
+                time="2024-08-21T14:37:33Z" level=error msg="Failed to get argocd settings: server.secretkey is missingfailed to create webhook handler"<br />
+                time="2024-08-21T14:37:33Z" level=info msg="Starting manager"<br />
+                time="2024-08-21T14:47:33Z" level=info msg="Alloc=9896 TotalAlloc=26081 Sys=31061 NumGC=7 Goroutines=87"<br />
+                time="2024-08-21T14:57:33Z" level=info msg="Alloc=9927 TotalAlloc=26638 Sys=31061 NumGC=12 Goroutines=87"<br />
+                time="2024-08-21T15:07:33Z" level=info msg="Alloc=9893 TotalAlloc=26953 Sys=31061 NumGC=17 Goroutines=87"</p>
+                <p>time="2024-08-21T14:40:38Z" level=info msg="ArgoCD Dex Server is starting" built="2024-08-16T16:42:13Z" commit=26b2039a55b9bdf807a70d344af8ade5171d3d39 namespace=argocd version=v2.12.1+26b2039<br />
+                time="2024-08-21T14:40:38Z" level=info msg="Generating self-signed TLS certificate for this session"<br />
+                time="2024-08-21T14:40:38Z" level=info msg="Starting configmap/secret informers"<br />
+                time="2024-08-21T14:40:38Z" level=info msg="Configmap/secret informer synced"<br />
+                time="2024-08-21T14:40:38Z" level=info msg="0xc001225ec0 subscribed to settings updates"<br />
+                time="2024-08-21T14:40:38Z" level=info msg="dex is not configured"<br />
+                time="2024-08-21T14:50:44Z" level=info msg="Notifying 1 settings subscribers: &#091;0xc001225ec0]"<br />
+                time="2024-08-21T14:50:44Z" level=info msg="dex config unmodified"<br />
+                time="2024-08-21T14:50:54Z" level=info msg="Notifying 1 settings subscribers: &#091;0xc001225ec0]"<br />
+                time="2024-08-21T14:50:54Z" level=info msg="dex config unmodified"<br />
+                time="2024-08-21T14:50:54Z" level=info msg="Notifying 1 settings subscribers: &#091;0xc001225ec0]"<br />
+                time="2024-08-21T14:50:54Z" level=info msg="dex config unmodified"<br />
+                time="2024-08-21T14:50:55Z" level=info msg="Notifying 1 settings subscribers: &#091;0xc001225ec0]"<br />
+                time="2024-08-21T14:50:55Z" level=info msg="dex config unmodified"</p>
+                <p>time="2024-08-21T14:37:33Z" level=info msg="ArgoCD Notifications Controller is starting" built="2024-08-16T16:42:13Z" commit=26b2039a55b9bdf807a70d344af8ade5171d3d39 namespace=argocd version=v2.12.1+26b2039<br />
+                time="2024-08-21T14:37:33Z" level=info msg="serving metrics on port 9001"<br />
+                time="2024-08-21T14:37:33Z" level=info msg="loading configuration 9001"<br />
+                time="2024-08-21T14:37:33Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-cm"<br />
+                time="2024-08-21T14:37:33Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-secret"<br />
+                time="2024-08-21T14:37:33Z" level=warning msg="Controller is running."<br />
+                time="2024-08-21T14:40:33Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-secret"<br />
+                time="2024-08-21T14:40:33Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-cm"<br />
+                time="2024-08-21T14:43:33Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-cm"<br />
+                time="2024-08-21T14:43:33Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-secret"<br />
+                time="2024-08-21T14:46:33Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-cm"<br />
+                time="2024-08-21T14:46:33Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-secret"<br />
+                time="2024-08-21T14:49:33Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-secret"<br />
+                time="2024-08-21T14:49:33Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-cm"<br />
+                time="2024-08-21T14:52:33Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-secret"<br />
+                time="2024-08-21T14:52:33Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-cm"<br />
+                time="2024-08-21T14:55:33Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-secret"<br />
+                time="2024-08-21T14:55:33Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-cm"<br />
+                time="2024-08-21T14:58:33Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-cm"<br />
+                time="2024-08-21T14:58:33Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-secret"<br />
+                time="2024-08-21T15:01:33Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-secret"<br />
+                time="2024-08-21T15:01:33Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-cm"<br />
+                time="2024-08-21T15:04:33Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-secret"<br />
+                time="2024-08-21T15:04:33Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-cm"<br />
+                time="2024-08-21T15:07:33Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-cm"<br />
+                time="2024-08-21T15:07:33Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-secret"</p>
+                <p>time="2024-08-21T14:51:06Z" level=info msg="ArgoCD Repository Server is starting" built="2024-08-16T16:42:13Z" commit=26b2039a55b9bdf807a70d344af8ade5171d3d39 port=8081 version=v2.12.1+26b2039<br />
+                time="2024-08-21T14:51:06Z" level=info msg="Generating self-signed TLS certificate for this session"<br />
+                time="2024-08-21T14:51:06Z" level=info msg="Initializing GnuPG keyring at /app/config/gpg/keys"<br />
+                time="2024-08-21T14:51:06Z" level=info msg="gpg --no-permission-warning --logger-fd 1 --batch --gen-key /tmp/gpg-key-recipe3781430429" dir= execID=dc5b8<br />
+                time="2024-08-21T14:51:07Z" level=info msg=Trace args="&#091;gpg --no-permission-warning --logger-fd 1 --batch --gen-key /tmp/gpg-key-recipe3781430429]" dir= operation_name="exec gpg" time_ms=261.23012<br />
+                time="2024-08-21T14:51:07Z" level=info msg="Populating GnuPG keyring with keys from /app/config/gpg/source"<br />
+                time="2024-08-21T14:51:07Z" level=info msg="gpg --no-permission-warning --list-public-keys" dir= execID=fc262<br />
+                time="2024-08-21T14:51:07Z" level=info msg=Trace args="&#091;gpg --no-permission-warning --list-public-keys]" dir= operation_name="exec gpg" time_ms=3.422908<br />
+                time="2024-08-21T14:51:07Z" level=info msg="gpg --no-permission-warning -a --export A14B3DC3DBE75830" dir= execID=d36e0<br />
+                time="2024-08-21T14:51:07Z" level=info msg=Trace args="&#091;gpg --no-permission-warning -a --export A14B3DC3DBE75830]" dir= operation_name="exec gpg" time_ms=2.627325<br />
+                time="2024-08-21T14:51:07Z" level=info msg="gpg-wrapper.sh --no-permission-warning --list-secret-keys A14B3DC3DBE75830" dir= execID=213fe<br />
+                time="2024-08-21T14:51:07Z" level=info msg=Trace args="&#091;gpg-wrapper.sh --no-permission-warning --list-secret-keys A14B3DC3DBE75830]" dir= operation_name="exec gpg-wrapper.sh" time_ms=6.047937<br />
+                time="2024-08-21T14:51:07Z" level=info msg="Loaded 0 (and removed 0) keys from keyring"<br />
+                time="2024-08-21T14:51:07Z" level=info msg="argocd-repo-server is listening on &#091;::]:8081"<br />
+                time="2024-08-21T14:51:07Z" level=info msg="Starting GPG sync watcher on directory '/app/config/gpg/source'"<br />
+                time="2024-08-21T14:52:04Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T14:52:04Z" grpc.time_ms=0.018 span.kind=server system=grpc<br />
+                time="2024-08-21T14:52:34Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T14:52:34Z" grpc.time_ms=0.014 span.kind=server system=grpc<br />
+                time="2024-08-21T14:53:04Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T14:53:04Z" grpc.time_ms=0.016 span.kind=server system=grpc<br />
+                time="2024-08-21T14:53:34Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T14:53:34Z" grpc.time_ms=0.014 span.kind=server system=grpc<br />
+                time="2024-08-21T14:54:04Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T14:54:04Z" grpc.time_ms=0.013 span.kind=server system=grpc<br />
+                time="2024-08-21T14:54:34Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T14:54:34Z" grpc.time_ms=0.014 span.kind=server system=grpc<br />
+                time="2024-08-21T14:55:04Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T14:55:04Z" grpc.time_ms=0.327 span.kind=server system=grpc<br />
+                time="2024-08-21T14:55:34Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T14:55:34Z" grpc.time_ms=0.013 span.kind=server system=grpc<br />
+                time="2024-08-21T14:56:04Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T14:56:04Z" grpc.time_ms=0.014 span.kind=server system=grpc<br />
+                time="2024-08-21T14:56:34Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T14:56:34Z" grpc.time_ms=0.014 span.kind=server system=grpc<br />
+                time="2024-08-21T14:57:04Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T14:57:04Z" grpc.time_ms=0.013 span.kind=server system=grpc<br />
+                time="2024-08-21T14:57:34Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T14:57:34Z" grpc.time_ms=0.014 span.kind=server system=grpc<br />
+                time="2024-08-21T14:58:04Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T14:58:04Z" grpc.time_ms=0.013 span.kind=server system=grpc<br />
+                time="2024-08-21T14:58:34Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T14:58:34Z" grpc.time_ms=0.012 span.kind=server system=grpc<br />
+                time="2024-08-21T14:59:04Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T14:59:04Z" grpc.time_ms=0.013 span.kind=server system=grpc<br />
+                time="2024-08-21T14:59:34Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T14:59:34Z" grpc.time_ms=0.012 span.kind=server system=grpc<br />
+                time="2024-08-21T15:00:04Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T15:00:04Z" grpc.time_ms=0.013 span.kind=server system=grpc<br />
+                time="2024-08-21T15:00:34Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T15:00:34Z" grpc.time_ms=0.015 span.kind=server system=grpc<br />
+                time="2024-08-21T15:01:04Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T15:01:04Z" grpc.time_ms=0.018 span.kind=server system=grpc<br />
+                time="2024-08-21T15:01:07Z" level=info msg="Alloc=9864 TotalAlloc=27864 Sys=26709 NumGC=7 Goroutines=20"<br />
+                time="2024-08-21T15:01:34Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T15:01:34Z" grpc.time_ms=0.013 span.kind=server system=grpc<br />
+                time="2024-08-21T15:02:04Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T15:02:04Z" grpc.time_ms=0.013 span.kind=server system=grpc<br />
+                time="2024-08-21T15:02:34Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T15:02:34Z" grpc.time_ms=0.014 span.kind=server system=grpc<br />
+                time="2024-08-21T15:03:04Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T15:03:04Z" grpc.time_ms=0.013 span.kind=server system=grpc<br />
+                time="2024-08-21T15:03:34Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T15:03:34Z" grpc.time_ms=0.012 span.kind=server system=grpc<br />
+                time="2024-08-21T15:04:04Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T15:04:04Z" grpc.time_ms=0.013 span.kind=server system=grpc<br />
+                time="2024-08-21T15:04:34Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T15:04:34Z" grpc.time_ms=0.013 span.kind=server system=grpc<br />
+                time="2024-08-21T15:05:04Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T15:05:04Z" grpc.time_ms=0.019 span.kind=server system=grpc<br />
+                time="2024-08-21T15:05:34Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T15:05:34Z" grpc.time_ms=0.014 span.kind=server system=grpc<br />
+                time="2024-08-21T15:06:04Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T15:06:04Z" grpc.time_ms=0.016 span.kind=server system=grpc<br />
+                time="2024-08-21T15:06:34Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T15:06:34Z" grpc.time_ms=0.013 span.kind=server system=grpc<br />
+                time="2024-08-21T15:07:04Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T15:07:04Z" grpc.time_ms=0.015 span.kind=server system=grpc<br />
+                time="2024-08-21T15:07:34Z" level=info msg="finished unary call with code OK" grpc.code=OK grpc.method=Check grpc.service=grpc.health.v1.Health grpc.start_time="2024-08-21T15:07:34Z" grpc.time_ms=0.013 span.kind=server system=grpc</p>
+                <p>time="2024-08-21T14:51:11Z" level=info msg="ArgoCD API Server is starting" built="2024-08-16T16:42:13Z" commit=26b2039a55b9bdf807a70d344af8ade5171d3d39 namespace=argocd port=8080 version=v2.12.1+26b2039<br />
+                time="2024-08-21T14:51:11Z" level=info msg="Starting configmap/secret informers"<br />
+                time="2024-08-21T14:51:11Z" level=info msg="Configmap/secret informer synced"<br />
+                time="2024-08-21T14:51:11Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-cm"<br />
+                time="2024-08-21T14:51:11Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-secret"<br />
+                time="2024-08-21T14:51:11Z" level=info msg="argocd v2.12.1+26b2039 serving on port 8080 (url: , tls: true, namespace: argocd, sso: false)"<br />
+                time="2024-08-21T14:51:11Z" level=info msg="Enabled application namespace patterns: argocd"<br />
+                time="2024-08-21T14:51:11Z" level=info msg="0xc00132c360 subscribed to settings updates"<br />
+                time="2024-08-21T14:51:11Z" level=info msg="Starting rbac config informer"<br />
+                time="2024-08-21T14:51:11Z" level=info msg="RBAC ConfigMap 'argocd-rbac-cm' added"<br />
+                time="2024-08-21T14:51:11Z" level=warning msg="Failed to resync revoked tokens. retrying again in 1 minute: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:52:11Z" level=warning msg="Failed to resync revoked tokens. retrying again in 1 minute: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:53:11Z" level=warning msg="Failed to resync revoked tokens. retrying again in 1 minute: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:54:11Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-cm"<br />
+                time="2024-08-21T14:54:11Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-secret"<br />
+                time="2024-08-21T14:54:11Z" level=warning msg="Failed to resync revoked tokens. retrying again in 1 minute: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:55:11Z" level=warning msg="Failed to resync revoked tokens. retrying again in 1 minute: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:56:11Z" level=warning msg="Failed to resync revoked tokens. retrying again in 1 minute: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:57:11Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-cm"<br />
+                time="2024-08-21T14:57:11Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-secret"<br />
+                time="2024-08-21T14:57:11Z" level=warning msg="Failed to resync revoked tokens. retrying again in 1 minute: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:58:12Z" level=warning msg="Failed to resync revoked tokens. retrying again in 1 minute: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T14:59:12Z" level=warning msg="Failed to resync revoked tokens. retrying again in 1 minute: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:00:11Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-cm"<br />
+                time="2024-08-21T15:00:11Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-secret"<br />
+                time="2024-08-21T15:00:12Z" level=warning msg="Failed to resync revoked tokens. retrying again in 1 minute: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:01:11Z" level=info msg="Alloc=12458 TotalAlloc=34807 Sys=31061 NumGC=8 Goroutines=108"<br />
+                time="2024-08-21T15:01:12Z" level=warning msg="Failed to resync revoked tokens. retrying again in 1 minute: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:02:12Z" level=warning msg="Failed to resync revoked tokens. retrying again in 1 minute: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:03:11Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-cm"<br />
+                time="2024-08-21T15:03:11Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-secret"<br />
+                time="2024-08-21T15:03:12Z" level=warning msg="Failed to resync revoked tokens. retrying again in 1 minute: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:04:12Z" level=warning msg="Failed to resync revoked tokens. retrying again in 1 minute: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:05:12Z" level=warning msg="Failed to resync revoked tokens. retrying again in 1 minute: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:06:11Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-cm"<br />
+                time="2024-08-21T15:06:11Z" level=info msg="invalidated cache for resource in namespace: argocd with the name: argocd-notifications-secret"<br />
+                time="2024-08-21T15:06:12Z" level=warning msg="Failed to resync revoked tokens. retrying again in 1 minute: dial tcp 10.217.5.79:6379: connect: connection refused"<br />
+                time="2024-08-21T15:07:12Z" level=warning msg="Failed to resync revoked tokens. retrying again in 1 minute: dial tcp 10.217.5.79:6379: connect: connection refused"</p>
+                <p>`</p>
+                <h3>5. <strong>Inspect the Route</strong></h3>
+                <p>Ensure that the route is correctly linked to the ArgoCD server service:</p>
+                <p>oc describe route argocd-route -n argocd</p>
+                <p>This command will give you detailed information about the route, including the target service and any potential issues.</p>
+                <h3>6. <strong>Check for Network Issues</strong></h3>
+                <p>If everything seems correct but the application is still not available, there might be a network issue preventing the route from correctly accessing the service. Try deleting and recreating the route:</p>
+                <p>oc delete route argocd-route -n argocd<br />
+                oc expose svc/argocd-server -n argocd --port=443 --name=argocd-route</p>
+                <h3>7. <strong>Port Forward as a Temporary Solution</strong></h3>
+                <p>If the route still doesn’t work, you can temporarily use port forwarding to access the ArgoCD UI:</p>
+                <p>oc port-forward svc/argocd-server -n argocd 8080:443</p>
+                <p>Then access ArgoCD using <code>https://localhost:8080</code> in your browser.</p>
+                <h3>Summary</h3>
+                <ul>
+                <li>
+                <p>Verify the route and service setup.</p>
+                </li>
+                <li>
+                <p>Ensure the <code>argocd-server</code> pod is running.</p>
+                </li>
+                <li>
+                <p>Check the pod logs for any errors.</p>
+                </li>
+                <li>
+                <p>If the route is correct but still not working, try recreating it.</p>
+                </li>
+                <li>
+                <p>As a fallback, use port forwarding to access the UI.</p>
+                </li>
+                </ul>
+                <p>If you continue to have issues after these steps, please let me know, and we can troubleshoot further.</p>
+                <p>Restart one more time &gt;</p>
+                <ul>
+                <li>
+                <p>Delete the project &gt; oc project delete argocd</p>
+                </li>
+                <li>
+                <p>Create project &gt; oc new-project argocd</p>
+                </li>
+                <li>
+                <p>Add the keys  </p>
+                </li>
+                </ul>
+                <p>oc create secret generic argocd-secret --from-literal=server.secretkey=5HbERIVentK9xid1N8OgzmWafPTCvBQo --from-literal=redis.password=50kQ9NTyhVazFoLtbAsfiYrpGwl8BjxC \ -n argocd </p>
+                <ul>
+                <li>Do the yaml</li>
+                </ul>
+                <p><code>oc apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml</code></p>
+                <ul>
+                <li>Check the system </li>
+                </ul>
+                <p>oc get pods -n argocd</p>
+                <ul>
+                <li>
+                <p>oc get svc -n argocd</p>
+                </li>
+                <li>
+                <p>Update the yaml</p>
+                </li>
+                </ul>
+                <p>apiVersion: apps/v1 kind: Deployment metadata: name: argocd-redis namespace: argocd spec: selector: matchLabels: app: argocd-redis template: metadata: labels: app: argocd-redis spec: securityContext: runAsUser: 1000700000 # Use a valid UID range as per OpenShift's SCC containers: - name: redis image: redis:6.2-alpine ports: - containerPort: 6379 name: redis</p>
+                <ul>
+                <li>apply redis</li>
+                </ul>
+                <p><code>oc apply -f redis-deployment.yaml -n argocd</code></p>
+                <ul>
+                <li>Service Expose</li>
+                </ul>
+                <p><code>oc expose svc/argocd-server -n argocd --port=443 --name=argocd-route</code></p>
+                <ul>
+                <li><code>oc get route argocd-route -n argocd</code></li>
+                </ul>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2025</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>
