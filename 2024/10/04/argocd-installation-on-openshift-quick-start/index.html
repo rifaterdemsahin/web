@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArgoCD Installation on OpenShift - Quick Start - Rifat Erdem Sahin</title>
+    <meta name="description" content="ArgoCD Installation on OpenShift - Quick Start To create an OpenShift version of the ArgoCD installation guide shown in the image, you need to adjust the Kubernetes commands for OpenShift's environmen">
+    <meta name="keywords" content="ArgoCD Installation on OpenShift - Quick Start">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/10/04/argocd-installation-on-openshift-quick-start/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/10/04/argocd-installation-on-openshift-quick-start/">
+    <meta property="og:title" content="ArgoCD Installation on OpenShift - Quick Start">
+    <meta property="og:description" content="ArgoCD Installation on OpenShift - Quick Start To create an OpenShift version of the ArgoCD installation guide shown in the image, you need to adjust the Kubernetes commands for OpenShift's environmen">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/10/04/argocd-installation-on-openshift-quick-start/">
+    <meta property="twitter:title" content="ArgoCD Installation on OpenShift - Quick Start">
+    <meta property="twitter:description" content="ArgoCD Installation on OpenShift - Quick Start To create an OpenShift version of the ArgoCD installation guide shown in the image, you need to adjust the Kubernetes commands for OpenShift's environmen">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "ArgoCD Installation on OpenShift - Quick Start",
+      "description": "ArgoCD Installation on OpenShift - Quick Start To create an OpenShift version of the ArgoCD installation guide shown in the image, you need to adjust the Kubernetes commands for OpenShift's environmen",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-10-04",
+      "dateModified": "2024-10-04",
+      "url": "https://www.rifaterdemsahin.com/2024/10/04/argocd-installation-on-openshift-quick-start/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/10/04/argocd-installation-on-openshift-quick-start/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">ArgoCD Installation on OpenShift - Quick Start</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>October 4, 2024</span>
+                    <span>&bull;</span>
+                    <span>16 min read</span>
+                </div>
+                <p class="article-excerpt">ArgoCD Installation on OpenShift - Quick Start To create an OpenShift version of the ArgoCD installation guide shown in the image, you need to adjust the Kubernetes commands for OpenShift's environment.</p>
+            </header>
+            <article class="article-content">
+                <h1>ArgoCD Installation on OpenShift - Quick Start</h1>
+                <div class="video-embed"><iframe src="https://www.youtube.com/embed/fBd_tz6BALU" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
+                
+                <p>To create an OpenShift version of the ArgoCD installation guide shown in the image, you need to adjust the Kubernetes commands for OpenShift's environment. OpenShift uses <code>oc</code> commands instead of <code>kubectl</code> and has some differences in handling resources and services. Here’s a revised version for OpenShift:</p>
+                <h3>ArgoCD Installation on OpenShift - Quick Start</h3>
+                <p>Argo CD is a declarative continuous delivery tool for Kubernetes applications. It uses the GitOps style to create and manage Kubernetes clusters. When any changes are made to the application configuration in Git, Argo CD will compare it with the configurations of the running application and notify users to bring the desired and live state into sync.</p>
+                <p>Argo CD has been developed under the Cloud Native Computing Foundation’s (CNCF) Argo Project — a project, especially for Kubernetes application lifecycle management. The project also includes Argo Workflow, Argo Rollouts, and Argo Events. Each solves a particular set of problems in the agile development process and makes the Kubernetes application delivery scalable and secure.</p>
+                <h4>Upgrade Packages &amp; Install Prerequisites</h4>
+                <h4>Install ArgoCD</h4>
+                <p><img src="images/argocd-installation-on-1.png" alt="argocd installation on 1" class="article-image" loading="lazy"></p>
+                <p>oc create namespace argocd<br />
+                oc apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml</p>
+                <p><img src="images/argocd-installation-on-2.png" alt="argocd installation on 2" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-installation-on-3.png" alt="argocd installation on 3" class="article-image" loading="lazy"></p>
+                <h4>Change Service to NodePort</h4>
+                <p>OpenShift doesn’t typically expose services as <code>NodePort</code> by default, and it's more common to use a <code>Route</code>. However, if you want to use <code>NodePort</code>, you can still do it as shown below:</p>
+                <p><img src="images/argocd-installation-on-4.png" alt="argocd installation on 4" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Patch the service to change the type:</strong></li>
+                </ul>
+                <p>oc patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort"}}'</p>
+                <ul>
+                <li><strong>Alternatively, expose the service using a Route:</strong></li>
+                </ul>
+                <p>oc expose svc argocd-server -n argocd --port=http</p>
+                <p>This command creates an OpenShift Route to the Argo CD server, allowing access through the OpenShift router.</p>
+                <p><img src="images/argocd-installation-on-5.png" alt="argocd installation on 5" class="article-image" loading="lazy"></p>
+                <h4>Fetch Password</h4>
+                <p>To retrieve the ArgoCD initial admin password, use:</p>
+                <p>oc get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -d</p>
+                <p>By following these steps, you should be able to install and configure ArgoCD in an OpenShift environment.</p>
+                <hr />
+                <p>$encodedPassword = oc get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}"</p>
+                <hr />
+                <p><code>$encodedPassword = oc get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}"; &amp;#091;System.Text.Encoding]::UTF8.GetString(&amp;#091;System.Convert]::FromBase64String($encodedPassword))</code></p>
+                <p><img src="images/argocd-installation-on-6.png" alt="argocd installation on 6" class="article-image" loading="lazy"></p>
+                <p>The error you're encountering indicates that the <code>argocd-initial-admin-secret</code> secret could not be found in the <code>argocd</code> namespace. This issue can arise due to several reasons:</p>
+                <ul>
+                <li>
+                <p><strong>Namespace or Secret Name Typo</strong>: Ensure that both the namespace (<code>argocd</code>) and the secret name (<code>argocd-initial-admin-secret</code>) are correctly typed.</p>
+                </li>
+                <li>
+                <p><strong>ArgoCD Not Fully Installed</strong>: If the ArgoCD installation wasn't successful or isn't fully completed, the secret might not yet be created.</p>
+                </li>
+                <li>
+                <p><strong>Wrong Context or Cluster</strong>: Make sure that your OpenShift or Kubernetes context is correctly set to the cluster and project (namespace) where ArgoCD is installed.</p>
+                </li>
+                </ul>
+                <h3>Steps to Troubleshoot</h3>
+                <ul>
+                <li>
+                <p><strong>Verify Namespace and Secret</strong>:</p>
+                </li>
+                <li>
+                <p>First, check if the <code>argocd</code> namespace exists and the secret is there:</p>
+                </li>
+                </ul>
+                <p>oc get namespaces</p>
+                <p>Look for <code>argocd</code> in the output.</p>
+                <ul>
+                <li>
+                <p><strong>List Secrets in the Namespace</strong>:</p>
+                </li>
+                <li>
+                <p>If the namespace exists, list all secrets in the <code>argocd</code> namespace to verify the existence of <code>argocd-initial-admin-secret</code>:</p>
+                </li>
+                </ul>
+                <p>oc get secrets -n argocd</p>
+                <p>Look for <code>argocd-initial-admin-secret</code> in the output.</p>
+                <p><img src="images/argocd-installation-on-7.png" alt="argocd installation on 7" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>
+                <p><strong>Check ArgoCD Installation</strong>:</p>
+                </li>
+                <li>
+                <p>If neither the namespace nor the secret is found, you might need to reinstall ArgoCD or check if it was correctly installed.</p>
+                </li>
+                </ul>
+                <h3>What to Do If the Secret Is Missing</h3>
+                <p>If the <code>argocd-initial-admin-secret</code> is missing:</p>
+                <ul>
+                <li><strong>Reinstall ArgoCD</strong>: You may need to redo the ArgoCD installation steps to ensure everything is properly set up.</li>
+                </ul>
+                <p>If the namespace and secret are found but still not working:</p>
+                <ul>
+                <li><strong>Check Your Context</strong>: Ensure your OpenShift context is set correctly:</li>
+                </ul>
+                <p>oc project argocd</p>
+                <p>This command sets your context to the <code>argocd</code> namespace.</p>
+                <h3>Corrected Command for PowerShell (After Verifying the Secret Exists):</h3>
+                <p>If the secret does exist and you've corrected any namespace or context issues, then retry the PowerShell command:</p>
+                <p>$encodedPassword = oc get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}"; if ($encodedPassword) { [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($encodedPassword)) }</p>
+                <p>This modification adds a check to ensure <code>$encodedPassword</code> is not null before attempting to decode it, avoiding the <code>ArgumentNullException</code>.</p>
+                <p>argocd-secret</p>
+                <p>$encodedPassword = oc get secret argocd-secret -n argocd -o jsonpath="{.data.password}"; [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($encodedPassword))</p>
+                <p><img src="images/argocd-installation-on-8.png" alt="argocd installation on 8" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-installation-on-9.png" alt="argocd installation on 9" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-installation-on-10.png" alt="argocd installation on 10" class="article-image" loading="lazy"></p>
+                <p>no password field </p>
+                <p><img src="images/argocd-installation-on-11.png" alt="argocd installation on 11" class="article-image" loading="lazy"></p>
+                <p>The error you're seeing again suggests that the <code>$encodedPassword</code> variable is null, meaning that the command to get the secret did not return a value. Here are some steps to troubleshoot and ensure the command works properly:</p>
+                <h3>Steps to Troubleshoot</h3>
+                <ul>
+                <li>
+                <p><strong>Verify the Secret's Existence and Content</strong>:</p>
+                </li>
+                <li>
+                <p>Run the following command to list all secrets in the <code>argocd</code> namespace to ensure the secret <code>argocd-secret</code> exists:</p>
+                </li>
+                </ul>
+                <p>oc get secrets -n argocd</p>
+                <ul>
+                <li>If <code>argocd-secret</code> is listed, let's see its full content to ensure it has the <code>password</code> data:</li>
+                </ul>
+                <p>oc get secret argocd-secret -n argocd -o yaml</p>
+                <ul>
+                <li>
+                <p>This will output the entire YAML of the secret. Look under <code>data</code> to confirm if there is a <code>password</code> field.</p>
+                </li>
+                <li>
+                <p><strong>Check If the Secret Contains the Password Field</strong>:</p>
+                </li>
+                <li>
+                <p>If the <code>password</code> field exists but your initial command still does not retrieve the data, there could be a syntax issue or a problem with data retrieval. Let’s run a simplified command to just fetch the raw <code>password</code> data:</p>
+                </li>
+                </ul>
+                <p>oc get secret argocd-secret -n argocd -o jsonpath="{.data.password}"</p>
+                <ul>
+                <li>
+                <p>This command should print the base64-encoded password. If this is empty or returns an error, then the <code>password</code> field does not exist or is empty.</p>
+                </li>
+                <li>
+                <p><strong>Decode the Password (Only If It Exists)</strong>:</p>
+                </li>
+                <li>
+                <p>If the above command gives you a valid base64-encoded string, you can then proceed to decode it in PowerShell.</p>
+                </li>
+                </ul>
+                <p>To make sure your decoding step is more robust and handles potential null values better, modify your PowerShell command like this:</p>
+                <p>$encodedPassword = oc get secret argocd-secret -n argocd -o jsonpath="{.data.password}"; <br />
+                if ($encodedPassword) { <br />
+                    [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($encodedPassword)) <br />
+                } else { <br />
+                    Write-Output "Password not found or is empty." <br />
+                }</p>
+                <h3>Summary of What to Do:</h3>
+                <ul>
+                <li>
+                <p><strong>Verify the secret <code>argocd-secret</code> exists.</strong></p>
+                </li>
+                <li>
+                <p><strong>Check that it contains a <code>password</code> data field.</strong></p>
+                </li>
+                <li>
+                <p><strong>Ensure your commands correctly handle the potential absence of data.</strong></p>
+                </li>
+                </ul>
+                <p>If <code>argocd-secret</code> is not the correct secret name or doesn't have the <code>password</code> field, you may need to refer to your ArgoCD setup documentation or process to ensure everything is correctly configured.</p>
+                <p>No Password &gt; Self Signed certificate it should be there </p>
+                <p><img src="images/argocd-installation-on-12.png" alt="argocd installation on 12" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-installation-on-13.png" alt="argocd installation on 13" class="article-image" loading="lazy"></p>
+                <p>Creation errors &gt; it could be trying to locate the same port ?</p>
+                <p><img src="images/argocd-installation-on-14.png" alt="argocd installation on 14" class="article-image" loading="lazy"></p>
+                <p>it is unable to get turned on </p>
+                <p><img src="images/argocd-installation-on-15.png" alt="argocd installation on 15" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-installation-on-16.png" alt="argocd installation on 16" class="article-image" loading="lazy"></p>
+                <p>update this and make it serve from a different endpoint &gt; </p>
+                <p><img src="images/argocd-installation-on-17.png" alt="argocd installation on 17" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-installation-on-18.png" alt="argocd installation on 18" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-installation-on-19.png" alt="argocd installation on 19" class="article-image" loading="lazy"></p>
+                <p>Argo cd is way too long for gpt</p>
+                <p><img src="images/argocd-installation-on-20.png" alt="argocd installation on 20" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>Coming back to the manager &gt;&gt;&gt; why he says helm has a point !#</p>
+                <p>Setting up Argo CD on OpenShift using Helm involves several steps. Below is a guide to help you through the process:</p>
+                <h3>Prerequisites</h3>
+                <ul>
+                <li>
+                <p><strong>OpenShift Cluster</strong>: Ensure you have an OpenShift cluster up and running.</p>
+                </li>
+                <li>
+                <p><strong>Helm</strong>: Ensure Helm is installed on your local machine. You can install it using the instructions from the <a href="https://helm.sh/docs/intro/install/">official Helm documentation</a>.</p>
+                </li>
+                <li>
+                <p><strong>Access to OpenShift CLI</strong>: Ensure you have the <code>oc</code> command-line tool installed and you are logged in to your OpenShift cluster.</p>
+                </li>
+                </ul>
+                <h3>Steps to Install Argo CD Using Helm</h3>
+                <p><img src="images/argocd-installation-on-21.png" alt="argocd installation on 21" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-installation-on-22.png" alt="argocd installation on 22" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Add Argo CD Helm Repository</strong> First, you need to add the Helm repository that contains the Argo CD charts:</li>
+                </ul>
+                <p><img src="images/argocd-installation-on-23.png" alt="argocd installation on 23" class="article-image" loading="lazy"></p>
+                <p>choco would the main tricks in the background for workstation variables</p>
+                <p>helm repo add argo https://argoproj.github.io/argo-helm<br />
+                   helm repo update</p>
+                <p>admin install </p>
+                <p><img src="images/argocd-installation-on-24.png" alt="argocd installation on 24" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-installation-on-25.png" alt="argocd installation on 25" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-installation-on-26.png" alt="argocd installation on 26" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Create a Namespace for Argo CD</strong> It's a good practice to create a separate namespace for Argo CD:</li>
+                </ul>
+                <p>oc create namespace argocd</p>
+                <p><img src="images/argocd-installation-on-27.png" alt="argocd installation on 27" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Install Argo CD Using Helm</strong> You can now install Argo CD using Helm. Adjust the <code>--namespace</code> value if you used a different namespace in the previous step:</li>
+                </ul>
+                <p>helm install argocd argo/argo-cd --namespace argocd</p>
+                <p>This command will deploy Argo CD in the <code>argocd</code> namespace.</p>
+                <p><code>PS C:\Users\Pexabo&gt;   helm install argocd argo/argo-cd --namespace argocd
+                Error: INSTALLATION FAILED: Unable to continue with install: CustomResourceDefinition "applications.argoproj.io" in namespace "" exists and cannot be imported into the current release: invalid ownership metadata; label validation error: missing key "app.kubernetes.io/managed-by": must be set to "Helm"; annotation validation error: missing key "meta.helm.sh/release-name": must be set to "argocd"; annotation validation error: missing key "meta.helm.sh/release-namespace": must be set to "argocd"
+                PS C:\Users\Pexabo&gt;</code></p>
+                <p>It looks like you're trying to install Argo CD using Helm, but the installation is failing because there are pre-existing CustomResourceDefinitions (CRDs) in your cluster that do not meet Helm’s ownership requirements. Here’s how you can resolve this issue:</p>
+                <h3>Understanding the Error</h3>
+                <p>The error message indicates that the CRDs already exist in your Kubernetes cluster and have labels and annotations that do not conform to what Helm expects. Specifically, Helm is expecting these CRDs to have certain labels and annotations that are used for tracking the Helm release.</p>
+                <h3>Possible Solutions</h3>
+                <ul>
+                <li><strong>Remove Existing CRDs:</strong><br />
+                If you don’t need the existing CRDs and you’re okay with removing them, you can delete them and then try installing Argo CD again. Be cautious with this approach as it might affect existing deployments that use these CRDs.</li>
+                </ul>
+                <p><img src="images/argocd-installation-on-28.png" alt="argocd installation on 28" class="article-image" loading="lazy"></p>
+                <p>oc delete crd applications.argoproj.io<br />
+                   oc delete crd appprojects.argoproj.io<br />
+                   oc delete crd clusters.argoproj.io</p>
+                <p>After deleting the CRDs, try installing Argo CD again with Helm:</p>
+                <p>helm install argocd argo/argo-cd --namespace argocd</p>
+                <ul>
+                <li><strong>Upgrade Existing Release:</strong><br />
+                If the CRDs were previously installed by another Helm release, you might need to upgrade or reconfigure the release. Check if there’s an existing Helm release:</li>
+                </ul>
+                <p>helm list --all-namespaces</p>
+                <p>If you find an existing release, you might need to upgrade it or uninstall it before reinstalling. For example:</p>
+                <p>helm upgrade argocd argo/argo-cd --namespace argocd</p>
+                <p>Or uninstall the existing release:</p>
+                <p>helm uninstall argocd --namespace argocd</p>
+                <ul>
+                <li><strong>Install CRDs Separately:</strong><br />
+                You can manually install the CRDs before installing Argo CD via Helm. First, download the CRD definitions:</li>
+                </ul>
+                <p>kubectl apply -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/crds.yaml</p>
+                <p>Then, install Argo CD with Helm:</p>
+                <p>helm install argocd argo/argo-cd --namespace argocd</p>
+                <ul>
+                <li><strong>Check Existing CRD Ownership:</strong><br />
+                If you suspect the existing CRDs were created by Helm but are missing the required metadata, you might need to correct the labels and annotations manually. For example:</li>
+                </ul>
+                <p>kubectl annotate crd applications.argoproj.io meta.helm.sh/release-name=argocd<br />
+                   kubectl annotate crd applications.argoproj.io meta.helm.sh/release-namespace=argocd<br />
+                   kubectl label crd applications.argoproj.io app.kubernetes.io/managed-by=Helm</p>
+                <p>However, this approach is risky and might lead to inconsistencies, so it’s generally safer to use one of the other methods.</p>
+                <h3>Summary</h3>
+                <p>Choose the approach that best fits your situation. If you are working in a development or testing environment where it’s safe to delete resources, removing and reinstalling is often the simplest solution. In production environments, careful consideration and testing are crucial to avoid disruptions.</p>
+                <hr />
+                <ul>
+                <li><strong>Verify the Installation</strong> Check the status of the Argo CD pods to ensure everything is running correctly:</li>
+                </ul>
+                <p>oc get pods -n argocd</p>
+                <p>You should see the Argo CD components like <code>argocd-server</code>, <code>argocd-repo-server</code>, etc.</p>
+                <ul>
+                <li><strong>Access Argo CD UI</strong> By default, Argo CD's API server is exposed via a Kubernetes service of type <code>ClusterIP</code>, so you need to expose it to access it externally. Here’s how you can create a <code>Route</code> in OpenShift:</li>
+                </ul>
+                <p>oc expose service argocd-server --name=argocd --namespace=argocd</p>
+                <p>Get the URL of the Argo CD server:</p>
+                <p>oc get route argocd --namespace=argocd</p>
+                <p>You should see an output with the <code>HOST/PORT</code> which you can use to access the Argo CD UI.</p>
+                <ul>
+                <li><strong>Obtain the Initial Admin Password</strong> Argo CD generates an initial admin password which is stored in a Kubernetes secret. Retrieve it with the following command:</li>
+                </ul>
+                <p>oc get secret argocd-initial-admin-secret -o jsonpath='{.data.password}' --namespace argocd | base64 --decode</p>
+                <p>The output will be the initial password for the <code>admin</code> user.</p>
+                <ul>
+                <li>
+                <p><strong>Login to Argo CD</strong> Open your browser and navigate to the URL obtained from the route. Use the <code>admin</code> username and the password you retrieved to log in.</p>
+                </li>
+                <li>
+                <p><strong>Configure Argo CD</strong> After logging in, you can start configuring Argo CD by connecting it to your Git repositories and setting up applications. Refer to the <a href="https://argo-cd.readthedocs.io/en/stable/">Argo CD documentation</a> for more details on configuring and using Argo CD.</p>
+                </li>
+                </ul>
+                <h3>Optional: Helm Chart Configuration</h3>
+                <p>If you need to customize your Argo CD installation, you can create a <code>values.yaml</code> file with your configuration and use it during installation. For example:</p>
+                <p>server:<br />
+                  service:<br />
+                    type: LoadBalancer<br />
+                  ingress:<br />
+                    enabled: true<br />
+                    hosts:<br />
+                      - host: argocd.example.com<br />
+                        paths:<br />
+                          - /</p>
+                <p>Then install Argo CD with your custom values:</p>
+                <p>helm install argocd argo/argo-cd --namespace argocd -f values.yaml</p>
+                <p>This guide provides a basic setup. Depending on your requirements, you might need additional configuration, such as setting up authentication providers, configuring RBAC, or integrating with other tools.</p>
+                <hr />
+                <p>It looks like you've successfully deleted some of the CRDs related to Argo CD, but you’re encountering a similar issue with another CRD: <code>applicationsets.argoproj.io</code>.</p>
+                <p>Here's a step-by-step approach to resolving this:</p>
+                <h3>1. <strong>Delete the Remaining CRD</strong></h3>
+                <p>If you encounter an issue with <code>applicationsets.argoproj.io</code> or any other related CRDs, you might need to delete these as well:</p>
+                <p>oc delete crd applicationsets.argoproj.io</p>
+                <p><img src="images/argocd-installation-on-29.png" alt="argocd installation on 29" class="article-image" loading="lazy"></p>
+                <p>Make sure to also check for other CRDs that might be causing conflicts:</p>
+                <p>oc get crds | grep argoproj.io<br />
+                oc get crds | Select-String "argoproj.io"</p>
+                <p><img src="images/argocd-installation-on-30.png" alt="argocd installation on 30" class="article-image" loading="lazy"></p>
+                <p><img src="images/argocd-installation-on-31.png" alt="argocd installation on 31" class="article-image" loading="lazy"></p>
+                <p>If you're looking to search for the string <strong>"argo"</strong> within files using PowerShell and you want to include results where "argo" is part of a larger word (like "embargo" or "argonaut"), you can use the following command:</p>
+                <p>Get-ChildItem -Recurse | Select-String "\bargo\b" -SimpleMatch</p>
+                <p><img src="images/argocd-installation-on-32.png" alt="argocd installation on 32" class="article-image" loading="lazy"></p>
+                <h3>Explanation:</h3>
+                <ul>
+                <li>
+                <p><strong><code>Get-ChildItem -Recurse</code></strong>: Retrieves all files and directories recursively from the current directory. You can specify a directory path if needed, such as <code>Get-ChildItem -Path "C:\MyDirectory" -Recurse</code>.</p>
+                </li>
+                <li>
+                <p><strong><code>|</code></strong>: Pipes the output from <code>Get-ChildItem</code> to <code>Select-String</code>.</p>
+                </li>
+                <li>
+                <p><strong><code>Select-String "\bargo\b"</code></strong>:</p>
+                </li>
+                <li>
+                <p>The <code>Select-String</code> cmdlet searches the content of the files for the specified pattern.</p>
+                </li>
+                <li>
+                <p>The pattern <code>"\bargo\b"</code> uses regular expressions (<code>\b</code> is a word boundary) to find occurrences of the exact word "argo". If you want to match "argo" as a substring within other words, remove the <code>\b</code> boundaries. Alternatively, if you want to match any occurrence of "argo" regardless of whether it's a standalone word or part of a larger word:</p>
+                </li>
+                </ul>
+                <p>Get-ChildItem -Recurse | Select-String "argo"</p>
+                <h3>Matching Only "argo" as a Whole Word</h3>
+                <p>If you specifically want "argo" as a whole word, without surrounding context, use:</p>
+                <p>Get-ChildItem -Recurse | Select-String "\bargo\b"</p>
+                <p>The <code>-SimpleMatch</code> parameter is not needed when using <code>\b</code> with <code>Select-String</code> in a regex context, as the command will correctly interpret word boundaries.</p>
+                <p>By default, <code>Select-String</code> outputs the file path and line of text containing the match, which should help you locate instances of "argo" in your files.</p>
+                <hr />
+                <h3>2. <strong>Verify CRD Deletion</strong></h3>
+                <p>After attempting to delete the CRDs, verify that they are no longer present:</p>
+                <p>oc get crds</p>
+                <p>Ensure that no remnants of Argo CD-related CRDs remain.</p>
+                <p><img src="images/argocd-installation-on-33.png" alt="argocd installation on 33" class="article-image" loading="lazy"></p>
+                <h3>3. <strong>Check for Residual Resources</strong></h3>
+                <p>Sometimes, deleting CRDs might not clean up all the resources associated with them. Ensure no resources related to these CRDs are still present:</p>
+                <p>oc get applications<br />
+                oc get appprojects<br />
+                oc get clusters<br />
+                oc get applicationsets</p>
+                <p>If there are any resources of these types, you should consider deleting them if they’re no longer needed.</p>
+                <p><img src="images/argocd-installation-on-34.png" alt="argocd installation on 34" class="article-image" loading="lazy"></p>
+                <h3>4. <strong>Install Argo CD Again</strong></h3>
+                <p>Once you have removed the conflicting CRDs and ensured no residual resources are present, try installing Argo CD again:</p>
+                <p>helm install argocd argo/argo-cd --namespace argocd</p>
+                <p><img src="images/argocd-installation-on-35.png" alt="argocd installation on 35" class="article-image" loading="lazy"></p>
+                <h3>5. <strong>Manual Installation of CRDs</strong></h3>
+                <p>If you continue to face issues, you might try manually applying the CRDs before running the Helm install:</p>
+                <p>kubectl apply -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/crds.yaml</p>
+                <p>Then, attempt the Helm installation again:</p>
+                <p>helm install argocd argo/argo-cd --namespace argocd</p>
+                <h3>Summary</h3>
+                <ul>
+                <li>
+                <p><strong>Delete any remaining CRDs</strong> associated with Argo CD.</p>
+                </li>
+                <li>
+                <p><strong>Verify</strong> that no residual resources are left in your cluster.</p>
+                </li>
+                <li>
+                <p><strong>Install Argo CD</strong> again using Helm after cleanup.</p>
+                </li>
+                <li>
+                <p>If needed, <strong>apply CRDs manually</strong> before the Helm install.</p>
+                </li>
+                </ul>
+                <p>If issues persist, double-check that you’re working in the correct namespace and that no other Helm releases or installations might be conflicting.</p>
+                <hr />
+                <p><img src="images/argocd-installation-on-36.png" alt="argocd installation on 36" class="article-image" loading="lazy"></p>
+                <p>You're encountering two distinct errors while trying to install Argo CD with Helm and apply CRDs using <code>oc apply</code>.</p>
+                <h3>1. Helm Installation Error</h3>
+                <p>The error during the Helm installation:</p>
+                <p>Error: INSTALLATION FAILED: Unable to continue with install: ClusterRole "argocd-application-controller" in namespace "" exists and cannot be imported into the current release: invalid ownership metadata; label validation error: missing key "app.kubernetes.io/managed-by": must be set to "Helm"; annotation validation error: missing key "meta.helm.sh/release-name": must be set to "argocd"; annotation validation error: missing key "meta.helm.sh/release-namespace": must be set to "argocd"</p>
+                <p><strong>Explanation and Solution:</strong></p>
+                <p>This error occurs because there are existing Kubernetes resources (like <code>ClusterRole "argocd-application-controller"</code>) that were not initially created by Helm or have missing Helm-related metadata. Helm requires specific labels and annotations to track resources it manages.</p>
+                <p>To resolve this:</p>
+                <ul>
+                <li><strong>Check for Existing Resources</strong>: Find the existing resources that are causing conflicts.</li>
+                </ul>
+                <p>kubectl get clusterrole argocd-application-controller -o yaml</p>
+                <ul>
+                <li>
+                <p><strong>Delete or Update the Existing Resources</strong>:</p>
+                </li>
+                <li>
+                <p><strong>Delete the Existing Resources</strong> (if you do not need them or are sure they can be recreated without issues):<br />
+                <code>bash kubectl delete clusterrole argocd-application-controller</code></p>
+                </li>
+                <li>
+                <p><strong>Update the Annotations and Labels</strong> (if you want to retain the existing resources but make them Helm-compatible):<br />
+                <code>bash kubectl annotate clusterrole argocd-application-controller meta.helm.sh/release-name=argocd --overwrite kubectl annotate clusterrole argocd-application-controller meta.helm.sh/release-namespace=argocd --overwrite kubectl label clusterrole argocd-application-controller app.kubernetes.io/managed-by=Helm --overwrite</code></p>
+                </li>
+                <li>
+                <p><strong>Retry Helm Installation</strong>:<br />
+                After addressing the conflicting resources, try the Helm installation again:</p>
+                </li>
+                </ul>
+                <p>helm install argocd argo/argo-cd --namespace argocd</p>
+                <h3>2. <code>oc apply</code> Error</h3>
+                <p>The error when trying to apply CRDs from a URL:</p>
+                <p>error: unable to read URL "https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/crds.yaml", server reported 404 Not Found, status code=404</p>
+                <p><strong>Explanation and Solution:</strong></p>
+                <p>This error indicates that the URL for the CRDs file does not exist (404 Not Found). This can happen if the file has been moved or renamed in the repository.</p>
+                <p>To resolve this:</p>
+                <ul>
+                <li>
+                <p><strong>Find the Correct URL</strong>: Visit the <a href="https://github.com/argoproj/argo-cd">Argo CD GitHub repository</a> to locate the current CRDs file URL.</p>
+                </li>
+                <li>
+                <p><strong>Apply the Correct CRDs</strong>:</p>
+                </li>
+                <li>
+                <p>Once you have the correct URL, use the <code>oc apply</code> command with the updated URL:<br />
+                <code>bash oc apply -f &lt;correct-url&gt;</code></p>
+                </li>
+                <li>
+                <p>For example, if the correct URL is <code>https://raw.githubusercontent.com/argoproj/argo-cd/v2.8.0/manifests/crds.yaml</code>, run:<br />
+                <code>bash oc apply -f https://raw.githubusercontent.com/argoproj/argo-cd/v2.8.0/manifests/crds.yaml</code></p>
+                </li>
+                </ul>
+                <p>By addressing these two issues—removing or updating existing resources to allow Helm to manage them and using the correct CRDs URL—you should be able to install Argo CD successfully.</p>
+                <blockquote>
+                <blockquote>
+                <p>decision reset the crc and start fresh !</p>
+                </blockquote>
+                </blockquote>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

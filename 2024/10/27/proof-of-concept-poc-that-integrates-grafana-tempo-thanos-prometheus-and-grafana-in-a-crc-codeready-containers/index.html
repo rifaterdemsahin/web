@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proof of concept (PoC) that integrates Grafana Tempo, Thanos, Prometheus, and Grafana in a CRC (CodeReady Containers) - Rifat Erdem Sahin</title>
+    <meta name="description" content="Proof of concept (PoC) that integrates Grafana Tempo, Thanos, Prometheus, and Grafana in a CRC (CodeReady Containers) To create a proof of concept (PoC) that integrates Grafana Tempo , Thanos , Promet">
+    <meta name="keywords" content="Proof of concept (PoC) that integrates Grafana Tempo, Thanos, Prometheus, and Grafana in a CRC (CodeReady Containers)">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/10/27/proof-of-concept-poc-that-integrates-grafana-tempo-thanos-prometheus-and-grafana-in-a-crc-codeready-containers/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/10/27/proof-of-concept-poc-that-integrates-grafana-tempo-thanos-prometheus-and-grafana-in-a-crc-codeready-containers/">
+    <meta property="og:title" content="Proof of concept (PoC) that integrates Grafana Tempo, Thanos, Prometheus, and Grafana in a CRC (CodeReady Containers)">
+    <meta property="og:description" content="Proof of concept (PoC) that integrates Grafana Tempo, Thanos, Prometheus, and Grafana in a CRC (CodeReady Containers) To create a proof of concept (PoC) that integrates Grafana Tempo , Thanos , Promet">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/10/27/proof-of-concept-poc-that-integrates-grafana-tempo-thanos-prometheus-and-grafana-in-a-crc-codeready-containers/">
+    <meta property="twitter:title" content="Proof of concept (PoC) that integrates Grafana Tempo, Thanos, Prometheus, and Grafana in a CRC (CodeReady Containers)">
+    <meta property="twitter:description" content="Proof of concept (PoC) that integrates Grafana Tempo, Thanos, Prometheus, and Grafana in a CRC (CodeReady Containers) To create a proof of concept (PoC) that integrates Grafana Tempo , Thanos , Promet">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Proof of concept (PoC) that integrates Grafana Tempo, Thanos, Prometheus, and Grafana in a CRC (CodeReady Containers)",
+      "description": "Proof of concept (PoC) that integrates Grafana Tempo, Thanos, Prometheus, and Grafana in a CRC (CodeReady Containers) To create a proof of concept (PoC) that integrates Grafana Tempo , Thanos , Promet",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-10-27",
+      "dateModified": "2024-10-27",
+      "url": "https://www.rifaterdemsahin.com/2024/10/27/proof-of-concept-poc-that-integrates-grafana-tempo-thanos-prometheus-and-grafana-in-a-crc-codeready-containers/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/10/27/proof-of-concept-poc-that-integrates-grafana-tempo-thanos-prometheus-and-grafana-in-a-crc-codeready-containers/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Proof of concept (PoC) that integrates Grafana Tempo, Thanos, Prometheus, and Grafana in a CRC (CodeReady Containers)</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>October 27, 2024</span>
+                    <span>&bull;</span>
+                    <span>4 min read</span>
+                </div>
+                <p class="article-excerpt">Proof of concept (PoC) that integrates Grafana Tempo, Thanos, Prometheus, and Grafana in a CRC (CodeReady Containers) To create a proof of concept (PoC) that integrates Grafana Tempo , Thanos , Prometheus , and Grafana in a CRC (CodeReady Containers) OpenShift environment, we wil</p>
+            </header>
+            <article class="article-content">
+                <h1>Proof of concept (PoC) that integrates Grafana Tempo, Thanos, Prometheus, and Grafana in a CRC (CodeReady Containers)</h1>
+                <p>To create a <strong>proof of concept (PoC)</strong> that integrates <strong>Grafana Tempo</strong>, <strong>Thanos</strong>, <strong>Prometheus</strong>, and <strong>Grafana</strong> in a <strong>CRC (CodeReady Containers) OpenShift</strong> environment, we will guide you through deploying these components. This PoC will help you understand distributed tracing (using Tempo) and long-term metrics storage and scaling (using Thanos) while visualizing everything in Grafana.</p>
+                <p>Here’s how we’ll structure the project:</p>
+                <ul>
+                <li>
+                <p><strong>Deploy Prometheus</strong> for metrics collection.</p>
+                </li>
+                <li>
+                <p><strong>Deploy Tempo</strong> for distributed tracing.</p>
+                </li>
+                <li>
+                <p><strong>Deploy Thanos</strong> to extend Prometheus for long-term storage and metrics aggregation.</p>
+                </li>
+                <li>
+                <p><strong>Deploy Grafana</strong> to visualize metrics and traces.</p>
+                </li>
+                <li>
+                <p><strong>Configure OpenTelemetry</strong> in a sample application for tracing.</p>
+                </li>
+                </ul>
+                <h3>Step 1: Deploy Prometheus in CRC OpenShift</h3>
+                <p>First, let’s deploy <strong>Prometheus</strong> to gather metrics from the environment.</p>
+                <h4>Prometheus Deployment YAML:</h4>
+                <p>apiVersion: apps/v1<br />
+                kind: Deployment<br />
+                metadata:<br />
+                  name: prometheus<br />
+                  namespace: monitoring<br />
+                spec:<br />
+                  replicas: 1<br />
+                  selector:<br />
+                    matchLabels:<br />
+                      app: prometheus<br />
+                  template:<br />
+                    metadata:<br />
+                      labels:<br />
+                        app: prometheus<br />
+                    spec:<br />
+                      containers:<br />
+                      - name: prometheus<br />
+                        image: prom/prometheus:latest<br />
+                        ports:<br />
+                        - containerPort: 9090<br />
+                        volumeMounts:<br />
+                        - name: prometheus-config<br />
+                          mountPath: /etc/prometheus/prometheus.yml<br />
+                          subPath: prometheus.yml<br />
+                      volumes:<br />
+                      - name: prometheus-config<br />
+                        configMap:<br />
+                          name: prometheus-config</p>
+                <h4>Prometheus ConfigMap:</h4>
+                <p>Create the following <strong>ConfigMap</strong> to define the scrape configurations:</p>
+                <p>apiVersion: v1<br />
+                kind: ConfigMap<br />
+                metadata:<br />
+                  name: prometheus-config<br />
+                  namespace: monitoring<br />
+                data:<br />
+                  prometheus.yml: |<br />
+                    global:<br />
+                      scrape_interval: 15s</p>
+                <pre><code>scrape_configs:
+                  - job_name: 'prometheus'
+                    static_configs:
+                      - targets: ['localhost:9090']
+                </code></pre>
+                <p>Apply these configurations:</p>
+                <p>oc apply -f prometheus-deployment.yaml<br />
+                oc apply -f prometheus-configmap.yaml</p>
+                <p>This sets up <strong>Prometheus</strong> to collect metrics from various sources.</p>
+                <h3>Step 2: Deploy Grafana Tempo for Tracing</h3>
+                <p>Now, let’s deploy <strong>Grafana Tempo</strong> to collect and store traces.</p>
+                <h4>Tempo Deployment YAML:</h4>
+                <p>apiVersion: apps/v1<br />
+                kind: Deployment<br />
+                metadata:<br />
+                  name: tempo<br />
+                  namespace: monitoring<br />
+                spec:<br />
+                  replicas: 1<br />
+                  selector:<br />
+                    matchLabels:<br />
+                      app: tempo<br />
+                  template:<br />
+                    metadata:<br />
+                      labels:<br />
+                        app: tempo<br />
+                    spec:<br />
+                      containers:<br />
+                      - name: tempo<br />
+                        image: grafana/tempo:latest<br />
+                        ports:<br />
+                        - containerPort: 3200</p>
+                <p>Apply the Tempo configuration:</p>
+                <p>oc apply -f tempo-deployment.yaml</p>
+                <p>This will deploy <strong>Tempo</strong> in your CRC OpenShift environment, allowing it to collect traces. You can later configure your application to send traces to this <strong>Tempo</strong> instance.</p>
+                <h3>Step 3: Deploy Thanos for Metrics Aggregation and Long-Term Storage</h3>
+                <p>Deploy <strong>Thanos</strong> to extend <strong>Prometheus</strong> with long-term metrics storage and global querying.</p>
+                <h4>Thanos Deployment YAML:</h4>
+                <p>apiVersion: apps/v1<br />
+                kind: Deployment<br />
+                metadata:<br />
+                  name: thanos<br />
+                  namespace: monitoring<br />
+                spec:<br />
+                  replicas: 1<br />
+                  selector:<br />
+                    matchLabels:<br />
+                      app: thanos<br />
+                  template:<br />
+                    metadata:<br />
+                      labels:<br />
+                        app: thanos<br />
+                    spec:<br />
+                      containers:<br />
+                      - name: thanos<br />
+                        image: quay.io/thanos/thanos:v0.22.0<br />
+                        args:<br />
+                          - "sidecar"<br />
+                          - "--grpc-address=0.0.0.0:10901"<br />
+                          - "--http-address=0.0.0.0:10902"<br />
+                          - "--prometheus.url=http://prometheus:9090"<br />
+                        ports:<br />
+                        - containerPort: 10901<br />
+                        - containerPort: 10902</p>
+                <p>This deploys <strong>Thanos</strong> as a sidecar to Prometheus. Thanos will provide long-term metrics storage and scaling.</p>
+                <p>Apply the Thanos deployment:</p>
+                <p>oc apply -f thanos-deployment.yaml</p>
+                <h3>Step 4: Deploy Grafana for Visualization</h3>
+                <p>We’ll now deploy <strong>Grafana</strong> to visualize the data (metrics and traces) collected by Prometheus and Tempo.</p>
+                <h4>Grafana Deployment YAML:</h4>
+                <p>apiVersion: apps/v1<br />
+                kind: Deployment<br />
+                metadata:<br />
+                  name: grafana<br />
+                  namespace: monitoring<br />
+                spec:<br />
+                  replicas: 1<br />
+                  selector:<br />
+                    matchLabels:<br />
+                      app: grafana<br />
+                  template:<br />
+                    metadata:<br />
+                      labels:<br />
+                        app: grafana<br />
+                    spec:<br />
+                      containers:<br />
+                      - name: grafana<br />
+                        image: grafana/grafana:latest<br />
+                        ports:<br />
+                        - containerPort: 3000</p>
+                <p>Expose <strong>Grafana</strong> service:</p>
+                <p>oc expose svc/grafana</p>
+                <p>Once Grafana is deployed, access it through the route created by OpenShift. You will need to set up <strong>Prometheus</strong> and <strong>Tempo</strong> as data sources in Grafana.</p>
+                <h4>Add Prometheus and Tempo as Data Sources:</h4>
+                <ul>
+                <li>
+                <p>Go to <strong>Grafana</strong> (accessible via the exposed route).</p>
+                </li>
+                <li>
+                <p>Navigate to <strong>Configuration &gt; Data Sources</strong>.</p>
+                </li>
+                <li>
+                <p>Add <strong>Prometheus</strong> with the following URL:</p>
+                </li>
+                <li>
+                <p><code>http://prometheus:9090</code></p>
+                </li>
+                <li>
+                <p>Add <strong>Tempo</strong> with the following URL:</p>
+                </li>
+                <li>
+                <p><code>http://tempo:3200</code></p>
+                </li>
+                </ul>
+                <h3>Step 5: Configure Sample Application with OpenTelemetry</h3>
+                <p>To generate traces, we need a sample application that sends tracing data to <strong>Tempo</strong>. You can instrument any microservice using <strong>OpenTelemetry</strong> to send traces.</p>
+                <h4>Example: OpenTelemetry Tracing Configuration (Python)</h4>
+                <p>Here’s a simple <strong>Python</strong> application that sends traces to <strong>Tempo</strong>:</p>
+                <p>from opentelemetry import trace<br />
+                from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter<br />
+                from opentelemetry.sdk.trace import TracerProvider<br />
+                from opentelemetry.sdk.trace.export import SimpleSpanProcessor<br />
+                from opentelemetry.sdk.resources import Resource</p>
+                <h1>Setup OpenTelemetry</h1>
+                <p>trace.set_tracer_provider(TracerProvider(resource=Resource.create({"service.name": "my-service"})))<br />
+                tracer = trace.get_tracer(<strong>name</strong>)</p>
+                <h1>Export spans to Grafana Tempo</h1>
+                <p>otlp_exporter = OTLPSpanExporter(endpoint="tempo.monitoring.svc.cluster.local:4317", insecure=True)<br />
+                span_processor = SimpleSpanProcessor(otlp_exporter)<br />
+                trace.get_tracer_provider().add_span_processor(span_processor)</p>
+                <h1>Create a span for tracing</h1>
+                <p>with tracer.start_as_current_span("example-request"):<br />
+                    print("This is a trace example")</p>
+                <p>This application will generate traces and send them to Tempo. Replace <code>tempo.monitoring.svc.cluster.local:4317</code> with the actual <strong>Tempo</strong> endpoint in your OpenShift cluster.</p>
+                <h3>Step 6: Monitor and Visualize</h3>
+                <ul>
+                <li>
+                <p><strong>Visualize Metrics</strong>: In <strong>Grafana</strong>, create a new dashboard that uses <strong>Prometheus</strong> as the data source. Visualize metrics like CPU usage, memory consumption, and request rates.</p>
+                </li>
+                <li>
+                <p><strong>Visualize Traces</strong>: Use <strong>Tempo</strong> as the data source in Grafana to visualize traces for specific requests. You can link these traces with metrics to get a complete view of your system’s health.</p>
+                </li>
+                </ul>
+                <h3>Conclusion</h3>
+                <p>This PoC in <strong>CRC OpenShift</strong> sets up a complete observability stack with <strong>Grafana Tempo</strong> for tracing, <strong>Thanos</strong> for scaling Prometheus and providing long-term metrics storage, and <strong>Grafana</strong> to visualize metrics and traces. By following these steps, you’ll gain insight into how distributed systems perform, helping you troubleshoot issues faster and understand how your application is behaving across different services.</p>
+                <p>Let me know if you'd like further assistance with configurations or understanding any of the components!</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

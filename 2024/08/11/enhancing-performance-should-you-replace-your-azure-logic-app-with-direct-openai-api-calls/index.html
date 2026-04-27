@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhancing Performance: Should You Replace Your Azure Logic App with Direct OpenAI API Calls? - Rifat Erdem Sahin</title>
+    <meta name="description" content="Enhancing Performance: Should You Replace Your Azure Logic App with Direct OpenAI API Calls? When building applications that integrate with various services, developers often rely on Azure Logic Apps ">
+    <meta name="keywords" content="Enhancing Performance: Should You Replace Your Azure Logic App with Direct OpenAI API Calls?">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/08/11/enhancing-performance-should-you-replace-your-azure-logic-app-with-direct-openai-api-calls/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/08/11/enhancing-performance-should-you-replace-your-azure-logic-app-with-direct-openai-api-calls/">
+    <meta property="og:title" content="Enhancing Performance: Should You Replace Your Azure Logic App with Direct OpenAI API Calls?">
+    <meta property="og:description" content="Enhancing Performance: Should You Replace Your Azure Logic App with Direct OpenAI API Calls? When building applications that integrate with various services, developers often rely on Azure Logic Apps ">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/08/11/enhancing-performance-should-you-replace-your-azure-logic-app-with-direct-openai-api-calls/">
+    <meta property="twitter:title" content="Enhancing Performance: Should You Replace Your Azure Logic App with Direct OpenAI API Calls?">
+    <meta property="twitter:description" content="Enhancing Performance: Should You Replace Your Azure Logic App with Direct OpenAI API Calls? When building applications that integrate with various services, developers often rely on Azure Logic Apps ">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Enhancing Performance: Should You Replace Your Azure Logic App with Direct OpenAI API Calls?",
+      "description": "Enhancing Performance: Should You Replace Your Azure Logic App with Direct OpenAI API Calls? When building applications that integrate with various services, developers often rely on Azure Logic Apps ",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-08-11",
+      "dateModified": "2024-08-11",
+      "url": "https://www.rifaterdemsahin.com/2024/08/11/enhancing-performance-should-you-replace-your-azure-logic-app-with-direct-openai-api-calls/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/08/11/enhancing-performance-should-you-replace-your-azure-logic-app-with-direct-openai-api-calls/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Enhancing Performance: Should You Replace Your Azure Logic App with Direct OpenAI API Calls?</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>August 11, 2024</span>
+                    <span>&bull;</span>
+                    <span>3 min read</span>
+                </div>
+                <p class="article-excerpt">Enhancing Performance: Should You Replace Your Azure Logic App with Direct OpenAI API Calls? When building applications that integrate with various services, developers often rely on Azure Logic Apps to orchestrate workflows.</p>
+            </header>
+            <article class="article-content">
+                <h1>Enhancing Performance: Should You Replace Your Azure Logic App with Direct OpenAI API Calls?</h1>
+                <p><img src="images/enhancing-performance-should-1.png" alt="enhancing performance should 1" class="article-image" loading="lazy"></p>
+                <p>When building applications that integrate with various services, developers often rely on Azure Logic Apps to orchestrate workflows. Azure Logic Apps provide a powerful platform for managing complex workflows, integrating various services, and automating tasks without needing to write extensive code. However, when it comes to performance, especially in scenarios involving AI-powered APIs like OpenAI's GPT models, it's crucial to evaluate whether using a Logic App is the most efficient approach.</p>
+                <p>In this blog post, we’ll explore the cost and performance implications of using Azure Logic Apps versus making direct OpenAI API calls, particularly when dealing with time-sensitive operations.</p>
+                <hr />
+                <h3>Understanding the Cost and Latency</h3>
+                <p>Let’s begin by breaking down the costs and potential delays associated with both approaches:</p>
+                <h4>Azure Logic Apps</h4>
+                <p>Azure Logic Apps are billed based on the number of actions taken within a workflow. Each action or connector used incurs a small cost, and the execution time can vary depending on the complexity of the workflow.</p>
+                <ul>
+                <li>
+                <p><strong>Cost</strong>: Azure Logic Apps typically cost around $0.000025 per action. A simple workflow involving 3 actions might cost approximately $0.000075 per execution.</p>
+                </li>
+                <li>
+                <p><strong>Latency</strong>: Depending on the actions involved, a Logic App might take several seconds to trigger, execute, and complete. In the scenario we're considering, this could be around 30 seconds.</p>
+                </li>
+                </ul>
+                <h4>OpenAI API Calls</h4>
+                <p>The cost of using OpenAI's GPT models depends on the number of tokens processed during the API call. This cost is consistent regardless of how the API is triggered.</p>
+                <ul>
+                <li>
+                <p><strong>Cost</strong>: For GPT-3.5 Turbo, the cost is approximately $0.0015 per 1,000 tokens. A call involving 3,000 tokens would cost about $0.0045.</p>
+                </li>
+                <li>
+                <p><strong>Latency</strong>: Direct API calls are generally faster, with response times typically under a second, assuming optimal network conditions.</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>Comparison Table</h3>
+                <p>Below is a table that summarizes the differences in cost and performance between using Azure Logic Apps and direct OpenAI API calls.<strong>Factor</strong><strong>Azure Logic App</strong><strong>Direct OpenAI API Call</strong><strong>Cost</strong> ~$0.000075 per execution (3 actions) ~$0.0045 per 3,000 tokens <strong>Latency</strong> ~30 seconds &lt; 1 second <strong>Complexity</strong> Suitable for complex workflows with multiple actions Best for simple, direct API integrations <strong>Scalability</strong> Highly scalable, managed by Azure Scalable, but requires custom management <strong>Use Case</strong> Ideal for complex workflows or multi-step processes Ideal for time-sensitive, single API calls</p>
+                <hr />
+                <h3>When to Use Each Approach</h3>
+                <h4><strong>When to Stick with Azure Logic Apps:</strong></h4>
+                <ul>
+                <li>
+                <p><strong>Complex Workflows:</strong> If your application requires integrating multiple services, handling complex workflows, or managing retry logic, Azure Logic Apps provide a robust platform with built-in connectors and triggers.</p>
+                </li>
+                <li>
+                <p><strong>Event-Driven Scenarios:</strong> Logic Apps are particularly useful for automating workflows triggered by events or scheduled intervals.</p>
+                </li>
+                </ul>
+                <h4><strong>When to Consider Direct API Calls:</strong></h4>
+                <ul>
+                <li>
+                <p><strong>Performance-Critical Applications:</strong> If your application demands minimal latency, especially when calling the OpenAI API, a direct API call is far more efficient. Reducing a 30-second delay to under 1 second can significantly enhance the user experience.</p>
+                </li>
+                <li>
+                <p><strong>Cost Efficiency:</strong> While the cost of Azure Logic Apps is minimal, it adds up when executing numerous workflows. Direct API calls eliminate this additional overhead.</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>Conclusion: Direct API Calls for Speed, Logic Apps for Complexity</h3>
+                <p>The decision between using Azure Logic Apps or making direct OpenAI API calls hinges on your specific use case. For performance-critical applications where every second counts, bypassing the Logic App and directly integrating the OpenAI API call can reduce latency and simplify your architecture. On the other hand, if you need to manage complex workflows, Azure Logic Apps provide a valuable toolset for orchestrating those processes with minimal code.</p>
+                <p>Ultimately, understanding the trade-offs between cost, latency, and complexity will help you choose the right approach for your project. Whether optimizing for speed or managing intricate workflows, both Azure Logic Apps and direct API calls offer powerful solutions tailored to your needs.</p>
+                <hr />
+                <p>By carefully considering the factors above, you can ensure that your application delivers the best possible performance while remaining cost-effective.</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

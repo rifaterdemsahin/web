@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>smtp error setup for AWS Route 53 for a WIX site - Rifat Erdem Sahin</title>
+    <meta name="description" content="smtp error setup for AWS Route 53 for a WIX site Error https://mxtoolbox.com/SuperTool.aspx?action=mx%3adevops.engineering&amp;run=toolpage It looks like you might be encountering an issue related to ">
+    <meta name="keywords" content="smtp error setup for AWS Route 53 for a WIX site">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/04/28/smtp-error/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/04/28/smtp-error/">
+    <meta property="og:title" content="smtp error setup for AWS Route 53 for a WIX site">
+    <meta property="og:description" content="smtp error setup for AWS Route 53 for a WIX site Error https://mxtoolbox.com/SuperTool.aspx?action=mx%3adevops.engineering&amp;run=toolpage It looks like you might be encountering an issue related to ">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/04/28/smtp-error/">
+    <meta property="twitter:title" content="smtp error setup for AWS Route 53 for a WIX site">
+    <meta property="twitter:description" content="smtp error setup for AWS Route 53 for a WIX site Error https://mxtoolbox.com/SuperTool.aspx?action=mx%3adevops.engineering&amp;run=toolpage It looks like you might be encountering an issue related to ">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "smtp error setup for AWS Route 53 for a WIX site",
+      "description": "smtp error setup for AWS Route 53 for a WIX site Error https://mxtoolbox.com/SuperTool.aspx?action=mx%3adevops.engineering&amp;run=toolpage It looks like you might be encountering an issue related to ",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-04-28",
+      "dateModified": "2024-04-28",
+      "url": "https://www.rifaterdemsahin.com/2024/04/28/smtp-error/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/04/28/smtp-error/",
+      "articleSection": "Image",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">smtp error setup for AWS Route 53 for a WIX site</h1>
+                <div class="article-meta">
+                    <span class="article-category">Image</span>
+                    <span>&bull;</span>
+                    <span>April 28, 2024</span>
+                    <span>&bull;</span>
+                    <span>5 min read</span>
+                </div>
+                <p class="article-excerpt">smtp error setup for AWS Route 53 for a WIX site Error https://mxtoolbox.com/SuperTool.aspx?action=mx%3adevops.engineering&amp;run=toolpage It looks like you might be encountering an issue related to DMARC, which stands for &quot;Domain-based Message Authentication, Reporting, and Con</p>
+            </header>
+            <article class="article-content">
+                <h1>smtp error setup for AWS Route 53 for a WIX site</h1>
+                <p>Error</p>
+                <p><img src="images/smtp-error-setup-1.png" alt="smtp error setup 1" class="article-image" loading="lazy"></p>
+                <p><img src="images/smtp-error-setup-2.png" alt="smtp error setup 2" class="article-image" loading="lazy"></p>
+                <p>https://mxtoolbox.com/SuperTool.aspx?action=mx%3adevops.engineering&amp;run=toolpage</p>
+                <p><img src="images/smtp-error-setup-3.png" alt="smtp error setup 3" class="article-image" loading="lazy"></p>
+                <p>It looks like you might be encountering an issue related to DMARC, which stands for "Domain-based Message Authentication, Reporting, and Conformance." DMARC is an email validation system designed to protect your domain from unauthorized use, often known as email spoofing. The absence of a DMARC record means that your domain is not informing email servers how to handle emails claiming to be from your domain that fail DMARC checks.</p>
+                <p>Here’s what you can do if you've received a "No DMARC Record found" notification:</p>
+                <ul>
+                <li>
+                <p><strong>Create a DMARC Record</strong>: You will need to create a DMARC record if you don’t already have one. This record is published in your DNS settings. The record outlines policies for email authentication using SPF (Sender Policy Framework) and DKIM (DomainKeys Identified Mail).</p>
+                </li>
+                <li>
+                <p><strong>Publish the Record to DNS</strong>: Once you have your DMARC record ready, you need to add it to your DNS. This usually involves logging into your domain registrar’s DNS management tool and adding a TXT record with the values needed for DMARC.</p>
+                </li>
+                <li>
+                <p><strong>Testing the Record</strong>: After publishing, it’s crucial to test and make sure the DMARC record is correctly set up and recognized by email servers. Tools like MXToolbox and Google Admin Toolbox can help you verify if your DMARC record is found and valid.</p>
+                </li>
+                <li>
+                <p><strong>Monitor Reports</strong>: DMARC also specifies how receiving mail servers should report back to you about emails that pass and fail DMARC evaluation. Monitoring these reports helps you understand how your email is being handled and identify potential authentication issues.</p>
+                </li>
+                </ul>
+                <p>If you need guidance on how to formulate a DMARC record or need help with the specifics of adding it to your DNS, feel free to ask!</p>
+                <p><strong>AWS</strong> to <strong>WIX</strong> redirection</p>
+                <p><img src="images/smtp-error-setup-4.png" alt="smtp error setup 4" class="article-image" loading="lazy"></p>
+                <p>looks like the address if <strong>wix</strong></p>
+                <p><img src="images/smtp-error-setup-5.png" alt="smtp error setup 5" class="article-image" loading="lazy"></p>
+                <p>Login to wix</p>
+                <p><img src="images/smtp-error-setup-6.png" alt="smtp error setup 6" class="article-image" loading="lazy"></p>
+                <p>https://manage.wix.com/dashboard/0fa1fa7e-c21a-4ce0-b746-e298cc48024e/domain-settings?referralInfo=settings-lobby</p>
+                <p>mx records</p>
+                <p><img src="images/smtp-error-setup-7.png" alt="smtp error setup 7" class="article-image" loading="lazy"></p>
+                <p>devops-engineering.mail.protection.outlook.com</p>
+                <p><img src="images/smtp-error-setup-8.png" alt="smtp error setup 8" class="article-image" loading="lazy"></p>
+                <p>Aws login</p>
+                <p><img src="images/smtp-error-setup-9.png" alt="smtp error setup 9" class="article-image" loading="lazy"></p>
+                <p>https://outlook.live.com/mail/0/inbox/id/AQMkADAwATYwMAItZTBiOS1kN2NkLTAwAi0wMAoARgAAA%2FfsD8Jf%2BXNHtn99vxdbwccHAHVdppwJUL5Oj2QadsFfQo8AAAIBDAAAAHVdppwJUL5Oj2QadsFfQo8ABsFXqJYAAAA%3D</p>
+                <p>2 zones</p>
+                <p><img src="images/smtp-error-setup-10.png" alt="smtp error setup 10" class="article-image" loading="lazy"></p>
+                <p>https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones?region=us-east-1#</p>
+                <p>no mx in amazon aws</p>
+                <p><img src="images/smtp-error-setup-11.png" alt="smtp error setup 11" class="article-image" loading="lazy"></p>
+                <p>record created</p>
+                <p><img src="images/smtp-error-setup-12.png" alt="smtp error setup 12" class="article-image" loading="lazy"></p>
+                <p><img src="images/smtp-error-setup-13.png" alt="smtp error setup 13" class="article-image" loading="lazy"></p>
+                <p>at least dns is checked</p>
+                <p><img src="images/smtp-error-setup-14.png" alt="smtp error setup 14" class="article-image" loading="lazy"></p>
+                <p>Creating a DMARC record in AWS Route 53 involves a few straightforward steps. Here’s a guide on how you can set up a DMARC record for your domain:</p>
+                <h3>1. Define Your DMARC Policy</h3>
+                <p>Before creating the record in Route 53, you need to determine the policy you want to enforce for your emails. The basic DMARC record format is as follows:</p>
+                <p>v=DMARC1; p=none; rua=mailto:your_email@example.com;</p>
+                <p>Here's what each part means:</p>
+                <ul>
+                <li>
+                <p><strong>v=DMARC1</strong>: This indicates the DMARC version (always DMARC1).</p>
+                </li>
+                <li>
+                <p><strong>p=none</strong>: The policy to apply when an email fails DMARC checks. Options are <code>none</code>, <code>quarantine</code>, or <code>reject</code>.</p>
+                </li>
+                <li>
+                <p><code>none</code>: No action is taken, but you'll receive reports.</p>
+                </li>
+                <li>
+                <p><code>quarantine</code>: Emails will be marked as suspicious.</p>
+                </li>
+                <li>
+                <p><code>reject</code>: Completely reject emails that fail DMARC checks.</p>
+                </li>
+                <li>
+                <p><strong>rua=mailto:your_email@example.com</strong>: Address to send aggregate reports of DMARC failures.</p>
+                </li>
+                </ul>
+                <p>You can add more directives based on your needs, such as specifying a percentage of messages to which the DMARC policy applies (<code>pct=100</code>) or providing a different address for forensic reports (<code>ruf=mailto:forensic@example.com</code>).</p>
+                <h3>2. Log into AWS Management Console</h3>
+                <p>Go to the AWS Management Console and navigate to Route 53.</p>
+                <h3>3. Select Your Hosted Zone</h3>
+                <p>In Route 53, select the "Hosted zones" option and then choose the domain for which you want to create the DMARC record.</p>
+                <h3>4. Create the DMARC Record</h3>
+                <ul>
+                <li>
+                <p>Click on “Create record” or “Create Record Set” depending on your interface.</p>
+                </li>
+                <li>
+                <p>Enter the following details:</p>
+                </li>
+                <li>
+                <p><strong>Record name</strong>: Enter <code>_dmarc</code>. The full DNS record name will be <code>_dmarc.yourdomain.com</code>.</p>
+                </li>
+                <li>
+                <p><strong>Record type</strong>: Select “TXT - Text”.</p>
+                </li>
+                <li>
+                <p><strong>Value</strong>: Enter the DMARC policy you defined earlier. For example:<br />
+                <code>"v=DMARC1; p=none; rua=mailto:your_email@example.com;"</code></p>
+                </li>
+                <li>
+                <p><strong>TTL (Time to Live)</strong>: Set the TTL as per your preference (e.g., 300 seconds).</p>
+                </li>
+                </ul>
+                <h3>5. Save the Record</h3>
+                <p>Click on “Create records” or “Save Record Set” to save your new DMARC TXT record.</p>
+                <h3>6. Test Your DMARC Record</h3>
+                <p>After setting up the DMARC record, use tools like MXToolbox to verify that your DMARC record is correctly published and detectable.</p>
+                <p>By following these steps, you'll have a DMARC record set up in AWS Route 53 that instructs email providers on how to handle emails that do not authenticate against your domain's SPF and DKIM records.</p>
+                <p><img src="images/smtp-error-setup-15.png" alt="smtp error setup 15" class="article-image" loading="lazy"></p>
+                <p>Dmarc policy enabled</p>
+                <p><img src="images/smtp-error-setup-16.png" alt="smtp error setup 16" class="article-image" loading="lazy"></p>
+                <p>double side working</p>
+                <p><img src="images/smtp-error-setup-17.png" alt="smtp error setup 17" class="article-image" loading="lazy"></p>
+                <p>both sides testing</p>
+                <p><img src="images/smtp-error-setup-18.png" alt="smtp error setup 18" class="article-image" loading="lazy"></p>
+                <p>testing from gmail side</p>
+                <p><img src="images/smtp-error-setup-19.png" alt="smtp error setup 19" class="article-image" loading="lazy"></p>
+                <p>t3 response does not look like it landed &gt; outbox issue ?</p>
+                <p><img src="images/smtp-error-setup-20.png" alt="smtp error setup 20" class="article-image" loading="lazy"></p>
+                <p>still add it to your main mailbox not to miss it</p>
+                <p>added forwarding for backup</p>
+                <p><img src="images/smtp-error-setup-21.png" alt="smtp error setup 21" class="article-image" loading="lazy"></p>
+                <p>pop did not work &gt; <a href="https://support.microsoft.com/en-gb/office/pop-imap-and-smtp-settings-for-outlook-com-d088b986-291d-42b8-9564-9c414e2aa040">https://support.microsoft.com/en-gb/office/pop-imap-and-smtp-settings-for-outlook-com-d088b986-291d-42b8-9564-9c414e2aa040</a></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

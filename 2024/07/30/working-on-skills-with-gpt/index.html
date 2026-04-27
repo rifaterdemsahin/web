@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walking by the River Cam with OpenShift Knowledge - Rifat Erdem Sahin</title>
+    <meta name="description" content="Walking by the River Cam with OpenShift Knowledge Yesterday, I decided to take a stroll by the River Cam, enjoying the serenity and reflecting on some recent learnings.">
+    <meta name="keywords" content="Walking by the River Cam with OpenShift Knowledge">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/07/30/working-on-skills-with-gpt/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/07/30/working-on-skills-with-gpt/">
+    <meta property="og:title" content="Walking by the River Cam with OpenShift Knowledge">
+    <meta property="og:description" content="Walking by the River Cam with OpenShift Knowledge Yesterday, I decided to take a stroll by the River Cam, enjoying the serenity and reflecting on some recent learnings.">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/07/30/working-on-skills-with-gpt/">
+    <meta property="twitter:title" content="Walking by the River Cam with OpenShift Knowledge">
+    <meta property="twitter:description" content="Walking by the River Cam with OpenShift Knowledge Yesterday, I decided to take a stroll by the River Cam, enjoying the serenity and reflecting on some recent learnings.">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Walking by the River Cam with OpenShift Knowledge",
+      "description": "Walking by the River Cam with OpenShift Knowledge Yesterday, I decided to take a stroll by the River Cam, enjoying the serenity and reflecting on some recent learnings.",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-07-30",
+      "dateModified": "2024-07-30",
+      "url": "https://www.rifaterdemsahin.com/2024/07/30/working-on-skills-with-gpt/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/07/30/working-on-skills-with-gpt/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Walking by the River Cam with OpenShift Knowledge</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>July 30, 2024</span>
+                    <span>&bull;</span>
+                    <span>5 min read</span>
+                </div>
+                <p class="article-excerpt">Walking by the River Cam with OpenShift Knowledge Yesterday, I decided to take a stroll by the River Cam, enjoying the serenity and reflecting on some recent learnings.</p>
+            </header>
+            <article class="article-content">
+                <h1>Walking by the River Cam with OpenShift Knowledge</h1>
+                <h2></h2>
+                <p>Yesterday, I decided to take a stroll by the River Cam, enjoying the serenity and reflecting on some recent learnings. With my iPhone 14 in hand and GPT installed, I had a unique opportunity to blend the calm of nature with a bit of tech wisdom. As I walked and talked, I revisited some key concepts about OpenShift, and here’s a snippet of our conversation.</p>
+                <h3>A Quick Dive into OpenShift</h3>
+                <p>While walking, I asked GPT about some essential OpenShift concepts. Here’s what we discussed:</p>
+                <p><strong>Question:</strong> What is the primary tool used for managing OpenShift clusters? <strong>Answer:</strong> oc (OpenShift CLI)</p>
+                <p>The <code>oc</code> command-line interface is the primary tool for managing OpenShift clusters. It simplifies various tasks such as creating, updating, and deleting resources within the cluster. If you’re getting started with OpenShift, becoming familiar with <code>oc</code> is crucial.</p>
+                <p><strong>Question:</strong> What is the name of the platform’s built-in CI/CD service? <strong>Answer:</strong> Jenkins</p>
+                <p>OpenShift integrates seamlessly with Jenkins, a popular CI/CD service. Jenkins automates the process of building, testing, and deploying applications, which is vital for maintaining a smooth and efficient development workflow.</p>
+                <p><strong>Question:</strong> What command would you use to log in to an OpenShift cluster using the CLI? <strong>Answer:</strong> oc login</p>
+                <p>To access an OpenShift cluster, you use the <code>oc login</code> command. This command prompts you for your credentials and logs you into the cluster, giving you the necessary permissions to manage resources.</p>
+                <p><strong>Question:</strong> What is the term used in OpenShift for a collection of related pods, services, and other resources? <strong>Answer:</strong> Project (Namespace)</p>
+                <p>In OpenShift, a Project (or Namespace) is a logical grouping of related resources such as pods, services, and routes. This organization helps in managing resources more efficiently, especially in environments with multiple teams and applications.</p>
+                <h3>Reflecting on Learning</h3>
+                <p>As I walked by the river, the integration of nature and technology brought a unique clarity. The gentle flow of the Cam mirrored the streamlined processes within OpenShift, where each component plays a crucial role in the bigger picture.</p>
+                <p>Technology, like nature, has its rhythms and patterns. Understanding tools like OpenShift not only enhances our technical skills but also provides a framework for thinking about organization, efficiency, and innovation in all aspects of life.</p>
+                <h3>Final Thoughts</h3>
+                <p>Walking and thinking can be incredibly productive, especially when you have a knowledgeable companion like GPT. Whether you’re learning about OpenShift or any other topic, taking time to reflect and absorb information in a relaxed setting can lead to deeper understanding and new insights.</p>
+                <p>So, next time you go for a walk, consider bringing along a topic to ponder. You might be surprised at the clarity and ideas that emerge amidst the tranquility of nature</p>
+                <p>Walking by the river cam and going on the talking mode with GPT</p>
+                <p><img src="images/walking-by-the-1.png" alt="walking by the 1" class="article-image" loading="lazy"></p>
+                <pre><code>    Question
+                    Answer
+                    Image
+                
+                
+                
+                
+                    What is the primary tool used for managing OpenShift clusters?
+                    oc (OpenShift CLI)
+                    [
+                </code></pre>
+                <p><img src="images/walking-by-the-2.png" alt="walking by the 2" class="article-image" loading="lazy"></p>
+                <p>](https://learn.microsoft.com/uk-ua/azure/openshift/media/aro4-download-cli.png)</p>
+                <pre><code>    What is the name of the platform's built-in CI/CD service?
+                    Jenkins
+                    [![walking-by-the-3.jpg](https://developers.redhat.com/sites/default/files/1_0.jpg)](https://developers.redhat.com/sites/default/files/1_0.jpg)
+                
+                
+                    What command would you use to log in to an OpenShift cluster using the CLI?
+                    oc login
+                    [
+                </code></pre>
+                <p><img src="images/walking-by-the-4.png" alt="walking by the 4" class="article-image" loading="lazy"></p>
+                <p>](https://access.redhat.com/webassets/avalon/d/OpenShift_Container_Platform-3.5-CLI_Reference-en-US/images/76acf4459f22d9040a4e3c1b346be2b5/cli_help.png)</p>
+                <pre><code>    What is the term used in OpenShift for a collection of related pods, services, and other resources?
+                    Project (Namespace)
+                    [
+                </code></pre>
+                <p><img src="images/walking-by-the-5.png" alt="walking by the 5" class="article-image" loading="lazy"></p>
+                <p>](https://openshift.github.io/openshift-origin-design/designs/administrator/olm/create-namespace-operator-install/img/1-2-select.png)</p>
+                <pre><code>    What feature allows you to easily deploy applications from source code repositories?
+                    Source-to-Image (S2I)
+                    [
+                </code></pre>
+                <p><img src="images/walking-by-the-6.png" alt="walking by the 6" class="article-image" loading="lazy"></p>
+                <p>](https://www.redhat.com/rhdc/managed-files/ohc/S2IDeveloperWorkFlow1.png)</p>
+                <pre><code>    What is the default container runtime used by OpenShift 4.x?
+                    CRI-O
+                    [
+                </code></pre>
+                <p><img src="images/walking-by-the-7.png" alt="walking by the 7" class="article-image" loading="lazy"></p>
+                <p>](https://developer.ibm.com/developer/default/tutorials/multi-architecture-cri-o-container-images-for-red-hat-openshift/images/k8s-crio.png)</p>
+                <pre><code>    Which component is responsible for managing networking within the cluster?
+                    OpenShift SDN (Software Defined Networking)
+                    [
+                </code></pre>
+                <p><img src="images/walking-by-the-8.png" alt="walking by the 8" class="article-image" loading="lazy"></p>
+                <p>](https://access.redhat.com/webassets/avalon/d/OpenShift_Container_Platform-3.11-Architecture-en-US/images/0297bbeceb69783d8c36f4a99463731a/flannel.png)</p>
+                <pre><code>    What command would you use to create a new project in OpenShift using the CLI?
+                    oc new-project
+                    [](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUq9hYIuSNDxBydaUWd7JzBo9Ru1FE9HYkRA&amp;s)
+                
+                
+                    What is the primary purpose of an OpenShift 'Route'?
+                    Expose services to external traffic
+                    [
+                </code></pre>
+                <p><img src="images/walking-by-the-9.png" alt="walking by the 9" class="article-image" loading="lazy"></p>
+                <p>](https://rifaterdemsahin.com/wp-content/uploads/2024/07/2b603-1gjbrix91xgxtwkkoc6h0cg.png)</p>
+                <pre><code>    What command would you use to view the logs of a specific pod in OpenShift?
+                    oc logs &lt;pod-name&gt;
+                    [
+                </code></pre>
+                <p><img src="images/walking-by-the-10.png" alt="walking by the 10" class="article-image" loading="lazy"></p>
+                <p>](https://i.sstatic.net/zlhbg.png)</p>
+                <pre><code>    What is the web-based console for managing OpenShift called?
+                    OpenShift Web Console
+                    [![walking-by-the-11.png](https://developer.ibm.com/developer/default/blogs/openshift-101-web-console-and-cli/images/image3.png)](https://developer.ibm.com/developer/default/blogs/openshift-101-web-console-and-cli/images/image3.png)
+                
+                
+                    What command would you use to get a list of all pods in an OpenShift project?
+                    oc get pods
+                    [
+                </code></pre>
+                <p><img src="images/walking-by-the-12.png" alt="walking by the 12" class="article-image" loading="lazy"></p>
+                <p>](https://www.redhat.com/rhdc/managed-files/ohc/get_pods-1.png)</p>
+                <pre><code>    What is the feature that automatically scales pods based on CPU or memory usage?
+                    Horizontal Pod Autoscaler (HPA)
+                    [
+                </code></pre>
+                <p><img src="images/walking-by-the-13.png" alt="walking by the 13" class="article-image" loading="lazy"></p>
+                <p>](https://access.redhat.com/webassets/avalon/d/OpenShift_Container_Platform-4.12-Nodes-en-US/images/e5f238cca06e9ee1647ad76efa36dcef/HPAflow.png)</p>
+                <pre><code>    What command would you use to delete a pod in OpenShift?
+                    oc delete pod &lt;pod-name&gt;
+                    [
+                </code></pre>
+                <p><img src="images/walking-by-the-14.png" alt="walking by the 14" class="article-image" loading="lazy"></p>
+                <p>](https://access.redhat.com/webassets/avalon/d/OpenShift_Container_Platform-4.9-Nodes-en-US/images/0eaaed0e55e714f6e4f1094d5e62fa59/node-add-hpa-action.png)</p>
+                <pre><code>    What is the name of the object that defines how to build and deploy an application from source code?
+                    BuildConfig
+                    [![walking-by-the-15.png](https://developers.redhat.com/sites/default/files/inline-images/Screen%20Shot%202021-06-11%20at%203.38.42%20PM.png)](https://developers.redhat.com/sites/default/files/inline-images/Screen%20Shot%202021-06-11%20at%203.38.42%20PM.png)
+                
+                
+                    What command would you use to scale a deployment to a specific number of replicas in OpenShift?
+                    oc scale --replicas=&lt;number&gt; deployment/&lt;deployment-name&gt;
+                    [![walking-by-the-16.png](https://developers.redhat.com/sites/default/files/Figure%2021.%20Diagram%20of%20intra%20cluster%20networking.png)](https://developers.redhat.com/sites/default/files/Figure%2021.%20Diagram%20of%20intra%20cluster%20networking.png)
+                
+                
+                    What is the name of the service that handles authentication and authorization?
+                    OpenShift Identity Provider
+                    [
+                </code></pre>
+                <p><img src="images/walking-by-the-17.png" alt="walking by the 17" class="article-image" loading="lazy"></p>
+                <p>](https://www.redhat.com/rhdc/managed-files/2019/03/screen-shot-2019-03-12-at-12.50.14-pm.png)</p>
+                <pre><code>    What command would you use to describe a resource, like a pod, in OpenShift?
+                    oc describe pod &lt;pod-name&gt;
+                    [
+                </code></pre>
+                <p><img src="images/walking-by-the-18.png" alt="walking by the 18" class="article-image" loading="lazy"></p>
+                <p>](https://www.redhat.com/rhdc/managed-files/ohc/uids1.png)</p>
+                <pre><code>    What is the feature that provides application templates for quick deployments?
+                    OpenShift Templates (Application Templates)
+                    [![walking-by-the-19.png](https://www.redhat.com/rhdc/managed-files/styles/wysiwyg_full_width/private/ohc/process-4-1024x729.png?itok=40xNvlpd)](https://www.redhat.com/rhdc/managed-files/styles/wysiwyg_full_width/private/ohc/process-4-1024x729.png?itok=40xNvlpd)
+                
+                
+                    What command would you use to create a new application in OpenShift using a source repository?
+                    oc new-app &lt;source-repo&gt;
+                    [](https://opengraph.githubassets.com/6503eb4ce86c69f6b321d4944afc7eb4b27dae4c64616224b734ae71fb705de9/redhat-actions/oc-new-app)
+                
+                
+                    What is the feature that provides persistent storage for applications?
+                    ConfigMap and Secret
+                    [
+                </code></pre>
+                <p><img src="images/walking-by-the-20.png" alt="walking by the 20" class="article-image" loading="lazy"></p>
+                <p>](https://www.freekb.net/images/openshift_configmap_secret2.png)</p>
+                <pre><code>    What command would you use to expose a service to create a route in OpenShift?
+                    oc expose service &lt;service-name&gt;
+                    [
+                </code></pre>
+                <p><img src="images/walking-by-the-21.png" alt="walking by the 21" class="article-image" loading="lazy"></p>
+                <p>](https://access.redhat.com/webassets/avalon/d/OpenShift_Container_Platform-3.4-Architecture-en-US/images/4a4ff54ba2731f5148af229578659b6c/router_model.png)</p>
+                <pre><code>    What is the built-in logging and monitoring stack in OpenShift called?
+                    EFK (Elasticsearch, Fluentd, Kibana) stack
+                    [
+                </code></pre>
+                <p><img src="images/walking-by-the-22.png" alt="walking by the 22" class="article-image" loading="lazy"></p>
+                <p>](https://rifaterdemsahin.com/wp-content/uploads/2024/07/1b49c-1_ld8q4olygoza2g1mfjypa.png)</p>
+                <p><strong>Connect with me</strong>:</p>
+                <ul>
+                <li>
+                <p>LinkedIn: https://www.linkedin.com/in/rifaterdemsahin/</p>
+                </li>
+                <li>
+                <p>Twitter: https://x.com/rifaterdemsahin</p>
+                </li>
+                <li>
+                <p>YouTube: https://www.youtube.com/@RifatErdemSahin</p>
+                </li>
+                </ul>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

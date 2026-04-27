@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finding the location of the cursor with Wacom tablet - Rifat Erdem Sahin</title>
+    <meta name="description" content="Finding the location of the cursor with Wacom tablet Finding the location of the cursor when using a Wacom tablet involves understanding how the tablet interfaces with your computer and how cursor pos">
+    <meta name="keywords" content="Finding the location of the cursor with Wacom tablet">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/05/11/finding-the-location-of-the-cursor-with-wacom-tablet/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/05/11/finding-the-location-of-the-cursor-with-wacom-tablet/">
+    <meta property="og:title" content="Finding the location of the cursor with Wacom tablet">
+    <meta property="og:description" content="Finding the location of the cursor with Wacom tablet Finding the location of the cursor when using a Wacom tablet involves understanding how the tablet interfaces with your computer and how cursor pos">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/05/11/finding-the-location-of-the-cursor-with-wacom-tablet/">
+    <meta property="twitter:title" content="Finding the location of the cursor with Wacom tablet">
+    <meta property="twitter:description" content="Finding the location of the cursor with Wacom tablet Finding the location of the cursor when using a Wacom tablet involves understanding how the tablet interfaces with your computer and how cursor pos">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Finding the location of the cursor with Wacom tablet",
+      "description": "Finding the location of the cursor with Wacom tablet Finding the location of the cursor when using a Wacom tablet involves understanding how the tablet interfaces with your computer and how cursor pos",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-05-11",
+      "dateModified": "2024-05-11",
+      "url": "https://www.rifaterdemsahin.com/2024/05/11/finding-the-location-of-the-cursor-with-wacom-tablet/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/05/11/finding-the-location-of-the-cursor-with-wacom-tablet/",
+      "articleSection": "Image",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Finding the location of the cursor with Wacom tablet</h1>
+                <div class="article-meta">
+                    <span class="article-category">Image</span>
+                    <span>&bull;</span>
+                    <span>May 11, 2024</span>
+                    <span>&bull;</span>
+                    <span>8 min read</span>
+                </div>
+                <p class="article-excerpt">Finding the location of the cursor with Wacom tablet Finding the location of the cursor when using a Wacom tablet involves understanding how the tablet interfaces with your computer and how cursor positioning is managed.</p>
+            </header>
+            <article class="article-content">
+                <h1>Finding the location of the cursor with Wacom tablet</h1>
+                <p><img src="images/finding-the-location-1.png" alt="finding the location 1" class="article-image" loading="lazy"></p>
+                <p>Finding the location of the cursor when using a Wacom tablet involves understanding how the tablet interfaces with your computer and how cursor positioning is managed. Here are the general steps and tips for tracking cursor location on various operating systems:</p>
+                <h3>1. <strong>Understanding Tablet Settings</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Mapping:</strong> Ensure your tablet is properly mapped to your monitor in the tablet settings. This determines how the tablet's surface corresponds to the screen area.</p>
+                </li>
+                <li>
+                <p><strong>Mode Selection:</strong> Tablets typically operate in either "Pen Mode" or "Mouse Mode". In Pen Mode, the cursor position corresponds directly to the point on the tablet where the pen touches. In Mouse Mode, the pen behaves more like a traditional mouse.</p>
+                </li>
+                </ul>
+                <h3>2. <strong>Software Tools</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Wacom Tablet Properties:</strong> You can use the Wacom Tablet Properties utility (available on Windows and macOS) to customize settings like mapping and sensitivity which directly affect how the cursor is positioned and tracked.</p>
+                </li>
+                <li>
+                <p><strong>Driver Updates:</strong> Ensure that your tablet’s drivers are up-to-date. Driver updates can resolve issues related to cursor tracking and responsiveness.</p>
+                </li>
+                </ul>
+                <h3>3. <strong>Operating System Settings</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Windows:</strong> Access the Control Panel and look for the 'Pen and Touch' settings to adjust how the cursor functions with touch inputs.</p>
+                </li>
+                <li>
+                <p><strong>macOS:</strong> Use System Preferences to adjust 'Accessibility' settings for better cursor and pointer visibility and control.</p>
+                </li>
+                <li>
+                <p><strong>Linux:</strong> Configuration might require more manual setup through settings in the System Settings or via terminal commands to adjust input device parameters.</p>
+                </li>
+                </ul>
+                <h3>4. <strong>Programming and Custom Scripts</strong></h3>
+                <ul>
+                <li>
+                <p>If you're looking to programmatically find the cursor position using a Wacom tablet, you can use programming libraries or APIs provided by Wacom, such as the Wacom Ink SDK for developers.</p>
+                </li>
+                <li>
+                <p>Languages like Python can interface with these APIs to fetch real-time data on the pen’s position and pressure.</p>
+                </li>
+                </ul>
+                <h3>5. <strong>Third-Party Software</strong></h3>
+                <ul>
+                <li>There are applications available that enhance or modify the way cursor positioning works with graphic tablets. Software like Lazy Nezumi on Windows or Hej Stylus on macOS can offer more granular control over cursor behavior.</li>
+                </ul>
+                <h3>6. <strong>Troubleshooting Common Issues</strong></h3>
+                <ul>
+                <li>
+                <p>If the cursor is not appearing where expected, recalibrate your device through its settings. Calibration aligns the cursor's screen position with the point of contact on the tablet surface.</p>
+                </li>
+                <li>
+                <p>Check for interference from other devices and ensure the tablet is positioned correctly relative to your monitor.</p>
+                </li>
+                </ul>
+                <p>By adjusting these settings and understanding how your specific tablet model interfaces with your computer, you can effectively manage and find the cursor's location with precision. If you need step-by-step guidance for a specific device or operating system, please provide more details about your setup.</p>
+                <p>Yes, most Wacom tablets have a feature called "Proximity Sensing" or a similar functionality that allows you to see where the pen is relative to the tablet even when it's not touching the surface. This feature is particularly useful for positioning the cursor correctly before making contact with the tablet, ensuring that you draw in the intended area on your screen. Here’s how you can typically manage this setting:</p>
+                <h3>Enabling Proximity Sensing</h3>
+                <ul>
+                <li>
+                <p><strong>Accessing Tablet Settings:</strong></p>
+                </li>
+                <li>
+                <p>Open the Wacom Tablet Properties. This can usually be done by searching for it in the Start Menu on Windows or in System Preferences on macOS.</p>
+                </li>
+                <li>
+                <p><strong>Adjusting Pen Settings:</strong></p>
+                </li>
+                <li>
+                <p>Look for options related to the pen or stylus. You should find settings that adjust how the tablet responds to the pen, including proximity sensitivity.</p>
+                </li>
+                <li>
+                <p><strong>Cursor Display:</strong></p>
+                </li>
+                <li>
+                <p>Ensure the option that shows the cursor when the pen is near the tablet is enabled. This might be labeled differently depending on your tablet model and driver version.</p>
+                </li>
+                <li>
+                <p><strong>Calibration:</strong></p>
+                </li>
+                <li>
+                <p>Calibrate your pen and tablet to ensure accuracy. This helps align the physical location of the pen with the cursor's location on the screen.</p>
+                </li>
+                </ul>
+                <h3>Tips for Better Proximity Detection</h3>
+                <ul>
+                <li>
+                <p><strong>Driver Update:</strong> Make sure your Wacom tablet drivers are up to date. Updated drivers can improve how well the tablet detects the pen, even before it touches the surface.</p>
+                </li>
+                <li>
+                <p><strong>Check Pen Battery (if applicable):</strong> If your pen is battery-powered (some Wacom stylus models are), a low battery might affect performance.</p>
+                </li>
+                <li>
+                <p><strong>Interference:</strong> Remove any electronic devices that might interfere with electromagnetic fields near your tablet.</p>
+                </li>
+                </ul>
+                <h3>Additional Software Features</h3>
+                <ul>
+                <li>
+                <p><strong>Customizing Cursors:</strong> Some software programs allow for customized cursor icons or visual guides that appear when the pen is near the tablet, enhancing visibility.</p>
+                </li>
+                <li>
+                <p><strong>Third-party Tools:</strong> Tools like Lazy Nezumi (Windows) or Hej Stylus (macOS) can provide additional cursor control features, including more visible or enhanced cursor effects when the pen is in proximity.</p>
+                </li>
+                </ul>
+                <p>If these settings are not immediately apparent or if you're using an older model, consulting the user manual specific to your Wacom model can provide additional guidance. Wacom's customer support is also a helpful resource for model-specific questions.</p>
+                <p>it works when there is no zoomit &gt; how can i make it work with zoom it ?</p>
+                <p><img src="images/finding-the-location-2.png" alt="finding the location 2" class="article-image" loading="lazy"></p>
+                <p>run at start</p>
+                <p><img src="images/finding-the-location-3.png" alt="finding the location 3" class="article-image" loading="lazy"></p>
+                <p>The issue you're experiencing with cursor detection when using ZoomIt alongside your Wacom tablet likely stems from how ZoomIt interacts with input devices and screen rendering. ZoomIt, a screen magnification and annotation tool by Sysinternals, can sometimes interfere with or override tablet input settings because it captures screen input at a low level to perform its functions.</p>
+                <p>Here are several steps and troubleshooting tips to help resolve compatibility issues between your Wacom tablet and ZoomIt:</p>
+                <h3>1. <strong>Run Both Programs as Administrator</strong></h3>
+                <ul>
+                <li>Running both ZoomIt and the Wacom Tablet software with administrator privileges can sometimes resolve issues where one program blocks or overrides the other. Right-click on the application shortcuts and select "Run as administrator."</li>
+                </ul>
+                <h3>2. <strong>Adjust Wacom Tablet Properties</strong></h3>
+                <ul>
+                <li>Recheck and adjust the Wacom Tablet Properties to ensure all settings are correctly configured for the best compatibility with other software. Pay special attention to any settings that control how the pen interacts when close to the tablet and the screen mapping.</li>
+                </ul>
+                <h3>3. <strong>Update Drivers and Software</strong></h3>
+                <ul>
+                <li>Ensure that both your Wacom tablet drivers and ZoomIt are up to date. An update may resolve compatibility issues.</li>
+                </ul>
+                <h3>4. <strong>Configure ZoomIt Settings</strong></h3>
+                <ul>
+                <li>Open ZoomIt and go through its options to see if there are any settings related to input or cursor handling that might be adjusted to better work with tablet input.</li>
+                </ul>
+                <h3>5. <strong>Experiment with Compatibility Modes</strong></h3>
+                <ul>
+                <li>If running the programs normally doesn't solve the issue, try setting the compatibility mode for ZoomIt. Right-click on the ZoomIt executable, select 'Properties,' go to the 'Compatibility' tab, and try different compatibility settings, such as running it in compatibility mode for an earlier version of Windows.</li>
+                </ul>
+                <h3>6. <strong>Disable Windows Ink (if applicable)</strong></h3>
+                <ul>
+                <li>Some users find that disabling Windows Ink can help resolve issues with cursor visibility and responsiveness when using graphic tablets with certain applications. You can disable Windows Ink from the Wacom Tablet Properties under the "Mapping" or "Pen" settings, depending on your model.</li>
+                </ul>
+                <h3>7. <strong>Use Alternative Software</strong></h3>
+                <ul>
+                <li>If ZoomIt continues to interfere with your Wacom tablet’s functionality, consider using an alternative magnification or annotation tool that might be more compatible with Wacom products. Windows, for example, has built-in magnification and annotation features that might not interfere as much.</li>
+                </ul>
+                <h3>8. <strong>Contact Support</strong></h3>
+                <ul>
+                <li>If none of these steps work, consider reaching out to Wacom support or the Sysinternals support forums for more specific advice.</li>
+                </ul>
+                <p>By following these steps, you can potentially resolve the issues you're encountering with ZoomIt and your Wacom tablet. Each setup can be unique, so some experimentation with settings might be necessary to find a solution that works for you.</p>
+                <p><img src="images/finding-the-location-4.png" alt="finding the location 4" class="article-image" loading="lazy"></p>
+                <p><img src="images/finding-the-location-5.png" alt="finding the location 5" class="article-image" loading="lazy"></p>
+                <p>Alternative programs to zoomit</p>
+                <p>If you're looking for alternatives to ZoomIt, which is a screen zoom and annotation tool for presentations, there are several other programs that you can consider. Each offers unique features that might better suit your needs:</p>
+                <ul>
+                <li>
+                <p><strong>Epic Pen</strong> - This is a tool that allows you to draw, write, and highlight directly over any software on Windows, making it versatile for presentations and interactive sessions.</p>
+                </li>
+                <li>
+                <p><strong>Microsoft's Snip &amp; Sketch</strong> - Integrated into Windows, this tool offers basic screen capture and annotation capabilities, which can be useful for quickly highlighting or marking up what's on your screen.</p>
+                </li>
+                <li>
+                <p><strong>Lightshot</strong> - A simple and intuitive screen capture tool that allows quick annotations, easy sharing, and editing of screenshots.</p>
+                </li>
+                <li>
+                <p><strong>ShareX</strong> - This is a more advanced tool that includes robust screen capturing, recording, and productivity tools. It offers many customizations and supports various annotation tools.</p>
+                </li>
+                <li>
+                <p><strong>Greenshot</strong> - A lightweight screenshot software tool for Windows that allows you to capture screenshots, annotate them, and export them in various ways.</p>
+                </li>
+                <li>
+                <p><strong>Skitch</strong> - Part of the Evernote suite of tools, Skitch provides easy-to-use annotation tools that are great for quickly marking up screenshots and sharing them.</p>
+                </li>
+                </ul>
+                <p>These alternatives offer various functionalities that range from simple annotations to comprehensive screen capturing and editing features. You can choose based on which features are most important for your workflow.</p>
+                <p>Bad drawing example</p>
+                <div class="video-embed"><iframe src="https://www.loom.com/embed/5fa903c33df54f3f9b4988c1feecfcdf" frameborder="0" allowfullscreen></iframe></div>
+                
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

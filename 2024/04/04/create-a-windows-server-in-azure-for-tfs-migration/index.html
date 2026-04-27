@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a Windows Server In Azure for TFS Migration - Rifat Erdem Sahin</title>
+    <meta name="description" content="Create a Windows Server In Azure for TFS Migration We would use the data migrator tool to complete the necessary steps.">
+    <meta name="keywords" content="Create a Windows Server In Azure for TFS Migration">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/04/04/create-a-windows-server-in-azure-for-tfs-migration/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/04/04/create-a-windows-server-in-azure-for-tfs-migration/">
+    <meta property="og:title" content="Create a Windows Server In Azure for TFS Migration">
+    <meta property="og:description" content="Create a Windows Server In Azure for TFS Migration We would use the data migrator tool to complete the necessary steps.">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/04/04/create-a-windows-server-in-azure-for-tfs-migration/">
+    <meta property="twitter:title" content="Create a Windows Server In Azure for TFS Migration">
+    <meta property="twitter:description" content="Create a Windows Server In Azure for TFS Migration We would use the data migrator tool to complete the necessary steps.">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Create a Windows Server In Azure for TFS Migration",
+      "description": "Create a Windows Server In Azure for TFS Migration We would use the data migrator tool to complete the necessary steps.",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-04-04",
+      "dateModified": "2024-04-04",
+      "url": "https://www.rifaterdemsahin.com/2024/04/04/create-a-windows-server-in-azure-for-tfs-migration/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/04/04/create-a-windows-server-in-azure-for-tfs-migration/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Create a Windows Server In Azure for TFS Migration</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>April 4, 2024</span>
+                    <span>&bull;</span>
+                    <span>9 min read</span>
+                </div>
+                <p class="article-excerpt">Create a Windows Server In Azure for TFS Migration We would use the data migrator tool to complete the necessary steps.</p>
+            </header>
+            <article class="article-content">
+                <h1>Create a Windows Server In Azure for TFS Migration</h1>
+                <p>We would use the data migrator tool to complete the necessary steps.</p>
+                <div class="video-embed"><iframe src="https://www.loom.com/embed/8555b8d1acd14c649afd0fe15d200d69" frameborder="0" allowfullscreen></iframe></div>
+                
+                <p>After Our Talk With MS Support</p>
+                <p>This is the target machine to create for Azure devops 2022 which can intake the database without any data migration</p>
+                <p>My datatabase 2018 v3 beta 2</p>
+                <p><img src="images/create-a-windows-1.png" alt="create a windows 1" class="article-image" loading="lazy"></p>
+                <p>Update the presentation that is built in canva &gt; Use the presenter notes for scripts</p>
+                <p><img src="images/create-a-windows-2.png" alt="create a windows 2" class="article-image" loading="lazy"></p>
+                <p>Search market place</p>
+                <p><img src="images/create-a-windows-3.png" alt="create a windows 3" class="article-image" loading="lazy"></p>
+                <p>https://portal.azure.com/#view/Microsoft_Azure_Marketplace/MarketplaceOffersBlade/selectedMenuItemId/home</p>
+                <p><a href="https://portal.azure.com/#view/Microsoft_Azure_Marketplace/GalleryItemDetailsBladeNopdl/id/microsoftsqlserver.sql2017-ws2019/selectionMode~/false/resourceGroupId//resourceGroupLocation//dontDiscardJourney~/false/selectedMenuId/home/launchingContext~/%7B%22galleryItemId%22%3A%22microsoftsqlserver.sql2017-ws2019sqldev%22%2C%22source%22%3A%5B%22GalleryFeaturedMenuItemPart%22%2C%22VirtualizedTileDetails%22%5D%2C%22menuItemId%22%3A%22home%22%2C%22subMenuItemId%22%3A%22Search%20results%22%2C%22telemetryId%22%3A%22ef89ab71-7a3d-4a28-920b-5d7442830232%22%7D/searchTelemetryId/d77c9258-ff26-41e6-9ed3-24effb566cee/isLiteSearchFlowEnabled~/false">Server AMI URL &gt;</a></p>
+                <p>Dev Licence &gt; Pray for the import size</p>
+                <p><img src="images/create-a-windows-4.png" alt="create a windows 4" class="article-image" loading="lazy"></p>
+                <p>Not documented</p>
+                <p><img src="images/create-a-windows-5.png" alt="create a windows 5" class="article-image" loading="lazy"></p>
+                <p>https://learn.microsoft.com/en-us/sql/sql-server/editions-and-components-of-sql-server-2017?view=sql-server-ver16</p>
+                <p>Basic portal errors</p>
+                <p><img src="images/create-a-windows-6.png" alt="create a windows 6" class="article-image" loading="lazy"></p>
+                <p>Hit network tab and back...</p>
+                <p><img src="images/create-a-windows-7.png" alt="create a windows 7" class="article-image" loading="lazy"></p>
+                <p>Get the install media &gt; let the system download an iso by letting the download on the internet settings of the browser</p>
+                <p>https://drive.google.com/file/d/1L5IkOF6UxH4tF9vpXJyJTQTbnKSvsVXX/view?usp=sharing</p>
+                <p>Start your install</p>
+                <p><img src="images/create-a-windows-8.png" alt="create a windows 8" class="article-image" loading="lazy"></p>
+                <p>After Install Restore thedatabase</p>
+                <p><img src="images/create-a-windows-9.png" alt="create a windows 9" class="article-image" loading="lazy"></p>
+                <p>Locate Backup</p>
+                <p><img src="images/create-a-windows-10.png" alt="create a windows 10" class="article-image" loading="lazy"></p>
+                <p>Drink your tea while database gets restored &gt; thanks to Chandra restoring to the 2022 server</p>
+                <p><img src="images/create-a-windows-11.png" alt="create a windows 11" class="article-image" loading="lazy"></p>
+                <p>Select I have an existing database even it is 2018 the 2022 Server should be able to ingest it</p>
+                <p><img src="images/create-a-windows-12.png" alt="create a windows 12" class="article-image" loading="lazy"></p>
+                <p>Issue</p>
+                <p><img src="images/create-a-windows-13.png" alt="create a windows 13" class="article-image" loading="lazy"></p>
+                <p>If you install as fresh server</p>
+                <p><img src="images/create-a-windows-14.png" alt="create a windows 14" class="article-image" loading="lazy"></p>
+                <p>You would end up with the configuration database</p>
+                <p><img src="images/create-a-windows-15.png" alt="create a windows 15" class="article-image" loading="lazy"></p>
+                <p><img src="images/create-a-windows-16.png" alt="create a windows 16" class="article-image" loading="lazy"></p>
+                <p>Now attach collection</p>
+                <p><img src="images/create-a-windows-17.png" alt="create a windows 17" class="article-image" loading="lazy"></p>
+                <p>Accept and attach</p>
+                <p><img src="images/create-a-windows-18.png" alt="create a windows 18" class="article-image" loading="lazy"></p>
+                <p><img src="images/create-a-windows-19.png" alt="create a windows 19" class="article-image" loading="lazy"></p>
+                <p>Get the errors with the Failed to sync identity or group</p>
+                <p><img src="images/create-a-windows-20.png" alt="create a windows 20" class="article-image" loading="lazy"></p>
+                <p><img src="images/create-a-windows-21.png" alt="create a windows 21" class="article-image" loading="lazy"></p>
+                <p>Note : Ask the enterprise to do the Azure AD Sync from the tech team</p>
+                <p><strong>Set up your machine for program install</strong></p>
+                <p><strong>Choco Install</strong></p>
+                <p>Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))</p>
+                <p><img src="images/create-a-windows-22.png" alt="create a windows 22" class="article-image" loading="lazy"></p>
+                <p>Restart the power shell and go back to the migration tool path</p>
+                <p><strong>Time to install the migration tool ( As we have the database that is attached )</strong></p>
+                <p>https://www.microsoft.com/en-us/download/details.aspx?id=54274</p>
+                <p><img src="images/create-a-windows-23.png" alt="create a windows 23" class="article-image" loading="lazy"></p>
+                <p>Download in the Azure DevOps Server Yes Yes Yes</p>
+                <p><img src="images/create-a-windows-24.png" alt="create a windows 24" class="article-image" loading="lazy"></p>
+                <p>Get the correct version</p>
+                <p><img src="images/create-a-windows-25.png" alt="create a windows 25" class="article-image" loading="lazy"></p>
+                <p>Extract</p>
+                <p><img src="images/create-a-windows-26.png" alt="create a windows 26" class="article-image" loading="lazy"></p>
+                <p>Open the path in power shell</p>
+                <p>cd C:\Users\rifaterdemsahin\Downloads\DataMigrationTool_AzureDevOps2022RTW_19.205.19599188\DataMigrationTool</p>
+                <p><img src="images/create-a-windows-27.png" alt="create a windows 27" class="article-image" loading="lazy"></p>
+                <p>Pin paths on the box</p>
+                <p><img src="images/create-a-windows-28.png" alt="create a windows 28" class="article-image" loading="lazy"></p>
+                <p>Validate the collection</p>
+                <p><img src="images/create-a-windows-29.png" alt="create a windows 29" class="article-image" loading="lazy"></p>
+                <p><strong>Get your steps in now from the proof of concept stage</strong></p>
+                <p><img src="images/create-a-windows-30.png" alt="create a windows 30" class="article-image" loading="lazy"></p>
+                <p>always record your steps</p>
+                <p><img src="images/create-a-windows-31.png" alt="create a windows 31" class="article-image" loading="lazy"></p>
+                <p><strong>Prepare and Validate</strong></p>
+                <p>PS</p>
+                <p>C:\Users\User\Downloads\DataMigrationTool_AzureDevOps2022RTW_19.205.19599188\DataMigrationTool&gt; .\Migrator.exe validate /collection:http://windev2305eval/DefaultCollection/ /tenantdomainname:pexabo.onmicrosoft.com</p>
+                <p>MFA needs to turn on</p>
+                <p><img src="images/create-a-windows-32.png" alt="create a windows 32" class="article-image" loading="lazy"></p>
+                <p>ReRun</p>
+                <p><img src="images/create-a-windows-33.png" alt="create a windows 33" class="article-image" loading="lazy"></p>
+                <p>mmmm &gt; password time!</p>
+                <p><img src="images/create-a-windows-34.png" alt="create a windows 34" class="article-image" loading="lazy"></p>
+                <p>Features</p>
+                <p><img src="images/create-a-windows-35.png" alt="create a windows 35" class="article-image" loading="lazy"></p>
+                <p>More MFA Questions</p>
+                <p><img src="images/create-a-windows-36.png" alt="create a windows 36" class="article-image" loading="lazy"></p>
+                <p><img src="images/create-a-windows-37.png" alt="create a windows 37" class="article-image" loading="lazy"></p>
+                <p><strong>Now Time to Prepare</strong></p>
+                <p>PS C:\Users\User\Downloads\DataMigrationTool_AzureDevOps2022RTW_19.205.19599188\DataMigrationTool&gt; .\Migrator.exe prepare /collection:http://windev2305eval/DefaultCollection/ /tenantdomainname:pexabo.onmicrosoft.com /region:CUS</p>
+                <p>4 MFA &gt; Number entry over the Microsoft authenticator</p>
+                <p><img src="images/create-a-windows-38.png" alt="create a windows 38" class="article-image" loading="lazy"></p>
+                <p>Take a note of the Log Folder Created</p>
+                <p><img src="images/create-a-windows-39.png" alt="create a windows 39" class="article-image" loading="lazy"></p>
+                <p><strong>Choco install the azure storage explorer</strong></p>
+                <p>https://community.chocolatey.org/packages/microsoftazurestorageexplorer</p>
+                <p>choco install microsoftazurestorageexplorer</p>
+                <p><img src="images/create-a-windows-40.png" alt="create a windows 40" class="article-image" loading="lazy"></p>
+                <p>Pin it to the taskbar</p>
+                <p><img src="images/create-a-windows-41.png" alt="create a windows 41" class="article-image" loading="lazy"></p>
+                <p>Login to your Azure Account and Point to the Storage Account for Dacpacs</p>
+                <p>MFA</p>
+                <p><img src="images/create-a-windows-42.png" alt="create a windows 42" class="article-image" loading="lazy"></p>
+                <p>Create Storage</p>
+                <p><img src="images/create-a-windows-43.png" alt="create a windows 43" class="article-image" loading="lazy"></p>
+                <p><img src="images/create-a-windows-44.png" alt="create a windows 44" class="article-image" loading="lazy"></p>
+                <p><img src="images/create-a-windows-45.png" alt="create a windows 45" class="article-image" loading="lazy"></p>
+                <p>Check your version of the migration tool and the operating system and Azure devops server needs to lineup</p>
+                <p><img src="images/create-a-windows-46.png" alt="create a windows 46" class="article-image" loading="lazy"></p>
+                <p>Check your environment to make sure</p>
+                <p><img src="images/create-a-windows-47.png" alt="create a windows 47" class="article-image" loading="lazy"></p>
+                <p>Install SQL package and vscode</p>
+                <p>https://community.chocolatey.org/packages/sqlpackage</p>
+                <p>choco install sqlpackage -y</p>
+                <p>choco install vscode -y</p>
+                <p><img src="images/create-a-windows-48.png" alt="create a windows 48" class="article-image" loading="lazy"></p>
+                <p>Get the path and move it to favorites</p>
+                <p>The install of sqlpackage was successful.</p>
+                <p>Software installed to 'C:\ProgramData\chocolatey\lib\sqlpackage\tools'</p>
+                <p>Also save it to notepad for future easy access</p>
+                <p><img src="images/create-a-windows-49.png" alt="create a windows 49" class="article-image" loading="lazy"></p>
+                <p>Check SQL package</p>
+                <p><img src="images/create-a-windows-50.png" alt="create a windows 50" class="article-image" loading="lazy"></p>
+                <p>Find your Notion notes by the power of Full Text Search ( Gray Skull (: )</p>
+                <p><img src="images/create-a-windows-51.png" alt="create a windows 51" class="article-image" loading="lazy"></p>
+                <p>Create a folder for dacpacs</p>
+                <p><img src="images/create-a-windows-52.png" alt="create a windows 52" class="article-image" loading="lazy"></p>
+                <p><strong>WHEN CREATING DACPACS THE SYSTEM HAS TO BE DETACHED IN AZURE DEVOPS SERVER BUT ATTACHED IN SQL SERVER</strong></p>
+                <p>SqlPackage.exe /sourceconnectionstring:"Data Source=localhost;Initial Catalog=AzureDevOps_DefaultCollection;Integrated Security=True" /targetFile:C:\dacpac\Tfs_DefaultCollection.dacpac /action:extract /p:ExtractAllTableData=true /p:IgnoreUserLoginMappings=true /p:IgnorePermissions=true /p:Storage=Memory</p>
+                <p>Save your script to the notepad for future reference and debug</p>
+                <p><img src="images/create-a-windows-53.png" alt="create a windows 53" class="article-image" loading="lazy"></p>
+                <p>Make sure the connection string works</p>
+                <p><img src="images/create-a-windows-54.png" alt="create a windows 54" class="article-image" loading="lazy"></p>
+                <p>Certificate Chain By Pass</p>
+                <p><img src="images/create-a-windows-55.png" alt="create a windows 55" class="article-image" loading="lazy"></p>
+                <p>https://learn.microsoft.com/en-us/troubleshoot/sql/database-engine/connect/certificate-chain-not-trusted?tabs=ole-db-driver-19</p>
+                <p>Let it process the tables</p>
+                <p><img src="images/create-a-windows-56.png" alt="create a windows 56" class="article-image" loading="lazy"></p>
+                <p>It would take the time get a tea at this time.</p>
+                <p><img src="images/create-a-windows-57.png" alt="create a windows 57" class="article-image" loading="lazy"></p>
+                <p>Before Moving the <strong>dacpacs </strong>UPDATE the necessary parts</p>
+                <p><img src="images/create-a-windows-58.png" alt="create a windows 58" class="article-image" loading="lazy"></p>
+                <p>Use VSCode and Open the file under the log folder</p>
+                <p><img src="images/create-a-windows-59.png" alt="create a windows 59" class="article-image" loading="lazy"></p>
+                <p>Logs as top folder</p>
+                <p><img src="images/create-a-windows-60.png" alt="create a windows 60" class="article-image" loading="lazy"></p>
+                <p>VSCode Open up tactic</p>
+                <p>code .</p>
+                <p><img src="images/create-a-windows-61.png" alt="create a windows 61" class="article-image" loading="lazy"></p>
+                <p>Set trust</p>
+                <p><img src="images/create-a-windows-62.png" alt="create a windows 62" class="article-image" loading="lazy"></p>
+                <p>Go to latest import.json</p>
+                <p><img src="images/create-a-windows-63.png" alt="create a windows 63" class="article-image" loading="lazy"></p>
+                <p>4 places to update before the trigger</p>
+                <p><img src="images/create-a-windows-64.png" alt="create a windows 64" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>
+                <p>Sas Update</p>
+                </li>
+                <li>
+                <p>dacpacfile</p>
+                </li>
+                <li>
+                <p>target organization</p>
+                </li>
+                <li>
+                <p>dryrun</p>
+                </li>
+                </ul>
+                <p>First update Create Tokens( 2 weeks minimum )</p>
+                <p>dacpac level</p>
+                <p><img src="images/create-a-windows-65.png" alt="create a windows 65" class="article-image" loading="lazy"></p>
+                <p><img src="images/create-a-windows-66.png" alt="create a windows 66" class="article-image" loading="lazy"></p>
+                <p>Cloud server faster copy</p>
+                <p><img src="images/create-a-windows-67.png" alt="create a windows 67" class="article-image" loading="lazy"></p>
+                <p>Now time to go to logs and open the vscode</p>
+                <p>Master these files before moving them to cloud</p>
+                <p>When the migration starts it is from cloud to cloud ! After you are done it is time to do the transfer much faster!</p>
+                <p><img src="images/create-a-windows-68.png" alt="create a windows 68" class="article-image" loading="lazy"></p>
+                <p>Take the dacpac name from here</p>
+                <p><img src="images/create-a-windows-69.png" alt="create a windows 69" class="article-image" loading="lazy"></p>
+                <p>Have it pinned and set it in the easy access</p>
+                <p><img src="images/create-a-windows-70.png" alt="create a windows 70" class="article-image" loading="lazy"></p>
+                <p>Check the dacpack size</p>
+                <p><img src="images/create-a-windows-71.png" alt="create a windows 71" class="article-image" loading="lazy"></p>
+                <p>Trigger Migration</p>
+                <p>cd C:\Users\rifaterdemsahin\Downloads\DataMigrationTool_AzureDevOps2022RTW_19.205.19599188\DataMigrationTool</p>
+                <p>.\Migrator.exe import /importfile:Logs\DefaultCollection\20230607_134346\import.json</p>
+                <p>Add the script to the notes on the desktop for the future reference</p>
+                <p><img src="images/create-a-windows-72.png" alt="create a windows 72" class="article-image" loading="lazy"></p>
+                <p>If there is an error with the blob</p>
+                <p><img src="images/create-a-windows-73.png" alt="create a windows 73" class="article-image" loading="lazy"></p>
+                <p>Make sure the folders are matching</p>
+                <p><img src="images/create-a-windows-74.png" alt="create a windows 74" class="article-image" loading="lazy"></p>
+                <p>Try the access on your staging box</p>
+                <p><img src="images/create-a-windows-75.png" alt="create a windows 75" class="article-image" loading="lazy"></p>
+                <p>After correct was key location</p>
+                <p><img src="images/create-a-windows-76.png" alt="create a windows 76" class="article-image" loading="lazy"></p>
+                <p><img src="images/create-a-windows-77.png" alt="create a windows 77" class="article-image" loading="lazy"></p>
+                <p><strong>NOW DETACH TIME</strong></p>
+                <p><strong>Pin the admin console to the taskbar</strong></p>
+                <p>Detach ( the transformation happened from 2018 to 2022 import )</p>
+                <p><img src="images/create-a-windows-78.png" alt="create a windows 78" class="article-image" loading="lazy"></p>
+                <p><img src="images/create-a-windows-79.png" alt="create a windows 79" class="article-image" loading="lazy"></p>
+                <p>Push your back up</p>
+                <p><img src="images/create-a-windows-80.png" alt="create a windows 80" class="article-image" loading="lazy"></p>
+                <p>Pin to start the backup tool SQL management studio</p>
+                <p><img src="images/create-a-windows-81.png" alt="create a windows 81" class="article-image" loading="lazy"></p>
+                <p>Also to the task bar</p>
+                <p><img src="images/create-a-windows-82.png" alt="create a windows 82" class="article-image" loading="lazy"></p>
+                <p>Connect to the box and backup the collection</p>
+                <p><img src="images/create-a-windows-83.png" alt="create a windows 83" class="article-image" loading="lazy"></p>
+                <p><img src="images/create-a-windows-84.png" alt="create a windows 84" class="article-image" loading="lazy"></p>
+                <p>Wait it out</p>
+                <p><img src="images/create-a-windows-85.png" alt="create a windows 85" class="article-image" loading="lazy"></p>
+                <p>Detach from the Administration Console</p>
+                <p><img src="images/create-a-windows-86.png" alt="create a windows 86" class="article-image" loading="lazy"></p>
+                <p><img src="images/create-a-windows-87.png" alt="create a windows 87" class="article-image" loading="lazy"></p>
+                <p><img src="images/create-a-windows-88.png" alt="create a windows 88" class="article-image" loading="lazy"></p>
+                <p>ReTrigger</p>
+                <p><img src="images/create-a-windows-89.png" alt="create a windows 89" class="article-image" loading="lazy"></p>
+                <p><img src="images/create-a-windows-90.png" alt="create a windows 90" class="article-image" loading="lazy"></p>
+                <p>If the db is detached by the migratory fails restart the box to drop caches.</p>
+                <p>Give the permissions and the URL at the container level in the middle</p>
+                <p><img src="images/create-a-windows-91.png" alt="create a windows 91" class="article-image" loading="lazy"></p>
+                <p>Ask azure support if stuck</p>
+                <p><img src="images/create-a-windows-92.png" alt="create a windows 92" class="article-image" loading="lazy"></p>
+                <p>Trouble Shoot Guide</p>
+                <p>https://learn.microsoft.com/en-us/azure/devops/migrate/migration-troubleshooting?view=azure-devops</p>
+                <p>Looks like I need to <strong>recreate the dacpac</strong></p>
+                <p><img src="images/create-a-windows-93.png" alt="create a windows 93" class="article-image" loading="lazy"></p>
+                <p>After recreating the <strong>dacpac </strong>make sure to prepare one more time otherwise it can fail just like this</p>
+                <p><img src="images/create-a-windows-94.png" alt="create a windows 94" class="article-image" loading="lazy"></p>
+                <p>Cost increase till we move on to the customer staging machine</p>
+                <p><img src="images/create-a-windows-95.png" alt="create a windows 95" class="article-image" loading="lazy"></p>
+                <p>Get the importID to give it to the Azure support</p>
+                <p><img src="images/create-a-windows-96.png" alt="create a windows 96" class="article-image" loading="lazy"></p>
+                <p>[Info @18:29:44.796] Import ID: 57ac4c69-b50a-4b2c-ad29-fa4af7000631</p>
+                <p>Azure Support</p>
+                <p><img src="images/create-a-windows-97.png" alt="create a windows 97" class="article-image" loading="lazy"></p>
+                <p>Check SQL package version</p>
+                <p><img src="images/create-a-windows-98.png" alt="create a windows 98" class="article-image" loading="lazy"></p>
+                <p>Learn where you made the error from the Azure support</p>
+                <p><img src="images/create-a-windows-99.png" alt="create a windows 99" class="article-image" loading="lazy"></p>
+                <p>Learn the order</p>
+                <p><img src="images/create-a-windows-100.png" alt="create a windows 100" class="article-image" loading="lazy"></p>
+                <p>Fails in the first 10 minutes</p>
+                <p><img src="images/create-a-windows-101.png" alt="create a windows 101" class="article-image" loading="lazy"></p>
+                <p>Check SQL package from the command prompt</p>
+                <p><img src="images/create-a-windows-102.png" alt="create a windows 102" class="article-image" loading="lazy"></p>
+                <p>Reread the error and start from scratch and share with the cohost the Azure support</p>
+                <p><img src="images/create-a-windows-103.png" alt="create a windows 103" class="article-image" loading="lazy"></p>
+                <p>Recorded Steps</p>
+                <ul>
+                <li>
+                <p>Turn on the box ✅</p>
+                </li>
+                <li>
+                <p>detach the collection</p>
+                </li>
+                <li>
+                <p>create a dacpac with the detached collectiondb name it v3</p>
+                </li>
+                <li>
+                <p>move to storage</p>
+                </li>
+                <li>
+                <p>attach</p>
+                </li>
+                <li>
+                <p>create a SAS key</p>
+                </li>
+                <li>
+                <p>validate</p>
+                </li>
+                <li>
+                <p>prepare</p>
+                </li>
+                <li>
+                <p>update the import json</p>
+                </li>
+                <li>
+                <p>import</p>
+                </li>
+                <li>
+                <p>report back to support with import id and the <strong>video</strong></p>
+                </li>
+                <li>
+                <p>Delete the blob and recreate</p>
+                </li>
+                </ul>
+                <p>It fails at the prototype and the Azure team with SQL team is working on it to resolve it.</p>
+                <div class="video-embed"><iframe src="https://www.loom.com/embed/c41eee2d38ed4d3d8cb2e635f4d2cc64" frameborder="0" allowfullscreen></iframe></div>
+                
+                <p>https://0fa1fa7e-c21a-4ce0-b746-e298cc48024e.usrfiles.com/html/2b2e4b_d767b483cae16e027c4ea8ac7906fbf4.html</p>
+                <p><strong>Reference</strong></p>
+                <p>https://sonin.agency/the-4ps-innovation-model-poc-prototype-pilot-production</p>
+                <p>Contact me on Linkedin &gt; https://www.linkedin.com/in/rifaterdemsahin/</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

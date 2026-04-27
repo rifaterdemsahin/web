@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change the Shell To Execute - Rifat Erdem Sahin</title>
+    <meta name="description" content="Change the Shell To Execute Swap The guidance you provided for patching a Kubernetes CronJob using the oc or kubectl command in PowerShell is thorough and accurate.">
+    <meta name="keywords" content="Change the Shell To Execute">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/10/08/change-the-shell-to-execute/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/10/08/change-the-shell-to-execute/">
+    <meta property="og:title" content="Change the Shell To Execute">
+    <meta property="og:description" content="Change the Shell To Execute Swap The guidance you provided for patching a Kubernetes CronJob using the oc or kubectl command in PowerShell is thorough and accurate.">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/10/08/change-the-shell-to-execute/">
+    <meta property="twitter:title" content="Change the Shell To Execute">
+    <meta property="twitter:description" content="Change the Shell To Execute Swap The guidance you provided for patching a Kubernetes CronJob using the oc or kubectl command in PowerShell is thorough and accurate.">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Change the Shell To Execute",
+      "description": "Change the Shell To Execute Swap The guidance you provided for patching a Kubernetes CronJob using the oc or kubectl command in PowerShell is thorough and accurate.",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-10-08",
+      "dateModified": "2024-10-08",
+      "url": "https://www.rifaterdemsahin.com/2024/10/08/change-the-shell-to-execute/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/10/08/change-the-shell-to-execute/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Change the Shell To Execute</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>October 8, 2024</span>
+                    <span>&bull;</span>
+                    <span>26 min read</span>
+                </div>
+                <p class="article-excerpt">Change the Shell To Execute Swap The guidance you provided for patching a Kubernetes CronJob using the oc or kubectl command in PowerShell is thorough and accurate.</p>
+            </header>
+            <article class="article-content">
+                <h1>Change the Shell To Execute</h1>
+                <p><img src="images/change-the-shell-1.png" alt="change the shell 1" class="article-image" loading="lazy"></p>
+                <p>Swap </p>
+                <p><img src="images/change-the-shell-2.png" alt="change the shell 2" class="article-image" loading="lazy"></p>
+                <p>The guidance you provided for patching a Kubernetes <code>CronJob</code> using the <code>oc</code> or <code>kubectl</code> command in PowerShell is thorough and accurate. Here’s a brief recap with additional clarifications and tips to ensure the process goes smoothly:</p>
+                <h3>Summary of Key Points:</h3>
+                <ul>
+                <li>
+                <p><strong>Command Syntax in PowerShell</strong>:</p>
+                </li>
+                <li>
+                <p><strong>Single Quotes</strong>: Use single quotes around the JSON payload to avoid escaping double quotes. This is generally simpler and avoids common syntax errors.</p>
+                </li>
+                <li>
+                <p><strong>Double Quotes with Escapes</strong>: If you choose to use double quotes for the JSON string, remember to escape each double quote inside the JSON payload.</p>
+                </li>
+                <li>
+                <p><strong>Namespace Specification</strong>:</p>
+                </li>
+                <li>
+                <p>Always specify the namespace using <code>-n &lt;namespace&gt;</code> to ensure the command is executed on the correct resource, especially in environments where the current namespace might differ.</p>
+                </li>
+                <li>
+                <p><strong>Verification</strong>:</p>
+                </li>
+                <li>
+                <p>After executing the patch command, verify that the <code>suspend</code> field is set to <code>true</code> by fetching the cron job's YAML representation.</p>
+                </li>
+                </ul>
+                <h3>Additional Tips:</h3>
+                <ul>
+                <li><strong>Using WSL (Windows Subsystem for Linux)</strong>:<br />
+                If you are using WSL instead of PowerShell, the command syntax is slightly different because WSL is more Unix-like. In WSL, you would typically use the regular single or double quotes without escaping, as you would in a standard Linux shell:</li>
+                </ul>
+                <p>oc patch cronjob cleanup-job -n maintenance-cronjobs -p '{"spec": {"suspend": true}}'</p>
+                <ul>
+                <li>
+                <p><strong>Handling JSON and YAML Formats</strong>:</p>
+                </li>
+                <li>
+                <p>In some cases, using a YAML file to patch resources might be more readable, especially for larger patches. This is how you could create a YAML patch file: <code>spec: suspend: true</code> And then apply it with:</p>
+                </li>
+                </ul>
+                <p>oc patch cronjob cleanup-job -n maintenance-cronjobs --patch "$(Get-Content -Raw -Path patch.yaml)"</p>
+                <ul>
+                <li>
+                <p><strong>Troubleshooting</strong>:</p>
+                </li>
+                <li>
+                <p>If the command fails, double-check for any unexpected characters or extra spaces in the command. Additionally, ensure that your OpenShift CLI (<code>oc</code>) is correctly configured to interact with your cluster (check with <code>oc whoami</code>).</p>
+                </li>
+                <li>
+                <p>If you're using Kubernetes with <code>kubectl</code> instead of OpenShift with <code>oc</code>, the commands and syntax remain the same.</p>
+                </li>
+                </ul>
+                <p>By following these instructions, you should be able to patch the <code>CronJob</code> successfully in various environments, whether using PowerShell or WSL.</p>
+                <p>wsl open up. mounted the windows location</p>
+                <p><img src="images/change-the-shell-3.png" alt="change the shell 3" class="article-image" loading="lazy"></p>
+                <p><img src="images/change-the-shell-4.png" alt="change the shell 4" class="article-image" loading="lazy"></p>
+                <p>To install the OpenShift CLI (<code>oc</code>) from a specific container image using <code>wget</code> isn't directly possible, as <code>wget</code> is typically used to download files from URLs rather than pulling container images. However, you can pull the OpenShift CLI from the container image specified using a container runtime like <code>docker</code> or <code>podman</code>. Below are the steps to do this:</p>
+                <p><img src="images/change-the-shell-5.png" alt="change the shell 5" class="article-image" loading="lazy"></p>
+                <h3>1. <strong>Pulling the OpenShift CLI Using Docker or Podman</strong></h3>
+                <p>First, you'll need to have either Docker or Podman installed on your system. Once you have a container runtime, follow these steps to extract the OpenShift CLI (<code>oc</code>) from the container image:</p>
+                <h4>Using Docker:</h4>
+                <ul>
+                <li><strong>Pull the Container Image</strong>: Run the following command to pull the image containing the OpenShift CLI:</li>
+                </ul>
+                <p>docker pull quay.io/openshift/okd-content@sha256:2720e98c9d04bb1b191c1dcac9fea8bff40c1701dd91f721101f4f4fb43576e0</p>
+                <ul>
+                <li><strong>Create a Container from the Image</strong>: Next, create a container from this image. Use a temporary container to extract the binary:</li>
+                </ul>
+                <p>docker create --name oc-cli quay.io/openshift/okd-content@sha256:2720e98c9d04bb1b191c1dcac9fea8bff40c1701dd91f721101f4f4fb43576e0</p>
+                <ul>
+                <li><strong>Copy the <code>oc</code> Binary from the Container</strong>: Copy the <code>oc</code> binary from the container to your host system:</li>
+                </ul>
+                <p>docker cp oc-cli:/usr/bin/oc ./oc</p>
+                <ul>
+                <li><strong>Move the <code>oc</code> Binary to a Directory in Your PATH</strong>: Move the <code>oc</code> binary to <code>/usr/local/bin</code> and make it executable:</li>
+                </ul>
+                <p>sudo mv ./oc /usr/local/bin/oc<br />
+                   sudo chmod +x /usr/local/bin/oc</p>
+                <ul>
+                <li><strong>Remove the Temporary Container</strong>: Clean up by removing the temporary container:</li>
+                </ul>
+                <p>docker rm oc-cli</p>
+                <h4>Using Podman:</h4>
+                <p>If you prefer to use <code>podman</code> instead of <code>docker</code>, the steps are nearly identical, just replace <code>docker</code> with <code>podman</code> in the commands.</p>
+                <h3>2. <strong>Verify the Installation</strong></h3>
+                <p>After moving the binary to your PATH, verify the installation with:</p>
+                <p>oc version</p>
+                <h3>3. <strong>Alternative Method: Direct Download</strong></h3>
+                <p>If you want to avoid using containers, you can directly download the OpenShift CLI (<code>oc</code>) from a release page:</p>
+                <ul>
+                <li>
+                <p><strong>Find the Latest OKD Release</strong>: Visit the <a href="https://github.com/openshift/origin/releases">OpenShift Origin releases page</a> to find the latest release suitable for your operating system.</p>
+                </li>
+                <li>
+                <p><strong>Download the CLI for Linux</strong>: Use <code>wget</code> to download the tarball for the Linux release:</p>
+                </li>
+                </ul>
+                <p>wget https://github.com/openshift/origin/releases/download/<release-version>/openshift-origin-client-tools-<version>-linux-64bit.tar.gz</p>
+                <p>Replace <code>&lt;release-version&gt;</code> and <code>&lt;version&gt;</code> with the appropriate values from the releases page.</p>
+                <ul>
+                <li><strong>Extract and Install</strong>: Extract the downloaded tarball and move the <code>oc</code> binary to <code>/usr/local/bin</code>:</li>
+                </ul>
+                <p>tar -xvzf openshift-origin-client-tools-<version>-linux-64bit.tar.gz<br />
+                   sudo mv openshift-origin-client-tools-<version>-linux-64bit/oc /usr/local/bin/<br />
+                   sudo chmod +x /usr/local/bin/oc</p>
+                <ul>
+                <li><strong>Cleanup</strong>: Remove the downloaded tarball and extracted folder:</li>
+                </ul>
+                <p>rm -rf openshift-origin-client-tools-<version>-linux-64bit.tar.gz openshift-origin-client-tools-<version>-linux-64bit</p>
+                <p>By following these steps, you should be able to install the <code>oc</code> CLI using either method.</p>
+                <p>Similar Problem and Repo is there with md format</p>
+                <p><img src="images/change-the-shell-6.png" alt="change the shell 6" class="article-image" loading="lazy"></p>
+                <p><img src="images/change-the-shell-7.png" alt="change the shell 7" class="article-image" loading="lazy"></p>
+                <p>Docker inside running is also a case?</p>
+                <p><img src="images/change-the-shell-8.png" alt="change the shell 8" class="article-image" loading="lazy"></p>
+                <p>oc works</p>
+                <p><img src="images/change-the-shell-9.png" alt="change the shell 9" class="article-image" loading="lazy"></p>
+                <p><img src="images/change-the-shell-10.png" alt="change the shell 10" class="article-image" loading="lazy"></p>
+                <p>sudo did not work </p>
+                <p><img src="images/change-the-shell-11.png" alt="change the shell 11" class="article-image" loading="lazy"></p>
+                <p>The error message you're encountering indicates that the <code>oc login</code> command cannot connect to the OpenShift API server at <code>https://api.crc.testing:6443</code>. The error <code>dial tcp 127.0.0.1:6443: connect: connection refused</code> suggests that either the server is not running, the hostname cannot be resolved, or the port is not open/accessible from your environment.</p>
+                <p>Here are several steps you can take to troubleshoot and resolve this issue:</p>
+                <h3>1. <strong>Verify OpenShift Cluster Status</strong></h3>
+                <p>Ensure that your OpenShift cluster is running. If you're using CodeReady Containers (CRC) on your local machine:</p>
+                <ul>
+                <li><strong>Start the CRC Cluster</strong>: If you haven't already, start your CRC cluster with:</li>
+                </ul>
+                <p>crc start</p>
+                <p>This command will start your OpenShift cluster locally if it is installed correctly. Ensure there are no errors during startup.</p>
+                <ul>
+                <li><strong>Check Cluster Status</strong>: After starting, you can verify the status with:</li>
+                </ul>
+                <p>crc status</p>
+                <p>This command will confirm whether the cluster is running or if there are any issues.</p>
+                <h3>2. <strong>Check Network Connectivity and DNS Resolution</strong></h3>
+                <ul>
+                <li><strong>Verify DNS Resolution</strong>: Check if the hostname <code>api.crc.testing</code> resolves correctly. Run the following command in your WSL terminal:</li>
+                </ul>
+                <p>nslookup api.crc.testing</p>
+                <p><img src="images/change-the-shell-12.png" alt="change the shell 12" class="article-image" loading="lazy"></p>
+                <p>If it does not resolve, there may be an issue with your DNS settings or how your WSL network is configured.</p>
+                <ul>
+                <li><strong>Test Network Connectivity</strong>: Verify if the port <code>6443</code> is accessible:</li>
+                </ul>
+                <p>curl -k https://api.crc.testing:6443</p>
+                <p>If you receive an error (like <code>connection refused</code>), it indicates a network issue or that the OpenShift API server isn't listening on that port.</p>
+                <h3>3. <strong>Ensure Correct <code>oc</code> and Cluster Configuration</strong></h3>
+                <ul>
+                <li><strong>Verify <code>oc</code> Configuration</strong>: Check if <code>oc</code> is correctly configured and pointing to the right context. You can list contexts with:</li>
+                </ul>
+                <p>oc config get-contexts</p>
+                <p>And see the current context with:</p>
+                <p>oc config current-context</p>
+                <ul>
+                <li><strong>Reconfigure Cluster Host Entries</strong>: Sometimes, WSL needs explicit host entries to resolve DNS names correctly. Check your <code>/etc/hosts</code> file to ensure that <code>api.crc.testing</code> is mapped to the correct IP address (usually <code>127.0.0.1</code> or a CRC-specific IP). Open and edit your <code>/etc/hosts</code> file:</li>
+                </ul>
+                <p>sudo nano /etc/hosts</p>
+                <p>Add the following line if it's missing or incorrect:</p>
+                <p>127.0.0.1 api.crc.testing</p>
+                <p>Save and exit.</p>
+                <p><img src="images/change-the-shell-13.png" alt="change the shell 13" class="article-image" loading="lazy"></p>
+                <h3>4. <strong>Check Firewall and Network Settings</strong></h3>
+                <p>Ensure that any firewall or network security settings on your host machine are not blocking connections. Since CRC typically runs on a VM or container within your host, make sure traffic is allowed through port <code>6443</code>.</p>
+                <ul>
+                <li><strong>Check Windows Firewall Settings</strong>: Make sure your Windows Firewall or any antivirus software is not blocking connections to <code>127.0.0.1</code> on port <code>6443</code>.</li>
+                </ul>
+                <p><img src="images/change-the-shell-14.png" alt="change the shell 14" class="article-image" loading="lazy"></p>
+                <p><img src="images/change-the-shell-15.png" alt="change the shell 15" class="article-image" loading="lazy"></p>
+                <h3>5. <strong>Restart and Reconfigure WSL Network</strong></h3>
+                <p>Sometimes, the WSL network might not be configured correctly or might need a restart:</p>
+                <ul>
+                <li><strong>Restart WSL</strong>: Restart the WSL service with the following commands in PowerShell (Run as Administrator):</li>
+                </ul>
+                <p>wsl --shutdown<br />
+                  wsl</p>
+                <p><img src="images/change-the-shell-16.png" alt="change the shell 16" class="article-image" loading="lazy"></p>
+                <p>ubuntu on</p>
+                <p><img src="images/change-the-shell-17.png" alt="change the shell 17" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Reconfigure WSL Networking</strong>: Ensure WSL is correctly configured to use your host's network. Check <code>/etc/resolv.conf</code> for DNS settings or modify network adapter settings in Windows if necessary.</li>
+                </ul>
+                <p><img src="images/change-the-shell-18.png" alt="change the shell 18" class="article-image" loading="lazy"></p>
+                <h3>6. <strong>Re-login with <code>oc</code></strong></h3>
+                <p>After ensuring your CRC and WSL environments are correctly set up, try logging in again with:</p>
+                <p>sudo oc login --token=sha256~_96_LtEYOtK2YhYpCdcY3slvqCJ3WMGXWoijWyYnvDg --server=https://api.crc.testing:6443</p>
+                <h3>Summary</h3>
+                <p>By following these steps, you should be able to diagnose the root cause of the connection issue to your OpenShift cluster. Focus on verifying that your cluster is running and that DNS and networking configurations are correctly set up for both your host and WSL environments.</p>
+                <hr />
+                <p>The error you're encountering, <code>dial tcp 127.0.0.1:6443: connect: connection refused</code>, indicates that the <code>oc login</code> command cannot reach the OpenShift server at the specified address and port. This issue often arises from network configuration problems in WSL (Windows Subsystem for Linux).</p>
+                <p>To address this, let's go through a few steps to troubleshoot and reconfigure your WSL networking setup:</p>
+                <h3>1. <strong>Check if WSL is Using the Correct DNS</strong></h3>
+                <p>The content of your <code>/etc/resolv.conf</code> file suggests that WSL is set to automatically generate DNS settings. The current DNS server (<code>10.255.255.254</code>) may not be correct for reaching the OpenShift API server.</p>
+                <p>To use the correct DNS, follow these steps:</p>
+                <ul>
+                <li>Open <code>/etc/wsl.conf</code> with a text editor like <code>nano</code> or <code>vim</code>:</li>
+                </ul>
+                <p>sudo nano /etc/wsl.conf</p>
+                <ul>
+                <li>If the file doesn't exist, create it and add the following content:</li>
+                </ul>
+                <p>[network]<br />
+                  generateResolvConf = false</p>
+                <ul>
+                <li>Save and close the file.</li>
+                </ul>
+                <h3>2. <strong>Manually Set DNS in <code>/etc/resolv.conf</code></strong></h3>
+                <p>After modifying <code>/etc/wsl.conf</code>, you need to set up your DNS manually:</p>
+                <ul>
+                <li>Stop WSL and remove the current <code>/etc/resolv.conf</code> file:</li>
+                </ul>
+                <p>wsl --shutdown<br />
+                   sudo rm /etc/resolv.conf</p>
+                <ul>
+                <li>Restart WSL and recreate <code>/etc/resolv.conf</code> with your preferred DNS server:</li>
+                </ul>
+                <p>sudo bash -c "echo 'nameserver 8.8.8.8' &gt; /etc/resolv.conf"</p>
+                <p>You can replace <code>8.8.8.8</code> with any other DNS server of your choice (e.g., your internal DNS or another public DNS like <code>1.1.1.1</code>).</p>
+                <h3>3. <strong>Restart WSL</strong></h3>
+                <p>Restart WSL to apply the changes:</p>
+                <p>wsl --shutdown<br />
+                wsl</p>
+                <p><img src="images/change-the-shell-19.png" alt="change the shell 19" class="article-image" loading="lazy"></p>
+                <h3>4. <strong>Verify OpenShift Server Accessibility</strong></h3>
+                <p>Ensure that the OpenShift server (<code>https://api.crc.testing:6443</code>) is accessible:</p>
+                <ul>
+                <li>Try pinging the server from WSL to check connectivity:</li>
+                </ul>
+                <p>ping api.crc.testing</p>
+                <ul>
+                <li>If ping is successful, check if you can reach the server on the specific port:</li>
+                </ul>
+                <p>curl -k https://api.crc.testing:6443</p>
+                <p>If you see an output or even an SSL error (since you're using <code>-k</code>), it means the server is reachable.</p>
+                <h3>5. <strong>Check Windows Firewall and Network Adapter Settings</strong></h3>
+                <p>If you still face issues, make sure your Windows firewall or any network adapter settings aren't blocking traffic between WSL and the external network:</p>
+                <ul>
+                <li>
+                <p>Open <strong>Windows Defender Firewall</strong> settings.</p>
+                </li>
+                <li>
+                <p>Check if there are any rules blocking WSL or network traffic to <code>api.crc.testing</code>.</p>
+                </li>
+                <li>
+                <p>If necessary, adjust the rules to allow the required connections.</p>
+                </li>
+                </ul>
+                <h3>6. <strong>Verify the OpenShift Server Status</strong></h3>
+                <p>Ensure the OpenShift server is running and accessible:</p>
+                <ul>
+                <li>Check if the OpenShift server is up and listening on port 6443. You may need to access the server or host machine directly to verify this.</li>
+                </ul>
+                <p><img src="images/change-the-shell-20.png" alt="change the shell 20" class="article-image" loading="lazy"></p>
+                <h3>Summary</h3>
+                <p>After making these changes, try running the <code>oc login</code> command again. If the server is still not reachable, you might need to check additional settings in both WSL and your network configuration or ensure that the OpenShift server itself is properly running and accessible.</p>
+                <p>Logs in the windows not in WSL</p>
+                <p><img src="images/change-the-shell-21.png" alt="change the shell 21" class="article-image" loading="lazy"></p>
+                <p><img src="images/change-the-shell-22.png" alt="change the shell 22" class="article-image" loading="lazy"></p>
+                <p>The issue you're experiencing where <code>oc login</code> works in Windows PowerShell but not in WSL (Windows Subsystem for Linux) is likely due to differences in network configurations between the two environments. Here are some common reasons and solutions:</p>
+                <h3>Reasons for the Issue:</h3>
+                <ul>
+                <li>
+                <p><strong>Network Configuration in WSL</strong>:</p>
+                </li>
+                <li>
+                <p>WSL uses a different network interface than Windows. The connection refusal (<code>dial tcp 127.0.0.1:6443: connect: connection refused</code>) suggests that WSL might be trying to connect to <code>127.0.0.1</code> (localhost) instead of the actual external IP of your OpenShift cluster.</p>
+                </li>
+                <li>
+                <p><strong>Firewall or Proxy Settings</strong>:</p>
+                </li>
+                <li>
+                <p>Windows firewall or any network security software might allow connections from PowerShell but block them from WSL.</p>
+                </li>
+                <li>
+                <p><strong>WSL Version and DNS Resolution</strong>:</p>
+                </li>
+                <li>
+                <p>WSL 1 and WSL 2 handle networking differently. WSL 2 uses a virtualized network interface, which can sometimes lead to issues with DNS resolution or network access.</p>
+                </li>
+                <li>
+                <p><strong>Configuration Differences</strong>:</p>
+                </li>
+                <li>
+                <p>If your WSL environment lacks certain network tools or has different DNS settings, it might not be able to resolve the <code>api.crc.testing</code> domain correctly.</p>
+                </li>
+                </ul>
+                <h3>Possible Solutions:</h3>
+                <ul>
+                <li>
+                <p><strong>Check Network Interface in WSL</strong>:</p>
+                </li>
+                <li>
+                <p>Run <code>ifconfig</code> or <code>ip a</code> in WSL to see your network interfaces. Make sure you have an interface that can reach external networks.</p>
+                </li>
+                <li>
+                <p>Try accessing the OpenShift API server using its external IP instead of <code>localhost</code> or <code>127.0.0.1</code>.</p>
+                </li>
+                <li>
+                <p><strong>Update /etc/hosts in WSL</strong>:</p>
+                </li>
+                <li>
+                <p>If DNS resolution is an issue, add an entry for <code>api.crc.testing</code> in your <code>/etc/hosts</code> file in WSL pointing to the correct IP address of your OpenShift cluster.</p>
+                </li>
+                <li>
+                <p><strong>Disable Firewall Temporarily</strong>:</p>
+                </li>
+                <li>
+                <p>Temporarily disable any firewalls or network security software in Windows to see if that resolves the issue. Ensure you enable them afterward for security.</p>
+                </li>
+                <li>
+                <p><strong>Use WSL 2 and Update WSL</strong>:</p>
+                </li>
+                <li>
+                <p>If you're using WSL 1, consider upgrading to WSL 2, which has better network support. You can upgrade using:<br />
+                <code>bash wsl --set-version &lt;distribution name&gt; 2</code></p>
+                </li>
+                <li>
+                <p>Update WSL to the latest version to ensure you have all the recent fixes and improvements.</p>
+                </li>
+                <li>
+                <p><strong>Set Up Port Forwarding in WSL</strong>:</p>
+                </li>
+                <li>
+                <p>You might need to set up port forwarding from the Windows network interface to the WSL interface if WSL cannot directly access the network.</p>
+                </li>
+                </ul>
+                <h3>Additional Steps:</h3>
+                <ul>
+                <li>
+                <p>Run <code>ping api.crc.testing</code> in both Windows PowerShell and WSL to see if both environments resolve to the same IP.</p>
+                </li>
+                <li>
+                <p>Check if the <code>oc</code> command and other required tools are correctly configured in your WSL environment.</p>
+                </li>
+                </ul>
+                <p>By addressing these points, you should be able to diagnose and potentially resolve the connectivity issue in WSL.</p>
+                <p>`PS C:\Users\Pexabo&gt; bash wsl --set-version ubuntu 2<br />
+                &lt;3&gt;WSL (16) ERROR: CreateProcessParseCommon:711: Failed to translate C:\Users\Pexabo<br />
+                &lt;3&gt;WSL (16) ERROR: CreateProcessParseCommon:757: getpwuid(0) failed 2<br />
+                &lt;3&gt;WSL (16) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Program Files (x86)\VMware\VMware Workstation\bin\<br />
+                &lt;3&gt;WSL (16) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Python312\Scripts\<br />
+                &lt;3&gt;WSL (16) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Python312\<br />
+                &lt;3&gt;WSL (16) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Windows\system32<br />
+                &lt;3&gt;WSL (16) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Windows<br />
+                &lt;3&gt;WSL (16) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Windows\System32\Wbem<br />
+                &lt;3&gt;WSL (16) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Windows\System32\WindowsPowerShell\v1.0\<br />
+                &lt;3&gt;WSL (16) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Windows\System32\OpenSSH\<br />
+                &lt;3&gt;WSL (16) ERROR: UtilTranslatePathList:2866: Failed to translate C:\ProgramData\chocolatey\bin<br />
+                &lt;3&gt;WSL (16) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Program Files\dotnet\<br />
+                &lt;3&gt;WSL (16) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Program Files\Microsoft VS Code\bin<br />
+                &lt;3&gt;WSL (16) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Program Files\Microsoft SQL Server\150\Tools\Binn\<br />
+                &lt;3&gt;WSL (16) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\<br />
+                &lt;3&gt;WSL (16) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Program Files\Git\cmd<br />
+                &lt;3&gt;WSL (16) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Program Files\Red Hat OpenShift Local\<br />
+                &lt;3&gt;WSL (16) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Program Files\Docker\Docker\resources\bin<br />
+                &lt;3&gt;WSL (16) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Program Files\nodejs\<br />
+                &lt;3&gt;WSL (16) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Users\Pexabo\AppData\Local\Microsoft\WindowsApps<br />
+                &lt;3&gt;WSL (16) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Users\Pexabo.dotnet\tools<br />
+                &lt;3&gt;WSL (16) ERROR: UtilTranslatePathList:2866: Failed to translate C:\Users\Pexabo\AppData\Roaming\npm<br />
+                Processing fstab with mount -a failed.<br />
+                Failed to mount C:\, see dmesg for more details.<br />
+                Failed to mount D:\, see dmesg for more details.<br />
+                Failed to mount F:\, see dmesg for more details.<br />
+                Failed to mount G:\, see dmesg for more details.<br />
+                Failed to mount K:\, see dmesg for more details.</p>
+                <p>&lt;3&gt;WSL (16) ERROR: CreateProcessEntryCommon:334: getpwuid(0) failed 2<br />
+                &lt;3&gt;WSL (16) ERROR: CreateProcessEntryCommon:505: execvpe /bin/bash failed 2<br />
+                &lt;3&gt;WSL (16) ERROR: CreateProcessEntryCommon:508: Create process not expected to return<br />
+                PS C:\Users\Pexabo&gt;`</p>
+                <p><img src="images/change-the-shell-23.png" alt="change the shell 23" class="article-image" loading="lazy"></p>
+                <p><img src="images/change-the-shell-24.png" alt="change the shell 24" class="article-image" loading="lazy"></p>
+                <p><img src="images/change-the-shell-25.png" alt="change the shell 25" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>To run the OpenShift Command Line Interface (CLI) tool (<code>oc</code>) using Docker, you can create a Docker container that has the <code>oc</code> CLI installed. The <code>oc</code> CLI allows you to interact with OpenShift clusters. Below are the steps to run the <code>oc</code> CLI in a Docker container.</p>
+                <p><img src="images/change-the-shell-26.png" alt="change the shell 26" class="article-image" loading="lazy"></p>
+                <h3>Step-by-Step Instructions</h3>
+                <p><img src="images/change-the-shell-27.png" alt="change the shell 27" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Pull an Image with <code>oc</code> Installed:</strong> First, you'll need to find a Docker image that has <code>oc</code> installed. If there isn't an official image, you can create one based on a base image like <code>alpine</code> or <code>ubuntu</code>. For example, use an image from Red Hat that includes <code>oc</code>:</li>
+                </ul>
+                <p><img src="images/change-the-shell-28.png" alt="change the shell 28" class="article-image" loading="lazy"></p>
+                <p>docker pull registry.redhat.io/openshift4/ose-cli:latest</p>
+                <ul>
+                <li><strong>Run the Docker Container with <code>oc</code> CLI:</strong> Once you have the image, you can run a Docker container using it. To use the <code>oc</code> command, you can run:</li>
+                </ul>
+                <p><img src="images/change-the-shell-29.png" alt="change the shell 29" class="article-image" loading="lazy"></p>
+                <p>docker run --rm -it registry.redhat.io/openshift4/ose-cli:latest oc</p>
+                <p>This command will:</p>
+                <ul>
+                <li>
+                <p><code>--rm</code>: Automatically remove the container when it exits.</p>
+                </li>
+                <li>
+                <p><code>-it</code>: Run in interactive mode and allocate a pseudo-TTY.</p>
+                </li>
+                <li>
+                <p><code>registry.redhat.io/openshift4/ose-cli:latest</code>: The Docker image with <code>oc</code> installed.</p>
+                </li>
+                <li>
+                <p><code>oc</code>: The command you want to run inside the container.</p>
+                </li>
+                <li>
+                <p><strong>Run Specific <code>oc</code> Commands:</strong> If you want to run specific <code>oc</code> commands, you can append them at the end of the <code>docker run</code> command. For example, to check the version of <code>oc</code>:</p>
+                </li>
+                </ul>
+                <p>docker run --rm -it registry.redhat.io/openshift4/ose-cli:latest oc version</p>
+                <ul>
+                <li><strong>Configure Access to OpenShift Cluster:</strong> To interact with an OpenShift cluster, you need to authenticate. You can do this by logging in with the <code>oc login</code> command. To log in, you'll need your OpenShift cluster URL and your credentials:</li>
+                </ul>
+                <p>docker run --rm -it registry.redhat.io/openshift4/ose-cli:latest oc login https://your-openshift-cluster-url -u your-username -p your-password</p>
+                <p><img src="images/change-the-shell-30.png" alt="change the shell 30" class="article-image" loading="lazy"></p>
+                <p>Replace <code>https://your-openshift-cluster-url</code>, <code>your-username</code>, and <code>your-password</code> with your OpenShift cluster's URL and your credentials.</p>
+                <ul>
+                <li><strong>Use Local <code>kubeconfig</code> File:</strong> If you have a local <code>kubeconfig</code> file with your cluster credentials, you can mount it into the Docker container using the <code>-v</code> flag:</li>
+                </ul>
+                <p>docker run --rm -it -v ~/.kube/config:/root/.kube/config:ro registry.redhat.io/openshift4/ose-cli:latest oc get pods</p>
+                <p>This command mounts your local <code>kubeconfig</code> file into the container, allowing <code>oc</code> to use your local credentials.</p>
+                <h3>Summary</h3>
+                <ul>
+                <li>
+                <p><strong>Pull the Docker image</strong> with <code>oc</code> installed.</p>
+                </li>
+                <li>
+                <p><strong>Run the Docker container</strong> interactively to use <code>oc</code>.</p>
+                </li>
+                <li>
+                <p><strong>Authenticate</strong> using <code>oc login</code> or <strong>use a local <code>kubeconfig</code> file</strong>.</p>
+                </li>
+                </ul>
+                <p>By following these steps, you should be able to run <code>oc</code> commands using Docker without needing to install <code>oc</code> locally.</p>
+                <hr />
+                <p>The error message you're encountering indicates that you need to authenticate with the Red Hat Container Registry to pull the <code>ose-cli</code> image. The registry requires credentials that are typically tied to a Red Hat Customer Portal account.</p>
+                <p>Here's how you can authenticate and pull the image:</p>
+                <h3>Step-by-Step Authentication and Pull Process</h3>
+                <ul>
+                <li><strong>Log in to the Red Hat Container Registry:</strong> To log in to the registry, use your Red Hat Customer Portal credentials. Run the following command and enter your username and password when prompted:</li>
+                </ul>
+                <p><img src="images/change-the-shell-31.png" alt="change the shell 31" class="article-image" loading="lazy"></p>
+                <p>docker login registry.redhat.io</p>
+                <p>Alternatively, if you're using Windows PowerShell as indicated by your prompt (<code>PS C:\Users\Pexabo&gt;</code>), run:</p>
+                <p>docker login registry.redhat.io</p>
+                <p>After running this command, you'll be prompted to enter your Red Hat Customer Portal <strong>username</strong> and <strong>password</strong>.</p>
+                <ul>
+                <li><strong>Pull the <code>ose-cli</code> Docker Image:</strong> Once you are logged in, you can pull the <code>ose-cli</code> image from the Red Hat Container Registry:</li>
+                </ul>
+                <p>docker pull registry.redhat.io/openshift4/ose-cli:latest</p>
+                <p>If you’re using PowerShell, you can run the same command:</p>
+                <p>docker pull registry.redhat.io/openshift4/ose-cli:latest</p>
+                <ul>
+                <li><strong>Run the <code>oc</code> Command in a Docker Container:</strong> After successfully pulling the image, you can run the <code>oc</code> commands as mentioned earlier. For example:</li>
+                </ul>
+                <p>docker run --rm -it registry.redhat.io/openshift4/ose-cli:latest oc version</p>
+                <p>This command will start the <code>ose-cli</code> Docker container and execute the <code>oc version</code> command.</p>
+                <p><img src="images/change-the-shell-32.png" alt="change the shell 32" class="article-image" loading="lazy"></p>
+                <h3>Additional Notes:</h3>
+                <ul>
+                <li>
+                <p><strong>Red Hat Subscription:</strong> To access the images in <code>registry.redhat.io</code>, you must have a Red Hat subscription tied to your account.</p>
+                </li>
+                <li>
+                <p><strong>Storing Credentials:</strong> Docker stores credentials locally after you log in. If you wish to log out after pulling the image, you can run:</p>
+                </li>
+                </ul>
+                <p>docker logout registry.redhat.io</p>
+                <ul>
+                <li><strong>Security</strong>: Ensure that your Red Hat Customer Portal credentials are kept secure. If you are using a shared environment or computer, consider logging out after you are done.</li>
+                </ul>
+                <p>By following these steps, you should be able to authenticate to the Red Hat registry, pull the required image, and use the <code>oc</code> command.</p>
+                <p>Event the container can not be accessed to crc with redhat code ?</p>
+                <p>PS C:\Users\Pexabo&gt; docker run --rm -it registry.redhat.io/openshift4/ose-cli:latest oc login --token=sha256~wYcSUe7xEEfLJARweHM9Dza9_WLbm2S2InlCx7sdMxo --server=https://api.crc.testing:6443<br />
+                error: dial tcp 127.0.0.1:6443: connect: connection refused - verify you have provided the correct host and port and that the server is currently running.</p>
+                <hr />
+                <p><img src="images/change-the-shell-33.png" alt="change the shell 33" class="article-image" loading="lazy"></p>
+                <p><img src="images/change-the-shell-34.png" alt="change the shell 34" class="article-image" loading="lazy"></p>
+                <p><img src="images/change-the-shell-35.png" alt="change the shell 35" class="article-image" loading="lazy"></p>
+                <p>The error message you're encountering (<code>dial tcp 127.0.0.1:6443: connect: connection refused</code>) indicates that the <code>oc</code> CLI tool inside the Docker container is unable to connect to your OpenShift cluster running at <code>https://api.crc.testing:6443</code>. This is likely because the cluster URL (<code>api.crc.testing</code>) is not accessible from within the Docker container due to network or DNS resolution issues.</p>
+                <h3>Potential Causes and Solutions</h3>
+                <ul>
+                <li>
+                <p><strong>Cluster Not Running</strong>:</p>
+                </li>
+                <li>
+                <p>Ensure that your OpenShift local cluster (CRC - CodeReady Containers) is actually running. You can check the status using the CRC CLI:</p>
+                </li>
+                </ul>
+                <p>crc status</p>
+                <p>If it's not running, start the cluster:</p>
+                <p>crc start</p>
+                <ul>
+                <li>
+                <p><strong>Network Connectivity from Docker to CRC</strong>:</p>
+                </li>
+                <li>
+                <p>Docker containers run in an isolated network, and this might prevent the container from accessing the OpenShift cluster on your local machine.</p>
+                </li>
+                <li>
+                <p>The <code>api.crc.testing</code> domain needs to be resolvable from within the Docker container. By default, Docker might not have access to this domain since it's likely set up in your local <code>/etc/hosts</code> or through a specific DNS configuration that Docker containers cannot access. Here’s how you can address the connectivity issue:</p>
+                </li>
+                <li>
+                <p><strong>Use Host Networking Mode</strong>: On Linux, you can use Docker's <code>--network host</code> option to allow the container to share the host's network stack. Unfortunately, this option is not available on Docker for Windows or Mac. Instead, you can explicitly map ports and handle DNS manually.</p>
+                </li>
+                <li>
+                <p><strong>Explicitly Set the Host Address</strong>:</p>
+                </li>
+                <li>
+                <p>If you are on Windows or Mac, Docker containers typically cannot resolve <code>api.crc.testing</code> because it’s only resolvable on the host machine. You can instead use the IP address directly. Here’s how you can determine the IP address of your CRC cluster and use it in the <code>docker run</code> command:</p>
+                </li>
+                <li>
+                <p><strong>Find the CRC IP Address</strong>: You can find the IP address of the CRC VM using: <code>crc ip</code> This will give you an IP address like <code>192.168.130.11</code>.</p>
+                </li>
+                <li>
+                <p><strong>Run the Docker Container with the CRC IP Address</strong>: Use this IP address in your <code>docker run</code> command instead of <code>api.crc.testing</code>: <code>docker run --rm -it registry.redhat.io/openshift4/ose-cli:latest oc login --token=sha256~wYcSUe7xEEfLJARweHM9Dza9_WLbm2S2InlCx7sdMxo --server=https://192.168.130.11:6443</code></p>
+                </li>
+                <li>
+                <p><strong>DNS Configuration in Docker</strong>:</p>
+                </li>
+                <li>
+                <p>You can modify Docker’s DNS settings to resolve <code>api.crc.testing</code> properly by mapping the CRC IP to this hostname. To achieve this, you might want to manually add an entry to Docker’s <code>--add-host</code> option. Here’s how: <code>docker run --rm -it --add-host=api.crc.testing:192.168.130.11 registry.redhat.io/openshift4/ose-cli:latest oc login --token=sha256~wYcSUe7xEEfLJARweHM9Dza9_WLbm2S2InlCx7sdMxo --server=https://api.crc.testing:6443</code> Replace <code>192.168.130.11</code> with the actual IP address you obtained using <code>crc ip</code>.</p>
+                </li>
+                </ul>
+                <h3>Summary</h3>
+                <ul>
+                <li>
+                <p><strong>Check if CRC is running</strong>: Ensure that your CRC instance is running.</p>
+                </li>
+                <li>
+                <p><strong>Use the correct network setup</strong>: Make sure Docker has access to the CRC network, either by using host networking (Linux only) or by setting the correct IP address in Docker's options.</p>
+                </li>
+                <li>
+                <p><strong>Explicit IP address usage</strong>: Use the IP address directly if DNS resolution does not work within the Docker container.</p>
+                </li>
+                <li>
+                <p><strong>Adjust DNS settings in Docker</strong>: Add the necessary host mappings to Docker if you want to use the hostname.</p>
+                </li>
+                </ul>
+                <p>By following these steps, you should be able to resolve the connectivity issue and successfully log in to your OpenShift cluster using the <code>oc</code> CLI within a Docker container.</p>
+                <hr />
+                <p>It looks like you're running Docker on your host machine while the CodeReady Containers (CRC) instance is running inside a Hyper-V virtual machine. In this setup, Docker containers on your host machine cannot directly communicate with the CRC instance because Hyper-V isolates the network of its virtual machines from the host.</p>
+                <h3>Solutions to Allow Docker to Access CRC in Hyper-V</h3>
+                <p>To enable communication between Docker containers and the CRC instance running inside a Hyper-V VM, you have a few options:</p>
+                <h4>1. <strong>Expose CRC Ports on the Host Network</strong></h4>
+                <p>You can expose the CRC's API server port (6443) on the host network so Docker containers can access it directly. This involves using port forwarding or setting up the network correctly in Hyper-V.</p>
+                <ul>
+                <li><strong>Find CRC VM's Internal IP Address</strong>: Run the following command in PowerShell to get the CRC IP address:</li>
+                </ul>
+                <p>crc ip</p>
+                <p>This will give you the IP address used by the CRC instance inside the Hyper-V VM.</p>
+                <ul>
+                <li><strong>Set Up Port Forwarding in Hyper-V</strong>: You can use PowerShell commands to set up a NAT (Network Address Translation) rule to forward traffic from a port on your host machine to the CRC VM's internal IP address and port 6443. Here is how you can do it:</li>
+                </ul>
+                <p>$vmName = "crc"  # Replace with your CRC VM name if different<br />
+                  $hostPort = 6443<br />
+                  $vmIpAddress = (Get-VMNetworkAdapter -VMName $vmName | Get-VMNetworkAdapterRoutingDomainMapping).DhcpAssignedIpAddress<br />
+                  $vmPort = 6443</p>
+                <p># Create a NAT rule to forward traffic from the host to the CRC VM<br />
+                  Add-NetNatStaticMapping -NatName "HyperVNat" -Protocol TCP -ExternalIPAddress "0.0.0.0" -ExternalPort $hostPort -InternalIPAddress $vmIpAddress -InternalPort $vmPort</p>
+                <p>This script will forward traffic from port 6443 on your host to port 6443 on the CRC VM.</p>
+                <p><img src="images/change-the-shell-36.png" alt="change the shell 36" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Use the Host's IP Address in Docker Command</strong>: After setting up port forwarding, use your host's IP address and port 6443 when running the Docker command:</li>
+                </ul>
+                <p>docker run --rm -it registry.redhat.io/openshift4/ose-cli:latest oc login --token=sha256~wYcSUe7xEEfLJARweHM9Dza9_WLbm2S2InlCx7sdMxo --server=https://<your-host-ip>:6443</p>
+                <p>Replace <code>&lt;your-host-ip&gt;</code> with the actual IP address of your host machine.</p>
+                <h4>2. <strong>Use Host Networking for Docker (Linux Only)</strong></h4>
+                <p>If you were on a Linux system, you could use Docker's <code>--network host</code> mode to allow Docker containers to use the host's network stack, making it possible to access <code>api.crc.testing</code> directly. However, this option is not available on Windows.</p>
+                <h4>3. <strong>Manually Add Host Entries</strong></h4>
+                <p>If you prefer not to set up port forwarding or if it doesn't suit your environment, you can manually add host entries in your Docker container to resolve the CRC VM's IP address:</p>
+                <ul>
+                <li><strong>Add Docker Host Entries</strong>:</li>
+                </ul>
+                <p>docker run --rm -it --add-host=api.crc.testing:<crc-ip> registry.redhat.io/openshift4/ose-cli:latest oc login --token=sha256~wYcSUe7xEEfLJARweHM9Dza9_WLbm2S2InlCx7sdMxo --server=https://api.crc.testing:6443</p>
+                <p>Replace <code>&lt;crc-ip&gt;</code> with the IP address you obtained from <code>crc ip</code>.</p>
+                <p><img src="images/change-the-shell-37.png" alt="change the shell 37" class="article-image" loading="lazy"></p>
+                <h4>4. <strong>Use a Proxy</strong></h4>
+                <p>Set up a simple proxy server on your host machine to forward traffic from the Docker container to the CRC VM. This method involves running a small HTTP proxy server that listens on the host network and forwards requests to the CRC VM.</p>
+                <h3>Summary</h3>
+                <p>To allow Docker containers to access a CRC instance running in Hyper-V:</p>
+                <ul>
+                <li>
+                <p><strong>Expose CRC ports on the host</strong> by using port forwarding.</p>
+                </li>
+                <li>
+                <p><strong>Use Docker's host networking mode</strong> if you are on Linux (not applicable for Windows).</p>
+                </li>
+                <li>
+                <p><strong>Manually add host entries</strong> to your Docker command to resolve the CRC IP address.</p>
+                </li>
+                <li>
+                <p><strong>Set up a proxy</strong> on your host to forward requests from Docker containers to the CRC VM.</p>
+                </li>
+                </ul>
+                <p>By following one of these methods, you should be able to resolve the network isolation issue and connect to your CRC instance from Docker containers.</p>
+                <p>Tried 3 to path </p>
+                <p>1)powershell string error</p>
+                <p>2)ubuntu access error</p>
+                <p>3)docker access error</p>
+                <hr />
+                <p>Outline and Summary: Troubleshooting Kubernetes CronJob Patching and OpenShift CLI Connectivity Issues</p>
+                <h4>1. <strong>Patching a Kubernetes CronJob in PowerShell</strong></h4>
+                <ul>
+                <li><strong>Command Syntax in PowerShell:</strong></li>
+                </ul>
+                <p><strong>Single Quotes:</strong> Use single quotes around the JSON payload to avoid escaping double quotes.</p>
+                <ul>
+                <li>
+                <p><strong>Double Quotes with Escapes:</strong> Use double quotes with properly escaped internal double quotes if preferred.</p>
+                </li>
+                <li>
+                <p><strong>Namespace Specification:</strong> <strong>Always </strong>specify the namespace using <code>-n &lt;namespace&gt;</code> to target the correct resource.</p>
+                </li>
+                </ul>
+                <p><img src="images/change-the-shell-38.png" alt="change the shell 38" class="article-image" loading="lazy"></p>
+                <p><img src="images/change-the-shell-39.png" alt="change the shell 39" class="article-image" loading="lazy"></p>
+                <p><img src="images/change-the-shell-40.png" alt="change the shell 40" class="article-image" loading="lazy"></p>
+                <p>Google stack overflow</p>
+                <p><img src="images/change-the-shell-41.png" alt="change the shell 41" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>
+                <p>V<strong>erification:</strong> Verify that the <code>suspend</code> field is set to <code>true</code> by fetching the CronJob's YAML after patching.</p>
+                </li>
+                <li>
+                <p><strong>Using WSL for Patching:</strong></p>
+                </li>
+                </ul>
+                <p>Different syntax requirements in WSL (Unix-like behavior).</p>
+                <ul>
+                <li><strong>Handling JSON and YAML Formats:</strong></li>
+                </ul>
+                <p>Use YAML for more readable patches in some cases and apply using <code>oc patch</code>.</p>
+                <ul>
+                <li><strong>Troubleshooting Tips:</strong></li>
+                </ul>
+                <p>Ensure the <code>oc</code> or <code>kubectl</code> command is properly configured and authenticated.</p>
+                <h4>2. <strong>Installing the OpenShift CLI (<code>oc</code>) Using Docker</strong></h4>
+                <ul>
+                <li><strong>Using Docker to Pull and Run <code>oc</code>:</strong></li>
+                </ul>
+                <p>Pull the container image containing <code>oc</code> using Docker.</p>
+                <ul>
+                <li>
+                <p>Run a Docker container to execute <code>oc</code> commands.</p>
+                </li>
+                <li>
+                <p><strong>Alternative Method: Direct Download:</strong></p>
+                </li>
+                </ul>
+                <p>Download the OpenShift CLI directly from a release page and manually install it.</p>
+                <ul>
+                <li><strong>Troubleshooting Installation Issues:</strong></li>
+                </ul>
+                <p>Ensure Docker and Podman are correctly configured.</p>
+                <ul>
+                <li>Verify proper network connectivity and DNS resolution within the container.</li>
+                </ul>
+                <h4>3. <strong>Troubleshooting OpenShift Cluster Access Issues</strong></h4>
+                <ul>
+                <li><strong>Error: <code>connect: connection refused</code> to OpenShift API:</strong></li>
+                </ul>
+                <p>Check if the OpenShift cluster is running and accessible (<code>crc status</code> and <code>crc start</code>).</p>
+                <ul>
+                <li><strong>DNS and Network Configuration Issues:</strong></li>
+                </ul>
+                <p>Verify DNS resolution (<code>nslookup</code>) and network connectivity (<code>curl</code>).</p>
+                <ul>
+                <li><strong>Configuring WSL for Proper Network Access:</strong></li>
+                </ul>
+                <p>Modify <code>/etc/resolv.conf</code> and <code>/etc/hosts</code> for correct DNS settings.</p>
+                <ul>
+                <li>
+                <p>Restart WSL to apply network changes.</p>
+                </li>
+                <li>
+                <p><strong>Firewall and Network Settings:</strong></p>
+                </li>
+                </ul>
+                <p>Check Windows Firewall settings to ensure they are not blocking WSL or Docker containers.</p>
+                <ul>
+                <li><strong>Using Docker to Access OpenShift Cluster:</strong></li>
+                </ul>
+                <p>Run Docker containers with proper network settings to ensure connectivity.</p>
+                <ul>
+                <li><strong>Common Errors and Solutions:</strong></li>
+                </ul>
+                <p>Address common PowerShell string errors, WSL access errors, and Docker network configuration errors.</p>
+                <h4>4. <strong>Advanced Configuration for Docker and OpenShift CLI</strong></h4>
+                <ul>
+                <li><strong>Accessing OpenShift Cluster from Docker:</strong></li>
+                </ul>
+                <p>Address Docker container isolation from the host network.</p>
+                <ul>
+                <li>
+                <p>Use host networking mode or manual DNS configuration.</p>
+                </li>
+                <li>
+                <p><strong>Exposing CRC Ports to Docker Containers:</strong></p>
+                </li>
+                </ul>
+                <p>Set up port forwarding in Hyper-V to allow Docker containers to access CRC instances.</p>
+                <ul>
+                <li><strong>Using Proxies or Additional Network Tools:</strong></li>
+                </ul>
+                <p>Set up a proxy server to forward requests from Docker containers to the CRC VM.</p>
+                <h3>Summary</h3>
+                <p>This guide outlines the steps and considerations for patching a Kubernetes CronJob using PowerShell or WSL, installing and using the OpenShift CLI (<code>oc</code>) through Docker or direct download, and troubleshooting common connectivity issues with OpenShift clusters, especially when accessed from WSL or Docker. The guide also covers advanced networking setups to ensure seamless access to OpenShift environments across different platforms and configurations.</p>
+                <hr />
+                <p>do it with a yaml file ! &gt;&gt;&gt; that is why they do it with yaml!</p>
+                <p><img src="images/change-the-shell-42.png" alt="change the shell 42" class="article-image" loading="lazy"></p>
+                <p>yaml apply ıs the way to go </p>
+                <p><img src="images/change-the-shell-43.png" alt="change the shell 43" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

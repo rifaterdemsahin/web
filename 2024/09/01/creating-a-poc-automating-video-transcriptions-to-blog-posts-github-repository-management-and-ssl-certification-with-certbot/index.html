@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creating a POC: Automating Video Transcriptions to Blog Posts, GitHub Repository Management, and SSL Certification with Certbot - Rifat Erdem Sahin</title>
+    <meta name="description" content="Creating a POC: Automating Video Transcriptions to Blog Posts, GitHub Repository Management, and SSL Certification with Certbot Repo &gt; https://github.com/rifaterdemsahin/certbot Are you looking to ">
+    <meta name="keywords" content="Creating a POC: Automating Video Transcriptions to Blog Posts, GitHub Repository Management, and SSL Certification with Certbot">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/09/01/creating-a-poc-automating-video-transcriptions-to-blog-posts-github-repository-management-and-ssl-certification-with-certbot/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/09/01/creating-a-poc-automating-video-transcriptions-to-blog-posts-github-repository-management-and-ssl-certification-with-certbot/">
+    <meta property="og:title" content="Creating a POC: Automating Video Transcriptions to Blog Posts, GitHub Repository Management, and SSL Certification with Certbot">
+    <meta property="og:description" content="Creating a POC: Automating Video Transcriptions to Blog Posts, GitHub Repository Management, and SSL Certification with Certbot Repo &gt; https://github.com/rifaterdemsahin/certbot Are you looking to ">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/09/01/creating-a-poc-automating-video-transcriptions-to-blog-posts-github-repository-management-and-ssl-certification-with-certbot/">
+    <meta property="twitter:title" content="Creating a POC: Automating Video Transcriptions to Blog Posts, GitHub Repository Management, and SSL Certification with Certbot">
+    <meta property="twitter:description" content="Creating a POC: Automating Video Transcriptions to Blog Posts, GitHub Repository Management, and SSL Certification with Certbot Repo &gt; https://github.com/rifaterdemsahin/certbot Are you looking to ">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Creating a POC: Automating Video Transcriptions to Blog Posts, GitHub Repository Management, and SSL Certification with Certbot",
+      "description": "Creating a POC: Automating Video Transcriptions to Blog Posts, GitHub Repository Management, and SSL Certification with Certbot Repo &gt; https://github.com/rifaterdemsahin/certbot Are you looking to ",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-09-01",
+      "dateModified": "2024-09-01",
+      "url": "https://www.rifaterdemsahin.com/2024/09/01/creating-a-poc-automating-video-transcriptions-to-blog-posts-github-repository-management-and-ssl-certification-with-certbot/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/09/01/creating-a-poc-automating-video-transcriptions-to-blog-posts-github-repository-management-and-ssl-certification-with-certbot/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Creating a POC: Automating Video Transcriptions to Blog Posts, GitHub Repository Management, and SSL Certification with Certbot</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>September 1, 2024</span>
+                    <span>&bull;</span>
+                    <span>5 min read</span>
+                </div>
+                <p class="article-excerpt">Creating a POC: Automating Video Transcriptions to Blog Posts, GitHub Repository Management, and SSL Certification with Certbot Repo &gt; https://github.com/rifaterdemsahin/certbot Are you looking to streamline your workflow by converting video content into blog posts automatical</p>
+            </header>
+            <article class="article-content">
+                <h1>Creating a POC: Automating Video Transcriptions to Blog Posts, GitHub Repository Management, and SSL Certification with Certbot</h1>
+                <p>Repo &gt; <a href="https://github.com/rifaterdemsahin/certbot">https://github.com/rifaterdemsahin/certbot</a></p>
+                <p>Are you looking to streamline your workflow by converting video content into blog posts automatically, managing your projects effectively on GitHub, and securing your website with SSL certificates using Certbot? This blog post will guide you through setting up a Proof of Concept (POC) that achieves all these goals. By the end of this guide, you'll know how to turn videos into blog content, maintain a GitHub repository for your projects, and secure your web server with SSL certificates.</p>
+                <hr />
+                <h4>Step 1: Setting Up Automatic Transcription and Blogging</h4>
+                <p><strong>Objective</strong>: Convert video recordings into transcriptions and automatically publish them as blog posts on WordPress.</p>
+                <p><strong>Tools Needed</strong>:</p>
+                <ul>
+                <li>
+                <p><strong>OBS (Open Broadcaster Software)</strong>: For recording videos.</p>
+                </li>
+                <li>
+                <p><strong>Transcription Service</strong>: Services like Otter.ai or a custom script using an API like Google Speech-to-Text to convert audio to text.</p>
+                </li>
+                <li>
+                <p><strong>WordPress Account</strong>: To publish transcriptions as blog posts.</p>
+                </li>
+                </ul>
+                <p><strong>Implementation</strong>:</p>
+                <ul>
+                <li>
+                <p><strong>Record Videos</strong>: Use OBS to capture your content.</p>
+                </li>
+                <li>
+                <p><strong>Transcribe Audio</strong>: Utilize a transcription service to convert the video’s audio into text format.</p>
+                </li>
+                <li>
+                <p><strong>Automate Posting</strong>: Set up a script or use a WordPress plugin to automatically post these transcriptions to your blog.</p>
+                </li>
+                <li>
+                <p><strong>Optimize Your Blog</strong>: Ensure that your WordPress blog is linked to your domain and properly indexed by search engines to maximize visibility.</p>
+                </li>
+                </ul>
+                <hr />
+                <h4>Step 2: Creating a GitHub Repository for Your POC</h4>
+                <p><strong>Objective</strong>: Maintain a centralized repository for your project files and documentation.</p>
+                <p><strong>Tools Needed</strong>:</p>
+                <ul>
+                <li>
+                <p><strong>GitHub Account</strong>: For hosting your code and documentation.</p>
+                </li>
+                <li>
+                <p><strong>Git Client</strong>: Git Bash or GitHub Desktop for managing your repositories.</p>
+                </li>
+                </ul>
+                <p><strong>Implementation</strong>:</p>
+                <ul>
+                <li>
+                <p><strong>Create a New Repository</strong>: Start by creating a new repository on GitHub named, for example, <code>Certbot-POC</code>.</p>
+                </li>
+                <li>
+                <p><strong>Initialize Locally</strong>: Use <code>git init</code> to initialize the repository locally on your machine.</p>
+                </li>
+                <li>
+                <p><strong>Add Documentation</strong>: Create a <code>README.md</code> file to describe your project’s purpose and keep it updated.</p>
+                </li>
+                <li>
+                <p><strong>Commit and Push</strong>: Commit your changes (<code>git commit -m "Initial commit"</code>) and push them to GitHub (<code>git push -u origin main</code>).</p>
+                </li>
+                </ul>
+                <hr />
+                <h4>Step 3: Using Your WordPress Blog for Marketing Content</h4>
+                <p><strong>Objective</strong>: Leverage your WordPress blog to market your skills and share knowledge.</p>
+                <p><strong>Tools Needed</strong>:</p>
+                <ul>
+                <li>
+                <p><strong>WordPress Blog</strong>: A platform to share your content.</p>
+                </li>
+                <li>
+                <p><strong>Domain Registration</strong>: To establish your online presence with a personal domain.</p>
+                </li>
+                </ul>
+                <p><strong>Implementation</strong>:</p>
+                <ul>
+                <li>
+                <p><strong>Connect Your Blog to Your Domain</strong>: Ensure your blog is linked to a custom domain for better branding and searchability.</p>
+                </li>
+                <li>
+                <p><strong>Regular Content Updates</strong>: Continuously update your blog with transcriptions, insights, and technical guides related to your projects.</p>
+                </li>
+                <li>
+                <p><strong>SEO Best Practices</strong>: Use appropriate keywords and meta descriptions to enhance your blog’s visibility on search engines.</p>
+                </li>
+                </ul>
+                <hr />
+                <h4>Step 4: Securing Your Website with SSL Certificates Using Certbot</h4>
+                <p><strong>Objective</strong>: Protect your web server with SSL certificates to ensure secure communication.</p>
+                <p><strong>Tools Needed</strong>:</p>
+                <ul>
+                <li>
+                <p><strong>AWS Account</strong>: For hosting your server.</p>
+                </li>
+                <li>
+                <p><strong>Ubuntu Server</strong>: To run your web server.</p>
+                </li>
+                <li>
+                <p><strong>Certbot and Nginx</strong>: For obtaining and managing SSL certificates.</p>
+                </li>
+                </ul>
+                <p><strong>Implementation</strong>:</p>
+                <ul>
+                <li>
+                <p><strong>Launch an Ubuntu Server</strong>: Log in to your AWS account, and launch a new Ubuntu instance.</p>
+                </li>
+                <li>
+                <p><strong>Configure Security Groups</strong>: Open necessary ports (80 for HTTP, 443 for HTTPS, and 22 for SSH) in your AWS security settings.</p>
+                </li>
+                <li>
+                <p><strong>SSH into Your Server</strong>: Use SSH (<code>ssh -i &lt;key-pair.pem&gt; ubuntu@&lt;server-ip&gt;</code>) to access your Ubuntu server.</p>
+                </li>
+                <li>
+                <p><strong>Install Nginx and Certbot</strong>: Update your server and install Nginx and Certbot (<code>sudo apt-get update -y</code> followed by <code>sudo apt-get install nginx certbot python3-certbot-nginx -y</code>).</p>
+                </li>
+                <li>
+                <p><strong>Obtain SSL Certificates</strong>: Run Certbot to secure your server (<code>sudo certbot --nginx</code>) and follow the prompts to complete the process.</p>
+                </li>
+                <li>
+                <p><strong>Verify SSL Installation</strong>: Ensure your SSL certificates are correctly installed by visiting your domain using HTTPS.</p>
+                </li>
+                </ul>
+                <hr />
+                <h4>Step 5: Integrating Your Domain with DNS</h4>
+                <p><strong>Objective</strong>: Point your domain to your server’s IP address.</p>
+                <p><strong>Tools Needed</strong>:</p>
+                <ul>
+                <li><strong>DNS Management Interface</strong>: Such as AWS Route 53 or GoDaddy.</li>
+                </ul>
+                <p><strong>Implementation</strong>:</p>
+                <ul>
+                <li>
+                <p><strong>Access DNS Management</strong>: Log in to your domain management service.</p>
+                </li>
+                <li>
+                <p><strong>Create an A Record</strong>: Set up an A record pointing your domain to your server’s public IP address.</p>
+                </li>
+                <li>
+                <p><strong>DNS Propagation</strong>: Allow up to 24 hours for DNS changes to propagate fully.</p>
+                </li>
+                </ul>
+                <hr />
+                <h4>Step 6: Automating and Documenting Your Processes</h4>
+                <p><strong>Objective</strong>: Automate repetitive tasks and maintain clear documentation for your POC.</p>
+                <p><strong>Tools Needed</strong>:</p>
+                <ul>
+                <li>
+                <p><strong>GitHub</strong>: For version control.</p>
+                </li>
+                <li>
+                <p><strong>Scripting Languages</strong>: Bash or Python for automation.</p>
+                </li>
+                </ul>
+                <p><strong>Implementation</strong>:</p>
+                <ul>
+                <li>
+                <p><strong>Maintain Documentation</strong>: Keep your GitHub repository updated with clear, detailed documentation explaining each step of your setup and configuration.</p>
+                </li>
+                <li>
+                <p><strong>Automate Tasks</strong>: Write scripts to automate the transcription-to-blog process, checking for new videos and publishing transcriptions automatically.</p>
+                </li>
+                </ul>
+                <hr />
+                <h4>Step 7: SEO and Content Optimization</h4>
+                <p><strong>Objective</strong>: Increase the reach and impact of your content through SEO.</p>
+                <p><strong>Tools Needed</strong>:</p>
+                <ul>
+                <li><strong>SEO Tools</strong>: Google Analytics, Yoast SEO plugin for WordPress.</li>
+                </ul>
+                <p><strong>Implementation</strong>:</p>
+                <ul>
+                <li>
+                <p><strong>Regular Updates</strong>: Keep your blog content fresh and relevant by regularly adding new posts and updates.</p>
+                </li>
+                <li>
+                <p><strong>Analyze Traffic</strong>: Use SEO tools to track visitor metrics and optimize content accordingly.</p>
+                </li>
+                <li>
+                <p><strong>Enhance Visibility</strong>: Apply SEO best practices to boost your blog’s ranking and attract more visitors.</p>
+                </li>
+                </ul>
+                <hr />
+                <p>By following these steps, you can create an efficient POC that not only demonstrates your technical skills but also enhances your online presence. Through effective use of transcription automation, GitHub repository management, SSL certification, and SEO strategies, you can streamline your workflow and market your abilities more effectively.</p>
+                <p>Feel free to share your experiences or any tips you have found useful in the comments below!</p>
+                <hr />
+                <p>Dont Forget to terminate</p>
+                <p><img src="images/creating-a-poc-1.png" alt="creating a poc 1" class="article-image" loading="lazy"></p>
+                <p><strong>🔗 Connect with me:</strong></p>
+                <ul>
+                <li>
+                <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/rifaterdemsahin/">https://www.linkedin.com/in/rifaterdemsahin/</a></p>
+                </li>
+                <li>
+                <p>🐦 Twitter: <a href="https://x.com/rifaterdemsahin">https://x.com/rifaterdemsahin</a></p>
+                </li>
+                <li>
+                <p>🎥 YouTube: <a href="https://www.youtube.com/@RifatErdemSahin">https://www.youtube.com/@RifatErdemSahin</a></p>
+                </li>
+                <li>
+                <p>💻 GitHub: <a href="https://github.com/rifaterdemsahin">https://github.com/rifaterdemsahin</a></p>
+                </li>
+                </ul>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

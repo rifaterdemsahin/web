@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Installing Grafana with Bitnami on CRC (CodeReady Containers) - Rifat Erdem Sahin</title>
+    <meta name="description" content="🚀 Installing Grafana with Bitnami on CRC (CodeReady Containers) In this post, I'll guide you through installing Grafana using the Bitnami Helm Charts in your CRC (CodeReady Containers) environment. We">
+    <meta name="keywords" content="🚀 Installing Grafana with Bitnami on CRC (CodeReady Containers)">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/09/27/🚀-installing-grafana-with-bitnami-on-crc-codeready-containers/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/09/27/🚀-installing-grafana-with-bitnami-on-crc-codeready-containers/">
+    <meta property="og:title" content="🚀 Installing Grafana with Bitnami on CRC (CodeReady Containers)">
+    <meta property="og:description" content="🚀 Installing Grafana with Bitnami on CRC (CodeReady Containers) In this post, I'll guide you through installing Grafana using the Bitnami Helm Charts in your CRC (CodeReady Containers) environment. We">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/09/27/🚀-installing-grafana-with-bitnami-on-crc-codeready-containers/">
+    <meta property="twitter:title" content="🚀 Installing Grafana with Bitnami on CRC (CodeReady Containers)">
+    <meta property="twitter:description" content="🚀 Installing Grafana with Bitnami on CRC (CodeReady Containers) In this post, I'll guide you through installing Grafana using the Bitnami Helm Charts in your CRC (CodeReady Containers) environment. We">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "🚀 Installing Grafana with Bitnami on CRC (CodeReady Containers)",
+      "description": "🚀 Installing Grafana with Bitnami on CRC (CodeReady Containers) In this post, I'll guide you through installing Grafana using the Bitnami Helm Charts in your CRC (CodeReady Containers) environment. We",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-09-27",
+      "dateModified": "2024-09-27",
+      "url": "https://www.rifaterdemsahin.com/2024/09/27/🚀-installing-grafana-with-bitnami-on-crc-codeready-containers/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/09/27/🚀-installing-grafana-with-bitnami-on-crc-codeready-containers/",
+      "articleSection": "aws",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">🚀 Installing Grafana with Bitnami on CRC (CodeReady Containers)</h1>
+                <div class="article-meta">
+                    <span class="article-category">aws</span>
+                    <span>&bull;</span>
+                    <span>September 27, 2024</span>
+                    <span>&bull;</span>
+                    <span>31 min read</span>
+                </div>
+                <p class="article-excerpt">🚀 Installing Grafana with Bitnami on CRC (CodeReady Containers) In this post, I'll guide you through installing Grafana using the Bitnami Helm Charts in your CRC (CodeReady Containers) environment. We’ll go step-by-step from prerequisites to the final setup!</p>
+            </header>
+            <article class="article-content">
+                <h1>🚀 Installing Grafana with Bitnami on CRC (CodeReady Containers)</h1>
+                <p>In this post, I'll guide you through installing <strong>Grafana</strong> using the <strong>Bitnami Helm Charts</strong> in your <strong>CRC (CodeReady Containers)</strong> environment. We’ll go step-by-step from prerequisites to the final setup! 🎯</p>
+                <p><img src="images/installing-grafana-with-1.png" alt="installing grafana with 1" class="article-image" loading="lazy"></p>
+                <hr />
+                <h3>💡 What is Grafana?</h3>
+                <p>Grafana is an open-source analytics and monitoring platform, best known for its ability to create beautiful dashboards. You can visualize your infrastructure's performance in real-time and take control of your systems in an easy and intuitive way. 🎨</p>
+                <h3>📌 What You’ll Achieve:</h3>
+                <ul>
+                <li>
+                <p><strong>Set up Grafana</strong> using <strong>Bitnami Helm Charts</strong> on a local Kubernetes cluster running on CRC.</p>
+                </li>
+                <li>
+                <p><strong>Access Grafana</strong> on your host machine once deployed.</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>🛠️ Prerequisites:</h3>
+                <ul>
+                <li>
+                <p><strong>Kubernetes Cluster</strong> (v1.4+) with Beta APIs enabled.</p>
+                </li>
+                <li>
+                <p><strong>Helm</strong> installed on your local machine.</p>
+                </li>
+                <li>
+                <p>A working <strong>CRC</strong> setup.</p>
+                </li>
+                <li>
+                <p><strong>Docker</strong> installed.</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>📥 Installing Grafana with Helm</h3>
+                <ul>
+                <li><strong>Step 1:</strong> Set up CRC if you haven't already. Run this command to start CRC:</li>
+                </ul>
+                <p>crc setup<br />
+                   crc start</p>
+                <p>⏸️ <em>Pause for CRC to complete its setup.</em></p>
+                <ul>
+                <li><strong>Step 2:</strong> Add the Bitnami repository for Helm charts.</li>
+                </ul>
+                <p>Without Client</p>
+                <p><img src="images/installing-grafana-with-2.png" alt="installing grafana with 2" class="article-image" loading="lazy"></p>
+                <p>Get Client &gt; <a href="https://formulae.brew.sh/formula/helm">https://formulae.brew.sh/formula/helm</a></p>
+                <p><img src="images/installing-grafana-with-3.png" alt="installing grafana with 3" class="article-image" loading="lazy"></p>
+                <p>GPT &gt;&gt; helm repo add bitnami https://charts.bitnami.com/bitnami</p>
+                <p>BITNAMI &gt;&gt;<br />
+                helm install my-release oci://registry-1.docker.io/bitnamicharts/grafana</p>
+                <h1>Read more about the installation in the</h1>
+                <p>Bitnami package for Grafana Chart Github repository</p>
+                <p>Helm not connected</p>
+                <p><a href="https://formulae.brew.sh/formula/helm">https://formulae.brew.sh/formula/helm</a></p>
+                <p><img src="images/installing-grafana-with-4.png" alt="installing grafana with 4" class="article-image" loading="lazy"></p>
+                <p>After oc login it works</p>
+                <p><img src="images/installing-grafana-with-5.png" alt="installing grafana with 5" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Step 3:</strong> Install Grafana using the Bitnami Helm Chart.</li>
+                </ul>
+                <p>helm install my-release bitnami/grafana</p>
+                <p>⏸️ <em>Pause here while Helm sets up your Grafana instance.</em></p>
+                <p>Some linting is there but it failed &gt;</p>
+                <p><img src="images/installing-grafana-with-6.png" alt="installing grafana with 6" class="article-image" loading="lazy"></p>
+                <hr />
+                <h3>🔍 Accessing Grafana</h3>
+                <p>Once Grafana is installed, you'll want to access it from your host machine. Here's how:</p>
+                <ul>
+                <li>Get the <strong>Grafana admin password</strong>:</li>
+                </ul>
+                <p>kubectl get secret --namespace default my-release-grafana -o jsonpath="{.data.admin-password}" | base64 --decode</p>
+                <ul>
+                <li><strong>Expose Grafana</strong> using port forwarding:</li>
+                </ul>
+                <p>kubectl port-forward --namespace default svc/my-release-grafana 3000:3000</p>
+                <ul>
+                <li>Open your browser and go to <code>http://localhost:3000</code>. Login with username: <code>admin</code> and the password you retrieved earlier.</li>
+                </ul>
+                <hr />
+                <h3>🔧 Troubleshooting Grafana Access from Host Machine</h3>
+                <p>If you're having trouble accessing Grafana from your host machine, double-check the network configuration in your <strong>CRC</strong> and ensure the necessary ports are forwarded. 🛠️</p>
+                <hr />
+                <h3>📝 Conclusion</h3>
+                <p>By following this guide, you've successfully installed Grafana using <strong>Bitnami Helm Charts</strong> on your local CRC Kubernetes setup. You're now ready to visualize your data like a pro! 🌐🎉</p>
+                <hr />
+                <p>💡 <em>Looking for more guides like this? Connect with me on social media for more tutorials and insights!</em></p>
+                <p>🔗 <strong>Connect with me:</strong></p>
+                <ul>
+                <li>
+                <p>💼 <a href="https://www.linkedin.com/in/rifaterdemsahin/">LinkedIn</a></p>
+                </li>
+                <li>
+                <p>🐦 <a href="https://x.com/rifaterdemsahin">Twitter</a></p>
+                </li>
+                <li>
+                <p>🎥 <a href="https://www.youtube.com/@RifatErdemSahin">YouTube</a></p>
+                </li>
+                <li>
+                <p>💻 <a href="https://github.com/rifaterdemsahin">GitHub</a></p>
+                </li>
+                </ul>
+                <p>Happy monitoring! 👨‍💻</p>
+                <p>==================================================================<br />
+                    *** GRAFANA POD ERROR DEBUG ***<br />
+                ==================================================================</p>
+                <p>The issue with your Grafana pod (<code>CrashLoopBackOff</code> state) appears to be related to permission errors when attempting to create the <code>/opt/bitnami/grafana/data/plugins</code> directory. This is likely caused by the container not having the correct permissions to write to that directory.</p>
+                <p>Here’s how you can troubleshoot and potentially fix the issue:</p>
+                <h3>1. <strong>Check Persistent Volume Claims (PVCs) and Storage Permissions:</strong></h3>
+                <ul>
+                <li>
+                <p>The most common cause for this type of error is that the mounted volume doesn’t have the correct permissions. If you are using a Persistent Volume (PV) to store Grafana data, the volume might not have proper write permissions.</p>
+                </li>
+                <li>
+                <p>You can check the status of the PVC associated with Grafana by running:<br />
+                <code>bash kubectl get pvc</code><br />
+                Then, check the permissions of the underlying storage.</p>
+                </li>
+                </ul>
+                <p><img src="images/installing-grafana-with-7.png" alt="installing grafana with 7" class="article-image" loading="lazy"></p>
+                <h3>2. <strong>Update SecurityContext:</strong></h3>
+                <p>Ensure that your Helm chart for Grafana has the correct <code>securityContext</code> to allow the container to write to the necessary directories. You can modify the <code>values.yaml</code> file for the Helm chart to include:</p>
+                <p>securityContext:<br />
+                     fsGroup: 1001<br />
+                     runAsUser: 1001</p>
+                <p>This will ensure that the Grafana container runs with the correct user and group permissions (typically <code>1001</code> for Bitnami containers).</p>
+                <h3>3. <strong>Fix Permissions Manually (Debugging Approach):</strong></h3>
+                <ul>
+                <li>You can use an <code>initContainer</code> to fix the permissions on the volume before the Grafana container starts. Add the following to the <code>values.yaml</code> file: <code>initContainers: - name: fix-permissions image: busybox command: ['sh', '-c', 'chown -R 1001:1001 /opt/bitnami/grafana/data'] volumeMounts: - name: grafana-data mountPath: /opt/bitnami/grafana/data</code> This will fix the ownership of the directory before Grafana starts.</li>
+                </ul>
+                <h3>4. <strong>Upgrade the Helm Release:</strong></h3>
+                <p>After applying the changes to the <code>values.yaml</code> file, upgrade the Helm release with the following command:</p>
+                <p>helm upgrade my-release bitnami/grafana -f values.yaml</p>
+                <h3>5. <strong>Check Logs Again:</strong></h3>
+                <p>After making these changes, check the logs of the Grafana pod again to ensure that the permission issue has been resolved:</p>
+                <p>kubectl logs my-release-grafana-<pod-id></p>
+                <p>These steps should help resolve the permission issue that’s causing the <code>CrashLoopBackOff</code> in the Grafana pod. Let me know if you need further guidance!</p>
+                <p>Here's a basic <code>values.yaml</code> file that should address the permission issue and includes the necessary configuration for a Bitnami Grafana installation:</p>
+                <p>replicaCount: 1</p>
+                <p>image:<br />
+                  repository: bitnami/grafana<br />
+                  tag: latest<br />
+                  pullPolicy: IfNotPresent</p>
+                <p>persistence:<br />
+                  enabled: true<br />
+                  accessModes:<br />
+                    - ReadWriteOnce<br />
+                  size: 10Gi<br />
+                  # Use existing claim<br />
+                  # existingClaim: ""<br />
+                  annotations: {}<br />
+                  storageClass: ""<br />
+                  # subPath: ""</p>
+                <p>securityContext:<br />
+                  enabled: true<br />
+                  fsGroup: 1001<br />
+                  runAsUser: 1001</p>
+                <p>initContainers:<br />
+                  - name: fix-permissions<br />
+                    image: busybox<br />
+                    command: ['sh', '-c', 'chown -R 1001:1001 /opt/bitnami/grafana/data']<br />
+                    volumeMounts:<br />
+                      - name: grafana-storage<br />
+                        mountPath: /opt/bitnami/grafana/data</p>
+                <p>resources:<br />
+                  limits:<br />
+                    cpu: 1000m<br />
+                    memory: 1024Mi<br />
+                  requests:<br />
+                    cpu: 100m<br />
+                    memory: 256Mi</p>
+                <p>service:<br />
+                  type: ClusterIP<br />
+                  port: 80<br />
+                  annotations: {}</p>
+                <p>ingress:<br />
+                  enabled: false</p>
+                <p>livenessProbe:<br />
+                  enabled: true<br />
+                  initialDelaySeconds: 120<br />
+                  timeoutSeconds: 30<br />
+                  failureThreshold: 6</p>
+                <p>readinessProbe:<br />
+                  enabled: true<br />
+                  initialDelaySeconds: 30<br />
+                  timeoutSeconds: 10<br />
+                  failureThreshold: 6</p>
+                <p>grafana:<br />
+                  admin:<br />
+                    existingSecret: ""<br />
+                  dashboardsConfigMaps: {}<br />
+                  dashboards:<br />
+                    enabled: true<br />
+                  plugins: ""<br />
+                  sidecar:<br />
+                    dashboards:<br />
+                      enabled: true<br />
+                    datasources:<br />
+                      enabled: true</p>
+                <h1>For persistence to work, the volumes must be properly configured</h1>
+                <p>volumeMounts:<br />
+                  - name: grafana-storage<br />
+                    mountPath: /opt/bitnami/grafana/data</p>
+                <p>volumes:<br />
+                  - name: grafana-storage<br />
+                    persistentVolumeClaim:<br />
+                      claimName: grafana-pvc</p>
+                <h3>Key Changes:</h3>
+                <ul>
+                <li>
+                <p><strong><code>securityContext</code></strong>: Ensures that the Grafana pod runs with the appropriate permissions (<code>fsGroup: 1001</code>, <code>runAsUser: 1001</code>).</p>
+                </li>
+                <li>
+                <p><strong><code>initContainers</code></strong>: Fixes the permissions issue by using an init container (<code>busybox</code>) to set the ownership of the <code>/opt/bitnami/grafana/data</code> directory to the correct user.</p>
+                </li>
+                <li>
+                <p><strong><code>volumeMounts</code> and <code>volumes</code></strong>: Defines where Grafana will store data, ensuring the Persistent Volume Claim (PVC) is mounted at <code>/opt/bitnami/grafana/data</code>.</p>
+                </li>
+                </ul>
+                <p>You can apply this <code>values.yaml</code> file by upgrading your Helm release:</p>
+                <p>helm upgrade my-release bitnami/grafana -f values.yaml</p>
+                <p>Ensure that your PVC (<code>grafana-pvc</code>) exists and has the right permissions before applying this. Let me know if you need more customization or further help!</p>
+                <p><img src="images/installing-grafana-with-8.png" alt="installing grafana with 8" class="article-image" loading="lazy"></p>
+                <p>Fixing it </p>
+                <p><img src="images/installing-grafana-with-9.png" alt="installing grafana with 9" class="article-image" loading="lazy"></p>
+                <p>The error <code>cannot re-use a name that is still in use</code> indicates that there is already a Helm release named <code>my-release</code> in your Kubernetes cluster. To resolve this, you can either delete the existing release or upgrade the existing release instead of attempting a new installation.</p>
+                <h3>Option 1: Upgrade the existing release</h3>
+                <p>Since there is already a release named <code>my-release</code>, you can use <code>helm upgrade</code> to apply the new <code>values.yaml</code> file:</p>
+                <p>helm upgrade my-release oci://registry-1.docker.io/bitnamicharts/grafana -f values.yaml</p>
+                <p>This will upgrade the existing release with the new configuration.</p>
+                <p><img src="images/installing-grafana-with-10.png" alt="installing grafana with 10" class="article-image" loading="lazy"></p>
+                <h3>Option 2: Delete the existing release and install it again</h3>
+                <p>If you prefer to start fresh, you can delete the existing Helm release and install it again:</p>
+                <ul>
+                <li><strong>Delete the existing release</strong>: &gt;&gt;&gt; this is the way !</li>
+                </ul>
+                <p>helm uninstall my-release</p>
+                <ul>
+                <li><strong>Install the release again</strong>:</li>
+                </ul>
+                <p>helm install my-release oci://registry-1.docker.io/bitnamicharts/grafana -f values.yaml</p>
+                <p>After performing either of these steps, the Grafana release should be successfully deployed with the updated <code>values.yaml</code>. Let me know if you encounter any further issues!</p>
+                <p>==================================================================<br />
+                    *** STILL FAILS ***<br />
+                ==================================================================</p>
+                <p>The permission issue persists despite updating the <code>values.yaml</code> file. This indicates that the problem might not have been fully resolved by the changes. Let's try the following additional steps to resolve the permission issue.</p>
+                <h3>1. <strong>Ensure Correct SecurityContext in Values File</strong></h3>
+                <p>Double-check that the <code>fsGroup</code> and <code>runAsUser</code> are correctly set. Modify the <code>values.yaml</code> to ensure that the security context is properly configured:</p>
+                <p>securityContext:<br />
+                  enabled: true<br />
+                  fsGroup: 1001  # Ensures the container can write to mounted volumes<br />
+                  runAsUser: 1001 # Runs the container as user 1001</p>
+                <h1>Grafana container init container to fix permissions</h1>
+                <p>initContainers:<br />
+                  - name: fix-permissions<br />
+                    image: busybox<br />
+                    command: ['sh', '-c', 'chown -R 1001:1001 /opt/bitnami/grafana/data']<br />
+                    volumeMounts:<br />
+                      - name: grafana-storage<br />
+                        mountPath: /opt/bitnami/grafana/data</p>
+                <h3>2. <strong>Ensure Permissions on Persistent Volumes</strong></h3>
+                <p>Ensure that your Persistent Volume and Persistent Volume Claims have the correct permissions. Kubernetes might not be applying permissions properly depending on your storage class. You can manually fix the permissions of the volume:</p>
+                <ul>
+                <li>
+                <p>Check the mounted volume permissions on the host if you have access to it. You can use a privileged pod or SSH into the node to change the ownership of the persistent volume.</p>
+                </li>
+                <li>
+                <p>If you're using a cloud provider (like AWS EBS, GCP PD), make sure the volume's filesystem supports the correct permissions for the <code>grafana</code> user.</p>
+                </li>
+                </ul>
+                <h3>3. <strong>Manually Fix Permissions (Test in Kubernetes)</strong></h3>
+                <p>Run an interactive pod with <code>kubectl</code> to inspect and manually change the permissions of the volume:</p>
+                <p>kubectl run -i --tty --rm debug --image=busybox -- sh</p>
+                <p>Once in the shell, try:</p>
+                <p>chown -R 1001:1001 /path/to/persistent/volume</p>
+                <p>This will let you fix permissions directly.</p>
+                <h3>4. <strong>Ensure Correct Volume Mount</strong></h3>
+                <p>Verify that the <code>volumeMounts</code> configuration is correct in your <code>values.yaml</code>. It should look something like this:</p>
+                <p>volumeMounts:<br />
+                  - name: grafana-storage<br />
+                    mountPath: /opt/bitnami/grafana/data<br />
+                volumes:<br />
+                  - name: grafana-storage<br />
+                    persistentVolumeClaim:<br />
+                      claimName: <your-pvc-name></p>
+                <h3>5. <strong>Re-deploy Grafana with Helm</strong></h3>
+                <p>After these changes, upgrade the Helm release again:</p>
+                <p>helm upgrade my-release oci://registry-1.docker.io/bitnamicharts/grafana -f values.yaml</p>
+                <h3>6. <strong>If Issues Persist: Debug with Full Access (Privileged Mode)</strong></h3>
+                <p>You can deploy Grafana in a privileged mode to debug the permissions issue further. Add the following <code>securityContext</code> to the <code>values.yaml</code>:</p>
+                <p>securityContext:<br />
+                  enabled: true<br />
+                  privileged: true</p>
+                <p>Deploying in privileged mode will allow the container to have full access to the host resources, and this can help you identify any lingering permission issues.</p>
+                <p>Once you have identified and fixed the issue, you should remove the privileged mode to avoid security risks.</p>
+                <p>These steps should help resolve the permission issue. Let me know how it goes!</p>
+                <p>==================================================================<br />
+                    *** UPDATED YAML ***<br />
+                ==================================================================</p>
+                <p>Here is the updated <code>values.yaml</code> file, which incorporates the changes needed to fix the permission issue with the <code>/opt/bitnami/grafana/data/plugins</code> directory and includes some additional debugging features like an <code>initContainer</code> to fix permissions and optional privileged mode for further testing.</p>
+                <p>replicaCount: 1</p>
+                <p>image:<br />
+                  repository: bitnami/grafana<br />
+                  tag: latest<br />
+                  pullPolicy: IfNotPresent</p>
+                <p>persistence:<br />
+                  enabled: true<br />
+                  accessModes:<br />
+                    - ReadWriteOnce<br />
+                  size: 10Gi<br />
+                  storageClass: ""<br />
+                  # Use existing claim<br />
+                  # existingClaim: ""<br />
+                  annotations: {}</p>
+                <p>securityContext:<br />
+                  enabled: true<br />
+                  fsGroup: 1001  # Ensures the container can write to mounted volumes<br />
+                  runAsUser: 1001 # Ensures the container runs as user 1001</p>
+                <h1>Uncomment the following line if you need to run Grafana in privileged mode for debugging (not recommended for production):</h1>
+                <h1>privileged: true</h1>
+                <p>initContainers:<br />
+                  - name: fix-permissions<br />
+                    image: busybox<br />
+                    command: ['sh', '-c', 'chown -R 1001:1001 /opt/bitnami/grafana/data']<br />
+                    volumeMounts:<br />
+                      - name: grafana-storage<br />
+                        mountPath: /opt/bitnami/grafana/data</p>
+                <p>resources:<br />
+                  limits:<br />
+                    cpu: 1000m<br />
+                    memory: 1024Mi<br />
+                  requests:<br />
+                    cpu: 100m<br />
+                    memory: 256Mi</p>
+                <p>service:<br />
+                  type: ClusterIP<br />
+                  port: 80<br />
+                  annotations: {}</p>
+                <p>ingress:<br />
+                  enabled: false</p>
+                <p>livenessProbe:<br />
+                  enabled: true<br />
+                  initialDelaySeconds: 120<br />
+                  timeoutSeconds: 30<br />
+                  failureThreshold: 6</p>
+                <p>readinessProbe:<br />
+                  enabled: true<br />
+                  initialDelaySeconds: 30<br />
+                  timeoutSeconds: 10<br />
+                  failureThreshold: 6</p>
+                <p>grafana:<br />
+                  admin:<br />
+                    existingSecret: ""<br />
+                  dashboardsConfigMaps: {}<br />
+                  dashboards:<br />
+                    enabled: true<br />
+                  plugins: ""<br />
+                  sidecar:<br />
+                    dashboards:<br />
+                      enabled: true<br />
+                    datasources:<br />
+                      enabled: true</p>
+                <h1>For persistence to work, the volumes must be properly configured</h1>
+                <p>volumeMounts:<br />
+                  - name: grafana-storage<br />
+                    mountPath: /opt/bitnami/grafana/data</p>
+                <p>volumes:<br />
+                  - name: grafana-storage<br />
+                    persistentVolumeClaim:<br />
+                      claimName: grafana-pvc</p>
+                <h3>Key Updates:</h3>
+                <ul>
+                <li>
+                <p><strong>Security Context:</strong></p>
+                </li>
+                <li>
+                <p><code>fsGroup: 1001</code> ensures that the Grafana pod has permissions to write to the persistent volume.</p>
+                </li>
+                <li>
+                <p><code>runAsUser: 1001</code> ensures the container runs as the correct user (<code>1001</code>), which is standard for Bitnami containers.</p>
+                </li>
+                <li>
+                <p><strong>InitContainer for Fixing Permissions:</strong></p>
+                </li>
+                <li>
+                <p>The <code>initContainer</code> named <code>fix-permissions</code> runs a simple command to ensure that the directory <code>/opt/bitnami/grafana/data</code> is owned by the Grafana container user (<code>1001</code>), which should prevent the permission errors.</p>
+                </li>
+                <li>
+                <p><strong>Privileged Mode (Optional):</strong></p>
+                </li>
+                <li>
+                <p>I added a commented-out section for enabling privileged mode. This should be used only for debugging purposes if other steps fail. If needed, uncomment the line: <code>privileged: true</code>.</p>
+                </li>
+                <li>
+                <p><strong>Volume Mounts:</strong></p>
+                </li>
+                <li>
+                <p>The <code>volumeMounts</code> and <code>volumes</code> sections ensure the persistent storage is mounted correctly at <code>/opt/bitnami/grafana/data</code>.</p>
+                </li>
+                </ul>
+                <h3>Apply the Changes:</h3>
+                <ul>
+                <li><strong>Upgrade the Helm release</strong> with the updated values file:</li>
+                </ul>
+                <p>helm upgrade my-release oci://registry-1.docker.io/bitnamicharts/grafana -f values.yaml</p>
+                <ul>
+                <li><strong>Check the pod logs</strong> again after deployment to verify if the permission issue has been resolved:</li>
+                </ul>
+                <p>kubectl logs <grafana-pod-name></p>
+                <p>This should resolve the permission issue in your Grafana setup. Let me know if you need further assistance!</p>
+                <p>DELETE AND REINSTALL </p>
+                <p><img src="images/installing-grafana-with-11.png" alt="installing grafana with 11" class="article-image" loading="lazy"></p>
+                <p>Maybe it is the issue &gt; <a href="https://github.com/rifaterdemsahin/prometheus/blob/main/output.md">https://github.com/rifaterdemsahin/prometheus/blob/main/output.md</a></p>
+                <p><img src="images/installing-grafana-with-12.png" alt="installing grafana with 12" class="article-image" loading="lazy"></p>
+                <p>==================================================================<br />
+                    *** CRC UPDATE ***<br />
+                ==================================================================</p>
+                <p>To modify the given configuration to make it small enough to work in a CRC (CodeReady Containers) environment, here are the key adjustments:</p>
+                <ul>
+                <li>
+                <p>Reduce the resource limits and requests to suit the smaller environment.</p>
+                </li>
+                <li>
+                <p>Adjust the storage size to something more manageable within CRC.</p>
+                </li>
+                <li>
+                <p>Set <code>persistence</code> to <code>false</code> or lower the size of persistent storage if you still need it.</p>
+                </li>
+                <li>
+                <p>Ensure that replica count is set to 1 (which you already have).</p>
+                </li>
+                </ul>
+                <p>Here is the updated version:</p>
+                <p>replicaCount: 1</p>
+                <p>image:<br />
+                  repository: bitnami/grafana<br />
+                  tag: latest<br />
+                  pullPolicy: IfNotPresent</p>
+                <p>persistence:<br />
+                  enabled: true<br />
+                  accessModes:<br />
+                    - ReadWriteOnce<br />
+                  size: 1Gi  # Reduced storage size for CRC<br />
+                  storageClass: ""<br />
+                  annotations: {}</p>
+                <p>securityContext:<br />
+                  enabled: true<br />
+                  fsGroup: 1001<br />
+                  runAsUser: 1001</p>
+                <p>initContainers:<br />
+                  - name: fix-permissions<br />
+                    image: busybox<br />
+                    command: ['sh', '-c', 'chown -R 1001:1001 /opt/bitnami/grafana/data']<br />
+                    volumeMounts:<br />
+                      - name: grafana-storage<br />
+                        mountPath: /opt/bitnami/grafana/data</p>
+                <p>resources:<br />
+                  limits:<br />
+                    cpu: 500m  # Reduced CPU limit for CRC<br />
+                    memory: 512Mi  # Reduced memory limit for CRC<br />
+                  requests:<br />
+                    cpu: 50m  # Reduced CPU request for CRC<br />
+                    memory: 128Mi  # Reduced memory request for CRC</p>
+                <p>service:<br />
+                  type: ClusterIP<br />
+                  port: 80<br />
+                  annotations: {}</p>
+                <p>ingress:<br />
+                  enabled: false</p>
+                <p>livenessProbe:<br />
+                  enabled: true<br />
+                  initialDelaySeconds: 120<br />
+                  timeoutSeconds: 30<br />
+                  failureThreshold: 6</p>
+                <p>readinessProbe:<br />
+                  enabled: true<br />
+                  initialDelaySeconds: 30<br />
+                  timeoutSeconds: 10<br />
+                  failureThreshold: 6</p>
+                <p>grafana:<br />
+                  admin:<br />
+                    existingSecret: ""<br />
+                  dashboardsConfigMaps: {}<br />
+                  dashboards:<br />
+                    enabled: true<br />
+                  plugins: ""<br />
+                  sidecar:<br />
+                    dashboards:<br />
+                      enabled: true<br />
+                    datasources:<br />
+                      enabled: true</p>
+                <p>volumeMounts:<br />
+                  - name: grafana-storage<br />
+                    mountPath: /opt/bitnami/grafana/data</p>
+                <p>volumes:<br />
+                  - name: grafana-storage<br />
+                    persistentVolumeClaim:<br />
+                      claimName: grafana-pvc</p>
+                <h3>Key Changes:</h3>
+                <ul>
+                <li>
+                <p><strong>Persistence Size</strong>: Reduced to 1Gi to be suitable for CRC.</p>
+                </li>
+                <li>
+                <p><strong>Resource Limits and Requests</strong>: Lowered the CPU and memory settings to match a smaller CRC environment.</p>
+                </li>
+                </ul>
+                <p><img src="images/installing-grafana-with-13.png" alt="installing grafana with 13" class="article-image" loading="lazy"></p>
+                <p>mkdir: cannot create directory '/opt/bitnami/grafana/data/plugins': Permission denied</p>
+                <p>The error <code>mkdir: cannot create directory '/opt/bitnami/grafana/data/plugins': Permission denied</code> indicates that the container does not have permission to create directories in the specified path. This issue can be resolved by ensuring that the correct permissions are set for the directory in question.</p>
+                <p>Here’s how to modify your configuration to fix this issue:</p>
+                <ul>
+                <li>
+                <p>Adjust the <code>initContainer</code> to fix the permissions of the <code>/opt/bitnami/grafana/data</code> directory.</p>
+                </li>
+                <li>
+                <p>Ensure the security context has the correct permissions for the <code>fsGroup</code> and <code>runAsUser</code>.</p>
+                </li>
+                </ul>
+                <h3>Updated Configuration:</h3>
+                <p>replicaCount: 1</p>
+                <p>image:<br />
+                  repository: bitnami/grafana<br />
+                  tag: latest<br />
+                  pullPolicy: IfNotPresent</p>
+                <p>persistence:<br />
+                  enabled: true<br />
+                  accessModes:<br />
+                    - ReadWriteOnce<br />
+                  size: 1Gi  # Adjusted to a smaller size for CRC<br />
+                  storageClass: ""<br />
+                  annotations: {}</p>
+                <p>securityContext:<br />
+                  enabled: true<br />
+                  fsGroup: 1001  # Ensures the container can write to mounted volumes<br />
+                  runAsUser: 1001  # Ensures the container runs as user 1001</p>
+                <p>initContainers:<br />
+                  - name: fix-permissions<br />
+                    image: busybox<br />
+                    command: ['sh', '-c', 'chown -R 1001:1001 /opt/bitnami/grafana/data &amp;&amp; chmod -R 775 /opt/bitnami/grafana/data']<br />
+                    volumeMounts:<br />
+                      - name: grafana-storage<br />
+                        mountPath: /opt/bitnami/grafana/data</p>
+                <p>resources:<br />
+                  limits:<br />
+                    cpu: 500m  # Reduced CPU limit for CRC<br />
+                    memory: 512Mi  # Reduced memory limit for CRC<br />
+                  requests:<br />
+                    cpu: 50m  # Reduced CPU request for CRC<br />
+                    memory: 128Mi  # Reduced memory request for CRC</p>
+                <p>service:<br />
+                  type: ClusterIP<br />
+                  port: 80<br />
+                  annotations: {}</p>
+                <p>ingress:<br />
+                  enabled: false</p>
+                <p>livenessProbe:<br />
+                  enabled: true<br />
+                  initialDelaySeconds: 120<br />
+                  timeoutSeconds: 30<br />
+                  failureThreshold: 6</p>
+                <p>readinessProbe:<br />
+                  enabled: true<br />
+                  initialDelaySeconds: 30<br />
+                  timeoutSeconds: 10<br />
+                  failureThreshold: 6</p>
+                <p>grafana:<br />
+                  admin:<br />
+                    existingSecret: ""<br />
+                  dashboardsConfigMaps: {}<br />
+                  dashboards:<br />
+                    enabled: true<br />
+                  plugins: ""<br />
+                  sidecar:<br />
+                    dashboards:<br />
+                      enabled: true<br />
+                    datasources:<br />
+                      enabled: true</p>
+                <p>volumeMounts:<br />
+                  - name: grafana-storage<br />
+                    mountPath: /opt/bitnami/grafana/data</p>
+                <p>volumes:<br />
+                  - name: grafana-storage<br />
+                    persistentVolumeClaim:<br />
+                      claimName: grafana-pvc</p>
+                <h3>Key Fixes:</h3>
+                <ul>
+                <li>
+                <p><strong><code>initContainer</code> fix</strong>: The <code>chmod -R 775</code> command has been added to ensure the correct permissions are applied to the <code>/opt/bitnami/grafana/data</code> directory.</p>
+                </li>
+                <li>
+                <p><strong>SecurityContext</strong>: The <code>fsGroup</code> and <code>runAsUser</code> are already set to <code>1001</code>, which matches the permissions used by Bitnami containers, ensuring proper access.</p>
+                </li>
+                </ul>
+                <p>This should resolve the permission issue and allow the directory <code>/opt/bitnami/grafana/data/plugins</code> to be created successfully.</p>
+                <p><img src="images/installing-grafana-with-14.png" alt="installing grafana with 14" class="article-image" loading="lazy"></p>
+                <p>Given that you're using CRC (CodeReady Containers) and are still encountering the permission error for creating the <code>/opt/bitnami/grafana/data/plugins</code> directory, it indicates that the issue likely stems from how the persistent volume (PV) or security context is configured in the CRC environment.</p>
+                <p>Here's a more specific approach to resolve it:</p>
+                <h3>1. <strong>Add Full Container-Level Security Context:</strong></h3>
+                <p>Try explicitly setting <code>securityContext</code> not just for the pod, but also for the container. This ensures that the user and group permissions are honored during runtime.</p>
+                <h3>Updated Configuration:</h3>
+                <p>replicaCount: 1</p>
+                <p>image:<br />
+                  repository: bitnami/grafana<br />
+                  tag: latest<br />
+                  pullPolicy: IfNotPresent</p>
+                <p>persistence:<br />
+                  enabled: true<br />
+                  accessModes:<br />
+                    - ReadWriteOnce<br />
+                  size: 1Gi  # Adjusted to a smaller size for CRC<br />
+                  storageClass: ""<br />
+                  annotations: {}</p>
+                <p>securityContext:<br />
+                  fsGroup: 1001  # Ensures the container can write to mounted volumes</p>
+                <p>containers:<br />
+                  - name: grafana<br />
+                    securityContext:<br />
+                      runAsUser: 1001<br />
+                      runAsGroup: 1001<br />
+                      fsGroup: 1001  # Ensures that the container runs with the correct permissions<br />
+                    volumeMounts:<br />
+                      - name: grafana-storage<br />
+                        mountPath: /opt/bitnami/grafana/data<br />
+                      - name: plugins<br />
+                        mountPath: /opt/bitnami/grafana/data/plugins</p>
+                <p>initContainers:<br />
+                  - name: fix-permissions<br />
+                    image: busybox<br />
+                    command: ['sh', '-c', 'chown -R 1001:1001 /opt/bitnami/grafana/data &amp;&amp; chmod -R 775 /opt/bitnami/grafana/data']<br />
+                    volumeMounts:<br />
+                      - name: grafana-storage<br />
+                        mountPath: /opt/bitnami/grafana/data</p>
+                <p>resources:<br />
+                  limits:<br />
+                    cpu: 500m<br />
+                    memory: 512Mi<br />
+                  requests:<br />
+                    cpu: 50m<br />
+                    memory: 128Mi</p>
+                <p>service:<br />
+                  type: ClusterIP<br />
+                  port: 80<br />
+                  annotations: {}</p>
+                <p>ingress:<br />
+                  enabled: false</p>
+                <p>livenessProbe:<br />
+                  enabled: true<br />
+                  initialDelaySeconds: 120<br />
+                  timeoutSeconds: 30<br />
+                  failureThreshold: 6</p>
+                <p>readinessProbe:<br />
+                  enabled: true<br />
+                  initialDelaySeconds: 30<br />
+                  timeoutSeconds: 10<br />
+                  failureThreshold: 6</p>
+                <p>grafana:<br />
+                  admin:<br />
+                    existingSecret: ""<br />
+                  dashboardsConfigMaps: {}<br />
+                  dashboards:<br />
+                    enabled: true<br />
+                  plugins: ""<br />
+                  sidecar:<br />
+                    dashboards:<br />
+                      enabled: true<br />
+                    datasources:<br />
+                      enabled: true</p>
+                <p>volumes:<br />
+                  - name: grafana-storage<br />
+                    persistentVolumeClaim:<br />
+                      claimName: grafana-pvc<br />
+                  - name: plugins<br />
+                    emptyDir: {}</p>
+                <h3>Key Changes:</h3>
+                <ul>
+                <li>
+                <p><strong>Container-Level <code>securityContext</code></strong>: Explicitly adding <code>runAsUser</code>, <code>runAsGroup</code>, and <code>fsGroup</code> at the container level in the main Grafana container ensures that it runs with the correct permissions and group ownership. This is crucial in some environments where the pod-level <code>securityContext</code> may not be sufficient.</p>
+                </li>
+                <li>
+                <p><strong>Persistent Volume and EmptyDir</strong>: The <code>EmptyDir</code> volume for plugins is still included for temporary storage of the plugins, which can be helpful in isolating the issue with persistent volumes.</p>
+                </li>
+                </ul>
+                <h3>2. <strong>Manually Check Inside the Container</strong>:</h3>
+                <p>You can also manually inspect the permissions by logging into the running pod:</p>
+                <p>kubectl exec -it <pod-name> -- /bin/bash</p>
+                <p>Then, check the ownership and permissions of the <code>/opt/bitnami/grafana/data/plugins</code> directory:</p>
+                <p>ls -ld /opt/bitnami/grafana/data/plugins</p>
+                <p>This will give you an indication of what might be wrong if the directory still lacks proper permissions.</p>
+                <p>If this approach still doesn’t solve the issue, it could be related to the specifics of the CRC storage configuration. Let me know how it goes!</p>
+                <p><img src="images/installing-grafana-with-15.png" alt="installing grafana with 15" class="article-image" loading="lazy"></p>
+                <p><img src="images/installing-grafana-with-16.png" alt="installing grafana with 16" class="article-image" loading="lazy"></p>
+                <p>The configuration you provided is well-structured. Here’s how it ensures that your <code>PersistentVolumeClaim</code> (PVC) is properly managed and that the container has full permissions:</p>
+                <ul>
+                <li>
+                <p><strong>PVC Size Check</strong>:</p>
+                </li>
+                <li>
+                <p>The <code>size: 1Gi</code> ensures that the PVC is not too large (like 99Gi). You’ve adjusted the size to <code>1Gi</code>, which is more suitable for CRC environments where space might be a concern.</p>
+                </li>
+                <li>
+                <p><strong>PVC Permissions</strong>:</p>
+                </li>
+                <li>
+                <p>The <code>securityContext</code> for the container and the <code>initContainers</code> ensures that the necessary permissions are applied. The following key elements achieve that:</p>
+                </li>
+                </ul>
+                <p><code>fsGroup: 1001</code> allows the container to access the mounted volumes.</p>
+                <ul>
+                <li>
+                <p>The <code>initContainers</code> with the <code>fix-permissions</code> step runs the command <code>chown -R 1001:1001 /opt/bitnami/grafana/data &amp;&amp; chmod -R 775 /opt/bitnami/grafana/data</code>, which grants ownership and appropriate permissions (read, write, and execute for the owner and group).</p>
+                </li>
+                <li>
+                <p><strong>Replica Count</strong>:</p>
+                </li>
+                <li>
+                <p><code>replicaCount: 1</code> ensures that the Grafana deployment is set to a single instance, reducing complexity in a smaller setup like CRC.</p>
+                </li>
+                </ul>
+                <h3>Key Elements Summary:</h3>
+                <ul>
+                <li>
+                <p><strong>PVC Size</strong> is small and well-suited for the environment (<code>1Gi</code>).</p>
+                </li>
+                <li>
+                <p><strong>Permissions</strong> on the PVC are fully managed with <code>chown</code> and <code>chmod</code> in the <code>initContainers</code>.</p>
+                </li>
+                <li>
+                <p><strong>Security Context</strong> ensures that the container runs with the correct user and group.</p>
+                </li>
+                </ul>
+                <p>This setup should work smoothly, ensuring both proper storage allocation and access permissions.</p>
+                <p>==================================================================<br />
+                    *** DESCRIBE POD ***<br />
+                ==================================================================</p>
+                <p>rifaterdemsahin@Rifats-MacBook-Pro Code % oc describe pod my-release-grafana-57c7fd8c8b-bbtx2 -n default</p>
+                <p>Name:             my-release-grafana-57c7fd8c8b-bbtx2</p>
+                <p>Namespace:        default</p>
+                <p>Priority:         0</p>
+                <p>Service Account:  my-release-grafana</p>
+                <p>Node:             crc/192.168.126.11</p>
+                <p>Start Time:       Fri, 27 Sep 2024 18:00:32 +0100</p>
+                <p>Labels:           app.kubernetes.io/component=grafana</p>
+                <pre><code>              app.kubernetes.io/instance=my-release
+                
+                              app.kubernetes.io/managed-by=Helm
+                
+                              app.kubernetes.io/name=grafana
+                
+                              app.kubernetes.io/version=11.2.1
+                
+                              helm.sh/chart=grafana-11.3.21
+                
+                              pod-template-hash=57c7fd8c8b
+                </code></pre>
+                <p>Annotations:      checksum/config: 73701f5d63c3a4e8183e2f751c117b9172fcb869a9588ec59dca1d0dec74beaa</p>
+                <pre><code>              checksum/dashboard-provider: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+                
+                              checksum/secret: 4be8382b1349fc1597a46399781d56ff6a3c9e4011c56e48d854c6a116a02adc
+                
+                              k8s.ovn.org/pod-networks:
+                
+                              k8s.v1.cni.cncf.io/network-status:
+                
+                                [{
+                
+                                    "name": "ovn-kubernetes",
+                
+                                    "interface": "eth0",
+                
+                                    "ips": [
+                
+                                        "10.217.0.157"
+                
+                                    ],
+                
+                                    "mac": "0a:58:0a:d9:00:9d",
+                
+                                    "default": true,
+                
+                                    "dns": {}
+                
+                                }]
+                </code></pre>
+                <p>Status:           Running</p>
+                <p>IP:               10.217.0.157</p>
+                <p>IPs:</p>
+                <p>IP:           10.217.0.157</p>
+                <p>Controlled By:  ReplicaSet/my-release-grafana-57c7fd8c8b</p>
+                <p>Containers:</p>
+                <p>grafana:</p>
+                <pre><code>Container ID:    cri-o://ea60b851620c489dfc9627d1478bfad817df44b6afaf439317567d507abe6036
+                
+                Image:           docker.io/bitnami/grafana:latest
+                
+                Image ID:        docker.io/bitnami/grafana@sha256:4c6b9373d9387e0661cd1695d506a93e4114e73495db78dfc16c0ab73c00d6af
+                
+                Port:            3000/TCP
+                
+                Host Port:       0/TCP
+                
+                SeccompProfile:  RuntimeDefault
+                
+                State:           Waiting
+                
+                  Reason:        CrashLoopBackOff
+                
+                Last State:      Terminated
+                
+                  Reason:        Error
+                
+                  Exit Code:     1
+                
+                  Started:       Fri, 27 Sep 2024 18:03:36 +0100
+                
+                  Finished:      Fri, 27 Sep 2024 18:03:36 +0100
+                
+                Ready:           False
+                
+                Restart Count:   5
+                
+                Limits:
+                
+                  cpu:                150m
+                
+                  ephemeral-storage:  2Gi
+                
+                  memory:             192Mi
+                
+                Requests:
+                
+                  cpu:                100m
+                
+                  ephemeral-storage:  50Mi
+                
+                  memory:             128Mi
+                
+                Liveness:             tcp-socket :dashboard delay=120s timeout=5s period=10s #success=1 #failure=6
+                
+                Readiness:            http-get http://:dashboard/api/health delay=30s timeout=5s period=10s #success=1 #failure=6
+                
+                Environment Variables from:
+                
+                  my-release-grafana-envvars  ConfigMap  Optional: false
+                
+                Environment:
+                
+                  GF_SECURITY_ADMIN_PASSWORD:  &lt;set to the key 'GF_SECURITY_ADMIN_PASSWORD' in secret 'my-release-grafana-admin'&gt;  Optional: false
+                
+                Mounts:
+                
+                  /bitnami/grafana from empty-dir (rw,path="app-volume-dir")
+                
+                  /opt/bitnami/grafana/conf from empty-dir (rw,path="app-conf-dir")
+                
+                  /opt/bitnami/grafana/data from data (rw)
+                
+                  /opt/bitnami/grafana/tmp from empty-dir (rw,path="app-tmp-dir")
+                
+                  /tmp from empty-dir (rw,path="tmp-dir")
+                </code></pre>
+                <p>Conditions:</p>
+                <p>Type                        Status</p>
+                <p>PodReadyToStartContainers   True </p>
+                <p>Initialized                 True </p>
+                <p>Ready                       False </p>
+                <p>ContainersReady             False </p>
+                <p>PodScheduled                True </p>
+                <p>Volumes:</p>
+                <p>empty-dir:</p>
+                <pre><code>Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+                
+                Medium:
+                
+                SizeLimit:  &lt;unset&gt;
+                </code></pre>
+                <p>data:</p>
+                <pre><code>Type:        PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+                
+                ClaimName:   my-release-grafana
+                
+                ReadOnly:    false
+                </code></pre>
+                <p>QoS Class:       Burstable</p>
+                <p>Node-Selectors:  <none></p>
+                <p>Tolerations:     node.kubernetes.io/memory-pressure:NoSchedule op=Exists</p>
+                <pre><code>             node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+                </code></pre>
+                <p>Events:</p>
+                <p>Type     Reason          Age                    From               Message</p>
+                <p>----     ------          ----                   ----               -------</p>
+                <p>Normal   Scheduled       4m27s                  default-scheduler  Successfully assigned default/my-release-grafana-57c7fd8c8b-bbtx2 to crc</p>
+                <p>Normal   AddedInterface  4m27s                  multus             Add eth0 [10.217.0.157/23] from ovn-kubernetes</p>
+                <p>Warning  BackOff         3m1s (x10 over 4m25s)  kubelet            Back-off restarting failed container grafana in pod my-release-grafana-57c7fd8c8b-bbtx2_default(71e54527-39ed-4de0-84ab-c2e8e9ffc0a1)</p>
+                <p>Normal   Pulled          2m47s (x5 over 4m27s)  kubelet            Container image "docker.io/bitnami/grafana:latest" already present on machine</p>
+                <p>Normal   Created         2m47s (x5 over 4m27s)  kubelet            Created container grafana</p>
+                <p>Normal   Started         2m47s (x5 over 4m27s)  kubelet            Started container grafana</p>
+                <p>rifaterdemsahin@Rifats-MacBook-Pro Code % </p>
+                <p>The error you are encountering shows that your Grafana container is in a <code>CrashLoopBackOff</code> state, which means that it keeps restarting and failing. The key point to note from the logs is this:</p>
+                <ul>
+                <li>
+                <p><strong>Reason: CrashLoopBackOff</strong></p>
+                </li>
+                <li>
+                <p><strong>Exit Code: 1</strong> (indicates a general error in the container's execution)</p>
+                </li>
+                </ul>
+                <h3>Steps to Troubleshoot:</h3>
+                <ul>
+                <li><strong>Check Pod Logs for More Information:</strong><br />
+                The detailed error message should be available in the logs of the failing container. Run the following command to view the logs of the Grafana container:</li>
+                </ul>
+                <p>oc logs my-release-grafana-57c7fd8c8b-bbtx2 -n default</p>
+                <p>If you have an initContainer (e.g., for permissions), you can also check its logs:</p>
+                <p>oc logs my-release-grafana-57c7fd8c8b-bbtx2 -c fix-permissions -n default</p>
+                <p>This will give you more specific information about why the container is failing.</p>
+                <p><code>rifaterdemsahin@Rifats-MacBook-Pro Code % oc logs my-release-grafana-57c7fd8c8b-bbtx2 -n default
+                grafana 17:16:38.34 INFO  ==&gt; 
+                grafana 17:16:38.34 INFO  ==&gt; Welcome to the Bitnami grafana container
+                grafana 17:16:38.35 INFO  ==&gt; Subscribe to project updates by watching https://github.com/bitnami/containers
+                grafana 17:16:38.35 INFO  ==&gt; Submit issues and feature requests at https://github.com/bitnami/containers/issues
+                grafana 17:16:38.35 INFO  ==&gt; Upgrade to Tanzu Application Catalog for production environments to access custom-configured and pre-packaged software components. Gain enhanced features, including Software Bill of Materials (SBOM), CVE scan result reports, and VEX documents. To learn more, visit https://bitnami.com/enterprise
+                grafana 17:16:38.35 INFO  ==&gt; 
+                mkdir: cannot create directory '/opt/bitnami/grafana/data/plugins': Permission denied
+                rifaterdemsahin@Rifats-MacBook-Pro Code %</code></p>
+                <ul>
+                <li><strong>Review Resource Limits:</strong><br />
+                The resources you've allocated seem to be minimal. While this can work in CRC, it might be worth increasing the memory or CPU allocation temporarily to check if resource exhaustion is causing the crash. Update the resource limits in your configuration:</li>
+                </ul>
+                <p>limits:<br />
+                     cpu: 250m<br />
+                     memory: 256Mi<br />
+                   requests:<br />
+                     cpu: 150m<br />
+                     memory: 192Mi</p>
+                <p>After making these changes, redeploy your Grafana pod.</p>
+                <ul>
+                <li><strong>Persistent Volume and Mount Issues:</strong><br />
+                The <code>data</code> volume (<code>my-release-grafana</code> PVC) could also be causing the issue. To ensure the PVC is properly bound, you can describe it:</li>
+                </ul>
+                <p>oc describe pvc my-release-grafana -n default</p>
+                <p>Look for any errors or misconfigurations related to the PVC, such as if it's in a <code>Pending</code> or <code>Failed</code> state.</p>
+                <p><img src="images/installing-grafana-with-17.png" alt="installing grafana with 17" class="article-image" loading="lazy"></p>
+                <p>pvc describe</p>
+                <p><code>rifaterdemsahin@Rifats-MacBook-Pro Code % oc describe pvc my-release-grafana -n default
+                Name:          my-release-grafana
+                Namespace:     default
+                StorageClass:  crc-csi-hostpath-provisioner
+                Status:        Bound
+                Volume:        pvc-2287f5d8-3f83-4c6c-8126-bc809b87c03d
+                Labels:        app.kubernetes.io/component=grafana
+                               app.kubernetes.io/instance=my-release
+                               app.kubernetes.io/managed-by=Helm
+                               app.kubernetes.io/name=grafana
+                               app.kubernetes.io/version=11.2.1
+                               helm.sh/chart=grafana-11.3.21
+                Annotations:   meta.helm.sh/release-name: my-release
+                               meta.helm.sh/release-namespace: default
+                               pv.kubernetes.io/bind-completed: yes
+                               pv.kubernetes.io/bound-by-controller: yes
+                               volume.beta.kubernetes.io/storage-provisioner: kubevirt.io.hostpath-provisioner
+                               volume.kubernetes.io/selected-node: crc
+                               volume.kubernetes.io/storage-provisioner: kubevirt.io.hostpath-provisioner
+                Finalizers:    &amp;#091;kubernetes.io/pvc-protection]
+                Capacity:      99Gi
+                Access Modes:  RWO
+                VolumeMode:    Filesystem
+                Used By:       my-release-grafana-57c7fd8c8b-bbtx2
+                Events:
+                  Type    Reason                 Age                From                                                                                            Message
+                  ----    ------                 ----               ----                                                                                            -------
+                  Normal  WaitForFirstConsumer   22m                persistentvolume-controller                                                                     waiting for first consumer to be created before binding
+                  Normal  ExternalProvisioning   21m (x2 over 21m)  persistentvolume-controller                                                                     Waiting for a volume to be created either by the external provisioner 'kubevirt.io.hostpath-provisioner' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
+                  Normal  Provisioning           21m                kubevirt.io.hostpath-provisioner_csi-hostpathplugin-hzkxg_61a78ee9-e430-44c9-bb0c-1f8152657677  External provisioner is provisioning volume for claim "default/my-release-grafana"
+                  Normal  ProvisioningSucceeded  21m                kubevirt.io.hostpath-provisioner_csi-hostpathplugin-hzkxg_61a78ee9-e430-44c9-bb0c-1f8152657677  Successfully provisioned volume pvc-2287f5d8-3f83-4c6c-8126-bc809b87c03d
+                rifaterdemsahin@Rifats-MacBook-Pro Code %</code></p>
+                <p><strong>Check Configuration Secrets:</strong><br />
+                The log mentions a secret named <code>my-release-grafana-admin</code> for the Grafana admin password. Ensure that this secret exists and is properly configured. You can verify the secret:</p>
+                <p>oc get secret my-release-grafana-admin -n default</p>
+                <p>If it's missing or incorrectly configured, this could be causing the crash.</p>
+                <ul>
+                <li><strong>Check Liveness and Readiness Probes:</strong><br />
+                Your liveness and readiness probes might be failing, which could lead to a container restart. You can temporarily disable these probes to see if the pod stabilizes:</li>
+                </ul>
+                <p>livenessProbe:<br />
+                     enabled: false<br />
+                   readinessProbe:<br />
+                     enabled: false</p>
+                <p>After disabling the probes, redeploy your application and check if the pod runs without crashing.</p>
+                <hr />
+                <h3>Next Steps:</h3>
+                <ul>
+                <li>
+                <p><strong>Check the logs</strong> of the pod to find specific errors.</p>
+                </li>
+                <li>
+                <p><strong>Inspect the PVC</strong> to ensure it's correctly bound.</p>
+                </li>
+                <li>
+                <p><strong>Review the secret configuration</strong> for Grafana admin credentials.</p>
+                </li>
+                <li>
+                <p><strong>Consider adjusting resource limits</strong> and temporarily disabling probes to diagnose if resource limits are causing the issue.</p>
+                </li>
+                </ul>
+                <p>Once you have more information from the logs or further troubleshooting steps, I can help you dig deeper into the issue.</p>
+                <p>From the output of your <code>PersistentVolumeClaim</code> (PVC), it appears that the PVC is <strong>Bound</strong>, which means it has successfully been allocated to the pod and there doesn’t seem to be an issue with the storage itself.</p>
+                <p>However, there are some points to note:</p>
+                <ul>
+                <li>
+                <p><strong>PVC Capacity</strong>: The PVC is currently provisioned at <strong>99Gi</strong>, which is a lot more than you might need for CRC. You can try reducing this in your Helm chart or Kubernetes manifest (as discussed earlier, <code>1Gi</code> might be more suitable for CRC). If you intend to reconfigure this:</p>
+                </li>
+                <li>
+                <p>Modify the <code>size</code> parameter in your Helm chart or manifest to a lower value (e.g., <code>1Gi</code>).</p>
+                </li>
+                <li>
+                <p>After making the change, you will need to delete and recreate the PVC if the existing data is not critical.</p>
+                </li>
+                <li>
+                <p><strong>Provisioner and Node</strong>:</p>
+                </li>
+                <li>
+                <p>The storage provisioner is <code>kubevirt.io.hostpath-provisioner</code>, and it's using the node <code>crc</code>.</p>
+                </li>
+                <li>
+                <p>This seems correct for a CRC environment, and there doesn't seem to be an issue here based on the events.</p>
+                </li>
+                </ul>
+                <h3>Next Steps:</h3>
+                <p>Since the PVC is working fine, the next step is to further investigate why the Grafana pod is crashing.</p>
+                <h4>1. <strong>Pod Logs</strong>:</h4>
+                <p>To understand why Grafana is failing with <code>CrashLoopBackOff</code>, let's gather logs from the Grafana container. Run the following command to fetch the logs:</p>
+                <p>oc logs my-release-grafana-57c7fd8c8b-bbtx2 -n default</p>
+                <p>This will give you more information about what’s causing the crash. Look for any specific error messages or misconfigurations related to Grafana.</p>
+                <h4>2. <strong>Debugging InitContainers</strong>:</h4>
+                <p>If your Grafana pod has an initContainer for setting permissions (as your earlier configuration suggests), you might also want to check its logs:</p>
+                <p>oc logs my-release-grafana-57c7fd8c8b-bbtx2 -c fix-permissions -n default</p>
+                <p>This will help determine if the initContainer is failing to set the correct permissions, which can cause the main Grafana container to crash.</p>
+                <h4>3. <strong>Verify Configuration Secrets</strong>:</h4>
+                <p>Ensure that the secret <code>my-release-grafana-admin</code> exists and is correctly set up. Verify the secret by running:</p>
+                <p>oc get secret my-release-grafana-admin -n default -o yaml</p>
+                <p>If the secret is not properly configured, Grafana might fail to start. If the secret is missing, you will need to create it again.</p>
+                <p>By examining the logs and checking for any configuration or secret issues, we can narrow down the exact cause of the pod crash. Once we have that information, we can further address the problem. Let me know what you find in the logs!</p>
+                <p>Yes, you can modify the PVC size in the <code>values.yaml</code> file of your Helm chart by changing the <code>size</code> parameter under the <code>persistence</code> section. Here's how you can do it:</p>
+                <h3>Step 1: Modify the <code>values.yaml</code> File</h3>
+                <p>In your Helm chart, open the <code>values.yaml</code> file and look for the <code>persistence</code> section. You will modify the <code>size</code> parameter to a lower value, like <code>1Gi</code>. Here’s an example:</p>
+                <p>persistence:<br />
+                  enabled: true<br />
+                  accessModes:<br />
+                    - ReadWriteOnce<br />
+                  size: 1Gi  # Reduced from 99Gi to 1Gi for CRC<br />
+                  storageClass: ""</p>
+                <h3>Step 2: Delete the Existing PVC (If Data is Not Critical)</h3>
+                <p>Once you've updated the <code>values.yaml</code> file, you need to delete the current PVC because PVC size cannot be directly modified once created. To delete the PVC:</p>
+                <p>oc delete pvc my-release-grafana -n default</p>
+                <p>This will delete the current PVC. If you don't need to retain the existing data, this should be safe to do. The new PVC with the updated size will be created automatically when you redeploy your Helm release.</p>
+                <h3>Step 3: Upgrade Your Helm Release</h3>
+                <p>After modifying the <code>values.yaml</code> file, you will need to apply the changes to your Grafana deployment by upgrading the Helm release:</p>
+                <p>helm upgrade my-release ./your-grafana-chart -n default</p>
+                <p>This command will apply the new configuration, including the new PVC size, and recreate the resources with the updated values.</p>
+                <h3>Step 4: Verify the New PVC</h3>
+                <p>Once the Helm upgrade is complete, verify that the new PVC has been created with the correct size:</p>
+                <p>oc get pvc -n default</p>
+                <p>You should see that the PVC is now created with the desired size (<code>1Gi</code> or whatever you set).</p>
+                <h3>Optional: Check Pod Status</h3>
+                <p>After redeploying, ensure that the Grafana pod is running without issues:</p>
+                <p>oc get pods -n default</p>
+                <p>If the pod is not running or is in a crash loop again, check the logs and describe the pod to troubleshoot further.</p>
+                <p>By following these steps, you should be able to reduce the PVC size and ensure a smoother deployment in your CRC environment.</p>
+                <p>To ensure that your Persistent Volume Claim (PVC) is limited to 2 GB rather than the default larger size (e.g., 99 GB), you should explicitly set the PVC size in your <code>values.yaml</code> file for the Grafana Helm chart. Here's how you can do it:</p>
+                <ul>
+                <li>
+                <p><strong>Open your <code>values.yaml</code> file.</strong></p>
+                </li>
+                <li>
+                <p><strong>Locate the storage configuration section.</strong></p>
+                </li>
+                </ul>
+                <p>In the Bitnami Grafana Helm chart, there’s usually a section for specifying the storage size for the PVC. Add or modify the following block in <code>values.yaml</code>:</p>
+                <p>persistence:<br />
+                  enabled: true<br />
+                  size: 2Gi</p>
+                <p>Make sure that:</p>
+                <ul>
+                <li>
+                <p><code>persistence.enabled</code> is set to <code>true</code>.</p>
+                </li>
+                <li>
+                <p><code>size</code> is set to <code>2Gi</code> (which is 2 GB).</p>
+                </li>
+                <li>
+                <p><strong>Run the Helm upgrade command:</strong></p>
+                </li>
+                </ul>
+                <p>After updating the <code>values.yaml</code> file, run your Helm upgrade command:</p>
+                <p>helm upgrade my-release oci://registry-1.docker.io/bitnamicharts/grafana -f values.yaml</p>
+                <p>This should ensure that the PVC created or updated for Grafana is 2 GB in size instead of the default size.</p>
+                <p>Let me know if you need further adjustments!</p>
+                <p>It appears that despite following the steps to modify the PVC size in the <code>values.yaml</code>, the PersistentVolumeClaim (PVC) is still being provisioned at <code>99Gi</code>. This issue may stem from the <strong>storage class</strong> or <strong>external provisioner</strong> that’s responsible for provisioning the volume. Here's a more detailed approach to resolving this issue:</p>
+                <h3>Possible Causes:</h3>
+                <ul>
+                <li>
+                <p><strong>Storage Class Default Size</strong>: The storage class (<code>crc-csi-hostpath-provisioner</code>) might be defaulting to <code>99Gi</code> regardless of what’s specified in the <code>values.yaml</code>.</p>
+                </li>
+                <li>
+                <p><strong>External Provisioner</strong>: The external provisioner (<code>kubevirt.io.hostpath-provisioner</code>) may have a default behavior or configuration that is causing the PVC to be provisioned with <code>99Gi</code>.</p>
+                </li>
+                </ul>
+                <h3>Steps to Resolve:</h3>
+                <h4>1. Check the Storage Class Configuration</h4>
+                <p>Since the storage class (<code>crc-csi-hostpath-provisioner</code>) is used to provision the PVC, it might be overriding the size set in your Helm chart. You need to check the storage class configuration to ensure it’s not setting a default size.</p>
+                <p>Run the following command to get the details of the storage class:</p>
+                <p>oc get storageclass crc-csi-hostpath-provisioner -o yaml</p>
+                <p>Look for any <code>parameters</code> that might set a default size for the PVC.</p>
+                <p><code>rifaterdemsahin@Rifats-MacBook-Pro Code % oc get storageclass crc-csi-hostpath-provisioner -o yaml
+                apiVersion: storage.k8s.io/v1
+                kind: StorageClass
+                metadata:
+                  annotations:
+                    kubectl.kubernetes.io/last-applied-configuration: |
+                    storageclass.kubernetes.io/is-default-class: "true"
+                  creationTimestamp: "2024-08-20T10:22:59Z"
+                  name: crc-csi-hostpath-provisioner
+                  resourceVersion: "18549"
+                  uid: a8a11916-b28d-421f-8c8f-e237cd307b07
+                parameters:
+                  storagePool: local
+                provisioner: kubevirt.io.hostpath-provisioner
+                reclaimPolicy: Retain
+                volumeBindingMode: WaitForFirstConsumer
+                rifaterdemsahin@Rifats-MacBook-Pro Code %</code></p>
+                <h4>2. Edit or Override the Storage Class</h4>
+                <p>If the storage class is setting a default size, you can either:</p>
+                <ul>
+                <li>
+                <p><strong>Edit the storage class</strong> (if possible) to change the default size.</p>
+                </li>
+                <li>
+                <p><strong>Override the storage class</strong> in your Helm chart by specifying a custom storage class that allows the desired size.</p>
+                </li>
+                </ul>
+                <p>If you need to create or modify a storage class, you can create a new storage class with custom parameters. Here’s an example of how you might define a new storage class with a default size:</p>
+                <p>apiVersion: storage.k8s.io/v1<br />
+                kind: StorageClass<br />
+                metadata:<br />
+                  name: custom-hostpath-storage<br />
+                provisioner: kubevirt.io.hostpath-provisioner<br />
+                reclaimPolicy: Delete<br />
+                volumeBindingMode: Immediate</p>
+                <p>Then, modify your <code>values.yaml</code> to reference this storage class:</p>
+                <p>persistence:<br />
+                  enabled: true<br />
+                  accessModes:<br />
+                    - ReadWriteOnce<br />
+                  size: 2Gi  # Updated to 2Gi<br />
+                  storageClass: "custom-hostpath-storage"</p>
+                <h4>3. Recreate the PVC with the New Storage Class</h4>
+                <p>After making changes to the storage class, delete the existing PVC again:</p>
+                <p>oc delete pvc my-release-grafana -n default</p>
+                <p>Then, reapply your Helm chart, making sure the new storage class and size are correctly set:</p>
+                <p>helm upgrade my-release ./your-grafana-chart -n default</p>
+                <h4>4. Check Provisioner Logs</h4>
+                <p>If the issue persists, it’s important to check the logs of the external provisioner (<code>kubevirt.io.hostpath-provisioner</code>) to see if there are any errors or default settings causing the incorrect size. You can usually find the provisioner logs by identifying the pod that’s managing the host path provisioner:</p>
+                <p>oc get pods -n kube-system</p>
+                <p>Look for a pod related to the <code>hostpath-provisioner</code>, and check its logs:</p>
+                <p>oc logs <hostpath-provisioner-pod-name> -n kube-system</p>
+                <h4>5. Explicitly Define the Volume Size in the PersistentVolume</h4>
+                <p>If the storage class or provisioner settings are not modifiable, you may need to manually create a PersistentVolume (PV) with the correct size and then bind it to your PVC.</p>
+                <p>Here’s an example of manually creating a PV:</p>
+                <p>apiVersion: v1<br />
+                kind: PersistentVolume<br />
+                metadata:<br />
+                  name: custom-pv<br />
+                spec:<br />
+                  capacity:<br />
+                    storage: 2Gi<br />
+                  accessModes:<br />
+                    - ReadWriteOnce<br />
+                  hostPath:<br />
+                    path: "/mnt/data"</p>
+                <p>Then, modify your Helm chart to bind to this PV:</p>
+                <p>persistence:<br />
+                  enabled: true<br />
+                  size: 2Gi  # Specify 2Gi<br />
+                  accessModes:<br />
+                    - ReadWriteOnce<br />
+                  storageClass: ""  # Leave empty if using a manually created PV</p>
+                <h3>Conclusion:</h3>
+                <p>The issue likely lies with the storage class or the external provisioner. By either editing the storage class, overriding it, or manually creating a PersistentVolume, you should be able to resolve the issue of the PVC being created with <code>99Gi</code> and get it down to <code>2Gi</code> or <code>1Gi</code>. Let me know if you encounter any further issues!</p>
+                <p>CRC Time</p>
+                <p>The output shows that the <code>crc-csi-hostpath-provisioner</code> storage class is the <strong>default storage class</strong> and has the <code>WaitForFirstConsumer</code> volume binding mode, which means that it waits until a pod is scheduled to provision the storage.</p>
+                <p>There doesn't seem to be any explicit size parameter defined in the storage class itself. However, the <code>WaitForFirstConsumer</code> mode and the fact that the provisioner is using <code>kubevirt.io.hostpath-provisioner</code> could be affecting the size.</p>
+                <h3>Next Steps to Address the Issue:</h3>
+                <h4>1. <strong>Create a Custom Storage Class</strong> with Immediate Binding</h4>
+                <p>Since the default storage class doesn’t seem to allow the size modification properly, you can create a <strong>custom storage class</strong> with <code>Immediate</code> binding mode and reference this in your Helm chart. This can help ensure that the PVC is provisioned with the correct size.</p>
+                <p>Here’s how to create a new custom storage class:</p>
+                <p>apiVersion: storage.k8s.io/v1<br />
+                kind: StorageClass<br />
+                metadata:<br />
+                  name: custom-hostpath-storage<br />
+                  annotations:<br />
+                    storageclass.kubernetes.io/is-default-class: "false"  # Not a default class<br />
+                provisioner: kubevirt.io.hostpath-provisioner<br />
+                reclaimPolicy: Delete  # Automatically deletes the volume when the PVC is deleted<br />
+                volumeBindingMode: Immediate  # Provision the volume as soon as the PVC is created<br />
+                parameters:<br />
+                  storagePool: local</p>
+                <p>You can apply this YAML file by running:</p>
+                <p>oc apply -f custom-storage-class.yaml</p>
+                <h4>2. <strong>Modify Your Helm Chart to Use the New Storage Class</strong></h4>
+                <p>Once the new storage class is created, update your <code>values.yaml</code> to reference this storage class:</p>
+                <p>persistence:<br />
+                  enabled: true<br />
+                  accessModes:<br />
+                    - ReadWriteOnce<br />
+                  size: 2Gi  # Specify the size you need<br />
+                  storageClass: "custom-hostpath-storage"  # Use the newly created storage class</p>
+                <h4>3. <strong>Delete the Existing PVC and Recreate It</strong></h4>
+                <p>Now, delete the existing PVC (if it still exists):</p>
+                <p>oc delete pvc my-release-grafana -n default</p>
+                <p>After deleting the PVC, redeploy your Helm release with the updated <code>values.yaml</code>:</p>
+                <p>helm upgrade my-release ./your-grafana-chart -n default</p>
+                <p>This will trigger the creation of a new PVC using the <code>custom-hostpath-storage</code> class with the correct size.</p>
+                <h4>4. <strong>Verify the PVC Size</strong></h4>
+                <p>After the deployment, verify that the new PVC is created with the correct size:</p>
+                <p>oc get pvc -n default</p>
+                <p>You should see the new PVC with the correct size, such as <code>2Gi</code> or whatever you set.</p>
+                <h3>Why This Should Work:</h3>
+                <ul>
+                <li>
+                <p><strong>Immediate Binding</strong>: The <code>Immediate</code> volume binding mode should provision the PVC right away, ensuring the correct size is allocated.</p>
+                </li>
+                <li>
+                <p><strong>Custom Storage Class</strong>: By creating a custom storage class, you avoid any potential overrides or defaults from the existing <code>crc-csi-hostpath-provisioner</code>.</p>
+                </li>
+                </ul>
+                <p>Let me know if this works or if you encounter further issues!</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

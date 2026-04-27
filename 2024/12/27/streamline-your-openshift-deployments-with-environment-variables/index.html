@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Streamline Your OpenShift Deployments with Environment Variables - Rifat Erdem Sahin</title>
+    <meta name="description" content="Streamline Your OpenShift Deployments with Environment Variables Deploying applications on OpenShift offers a robust and flexible way to manage your containerized workloads.">
+    <meta name="keywords" content="Streamline Your OpenShift Deployments with Environment Variables">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/12/27/streamline-your-openshift-deployments-with-environment-variables/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/12/27/streamline-your-openshift-deployments-with-environment-variables/">
+    <meta property="og:title" content="Streamline Your OpenShift Deployments with Environment Variables">
+    <meta property="og:description" content="Streamline Your OpenShift Deployments with Environment Variables Deploying applications on OpenShift offers a robust and flexible way to manage your containerized workloads.">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/12/27/streamline-your-openshift-deployments-with-environment-variables/">
+    <meta property="twitter:title" content="Streamline Your OpenShift Deployments with Environment Variables">
+    <meta property="twitter:description" content="Streamline Your OpenShift Deployments with Environment Variables Deploying applications on OpenShift offers a robust and flexible way to manage your containerized workloads.">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Streamline Your OpenShift Deployments with Environment Variables",
+      "description": "Streamline Your OpenShift Deployments with Environment Variables Deploying applications on OpenShift offers a robust and flexible way to manage your containerized workloads.",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-12-27",
+      "dateModified": "2024-12-27",
+      "url": "https://www.rifaterdemsahin.com/2024/12/27/streamline-your-openshift-deployments-with-environment-variables/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/12/27/streamline-your-openshift-deployments-with-environment-variables/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Streamline Your OpenShift Deployments with Environment Variables</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>December 27, 2024</span>
+                    <span>&bull;</span>
+                    <span>4 min read</span>
+                </div>
+                <p class="article-excerpt">Streamline Your OpenShift Deployments with Environment Variables Deploying applications on OpenShift offers a robust and flexible way to manage your containerized workloads.</p>
+            </header>
+            <article class="article-content">
+                <h1>Streamline Your OpenShift Deployments with Environment Variables</h1>
+                <hr />
+                <h1></h1>
+                <p><img src="images/streamline-your-openshift-1.png" alt="streamline your openshift 1" class="article-image" loading="lazy"></p>
+                <p><img src="images/streamline-your-openshift-2.png" alt="streamline your openshift 2" class="article-image" loading="lazy"></p>
+                <p>Deploying applications on OpenShift offers a robust and flexible way to manage your containerized workloads. However, configuring environment variables correctly is crucial for ensuring your application behaves as expected across different environments. In this blog post, we'll walk through how to set up environment variables for your OpenShift deployments using YAML configuration files.</p>
+                <h2>Why Environment Variables Matter</h2>
+                <p>Environment variables play a vital role in configuring your application without hardcoding values directly into your code. This practice enhances security, portability, and manageability. Whether you're connecting to a database, configuring API keys, or toggling feature flags, environment variables are the go-to solution.</p>
+                <h2>Step-by-Step Guide to Setting Environment Variables in OpenShift</h2>
+                <h3>1. Creating the DeploymentConfig YAML File</h3>
+                <p>In OpenShift, you can define environment variables within the <code>env</code> section of a DeploymentConfig or Deployment resource. Here’s an example:</p>
+                <p>apiVersion: apps.openshift.io/v1<br />
+                kind: DeploymentConfig<br />
+                metadata:<br />
+                  name: my-app<br />
+                  namespace: my-namespace<br />
+                spec:<br />
+                  replicas: 1<br />
+                  selector:<br />
+                    app: my-app<br />
+                  template:<br />
+                    metadata:<br />
+                      labels:<br />
+                        app: my-app<br />
+                    spec:<br />
+                      containers:<br />
+                      - name: my-container<br />
+                        image: my-image:latest<br />
+                        env:<br />
+                        - name: ENV_VAR_1<br />
+                          value: "value1"<br />
+                        - name: ENV_VAR_2<br />
+                          value: "value2"<br />
+                        - name: ENV_VAR_3<br />
+                          value: "value3"<br />
+                        ports:<br />
+                        - containerPort: 8080<br />
+                  triggers:<br />
+                  - type: ConfigChange<br />
+                  - type: ImageChange<br />
+                    imageChangeParams:<br />
+                      automatic: true<br />
+                      containerNames:<br />
+                      - my-container<br />
+                      from:<br />
+                        kind: ImageStreamTag<br />
+                        name: my-image:latest</p>
+                <p>Replace placeholders like <code>my-app</code>, <code>my-namespace</code>, <code>my-container</code>, and <code>my-image</code> with your actual values. Define your environment variables under the <code>env</code> section.</p>
+                <h3>2. Applying the Configuration</h3>
+                <p>Once you've created your YAML file, save it as <code>deployment-config.yaml</code>. Apply this configuration to your OpenShift cluster using the <code>oc</code> command-line tool:</p>
+                <p>oc apply -f deployment-config.yaml</p>
+                <h3>3. Advanced Example with Secrets</h3>
+                <p>For sensitive information such as database credentials or API keys, it's best practice to use Kubernetes Secrets. Here's how you can reference a secret in your environment variables:</p>
+                <p>apiVersion: apps/v1<br />
+                kind: Deployment<br />
+                metadata:<br />
+                  name: my-app-deployment<br />
+                  namespace: my-namespace<br />
+                spec:<br />
+                  replicas: 1<br />
+                  selector:<br />
+                    matchLabels:<br />
+                      app: my-app<br />
+                  template:<br />
+                    metadata:<br />
+                      labels:<br />
+                        app: my-app<br />
+                    spec:<br />
+                      containers:<br />
+                      - name: my-app-container<br />
+                        image: my-app-image:latest<br />
+                        env:<br />
+                        - name: DATABASE_URL<br />
+                          value: "postgres://user:password@hostname:5432/dbname"<br />
+                        - name: REDIS_URL<br />
+                          value: "redis://hostname:6379"<br />
+                        - name: API_KEY<br />
+                          valueFrom:<br />
+                            secretKeyRef:<br />
+                              name: my-secret<br />
+                              key: api-key<br />
+                        ports:<br />
+                        - containerPort: 8080</p>
+                <p>In this example, the <code>API_KEY</code> environment variable is sourced from a Kubernetes Secret.</p>
+                <h3>4. Ensuring Secure and Manageable Configurations</h3>
+                <p>Here are some tips to ensure your environment variables are managed securely and effectively:</p>
+                <ul>
+                <li>
+                <p><strong>Use Secrets for Sensitive Data:</strong> Always use Kubernetes Secrets for sensitive data such as passwords, tokens, and keys.</p>
+                </li>
+                <li>
+                <p><strong>Namespace Management:</strong> Keep your environment variables organized by using namespaces effectively.</p>
+                </li>
+                <li>
+                <p><strong>Configuration as Code:</strong> Maintain your configurations in a version-controlled repository to track changes and facilitate collaboration.</p>
+                </li>
+                </ul>
+                <h2>Conclusion</h2>
+                <p>Configuring environment variables in OpenShift is a fundamental step for deploying robust and secure applications. By following best practices and leveraging Kubernetes features, you can streamline your deployments and ensure your applications are flexible and manageable across different environments.</p>
+                <p>Do you have any tips or questions about managing environment variables in OpenShift? Share your thoughts in the comments below!</p>
+                <hr />
+                <p>what an <code>environment.properties</code> file might look like. This file format is commonly used in Java applications for configuration purposes.</p>
+                <h1>Database configuration</h1>
+                <p>DATABASE_URL=jdbc:postgresql://hostname:5432/dbname<br />
+                DATABASE_USER=dbuser<br />
+                DATABASE_PASSWORD=dbpassword</p>
+                <h1>Redis configuration</h1>
+                <p>REDIS_HOSTNAME=redis-hostname<br />
+                REDIS_PORT=6379</p>
+                <h1>API keys</h1>
+                <p>API_KEY=your-api-key</p>
+                <h1>Application settings</h1>
+                <p>APP_ENV=production<br />
+                LOG_LEVEL=info<br />
+                MAX_CONNECTIONS=100</p>
+                <h1>Custom settings</h1>
+                <p>CUSTOM_SETTING_1=value1<br />
+                CUSTOM_SETTING_2=value2</p>
+                <h1>Other configuration</h1>
+                <p>FEATURE_FLAG=true<br />
+                TIMEOUT=30</p>
+                <h3>Explanation:</h3>
+                <ul>
+                <li>
+                <p><strong>DATABASE_URL</strong>: Connection URL for the database.</p>
+                </li>
+                <li>
+                <p><strong>DATABASE_USER</strong>: Username for the database.</p>
+                </li>
+                <li>
+                <p><strong>DATABASE_PASSWORD</strong>: Password for the database.</p>
+                </li>
+                <li>
+                <p><strong>REDIS_HOSTNAME</strong>: Hostname for the Redis server.</p>
+                </li>
+                <li>
+                <p><strong>REDIS_PORT</strong>: Port number for the Redis server.</p>
+                </li>
+                <li>
+                <p><strong>API_KEY</strong>: API key for external services.</p>
+                </li>
+                <li>
+                <p><strong>APP_ENV</strong>: Environment in which the application is running (e.g., development, staging, production).</p>
+                </li>
+                <li>
+                <p><strong>LOG_LEVEL</strong>: Level of logging detail (e.g., debug, info, warn, error).</p>
+                </li>
+                <li>
+                <p><strong>MAX_CONNECTIONS</strong>: Maximum number of database connections.</p>
+                </li>
+                <li>
+                <p><strong>CUSTOM_SETTING_1</strong> and <strong>CUSTOM_SETTING_2</strong>: Example of custom settings.</p>
+                </li>
+                <li>
+                <p><strong>FEATURE_FLAG</strong>: Toggle features on or off.</p>
+                </li>
+                <li>
+                <p><strong>TIMEOUT</strong>: Example of a timeout setting in seconds.</p>
+                </li>
+                </ul>
+                <h3>Creating the File</h3>
+                <p>To create this file, you can use any text editor:</p>
+                <ul>
+                <li>
+                <p>Open your preferred text editor (e.g., Notepad, VSCode, Sublime Text).</p>
+                </li>
+                <li>
+                <p>Copy and paste the content above into the editor.</p>
+                </li>
+                <li>
+                <p>Save the file with the name <code>environment.properties</code>.</p>
+                </li>
+                </ul>
+                <p>This file can then be used by your application to load these environment variables at runtime. Ensure that sensitive information like <code>DATABASE_PASSWORD</code> and <code>API_KEY</code> is managed securely and not exposed in version control systems.</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

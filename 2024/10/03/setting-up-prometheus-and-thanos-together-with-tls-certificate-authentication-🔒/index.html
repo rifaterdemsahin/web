@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setting Up Prometheus and Thanos Together with TLS Certificate Authentication 🔒 - Rifat Erdem Sahin</title>
+    <meta name="description" content="Setting Up Prometheus and Thanos Together with TLS Certificate Authentication 🔒 Setting up Prometheus and Thanos for a secure and scalable monitoring system can be a game-changer for your infrastructu">
+    <meta name="keywords" content="Setting Up Prometheus and Thanos Together with TLS Certificate Authentication 🔒">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/10/03/setting-up-prometheus-and-thanos-together-with-tls-certificate-authentication-🔒/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/10/03/setting-up-prometheus-and-thanos-together-with-tls-certificate-authentication-🔒/">
+    <meta property="og:title" content="Setting Up Prometheus and Thanos Together with TLS Certificate Authentication 🔒">
+    <meta property="og:description" content="Setting Up Prometheus and Thanos Together with TLS Certificate Authentication 🔒 Setting up Prometheus and Thanos for a secure and scalable monitoring system can be a game-changer for your infrastructu">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/10/03/setting-up-prometheus-and-thanos-together-with-tls-certificate-authentication-🔒/">
+    <meta property="twitter:title" content="Setting Up Prometheus and Thanos Together with TLS Certificate Authentication 🔒">
+    <meta property="twitter:description" content="Setting Up Prometheus and Thanos Together with TLS Certificate Authentication 🔒 Setting up Prometheus and Thanos for a secure and scalable monitoring system can be a game-changer for your infrastructu">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Setting Up Prometheus and Thanos Together with TLS Certificate Authentication 🔒",
+      "description": "Setting Up Prometheus and Thanos Together with TLS Certificate Authentication 🔒 Setting up Prometheus and Thanos for a secure and scalable monitoring system can be a game-changer for your infrastructu",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-10-03",
+      "dateModified": "2024-10-03",
+      "url": "https://www.rifaterdemsahin.com/2024/10/03/setting-up-prometheus-and-thanos-together-with-tls-certificate-authentication-🔒/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/10/03/setting-up-prometheus-and-thanos-together-with-tls-certificate-authentication-🔒/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Setting Up Prometheus and Thanos Together with TLS Certificate Authentication 🔒</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>October 3, 2024</span>
+                    <span>&bull;</span>
+                    <span>7 min read</span>
+                </div>
+                <p class="article-excerpt">Setting Up Prometheus and Thanos Together with TLS Certificate Authentication 🔒 Setting up Prometheus and Thanos for a secure and scalable monitoring system can be a game-changer for your infrastructure.</p>
+            </header>
+            <article class="article-content">
+                <h1>Setting Up Prometheus and Thanos Together with TLS Certificate Authentication 🔒</h1>
+                <p>Setting up <strong>Prometheus</strong> and <strong>Thanos</strong> for a secure and scalable monitoring system can be a game-changer for your infrastructure. In this post, I'll walk you through configuring these tools with TLS certificates to ensure secure communication 🔑.</p>
+                <p>Let’s dive in! 🚀</p>
+                <hr />
+                <h3>Step 1: Install Prometheus 📊</h3>
+                <p>First, get <strong>Prometheus</strong> up and running on your Linux server.<code># Download Prometheus wget https://github.com/prometheus/prometheus/releases/download/v2.44.0/prometheus-2.44.0.linux-amd64.tar.gz # Extract Prometheus tar -xzvf prometheus-2.44.0.linux-amd64.tar.gz cd prometheus-2.44.0.linux-amd64/ # Start Prometheus ./prometheus --config.file=prometheus.yml</code></p>
+                <p>Once done, check that Prometheus is accessible at <code>http://localhost:9090</code> 🔍.</p>
+                <hr />
+                <h3>Step 2: Install Thanos 🛠️</h3>
+                <p>Now, let's set up <strong>Thanos</strong>, which extends Prometheus for scalable long-term storage and query capabilities.<code># Download Thanos wget https://github.com/thanos-io/thanos/releases/download/v0.33.0/thanos-0.33.0.linux-amd64.tar.gz # Extract Thanos tar -xzvf thanos-0.33.0.linux-amd64.tar.gz cd thanos-0.33.0.linux-amd64/ # Ensure Thanos is accessible ./thanos --version</code></p>
+                <p>Thanos is now installed and ready for configuration! ⚙️</p>
+                <hr />
+                <h3>Step 3: Generate Certificates (TLS) 🔐</h3>
+                <p>To secure communications between Prometheus and Thanos, we'll use TLS certificates. Here’s how you can generate them.</p>
+                <h4>a. Generate CA Certificate</h4>
+                <p><code># Generate the private key for the CA openssl genrsa -out ca.key 4096 # Create the CA certificate openssl req -x509 -new -nodes -key ca.key -sha256 -days 365 -out ca.crt -subj "/CN=ThanosCA"</code></p>
+                <h4>b. Generate Certificates for Prometheus and Thanos</h4>
+                <ul>
+                <li><strong>Prometheus Certificate:</strong></li>
+                </ul>
+                <p><code># Generate Prometheus private key openssl genrsa -out prometheus.key 2048 # Create a CSR for Prometheus openssl req -new -key prometheus.key -out prometheus.csr -subj "/CN=prometheus" # Sign Prometheus certificate with the CA openssl x509 -req -in prometheus.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out prometheus.crt -days 365 -sha256</code></p>
+                <ul>
+                <li><strong>Thanos Certificate:</strong></li>
+                </ul>
+                <p><code># Generate Thanos private key openssl genrsa -out thanos.key 2048 # Create a CSR for Thanos openssl req -new -key thanos.key -out thanos.csr -subj "/CN=thanos" # Sign Thanos certificate with the CA openssl x509 -req -in thanos.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out thanos.crt -days 365 -sha256</code></p>
+                <p>With both certificates ready, we can now secure communication between Prometheus and Thanos. 🔗</p>
+                <hr />
+                <h3>Step 4: Configure Prometheus for TLS 🔧</h3>
+                <p>To make Prometheus communicate over TLS, edit your <code>prometheus.yml</code> configuration.<code>global: scrape_interval: 15s scrape_configs: - job_name: 'thanos' scheme: https static_configs: - targets: ['localhost:9091'] tls_config: cert_file: /path/to/prometheus.crt key_file: /path/to/prometheus.key ca_file: /path/to/ca.crt</code></p>
+                <p>Save the file and restart Prometheus:<code>./prometheus --config.file=prometheus.yml</code></p>
+                <hr />
+                <h3>Step 5: Configure Thanos Sidecar 🏗️</h3>
+                <p>Now, we need to configure the <strong>Thanos Sidecar</strong> to communicate with Prometheus securely.<code>./thanos sidecar \ --tsdb.path /path/to/prometheus/data \ --prometheus.url http://localhost:9090 \ --grpc-address 0.0.0.0:10901 \ --http-address 0.0.0.0:10902 \ --cert-file=/path/to/thanos.crt \ --key-file=/path/to/thanos.key \ --ca-file=/path/to/ca.crt</code></p>
+                <p>This sets up secure communication between Prometheus and Thanos 🔄.</p>
+                <hr />
+                <h3>Step 6: Run Thanos Querier 🌍</h3>
+                <p>To query data across your Prometheus and Thanos instances, run the <strong>Thanos Querier</strong>.<code>./thanos query \ --http-address 0.0.0.0:10904 \ --grpc-address 0.0.0.0:10903 \ --store=localhost:10901 \ --cert-file=/path/to/thanos.crt \ --key-file=/path/to/thanos.key \ --ca-file=/path/to/ca.crt</code></p>
+                <p>Now you can access the Thanos Querier at <code>https://localhost:10904</code> and query both Prometheus and Thanos! 🌟</p>
+                <hr />
+                <h3>Step 7: Deploying on Kubernetes 🐳</h3>
+                <p>Deploying Prometheus and Thanos in Kubernetes is straightforward. Here’s an example YAML file to get Prometheus deployed with TLS.<code>apiVersion: v1 kind: Pod metadata: name: prometheus spec: containers: - name: prometheus image: prom/prometheus:v2.44.0 args: - '--config.file=/etc/prometheus/prometheus.yml' - '--web.listen-address=:9090' volumeMounts: - name: config-volume mountPath: /etc/prometheus/ volumes: - name: config-volume configMap: name: prometheus-config --- apiVersion: v1 kind: ConfigMap metadata: name: prometheus-config data: prometheus.yml: | global: scrape_interval: 15s scrape_configs: - job_name: 'thanos' scheme: https static_configs: - targets: ['localhost:9091'] tls_config: cert_file: /etc/prometheus/prometheus.crt key_file: /etc/prometheus/prometheus.key ca_file: /etc/prometheus/ca.crt</code></p>
+                <p>This example showcases how you can define Prometheus configuration using Kubernetes ConfigMaps for TLS integration. 🧑‍💻</p>
+                <hr />
+                <h3>Step 8: Test Your Setup 🧪</h3>
+                <ul>
+                <li>
+                <p><strong>Prometheus</strong> should be running on <code>https://localhost:9090</code>.</p>
+                </li>
+                <li>
+                <p><strong>Thanos Querier</strong> should be accessible via <code>https://localhost:10904</code>.</p>
+                </li>
+                </ul>
+                <p>Both tools should now be communicating securely using TLS certificates. 🔒</p>
+                <hr />
+                <h3>Wrapping Up 🎉</h3>
+                <p>Setting up <strong>Prometheus</strong> and <strong>Thanos</strong> together with TLS certificates ensures a secure, scalable monitoring system for your infrastructure. Whether you're deploying them on Linux or Kubernetes, these steps provide you with the foundation to start monitoring your systems securely.</p>
+                <p>Happy Monitoring! 🎈</p>
+                <hr />
+                <h2>Setting Up Prometheus and Thanos Together with TLS Certificate Authentication 🔒</h2>
+                <p>Setting up <strong>Prometheus</strong> and <strong>Thanos</strong> for a secure and scalable monitoring system can be a game-changer for your infrastructure. In this post, I'll walk you through configuring these tools with TLS certificates to ensure secure communication 🔑.</p>
+                <p>Let’s dive in! 🚀</p>
+                <hr />
+                <h3>Step 1: Install Prometheus 📊</h3>
+                <p>First, get <strong>Prometheus</strong> up and running on your Linux server.<code># Download Prometheus wget https://github.com/prometheus/prometheus/releases/download/v2.44.0/prometheus-2.44.0.linux-amd64.tar.gz # Extract Prometheus tar -xzvf prometheus-2.44.0.linux-amd64.tar.gz cd prometheus-2.44.0.linux-amd64/ # Start Prometheus ./prometheus --config.file=prometheus.yml</code></p>
+                <p>Once done, check that Prometheus is accessible at <code>http://localhost:9090</code> 🔍.</p>
+                <hr />
+                <h3>Step 2: Install Thanos 🛠️</h3>
+                <p>Now, let's set up <strong>Thanos</strong>, which extends Prometheus for scalable long-term storage and query capabilities.<code># Download Thanos wget https://github.com/thanos-io/thanos/releases/download/v0.33.0/thanos-0.33.0.linux-amd64.tar.gz # Extract Thanos tar -xzvf thanos-0.33.0.linux-amd64.tar.gz cd thanos-0.33.0.linux-amd64/ # Ensure Thanos is accessible ./thanos --version</code></p>
+                <p>Thanos is now installed and ready for configuration! ⚙️</p>
+                <hr />
+                <h3>Step 3: Generate Certificates (TLS) 🔐</h3>
+                <p>To secure communications between Prometheus and Thanos, we'll use TLS certificates. Here’s how you can generate them.</p>
+                <h4>a. Generate CA Certificate</h4>
+                <p><code># Generate the private key for the CA openssl genrsa -out ca.key 4096 # Create the CA certificate openssl req -x509 -new -nodes -key ca.key -sha256 -days 365 -out ca.crt -subj "/CN=ThanosCA"</code></p>
+                <h4>b. Generate Certificates for Prometheus and Thanos</h4>
+                <ul>
+                <li><strong>Prometheus Certificate:</strong></li>
+                </ul>
+                <p><code># Generate Prometheus private key openssl genrsa -out prometheus.key 2048 # Create a CSR for Prometheus openssl req -new -key prometheus.key -out prometheus.csr -subj "/CN=prometheus" # Sign Prometheus certificate with the CA openssl x509 -req -in prometheus.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out prometheus.crt -days 365 -sha256</code></p>
+                <ul>
+                <li><strong>Thanos Certificate:</strong></li>
+                </ul>
+                <p><code># Generate Thanos private key openssl genrsa -out thanos.key 2048 # Create a CSR for Thanos openssl req -new -key thanos.key -out thanos.csr -subj "/CN=thanos" # Sign Thanos certificate with the CA openssl x509 -req -in thanos.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out thanos.crt -days 365 -sha256</code></p>
+                <p>With both certificates ready, we can now secure communication between Prometheus and Thanos. 🔗</p>
+                <hr />
+                <h3>Step 4: Configure Prometheus for TLS 🔧</h3>
+                <p>To make Prometheus communicate over TLS, edit your <code>prometheus.yml</code> configuration.<code>global: scrape_interval: 15s scrape_configs: - job_name: 'thanos' scheme: https static_configs: - targets: ['localhost:9091'] tls_config: cert_file: /path/to/prometheus.crt key_file: /path/to/prometheus.key ca_file: /path/to/ca.crt</code></p>
+                <p>Save the file and restart Prometheus:<code>./prometheus --config.file=prometheus.yml</code></p>
+                <hr />
+                <h3>Step 5: Configure Thanos Sidecar 🏗️</h3>
+                <p>Now, we need to configure the <strong>Thanos Sidecar</strong> to communicate with Prometheus securely.<code>./thanos sidecar \ --tsdb.path /path/to/prometheus/data \ --prometheus.url http://localhost:9090 \ --grpc-address 0.0.0.0:10901 \ --http-address 0.0.0.0:10902 \ --cert-file=/path/to/thanos.crt \ --key-file=/path/to/thanos.key \ --ca-file=/path/to/ca.crt</code></p>
+                <p>This sets up secure communication between Prometheus and Thanos 🔄.</p>
+                <hr />
+                <h3>Step 6: Run Thanos Querier 🌍</h3>
+                <p>To query data across your Prometheus and Thanos instances, run the <strong>Thanos Querier</strong>.<code>./thanos query \ --http-address 0.0.0.0:10904 \ --grpc-address 0.0.0.0:10903 \ --store=localhost:10901 \ --cert-file=/path/to/thanos.crt \ --key-file=/path/to/thanos.key \ --ca-file=/path/to/ca.crt</code></p>
+                <p>Now you can access the Thanos Querier at <code>https://localhost:10904</code> and query both Prometheus and Thanos! 🌟</p>
+                <hr />
+                <h3>Step 7: Deploying on Kubernetes 🐳</h3>
+                <p>Deploying Prometheus and Thanos in Kubernetes is straightforward. Here’s an example YAML file to get Prometheus deployed with TLS.<code>apiVersion: v1 kind: Pod metadata: name: prometheus spec: containers: - name: prometheus image: prom/prometheus:v2.44.0 args: - '--config.file=/etc/prometheus/prometheus.yml' - '--web.listen-address=:9090' volumeMounts: - name: config-volume mountPath: /etc/prometheus/ volumes: - name: config-volume configMap: name: prometheus-config --- apiVersion: v1 kind: ConfigMap metadata: name: prometheus-config data: prometheus.yml: | global: scrape_interval: 15s scrape_configs: - job_name: 'thanos' scheme: https static_configs: - targets: ['localhost:9091'] tls_config: cert_file: /etc/prometheus/prometheus.crt key_file: /etc/prometheus/prometheus.key ca_file: /etc/prometheus/ca.crt</code></p>
+                <p>This example showcases how you can define Prometheus configuration using Kubernetes ConfigMaps for TLS integration. 🧑‍💻</p>
+                <hr />
+                <h3>Step 8: Test Your Setup 🧪</h3>
+                <ul>
+                <li>
+                <p><strong>Prometheus</strong> should be running on <code>https://localhost:9090</code>.</p>
+                </li>
+                <li>
+                <p><strong>Thanos Querier</strong> should be accessible via <code>https://localhost:10904</code>.</p>
+                </li>
+                </ul>
+                <p>Both tools should now be communicating securely using TLS certificates. 🔒</p>
+                <hr />
+                <h3>Wrapping Up 🎉</h3>
+                <p>Setting up <strong>Prometheus</strong> and <strong>Thanos</strong> together with TLS certificates ensures a secure, scalable monitoring system for your infrastructure. Whether you're deploying them on Linux or Kubernetes, these steps provide you with the foundation to start monitoring your systems securely.</p>
+                <p>Happy Monitoring! 🎈</p>
+                <hr />
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

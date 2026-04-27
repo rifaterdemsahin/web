@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 How to Reset CRC with More Resources for Prometheus and Thanos Installation - Rifat Erdem Sahin</title>
+    <meta name="description" content="🚀 How to Reset CRC with More Resources for Prometheus and Thanos Installation If you're working on local development and want to expand the capacity of your CRC (CodeReady Containers) cluster to insta">
+    <meta name="keywords" content="🚀 How to Reset CRC with More Resources for Prometheus and Thanos Installation">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/09/25/🚀-how-to-reset-crc-with-more-resources-for-prometheus-and-thanos-installation/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/09/25/🚀-how-to-reset-crc-with-more-resources-for-prometheus-and-thanos-installation/">
+    <meta property="og:title" content="🚀 How to Reset CRC with More Resources for Prometheus and Thanos Installation">
+    <meta property="og:description" content="🚀 How to Reset CRC with More Resources for Prometheus and Thanos Installation If you're working on local development and want to expand the capacity of your CRC (CodeReady Containers) cluster to insta">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/09/25/🚀-how-to-reset-crc-with-more-resources-for-prometheus-and-thanos-installation/">
+    <meta property="twitter:title" content="🚀 How to Reset CRC with More Resources for Prometheus and Thanos Installation">
+    <meta property="twitter:description" content="🚀 How to Reset CRC with More Resources for Prometheus and Thanos Installation If you're working on local development and want to expand the capacity of your CRC (CodeReady Containers) cluster to insta">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "🚀 How to Reset CRC with More Resources for Prometheus and Thanos Installation",
+      "description": "🚀 How to Reset CRC with More Resources for Prometheus and Thanos Installation If you're working on local development and want to expand the capacity of your CRC (CodeReady Containers) cluster to insta",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-09-25",
+      "dateModified": "2024-09-25",
+      "url": "https://www.rifaterdemsahin.com/2024/09/25/🚀-how-to-reset-crc-with-more-resources-for-prometheus-and-thanos-installation/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/09/25/🚀-how-to-reset-crc-with-more-resources-for-prometheus-and-thanos-installation/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">🚀 How to Reset CRC with More Resources for Prometheus and Thanos Installation</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>September 25, 2024</span>
+                    <span>&bull;</span>
+                    <span>9 min read</span>
+                </div>
+                <p class="article-excerpt">🚀 How to Reset CRC with More Resources for Prometheus and Thanos Installation If you're working on local development and want to expand the capacity of your CRC (CodeReady Containers) cluster to install monitoring tools like Prometheus and Thanos , this guide is for you.</p>
+            </header>
+            <article class="article-content">
+                <h1>🚀 How to Reset CRC with More Resources for Prometheus and Thanos Installation</h1>
+                <p>If you're working on local development and want to expand the capacity of your CRC (CodeReady Containers) cluster to install monitoring tools like <strong>Prometheus</strong> and <strong>Thanos</strong>, this guide is for you. Here’s how you can reset CRC with more resources and install these powerful tools step by step.</p>
+                <h3>🔄 <strong>Why Reset CRC?</strong></h3>
+                <p>CRC typically starts with a default configuration that might not provide enough CPU or memory for resource-heavy applications like Prometheus and Thanos. By resetting CRC with additional resources, you’ll ensure smooth installation and functionality of these tools for monitoring and alerting in your cluster.</p>
+                <h3>💡 <strong>Steps to Achieve the Goal</strong></h3>
+                <ul>
+                <li><strong>Stop CRC</strong>:<br />
+                First, ensure your current CRC instance is stopped:</li>
+                </ul>
+                <p>crc stop</p>
+                <p>📝 <em>Screenshot Pause</em>:<br />
+                Take a screenshot of the terminal showing the <code>crc stop</code> command being executed.</p>
+                <ul>
+                <li><strong>Reset CRC</strong>:<br />
+                Next, reset the CRC configuration:</li>
+                </ul>
+                <p>crc delete<br />
+                   crc setup</p>
+                <p><img src="images/how-to-reset-1.png" alt="how to reset 1" class="article-image" loading="lazy"></p>
+                <p>Capture another screenshot of the terminal after resetting CRC to show readiness for new configuration.</p>
+                <ul>
+                <li><strong>Increase Resources</strong>:<br />
+                Modify the CPU and memory allocation. You can set these values based on your system’s capability:</li>
+                </ul>
+                <p>crc config set cpus 6<br />
+                   crc config set memory 16384<br />
+                crc config set disk-size 100</p>
+                <p><img src="images/how-to-reset-2.png" alt="how to reset 2" class="article-image" loading="lazy"></p>
+                <p>Show a snapshot of the resource configuration change for CRC in your terminal.</p>
+                <ul>
+                <li><strong>Start CRC</strong>:<br />
+                Start the CRC cluster with the new resources:</li>
+                </ul>
+                <p>crc start</p>
+                <p>📝 <em>Screenshot Pause</em>:<br />
+                Capture a screenshot to show CRC starting with the updated configuration.</p>
+                <ul>
+                <li><strong>Verify CRC Status</strong>:<br />
+                Once CRC is running, verify its status and check if the resources have been correctly assigned:</li>
+                </ul>
+                <p>crc status</p>
+                <p><img src="images/how-to-reset-3.png" alt="how to reset 3" class="article-image" loading="lazy"></p>
+                <p>Another screenshot here will showcase the resource allocation for your CRC cluster.</p>
+                <p>Here is a working version of how you can deploy Prometheus and Thanos operators using OpenShift (OC). You may need to replace the URLs with actual sources depending on where the Prometheus and Thanos operator YAML files are hosted:</p>
+                <h3>For Prometheus Operator:</h3>
+                <p>If you're using Red Hat's OpenShift, Prometheus might be available through the OperatorHub, so you can install it using the Operator Lifecycle Manager (OLM).</p>
+                <ul>
+                <li><strong>Install Prometheus Operator via OperatorHub</strong>:</li>
+                </ul>
+                <p>oc apply -f https://raw.githubusercontent.com/coreos/prometheus-operator/master/bundle.yaml</p>
+                <p>Make sure to reference the correct and up-to-date YAML from the official Prometheus Operator GitHub repo.</p>
+                <p>It looks like the URL you are trying to access does not exist or has been moved. Here's what you can do:</p>
+                <ul>
+                <li><strong>Prometheus Operator</strong>:<br />
+                You can apply the Prometheus Operator manifest using a reliable source. One of the common repositories is CoreOS or the Red Hat Operator Hub. Example:</li>
+                </ul>
+                <p>oc apply -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/main/bundle.yaml</p>
+                <ul>
+                <li><strong>Thanos Operator</strong>:<br />
+                For Thanos, it looks like the link to the <code>bundle.yaml</code> in the mixin folder is incorrect. Try using the Thanos Operator's actual location or another source like the official Thanos repository. Unfortunately, Thanos does not have a bundled operator YAML in their repository like Prometheus. To deploy Thanos, you'll usually have to set up Prometheus first and then deploy Thanos components individually (like sidecar, query, store). You can follow the guide here for Thanos setup:<br />
+                https://thanos.io/tip/thanos/getting-started.md/ If you want to install Thanos manually after deploying Prometheus, you can apply each component as needed (e.g., Thanos Query, Thanos Store, etc.).</li>
+                </ul>
+                <p>Let me know if you need specific YAMLs for Thanos components!</p>
+                <p>🎯 By following these steps, you’ll have successfully reset CRC with more resources, enabling you to install Prometheus and Thanos for monitoring your cluster's performance!</p>
+                <p>The error message you're encountering, <code>"metadata.annotations: Too long: must have at most 262144 bytes"</code>, suggests that the metadata annotations section in the CustomResourceDefinition (CRD) for <code>thanosrulers.monitoring.coreos.com</code> is exceeding the size limit set by Kubernetes for resource annotations (256KB).</p>
+                <p>Here's an analysis of the issue and potential solutions:</p>
+                <h3>Cause:</h3>
+                <ul>
+                <li>
+                <p><strong>Kubernetes has a hard limit on the size of metadata annotations in resources, which is 256KB (262144 bytes)</strong>. The error message indicates that the <code>metadata.annotations</code> field of the CRD exceeds this limit.</p>
+                </li>
+                <li>
+                <p>Annotations are typically used to store metadata such as descriptions, versions, or any other extra information about the resource. In this case, it might be that the YAML file you're trying to apply contains too much data in the annotations section, either due to excessive documentation, redundant information, or large encoded data.</p>
+                </li>
+                </ul>
+                <h3>Solutions:</h3>
+                <ul>
+                <li>
+                <p><strong>Trim Annotations</strong>:</p>
+                </li>
+                <li>
+                <p>You can review the CRD file (<code>bundle.yaml</code>) and look for large annotations in the <code>metadata.annotations</code> field.</p>
+                </li>
+                <li>
+                <p>Remove or reduce unnecessary annotation content that is not crucial for the operation of the resource.</p>
+                </li>
+                <li>
+                <p><strong>Break Down Annotations</strong>:</p>
+                </li>
+                <li>
+                <p>If the annotations are necessary but too large, consider breaking them down or moving some of the data into ConfigMaps or external documentation to reduce the load on the annotation field.</p>
+                </li>
+                <li>
+                <p><strong>Apply the CRD Without Annotations</strong>:</p>
+                </li>
+                <li>
+                <p>Temporarily remove or comment out the <code>metadata.annotations</code> section in the CRD YAML file and try applying it again. If the CRD works without these annotations, you can gradually add necessary annotations back within the size limit.</p>
+                </li>
+                <li>
+                <p><strong>Use a Different Mechanism for Storing Metadata</strong>:</p>
+                </li>
+                <li>
+                <p>If the large annotations are crucial for functionality (e.g., storing configuration data), consider using a different Kubernetes resource like a <code>ConfigMap</code> or <code>Secret</code> to store that information instead of placing it directly into the annotations field.</p>
+                </li>
+                </ul>
+                <p>By addressing the size of the <code>metadata.annotations</code> field, you should be able to resolve the error and apply the CRD successfully. Let me know if you'd like guidance on editing or inspecting the specific CRD file.</p>
+                <p><strong>🔗 Connect with me:</strong></p>
+                <ul>
+                <li>
+                <p>💼 <a href="https://www.linkedin.com/in/rifaterdemsahin/">LinkedIn</a></p>
+                </li>
+                <li>
+                <p>🐦 <a href="https://x.com/rifaterdemsahin">Twitter</a></p>
+                </li>
+                <li>
+                <p>🎥 <a href="https://www.youtube.com/@RifatErdemSahin">YouTube</a></p>
+                </li>
+                <li>
+                <p>💻 <a href="https://github.com/rifaterdemsahin">GitHub</a></p>
+                </li>
+                </ul>
+                <p>🛠️ <strong>Pro Tip:</strong> Keep your CRC resources flexible based on the needs of the applications you are running. Regular monitoring with Prometheus and Thanos will help identify if further resource adjustments are needed!</p>
+                <p><strong>Analyse</strong></p>
+                <p>The file you uploaded seems to contain information related to Kubernetes custom resource definitions (CRDs) and role bindings related to the Prometheus Operator. Here’s a brief analysis of the content:</p>
+                <ul>
+                <li>
+                <p><strong>Custom Resource Definitions (CRDs)</strong>:</p>
+                </li>
+                <li>
+                <p><strong>PodMonitors, Probes, PrometheusRules, ServiceMonitors</strong>: These are CRDs that are part of the Prometheus monitoring stack, which allow for configuring how Prometheus monitors various aspects of Kubernetes workloads (pods, services, etc.). They all remain unchanged, indicating no updates were applied.</p>
+                </li>
+                <li>
+                <p><strong>Cluster Role and Role Bindings</strong>:</p>
+                </li>
+                <li>
+                <p><strong>prometheus-operator</strong>: These resources define the permissions for the Prometheus Operator to interact with Kubernetes resources. Both the cluster role and cluster role binding for the Prometheus Operator remain unchanged.</p>
+                </li>
+                <li>
+                <p><strong>Deployment</strong>:</p>
+                </li>
+                <li>
+                <p><strong>prometheus-operator</strong>: The deployment of the Prometheus Operator also remains unchanged, suggesting that there were no updates to the Prometheus Operator deployment in the cluster.</p>
+                </li>
+                <li>
+                <p><strong>Service Account and Service</strong>:</p>
+                </li>
+                <li>
+                <p>Both the service account and the service associated with the Prometheus Operator are also listed as unchanged.</p>
+                </li>
+                </ul>
+                <h3>Interpretation</h3>
+                <p>This output suggests that the Prometheus Operator setup in your Kubernetes cluster did not experience any changes during the applied operations (e.g., an update or reconfiguration attempt). Everything remains in its previous state, meaning no new deployments or changes to roles, bindings, or CRDs were required during this run.</p>
+                <p>To view Prometheus on your OpenShift cluster, follow these steps:</p>
+                <h3>1. <strong>Ensure Prometheus is Installed</strong></h3>
+                <p>Prometheus can be installed either through the OpenShift monitoring stack or manually via operators. If using the OpenShift monitoring stack, Prometheus is typically installed as part of the cluster-monitoring operator.</p>
+                <p>To verify Prometheus is installed:</p>
+                <ul>
+                <li><strong>Check for Prometheus Pods</strong>: Run the following command to list Prometheus-related pods:<br />
+                <code>bash oc get pods -n openshift-monitoring</code><br />
+                Look for pods with names like <code>prometheus-...</code> or <code>prometheus-operator</code>.</li>
+                </ul>
+                <p><img src="images/how-to-reset-4.png" alt="how to reset 4" class="article-image" loading="lazy"></p>
+                <h3>2. <strong>Access Prometheus in OpenShift</strong></h3>
+                <h4>Option 1: Using the OpenShift Web Console</h4>
+                <ul>
+                <li>
+                <p><strong>Step 1</strong>: Log in to the OpenShift web console.</p>
+                </li>
+                <li>
+                <p><strong>Step 2</strong>: Navigate to the <strong>Administrator</strong> view.</p>
+                </li>
+                <li>
+                <p><strong>Step 3</strong>: Go to <strong>Monitoring</strong> &gt; <strong>Metrics</strong>.</p>
+                </li>
+                </ul>
+                <p>This should show the Prometheus UI where you can query for metrics.</p>
+                <ul>
+                <li><strong>Step 4</strong>: Alternatively, go to <strong>Monitoring</strong> &gt; <strong>Dashboards</strong> to see the pre-configured dashboards (like node or pod monitoring).</li>
+                </ul>
+                <p>If you do not see the "Monitoring" option in the OpenShift web console, there are several possible reasons:</p>
+                <ul>
+                <li>
+                <p><strong>Monitoring Components Not Installed</strong>: OpenShift uses the Prometheus stack for monitoring, but the monitoring components (Prometheus, Grafana, etc.) might not be installed. Ensure that the <strong>OpenShift Monitoring Operator</strong> is installed and configured correctly.</p>
+                </li>
+                <li>
+                <p><strong>User Role and Permissions</strong>: Access to the monitoring UI may be restricted based on user roles. Only administrators or users with appropriate permissions can see the "Monitoring" section. Verify that your user has the necessary permissions to view monitoring data.</p>
+                </li>
+                <li>
+                <p><strong>Cluster Configuration</strong>: If you are using a local development environment like CRC (CodeReady Containers) or a limited OpenShift environment, monitoring might be disabled to reduce resource usage. In this case, you can enable monitoring by configuring the cluster monitoring settings.</p>
+                </li>
+                <li>
+                <p><strong>UI Version or Customization</strong>: Sometimes, the OpenShift web console might not display the monitoring option due to customization or specific configurations. Make sure you are using the <strong>Administrator view</strong> and check if the web console is updated to the latest version.</p>
+                </li>
+                </ul>
+                <p>You can also check the status of the OpenShift monitoring stack by running the following commands to see if the Prometheus and Grafana pods are running:</p>
+                <p>oc get pods -n openshift-monitoring</p>
+                <p>If the monitoring stack is not running, you may need to troubleshoot and configure the OpenShift Monitoring Operator.</p>
+                <p><img src="images/how-to-reset-5.png" alt="how to reset 5" class="article-image" loading="lazy"></p>
+                <p><img src="images/how-to-reset-6.png" alt="how to reset 6" class="article-image" loading="lazy"></p>
+                <p><a href="https://docs.openshift.com/container-platform/4.10/monitoring/monitoring-overview.html">https://docs.openshift.com/container-platform/4.10/monitoring/monitoring-overview.html</a></p>
+                <h4>Option 2: Access Prometheus Directly via Route</h4>
+                <p>If Prometheus is installed and exposed via a route, you can access it by:</p>
+                <ul>
+                <li>
+                <p><strong>Step 1</strong>: Create a route for the Prometheus service:<br />
+                <code>bash oc expose svc prometheus -n openshift-monitoring</code></p>
+                </li>
+                <li>
+                <p><strong>Step 2</strong>: Get the route URL:<br />
+                <code>bash oc get route prometheus -n openshift-monitoring</code></p>
+                </li>
+                <li>
+                <p><strong>Step 3</strong>: Open the URL in your browser, and you should be directed to the Prometheus web interface.</p>
+                </li>
+                </ul>
+                <p><img src="images/how-to-reset-7.png" alt="how to reset 7" class="article-image" loading="lazy"></p>
+                <h4>Option 3: Port Forward to Prometheus Service</h4>
+                <p>If there’s no route configured, you can use port forwarding to access Prometheus locally:</p>
+                <ul>
+                <li>
+                <p><strong>Step 1</strong>: Run the port-forward command to expose the Prometheus service:<br />
+                <code>bash oc port-forward svc/prometheus-k8s 9090:9090 -n openshift-monitoring</code></p>
+                </li>
+                <li>
+                <p><strong>Step 2</strong>: Open <code>http://localhost:9090</code> in your browser to access Prometheus.</p>
+                </li>
+                </ul>
+                <h3>3. <strong>Using Prometheus</strong></h3>
+                <p>Once you have access to the Prometheus UI, you can:</p>
+                <ul>
+                <li>
+                <p><strong>Query Metrics</strong>: Use PromQL to query metrics.</p>
+                </li>
+                <li>
+                <p><strong>Visualize Data</strong>: Prometheus provides basic visualizations, but you can also integrate with Grafana for more advanced dashboarding.</p>
+                </li>
+                </ul>
+                <p>By following these steps, you should be able to view and interact with Prometheus on your OpenShift cluster. Let me know if you need help with any specific configurations or queries!</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

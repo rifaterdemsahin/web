@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRE Training for K8S - Rifat Erdem Sahin</title>
+    <meta name="description" content="SRE Training for K8S Sure, here are the subtitles with descriptions for each day of the 12-Day Site Reliability Engineering (SRE) Training Course: Day 1: Introduction to SRE Morning Session: Overview ">
+    <meta name="keywords" content="SRE Training for K8S">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/06/10/sre-training-for-k8s/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/06/10/sre-training-for-k8s/">
+    <meta property="og:title" content="SRE Training for K8S">
+    <meta property="og:description" content="SRE Training for K8S Sure, here are the subtitles with descriptions for each day of the 12-Day Site Reliability Engineering (SRE) Training Course: Day 1: Introduction to SRE Morning Session: Overview ">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/06/10/sre-training-for-k8s/">
+    <meta property="twitter:title" content="SRE Training for K8S">
+    <meta property="twitter:description" content="SRE Training for K8S Sure, here are the subtitles with descriptions for each day of the 12-Day Site Reliability Engineering (SRE) Training Course: Day 1: Introduction to SRE Morning Session: Overview ">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "SRE Training for K8S",
+      "description": "SRE Training for K8S Sure, here are the subtitles with descriptions for each day of the 12-Day Site Reliability Engineering (SRE) Training Course: Day 1: Introduction to SRE Morning Session: Overview ",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-06-10",
+      "dateModified": "2024-06-10",
+      "url": "https://www.rifaterdemsahin.com/2024/06/10/sre-training-for-k8s/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/06/10/sre-training-for-k8s/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">SRE Training for K8S</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>June 10, 2024</span>
+                    <span>&bull;</span>
+                    <span>6 min read</span>
+                </div>
+                <p class="article-excerpt">SRE Training for K8S Sure, here are the subtitles with descriptions for each day of the 12-Day Site Reliability Engineering (SRE) Training Course: Day 1: Introduction to SRE Morning Session: Overview of SRE and Key Concepts Understand the foundational concepts of Site Reliability</p>
+            </header>
+            <article class="article-content">
+                <h1>SRE Training for K8S</h1>
+                <p>Sure, here are the subtitles with descriptions for each day of the 12-Day Site Reliability Engineering (SRE) Training Course:</p>
+                <h3>Day 1: Introduction to SRE</h3>
+                <p><strong>Morning Session:</strong></p>
+                <ul>
+                <li>
+                <p><strong>Overview of SRE and Key Concepts</strong><br />
+                Understand the foundational concepts of Site Reliability Engineering and its importance in modern IT.</p>
+                </li>
+                <li>
+                <p><strong>Understanding SRE Principles and Practices</strong><br />
+                Explore the core principles and best practices that guide SRE teams in ensuring reliable services.</p>
+                </li>
+                <li>
+                <p><strong>Bridging Dev and Ops with SRE</strong><br />
+                Learn how SRE bridges the gap between development and operations, fostering collaboration and efficiency.</p>
+                </li>
+                </ul>
+                <p><strong>Afternoon Session:</strong></p>
+                <ul>
+                <li>
+                <p><strong>Exploring the Role of SRE in Modern IT</strong><br />
+                Delve into the specific roles and responsibilities of SREs within an organization.</p>
+                </li>
+                <li>
+                <p><strong>Defining and Implementing SLOs, SLAs, and SLIs</strong><br />
+                Learn the critical metrics and agreements that SREs use to maintain service reliability.</p>
+                </li>
+                <li>
+                <p><strong>Hands-on Workshop: Crafting Effective SLOs and SLIs</strong><br />
+                Practical session focused on defining and implementing Service Level Objectives and Indicators.</p>
+                </li>
+                </ul>
+                <h3>Day 2: Monitoring and Alerting</h3>
+                <p><strong>Morning Session:</strong></p>
+                <ul>
+                <li>
+                <p><strong>Essentials of Monitoring in SRE</strong><br />
+                Gain a comprehensive understanding of monitoring as a crucial aspect of SRE.</p>
+                </li>
+                <li>
+                <p><strong>Comparative Overview of Monitoring Tools</strong><br />
+                Review and compare various monitoring tools used in the industry.</p>
+                </li>
+                <li>
+                <p><strong>Integrating Monitoring into Your Workflow</strong><br />
+                Learn strategies for effectively integrating monitoring tools into your daily operations.</p>
+                </li>
+                </ul>
+                <p><strong>Afternoon Session:</strong></p>
+                <ul>
+                <li>
+                <p><strong>Practical Setup: Monitoring with Prometheus</strong><br />
+                Hands-on session on setting up and configuring Prometheus for monitoring.</p>
+                </li>
+                <li>
+                <p><strong>Visualizing Data with Grafana</strong><br />
+                Learn how to use Grafana to create insightful dashboards and visualizations.</p>
+                </li>
+                <li>
+                <p><strong>Logging and Analysis with the ELK Stack</strong><br />
+                Practical workshop on setting up and using the ELK stack for logging and data analysis.</p>
+                </li>
+                </ul>
+                <h3>Day 3: Incident Management</h3>
+                <p><strong>Morning Session:</strong></p>
+                <ul>
+                <li>
+                <p><strong>The Incident Response Lifecycle</strong><br />
+                Understand the phases of incident response and the importance of each stage.</p>
+                </li>
+                <li>
+                <p><strong>Tools and Processes for Incident Management</strong><br />
+                Explore various tools and processes that aid in effective incident management.</p>
+                </li>
+                <li>
+                <p><strong>Conducting Effective Postmortems</strong><br />
+                Learn the methodology for conducting thorough and constructive postmortems.</p>
+                </li>
+                </ul>
+                <p><strong>Afternoon Session:</strong></p>
+                <ul>
+                <li>
+                <p><strong>Simulating Real-World Incidents</strong><br />
+                Engage in simulated incident scenarios to apply response techniques.</p>
+                </li>
+                <li>
+                <p><strong>Hands-on: Writing Insightful Postmortems</strong><br />
+                Practice writing detailed postmortems to learn from past incidents.</p>
+                </li>
+                <li>
+                <p><strong>Strategies for Continuous Improvement</strong><br />
+                Develop strategies for improving incident response and management over time.</p>
+                </li>
+                </ul>
+                <h3>Day 4: Automation and Infrastructure as Code</h3>
+                <p><strong>Morning Session:</strong></p>
+                <ul>
+                <li>
+                <p><strong>The Critical Role of Automation in SRE</strong><br />
+                Discover why automation is a cornerstone of SRE practices.</p>
+                </li>
+                <li>
+                <p><strong>Introduction to Infrastructure as Code (IaC)</strong><br />
+                Learn about IaC and its benefits in managing and provisioning infrastructure.</p>
+                </li>
+                <li>
+                <p><strong>Overview of Terraform, Ansible, and More</strong><br />
+                Explore popular IaC tools such as Terraform and Ansible.</p>
+                </li>
+                </ul>
+                <p><strong>Afternoon Session:</strong></p>
+                <ul>
+                <li>
+                <p><strong>Automating Infrastructure with Terraform</strong><br />
+                Hands-on session on using Terraform for infrastructure automation.</p>
+                </li>
+                <li>
+                <p><strong>Configuration Management with Ansible</strong><br />
+                Learn how to manage configurations effectively with Ansible.</p>
+                </li>
+                <li>
+                <p><strong>Practical Exercise: Building Automated Systems</strong><br />
+                Apply automation techniques in practical exercises to reinforce learning.</p>
+                </li>
+                </ul>
+                <h3>Day 5: CI/CD and Release Engineering</h3>
+                <p><strong>Morning Session:</strong></p>
+                <ul>
+                <li>
+                <p><strong>Fundamentals of CI/CD in SRE</strong><br />
+                Understand the basics of Continuous Integration and Continuous Deployment in the context of SRE.</p>
+                </li>
+                <li>
+                <p><strong>Exploring CI/CD Tools: Jenkins, GitLab CI, CircleCI</strong><br />
+                Review popular CI/CD tools and their features.</p>
+                </li>
+                <li>
+                <p><strong>Best Practices for Continuous Integration and Deployment</strong><br />
+                Learn best practices for implementing and managing CI/CD pipelines.</p>
+                </li>
+                </ul>
+                <p><strong>Afternoon Session:</strong></p>
+                <ul>
+                <li>
+                <p><strong>Setting Up a CI/CD Pipeline with Jenkins</strong><br />
+                Hands-on session on configuring a CI/CD pipeline using Jenkins.</p>
+                </li>
+                <li>
+                <p><strong>Automating Testing and Deployment</strong><br />
+                Learn how to automate testing and deployment processes.</p>
+                </li>
+                <li>
+                <p><strong>Hands-on: End-to-End CI/CD Implementation</strong><br />
+                Practical exercise to implement a complete CI/CD pipeline.</p>
+                </li>
+                </ul>
+                <h3>Day 6: Reliability Engineering</h3>
+                <p><strong>Morning Session:</strong></p>
+                <ul>
+                <li>
+                <p><strong>Designing Highly Reliable Systems</strong><br />
+                Learn principles and practices for designing systems with high reliability.</p>
+                </li>
+                <li>
+                <p><strong>Redundancy and Fault Tolerance Techniques</strong><br />
+                Explore techniques for building redundancy and fault tolerance into systems.</p>
+                </li>
+                <li>
+                <p><strong>Essentials of Capacity Planning</strong><br />
+                Understand the importance of capacity planning and how to perform it effectively.</p>
+                </li>
+                </ul>
+                <p><strong>Afternoon Session:</strong></p>
+                <ul>
+                <li>
+                <p><strong>Implementing Redundancy and Failover Mechanisms</strong><br />
+                Hands-on session on creating redundant systems and implementing failover mechanisms.</p>
+                </li>
+                <li>
+                <p><strong>Capacity Planning Workshops</strong><br />
+                Participate in workshops focused on capacity planning exercises.</p>
+                </li>
+                <li>
+                <p><strong>Case Studies: Reliability in Action</strong><br />
+                Review real-world case studies to see reliability engineering in practice.</p>
+                </li>
+                </ul>
+                <h3>Day 7: Performance and Scalability</h3>
+                <p><strong>Morning Session:</strong></p>
+                <ul>
+                <li>
+                <p><strong>Basics of Performance Engineering</strong><br />
+                Understand the fundamentals of performance engineering and why it's crucial.</p>
+                </li>
+                <li>
+                <p><strong>Load Testing and Stress Testing Fundamentals</strong><br />
+                Learn the basics of load and stress testing for assessing system performance.</p>
+                </li>
+                <li>
+                <p><strong>Tools for Performance Analysis</strong><br />
+                Review tools available for analyzing system performance.</p>
+                </li>
+                </ul>
+                <p><strong>Afternoon Session:</strong></p>
+                <ul>
+                <li>
+                <p><strong>Performing Load and Stress Tests: A Practical Guide</strong><br />
+                Hands-on session on conducting load and stress tests.</p>
+                </li>
+                <li>
+                <p><strong>Analyzing Performance Test Results</strong><br />
+                Learn how to interpret and analyze the results of performance tests.</p>
+                </li>
+                <li>
+                <p><strong>Optimizing System Performance</strong><br />
+                Explore strategies for optimizing system performance based on test results.</p>
+                </li>
+                </ul>
+                <h3>Day 8: Security and Compliance</h3>
+                <p><strong>Morning Session:</strong></p>
+                <ul>
+                <li>
+                <p><strong>Security Fundamentals for SREs</strong><br />
+                Understand the basics of security in the context of SRE.</p>
+                </li>
+                <li>
+                <p><strong>Key Security Tools and Practices</strong><br />
+                Review important security tools and best practices.</p>
+                </li>
+                <li>
+                <p><strong>Integrating Security into Reliability Engineering</strong><br />
+                Learn how to incorporate security measures into your reliability engineering efforts.</p>
+                </li>
+                </ul>
+                <p><strong>Afternoon Session:</strong></p>
+                <ul>
+                <li>
+                <p><strong>Implementing Security Best Practices</strong><br />
+                Hands-on session on applying security best practices in your projects.</p>
+                </li>
+                <li>
+                <p><strong>Conducting Security Audits</strong><br />
+                Learn how to conduct effective security audits.</p>
+                </li>
+                <li>
+                <p><strong>Hands-on: Vulnerability Scanning and Remediation</strong><br />
+                Practice using tools to scan for vulnerabilities and how to remediate them.</p>
+                </li>
+                </ul>
+                <h3>Day 9: Cost Management and Optimization</h3>
+                <p><strong>Morning Session:</strong></p>
+                <ul>
+                <li>
+                <p><strong>Managing Costs in Cloud Environments</strong><br />
+                Understand the principles of cost management in cloud-based environments.</p>
+                </li>
+                <li>
+                <p><strong>Tools for Effective Cost Monitoring</strong><br />
+                Review tools that help in monitoring and managing cloud costs.</p>
+                </li>
+                <li>
+                <p><strong>Cost Optimization Strategies</strong><br />
+                Learn strategies to optimize costs without compromising on performance or reliability.</p>
+                </li>
+                </ul>
+                <p><strong>Afternoon Session:</strong></p>
+                <ul>
+                <li>
+                <p><strong>Setting Up Cost Monitoring Tools</strong><br />
+                Hands-on session on configuring tools for cost monitoring.</p>
+                </li>
+                <li>
+                <p><strong>Implementing Cost-Saving Measures</strong><br />
+                Practical exercises on applying cost-saving strategies.</p>
+                </li>
+                <li>
+                <p><strong>Real-World Scenarios: Cost Management</strong><br />
+                Study real-world examples of effective cost management.</p>
+                </li>
+                </ul>
+                <h3>Day 10: Advanced SRE Topics</h3>
+                <p><strong>Morning Session:</strong></p>
+                <ul>
+                <li>
+                <p><strong>Introduction to Chaos Engineering</strong><br />
+                Understand the principles and importance of chaos engineering.</p>
+                </li>
+                <li>
+                <p><strong>Site Reliability Automation (SRA)</strong><br />
+                Explore advanced automation techniques specific to SRE.</p>
+                </li>
+                <li>
+                <p><strong>Advanced Automation Techniques</strong><br />
+                Learn about cutting-edge automation techniques in the field of SRE.</p>
+                </li>
+                </ul>
+                <p><strong>Afternoon Session:</strong></p>
+                <ul>
+                <li>
+                <p><strong>Conducting Chaos Experiments</strong><br />
+                Hands-on session on designing and executing chaos experiments.</p>
+                </li>
+                <li>
+                <p><strong>Automating Reliability Tasks: A Practical Guide</strong><br />
+                Practical workshop on automating routine reliability tasks.</p>
+                </li>
+                <li>
+                <p><strong>Future Trends in SRE</strong><br />
+                Discuss emerging trends and the future of SRE practices.</p>
+                </li>
+                </ul>
+                <h3>Day 11: Troubleshooting and Best Practices</h3>
+                <p><strong>Morning Session:</strong></p>
+                <ul>
+                <li>
+                <p><strong>Common Issues in SRE and How to Address Them</strong><br />
+                Identify common issues faced by SREs and strategies to address them.</p>
+                </li>
+                <li>
+                <p><strong>Troubleshooting Techniques and Tools</strong><br />
+                Learn various techniques and tools for effective troubleshooting.</p>
+                </li>
+                <li>
+                <p><strong>Implementing SRE Best Practices</strong><br />
+                Explore best practices for implementing and maintaining SRE principles.</p>
+                </li>
+                </ul>
+                <p><strong>Afternoon Session:</strong></p>
+                <ul>
+                <li>
+                <p><strong>Hands-on: Troubleshooting Common Problems</strong><br />
+                Practical session on troubleshooting common SRE issues.</p>
+                </li>
+                <li>
+                <p><strong>Applying Best Practices in a Sample Application</strong><br />
+                Implement best practices in a sample application to reinforce learning.</p>
+                </li>
+                <li>
+                <p><strong>Peer Review and Feedback Session</strong><br />
+                Participate in peer review sessions to gain feedback and improve your approach.</p>
+                </li>
+                </ul>
+                <h3>Day 12: Capstone Project</h3>
+                <p><strong>Full Day Session:</strong></p>
+                <ul>
+                <li>
+                <p><strong>Designing a Comprehensive Reliability Strategy</strong><br />
+                Develop a comprehensive strategy for ensuring system reliability.</p>
+                </li>
+                <li>
+                <p><strong>Implementing Your SRE Capstone Project</strong><br />
+                Apply all the knowledge and skills gained in a capstone project.</p>
+                </li>
+                <li>
+                <p><strong>Presentation and Feedback on Capstone Projects</strong><br />
+                Present your capstone project and receive constructive feedback from peers and instructors.</p>
+                </li>
+                </ul>
+                <p><strong>Additional Notes:</strong></p>
+                <ul>
+                <li>
+                <p><strong>Daily Reviews and Q&amp;A Sessions</strong><br />
+                Each day includes reviews of previous concepts and dedicated Q&amp;A sessions.</p>
+                </li>
+                <li>
+                <p><strong>Encouraging Mini-Projects for Skill Reinforcement</strong><br />
+                Participants are encouraged to work on mini-projects to reinforce their learning.</p>
+                </li>
+                <li>
+                <p><strong>Continuous Learning and Collaboration</strong><br />
+                Emphasize continuous learning and collaboration among participants throughout the course.</p>
+                </li>
+                </ul>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poc Basic App Deploy on Openshift - Rifat Erdem Sahin</title>
+    <meta name="description" content="Poc Basic App Deploy on Openshift LOGS ( SEMBLANCE ) Deploying a basic application on OpenShift involves several steps, which include setting up the OpenShift environment, creating a new project, and ">
+    <meta name="keywords" content="Poc Basic App Deploy on Openshift">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/11/30/poc-basic-app-deploy-on-openshift/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/11/30/poc-basic-app-deploy-on-openshift/">
+    <meta property="og:title" content="Poc Basic App Deploy on Openshift">
+    <meta property="og:description" content="Poc Basic App Deploy on Openshift LOGS ( SEMBLANCE ) Deploying a basic application on OpenShift involves several steps, which include setting up the OpenShift environment, creating a new project, and ">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/11/30/poc-basic-app-deploy-on-openshift/">
+    <meta property="twitter:title" content="Poc Basic App Deploy on Openshift">
+    <meta property="twitter:description" content="Poc Basic App Deploy on Openshift LOGS ( SEMBLANCE ) Deploying a basic application on OpenShift involves several steps, which include setting up the OpenShift environment, creating a new project, and ">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Poc Basic App Deploy on Openshift",
+      "description": "Poc Basic App Deploy on Openshift LOGS ( SEMBLANCE ) Deploying a basic application on OpenShift involves several steps, which include setting up the OpenShift environment, creating a new project, and ",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-11-30",
+      "dateModified": "2024-11-30",
+      "url": "https://www.rifaterdemsahin.com/2024/11/30/poc-basic-app-deploy-on-openshift/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/11/30/poc-basic-app-deploy-on-openshift/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Poc Basic App Deploy on Openshift</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>November 30, 2024</span>
+                    <span>&bull;</span>
+                    <span>43 min read</span>
+                </div>
+                <p class="article-excerpt">Poc Basic App Deploy on Openshift LOGS ( SEMBLANCE ) Deploying a basic application on OpenShift involves several steps, which include setting up the OpenShift environment, creating a new project, and deploying your application.</p>
+            </header>
+            <article class="article-content">
+                <h1>Poc Basic App Deploy on Openshift</h1>
+                <p><strong>LOGS</strong> ( SEMBLANCE )</p>
+                <p>Deploying a basic application on OpenShift involves several steps, which include setting up the OpenShift environment, creating a new project, and deploying your application. Below is a step-by-step guide to deploying a basic application on OpenShift:</p>
+                <h3>1. <strong>Set Up OpenShift Environment</strong></h3>
+                <p>Before you start, ensure you have access to an OpenShift cluster. You can use:</p>
+                <ul>
+                <li>
+                <p><strong>OpenShift Online</strong> (hosted by Red Hat)</p>
+                </li>
+                <li>
+                <p><strong>Minishift</strong> or <strong>CRC (CodeReady Containers)</strong> for local development</p>
+                </li>
+                </ul>
+                <p>CRC &gt; Local workstation</p>
+                <hr />
+                <p>To run CodeReady Containers (CRC) locally, follow these steps. CRC allows you to set up and run a local OpenShift 4.x cluster, which is ideal for development and testing.</p>
+                <h3>Prerequisites</h3>
+                <ul>
+                <li>
+                <p><strong>System Requirements</strong>:</p>
+                </li>
+                <li>
+                <p>At least 4 CPU cores.</p>
+                </li>
+                <li>
+                <p>Minimum 9 GB of free RAM.</p>
+                </li>
+                <li>
+                <p>At least 35 GB of free disk space.</p>
+                </li>
+                <li>
+                <p>Virtualization enabled (VT-x or AMD-V) in your BIOS.</p>
+                </li>
+                <li>
+                <p><strong>Install CRC</strong>:</p>
+                </li>
+                <li>
+                <p>Download the latest version of CRC from the official <a href="https://cloud.redhat.com/openshift/install/crc/installer-provisioned">Red Hat CodeReady Containers website</a>.</p>
+                </li>
+                <li>
+                <p>Extract the downloaded file and add the <code>crc</code> binary to your PATH.</p>
+                </li>
+                <li>
+                <p><strong>Set Up CRC</strong>: ( path variables )</p>
+                </li>
+                <li>
+                <p>Open a terminal and run the following command to set up CRC:<br />
+                <code>bash crc setup</code></p>
+                </li>
+                </ul>
+                <p><img src="images/poc-basic-app-1.png" alt="poc basic app 1" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>
+                <p>This command configures your environment and downloads the necessary components (like the OpenShift disk image).</p>
+                </li>
+                <li>
+                <p><strong>Start CRC</strong>:</p>
+                </li>
+                <li>
+                <p>Run the following command to start the OpenShift cluster:<br />
+                <code>bash crc start</code></p>
+                </li>
+                </ul>
+                <p><img src="images/poc-basic-app-2.png" alt="poc basic app 2" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>During the start process, you’ll be asked for a pull secret. You can obtain it from the same Red Hat OpenShift page where you downloaded CRC.</li>
+                </ul>
+                <p><img src="images/poc-basic-app-3.png" alt="poc basic app 3" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>After starting, CRC will display the credentials for accessing the OpenShift web console and the kubeadmin password.</li>
+                </ul>
+                <p>path is already ther e</p>
+                <p><img src="images/poc-basic-app-4.png" alt="poc basic app 4" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>
+                <p><strong>Access OpenShift</strong>:</p>
+                </li>
+                <li>
+                <p>Once CRC is running, you can access the OpenShift web console by navigating to the URL provided during the CRC start process (usually <code>https://console-openshift-console.apps-crc.testing</code>).</p>
+                </li>
+                <li>
+                <p>Log in using the credentials provided by CRC.</p>
+                </li>
+                </ul>
+                <p><img src="images/poc-basic-app-5.png" alt="poc basic app 5" class="article-image" loading="lazy"></p>
+                <p>Components Coming together</p>
+                <p><img src="images/poc-basic-app-6.png" alt="poc basic app 6" class="article-image" loading="lazy"></p>
+                <p>Network turning on</p>
+                <p><img src="images/poc-basic-app-7.png" alt="poc basic app 7" class="article-image" loading="lazy"></p>
+                <p>Does not overload 3995x</p>
+                <p><img src="images/poc-basic-app-8.png" alt="poc basic app 8" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>
+                <p><strong>Interact with OpenShift</strong>:</p>
+                </li>
+                <li>
+                <p>You can interact with your OpenShift cluster using the <code>oc</code> command-line tool, which is automatically configured by CRC.</p>
+                </li>
+                <li>
+                <p>For example, to check the status of your cluster, run:<br />
+                <code>bash oc status</code> </p>
+                </li>
+                </ul>
+                <p><img src="images/poc-basic-app-9.png" alt="poc basic app 9" class="article-image" loading="lazy"></p>
+                <h3>Additional Commands</h3>
+                <ul>
+                <li><strong>Stop CRC</strong>:</li>
+                </ul>
+                <p>crc stop</p>
+                <ul>
+                <li><strong>Delete the CRC instance</strong>: ( release system resources )</li>
+                </ul>
+                <p>crc delete</p>
+                <h3>Troubleshooting</h3>
+                <p>If you encounter any issues during setup, make sure that:</p>
+                <ul>
+                <li>
+                <p>Your system meets the required resources.</p>
+                </li>
+                <li>
+                <p>Virtualization is enabled in your BIOS.</p>
+                </li>
+                <li>
+                <p>Any firewall or security software isn't blocking CRC components.</p>
+                </li>
+                </ul>
+                <p>By following these steps, you should be able to successfully run CRC locally and start experimenting with OpenShift on your machine.</p>
+                <hr />
+                <h3>2. <strong>Log in to the OpenShift Cluster</strong></h3>
+                <p><img src="images/poc-basic-app-10.png" alt="poc basic app 10" class="article-image" loading="lazy"></p>
+                <p>Log in to your OpenShift cluster using the <code>oc</code> command-line tool. If you don’t have it installed, download it from the OpenShift web console or the <a href="https://www.openshift.com/">official OpenShift website</a>.</p>
+                <p>oc login <OpenShift API URL></p>
+                <p>You will need your credentials (username and password) or a token to log in.</p>
+                <h3>3. <strong>Create a New Project</strong></h3>
+                <p>Create a new project to deploy your application. A project in OpenShift is a Kubernetes namespace with additional annotations.</p>
+                <p>oc new-project myapp-project</p>
+                <p>Replace <code>myapp-project</code> with a name for your project.</p>
+                <p><img src="images/poc-basic-app-11.png" alt="poc basic app 11" class="article-image" loading="lazy"></p>
+                <h3>4. <strong>Deploy a Sample Application</strong></h3>
+                <p>You can deploy a sample application using OpenShift’s source-to-image (S2I) feature. This example uses a basic Node.js application available in the OpenShift samples.</p>
+                <p>oc new-app nodejs~https://github.com/sclorg/nodejs-ex -n myapp-project</p>
+                <p>Here’s what this command does:</p>
+                <ul>
+                <li>
+                <p><strong><code>nodejs~</code></strong>: Specifies the programming language (Node.js in this case).</p>
+                </li>
+                <li>
+                <p><strong><code>https://github.com/sclorg/nodejs-ex</code></strong>: Points to a sample Git repository containing the application code.</p>
+                </li>
+                </ul>
+                <p><img src="images/poc-basic-app-12.png" alt="poc basic app 12" class="article-image" loading="lazy"></p>
+                <h3>5. <strong>Monitor the Deployment</strong></h3>
+                <p>After initiating the deployment, monitor the process using the following command:</p>
+                <p>oc status</p>
+                <p><img src="images/poc-basic-app-13.png" alt="poc basic app 13" class="article-image" loading="lazy"></p>
+                <p>This command gives you an overview of the application deployment status. To get more detailed logs of the build process, use:</p>
+                <p><img src="images/poc-basic-app-14.png" alt="poc basic app 14" class="article-image" loading="lazy"></p>
+                <p>oc logs -f bc/nodejs-ex</p>
+                <p><img src="images/poc-basic-app-15.png" alt="poc basic app 15" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-basic-app-16.png" alt="poc basic app 16" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>The errors you're seeing indicate that some of the resources you're trying to create already exist in the <code>myapp-project</code> namespace. Specifically, the <code>buildconfig</code>, <code>deployment</code>, and <code>service</code> for <code>nodejs-ex</code> are already present. This situation commonly occurs if you've previously run the <code>oc new-app</code> command with the same source code repository and application name.</p>
+                <p>Here are some options to resolve this:</p>
+                <h3>1. <strong>Delete Existing Resources and Re-run the Command</strong>✅</h3>
+                <p>If you're trying to start fresh, you can delete the existing resources before re-running the <code>oc new-app</code> command:</p>
+                <p>oc delete buildconfig nodejs-ex<br />
+                   oc delete deployment nodejs-ex<br />
+                   oc delete service nodejs-ex</p>
+                <p>After deleting these resources, you can re-run the <code>oc new-app</code> command.</p>
+                <p><img src="images/poc-basic-app-17.png" alt="poc basic app 17" class="article-image" loading="lazy"></p>
+                <h3>2. <strong>Use a Different Application Name</strong></h3>
+                <p>If you don't want to delete the existing resources, you can specify a different application name to avoid conflicts:</p>
+                <p>oc new-app nodejs~https://github.com/sclorg/nodejs-ex --name=my-new-nodejs-ex -n myapp-project</p>
+                <p>This will create a new set of resources under the name <code>my-new-nodejs-ex</code>.</p>
+                <h3>3. <strong>Trigger a New Build Manually</strong></h3>
+                <p>If the existing resources are valid and you just want to trigger a new build or redeploy the application, you can do so manually:</p>
+                <p>oc start-build nodejs-ex<br />
+                   oc rollout restart deployment/nodejs-ex</p>
+                <p><img src="images/poc-basic-app-18.png" alt="poc basic app 18" class="article-image" loading="lazy"></p>
+                <h3>4. <strong>Inspect the Existing Resources</strong></h3>
+                <p>If you're not sure whether you need to keep or modify the existing resources, you can inspect them first:</p>
+                <p>oc get buildconfig nodejs-ex -o yaml<br />
+                   oc get deployment nodejs-ex -o yaml<br />
+                   oc get service nodejs-ex -o yaml</p>
+                <p><img src="images/poc-basic-app-19.png" alt="poc basic app 19" class="article-image" loading="lazy"></p>
+                <p>Reviewing these can help you decide whether to keep them as-is, modify, or delete them.</p>
+                <p>Choose the approach that best fits your situation. If you frequently encounter these conflicts, it might be helpful to regularly clean up unused resources or use unique names for different applications or versions.</p>
+                <hr />
+                <p>The error you're encountering indicates that the build for your <code>my-new-nodejs-ex</code> application has failed. This is preventing the deployment from completing successfully. Let's break down the issue and look at potential solutions.</p>
+                <h3>Key Points from the Status:</h3>
+                <ul>
+                <li>
+                <p>The build failed with the message <code>build #1 failed 2 minutes ago</code>.</p>
+                </li>
+                <li>
+                <p>The deployment is stuck, with 0/1 pods running.</p>
+                </li>
+                </ul>
+                <h3>Steps to Diagnose and Resolve:</h3>
+                <ul>
+                <li><strong>Check Build Logs</strong>:<br />
+                The first step is to examine the build logs to determine why the build failed. Use the following command to retrieve the logs:</li>
+                </ul>
+                <p>oc logs build/my-new-nodejs-ex-1</p>
+                <p><img src="images/poc-basic-app-20.png" alt="poc basic app 20" class="article-image" loading="lazy"></p>
+                <p>This command will provide details about what went wrong during the build process, such as issues with the source code, dependencies, or any configuration errors.</p>
+                <ul>
+                <li><strong>Check Pod Logs (if any pods were created)</strong>:<br />
+                If the deployment started any pods before failing, checking the pod logs can provide additional insight:</li>
+                </ul>
+                <p><img src="images/poc-basic-app-21.png" alt="poc basic app 21" class="article-image" loading="lazy"></p>
+                <p>oc logs deployment/my-new-nodejs-ex</p>
+                <p><img src="images/poc-basic-app-22.png" alt="poc basic app 22" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Inspect the Build Configuration</strong>:<br />
+                Verify that the build configuration is correct and that it points to the correct Git repository and branch. You can do this by running:</li>
+                </ul>
+                <p>oc get bc my-new-nodejs-ex -o yaml</p>
+                <p><img src="images/poc-basic-app-23.png" alt="poc basic app 23" class="article-image" loading="lazy"></p>
+                <pre><code>apiVersion: build.openshift.io/v1
+                kind: BuildConfig
+                metadata:
+                  annotations:
+                    openshift.io/generated-by: OpenShiftNewApp
+                  creationTimestamp: &quot;2024-08-21T11:24:36Z&quot;
+                  generation: 2
+                  labels:
+                    app: my-new-nodejs-ex
+                    app.kubernetes.io/component: my-new-nodejs-ex
+                    app.kubernetes.io/instance: my-new-nodejs-ex
+                  name: my-new-nodejs-ex
+                  namespace: myapp-project
+                  resourceVersion: &quot;285641&quot;
+                  uid: da432b3d-688a-4c4d-9151-bf94fc91c354
+                spec:
+                  failedBuildsHistoryLimit: 5
+                  nodeSelector: null
+                  output:
+                    to:
+                      kind: ImageStreamTag
+                      name: my-new-nodejs-ex:latest
+                  postCommit: {}
+                  resources: {}
+                  runPolicy: Serial
+                  source:
+                    git:
+                      uri: https://github.com/sclorg/nodejs-ex
+                    type: Git
+                  strategy:
+                    sourceStrategy:
+                      from:
+                        kind: ImageStreamTag
+                        name: nodejs:20-ubi9
+                        namespace: openshift
+                    type: Source
+                  successfulBuildsHistoryLimit: 5
+                  triggers:
+                  - github:
+                      secret: Z4phSmEln8zOVDoBmo4P
+                    type: GitHub
+                  - generic:
+                      secret: Bjy7bzIIs0gx90QPzi-Y
+                    type: Generic
+                  - type: ConfigChange
+                  - imageChange: {}
+                    type: ImageChange
+                status:
+                  imageChangeTriggers:
+                  - from:
+                      name: nodejs:20-ubi9
+                      namespace: openshift
+                    lastTriggerTime: &quot;2024-08-21T11:24:36Z&quot;
+                    lastTriggeredImageID: image-registry.openshift-image-registry.svc:5000/openshift/nodejs@sha256:2dc43901e53420104d4742a201fc1f30b5c560362c542e821c07f77a805aec9a
+                  lastVersion: 1
+                
+                </code></pre>
+                <p>Look for any issues, such as incorrect URLs, branches, or build strategy errors.</p>
+                <ul>
+                <li><strong>Rerun the Build</strong>:<br />
+                If the issue is transient or related to a specific error that has been fixed, you can manually trigger a new build:</li>
+                </ul>
+                <p>oc start-build my-new-nodejs-ex</p>
+                <p><img src="images/poc-basic-app-24.png" alt="poc basic app 24" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Use <code>v</code></strong>:<br />
+                The <code>oc status --suggest</code> command can provide specific recommendations based on the current state of your project. It might suggest steps like increasing resource limits, checking network connectivity, or adjusting configurations.</li>
+                </ul>
+                <p><img src="images/poc-basic-app-25.png" alt="poc basic app 25" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Review Failed Build Artifacts</strong>:<br />
+                If the build failed due to issues with the source code, such as conflicts or errors introduced in recent commits, you might need to review the failed build artifacts. This includes checking the state of the source repository, ensuring all dependencies are available, and that there are no syntax or logic errors.</li>
+                </ul>
+                <h3>Common Issues and Fixes:</h3>
+                <ul>
+                <li>
+                <p><strong>Dependency Issues</strong>: Ensure that all required dependencies are available and correctly specified in your project’s configuration files (like <code>package.json</code> for Node.js).</p>
+                </li>
+                <li>
+                <p><strong>Network Issues</strong>: If the build process requires downloading dependencies from the internet, ensure that the OpenShift environment has proper network access.</p>
+                </li>
+                <li>
+                <p><strong>Build Script Errors</strong>: If your project relies on custom build scripts, check them for errors or misconfigurations.</p>
+                </li>
+                </ul>
+                <p>After identifying and fixing the issue, you can rerun the build and monitor its progress. If the problem persists, it may require deeper investigation, potentially involving changes to the build or deployment configuration.</p>
+                <hr />
+                <p>It looks like you're seeing warnings about the deprecation of the <code>DeploymentConfig</code> API version and you're also dealing with an ongoing and previously failed build in your OpenShift project.</p>
+                <h3>Steps to Delete Resources</h3>
+                <p>If you want to delete the resources associated with <code>my-new-nodejs-ex</code>, including the service, build configurations, deployments, and any running builds, you can do so with the following commands:</p>
+                <ul>
+                <li><strong>Delete the Build Config and Related Resources</strong>:<br />
+                This will remove the build configuration, as well as any builds and images that were created.</li>
+                </ul>
+                <p>oc delete bc/my-new-nodejs-ex</p>
+                <ul>
+                <li><strong>Delete the Deployment</strong>:<br />
+                This will delete the deployment and associated pods.</li>
+                </ul>
+                <p>oc delete deployment/my-new-nodejs-ex</p>
+                <ul>
+                <li><strong>Delete the Service</strong>:<br />
+                This will delete the service associated with your application.</li>
+                </ul>
+                <p>oc delete svc/my-new-nodejs-ex</p>
+                <ul>
+                <li><strong>Delete the ImageStream</strong> (if it exists):<br />
+                If an image stream was created for this application, you can delete it as well.</li>
+                </ul>
+                <p>oc delete istag/my-new-nodejs-ex:latest</p>
+                <h3>Handling the Deprecation Warning</h3>
+                <p>The deprecation warning for <code>apps.openshift.io/v1 DeploymentConfig</code> indicates that this API version is deprecated and will be removed in a future version of OpenShift (v4.14+).</p>
+                <p>To address this:</p>
+                <ul>
+                <li><strong>Switch to Deployments</strong>: Instead of using <code>DeploymentConfig</code>, consider using <code>Deployment</code> resources, which are part of the <code>apps/v1</code> API and are the preferred way to manage deployments in newer versions of OpenShift. You can create a new deployment using a similar configuration but within the <code>apps/v1</code> API group.</li>
+                </ul>
+                <p>Here’s a basic example of a Deployment YAML file:</p>
+                <p>apiVersion: apps/v1<br />
+                kind: Deployment<br />
+                metadata:<br />
+                  name: my-new-nodejs-ex<br />
+                spec:<br />
+                  replicas: 1<br />
+                  selector:<br />
+                    matchLabels:<br />
+                      app: my-new-nodejs-ex<br />
+                  template:<br />
+                    metadata:<br />
+                      labels:<br />
+                        app: my-new-nodejs-ex<br />
+                    spec:<br />
+                      containers:<br />
+                      - name: my-new-nodejs-ex<br />
+                        image: <your-image-here><br />
+                        ports:<br />
+                        - containerPort: 8080</p>
+                <p>You would apply this with:</p>
+                <p>oc apply -f <deployment-file.yaml></p>
+                <p>This approach helps ensure that your application is aligned with the future direction of OpenShift.</p>
+                <h3>Conclusion</h3>
+                <p>After deleting the existing resources, if you intend to redeploy your application, you should consider using the <code>Deployment</code> resource as described above to avoid future issues with deprecated APIs. If you face any further issues during the process, feel free to ask for additional guidance.</p>
+                <hr />
+                <p>To delete all the resources associated with your application <code>my-new-nodejs-ex</code> in one command, you can use the following <code>oc</code> command:</p>
+                <p>oc delete all --selector app=my-new-nodejs-ex</p>
+                <p>This command deletes all resources (pods, services, deployments, build configs, etc.) labeled with <code>app=my-new-nodejs-ex</code>. If you also want to delete any related image streams, you can add the <code>imagestream</code> resource:</p>
+                <p>oc delete all,imagestream --selector app=my-new-nodejs-ex</p>
+                <p>This oneliner should clean up everything associated with your application in the <code>myapp-project</code> namespace.</p>
+                <hr />
+                <p><img src="images/poc-basic-app-26.png" alt="poc basic app 26" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-basic-app-27.png" alt="poc basic app 27" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-basic-app-28.png" alt="poc basic app 28" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>To deploy a different proof-of-concept (POC) application to your CRC (CodeReady Containers) cluster, you can choose from a variety of example applications provided by the OpenShift community. Below is a simple example of deploying a Python Flask application using <code>oc new-app</code>.</p>
+                <h3>Example: Deploying a Python Flask Application</h3>
+                <ul>
+                <li><strong>Deploy the Flask Application</strong>:<br />
+                Use the following <code>oc new-app</code> command to deploy a Python Flask example application from a GitHub repository.</li>
+                </ul>
+                <p>oc new-app python:3.8~https://github.com/sclorg/django-ex -n myapp-project</p>
+                <p><img src="images/poc-basic-app-29.png" alt="poc basic app 29" class="article-image" loading="lazy"></p>
+                <p>This command does the following:</p>
+                <ul>
+                <li>
+                <p>Uses the <code>python:3.8</code> image stream available in OpenShift.</p>
+                </li>
+                <li>
+                <p>Clones the <code>https://github.com/sclorg/django-ex</code> repository, which contains a basic Django application (similar to Flask).</p>
+                </li>
+                <li>
+                <p>Creates a new application in the <code>myapp-project</code> namespace.</p>
+                </li>
+                <li>
+                <p><strong>Monitor the Build and Deployment</strong>:<br />
+                You can monitor the build and deployment process using:</p>
+                </li>
+                </ul>
+                <p>oc logs -f bc/django-ex</p>
+                <p><img src="images/poc-basic-app-30.png" alt="poc basic app 30" class="article-image" loading="lazy"></p>
+                <p>This will show you the logs for the build process. Once the build is complete, OpenShift will automatically deploy the application.</p>
+                <p><img src="images/poc-basic-app-31.png" alt="poc basic app 31" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><img src="images/poc-basic-app-32.png" alt="poc basic app 32" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-basic-app-33.png" alt="poc basic app 33" class="article-image" loading="lazy"></p>
+                <p>administrator</p>
+                <p><img src="images/poc-basic-app-34.png" alt="poc basic app 34" class="article-image" loading="lazy"></p>
+                <p>workload</p>
+                <p><img src="images/poc-basic-app-35.png" alt="poc basic app 35" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-basic-app-36.png" alt="poc basic app 36" class="article-image" loading="lazy"></p>
+                <p>Node low on empheral storage ( temp storage )</p>
+                <p><img src="images/poc-basic-app-37.png" alt="poc basic app 37" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-basic-app-38.png" alt="poc basic app 38" class="article-image" loading="lazy"></p>
+                <p>The message indicates that the node in your OpenShift cluster is running low on ephemeral storage, which is temporary storage typically used by containers for tasks like storing logs, temporary files, and caches. The node has reached the threshold where it's considered to be critically low on available ephemeral storage, which can lead to problems with scheduling new pods or even impact the running of existing ones.</p>
+                <h3>Breakdown of the Message:</h3>
+                <ul>
+                <li>
+                <p><strong>Node Low on Resource</strong>: The node is running low on ephemeral storage.</p>
+                </li>
+                <li>
+                <p><strong>Threshold Quantity</strong>: <code>4902142351</code> is the threshold in bytes (about 4.9 GB) at which the system starts reporting low storage.</p>
+                </li>
+                <li>
+                <p><strong>Available</strong>: <code>4728464Ki</code> is the available storage in kibibytes (~4.5 GB).</p>
+                </li>
+                </ul>
+                <h3>What This Means:</h3>
+                <p>When a node reaches this low-storage threshold:</p>
+                <ul>
+                <li>
+                <p>New pods that require storage might not be scheduled on this node.</p>
+                </li>
+                <li>
+                <p>Existing pods that are heavily using ephemeral storage might face issues or get evicted.</p>
+                </li>
+                <li>
+                <p>System services and logging mechanisms might also be impacted.</p>
+                </li>
+                </ul>
+                <h3>Possible Actions:</h3>
+                <ul>
+                <li>
+                <p><strong>Check Disk Usage</strong>:</p>
+                </li>
+                <li>
+                <p>Investigate which pods or processes are consuming the most ephemeral storage on this node.</p>
+                </li>
+                <li>
+                <p>Use tools like <code>du</code> (disk usage) to see what's taking up space.</p>
+                </li>
+                <li>
+                <p>Clean up unnecessary files or logs if possible.</p>
+                </li>
+                <li>
+                <p><strong>Scale Up Resources</strong>:</p>
+                </li>
+                <li>
+                <p>Consider adding more nodes to your cluster to distribute the load.</p>
+                </li>
+                <li>
+                <p>Increase the ephemeral storage available to this node, if possible.</p>
+                </li>
+                <li>
+                <p><strong>Evict Pods</strong>:</p>
+                </li>
+                <li>
+                <p>Identify non-essential or resource-heavy pods and consider evicting or rescheduling them on other nodes with more available storage.</p>
+                </li>
+                <li>
+                <p><strong>Persistent Storage</strong>:</p>
+                </li>
+                <li>
+                <p>Use persistent volumes for storing data instead of relying on ephemeral storage, especially for critical applications.</p>
+                </li>
+                <li>
+                <p>This reduces the dependency on ephemeral storage and prevents such issues from occurring frequently.</p>
+                </li>
+                <li>
+                <p><strong>Monitor Storage</strong>:</p>
+                </li>
+                <li>
+                <p>Set up monitoring and alerts for storage usage on your nodes to catch this issue before it becomes critical.</p>
+                </li>
+                <li>
+                <p>Tools like Prometheus and Grafana can be helpful in monitoring and visualizing storage trends.</p>
+                </li>
+                </ul>
+                <p>By addressing the storage issue promptly, you can ensure that your node remains healthy and can continue to run workloads effectively without disruption.</p>
+                <p><img src="images/poc-basic-app-39.png" alt="poc basic app 39" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-basic-app-40.png" alt="poc basic app 40" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>In CodeReady Containers (CRC), increasing the available storage involves increasing the disk size allocated to the CRC virtual machine. Here's how you can do that:</p>
+                <h3>Steps to Increase Storage in CRC:</h3>
+                <ul>
+                <li>
+                <p><strong>Stop CRC</strong>:</p>
+                </li>
+                <li>
+                <p>First, ensure that your CRC instance is stopped. You can do this by running:<br />
+                <code>bash crc stop</code> ✅</p>
+                </li>
+                </ul>
+                <p><img src="images/poc-basic-app-41.png" alt="poc basic app 41" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>
+                <p><strong>Resize the CRC Disk</strong>:</p>
+                </li>
+                <li>
+                <p>CRC uses a virtual disk image (often a QCOW2 or RAW file) to simulate the storage for the virtual machine. You'll need to resize this disk image. The process may vary depending on the host operating system: <strong>For Linux or macOS:</strong></p>
+                </li>
+                <li>
+                <p>You can resize the virtual disk image using the <code>qemu-img</code> tool. First, navigate to the directory where the CRC disk image is stored. This is usually under <code>~/.crc/machines/crc/</code>.</p>
+                </li>
+                <li>
+                <p>Run the following command to increase the disk size (e.g., to 100 GB): <code>qemu-img resize crc.qcow2 +50G</code> This command will add 50 GB to the current size of the disk. <strong>For Windows:</strong></p>
+                </li>
+                <li>
+                <p>CRC on Windows typically uses Hyper-V, so you would need to use Hyper-V Manager or PowerShell to resize the virtual disk. Using PowerShell: <code>Resize-VHD -Path "C:\Users\&lt;YourUser&gt;\.crc\machines\crc\crc.vhdx" -SizeBytes 100GB</code> Replace <code>100GB</code> with the desired disk size.</p>
+                </li>
+                </ul>
+                <p><img src="images/poc-basic-app-42.png" alt="poc basic app 42" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-basic-app-43.png" alt="poc basic app 43" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-basic-app-44.png" alt="poc basic app 44" class="article-image" loading="lazy"></p>
+                <p>`C:\Users\Pexabo.crc\machines\crc\crc</p>
+                <p>Error caught in the ui of the openshift not the terminal </p>
+                <p>`</p>
+                <ul>
+                <li>Error location</li>
+                </ul>
+                <p>outlined in the conditions part</p>
+                <p><img src="images/poc-basic-app-45.png" alt="poc basic app 45" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-basic-app-46.png" alt="poc basic app 46" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>Start CRC again to apply the changes:<br />
+                <code>bash crc start</code></li>
+                </ul>
+                <p><img src="images/poc-basic-app-47.png" alt="poc basic app 47" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>
+                <p><strong>Expand Filesystem Inside the VM</strong>:</p>
+                </li>
+                <li>
+                <p>Even though the virtual disk has been resized, the filesystem inside the CRC virtual machine needs to be expanded to use the additional space.⏳⏳⏳⏳⏳⏳</p>
+                </li>
+                <li>
+                <p>Connect to the CRC VM using SSH:<br />
+                <code>bash crc ssh</code></p>
+                </li>
+                </ul>
+                <hr />
+                <p>It seems like the <code>crc ssh</code> command is not available in your version of CodeReady Containers (CRC). The approach to increasing storage will differ slightly depending on your setup. Here’s an alternative method to resize the CRC disk and expand the filesystem without using the <code>crc ssh</code> command:</p>
+                <h3>Alternative Steps to Resize CRC Storage on Windows:</h3>
+                <ul>
+                <li>
+                <p><strong>Stop CRC</strong>:</p>
+                </li>
+                <li>
+                <p>First, make sure that CRC is stopped:<br />
+                <code>powershell crc stop</code></p>
+                </li>
+                <li>
+                <p><strong>Resize the CRC Disk</strong>:</p>
+                </li>
+                <li>
+                <p>Locate the CRC virtual disk, which is typically stored in:<br />
+                <code>C:\Users\&lt;YourUsername&gt;\.crc\machines\crc\crc.vhdx</code></p>
+                </li>
+                <li>
+                <p>Use PowerShell to resize the virtual hard disk (VHDX):<br />
+                <code>powershell Resize-VHD -Path "C:\Users\&lt;YourUsername&gt;\.crc\machines\crc\crc.vhdx" -SizeBytes 100GB</code><br />
+                Replace <code>100GB</code> with the new desired size.</p>
+                </li>
+                <li>
+                <p><strong>Restart CRC</strong>:</p>
+                </li>
+                <li>
+                <p>Start CRC again:<br />
+                <code>powershell crc start</code></p>
+                </li>
+                <li>
+                <p><strong>Expand the Filesystem Inside CRC</strong>:</p>
+                </li>
+                <li>
+                <p>Since the <code>crc ssh</code> command is not available, you need to access the CRC virtual machine differently.</p>
+                </li>
+                <li>
+                <p>If CRC uses Hyper-V, you can connect to the virtual machine console using Hyper-V Manager:</p>
+                </li>
+                </ul>
+                <p><img src="images/poc-basic-app-48.png" alt="poc basic app 48" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>
+                <p>Open <strong>Hyper-V Manager</strong> from your Windows Start Menu.</p>
+                </li>
+                <li>
+                <p>Find the CRC virtual machine (<code>crc</code>).</p>
+                </li>
+                </ul>
+                <p><img src="images/poc-basic-app-49.png" alt="poc basic app 49" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>Right-click on the VM and select <strong>Connect</strong> to open the console.</li>
+                </ul>
+                <p><img src="images/poc-basic-app-50.png" alt="poc basic app 50" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>Login using the default credentials (if prompted):</li>
+                </ul>
+                <p>Username: <code>core</code></p>
+                <ul>
+                <li>
+                <p>Password: (usually, there is no password, but it might depend on your setup)</p>
+                </li>
+                <li>
+                <p>Once logged in, expand the filesystem. For example:<br />
+                <code>bash sudo growpart /dev/sda 1 sudo resize2fs /dev/sda1</code><br />
+                Or if using <code>xfs</code>:<br />
+                <code>bash sudo xfs_growfs /</code></p>
+                </li>
+                <li>
+                <p><strong>Verify the Expanded Storage</strong>:</p>
+                </li>
+                <li>
+                <p>After resizing the filesystem, you can verify the available storage by running:<br />
+                <code>bash df -h</code></p>
+                </li>
+                <li>
+                <p>This should show the expanded storage space.</p>
+                </li>
+                </ul>
+                <h3>Important Notes:</h3>
+                <ul>
+                <li>
+                <p>If you cannot access the virtual machine via Hyper-V, you may need to rely on other virtualization management tools, depending on how CRC is configured on your system.</p>
+                </li>
+                <li>
+                <p>Make sure to properly backup any important data before resizing operations, as mistakes during the process can potentially lead to data loss.</p>
+                </li>
+                </ul>
+                <p>If these steps do not work or you encounter any issues, you might want to check the CRC documentation for your specific version, as there can be differences in available commands and options depending on the release.</p>
+                <p>The image you've provided shows a console screen for the CRC virtual machine where you are attempting to log in. It seems you're using the username <code>kubeadmin</code>, but the login attempts are resulting in a "Login incorrect" message.</p>
+                <h3>Default Login Credentials for CRC</h3>
+                <p>The typical credentials to log in to the CRC virtual machine are:</p>
+                <ul>
+                <li>
+                <p><strong>Username</strong>: <code>core</code></p>
+                </li>
+                <li>
+                <p><strong>Password</strong>: Usually, there is no password required for the <code>core</code> user. Just pressing <strong>Enter</strong> after typing <code>core</code> should log you in.</p>
+                </li>
+                </ul>
+                <h3>Steps to Try:</h3>
+                <ul>
+                <li>
+                <p><strong>Use the <code>core</code> User</strong>:</p>
+                </li>
+                <li>
+                <p>When prompted for the login, enter <code>core</code> as the username.</p>
+                </li>
+                <li>
+                <p>When prompted for the password, just press <strong>Enter</strong> (leave it empty).</p>
+                </li>
+                <li>
+                <p><strong>Check CRC Documentation</strong>:</p>
+                </li>
+                <li>
+                <p>If you customized the setup or there is an organizational policy in place, the default credentials might have been changed. You might need to check the documentation or configuration used during CRC setup.</p>
+                </li>
+                <li>
+                <p><strong>SSH Keys</strong>:</p>
+                </li>
+                <li>
+                <p>If your CRC installation is configured to use SSH keys for authentication, you might need to access the VM using those keys rather than a password. This typically applies when connecting via SSH rather than through the console.</p>
+                </li>
+                <li>
+                <p><strong>Resetting Passwords</strong> (If Applicable):</p>
+                </li>
+                <li>
+                <p>If you have access to the underlying system that manages the CRC virtual machine, you might consider resetting the password or configuring another user for access.</p>
+                </li>
+                </ul>
+                <p>If the <code>core</code> user does not work, and you continue to face issues, there might be a need to explore resetting or reconfiguring the CRC VM or consulting with the specific setup documentation or team that handled the installation.</p>
+                <hr />
+                <p>Console login on the openshift</p>
+                <p><img src="images/poc-basic-app-51.png" alt="poc basic app 51" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-basic-app-52.png" alt="poc basic app 52" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>
+                <p>Check the current disk partitions:<br />
+                <code>bash df -h</code></p>
+                </li>
+                <li>
+                <p>You might need to use a tool like <code>growpart</code> (for resizing partitions) and <code>resize2fs</code> or <code>xfs_growfs</code> (for resizing filesystems). For example, if the root partition <code>/dev/sda1</code> needs to be resized:</p>
+                </li>
+                </ul>
+                <p>sudo growpart /dev/sda 1<br />
+                   sudo resize2fs /dev/sda1</p>
+                <p>Or if using <code>xfs</code>:</p>
+                <p>sudo xfs_growfs /</p>
+                <ul>
+                <li>
+                <p><strong>Verify Storage</strong>:</p>
+                </li>
+                <li>
+                <p>After expanding the filesystem, check the available storage again:<br />
+                <code>bash df -h</code></p>
+                </li>
+                <li>
+                <p>You should see the additional storage reflected in the output.</p>
+                </li>
+                </ul>
+                <h3>Final Considerations:</h3>
+                <ul>
+                <li><strong>Persistent Changes</strong>: If you’re running CRC for development, ensure that any additional storage is sufficient for your workloads. Remember that CRC is intended for development and testing, not production, so consider the overall system limitations.</li>
+                </ul>
+                <p>By following these steps, you should be able to increase the ephemeral storage available to your CRC instance and mitigate the storage issues you were facing.</p>
+                <hr />
+                <p>To recreate your CodeReady Containers (CRC) instance with more storage, you'll need to remove the existing instance and start a new one with the desired storage configuration. Here’s a step-by-step guide on how to do this:</p>
+                <h3>1. Stop and Delete the Current CRC Instance</h3>
+                <p>Before recreating the CRC instance, you should stop and delete the current one:</p>
+                <p>crc stop<br />
+                crc delete</p>
+                <h3>2. Set Up CRC with Additional Storage</h3>
+                <p>To allocate more storage when you recreate CRC, you need to modify the disk size setting before starting it up again. Here’s how to do it:</p>
+                <ul>
+                <li>
+                <p><strong>Configure Disk Size:</strong></p>
+                </li>
+                <li>
+                <p>Before starting CRC, you can set the disk size by configuring the CRC settings. This can be done using the <code>crc config set</code> command:<br />
+                <code>bash crc config set disk-size 100</code><br />
+                Replace <code>100</code> with the size in GB that you want to allocate to your CRC instance.</p>
+                </li>
+                <li>
+                <p><strong>Start CRC with the New Configuration:</strong></p>
+                </li>
+                <li>
+                <p>Start CRC with the new configuration: <code>crc start</code> During the startup, CRC will create a new virtual machine with the specified disk size.</p>
+                </li>
+                </ul>
+                <h3>3. Verify Storage Allocation</h3>
+                <p>Once CRC is up and running, you can verify that the new disk size has been allocated:</p>
+                <ul>
+                <li>
+                <p><strong>SSH into the CRC Instance:</strong></p>
+                </li>
+                <li>
+                <p>If the <code>crc ssh</code> command is available:<br />
+                <code>bash crc ssh</code></p>
+                </li>
+                <li>
+                <p>Otherwise, connect via Hyper-V or the virtualization manager you are using, as you did earlier.</p>
+                </li>
+                <li>
+                <p><strong>Check Disk Size:</strong></p>
+                </li>
+                <li>
+                <p>Once inside the CRC VM, use the following command to check the available disk space:<br />
+                <code>bash df -h</code></p>
+                </li>
+                <li>
+                <p>This should display the total and available storage, showing the newly allocated space.</p>
+                </li>
+                </ul>
+                <h3>Additional Considerations:</h3>
+                <ul>
+                <li>
+                <p><strong>Persistent Storage Needs:</strong> Ensure that you allocate enough storage to cover your development needs, as increasing storage later might require similar steps.</p>
+                </li>
+                <li>
+                <p><strong>Configuration:</strong> You can explore other configuration settings using <code>crc config view</code> to adjust any other parameters as needed.</p>
+                </li>
+                </ul>
+                <p>By following these steps, you will recreate your CRC instance with the desired amount of storage, providing you with a fresh environment to continue your work.</p>
+                <p><img src="images/poc-basic-app-53.png" alt="poc basic app 53" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-basic-app-54.png" alt="poc basic app 54" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>SIMILAR </p>
+                <p><img src="images/poc-basic-app-55.png" alt="poc basic app 55" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>Sure, here's a basic installation guide for exposing the <code>django-ex</code> service using the <code>oc expose</code> command in an OpenShift environment:</p>
+                <ul>
+                <li>
+                <p><strong>Log in to your OpenShift cluster:</strong></p>
+                </li>
+                <li>
+                <p>Open a terminal or command prompt.</p>
+                </li>
+                <li>
+                <p>Run the following command to log in to your OpenShift cluster:<br />
+                <code>oc login</code></p>
+                </li>
+                <li>
+                <p>Follow the prompts to authenticate with your OpenShift credentials.</p>
+                </li>
+                <li>
+                <p><strong>Switch to the project or namespace where your <code>django-ex</code> application is deployed:</strong></p>
+                </li>
+                <li>
+                <p>Run the following command to switch to the project or namespace:<br />
+                <code>oc project &lt;your-project-name&gt;</code></p>
+                </li>
+                <li>
+                <p>Replace <code>&lt;your-project-name&gt;</code> with the name of your project or namespace.</p>
+                </li>
+                <li>
+                <p><strong>Expose the <code>django-ex</code> service:</strong></p>
+                </li>
+                <li>
+                <p>Run the following command to expose the <code>django-ex</code> service:<br />
+                <code>oc expose svc/django-ex</code></p>
+                </li>
+                <li>
+                <p>This command will create a new route that exposes the <code>django-ex</code> service, making it accessible from outside the cluster.</p>
+                </li>
+                <li>
+                <p><strong>Verify the exposed route:</strong></p>
+                </li>
+                <li>
+                <p>Run the following command to list the routes in your project:<br />
+                <code>oc get routes</code></p>
+                </li>
+                <li>
+                <p>This will display the URL of the exposed <code>django-ex</code> service. The URL will have a format similar to <code>http://&lt;route-name&gt;-&lt;project-name&gt;.&lt;cluster-domain&gt;</code>.</p>
+                </li>
+                <li>
+                <p><strong>Access the <code>django-ex</code> application:</strong></p>
+                </li>
+                <li>
+                <p>Open a web browser and navigate to the URL displayed in the previous step.</p>
+                </li>
+                <li>
+                <p>You should now be able to access your <code>django-ex</code> application through the exposed route.</p>
+                </li>
+                </ul>
+                <p>That's it! You have successfully exposed the <code>django-ex</code> service using the <code>oc expose</code> command.</p>
+                <p>Here's a breakdown of the command:</p>
+                <ul>
+                <li>
+                <p><code>oc expose svc/django-ex</code>: This command creates a new route that exposes the <code>django-ex</code> service, making it accessible from outside the cluster.</p>
+                </li>
+                <li>
+                <p><code>svc/django-ex</code>: This specifies the name of the service you want to expose, which in this case is <code>django-ex</code>.</p>
+                </li>
+                </ul>
+                <p>You can customize the exposed route further by using additional options with the <code>oc expose</code> command, such as specifying a hostname or setting TLS configuration. Refer to the OpenShift documentation for more information on the available options.</p>
+                <hr />
+                <p>To set up a Django project using <code>django-ex</code> on OpenShift, follow these steps. The <code>django-ex</code> project is typically a sample or example Django application that is pre-configured to run on OpenShift.</p>
+                <h3>Step 1: Install the OpenShift CLI</h3>
+                <p>First, ensure you have the OpenShift CLI (<code>oc</code>) installed on your system. You can download it from the OpenShift <a href="https://docs.openshift.com/container-platform/latest/cli_reference/openshift_cli/getting-started-cli.html">official documentation</a>.</p>
+                <h3>Step 2: Log in to Your OpenShift Cluster</h3>
+                <p>Log in to your OpenShift cluster using the CLI:</p>
+                <p>oc login <openshift-api-url></p>
+                <p>Replace <code>&lt;openshift-api-url&gt;</code> with the API URL of your OpenShift cluster.</p>
+                <p>admin login</p>
+                <p><img src="images/poc-basic-app-56.png" alt="poc basic app 56" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-basic-app-57.png" alt="poc basic app 57" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-basic-app-58.png" alt="poc basic app 58" class="article-image" loading="lazy"></p>
+                <p>now 65 projects</p>
+                <p><img src="images/poc-basic-app-59.png" alt="poc basic app 59" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-basic-app-60.png" alt="poc basic app 60" class="article-image" loading="lazy"></p>
+                <h3>Step 3: Create a New Project in OpenShift</h3>
+                <p>Create a new project (namespace) in OpenShift to contain your Django application:</p>
+                <p>oc new-project my-django-project</p>
+                <p><img src="images/poc-basic-app-61.png" alt="poc basic app 61" class="article-image" loading="lazy"></p>
+                <h3>Step 4: Deploy the <code>django-ex</code> Application</h3>
+                <p>The <code>django-ex</code> repository is typically hosted on GitHub or similar platforms. Deploy it using the following command:</p>
+                <p>oc new-app https://github.com/openshift/django-ex.git</p>
+                <p><img src="images/poc-basic-app-62.png" alt="poc basic app 62" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-basic-app-63.png" alt="poc basic app 63" class="article-image" loading="lazy"></p>
+                <p>This command will:</p>
+                <ul>
+                <li>
+                <p>Clone the <code>django-ex</code> repository.</p>
+                </li>
+                <li>
+                <p>Create a build configuration for the Django application.</p>
+                </li>
+                <li>
+                <p>Deploy the application using the default Django settings.</p>
+                </li>
+                </ul>
+                <p><img src="images/poc-basic-app-64.png" alt="poc basic app 64" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-basic-app-65.png" alt="poc basic app 65" class="article-image" loading="lazy"></p>
+                <h3>Step 5: Expose the Service</h3>
+                <p>Expose your Django application so it can be accessed from outside the OpenShift cluster:</p>
+                <p>oc expose svc/django-ex</p>
+                <p>This command creates a route to your Django application. You can find the URL by running:</p>
+                <p>oc get routes</p>
+                <h3>Step 6: Access Your Application</h3>
+                <p>Once the deployment is complete and the route is created, you can access your Django application using the URL provided by OpenShift.</p>
+                <h3>Step 7: Monitor the Build and Application Status</h3>
+                <p>You can monitor the build and application deployment status using the following commands:</p>
+                <p>oc logs -f bc/django-ex<br />
+                oc status</p>
+                <p>These commands will show you the status of the build and the overall project health.</p>
+                <h3>Optional: Customization and Configuration</h3>
+                <p>You can customize the deployment by modifying the environment variables, build configurations, or source code directly in the OpenShift web console or using the <code>oc</code> command-line tool.</p>
+                <h3>Step 8: Manage Your Application</h3>
+                <p>You can manage scaling, environment variables, and other aspects of your application using the OpenShift web console or via the <code>oc</code> command line.</p>
+                <p>This process sets up a basic Django application using the <code>django-ex</code> example on OpenShift, providing a starting point for further development and customization.</p>
+                <hr />
+                <ul>
+                <li><strong>Expose the Service</strong>:⏳<br />
+                To access the application from outside the cluster, you need to expose the service using a route:</li>
+                </ul>
+                <p>oc expose svc/django-ex</p>
+                <p>After exposing the service, OpenShift will provide a URL where you can access the application.</p>
+                <ul>
+                <li><strong>Check the Status</strong>:<br />
+                Finally, you can check the status of the application to ensure everything is running correctly:</li>
+                </ul>
+                <p>oc status</p>
+                <p>This will provide an overview of your project's state, including any errors or warnings.</p>
+                <hr />
+                <h3>Alternative POC Applications</h3>
+                <p>If you prefer using a different language or framework, you can replace the repository and image stream accordingly. Here are a few alternatives:</p>
+                <ul>
+                <li><strong>Go Example</strong>:</li>
+                </ul>
+                <p>oc new-app golang~https://github.com/sclorg/golang-ex -n myapp-project</p>
+                <p><img src="images/poc-basic-app-66.png" alt="poc basic app 66" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-basic-app-67.png" alt="poc basic app 67" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-basic-app-68.png" alt="poc basic app 68" class="article-image" loading="lazy"></p>
+                <p>Go went online </p>
+                <p><img src="images/poc-basic-app-69.png" alt="poc basic app 69" class="article-image" loading="lazy"></p>
+                <p><img src="images/poc-basic-app-70.png" alt="poc basic app 70" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Ruby on Rails Example</strong>:</li>
+                </ul>
+                <p>oc new-app ruby:2.7~https://github.com/sclorg/rails-ex -n myapp-project</p>
+                <ul>
+                <li><strong>Java Example</strong>:</li>
+                </ul>
+                <p>oc new-app java:8~https://github.com/sclorg/spring-petclinic -n myapp-project</p>
+                <p>These examples are great for testing and demonstrating the capabilities of OpenShift on your CRC environment.</p>
+                <hr />
+                <h3>6. <strong>Expose the Service</strong></h3>
+                <p>Once the application is deployed and the build is complete, expose the service to create a route (an external URL) for accessing the application.</p>
+                <p>oc expose svc/nodejs-ex</p>
+                <p>To view the route and access your application:</p>
+                <p>oc get routes</p>
+                <p>You should see an external URL that you can visit in your web browser to see the application running.</p>
+                <hr />
+                <p>To expose a service in OpenShift after creating a new application, you can follow these steps. Assuming you have already run the command to create the new application, you can expose the service as follows:</p>
+                <h3>Step 1: Create the New Application✅</h3>
+                <p>You've already run the following command:</p>
+                <p>oc new-app golang~https://github.com/sclorg/golang-ex -n myapp-project</p>
+                <p>This command creates a new application in the <code>myapp-project</code> namespace using the source code from the specified GitHub repository.</p>
+                <h3>Step 2: Expose the Service</h3>
+                <p>Once the application is created, you can expose the service to make it accessible from outside the OpenShift cluster. Use the following command:</p>
+                <p>oc expose svc/golang-ex -n myapp-project</p>
+                <hr />
+                <p>The error indicates that the service <code>golang-ex</code> was not found in the <code>myapp-project</code> namespace. This could be due to several reasons, such as the application not being created correctly or the service name being different from what you expected.</p>
+                <h3>Step 1: Verify the Application Deployment</h3>
+                <p>First, check whether the application was successfully deployed and that a service was created.</p>
+                <p>oc get all -n myapp-project</p>
+                <p><img src="images/poc-basic-app-71.png" alt="poc basic app 71" class="article-image" loading="lazy"></p>
+                <p>This command will list all resources in the <code>myapp-project</code> namespace, including pods, services, deployments, and routes. Look for a service that might have been created with a different name.</p>
+                <h3>Step 2: Identify the Correct Service Name</h3>
+                <p>If the service name is not <code>golang-ex</code>, identify the correct name from the output of the previous command. The service name should match what was created during the application setup.</p>
+                <hr />
+                <p>It looks like the application was successfully built and deployed, but the service might not have been created automatically. Since there is no service listed, you'll need to manually create one and then expose it.</p>
+                <h3>Step 1: Create the Service</h3>
+                <p>You can manually create a service for the deployed application using the following command:</p>
+                <p>oc expose deployment/golang-ex --port=8080 -n myapp-project</p>
+                <p>before  ( set svc )</p>
+                <p><img src="images/poc-basic-app-72.png" alt="poc basic app 72" class="article-image" loading="lazy"></p>
+                <p>after ( it should be <strong>deployment </strong>)</p>
+                <p><img src="images/poc-basic-app-73.png" alt="poc basic app 73" class="article-image" loading="lazy"></p>
+                <p>This command creates a service that exposes port 8080 (which is a common default for web applications) of the <code>golang-ex</code> deployment.</p>
+                <h3>Step 2: Expose the Service</h3>
+                <p>After creating the service, you can expose it to create a route:</p>
+                <p><strong>Create </strong>service than <strong>expose </strong>service</p>
+                <p><img src="images/poc-basic-app-74.png" alt="poc basic app 74" class="article-image" loading="lazy"></p>
+                <p>oc expose svc/golang-ex -n myapp-project</p>
+                <h3>Step 3: Verify the Route</h3>
+                <p>Check the route to ensure the service is now accessible externally:</p>
+                <p>oc get routes -n myapp-project</p>
+                <p>This command will display the URL where your application is now accessible.</p>
+                <p><img src="images/poc-basic-app-75.png" alt="poc basic app 75" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><img src="images/poc-basic-app-76.png" alt="poc basic app 76" class="article-image" loading="lazy"></p>
+                <p>To explicitly display the URL of the route created for your application, you can use the following command:</p>
+                <p>oc get route golang-ex -n myapp-project --template='{{.spec.host}}'</p>
+                <p>This command will output only the URL (host) part of the route, which you can then access directly in your web browser.</p>
+                <p>If you want to get the full URL with the HTTP protocol, you can modify the command slightly:</p>
+                <p>oc get route golang-ex -n myapp-project --template='http://{{.spec.host}}'</p>
+                <p>This will display the complete URL in the format <code>http://&lt;your-route-url&gt;</code>.</p>
+                <p>You can then copy and paste this URL into your browser to access your application.</p>
+                <h3>Step 4: Access the Application</h3>
+                <p>Open a web browser and navigate to the URL provided by the route to access your Golang application.</p>
+                <p>If everything is correct, your application should now be publicly accessible.</p>
+                <p><img src="images/poc-basic-app-77.png" alt="poc basic app 77" class="article-image" loading="lazy"></p>
+                <h3>Step 3: Expose the Correct Service</h3>
+                <p>Once you identify the correct service name, run the <code>oc expose</code> command with the correct service name:</p>
+                <p>oc expose svc/<correct-service-name> -n myapp-project</p>
+                <p>Replace <code>&lt;correct-service-name&gt;</code> with the actual name of the service.</p>
+                <h3>Step 4: Troubleshoot Application Creation</h3>
+                <p>If no service was created, ensure that the application creation step was successful. You might want to review the application logs to see if there were any issues during the deployment:</p>
+                <p>oc logs -f bc/golang-ex -n myapp-project</p>
+                <p>If the application was not built or deployed correctly, you might need to retry the <code>oc new-app</code> command or investigate further based on the logs</p>
+                <p><img src="images/poc-basic-app-78.png" alt="poc basic app 78" class="article-image" loading="lazy"></p>
+                <p>.</p>
+                <h3>Step 5: Recreate the Application (if needed)</h3>
+                <p>If the application or service was not created, you can try recreating it:</p>
+                <p>oc new-app golang~https://github.com/sclorg/golang-ex -n myapp-project</p>
+                <p>Then, repeat the steps to expose the service once the application is successfully deployed.</p>
+                <p><img src="images/poc-basic-app-79.png" alt="poc basic app 79" class="article-image" loading="lazy"></p>
+                <p>See it in action</p>
+                <p><img src="images/poc-basic-app-80.png" alt="poc basic app 80" class="article-image" loading="lazy"></p>
+                <h3>Additional Steps</h3>
+                <p>If you're still encountering issues, ensure that you're logged into the correct OpenShift project (namespace):</p>
+                <p>oc project myapp-project</p>
+                <p>This ensures that you're working within the correct namespace where your application and services are deployed.</p>
+                <p>This command creates a route that maps an external URL to the service created by the <code>golang-ex</code> application.</p>
+                <h3>Step 3: Verify the Route</h3>
+                <p>To check the route that was created and obtain the URL where your service is accessible, run:</p>
+                <p>oc get routes -n myapp-project</p>
+                <p>This command will list all routes in the <code>myapp-project</code> namespace, including the one you just created. The output will include the hostname (URL) where your application is accessible.</p>
+                <h3>Step 4: Access the Application</h3>
+                <p>You can now access your Golang application using the URL provided by the route. Open your web browser and navigate to the URL to see your running application.</p>
+                <h3>Optional: View Application Logs</h3>
+                <p>If you want to see the logs of your running application to ensure it’s running correctly, you can use:</p>
+                <p>oc logs -f bc/golang-ex -n myapp-project</p>
+                <p>This command will follow the build logs, helping you troubleshoot any issues that may have occurred during deployment.</p>
+                <p>By following these steps, you will have successfully exposed your Golang application service in OpenShift, making it accessible externally via the generated route.</p>
+                <hr />
+                <h3>7. <strong>Manage and Scale Your Application</strong></h3>
+                <p>You can scale your application by increasing the number of pods:</p>
+                <p>oc scale --replicas=3 dc/nodejs-ex</p>
+                <p>This command scales your application to run three instances of the pod.</p>
+                <p>`PS C:\Users\Pexabo&gt; oc scale --replicas=3 dc/nodejs-ex<br />
+                Warning: apps.openshift.io/v1 DeploymentConfig is deprecated in v4.14+, unavailable in v4.10000+<br />
+                error: no objects passed to scale</p>
+                <p>`</p>
+                <p><img src="images/poc-basic-app-81.png" alt="poc basic app 81" class="article-image" loading="lazy"></p>
+                <h3>8. <strong>Clean Up</strong></h3>
+                <p>After you’re done with your POC, you might want to clean up the resources:</p>
+                <p>oc delete project myapp-project</p>
+                <p>This will delete the project and all associated resources.</p>
+                <h3>9. <strong>(Optional) Using OpenShift Web Console</strong></h3>
+                <p>You can also manage your application using the OpenShift web console. After logging in, navigate to your project, and you can view, scale, and manage your application through a graphical interface.</p>
+                <h3>Conclusion</h3>
+                <p>This guide covers the basics of deploying a Node.js application on OpenShift using the CLI. The steps can be adapted for other types of applications by modifying the <code>oc new-app</code> command to fit the specifics of the application’s language and source repository. OpenShift’s S2I process simplifies deployment by automatically building and deploying your application from source code.</p>
+                <p><strong>References</strong></p>
+                <p>To Check if CRC Can Run </p>
+                <p><img src="images/poc-basic-app-82.png" alt="poc basic app 82" class="article-image" loading="lazy"></p>
+                <p>To list all the directories in your <code>PATH</code> environment variable from which you can run executables in the command line, you can use the following commands:</p>
+                <h3>Using Command Prompt (<code>cmd</code>)</h3>
+                <ul>
+                <li>
+                <p>Open <strong>Command Prompt</strong> in Windows Terminal.</p>
+                </li>
+                <li>
+                <p>Type the following command and press Enter:</p>
+                </li>
+                </ul>
+                <p>echo %PATH%</p>
+                <p>This will display the full <code>PATH</code> variable as a single line of text. Each directory is separated by a semicolon (<code>;</code>).</p>
+                <ul>
+                <li>If you want to see the directories in a more readable format (each on a new line), you can use:</li>
+                </ul>
+                <p>echo %PATH% | tr ";" "\n"</p>
+                <p>Note that <code>tr</code> might not be available by default in Windows, so this command is more commonly used in environments with UNIX-like utilities installed (like Git Bash, Cygwin, or WSL).</p>
+                <h3>Using PowerShell</h3>
+                <ul>
+                <li>
+                <p>Open <strong>PowerShell</strong> in Windows Terminal.</p>
+                </li>
+                <li>
+                <p>Type the following command and press Enter:</p>
+                </li>
+                </ul>
+                <p>$Env:PATH -split ";"</p>
+                <p>This command splits the <code>PATH</code> variable on each semicolon and displays each directory on a new line.</p>
+                <h3>Explanation</h3>
+                <p>The directories listed in the <code>PATH</code> environment variable are the locations where the system looks for executable files when you type a command in the command line. If a command or program is located in one of these directories, you can run it directly by name without specifying the full path.</p>
+                <h3>Example Output</h3>
+                <p>Here's an example of what the output might look like when you run the above command:</p>
+                <p>C:\Windows\system32<br />
+                C:\Windows<br />
+                C:\Windows\System32\Wbem<br />
+                C:\Windows\System32\WindowsPowerShell\v1.0\<br />
+                C:\Program Files\Microsoft SQL Server\130\Tools\Binn\<br />
+                C:\Program Files\Git\cmd<br />
+                C:\Program Files\nodejs\<br />
+                C:\Users\YourUsername\AppData\Local\Microsoft\WindowsApps</p>
+                <p>Each line corresponds to a directory in which executables can be found. For example:</p>
+                <ul>
+                <li>
+                <p><strong><code>C:\Windows\system32</code></strong>: Contains core system utilities like <code>cmd.exe</code>, <code>ping.exe</code>, <code>ipconfig.exe</code>, etc.</p>
+                </li>
+                <li>
+                <p><strong><code>C:\Program Files\Git\cmd</code></strong>: Contains Git-related executables if Git is installed.</p>
+                </li>
+                <li>
+                <p><strong><code>C:\Program Files\nodejs\</code></strong>: Contains Node.js if it's installed.</p>
+                </li>
+                </ul>
+                <p>You can run any executable located in these directories directly from the command line without needing to specify the full path to the executable.</p>
+                <hr />
+                <p>If crc stuck </p>
+                <p><img src="images/poc-basic-app-83.png" alt="poc basic app 83" class="article-image" loading="lazy"></p>
+                <p>It appears that the process for setting up CRC (CodeReady Containers) on your system is progressing but might be stuck at the "Operator network is progressing" stage. This issue is common when the cluster operators take longer than expected to stabilize. Here are a few steps you can take to troubleshoot and potentially resolve the issue:</p>
+                <ul>
+                <li>
+                <p><strong>Wait a bit longer</strong>: Sometimes, the setup process can take more time, especially on systems with lower resources or network issues. Waiting for a few more minutes might allow the process to complete.</p>
+                </li>
+                <li>
+                <p><strong>Check System Resources</strong>: Ensure your system meets the minimum requirements and has sufficient RAM, CPU, and disk space. You can check the system resource usage (CPU, memory) to see if the system is under heavy load, which could cause delays.</p>
+                </li>
+                <li>
+                <p><strong>Check Network Configuration</strong>: Ensure that your DNS settings are correct and that there are no network issues that might prevent the operators from reaching necessary endpoints. Sometimes, network configuration issues can cause delays in operator progression.</p>
+                </li>
+                <li>
+                <p><strong>Review CRC Logs</strong>: You can check detailed CRC logs to identify specific issues. The logs will provide more context on why the operator is stuck. Use the following command in PowerShell to retrieve logs:</p>
+                </li>
+                </ul>
+                <p>crc log --follow</p>
+                <p><img src="images/poc-basic-app-84.png" alt="poc basic app 84" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>
+                <p><strong>Increase Timeout Settings</strong>: If you have modified CRC settings, consider increasing the timeout values for operator readiness.&gt; increase</p>
+                </li>
+                <li>
+                <p><strong>Re-run CRC Setup</strong>: If the process seems completely stuck with no progress after a reasonable amount of time, you may consider stopping the CRC instance and restarting the setup process:</p>
+                </li>
+                </ul>
+                <p>crc stop<br />
+                   crc delete<br />
+                   crc start</p>
+                <p><img src="images/poc-basic-app-85.png" alt="poc basic app 85" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>
+                <p><strong>Update CRC</strong>: Ensure that you are using the latest version of CRC and OpenShift. Outdated versions can have bugs that might be resolved in newer releases.</p>
+                </li>
+                <li>
+                <p><strong>Check for Issues in the Cluster</strong>: If the cluster starts but still has issues, you can use the <code>oc</code> command-line tool to inspect the status of the cluster and troubleshoot further:</p>
+                </li>
+                </ul>
+                <p>oc get co<br />
+                   oc describe <operator-name></p>
+                <p>If these steps do not resolve the issue, providing more logs or checking the CRC documentation and community forums might be necessary to identify the problem.</p>
+                <p>**SUMMARY **</p>
+                <h3>Summary: Basic App Deployment on OpenShift Using CodeReady Containers (CRC)</h3>
+                <p>This guide outlines the process of deploying a basic application on OpenShift using CodeReady Containers (CRC), a local development tool for OpenShift clusters. It includes the following steps:</p>
+                <ul>
+                <li>
+                <p><strong>Set Up OpenShift Environment</strong>:</p>
+                </li>
+                <li>
+                <p><strong>Prerequisites</strong>: Ensure your system meets the required specifications (4 CPU cores, 9 GB RAM, 35 GB disk space).</p>
+                </li>
+                <li>
+                <p><strong>Install CRC</strong>: Download and install CRC from Red Hat’s official site.</p>
+                </li>
+                <li>
+                <p>Resize before start</p>
+                </li>
+                </ul>
+                <p><img src="images/poc-basic-app-86.png" alt="poc basic app 86" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>
+                <p><strong>Start CRC</strong>: Configure and start the CRC environment using commands like <code>crc setup</code> and <code>crc start</code>.</p>
+                </li>
+                <li>
+                <p><strong>Log in to OpenShift</strong>:</p>
+                </li>
+                <li>
+                <p>Use the <code>oc login</code> command to access the OpenShift cluster.</p>
+                </li>
+                <li>
+                <p><strong>Create a New Project</strong>:</p>
+                </li>
+                <li>
+                <p>Create a project using <code>oc new-project myapp-project</code> to isolate your application.</p>
+                </li>
+                <li>
+                <p><strong>Deploy a Sample Application</strong>: ( That works  be ready to change )</p>
+                </li>
+                <li>
+                <p>Deploy a sample Node.js application using OpenShift’s source-to-image (S2I) feature with the command <code>oc new-app nodejs~https://github.com/sclorg/nodejs-ex -n myapp-project</code>.</p>
+                </li>
+                </ul>
+                <p><img src="images/poc-basic-app-87.png" alt="poc basic app 87" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>
+                <p><strong>Monitor Deployment</strong>:</p>
+                </li>
+                <li>
+                <p>Use <code>oc status</code> and <code>oc logs</code> to monitor the build and deployment process.</p>
+                </li>
+                <li>
+                <p><strong>Troubleshooting</strong>:</p>
+                </li>
+                <li>
+                <p>Resolve common issues such as resource conflicts, failed builds, and low ephemeral storage by using commands to delete existing resources, inspect configurations, or expand CRC storage.</p>
+                </li>
+                <li>
+                <p><strong>Alternative Deployments</strong>:</p>
+                </li>
+                <li>
+                <p>Deploy other sample applications like Python Flask, Go, Ruby, or Java using similar commands.</p>
+                </li>
+                <li>
+                <p><strong>Create Service than Expose the Service</strong>:</p>
+                </li>
+                <li>
+                <p>Make the application accessible by exposing the service with <code>oc expose svc/myapp-service</code>.</p>
+                </li>
+                <li>
+                <p>Get the url with route </p>
+                </li>
+                </ul>
+                <p><img src="images/poc-basic-app-88.png" alt="poc basic app 88" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>
+                <p><strong>Scale and Manage Applications</strong>:</p>
+                </li>
+                <li>
+                <p>Scale applications with <code>oc scale</code> and clean up resources after use.</p>
+                </li>
+                <li>
+                <p><strong>Using OpenShift Web Console</strong>:</p>
+                </li>
+                <li>
+                <p>Manage your application through the OpenShift web console for a graphical interface.</p>
+                </li>
+                </ul>
+                <p><img src="images/poc-basic-app-89.png" alt="poc basic app 89" class="article-image" loading="lazy"></p>
+                <p>This guide is designed for developers who want to quickly set up and deploy applications on a local OpenShift environment using CRC.</p>
+                <p><strong>GITHUB PROJECT</strong></p>
+                <p>Certainly! Here's how you can incorporate the OpenShift commands used in the guide into your GitHub project. These commands can be organized under specific sections in the relevant markdown files.</p>
+                <h3>1. <strong>README.md</strong></h3>
+                <p>Provide a brief overview and link to the detailed guides:</p>
+                <h1>OpenShift Basic App Deployment</h1>
+                <p>This repository contains guides and examples for deploying basic applications on OpenShift using CodeReady Containers (CRC). Below are links to the specific guides:</p>
+                <ul>
+                <li><a href="crc-setup.md">CRC Setup</a>: How to set up CodeReady Containers (CRC) on your local machine.</li>
+                <li><a href="openshift-deployment.md">OpenShift Deployment</a>: Step-by-step guide for deploying sample applications on OpenShift.</li>
+                <li><a href="troubleshooting.md">Troubleshooting</a>: Common issues and solutions during the deployment process.</li>
+                </ul>
+                <hr />
+                <p>Here's a sample <code>README.md</code> file tailored for your project. This file will help guide users through the basic steps of deploying applications on OpenShift using CodeReady Containers (CRC).</p>
+                <h3>Sample <code>README.md</code></h3>
+                <h1>OpenShift Basic App Deployment</h1>
+                <p>This repository contains a comprehensive guide for deploying basic applications on OpenShift using CodeReady Containers (CRC). It includes instructions for setting up the environment, deploying sample applications, and troubleshooting common issues.</p>
+                <h2>Table of Contents</h2>
+                <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#prerequisites">Prerequisites</a></li>
+                <li><a href="#crc-setup">CRC Setup</a></li>
+                <li><a href="#deploying-applications">Deploying Applications</a></li>
+                <li><a href="#troubleshooting">Troubleshooting</a></li>
+                <li><a href="#contributing">Contributing</a></li>
+                <li><a href="#license">License</a></li>
+                </ul>
+                <h2>Introduction</h2>
+                <p>Deploying applications on OpenShift can be complex, especially for beginners. This project simplifies the process by providing step-by-step instructions for setting up a local OpenShift environment and deploying sample applications using the OpenShift CLI (<code>oc</code>).</p>
+                <h2>Prerequisites</h2>
+                <p>Before you begin, ensure you have the following:<br />
+                - Access to an OpenShift cluster (via CRC or OpenShift Online)<br />
+                - Installed OpenShift CLI (<code>oc</code>)<br />
+                - A machine that meets the minimum system requirements for CRC</p>
+                <h2>CRC Setup</h2>
+                <p>To get started with CRC, follow our detailed <a href="crc-setup.md">CRC Setup Guide</a>. This guide covers everything from installation to accessing the OpenShift web console.</p>
+                <h2>Deploying Applications</h2>
+                <p>We provide several examples of deploying different types of applications on OpenShift:<br />
+                - <a href="openshift-deployment.md#deploy-a-sample-nodejs-application">Deploy a Node.js Application</a><br />
+                - <a href="openshift-deployment.md#deploy-a-django-application">Deploy a Django Application</a><br />
+                - <a href="openshift-deployment.md#deploy-a-golang-application">Deploy a Golang Application</a></p>
+                <p>These guides include all necessary <code>oc</code> commands to create projects, deploy applications, and expose them to external access.</p>
+                <h2>Troubleshooting</h2>
+                <p>Encountering issues? Check out our <a href="troubleshooting.md">Troubleshooting Guide</a> for solutions to common problems, such as failed builds, storage issues, and more.</p>
+                <h2>Contributing</h2>
+                <p>We welcome contributions to improve these guides and examples. Please fork the repository, make your changes, and submit a pull request.</p>
+                <h2>License</h2>
+                <p>This project is licensed under the MIT License. See the <a href="LICENSE">LICENSE</a> file for more details.</p>
+                <h3>Steps to Initialize the Repo and Push</h3>
+                <p><img src="images/poc-basic-app-90.png" alt="poc basic app 90" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Initialize the Git Repository</strong></li>
+                </ul>
+                <p>git init</p>
+                <p><img src="images/poc-basic-app-91.png" alt="poc basic app 91" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>
+                <p><strong>Create the <code>README.md</code> File</strong></p>
+                </li>
+                <li>
+                <p>Create the file:<br />
+                <code>bash touch README.md</code></p>
+                </li>
+                </ul>
+                <p><img src="images/poc-basic-app-92.png" alt="poc basic app 92" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>
+                <p>Open <code>README.md</code> in your favorite text editor (e.g., VS Code, nano, vim), then paste the content provided above into the file.</p>
+                </li>
+                <li>
+                <p><strong>Add the File to Git</strong></p>
+                </li>
+                </ul>
+                <p>git add README.md</p>
+                <ul>
+                <li><strong>Commit the Changes</strong></li>
+                </ul>
+                <p>git commit -m "Initial commit: Add README.md with project overview"</p>
+                <ul>
+                <li>
+                <p><strong>Push to GitHub</strong></p>
+                </li>
+                <li>
+                <p>First, add the remote repository:<br />
+                <code>bash git remote add origin https://github.com/your-username/openshift-basic-app-deploy.git</code></p>
+                </li>
+                <li>
+                <p>Push the commit to the main branch:<br />
+                <code>bash git push -u origin main</code></p>
+                </li>
+                </ul>
+                <p><img src="images/poc-basic-app-93.png" alt="poc basic app 93" class="article-image" loading="lazy"></p>
+                <p>This will initialize your repository with the <code>README.md</code> file, which serves as the primary guide for anyone looking to use your OpenShift deployment project.</p>
+                <hr />
+                <h3>2. <strong>crc-setup.md</strong></h3>
+                <p>Document the commands for setting up CRC:</p>
+                <h1>Setting Up CodeReady Containers (CRC)</h1>
+                <p>Follow these steps to set up CodeReady Containers (CRC) on your local machine.</p>
+                <h3>Install CRC</h3>
+                <ol>
+                <li>
+                <p><strong>Download CRC</strong>:<br />
+                   - Download the latest version of CRC from the <a href="https://developers.redhat.com/products/codeready-containers/overview">official Red Hat CodeReady Containers website</a>.</p>
+                </li>
+                <li>
+                <p><strong>Install CRC</strong>:<br />
+                   - Extract the downloaded file and add the CRC binary to your PATH.</p>
+                </li>
+                <li>
+                <p><strong>Set Up CRC</strong>:<br />
+                   - Run the following command to set up CRC:<br />
+                <code>bash
+                     crc setup</code></p>
+                </li>
+                <li>
+                <p><strong>Start CRC</strong>:<br />
+                   - Start the OpenShift cluster:<br />
+                <code>bash
+                     crc start</code></p>
+                </li>
+                <li>
+                <p><strong>Access OpenShift</strong>:<br />
+                   - Access the OpenShift web console using the URL provided during the CRC start process (usually <code>https://console-openshift-console.apps-crc.testing</code>).<br />
+                   - Log in using the credentials provided by CRC.</p>
+                </li>
+                </ol>
+                <p><img src="images/poc-basic-app-94.png" alt="poc basic app 94" class="article-image" loading="lazy"></p>
+                <h3>3. <strong>openshift-deployment.md</strong></h3>
+                <p>Document the commands for deploying applications on OpenShift:</p>
+                <h1>Deploying Applications on OpenShift</h1>
+                <p>This guide provides commands for deploying a sample Node.js application, a Django application, and a Golang application on OpenShift.</p>
+                <h3>1. <strong>Log in to the OpenShift Cluster</strong></h3>
+                <p>Use the <code>oc</code> command-line tool to log in:</p>
+                <p>bash<br />
+                oc login</p>
+                <h3>2. <strong>Create a New Project</strong></h3>
+                <p>Create a new project in OpenShift:</p>
+                <p>bash<br />
+                oc new-project myapp-project</p>
+                <h3>3. <strong>Deploy a Sample Node.js Application</strong></h3>
+                <p>Deploy a sample Node.js application using OpenShift’s source-to-image (S2I) feature:</p>
+                <p>bash<br />
+                oc new-app nodejs~https://github.com/sclorg/nodejs-ex -n myapp-project</p>
+                <h3>4. <strong>Deploy a Django Application</strong></h3>
+                <p>Deploy a Django application:</p>
+                <p>bash<br />
+                oc new-app python:3.8~https://github.com/sclorg/django-ex -n myapp-project</p>
+                <h3>5. <strong>Deploy a Golang Application</strong></h3>
+                <p>Deploy a Golang application:</p>
+                <p>bash<br />
+                oc new-app golang~https://github.com/sclorg/golang-ex -n myapp-project</p>
+                <h3>6. <strong>Monitor the Deployment</strong></h3>
+                <p>Monitor the deployment process:</p>
+                <p>bash<br />
+                oc status</p>
+                <p>Check build logs for a specific application:</p>
+                <p>bash<br />
+                oc logs -f bc/nodejs-ex</p>
+                <h3>7. <strong>Expose the Service</strong></h3>
+                <p>Create an external route to expose the application:</p>
+                <p>bash<br />
+                oc expose svc/nodejs-ex</p>
+                <p>Verify the route and get the application URL:</p>
+                <p>bash<br />
+                oc get routes</p>
+                <h3>8. <strong>Scale the Application</strong></h3>
+                <p>Scale the number of pods:</p>
+                <p>bash<br />
+                oc scale --replicas=3 dc/nodejs-ex</p>
+                <h3>9. <strong>Clean Up Resources</strong></h3>
+                <p>Delete the project and all associated resources:</p>
+                <p>bash<br />
+                oc delete project myapp-project</p>
+                <h3>4. <strong>troubleshooting.md</strong></h3>
+                <p>Include commands useful for troubleshooting issues:</p>
+                <p>markdown</p>
+                <h1>Troubleshooting Common Issues</h1>
+                <p>This section includes commands to help troubleshoot common issues encountered during OpenShift deployment.</p>
+                <h3>1. <strong>Delete Existing Resources</strong></h3>
+                <p>If you encounter conflicts with existing resources, delete them:</p>
+                <p>oc delete buildconfig nodejs-ex<br />
+                oc delete deployment nodejs-ex<br />
+                oc delete service nodejs-ex</p>
+                <h3>2. <strong>Trigger a New Build</strong></h3>
+                <p>If you need to manually trigger a new build:</p>
+                <p>oc start-build nodejs-ex</p>
+                <h3>3. <strong>Inspect Existing Resources</strong></h3>
+                <p>Inspect configurations to diagnose issues:</p>
+                <p>oc get buildconfig nodejs-ex -o yaml<br />
+                oc get deployment nodejs-ex -o yaml<br />
+                oc get service nodejs-ex -o yaml</p>
+                <h3>4. <strong>Check Logs</strong></h3>
+                <p>Check logs for build or deployment issues:</p>
+                <p>oc logs build/my-new-nodejs-ex-1<br />
+                oc logs deployment/my-new-nodejs-ex</p>
+                <h3>5. <strong>Check Cluster Status</strong></h3>
+                <p>Check the status of the cluster:</p>
+                <p>oc status</p>
+                <h3>6. <strong>Delete All Resources by Label</strong></h3>
+                <p>To delete all resources associated with a specific application:</p>
+                <p>oc delete all --selector app=my-new-nodejs-ex</p>
+                <h3>7. <strong>Resize CRC Storage</strong></h3>
+                <p>If you need to resize CRC storage:</p>
+                <p>crc stop<br />
+                qemu-img resize crc.qcow2 +50G  # Increase by 50 GB<br />
+                crc start</p>
+                <p>After resizing the storage, expand the filesystem inside the CRC VM:</p>
+                <p>sudo growpart /dev/sda 1<br />
+                sudo resize2fs /dev/sda1</p>
+                <h3>5. <strong>Push Changes to GitHub</strong></h3>
+                <p>After adding the commands and documentation, push the changes:</p>
+                <p>bash<br />
+                git add .<br />
+                git commit -m "Add OpenShift commands and documentation"<br />
+                git push origin main<br />
+                ```</p>
+                <p>This structure ensures that all the relevant OpenShift commands are well-documented and organized within your GitHub project.</p>
+                <p><strong>review</strong></p>
+                <p><img src="images/poc-basic-app-95.png" alt="poc basic app 95" class="article-image" loading="lazy"></p>
+                <p>fix after the push </p>
+                <p><img src="images/poc-basic-app-96.png" alt="poc basic app 96" class="article-image" loading="lazy"></p>
+                <p>Not properly taken </p>
+                <p><img src="images/poc-basic-app-97.png" alt="poc basic app 97" class="article-image" loading="lazy"></p>
+                <p>Looks better</p>
+                <p><img src="images/poc-basic-app-98.png" alt="poc basic app 98" class="article-image" loading="lazy"></p>
+                <p>Linting matters</p>
+                <p><img src="images/poc-basic-app-99.png" alt="poc basic app 99" class="article-image" loading="lazy"></p>
+                <p>Everything in github and be able to remeber and be able to get it back &gt;</p>
+                <p><img src="images/poc-basic-app-100.png" alt="poc basic app 100" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

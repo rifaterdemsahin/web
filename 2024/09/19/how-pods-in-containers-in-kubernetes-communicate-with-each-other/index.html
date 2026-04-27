@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Pods in Containers in Kubernetes Communicate with Each Other - Rifat Erdem Sahin</title>
+    <meta name="description" content="How Pods in Containers in Kubernetes Communicate with Each Other Kubernetes, an open-source container orchestration platform, simplifies the deployment, scaling, and management of containerized applic">
+    <meta name="keywords" content="How Pods in Containers in Kubernetes Communicate with Each Other">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/09/19/how-pods-in-containers-in-kubernetes-communicate-with-each-other/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/09/19/how-pods-in-containers-in-kubernetes-communicate-with-each-other/">
+    <meta property="og:title" content="How Pods in Containers in Kubernetes Communicate with Each Other">
+    <meta property="og:description" content="How Pods in Containers in Kubernetes Communicate with Each Other Kubernetes, an open-source container orchestration platform, simplifies the deployment, scaling, and management of containerized applic">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/09/19/how-pods-in-containers-in-kubernetes-communicate-with-each-other/">
+    <meta property="twitter:title" content="How Pods in Containers in Kubernetes Communicate with Each Other">
+    <meta property="twitter:description" content="How Pods in Containers in Kubernetes Communicate with Each Other Kubernetes, an open-source container orchestration platform, simplifies the deployment, scaling, and management of containerized applic">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "How Pods in Containers in Kubernetes Communicate with Each Other",
+      "description": "How Pods in Containers in Kubernetes Communicate with Each Other Kubernetes, an open-source container orchestration platform, simplifies the deployment, scaling, and management of containerized applic",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-09-19",
+      "dateModified": "2024-09-19",
+      "url": "https://www.rifaterdemsahin.com/2024/09/19/how-pods-in-containers-in-kubernetes-communicate-with-each-other/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/09/19/how-pods-in-containers-in-kubernetes-communicate-with-each-other/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">How Pods in Containers in Kubernetes Communicate with Each Other</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>September 19, 2024</span>
+                    <span>&bull;</span>
+                    <span>4 min read</span>
+                </div>
+                <p class="article-excerpt">How Pods in Containers in Kubernetes Communicate with Each Other Kubernetes, an open-source container orchestration platform, simplifies the deployment, scaling, and management of containerized applications.</p>
+            </header>
+            <article class="article-content">
+                <h1>How Pods in Containers in Kubernetes Communicate with Each Other</h1>
+                <p><img src="images/how-pods-in-1.png" alt="how pods in 1" class="article-image" loading="lazy"></p>
+                <p>Kubernetes, an open-source container orchestration platform, simplifies the deployment, scaling, and management of containerized applications. One of the fundamental aspects of managing applications in Kubernetes is understanding how pods, the smallest deployable units in Kubernetes, communicate with each other over the network. This blog post will guide you through the key concepts and mechanisms that enable pod-to-pod communication in Kubernetes.</p>
+                <h4>Understanding Kubernetes Networking Basics</h4>
+                <p>Kubernetes networking is built on a set of core principles designed to ensure smooth communication between pods:</p>
+                <ul>
+                <li>
+                <p><strong>Each Pod has a </strong><em><strong>Unique IP</strong>:</em> Every pod in a Kubernetes cluster is assigned a unique IP address. This IP address is allocated from the <em>cluster's IP address range </em>and allows pods to communicate with each other directly.</p>
+                </li>
+                <li>
+                <p><strong>Flat Network</strong>: Kubernetes aims to provide a <em>flat networking model </em>where all pods can communicate with each other <strong>without NAT </strong>(Network Address Translation). This ensures a simple and consistent network topology.</p>
+                </li>
+                <li>
+                <p><strong>Pod-to-Pod Communication</strong>: Pods can communicate with each other using their IP addresses.<em> Kubernetes uses the Container Network Interface (CNI)</em> plugins to manage network configurations and ensure that <strong>pod IP addresses are routable within the cluster.</strong></p>
+                </li>
+                </ul>
+                <h4>Key Networking Components in Kubernetes</h4>
+                <ul>
+                <li>
+                <p><strong>CNI Plugins</strong>: Kubernetes relies on <strong>CNI plugins</strong> to configure network interfaces for pods and manage the underlying network. Popular CNI plugins include Calico, Flannel, Weave, and Cilium. These plugins handle tasks like IP address allocation, routing, and network policy enforcement.</p>
+                </li>
+                <li>
+                <p><strong>Kube-proxy</strong>: Kube-proxy is a network proxy that <strong>runs on each node</strong> in the Kubernetes cluster. It manages network rules and load balances traffic to services, enabling pods to discover and communicate with each other via service endpoints.</p>
+                </li>
+                <li>
+                <p><strong>Service</strong>: A Kubernetes Service is an abstraction that defines a <strong>logical set of pods and a policy by which to access them.</strong> Services provide a stable endpoint (ClusterIP) for pod communication, <strong>abstracting the underlying pod IP addresses that might change.</strong></p>
+                </li>
+                </ul>
+                <h4>Pod-to-Pod Communication Mechanisms</h4>
+                <ul>
+                <li><strong>Direct Pod IP Communication</strong>: Pods ca<em>n communicate directly using their IP addresses</em>. For example, if Pod A knows the IP address of Pod B, it can send requests directly to that IP address. This method is straightforward but requires knowledge of the target pod's IP address.</li>
+                </ul>
+                <p>apiVersion: v1<br />
+                   kind: Pod<br />
+                   metadata:<br />
+                     name: pod-a<br />
+                   spec:<br />
+                     containers:<br />
+                     - name: container-a<br />
+                       image: my-app</p>
+                <hr />
+                <p>apiVersion: v1<br />
+                   kind: Pod<br />
+                   metadata:<br />
+                     name: pod-b<br />
+                   spec:<br />
+                     containers:<br />
+                     - name: container-b<br />
+                       image: my-app</p>
+                <ul>
+                <li>
+                <p><strong>Service Discovery with Environment Variables</strong>:<em> Kubernetes automatically injects environment variables into pods f</em>or each service, which can be used for discovering service endpoints.</p>
+                </li>
+                <li>
+                <p><strong>Service Discovery with DNS</strong>: Kubernetes includes an internal DNS service that automatically creates DNS records for Kubernetes services. Pods can communicate with each other using service names, which are resolved to the appropriate pod IP addresses by the DNS service.</p>
+                </li>
+                </ul>
+                <p>apiVersion: v1<br />
+                   kind: Service<br />
+                   metadata:<br />
+                     name: my-service<br />
+                   spec:<br />
+                     selector:<br />
+                       app: my-app<br />
+                     ports:<br />
+                     - protocol: TCP<br />
+                       port: 80<br />
+                       targetPort: 8080</p>
+                <ul>
+                <li>
+                <p><strong>ClusterIP Service</strong>: The ClusterIP service provides a stable internal IP address that pods can use to communicate with a group of pods behind the service.</p>
+                </li>
+                <li>
+                <p><strong>Headless Service</strong>: A Headless Service (ClusterIP: None) enables direct pod-to-pod communication by returning the individual pod IPs without a stable IP address, useful for stateful applications like databases.</p>
+                </li>
+                </ul>
+                <p>apiVersion: v1<br />
+                   kind: Service<br />
+                   metadata:<br />
+                     name: headless-service<br />
+                   spec:<br />
+                     clusterIP: None<br />
+                     selector:<br />
+                       app: my-app<br />
+                     ports:<br />
+                     - protocol: TCP<br />
+                       port: 80<br />
+                       targetPort: 8080</p>
+                <ul>
+                <li><strong>Network Policies</strong>: Network policies allow you to control the traffic flow between pods. You can define rules to specify which pods can communicate with each other, enhancing security within the cluster.</li>
+                </ul>
+                <p>apiVersion: networking.k8s.io/v1<br />
+                   kind: NetworkPolicy<br />
+                   metadata:<br />
+                     name: allow-specific-traffic<br />
+                   spec:<br />
+                     podSelector:<br />
+                       matchLabels:<br />
+                         app: my-app<br />
+                     ingress:<br />
+                     - from:<br />
+                       - podSelector:<br />
+                           matchLabels:<br />
+                             role: frontend</p>
+                <h4>Conclusion</h4>
+                <p>Kubernetes provides a robust networking model that simplifies pod-to-pod communication. By leveraging CNI plugins, services, and DNS, Kubernetes ensures that your applications can communicate seamlessly within the cluster. Understanding these networking principles and components is crucial for designing, deploying, and managing scalable and resilient applications in Kubernetes.</p>
+                <p>With this knowledge, you can confidently build and operate complex microservices architectures, ensuring efficient and secure communication between your containerized applications.</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

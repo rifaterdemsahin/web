@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 How to Set Up Rancher in GitHub Codespaces and Use Plugins - Rifat Erdem Sahin</title>
+    <meta name="description" content="🚀 How to Set Up Rancher in GitHub Codespaces and Use Plugins If you’re looking to manage Kubernetes with Rancher using GitHub Codespaces , you’re in the right place!">
+    <meta name="keywords" content="🚀 How to Set Up Rancher in GitHub Codespaces and Use Plugins">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/10/03/🚀-how-to-set-up-rancher-in-github-codespaces-and-use-plugins/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/10/03/🚀-how-to-set-up-rancher-in-github-codespaces-and-use-plugins/">
+    <meta property="og:title" content="🚀 How to Set Up Rancher in GitHub Codespaces and Use Plugins">
+    <meta property="og:description" content="🚀 How to Set Up Rancher in GitHub Codespaces and Use Plugins If you’re looking to manage Kubernetes with Rancher using GitHub Codespaces , you’re in the right place!">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/10/03/🚀-how-to-set-up-rancher-in-github-codespaces-and-use-plugins/">
+    <meta property="twitter:title" content="🚀 How to Set Up Rancher in GitHub Codespaces and Use Plugins">
+    <meta property="twitter:description" content="🚀 How to Set Up Rancher in GitHub Codespaces and Use Plugins If you’re looking to manage Kubernetes with Rancher using GitHub Codespaces , you’re in the right place!">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "🚀 How to Set Up Rancher in GitHub Codespaces and Use Plugins",
+      "description": "🚀 How to Set Up Rancher in GitHub Codespaces and Use Plugins If you’re looking to manage Kubernetes with Rancher using GitHub Codespaces , you’re in the right place!",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-10-03",
+      "dateModified": "2024-10-03",
+      "url": "https://www.rifaterdemsahin.com/2024/10/03/🚀-how-to-set-up-rancher-in-github-codespaces-and-use-plugins/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/10/03/🚀-how-to-set-up-rancher-in-github-codespaces-and-use-plugins/",
+      "articleSection": "devops",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">🚀 How to Set Up Rancher in GitHub Codespaces and Use Plugins</h1>
+                <div class="article-meta">
+                    <span class="article-category">devops</span>
+                    <span>&bull;</span>
+                    <span>October 3, 2024</span>
+                    <span>&bull;</span>
+                    <span>4 min read</span>
+                </div>
+                <p class="article-excerpt">🚀 How to Set Up Rancher in GitHub Codespaces and Use Plugins If you’re looking to manage Kubernetes with Rancher using GitHub Codespaces , you’re in the right place!</p>
+            </header>
+            <article class="article-content">
+                <h1>🚀 How to Set Up Rancher in GitHub Codespaces and Use Plugins</h1>
+                <p>If you’re looking to manage Kubernetes with Rancher using <strong>GitHub Codespaces</strong>, you’re in the right place! 🚀 This step-by-step guide will walk you through setting up Rancher inside your GitHub Codespace environment and using plugins like Prometheus for monitoring and Longhorn for storage. Let's get started! 💡</p>
+                <hr />
+                <h2>Prerequisites 🛠️</h2>
+                <p>Before we dive into the setup, make sure you have the following:</p>
+                <ul>
+                <li>
+                <p>✅ <strong>GitHub account</strong> and <strong>GitHub Codespaces</strong> enabled.</p>
+                </li>
+                <li>
+                <p>✅ <strong>Docker</strong> pre-installed in your Codespace (Docker comes pre-installed in GitHub Codespaces).</p>
+                </li>
+                <li>
+                <p>✅ A <strong>Kubernetes cluster</strong>, which you can provision using <strong>k3d</strong> (Kubernetes in Docker).</p>
+                </li>
+                <li>
+                <p>✅ <strong>Helm</strong>, which we’ll use to install Rancher on Kubernetes.</p>
+                </li>
+                </ul>
+                <hr />
+                <h2>Step 1: Set Up Kubernetes with <code>k3d</code> in Codespaces ⚙️</h2>
+                <p>The first step is to create a Kubernetes cluster inside your Codespace using <code>k3d</code>.</p>
+                <h3>1. Open Your Codespace 🚀</h3>
+                <p>Launch your Codespace environment from a GitHub repository or create a new one.</p>
+                <h3>2. Install <code>k3d</code> for Kubernetes 🚢</h3>
+                <p>Next, we need to install <code>k3d</code>, which lets us run Kubernetes clusters within Docker. Run the following command to install it:</p>
+                <p>curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash</p>
+                <h3>3. Create a Kubernetes Cluster 🌐</h3>
+                <p>Once <code>k3d</code> is installed, create your Kubernetes cluster using:</p>
+                <p>k3d cluster create rancher-cluster --servers 1 --agents 2</p>
+                <p>This command will create a Kubernetes cluster with 1 server node and 2 agent nodes.</p>
+                <blockquote></blockquote>
+                <p>💡 <strong>Tip:</strong> Adjust the number of agents and servers based on your needs.</p>
+                <h3>4. Verify the Cluster 🧐</h3>
+                <p>Ensure your cluster is up and running:</p>
+                <p>kubectl get nodes</p>
+                <p>You should see your nodes listed here.</p>
+                <hr />
+                <h2>Step 2: Install Rancher on Kubernetes using Helm 🛠️</h2>
+                <p>Now that we have Kubernetes running, let’s install Rancher on the cluster using Helm.</p>
+                <h3>1. Add Rancher Helm Chart Repository 📦</h3>
+                <p>Before installing Rancher, we need to add the Rancher Helm chart repository:</p>
+                <p>helm repo add rancher-latest https://releases.rancher.com/server-charts/latest</p>
+                <h3>2. Create a Namespace for Rancher 📂</h3>
+                <p>Let’s create a dedicated namespace for Rancher:</p>
+                <p>kubectl create namespace cattle-system</p>
+                <h3>3. Install Cert-Manager for SSL/TLS Management 🔒</h3>
+                <p>Rancher needs Cert-Manager to handle SSL certificates. Install it using Helm:</p>
+                <p>helm repo add jetstack https://charts.jetstack.io<br />
+                helm repo update<br />
+                helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --version v1.5.3 --set installCRDs=true</p>
+                <h3>4. Install Rancher 🐄</h3>
+                <p>Finally, we’re ready to install Rancher! Run this command to deploy it with a self-signed certificate:</p>
+                <p>helm install rancher rancher-latest/rancher --namespace cattle-system --set hostname=rancher.local --set replicas=1 --set ingress.tls.source=rancher</p>
+                <blockquote>
+                <p>💡 If you have a custom domain and certificate, replace <code>--set ingress.tls.source=rancher</code> with your certificate source.</p>
+                </blockquote>
+                <h3>5. Verify Rancher Deployment ✅</h3>
+                <p>Check that Rancher is deployed correctly with this command:</p>
+                <p>kubectl -n cattle-system rollout status deploy/rancher</p>
+                <hr />
+                <h2>Step 3: Access Rancher UI 🌐</h2>
+                <p>Once Rancher is installed, you can access its UI by forwarding the service from your Codespace to your browser.</p>
+                <h3>1. Port Forward Rancher 🛠️</h3>
+                <p>Use <code>kubectl</code> to forward Rancher’s service:</p>
+                <p>kubectl -n cattle-system port-forward svc/rancher 8443:443</p>
+                <p>Now open <strong>https://localhost:8443</strong> in your browser to access Rancher’s UI.</p>
+                <hr />
+                <h2>Step 4: Using Rancher Plugins 🎛️</h2>
+                <p>Rancher supports several plugins, which you can install via Helm. Here’s how to get started with some essential ones.</p>
+                <h3>1. Install Rancher CLI 💻</h3>
+                <p>First, install the Rancher CLI to manage Rancher from the terminal:</p>
+                <p>curl -L https://github.com/rancher/cli/releases/download/v2.4.13/rancher-linux-amd64-v2.4.13.tar.gz | tar xz<br />
+                mv rancher-v2.4.13/rancher /usr/local/bin/rancher</p>
+                <h3>2. Authenticate with Rancher 🛡️</h3>
+                <p>Log in to Rancher using the CLI:</p>
+                <p>rancher login https://localhost:8443 --token <RANCHER_API_TOKEN></p>
+                <p>Replace <code>&lt;RANCHER_API_TOKEN&gt;</code> with the token you generate from the Rancher UI.</p>
+                <hr />
+                <h3>Installing Plugins via Rancher 🛠️</h3>
+                <p>Rancher has an extensive app catalog for monitoring, storage, and more. Let’s install a few popular plugins.</p>
+                <h3>Example 1: Install Monitoring Plugin 📊</h3>
+                <p>Prometheus and Grafana provide monitoring for your Kubernetes cluster. Install it using Helm:</p>
+                <p>kubectl create namespace cattle-monitoring-system<br />
+                helm install rancher-monitoring rancher-monitoring/rancher-monitoring --namespace cattle-monitoring-system</p>
+                <h3>Example 2: Install Longhorn for Storage 💾</h3>
+                <p>Longhorn provides distributed block storage in Kubernetes. Install it via Helm:</p>
+                <p>helm repo add longhorn https://charts.longhorn.io<br />
+                helm install longhorn longhorn/longhorn --namespace longhorn-system</p>
+                <blockquote>
+                <p>💡 Check out the Rancher UI to explore even more plugins!</p>
+                </blockquote>
+                <hr />
+                <h2>Additional Considerations 🤔</h2>
+                <ul>
+                <li>
+                <p><strong>Persistent Storage</strong>: If you need persistent storage for your workloads, Longhorn is a great solution.</p>
+                </li>
+                <li>
+                <p><strong>GitHub Actions</strong>: Automate your Rancher deployments with GitHub Actions for CI/CD workflows.</p>
+                </li>
+                </ul>
+                <p>By following these steps, you’ll have Rancher running smoothly in your GitHub Codespaces environment, along with plugins like Prometheus, Grafana, and Longhorn.</p>
+                <hr />
+                <p>💡 <strong>Need More Help?</strong><br />
+                Feel free to reach out to me on any of these platforms for assistance!</p>
+                <p><strong>🔗 Connect with me:</strong></p>
+                <ul>
+                <li>
+                <p>💼 <a href="https://www.linkedin.com/in/rifaterdemsahin/">LinkedIn</a></p>
+                </li>
+                <li>
+                <p>🐦 <a href="https://x.com/rifaterdemsahin">Twitter</a></p>
+                </li>
+                <li>
+                <p>🎥 <a href="https://www.youtube.com/@RifatErdemSahin">YouTube</a></p>
+                </li>
+                <li>
+                <p>💻 <a href="https://github.com/rifaterdemsahin">GitHub</a></p>
+                </li>
+                </ul>
+                <p>Happy Coding! 💻🎉</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulk Deploy to CRC - Rifat Erdem Sahin</title>
+    <meta name="description" content="Bulk Deploy to CRC Open the openshift environment Is this what am i looking for ? Starts with the error retry the pod looks like it is dependant to the app my pod is there It looks like you're trying ">
+    <meta name="keywords" content="Bulk Deploy to CRC">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/11/01/bulk-deploy-to-crc/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/11/01/bulk-deploy-to-crc/">
+    <meta property="og:title" content="Bulk Deploy to CRC">
+    <meta property="og:description" content="Bulk Deploy to CRC Open the openshift environment Is this what am i looking for ? Starts with the error retry the pod looks like it is dependant to the app my pod is there It looks like you're trying ">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/11/01/bulk-deploy-to-crc/">
+    <meta property="twitter:title" content="Bulk Deploy to CRC">
+    <meta property="twitter:description" content="Bulk Deploy to CRC Open the openshift environment Is this what am i looking for ? Starts with the error retry the pod looks like it is dependant to the app my pod is there It looks like you're trying ">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Bulk Deploy to CRC",
+      "description": "Bulk Deploy to CRC Open the openshift environment Is this what am i looking for ? Starts with the error retry the pod looks like it is dependant to the app my pod is there It looks like you're trying ",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-11-01",
+      "dateModified": "2024-11-01",
+      "url": "https://www.rifaterdemsahin.com/2024/11/01/bulk-deploy-to-crc/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/11/01/bulk-deploy-to-crc/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Bulk Deploy to CRC</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>November 1, 2024</span>
+                    <span>&bull;</span>
+                    <span>6 min read</span>
+                </div>
+                <p class="article-excerpt">Bulk Deploy to CRC Open the openshift environment Is this what am i looking for ? Starts with the error retry the pod looks like it is dependant to the app my pod is there It looks like you're trying to update a DeploymentConfig and a Pod configuration in Kubernetes.</p>
+            </header>
+            <article class="article-content">
+                <h1>Bulk Deploy to CRC</h1>
+                <p><img src="images/bulk-deploy-to-1.png" alt="bulk deploy to 1" class="article-image" loading="lazy"></p>
+                <p>Open the openshift environment </p>
+                <p>Is this what am i looking for ?</p>
+                <p><img src="images/bulk-deploy-to-2.png" alt="bulk deploy to 2" class="article-image" loading="lazy"></p>
+                <p><img src="images/bulk-deploy-to-3.png" alt="bulk deploy to 3" class="article-image" loading="lazy"></p>
+                <p><img src="images/bulk-deploy-to-4.png" alt="bulk deploy to 4" class="article-image" loading="lazy"></p>
+                <p>Starts with the error </p>
+                <p><img src="images/bulk-deploy-to-5.png" alt="bulk deploy to 5" class="article-image" loading="lazy"></p>
+                <p>retry the pod </p>
+                <p><img src="images/bulk-deploy-to-6.png" alt="bulk deploy to 6" class="article-image" loading="lazy"></p>
+                <p><img src="images/bulk-deploy-to-7.png" alt="bulk deploy to 7" class="article-image" loading="lazy"></p>
+                <p>looks like it is dependant to the app</p>
+                <p>my pod is there</p>
+                <p><img src="images/bulk-deploy-to-8.png" alt="bulk deploy to 8" class="article-image" loading="lazy"></p>
+                <p>It looks like you're trying to update a <code>DeploymentConfig</code> and a <code>Pod</code> configuration in Kubernetes. Here's the corrected YAML that separates the two configurations and updates them correctly:</p>
+                <p>apiVersion: v1<br />
+                kind: DeploymentConfig<br />
+                metadata:<br />
+                  name: myapp<br />
+                spec:<br />
+                  replicas: 3<br />
+                  template:<br />
+                    metadata:<br />
+                      labels:<br />
+                        app: myapp<br />
+                    spec:<br />
+                      containers:<br />
+                        - name: mycontainer<br />
+                          image: nginx</p>
+                <p>For the Pod configuration:</p>
+                <p>apiVersion: v1<br />
+                kind: Pod<br />
+                metadata:<br />
+                  name: mypod<br />
+                spec:<br />
+                  containers:<br />
+                    - name: mycontainer<br />
+                      image: nginx<br />
+                      ports:<br />
+                        - containerPort: 80</p>
+                <p>This separates the <code>DeploymentConfig</code> and <code>Pod</code> definitions. The <code>DeploymentConfig</code> controls the deployment of a set of replicas, while the <code>Pod</code> defines a single instance of your container running <code>nginx</code>. If you want to use both in the same file, ensure you separate them with three hyphens (<code>---</code>).</p>
+                <p>Let me know if you need further adjustments!</p>
+                <p><img src="images/bulk-deploy-to-9.png" alt="bulk deploy to 9" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>The error you're encountering occurs because the <code>DeploymentConfig</code> resource is specific to OpenShift and isn't available in a standard Kubernetes environment out-of-the-box. In OpenShift, the <code>DeploymentConfig</code> kind belongs to a different API group, not <code>v1</code>. The correct API version for <code>DeploymentConfig</code> is <code>apps.openshift.io/v1</code>.</p>
+                <p>Here's how you can update your <code>deploymentconfig.yaml</code> file:</p>
+                <p>apiVersion: apps.openshift.io/v1<br />
+                kind: DeploymentConfig<br />
+                metadata:<br />
+                  name: myapp<br />
+                spec:<br />
+                  replicas: 3<br />
+                  template:<br />
+                    metadata:<br />
+                      labels:<br />
+                        app: myapp<br />
+                    spec:<br />
+                      containers:<br />
+                        - name: mycontainer<br />
+                          image: nginx</p>
+                <p>Ensure that your OpenShift environment has the necessary permissions to handle this resource, and try applying it again with:</p>
+                <p>oc apply -f ./deploymentconfig.yaml</p>
+                <p>Let me know if this resolves your issue!</p>
+                <p><img src="images/bulk-deploy-to-10.png" alt="bulk deploy to 10" class="article-image" loading="lazy"></p>
+                <p>git pull top name space fix and it moves on </p>
+                <p><img src="images/bulk-deploy-to-11.png" alt="bulk deploy to 11" class="article-image" loading="lazy"></p>
+                <p>Here is the markdown </p>
+                <p><img src="images/bulk-deploy-to-12.png" alt="bulk deploy to 12" class="article-image" loading="lazy"></p>
+                <p>redeploy testing with none breaking update</p>
+                <p><img src="images/bulk-deploy-to-13.png" alt="bulk deploy to 13" class="article-image" loading="lazy"></p>
+                <p>updated the top </p>
+                <p><img src="images/bulk-deploy-to-14.png" alt="bulk deploy to 14" class="article-image" loading="lazy"></p>
+                <p><img src="images/bulk-deploy-to-15.png" alt="bulk deploy to 15" class="article-image" loading="lazy"></p>
+                <p>DElete service</p>
+                <p><img src="images/bulk-deploy-to-16.png" alt="bulk deploy to 16" class="article-image" loading="lazy"></p>
+                <p><img src="images/bulk-deploy-to-17.png" alt="bulk deploy to 17" class="article-image" loading="lazy"></p>
+                <p>it is v1 only </p>
+                <p><img src="images/bulk-deploy-to-18.png" alt="bulk deploy to 18" class="article-image" loading="lazy"></p>
+                <p>I want to deploy same yaml with changes add comments</p>
+                <p><img src="images/bulk-deploy-to-19.png" alt="bulk deploy to 19" class="article-image" loading="lazy"></p>
+                <p>it says unchanged</p>
+                <p><img src="images/bulk-deploy-to-20.png" alt="bulk deploy to 20" class="article-image" loading="lazy"></p>
+                <p>lets force it </p>
+                <p>It looks like you attempted to apply a service update and tried to force the update with <code>oc apply -f .\service.yaml force</code>. The error suggests that the <code>force</code> argument isn't valid in this context.</p>
+                <p>To forcefully apply the changes, you might want to use <code>oc replace</code> instead of <code>oc apply</code>. Here’s the correct command to force the update:</p>
+                <p>oc replace -f .\service.yaml --force</p>
+                <p>Alternatively, if the resource already exists and you just want to forcefully delete and recreate it, you can combine the delete and create operations:</p>
+                <p>oc delete -f .\service.yaml<br />
+                oc apply -f .\service.yaml</p>
+                <p>This method deletes the existing service and applies the new configuration. However, be careful when doing this for services in production environments, as it might cause temporary downtime.</p>
+                <p>Let me know if this works!</p>
+                <p><img src="images/bulk-deploy-to-21.png" alt="bulk deploy to 21" class="article-image" loading="lazy"></p>
+                <p>it is replaced can see the pods in the service but not metadata</p>
+                <p><img src="images/bulk-deploy-to-22.png" alt="bulk deploy to 22" class="article-image" loading="lazy"></p>
+                <p>difference t questions </p>
+                <p><img src="images/bulk-deploy-to-23.png" alt="bulk deploy to 23" class="article-image" loading="lazy"></p>
+                <p>To view the metadata of a resource in OpenShift, you can use the <code>oc get</code> or <code>oc describe</code> commands.</p>
+                <p>Here are two ways to get the metadata for a resource like a Service:</p>
+                <h3>1. Use <code>oc get</code> with the <code>-o yaml</code> flag</h3>
+                <p>This command will show the complete YAML of the resource, including the metadata.</p>
+                <p>oc get service <service-name> -o yaml</p>
+                <p>For example, if you want to see the metadata for the service <code>myservice</code>, you can run:</p>
+                <p>oc get service myservice -o yaml</p>
+                <p>This will show you all the metadata (labels, annotations, creation timestamps, etc.) associated with the resource.</p>
+                <h3>2. Use <code>oc describe</code></h3>
+                <p>This will give you a detailed description of the resource, including metadata, events, and other details.</p>
+                <p>oc describe service <service-name></p>
+                <p>For example:</p>
+                <p>oc describe service myservice</p>
+                <p>This command provides a more human-readable output, giving you details like metadata, labels, selector, type, and other information about the service.</p>
+                <p>Either of these methods will allow you to view the metadata for your resource in OpenShift.</p>
+                <p>Let me know if you need further clarification!</p>
+                <p>with get no metadata</p>
+                <p><img src="images/bulk-deploy-to-24.png" alt="bulk deploy to 24" class="article-image" loading="lazy"></p>
+                <p>describe i cant see them </p>
+                <p><img src="images/bulk-deploy-to-25.png" alt="bulk deploy to 25" class="article-image" loading="lazy"></p>
+                <p>Added pod html </p>
+                <p><img src="images/bulk-deploy-to-26.png" alt="bulk deploy to 26" class="article-image" loading="lazy"></p>
+                <p>Created the project</p>
+                <p><img src="images/bulk-deploy-to-27.png" alt="bulk deploy to 27" class="article-image" loading="lazy"></p>
+                <p>git@github.com:rifaterdemsahin/podhtml.git</p>
+                <p>end to end project connect the dots from ilkon</p>
+                <p><img src="images/bulk-deploy-to-28.png" alt="bulk deploy to 28" class="article-image" loading="lazy"></p>
+                <p>Image stream &gt; image-registry.openshift-image-registry.svc:5000/default/myapp</p>
+                <p>Public repos by redhat &gt;&gt;&gt; ibm is in the game </p>
+                <p>This image stream reference appears to be from the Red Hat OpenShift container platform, specifically within a local development cluster, indicated by the message not to use it for production purposes. Here's what the different parts signify:</p>
+                <ul>
+                <li>
+                <p><strong>Image Stream</strong>: In OpenShift, an image stream tracks changes in container images. It's used to manage images over time, allowing applications to update automatically when a new image is available.</p>
+                </li>
+                <li>
+                <p><strong>Image Stream Name (<code>myapp</code>)</strong>: This is the name of the image stream created for a specific app, called "myapp" in this case.</p>
+                </li>
+                <li>
+                <p><strong>Namespace (<code>default</code>)</strong>: The namespace organizes resources within OpenShift. Here, the image stream resides in the "default" namespace.</p>
+                </li>
+                <li>
+                <p><strong>Image Repository</strong>: The registry location where container images for "myapp" are stored. The two URLs represent internal and public access to the image registry. The first URL is internal (<code>image-registry.openshift-image-registry.svc:5000/default/myapp</code>), and the second URL provides public access (<code>default-route-openshift-image-registry.apps-crc.testing/default/myapp</code>).</p>
+                </li>
+                <li>
+                <p><strong>Image Count (<code>0</code>)</strong>: Currently, no images have been pushed to this image stream.</p>
+                </li>
+                <li>
+                <p><strong>Date (<code>9 Sept 2024, 14:38</code>)</strong>: The time when this image stream was last updated.</p>
+                </li>
+                </ul>
+                <p>The image stream serves as a link between the source (e.g., Docker images) and OpenShift projects, allowing you to manage and deploy application images efficiently. Since this is a local setup (as noted), it should only be used for development and testing, not in a production environment.</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

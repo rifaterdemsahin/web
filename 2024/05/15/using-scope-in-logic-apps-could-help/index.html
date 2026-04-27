@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using Scope in logic apps could help - Rifat Erdem Sahin</title>
+    <meta name="description" content="Using Scope in logic apps could help Handling errors in Logic Apps, especially when dealing with external services, requires a structured approach to ensure robustness and reliability. Here are some b">
+    <meta name="keywords" content="Using Scope in logic apps could help">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/05/15/using-scope-in-logic-apps-could-help/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/05/15/using-scope-in-logic-apps-could-help/">
+    <meta property="og:title" content="Using Scope in logic apps could help">
+    <meta property="og:description" content="Using Scope in logic apps could help Handling errors in Logic Apps, especially when dealing with external services, requires a structured approach to ensure robustness and reliability. Here are some b">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/05/15/using-scope-in-logic-apps-could-help/">
+    <meta property="twitter:title" content="Using Scope in logic apps could help">
+    <meta property="twitter:description" content="Using Scope in logic apps could help Handling errors in Logic Apps, especially when dealing with external services, requires a structured approach to ensure robustness and reliability. Here are some b">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Using Scope in logic apps could help",
+      "description": "Using Scope in logic apps could help Handling errors in Logic Apps, especially when dealing with external services, requires a structured approach to ensure robustness and reliability. Here are some b",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-05-15",
+      "dateModified": "2024-05-15",
+      "url": "https://www.rifaterdemsahin.com/2024/05/15/using-scope-in-logic-apps-could-help/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/05/15/using-scope-in-logic-apps-could-help/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Using Scope in logic apps could help</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>May 15, 2024</span>
+                    <span>&bull;</span>
+                    <span>12 min read</span>
+                </div>
+                <p class="article-excerpt">Using Scope in logic apps could help Handling errors in Logic Apps, especially when dealing with external services, requires a structured approach to ensure robustness and reliability. Here are some best practices to handle errors effectively: 1.</p>
+            </header>
+            <article class="article-content">
+                <h1>Using Scope in logic apps could help</h1>
+                <p>Handling errors in Logic Apps, especially when dealing with external services, requires a structured approach to ensure robustness and reliability. Here are some best practices to handle errors effectively:</p>
+                <h3>1. <strong>Use Try-Catch Blocks</strong></h3>
+                <p>Logic Apps provides a built-in mechanism for error handling using the <code>Scope</code> action with run-after conditions.</p>
+                <ul>
+                <li>
+                <p><strong>Create a Scope for Main Logic</strong>:</p>
+                </li>
+                <li>
+                <p>Place your main actions (including calls to external services) inside a <code>Scope</code> action.</p>
+                </li>
+                <li>
+                <p><strong>Create a Scope for Error Handling</strong>:</p>
+                </li>
+                <li>
+                <p>Create another <code>Scope</code> action for error handling. This scope will contain actions to execute when an error occurs.</p>
+                </li>
+                <li>
+                <p><strong>Configure Run-After Conditions</strong>:</p>
+                </li>
+                <li>
+                <p>Configure the error handling scope to run if the main scope fails. You can do this by setting the "Run After" property of the error handling scope to execute after the main scope has failed.</p>
+                </li>
+                </ul>
+                <h3>Example</h3>
+                <p>Here's a simplified example structure:</p>
+                <p>{<br />
+                  "mainScope": {<br />
+                    "type": "Scope",<br />
+                    "actions": {<br />
+                      "externalServiceCall": {<br />
+                        "type": "Http",<br />
+                        "inputs": {<br />
+                          "method": "GET",<br />
+                          "uri": "https://api.example.com/data"<br />
+                        }<br />
+                      },<br />
+                    }<br />
+                  },<br />
+                  "errorHandlingScope": {<br />
+                    "type": "Scope",<br />
+                    "runAfter": {<br />
+                      "mainScope": ["Failed"]<br />
+                    },<br />
+                    "actions": {<br />
+                      "sendEmailNotification": {<br />
+                        "type": "Email",<br />
+                        "inputs": {<br />
+                          "to": "admin@example.com",<br />
+                          "subject": "Error in Logic App",<br />
+                          "body": "An error occurred while calling the external service."<br />
+                        }<br />
+                      },<br />
+                    }<br />
+                  }<br />
+                }</p>
+                <h3>2. <strong>Check Status Codes</strong></h3>
+                <p>When calling external services, check the status code in the response to handle different outcomes appropriately.</p>
+                <p>{<br />
+                  "externalServiceCall": {<br />
+                    "type": "Http",<br />
+                    "inputs": {<br />
+                      "method": "GET",<br />
+                      "uri": "https://api.example.com/data"<br />
+                    },<br />
+                    "runAfter": {<br />
+                      "mainScope": ["Succeeded"]<br />
+                    }<br />
+                  },<br />
+                  "checkStatusCode": {<br />
+                    "type": "If",<br />
+                    "expression": {<br />
+                      "equals": [<br />
+                        "@outputs('externalServiceCall')['statusCode']",<br />
+                        200<br />
+                      ]<br />
+                    },<br />
+                    "actions": {<br />
+                      "onSuccess": {<br />
+                      }<br />
+                    },<br />
+                    "else": {<br />
+                      "actions": {<br />
+                        "onFailure": {<br />
+                        }<br />
+                      }<br />
+                    }<br />
+                  }<br />
+                }</p>
+                <h3>3. <strong>Log Errors</strong></h3>
+                <p>Log errors to a storage account, database, or monitoring service (e.g., Application Insights) to keep track of issues and analyze patterns.</p>
+                <h3>4. <strong>Retries and Timeouts</strong></h3>
+                <p>Configure retries and timeouts for actions to handle transient failures gracefully.</p>
+                <ul>
+                <li>
+                <p><strong>Retry Policy</strong>:</p>
+                </li>
+                <li>
+                <p>Set up a retry policy for actions that may fail due to transient issues.</p>
+                </li>
+                </ul>
+                <p>{<br />
+                  "externalServiceCall": {<br />
+                    "type": "Http",<br />
+                    "inputs": {<br />
+                      "method": "GET",<br />
+                      "uri": "https://api.example.com/data",<br />
+                      "retryPolicy": {<br />
+                        "type": "exponential",<br />
+                        "interval": "PT5S",<br />
+                        "count": 3<br />
+                      }<br />
+                    }<br />
+                  }<br />
+                }</p>
+                <ul>
+                <li>
+                <p><strong>Timeout</strong>:</p>
+                </li>
+                <li>
+                <p>Set a timeout for actions to avoid long-running operations hanging indefinitely.</p>
+                </li>
+                </ul>
+                <p>{<br />
+                  "externalServiceCall": {<br />
+                    "type": "Http",<br />
+                    "inputs": {<br />
+                      "method": "GET",<br />
+                      "uri": "https://api.example.com/data",<br />
+                      "timeout": "PT30S"<br />
+                    }<br />
+                  }<br />
+                }</p>
+                <h3>5. <strong>Fallback Actions</strong></h3>
+                <p>Implement fallback actions to provide alternative solutions when an external service fails.</p>
+                <p>{<br />
+                  "checkStatusCode": {<br />
+                    "type": "If",<br />
+                    "expression": {<br />
+                      "equals": [<br />
+                        "@outputs('externalServiceCall')['statusCode']",<br />
+                        200<br />
+                      ]<br />
+                    },<br />
+                    "actions": {<br />
+                      "onSuccess": {<br />
+                      }<br />
+                    },<br />
+                    "else": {<br />
+                      "actions": {<br />
+                        "fallbackAction": {<br />
+                        }<br />
+                      }<br />
+                    }<br />
+                  }<br />
+                }</p>
+                <h3>6. <strong>Detailed Error Messages</strong></h3>
+                <p>Provide detailed error messages in logs and notifications to aid in troubleshooting.</p>
+                <p>{<br />
+                  "errorHandlingScope": {<br />
+                    "type": "Scope",<br />
+                    "runAfter": {<br />
+                      "mainScope": ["Failed"]<br />
+                    },<br />
+                    "actions": {<br />
+                      "sendEmailNotification": {<br />
+                        "type": "Email",<br />
+                        "inputs": {<br />
+                          "to": "admin@example.com",<br />
+                          "subject": "Error in Logic App",<br />
+                          "body": "An error occurred while calling the external service. Details: @outputs('externalServiceCall')['body']"<br />
+                        }<br />
+                      }<br />
+                    }<br />
+                  }<br />
+                }</p>
+                <h3>Conclusion</h3>
+                <p>By structuring your Logic Apps with these best practices, you can effectively handle errors from external services, ensuring your workflows are robust and reliable. This approach helps mitigate the impact of errors and provides clear paths for resolution and recovery.</p>
+                <p>is skipped looks also easy pick</p>
+                <p><img src="images/using-scope-in-1.png" alt="using scope in 1" class="article-image" loading="lazy"></p>
+                <p>remove old logic and use the first error than skip for the success one ?</p>
+                <p><img src="images/using-scope-in-2.png" alt="using scope in 2" class="article-image" loading="lazy"></p>
+                <p>remove the old base</p>
+                <p><img src="images/using-scope-in-3.png" alt="using scope in 3" class="article-image" loading="lazy"></p>
+                <p>removing my old logic</p>
+                <p><img src="images/using-scope-in-4.png" alt="using scope in 4" class="article-image" loading="lazy"></p>
+                <p>much simpler mapping &gt; and conditional if does not make that much sense&gt; if success do one...if not success handle it...and if failed that step is not skipped...only skipped if success.</p>
+                <p><img src="images/using-scope-in-5.png" alt="using scope in 5" class="article-image" loading="lazy"></p>
+                <p>different logic</p>
+                <p><img src="images/using-scope-in-6.png" alt="using scope in 6" class="article-image" loading="lazy"></p>
+                <p>Looking at the provided image, it seems you have a Logic App workflow with a scope named "Scope OpenAI" and two conditions that handle the flow based on the result of the scope. However, it appears the conditions might not be properly set up, as indicated by the skipped status.</p>
+                <h3>Analysis of Current Workflow</h3>
+                <ul>
+                <li>
+                <p><strong>Scope OpenAI</strong>: Executes the <code>contractormarketing-gpt-coverletter</code> action.</p>
+                </li>
+                <li>
+                <p><strong>Condition Run if the scope is failed for openai</strong>: This condition appears to be intended to handle the case where the scope fails, but it's skipped.</p>
+                </li>
+                <li>
+                <p><strong>Condition Run if the scope for fail is skipped for openai</strong>: This condition runs and sets a variable when the scope does not fail.</p>
+                </li>
+                </ul>
+                <h3>Issues Observed</h3>
+                <ul>
+                <li>
+                <p>The first condition is skipped, suggesting that it might not be correctly configured to catch failures.</p>
+                </li>
+                <li>
+                <p>The second condition runs and sets a variable, which indicates the scope succeeded.</p>
+                </li>
+                </ul>
+                <h3>Suggested Adjustments</h3>
+                <p>To ensure your Logic App handles errors and success cases correctly, you can adjust the conditions based on the scope result. Here’s a revised approach:</p>
+                <h3>Step-by-Step Approach</h3>
+                <ul>
+                <li>
+                <p><strong>Scope for Main Logic</strong>: Place your main action (<code>contractormarketing-gpt-coverletter</code>) inside a scope.</p>
+                </li>
+                <li>
+                <p><strong>Scope for Error Handling</strong>: Create a separate scope to handle errors.</p>
+                </li>
+                <li>
+                <p><strong>Configure Run-After Settings</strong>: Set the conditions to run based on the scope’s outcome.</p>
+                </li>
+                </ul>
+                <h3>Example Configuration</h3>
+                <ul>
+                <li>
+                <p><strong>Scope: Main Logic (OpenAI)</strong>:</p>
+                </li>
+                <li>
+                <p>This scope contains the <code>contractormarketing-gpt-coverletter</code> action.</p>
+                </li>
+                <li>
+                <p><strong>Condition: Check if Scope Failed</strong>:</p>
+                </li>
+                <li>
+                <p>Set the condition to run if the main scope fails.</p>
+                </li>
+                <li>
+                <p><strong>Actions for Failure</strong>:</p>
+                </li>
+                <li>
+                <p>Inside the "If true" section, handle the error case (e.g., set a variable to indicate insufficient skills).</p>
+                </li>
+                <li>
+                <p><strong>Condition: Check if Scope Succeeded</strong>:</p>
+                </li>
+                <li>
+                <p>Set the condition to run if the main scope succeeded.</p>
+                </li>
+                <li>
+                <p><strong>Actions for Success</strong>:</p>
+                </li>
+                <li>
+                <p>Inside the "If true" section, handle the success case (e.g., set a variable with the result from OpenAI).</p>
+                </li>
+                </ul>
+                <h3>JSON Example</h3>
+                <p>Here is a JSON representation of the adjusted workflow:</p>
+                <p>{<br />
+                  "definition": {<br />
+                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",<br />
+                    "actions": {<br />
+                      "Scope_OpenAI": {<br />
+                        "type": "Scope",<br />
+                        "actions": {<br />
+                          "contractormarketing-gpt-coverletter": {<br />
+                            "type": "Http",<br />
+                            "inputs": {<br />
+                              "method": "GET",<br />
+                              "uri": "https://api.example.com/data"<br />
+                            }<br />
+                          }<br />
+                        }<br />
+                      },<br />
+                      "Condition_Scope_Failed": {<br />
+                        "type": "If",<br />
+                        "expression": {<br />
+                          "equals": [<br />
+                            "@result('Scope_OpenAI')",<br />
+                            "Failed"<br />
+                          ]<br />
+                        },<br />
+                        "actions": {<br />
+                          "Set_Variable_Failure": {<br />
+                            "type": "SetVariable",<br />
+                            "inputs": {<br />
+                              "name": "ErrorVariable",<br />
+                              "value": "Not enough skills to compensate with roles."<br />
+                            }<br />
+                          }<br />
+                        },<br />
+                        "runAfter": {<br />
+                          "Scope_OpenAI": [<br />
+                            "Failed"<br />
+                          ]<br />
+                        }<br />
+                      },<br />
+                      "Condition_Scope_Succeeded": {<br />
+                        "type": "If",<br />
+                        "expression": {<br />
+                          "equals": [<br />
+                            "@result('Scope_OpenAI')",<br />
+                            "Succeeded"<br />
+                          ]<br />
+                        },<br />
+                        "actions": {<br />
+                          "Set_Variable_Success": {<br />
+                            "type": "SetVariable",<br />
+                            "inputs": {<br />
+                              "name": "ResultVariable",<br />
+                              "value": "@body('contractormarketing-gpt-coverletter')"<br />
+                            }<br />
+                          }<br />
+                        },<br />
+                        "runAfter": {<br />
+                          "Scope_OpenAI": [<br />
+                            "Succeeded"<br />
+                          ]<br />
+                        }<br />
+                      }<br />
+                    },<br />
+                    "triggers": {<br />
+                      "Recurrence": {<br />
+                        "type": "Recurrence",<br />
+                        "recurrence": {<br />
+                          "frequency": "Day",<br />
+                          "interval": 1<br />
+                        }<br />
+                      }<br />
+                    }<br />
+                  }<br />
+                }</p>
+                <h3>Explanation</h3>
+                <ul>
+                <li>
+                <p><strong>Scope_OpenAI</strong>: Contains the main logic to call the external service.</p>
+                </li>
+                <li>
+                <p><strong>Condition_Scope_Failed</strong>: Checks if the scope failed and handles the error case by setting an error variable.</p>
+                </li>
+                <li>
+                <p><strong>Condition_Scope_Succeeded</strong>: Checks if the scope succeeded and handles the success case by setting a result variable.</p>
+                </li>
+                </ul>
+                <h3>Implementation</h3>
+                <ul>
+                <li>
+                <p><strong>Open your Logic App in Azure Portal</strong>.</p>
+                </li>
+                <li>
+                <p><strong>Add a Scope action</strong> and place your <code>contractormarketing-gpt-coverletter</code> action inside it.</p>
+                </li>
+                <li>
+                <p><strong>Add an If condition</strong> to check the result of the scope and configure it to handle failure.</p>
+                </li>
+                <li>
+                <p><strong>Add another If condition</strong> to check the result of the scope and configure it to handle success.</p>
+                </li>
+                </ul>
+                <p>By setting up the Logic App this way, you ensure that both success and failure cases are handled appropriately, making your workflow more robust and reliable.</p>
+                <hr />
+                <p>Looking at the provided image, it seems you have a Logic App workflow with a scope named "Scope OpenAI" and two conditions that handle the flow based on the result of the scope. However, it appears the conditions might not be properly set up, as indicated by the skipped status.</p>
+                <h3>Analysis of Current Workflow</h3>
+                <ul>
+                <li>
+                <p><strong>Scope OpenAI</strong>: Executes the <code>contractormarketing-gpt-coverletter</code> action.</p>
+                </li>
+                <li>
+                <p><strong>Condition Run if the scope is failed for openai</strong>: This condition appears to be intended to handle the case where the scope fails, but it's skipped.</p>
+                </li>
+                <li>
+                <p><strong>Condition Run if the scope for fail is skipped for openai</strong>: This condition runs and sets a variable when the scope does not fail.</p>
+                </li>
+                </ul>
+                <h3>Issues Observed</h3>
+                <ul>
+                <li>
+                <p>The first condition is skipped, suggesting that it might not be correctly configured to catch failures.</p>
+                </li>
+                <li>
+                <p>The second condition runs and sets a variable, which indicates the scope succeeded.</p>
+                </li>
+                </ul>
+                <h3>Suggested Adjustments</h3>
+                <p>To ensure your Logic App handles errors and success cases correctly, you can adjust the conditions based on the scope result. Here’s a revised approach:</p>
+                <h3>Step-by-Step Approach</h3>
+                <ul>
+                <li>
+                <p><strong>Scope for Main Logic</strong>: Place your main action (<code>contractormarketing-gpt-coverletter</code>) inside a scope.</p>
+                </li>
+                <li>
+                <p><strong>Scope for Error Handling</strong>: Create a separate scope to handle errors.</p>
+                </li>
+                <li>
+                <p><strong>Configure Run-After Settings</strong>: Set the conditions to run based on the scope’s outcome.</p>
+                </li>
+                </ul>
+                <h3>Example Configuration</h3>
+                <ul>
+                <li>
+                <p><strong>Scope: Main Logic (OpenAI)</strong>:</p>
+                </li>
+                <li>
+                <p>This scope contains the <code>contractormarketing-gpt-coverletter</code> action.</p>
+                </li>
+                <li>
+                <p><strong>Condition: Check if Scope Failed</strong>:</p>
+                </li>
+                <li>
+                <p>Set the condition to run if the main scope fails.</p>
+                </li>
+                <li>
+                <p><strong>Actions for Failure</strong>:</p>
+                </li>
+                <li>
+                <p>Inside the "If true" section, handle the error case (e.g., set a variable to indicate insufficient skills).</p>
+                </li>
+                <li>
+                <p><strong>Condition: Check if Scope Succeeded</strong>:</p>
+                </li>
+                <li>
+                <p>Set the condition to run if the main scope succeeded.</p>
+                </li>
+                <li>
+                <p><strong>Actions for Success</strong>:</p>
+                </li>
+                <li>
+                <p>Inside the "If true" section, handle the success case (e.g., set a variable with the result from OpenAI).</p>
+                </li>
+                </ul>
+                <h3>JSON Example</h3>
+                <p>Here is a JSON representation of the adjusted workflow:</p>
+                <p>{<br />
+                  "definition": {<br />
+                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",<br />
+                    "actions": {<br />
+                      "Scope_OpenAI": {<br />
+                        "type": "Scope",<br />
+                        "actions": {<br />
+                          "contractormarketing-gpt-coverletter": {<br />
+                            "type": "Http",<br />
+                            "inputs": {<br />
+                              "method": "GET",<br />
+                              "uri": "https://api.example.com/data"<br />
+                            }<br />
+                          }<br />
+                        }<br />
+                      },<br />
+                      "Condition_Scope_Failed": {<br />
+                        "type": "If",<br />
+                        "expression": {<br />
+                          "equals": [<br />
+                            "@result('Scope_OpenAI')",<br />
+                            "Failed"<br />
+                          ]<br />
+                        },<br />
+                        "actions": {<br />
+                          "Set_Variable_Failure": {<br />
+                            "type": "SetVariable",<br />
+                            "inputs": {<br />
+                              "name": "ErrorVariable",<br />
+                              "value": "Not enough skills to compensate with roles."<br />
+                            }<br />
+                          }<br />
+                        },<br />
+                        "runAfter": {<br />
+                          "Scope_OpenAI": [<br />
+                            "Failed"<br />
+                          ]<br />
+                        }<br />
+                      },<br />
+                      "Condition_Scope_Succeeded": {<br />
+                        "type": "If",<br />
+                        "expression": {<br />
+                          "equals": [<br />
+                            "@result('Scope_OpenAI')",<br />
+                            "Succeeded"<br />
+                          ]<br />
+                        },<br />
+                        "actions": {<br />
+                          "Set_Variable_Success": {<br />
+                            "type": "SetVariable",<br />
+                            "inputs": {<br />
+                              "name": "ResultVariable",<br />
+                              "value": "@body('contractormarketing-gpt-coverletter')"<br />
+                            }<br />
+                          }<br />
+                        },<br />
+                        "runAfter": {<br />
+                          "Scope_OpenAI": [<br />
+                            "Succeeded"<br />
+                          ]<br />
+                        }<br />
+                      }<br />
+                    },<br />
+                    "triggers": {<br />
+                      "Recurrence": {<br />
+                        "type": "Recurrence",<br />
+                        "recurrence": {<br />
+                          "frequency": "Day",<br />
+                          "interval": 1<br />
+                        }<br />
+                      }<br />
+                    }<br />
+                  }<br />
+                }</p>
+                <h3>Explanation</h3>
+                <ul>
+                <li>
+                <p><strong>Scope_OpenAI</strong>: Contains the main logic to call the external service.</p>
+                </li>
+                <li>
+                <p><strong>Condition_Scope_Failed</strong>: Checks if the scope failed and handles the error case by setting an error variable.</p>
+                </li>
+                <li>
+                <p><strong>Condition_Scope_Succeeded</strong>: Checks if the scope succeeded and handles the success case by setting a result variable.</p>
+                </li>
+                </ul>
+                <h3>Implementation</h3>
+                <ul>
+                <li>
+                <p><strong>Open your Logic App in Azure Portal</strong>.</p>
+                </li>
+                <li>
+                <p><strong>Add a Scope action</strong> and place your <code>contractormarketing-gpt-coverletter</code> action inside it.</p>
+                </li>
+                <li>
+                <p><strong>Add an If condition</strong> to check the result of the scope and configure it to handle failure.</p>
+                </li>
+                <li>
+                <p><strong>Add another If condition</strong> to check the result of the scope and configure it to handle success.</p>
+                </li>
+                </ul>
+                <p>By setting up the Logic App this way, you ensure that both success and failure cases are handled appropriately, making your workflow more robust and reliable.</p>
+                <hr />
+                <p>Using scopes with "Run After" conditions is a more streamlined and clear approach for handling success and failure scenarios in Azure Logic Apps. This method leverages the built-in capabilities of Logic Apps to manage workflow execution based on the outcomes of previous actions or scopes.</p>
+                <p>Here’s how you can structure your Logic App using two scopes and the "Run After" conditions:</p>
+                <h3>Step-by-Step Approach</h3>
+                <ul>
+                <li>
+                <p><strong>Main Scope for OpenAI Call</strong>:</p>
+                </li>
+                <li>
+                <p>This scope will include the main logic for calling the OpenAI API.</p>
+                </li>
+                <li>
+                <p><strong>Error Handling Scope</strong>:</p>
+                </li>
+                <li>
+                <p>This scope will run if the main scope fails.</p>
+                </li>
+                <li>
+                <p><strong>Success Handling Scope</strong>:</p>
+                </li>
+                <li>
+                <p>This scope will run if the main scope succeeds.</p>
+                </li>
+                </ul>
+                <h3>Example Configuration</h3>
+                <ul>
+                <li>
+                <p><strong>Main Scope (Scope_OpenAI)</strong>:</p>
+                </li>
+                <li>
+                <p>Contains the action to call the OpenAI API.</p>
+                </li>
+                <li>
+                <p><strong>Error Handling Scope (Scope_ErrorHandling)</strong>:</p>
+                </li>
+                <li>
+                <p>Contains actions to handle errors, running only if the main scope fails.</p>
+                </li>
+                <li>
+                <p><strong>Success Handling Scope (Scope_SuccessHandling)</strong>:</p>
+                </li>
+                <li>
+                <p>Contains actions to handle success, running only if the main scope succeeds.</p>
+                </li>
+                </ul>
+                <h3>Detailed Steps in the Logic App Designer</h3>
+                <ul>
+                <li>
+                <p><strong>Create the Main Scope</strong>:</p>
+                </li>
+                <li>
+                <p>Add a "Scope" action and name it <code>Scope_OpenAI</code>.</p>
+                </li>
+                <li>
+                <p>Inside this scope, add the <code>contractormarketing-gpt-coverletter</code> action.</p>
+                </li>
+                <li>
+                <p><strong>Create the Error Handling Scope</strong>:</p>
+                </li>
+                <li>
+                <p>Add another "Scope" action and name it <code>Scope_ErrorHandling</code>.</p>
+                </li>
+                <li>
+                <p>Configure this scope to run if <code>Scope_OpenAI</code> fails.</p>
+                </li>
+                <li>
+                <p>Add actions inside this scope to handle the failure (e.g., set an error variable, send a notification).</p>
+                </li>
+                <li>
+                <p><strong>Create the Success Handling Scope</strong>:</p>
+                </li>
+                <li>
+                <p>Add another "Scope" action and name it <code>Scope_SuccessHandling</code>.</p>
+                </li>
+                <li>
+                <p>Configure this scope to run if <code>Scope_OpenAI</code> succeeds.</p>
+                </li>
+                <li>
+                <p>Add actions inside this scope to handle the success (e.g., set a result variable, process the response).</p>
+                </li>
+                </ul>
+                <h3>Example in the Logic App Designer</h3>
+                <p><strong>Main Scope (Scope_OpenAI)</strong>:</p>
+                <ul>
+                <li>Contains the <code>contractormarketing-gpt-coverletter</code> action.</li>
+                </ul>
+                <p><strong>Error Handling Scope (Scope_ErrorHandling)</strong>:</p>
+                <ul>
+                <li>
+                <p>Runs if <code>Scope_OpenAI</code> fails.</p>
+                </li>
+                <li>
+                <p>Contains actions to handle the error.</p>
+                </li>
+                </ul>
+                <p><strong>Success Handling Scope (Scope_SuccessHandling)</strong>:</p>
+                <ul>
+                <li>
+                <p>Runs if <code>Scope_OpenAI</code> succeeds.</p>
+                </li>
+                <li>
+                <p>Contains actions to handle the success.</p>
+                </li>
+                </ul>
+                <h3>JSON Example</h3>
+                <p>Here's a JSON representation of the Logic App using scopes and "Run After" conditions:</p>
+                <p>{<br />
+                  "definition": {<br />
+                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",<br />
+                    "actions": {<br />
+                      "Scope_OpenAI": {<br />
+                        "type": "Scope",<br />
+                        "actions": {<br />
+                          "contractormarketing-gpt-coverletter": {<br />
+                            "type": "Http",<br />
+                            "inputs": {<br />
+                              "method": "GET",<br />
+                              "uri": "https://api.example.com/data"<br />
+                            }<br />
+                          }<br />
+                        }<br />
+                      },<br />
+                      "Scope_ErrorHandling": {<br />
+                        "type": "Scope",<br />
+                        "runAfter": {<br />
+                          "Scope_OpenAI": [<br />
+                            "Failed"<br />
+                          ]<br />
+                        },<br />
+                        "actions": {<br />
+                          "Set_Error_Variable": {<br />
+                            "type": "SetVariable",<br />
+                            "inputs": {<br />
+                              "name": "ErrorVariable",<br />
+                              "value": "Not enough skills to compensate with roles."<br />
+                            }<br />
+                          },<br />
+                          "Send_Error_Notification": {<br />
+                            "type": "SendEmail",<br />
+                            "inputs": {<br />
+                              "to": "admin@example.com",<br />
+                              "subject": "Error in Logic App",<br />
+                              "body": "An error occurred while calling the OpenAI service."<br />
+                            }<br />
+                          }<br />
+                        }<br />
+                      },<br />
+                      "Scope_SuccessHandling": {<br />
+                        "type": "Scope",<br />
+                        "runAfter": {<br />
+                          "Scope_OpenAI": [<br />
+                            "Succeeded"<br />
+                          ]<br />
+                        },<br />
+                        "actions": {<br />
+                          "Set_Result_Variable": {<br />
+                            "type": "SetVariable",<br />
+                            "inputs": {<br />
+                              "name": "ResultVariable",<br />
+                              "value": "@body('contractormarketing-gpt-coverletter')"<br />
+                            }<br />
+                          }<br />
+                        }<br />
+                      }<br />
+                    },<br />
+                    "triggers": {<br />
+                      "Recurrence": {<br />
+                        "type": "Recurrence",<br />
+                        "recurrence": {<br />
+                          "frequency": "Day",<br />
+                          "interval": 1<br />
+                        }<br />
+                      }<br />
+                    }<br />
+                  }<br />
+                }</p>
+                <h3>Explanation</h3>
+                <ul>
+                <li>
+                <p><strong>Scope_OpenAI</strong>:</p>
+                </li>
+                <li>
+                <p>Contains the action to call the OpenAI API.</p>
+                </li>
+                <li>
+                <p><strong>Scope_ErrorHandling</strong>:</p>
+                </li>
+                <li>
+                <p>Runs if <code>Scope_OpenAI</code> fails.</p>
+                </li>
+                <li>
+                <p>Contains actions to handle the failure, such as setting an error variable and sending a notification.</p>
+                </li>
+                <li>
+                <p><strong>Scope_SuccessHandling</strong>:</p>
+                </li>
+                <li>
+                <p>Runs if <code>Scope_OpenAI</code> succeeds.</p>
+                </li>
+                <li>
+                <p>Contains actions to handle the success, such as setting a result variable.</p>
+                </li>
+                </ul>
+                <h3>Implementation Steps</h3>
+                <ul>
+                <li>
+                <p><strong>Open your Logic App in Azure Portal</strong>.</p>
+                </li>
+                <li>
+                <p><strong>Add a Scope action</strong> named <code>Scope_OpenAI</code> and place your <code>contractormarketing-gpt-coverletter</code> action inside it.</p>
+                </li>
+                <li>
+                <p><strong>Add another Scope action</strong> named <code>Scope_ErrorHandling</code>.</p>
+                </li>
+                <li>
+                <p>Set its "Run After" property to run after <code>Scope_OpenAI</code> fails.</p>
+                </li>
+                <li>
+                <p>Add actions inside this scope to handle the error case.</p>
+                </li>
+                <li>
+                <p><strong>Add another Scope action</strong> named <code>Scope_SuccessHandling</code>.</p>
+                </li>
+                <li>
+                <p>Set its "Run After" property to run after <code>Scope_OpenAI</code> succeeds.</p>
+                </li>
+                <li>
+                <p>Add actions inside this scope to handle the success case.</p>
+                </li>
+                </ul>
+                <p>By using scopes and "Run After" conditions, you make your Logic App workflow clearer and easier to manage. This approach effectively handles different outcomes of the main action, ensuring proper error handling and success processing.</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

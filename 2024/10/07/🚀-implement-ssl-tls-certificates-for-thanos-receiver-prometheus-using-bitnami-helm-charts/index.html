@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Implement SSL/TLS Certificates for Thanos Receiver &amp; Prometheus Using Bitnami Helm Charts - Rifat Erdem Sahin</title>
+    <meta name="description" content="🚀 Implement SSL/TLS Certificates for Thanos Receiver &amp; Prometheus Using Bitnami Helm Charts Securing your Kubernetes setup with SSL/TLS certificates is essential for encrypted communication and se">
+    <meta name="keywords" content="🚀 Implement SSL/TLS Certificates for Thanos Receiver &amp; Prometheus Using Bitnami Helm Charts">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/10/07/🚀-implement-ssl-tls-certificates-for-thanos-receiver-prometheus-using-bitnami-helm-charts/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/10/07/🚀-implement-ssl-tls-certificates-for-thanos-receiver-prometheus-using-bitnami-helm-charts/">
+    <meta property="og:title" content="🚀 Implement SSL/TLS Certificates for Thanos Receiver &amp; Prometheus Using Bitnami Helm Charts">
+    <meta property="og:description" content="🚀 Implement SSL/TLS Certificates for Thanos Receiver &amp; Prometheus Using Bitnami Helm Charts Securing your Kubernetes setup with SSL/TLS certificates is essential for encrypted communication and se">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/10/07/🚀-implement-ssl-tls-certificates-for-thanos-receiver-prometheus-using-bitnami-helm-charts/">
+    <meta property="twitter:title" content="🚀 Implement SSL/TLS Certificates for Thanos Receiver &amp; Prometheus Using Bitnami Helm Charts">
+    <meta property="twitter:description" content="🚀 Implement SSL/TLS Certificates for Thanos Receiver &amp; Prometheus Using Bitnami Helm Charts Securing your Kubernetes setup with SSL/TLS certificates is essential for encrypted communication and se">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "🚀 Implement SSL/TLS Certificates for Thanos Receiver &amp; Prometheus Using Bitnami Helm Charts",
+      "description": "🚀 Implement SSL/TLS Certificates for Thanos Receiver &amp; Prometheus Using Bitnami Helm Charts Securing your Kubernetes setup with SSL/TLS certificates is essential for encrypted communication and se",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-10-07",
+      "dateModified": "2024-10-07",
+      "url": "https://www.rifaterdemsahin.com/2024/10/07/🚀-implement-ssl-tls-certificates-for-thanos-receiver-prometheus-using-bitnami-helm-charts/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/10/07/🚀-implement-ssl-tls-certificates-for-thanos-receiver-prometheus-using-bitnami-helm-charts/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">🚀 Implement SSL/TLS Certificates for Thanos Receiver &amp; Prometheus Using Bitnami Helm Charts</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>October 7, 2024</span>
+                    <span>&bull;</span>
+                    <span>7 min read</span>
+                </div>
+                <p class="article-excerpt">🚀 Implement SSL/TLS Certificates for Thanos Receiver &amp; Prometheus Using Bitnami Helm Charts Securing your Kubernetes setup with SSL/TLS certificates is essential for encrypted communication and security.</p>
+            </header>
+            <article class="article-content">
+                <h1>🚀 Implement SSL/TLS Certificates for Thanos Receiver &amp; Prometheus Using Bitnami Helm Charts</h1>
+                <p>Securing your Kubernetes setup with SSL/TLS certificates is essential for encrypted communication and security. This guide will walk you through using <strong>local certificate creation</strong> to implement SSL/TLS certificates for <strong>Thanos Receiver</strong> and <strong>Prometheus</strong> using the Bitnami Helm charts.</p>
+                <h2>🛠️ Step 1: Create Self-Signed SSL Certificates Locally</h2>
+                <h3>💻 Generate the Certificates</h3>
+                <p>First, let's create self-signed certificates locally using <strong>OpenSSL</strong>. Here's how you can generate them:</p>
+                <p>openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=thanos.yourdomain.com/O=your-organization"</p>
+                <p>Try it in Azure </p>
+                <p><img src="images/implement-ssltls-certificates-1.png" alt="implement ssltls certificates 1" class="article-image" loading="lazy"></p>
+                <p>This command will generate two files:</p>
+                <ul>
+                <li>
+                <p><code>tls.key</code>: The private key for the certificate.</p>
+                </li>
+                <li>
+                <p><code>tls.crt</code>: The public certificate.</p>
+                </li>
+                </ul>
+                <p>🚀 <strong>Screenshot Pause</strong>: After generating the certificates, take a screenshot of the terminal showing both <code>tls.key</code> and <code>tls.crt</code> files.</p>
+                <h2>🛠️ Step 2: Create a Kubernetes Secret for the Certificates</h2>
+                <p>Now that we have the certificates, we'll create a <strong>Kubernetes Secret</strong> to store them.</p>
+                <p>kubectl create secret tls thanos-prometheus-tls-secret \<br />
+                  --cert=tls.crt --key=tls.key \<br />
+                  --namespace <your-namespace></p>
+                <p>This secret will be used by both <strong>Thanos Receiver</strong> and <strong>Prometheus</strong> to enable TLS.</p>
+                <p>🚀 <strong>Screenshot Pause</strong>: Take a screenshot showing the creation of the Kubernetes secret in your terminal.</p>
+                <h2>🛠️ Step 3: Update Bitnami Helm Charts to Use the Certificates</h2>
+                <h3>💡 Thanos Receiver Setup</h3>
+                <ul>
+                <li>Install the <strong>Bitnami Thanos Receiver</strong> with the TLS configuration:</li>
+                </ul>
+                <p>helm repo add bitnami https://charts.bitnami.com/bitnami<br />
+                helm install thanos-receiver bitnami/thanos \<br />
+                    --set service.tls.enabled=true \<br />
+                    --set service.tls.secretName=thanos-prometheus-tls-secret \<br />
+                    --namespace <your-namespace></p>
+                <h3>💡 Prometheus Setup</h3>
+                <ul>
+                <li>Similarly, install <strong>Prometheus</strong> with TLS enabled:</li>
+                </ul>
+                <p>helm install prometheus bitnami/prometheus \<br />
+                    --set service.tls.enabled=true \<br />
+                    --set service.tls.secretName=thanos-prometheus-tls-secret \<br />
+                    --namespace <your-namespace></p>
+                <p>This ensures that both Thanos and Prometheus are now secured with your locally generated SSL certificates.</p>
+                <p>🚀 <strong>Screenshot Pause</strong>: Capture the output of <code>helm install</code> to show that the installations were successful with the TLS configuration.</p>
+                <h2>🛠️ Step 4: Verify SSL/TLS Configuration</h2>
+                <p>To ensure the certificates are working correctly, check the status of the services.</p>
+                <p>kubectl describe svc <service-name> -n <your-namespace></p>
+                <p>Make sure to look for the <strong>TLS</strong> configuration in the service description.</p>
+                <p>🚀 <strong>Screenshot Pause</strong>: Show the output from the service description, verifying the TLS settings.</p>
+                <h2>🚀 Step 5: Test the HTTPS Connection</h2>
+                <p>Now that everything is set up, test accessing the <strong>Thanos Receiver</strong> and <strong>Prometheus</strong> over HTTPS. Use your browser or a tool like <code>curl</code>:</p>
+                <p>curl -k https://thanos.yourdomain.com<br />
+                curl -k https://prometheus.yourdomain.com</p>
+                <p>You should see a valid response from both services, indicating that SSL/TLS is correctly configured.</p>
+                <p>🚀 <strong>Screenshot Pause</strong>: Display a successful curl response, showing the secure HTTPS connection.</p>
+                <h2>🎉 Success! You've Set Up TLS for Thanos &amp; Prometheus Locally!</h2>
+                <p>By following these steps, you've successfully set up self-signed SSL/TLS certificates for <strong>Thanos Receiver</strong> and <strong>Prometheus</strong> using <strong>Bitnami Helm charts</strong>. This ensures secure communication between your services in the Kubernetes cluster.</p>
+                <p><strong>🔗 Connect with me:</strong></p>
+                <ul>
+                <li>
+                <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/rifaterdemsahin/">https://www.linkedin.com/in/rifaterdemsahin/</a></p>
+                </li>
+                <li>
+                <p>🐦 Twitter: <a href="https://x.com/rifaterdemsahin">https://x.com/rifaterdemsahin</a></p>
+                </li>
+                <li>
+                <p>🎥 YouTube: <a href="https://www.youtube.com/@RifatErdemSahin">https://www.youtube.com/@RifatErdemSahin</a></p>
+                </li>
+                <li>
+                <p>💻 GitHub: <a href="https://github.com/rifaterdemsahin">https://github.com/rifaterdemsahin</a></p>
+                </li>
+                </ul>
+                <p>👨‍💻 Happy Kubernetes Securing! Let me know if you have any questions or need further assistance!</p>
+                <p>Yes, the command you provided should work on Windows if you have <strong>OpenSSL</strong> installed. However, you will need to ensure the following prerequisites:</p>
+                <ul>
+                <li>
+                <p><strong>OpenSSL is installed</strong>: OpenSSL is not installed by default on Windows. You can download and install OpenSSL from <a href="https://slproweb.com/products/Win32OpenSSL.html">here</a>, or use a package manager like <strong>chocolatey</strong> to install it using <code>choco install openssl</code>.</p>
+                </li>
+                <li>
+                <p><strong>Set OpenSSL in your environment's PATH</strong>: After installation, ensure that OpenSSL is available in your system's PATH, so the <code>openssl</code> command can be executed from any terminal.</p>
+                </li>
+                </ul>
+                <p>The command will generate two files:</p>
+                <ul>
+                <li>
+                <p><code>tls.key</code>: The private key.</p>
+                </li>
+                <li>
+                <p><code>tls.crt</code>: The self-signed certificate.</p>
+                </li>
+                </ul>
+                <h3>Command Breakdown:</h3>
+                <ul>
+                <li>
+                <p><code>openssl req</code>: Start a certificate request.</p>
+                </li>
+                <li>
+                <p><code>-x509</code>: This option outputs a self-signed certificate instead of a certificate request.</p>
+                </li>
+                <li>
+                <p><code>-nodes</code>: No DES (i.e., do not encrypt the private key).</p>
+                </li>
+                <li>
+                <p><code>-days 365</code>: Set the certificate to be valid for 365 days.</p>
+                </li>
+                <li>
+                <p><code>-newkey rsa:2048</code>: Generate a new RSA key with a size of 2048 bits.</p>
+                </li>
+                <li>
+                <p><code>-keyout tls.key</code>: Specify the file to write the private key to.</p>
+                </li>
+                <li>
+                <p><code>-out tls.crt</code>: Specify the file to write the certificate to.</p>
+                </li>
+                <li>
+                <p><code>-subj "/CN=thanos.yourdomain.com/O=your-organization"</code>: Provide the certificate details such as the common name (CN) and organization (O).</p>
+                </li>
+                </ul>
+                <h3>Considerations:</h3>
+                <ul>
+                <li>
+                <p>Make sure the <code>CN</code> (Common Name) matches the domain where you intend to use the certificate.</p>
+                </li>
+                <li>
+                <p>If you plan to use this certificate in a production environment, it would be better to use certificates from a trusted certificate authority (CA) instead of self-signing.</p>
+                </li>
+                </ul>
+                <p>If OpenSSL is correctly installed and configured on your Windows machine, this command should run without issues.</p>
+                <p>Yes, you can run the <code>openssl</code> command in <strong>Azure Cloud Shell</strong>, but there are a few things to consider:</p>
+                <ul>
+                <li>
+                <p><strong>Azure Cloud Shell supports OpenSSL</strong>: Both <strong>Bash</strong> and <strong>PowerShell</strong> environments in Azure Cloud Shell have OpenSSL pre-installed. So you can directly use the <code>openssl</code> command without any additional setup.</p>
+                </li>
+                <li>
+                <p><strong>Command usage</strong>: The command you provided should work as is in Azure Cloud Shell, similar to how it would on a local Linux or Windows environment. The Cloud Shell environment behaves like a standard Linux shell (even in PowerShell mode), so the syntax and behavior of OpenSSL will be the same.</p>
+                </li>
+                </ul>
+                <h3>How to run the command:</h3>
+                <ul>
+                <li>
+                <p><strong>Open Azure Cloud Shell</strong>:</p>
+                </li>
+                <li>
+                <p>Log in to your Azure portal.</p>
+                </li>
+                <li>
+                <p>Click the <strong>Cloud Shell</strong> icon at the top-right corner.</p>
+                </li>
+                <li>
+                <p><strong>Choose Bash or PowerShell</strong>:</p>
+                </li>
+                <li>
+                <p>Choose the environment you're comfortable with. Bash is more commonly used for OpenSSL commands.</p>
+                </li>
+                <li>
+                <p><strong>Run your OpenSSL command</strong>:</p>
+                </li>
+                <li>
+                <p>You can directly paste and run your command:<br />
+                <code>bash openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=thanos.yourdomain.com/O=your-organization"</code></p>
+                </li>
+                <li>
+                <p><strong>Access generated files</strong>:</p>
+                </li>
+                <li>
+                <p>Once the certificate and key are generated (<code>tls.crt</code> and <code>tls.key</code>), they will be available in your <strong>Cloud Shell file system</strong>. You can download them or use them for other Azure services like Kubernetes or Web Apps.</p>
+                </li>
+                </ul>
+                <h3>Additional Notes:</h3>
+                <ul>
+                <li>
+                <p>You can store these files in your Azure storage account or download them using the Cloud Shell file transfer feature (upload/download buttons in the Cloud Shell UI).</p>
+                </li>
+                <li>
+                <p>If you're using the certificates for services like <strong>AKS</strong> (Azure Kubernetes Service), <strong>Azure Web Apps</strong>, or <strong>Azure App Gateway</strong>, you can upload them directly from Cloud Shell.</p>
+                </li>
+                </ul>
+                <p>Azure Cloud Shell is a very convenient way to run commands like these without worrying about local OpenSSL setup!</p>
+                <p>To download the files that were generated (<code>tls.key</code> and <code>tls.crt</code>) from the Azure CLI environment to your local system, you can follow these steps:</p>
+                <h3>1. <strong>Locate the Files:</strong></h3>
+                <p>First, ensure that the files are in the correct directory. If you're still in the same directory where the files were generated, they should be listed as in your screenshot (e.g., <code>tls.key</code> and <code>tls.crt</code>).</p>
+                <h3>2. <strong>Download via Azure CLI using SCP:</strong></h3>
+                <p>If your Azure environment has SSH access, you can use <code>scp</code> (secure copy protocol) to transfer the files to your local machine. Here’s an example command structure you can use:</p>
+                <p>scp username@azure-vm-ip:/path/to/tls.key /local/path/to/download/tls.key<br />
+                   scp username@azure-vm-ip:/path/to/tls.crt /local/path/to/download/tls.crt</p>
+                <p>Replace the following:</p>
+                <ul>
+                <li>
+                <p><code>username</code>: Your Azure VM username.</p>
+                </li>
+                <li>
+                <p><code>azure-vm-ip</code>: The public IP of the Azure VM where the files were generated.</p>
+                </li>
+                <li>
+                <p><code>/path/to/</code>: Adjust this path to where you want to download the files on your local system.</p>
+                </li>
+                </ul>
+                <h3>3. <strong>Use File Transfer Tools:</strong></h3>
+                <p>You can also use tools like <code>WinSCP</code> (on Windows) or <code>FileZilla</code> (on any platform) to transfer files over SCP/SFTP if you're on a VM or have SSH access enabled.</p>
+                <h3>4. <strong>Azure Blob Storage (Optional):</strong></h3>
+                <p>Another option is to upload the files to an Azure Blob storage account and then download them from there:</p>
+                <ul>
+                <li>
+                <p>Install <code>azcopy</code> if it's not installed already.</p>
+                </li>
+                <li>
+                <p>Use <code>azcopy</code> to copy the files to a blob storage container. Example:</p>
+                </li>
+                </ul>
+                <p>azcopy copy "/path/to/tls.key" "https://<your-storage-account>.blob.core.windows.net/<your-container-name>/tls.key?SAS-token"</p>
+                <h3>5. <strong>Manual File Upload (Optional)</strong>:</h3>
+                <p>If the Azure CLI you're using allows, you could upload the files to a storage account directly using the portal interface and then download them.</p>
+                <p>Let me know which option you prefer, and I can guide you further!</p>
+                <p><img src="images/implement-ssltls-certificates-2.png" alt="implement ssltls certificates 2" class="article-image" loading="lazy"></p>
+                <p><img src="images/implement-ssltls-certificates-3.png" alt="implement ssltls certificates 3" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

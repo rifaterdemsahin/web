@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The virtual machine host ( trial two ) - Rifat Erdem Sahin</title>
+    <meta name="description" content="The virtual machine host ( trial two ) Candidate for a course for 60 minutes &gt;&gt; CODE &gt;&gt;&gt; reach express and help the audience who struggles with this Objective : Create a virtual machine">
+    <meta name="keywords" content="The virtual machine host ( trial two )">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/04/14/the-virtual-machine-host/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/04/14/the-virtual-machine-host/">
+    <meta property="og:title" content="The virtual machine host ( trial two )">
+    <meta property="og:description" content="The virtual machine host ( trial two ) Candidate for a course for 60 minutes &gt;&gt; CODE &gt;&gt;&gt; reach express and help the audience who struggles with this Objective : Create a virtual machine">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/04/14/the-virtual-machine-host/">
+    <meta property="twitter:title" content="The virtual machine host ( trial two )">
+    <meta property="twitter:description" content="The virtual machine host ( trial two ) Candidate for a course for 60 minutes &gt;&gt; CODE &gt;&gt;&gt; reach express and help the audience who struggles with this Objective : Create a virtual machine">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "The virtual machine host ( trial two )",
+      "description": "The virtual machine host ( trial two ) Candidate for a course for 60 minutes &gt;&gt; CODE &gt;&gt;&gt; reach express and help the audience who struggles with this Objective : Create a virtual machine",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-04-14",
+      "dateModified": "2024-04-14",
+      "url": "https://www.rifaterdemsahin.com/2024/04/14/the-virtual-machine-host/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/04/14/the-virtual-machine-host/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">The virtual machine host ( trial two )</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>April 14, 2024</span>
+                    <span>&bull;</span>
+                    <span>20 min read</span>
+                </div>
+                <p class="article-excerpt">The virtual machine host ( trial two ) Candidate for a course for 60 minutes &gt;&gt; CODE &gt;&gt;&gt; reach express and help the audience who struggles with this Objective : Create a virtual machine to configure a kubernetes cluster Key Result: Do it in a infrastructure as Code</p>
+            </header>
+            <article class="article-content">
+                <h1>The virtual machine host ( trial two )</h1>
+                <p>Candidate for a course for 60 minutes &gt;&gt; CODE &gt;&gt;&gt; reach express and help the audience who struggles with this</p>
+                <p>Objective : Create a virtual machine to configure a kubernetes cluster</p>
+                <p>Key Result: Do it in a infrastructure as Code</p>
+                <p>Key Results: Manage in Azure with Orchestrators Create and Operate</p>
+                <p>Key Result: Delete and recreate to save the costs</p>
+                <p>Key Result : Use GPT to do your setup for the syntax</p>
+                <p>Key Result : Connect to a Linux box which is Kubernetes container friendly</p>
+                <p>Key Result : Install local xrdp to connect from the local to the cloud</p>
+                <p>Key Result : Document in a way you can share share</p>
+                <p>Key Result : learn budgetting in Azure and cost of the resources.</p>
+                <p>Key Result : Learn to use ssh from local and cloud shell</p>
+                <p>Key Result : first principles approach test script and add it to the iac</p>
+                <p>Key Result : OKR and first principles concepts</p>
+                <p>Key Result : Learning journey with Lacan and Bloom Concepts</p>
+                <p>Resource Groups &gt; 2 </p>
+                <p>one creater</p>
+                <p>one is the main</p>
+                <p><img src="images/the-virtual-machine-1.png" alt="the virtual machine 1" class="article-image" loading="lazy"></p>
+                <p>+</p>
+                <p><img src="images/the-virtual-machine-2.png" alt="the virtual machine 2" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><img src="images/the-virtual-machine-3.png" alt="the virtual machine 3" class="article-image" loading="lazy"></p>
+                <p>Starting Empty</p>
+                <p><img src="images/the-virtual-machine-4.png" alt="the virtual machine 4" class="article-image" loading="lazy"></p>
+                <p><img src="images/the-virtual-machine-5.png" alt="the virtual machine 5" class="article-image" loading="lazy"></p>
+                <p><img src="images/the-virtual-machine-6.png" alt="the virtual machine 6" class="article-image" loading="lazy"></p>
+                <p>Security group</p>
+                <p><img src="images/the-virtual-machine-7.png" alt="the virtual machine 7" class="article-image" loading="lazy"></p>
+                <p>virtual machine with the ip</p>
+                <p><img src="images/the-virtual-machine-8.png" alt="the virtual machine 8" class="article-image" loading="lazy"></p>
+                <p>Connect with SSH</p>
+                <p><img src="images/the-virtual-machine-9.png" alt="the virtual machine 9" class="article-image" loading="lazy"></p>
+                <p><img src="images/the-virtual-machine-10.png" alt="the virtual machine 10" class="article-image" loading="lazy"></p>
+                <p><img src="images/the-virtual-machine-11.png" alt="the virtual machine 11" class="article-image" loading="lazy"></p>
+                <p><a href="https://rifaterdemsahin.com/2024/04/09/openshift-is-back/">xrdp script from trial one</a></p>
+                <p>network settings</p>
+                <p><img src="images/the-virtual-machine-12.png" alt="the virtual machine 12" class="article-image" loading="lazy"></p>
+                <p>one bash script and shell to run it</p>
+                <p><img src="images/the-virtual-machine-13.png" alt="the virtual machine 13" class="article-image" loading="lazy"></p>
+                <p><code>sudo apt-get update</code><br />
+                <code>sudo apt-get upgrade</code><br />
+                <code>sudo apt-get install xrdp</code><br />
+                <code>sudo ufw allow 3389/tcp</code><br />
+                <code>echo "gnome-session" &gt; ~/.xsession</code><br />
+                <code>sudo systemctl restart xrdp</code></p>
+                <p>move to bash</p>
+                <p><img src="images/the-virtual-machine-14.png" alt="the virtual machine 14" class="article-image" loading="lazy"></p>
+                <p><img src="images/the-virtual-machine-15.png" alt="the virtual machine 15" class="article-image" loading="lazy"></p>
+                <p>better naming</p>
+                <p><img src="images/the-virtual-machine-16.png" alt="the virtual machine 16" class="article-image" loading="lazy"></p>
+                <p>Save commands for </p>
+                <p><img src="images/the-virtual-machine-17.png" alt="the virtual machine 17" class="article-image" loading="lazy"></p>
+                <p>check it out</p>
+                <p><img src="images/the-virtual-machine-18.png" alt="the virtual machine 18" class="article-image" loading="lazy"></p>
+                <p><img src="images/the-virtual-machine-19.png" alt="the virtual machine 19" class="article-image" loading="lazy"></p>
+                <p>check it to run it</p>
+                <p><img src="images/the-virtual-machine-20.png" alt="the virtual machine 20" class="article-image" loading="lazy"></p>
+                <p>ask gpt for the command</p>
+                <p>The error message "Permission denied" indicates that your current user does not have the necessary permissions to execute the script <code>setxrdp.sh</code>. To resolve this issue, you can try the following steps:</p>
+                <ul>
+                <li><strong>Check the script permissions</strong>: You can use the <code>ls -l</code> command to view the current permissions of the file:</li>
+                </ul>
+                <p>ls -l setxrdp.sh</p>
+                <p>This will show you the permissions currently set for the file. Look for the execute permission (<code>x</code>) in the output.</p>
+                <ul>
+                <li><strong>Make the script executable</strong>: If the execute permission is not set for the script, you can add it using the <code>chmod</code> command. This command modifies the file permissions. To make the script executable for the user who owns it, you can run:</li>
+                </ul>
+                <p>chmod u+x setxrdp.sh</p>
+                <p>This command sets the execute (<code>x</code>) permission for the user (<code>u</code>) who owns the file. If you want to make it executable for all users, replace <code>u+x</code> with <code>a+x</code>.</p>
+                <ul>
+                <li><strong>Execute the script with elevated permissions</strong>: If the script needs to perform operations that require higher privileges, you might need to run it with <code>sudo</code> (assuming you have sudo privileges):</li>
+                </ul>
+                <p>sudo ./setxrdp.sh</p>
+                <p>Using <code>sudo</code> executes the script with superuser (administrator) privileges, which may be necessary for tasks like modifying system configurations or installing software.</p>
+                <p>Try these steps and see if you can execute the script successfully. If you still face issues, there may be other factors at play, such as the script's content or specific system security configurations.</p>
+                <p>now it starts</p>
+                <p><img src="images/the-virtual-machine-21.png" alt="the virtual machine 21" class="article-image" loading="lazy"></p>
+                <p><img src="images/the-virtual-machine-22.png" alt="the virtual machine 22" class="article-image" loading="lazy"></p>
+                <p>why silent runs are important</p>
+                <p><img src="images/the-virtual-machine-23.png" alt="the virtual machine 23" class="article-image" loading="lazy"></p>
+                <p><code>sudo apt-get update -y``sudo apt-get upgrade -y</code>sudo apt-get install xrdp -y<br />
+                <code>sudo ufw allow 3389/tcp``echo "gnome-session" &gt; ~/.xsession``sudo systemctl restart xrdp</code></p>
+                <p>added -y to the parts that i can </p>
+                <p><img src="images/the-virtual-machine-24.png" alt="the virtual machine 24" class="article-image" loading="lazy"></p>
+                <p>matrix going on as the packages are getting install &gt; get your coffee &gt; check for the networking &gt; network chucks channel great videos</p>
+                <p><img src="images/the-virtual-machine-25.png" alt="the virtual machine 25" class="article-image" loading="lazy"></p>
+                <p>Wrong security group lets check it</p>
+                <p><img src="images/the-virtual-machine-26.png" alt="the virtual machine 26" class="article-image" loading="lazy"></p>
+                <p>Check the last commands</p>
+                <p><img src="images/the-virtual-machine-27.png" alt="the virtual machine 27" class="article-image" loading="lazy"></p>
+                <p>End goal after integrating add it to iac script</p>
+                <p>Add key results</p>
+                <p><img src="images/the-virtual-machine-28.png" alt="the virtual machine 28" class="article-image" loading="lazy"></p>
+                <p>restart the box</p>
+                <p><img src="images/the-virtual-machine-29.png" alt="the virtual machine 29" class="article-image" loading="lazy"></p>
+                <p>Ask gpt for the error but first connect and fail</p>
+                <p><img src="images/the-virtual-machine-30.png" alt="the virtual machine 30" class="article-image" loading="lazy"></p>
+                <p><img src="images/the-virtual-machine-31.png" alt="the virtual machine 31" class="article-image" loading="lazy"></p>
+                <p><img src="images/the-virtual-machine-32.png" alt="the virtual machine 32" class="article-image" loading="lazy"></p>
+                <p><img src="images/the-virtual-machine-33.png" alt="the virtual machine 33" class="article-image" loading="lazy"></p>
+                <p>add 8080</p>
+                <p><img src="images/the-virtual-machine-34.png" alt="the virtual machine 34" class="article-image" loading="lazy"></p>
+                <p><img src="images/the-virtual-machine-35.png" alt="the virtual machine 35" class="article-image" loading="lazy"></p>
+                <p>you need add all to test for the first time</p>
+                <p><img src="images/the-virtual-machine-36.png" alt="the virtual machine 36" class="article-image" loading="lazy"></p>
+                <p>different popup</p>
+                <p><img src="images/the-virtual-machine-37.png" alt="the virtual machine 37" class="article-image" loading="lazy"></p>
+                <p>I can see it gets connected but a black screen</p>
+                <p>Semblance &gt; Lacan &gt;&gt;&gt; most give up IT due to connection issues</p>
+                <p><img src="images/the-virtual-machine-38.png" alt="the virtual machine 38" class="article-image" loading="lazy"></p>
+                <p>ask gpt and follow the steps</p>
+                <p><img src="images/the-virtual-machine-39.png" alt="the virtual machine 39" class="article-image" loading="lazy"></p>
+                <p>A black screen issue when connecting to a Linux system using RDP and xRDP can stem from various reasons. Here are some troubleshooting steps to help resolve the problem:</p>
+                <ul>
+                <li><strong>Check xRDP Service Status</strong>: Ensure that the xRDP service is running on your Linux machine. You can check this by running:</li>
+                </ul>
+                <p>sudo systemctl status xrdp</p>
+                <p>If the service isn't running, start it with:</p>
+                <p>sudo systemctl start xrdp</p>
+                <ul>
+                <li><strong>Verify Desktop Environment Compatibility</strong>: xRDP might not work correctly with certain desktop environments. For example, GNOME with Wayland might pose problems. If you are using Ubuntu with GNOME, try installing a different desktop environment that is known to work better with xRDP, such as XFCE:</li>
+                </ul>
+                <p>sudo apt install xfce4</p>
+                <p>After installing, you'll need to configure xRDP to use XFCE:</p>
+                <p>echo "startxfce4" &gt; ~/.xsession</p>
+                <p>Restart the xRDP service:</p>
+                <p>sudo systemctl restart xrdp</p>
+                <ul>
+                <li><strong>Update <code>.xsession</code> File</strong>: Ensure your <code>.xsession</code> file in your home directory is configured to start the correct desktop session. You can set this file to start the desktop environment you are using. For example, for XFCE, you would use:</li>
+                </ul>
+                <p>echo xfce4-session &gt; ~/.xsession</p>
+                <ul>
+                <li>
+                <p><strong>Adjust RDP Client Settings</strong>: Sometimes, settings on the RDP client on your Mac might cause display issues. Check if changing the display settings (such as color depth or resolution) in your RDP client resolves the issue.</p>
+                </li>
+                <li>
+                <p><strong>Review xRDP Logs</strong>: Look at the xRDP logs for any errors or warnings that might give you more insight into what's going wrong. You can find the logs here:</p>
+                </li>
+                </ul>
+                <p>sudo cat /var/log/xrdp.log<br />
+                   sudo cat /var/log/xrdp-sesman.log</p>
+                <ul>
+                <li>
+                <p><strong>Ensure Proper Network Configuration</strong>: Verify that there are no network issues preventing proper communication between your Mac and the Linux server. This includes checking firewalls and network policies.</p>
+                </li>
+                <li>
+                <p><strong>Reinstall xRDP</strong>: If all else fails, you might consider uninstalling and then reinstalling xRDP:</p>
+                </li>
+                </ul>
+                <p>sudo apt remove xrdp<br />
+                   sudo apt install xrdp</p>
+                <p>By following these steps, you should be able to resolve the black screen issue with xRDP on your Linux system. If problems persist, it might be useful to look for specific issues related to the Linux distribution and version you are using, as there might be known issues with certain setups.]]</p>
+                <p>running it showed</p>
+                <p><img src="images/the-virtual-machine-40.png" alt="the virtual machine 40" class="article-image" loading="lazy"></p>
+                <p>opened up</p>
+                <p><img src="images/the-virtual-machine-41.png" alt="the virtual machine 41" class="article-image" loading="lazy"></p>
+                <p>than volla</p>
+                <p><img src="images/the-virtual-machine-42.png" alt="the virtual machine 42" class="article-image" loading="lazy"></p>
+                <p>now all blue &gt;&gt;&gt; desktop software not loaded to linux</p>
+                <p><img src="images/the-virtual-machine-43.png" alt="the virtual machine 43" class="article-image" loading="lazy"></p>
+                <p>ask gpt and install it </p>
+                <p><img src="images/the-virtual-machine-44.png" alt="the virtual machine 44" class="article-image" loading="lazy"></p>
+                <p>To install a Linux desktop environment on Ubuntu 18.04 for your user interface (UI) usage, you have several options, depending on what kind of experience you're looking for. Below are instructions for installing three popular desktop environments: GNOME, KDE Plasma, and XFCE.</p>
+                <h3>GNOME (Default Desktop for Ubuntu 18.04)</h3>
+                <p>Ubuntu 18.04 comes with GNOME by default. If for some reason GNOME is not installed, or you've removed it and want to reinstall it, you can do so using the following commands:</p>
+                <p>sudo apt update<br />
+                sudo apt install ubuntu-desktop</p>
+                <p>This command installs the full GNOME desktop environment along with the standard Ubuntu applications and optimizations.</p>
+                <h3>KDE Plasma</h3>
+                <p>KDE Plasma is known for its visual appeal and customization options. It offers a more feature-rich and configurable desktop experience. To install KDE Plasma:</p>
+                <p>sudo apt update<br />
+                sudo apt install kubuntu-desktop</p>
+                <p>When you install <code>kubuntu-desktop</code>, you'll be prompted to choose between <code>sddm</code> and <code>lightdm</code> as your display manager. <code>sddm</code> is the default for KDE, and choosing it would typically provide a smoother experience with KDE Plasma.</p>
+                <h3>XFCE</h3>
+                <p>XFCE is a lightweight desktop environment that is fast and uses fewer system resources, making it ideal for older hardware or for users who seek a simple, efficient, and highly customizable desktop environment. To install XFCE:</p>
+                <p>sudo apt update<br />
+                sudo apt install xubuntu-desktop</p>
+                <h3>After Installation</h3>
+                <p>After installing any of these desktop environments:</p>
+                <ul>
+                <li>
+                <p><strong>Log Out or Reboot</strong>: You can either log out or reboot your machine. When you get to the login screen, you might see an option to select your desktop environment.</p>
+                </li>
+                <li>
+                <p><strong>Switch Desktop Environments</strong>: If you have multiple desktop environments installed, you can switch between them at the login screen. Look for a session or environment menu on the login screen (usually a small gear icon next to the login button) and select the desktop environment you wish to use.</p>
+                </li>
+                <li>
+                <p><strong>Configure Your Environment</strong>: Each desktop environment has its own settings manager where you can customize the appearance and behavior of your desktop, like themes, keyboard shortcuts, and more.</p>
+                </li>
+                </ul>
+                <p>Choose the desktop environment that best suits your needs based on the performance of your system and your personal preferences in terms of usability and appearance.</p>
+                <p>Install using the ssh </p>
+                <p><img src="images/the-virtual-machine-45.png" alt="the virtual machine 45" class="article-image" loading="lazy"></p>
+                <p>reconnect with saved creadential from mac and windows</p>
+                <p><img src="images/the-virtual-machine-46.png" alt="the virtual machine 46" class="article-image" loading="lazy"></p>
+                <p>first principles the desktop opened up</p>
+                <p><img src="images/the-virtual-machine-47.png" alt="the virtual machine 47" class="article-image" loading="lazy"></p>
+                <p>update your script with the minus y</p>
+                <p><code>sudo apt-get update -y</code><br />
+                <code>sudo apt-get upgrade -y</code>sudo apt-get install xrdp -y<br />
+                <code>sudo ufw allow 3389/tcp</code><br />
+                <code>echo "gnome-session" &gt; ~/.xsession</code><br />
+                sudo install ubuntudesktop -y<code>sudo systemctl restart xrdp</code></p>
+                <p>Setup the compute</p>
+                <p><img src="images/the-virtual-machine-48.png" alt="the virtual machine 48" class="article-image" loading="lazy"></p>
+                <p>Check basic apps like youtube</p>
+                <p><img src="images/the-virtual-machine-49.png" alt="the virtual machine 49" class="article-image" loading="lazy"></p>
+                <p>Check cpu and gpu usage</p>
+                <p><img src="images/the-virtual-machine-50.png" alt="the virtual machine 50" class="article-image" loading="lazy"></p>
+                <p>now delete and redo it </p>
+                <p>missing &gt; the sh file correct network security group</p>
+                <p>ask gpt and give the script as well ( stop point &gt;&gt;&gt; 1 hour course )</p>
+                <p><img src="images/the-virtual-machine-51.png" alt="the virtual machine 51" class="article-image" loading="lazy"></p>
+                <p>take it from the center &gt; help gpt</p>
+                <p><img src="images/the-virtual-machine-52.png" alt="the virtual machine 52" class="article-image" loading="lazy"></p>
+                <p>get a hold of content size &gt; dont forget we live infinite computing</p>
+                <p><img src="images/the-virtual-machine-53.png" alt="the virtual machine 53" class="article-image" loading="lazy"></p>
+                <p>shows me the place to update</p>
+                <p><img src="images/the-virtual-machine-54.png" alt="the virtual machine 54" class="article-image" loading="lazy"></p>
+                <p>2 of them </p>
+                <p><img src="images/the-virtual-machine-55.png" alt="the virtual machine 55" class="article-image" loading="lazy"></p>
+                <p><img src="images/the-virtual-machine-56.png" alt="the virtual machine 56" class="article-image" loading="lazy"></p>
+                <p>getting set at the bottom</p>
+                <p><img src="images/the-virtual-machine-57.png" alt="the virtual machine 57" class="article-image" loading="lazy"></p>
+                <p>update and save</p>
+                <p><img src="images/the-virtual-machine-58.png" alt="the virtual machine 58" class="article-image" loading="lazy"></p>
+                <p>incremental &gt; just update the deployment name to be able to see it </p>
+                <p><img src="images/the-virtual-machine-59.png" alt="the virtual machine 59" class="article-image" loading="lazy"></p>
+                <p>Run the trigger</p>
+                <p><img src="images/the-virtual-machine-60.png" alt="the virtual machine 60" class="article-image" loading="lazy"></p>
+                <p>+</p>
+                <p>error in workflow</p>
+                <p><img src="images/the-virtual-machine-61.png" alt="the virtual machine 61" class="article-image" loading="lazy"></p>
+                <p>double mention</p>
+                <p><img src="images/the-virtual-machine-62.png" alt="the virtual machine 62" class="article-image" loading="lazy"></p>
+                <p><strong>^^^</strong></p>
+                <p>Promote an older version</p>
+                <p><img src="images/the-virtual-machine-63.png" alt="the virtual machine 63" class="article-image" loading="lazy"></p>
+                <p><img src="images/the-virtual-machine-64.png" alt="the virtual machine 64" class="article-image" loading="lazy"></p>
+                <p>todo &gt; student prerequisities ( 1 hour ) / setup azure</p>
+                <p>wrong place to update and not updated auto saves</p>
+                <p><img src="images/the-virtual-machine-65.png" alt="the virtual machine 65" class="article-image" loading="lazy"></p>
+                <p>now saved</p>
+                <p><img src="images/the-virtual-machine-66.png" alt="the virtual machine 66" class="article-image" loading="lazy"></p>
+                <p>remove 2 and run</p>
+                <p><img src="images/the-virtual-machine-67.png" alt="the virtual machine 67" class="article-image" loading="lazy"></p>
+                <p>green man is here</p>
+                <p><img src="images/the-virtual-machine-68.png" alt="the virtual machine 68" class="article-image" loading="lazy"></p>
+                <p>incremental deployment much faster</p>
+                <p><img src="images/the-virtual-machine-69.png" alt="the virtual machine 69" class="article-image" loading="lazy"></p>
+                <p>^^^</p>
+                <p>check config</p>
+                <p><img src="images/the-virtual-machine-70.png" alt="the virtual machine 70" class="article-image" loading="lazy"></p>
+                <p>check the diff &gt; the first principle</p>
+                <p>rdp rule is in  reconnect</p>
+                <p><img src="images/the-virtual-machine-71.png" alt="the virtual machine 71" class="article-image" loading="lazy"></p>
+                <p><img src="images/the-virtual-machine-72.png" alt="the virtual machine 72" class="article-image" loading="lazy"></p>
+                <p>ping basic public dns</p>
+                <p><img src="images/the-virtual-machine-73.png" alt="the virtual machine 73" class="article-image" loading="lazy"></p>
+                <p>save the code</p>
+                <p><code>{
+                    "definition": {
+                        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+                        "actions": {
+                            "Create_or_update_a_template_deployment": {
+                                "inputs": {
+                                    "body": {
+                                        "properties": {
+                                            "mode": "Incremental",
+                                            "template": {
+                                                "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+                                                "contentVersion": "1.0.0.0",
+                                                "parameters": {
+                                                    "adminUsername": {
+                                                        "defaultValue": "rifaterdemsahin",
+                                                        "metadata": {
+                                                            "description": "Specifies a username for the Virtual Machine."
+                                                        },
+                                                        "type": "string"
+                                                    },
+                                                    "location": {
+                                                        "defaultValue": "&amp;#091;resourceGroup().location]",
+                                                        "metadata": {
+                                                            "description": "Specifies the location for all resources."
+                                                        },
+                                                        "type": "string"
+                                                    },
+                                                    "projectName": {
+                                                        "defaultValue": "oshost",
+                                                        "metadata": {
+                                                            "description": "Specifies a name for generating resource names."
+                                                        },
+                                                        "type": "string"
+                                                    },
+                                                    "vmSize": {
+                                                        "defaultValue": "Standard_D2s_v3",
+                                                        "metadata": {
+                                                            "description": "description"
+                                                        },
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "resources": &amp;#091;
+                                                    {
+                                                        "apiVersion": "2020-05-01",
+                                                        "location": "&amp;#091;parameters('location')]",
+                                                        "name": "&amp;#091;variables('networkSecurityGroupName')]",
+                                                        "properties": {
+                                                            "securityRules": &amp;#091;
+                                                                {
+                                                                    "name": "ssh_rule",
+                                                                    "properties": {
+                                                                        "access": "Allow",
+                                                                        "description": "Locks inbound down to ssh default port 22.",
+                                                                        "destinationAddressPrefix": "*",
+                                                                        "destinationPortRange": "22",
+                                                                        "direction": "Inbound",
+                                                                        "priority": 123,
+                                                                        "protocol": "Tcp",
+                                                                        "sourceAddressPrefix": "*",
+                                                                        "sourcePortRange": "*"
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "name": "RDP_rule",
+                                                                    "properties": {
+                                                                        "access": "Allow",
+                                                                        "description": "Allow RDP access through port 3389.",
+                                                                        "destinationAddressPrefix": "*",
+                                                                        "destinationPortRange": "3389",
+                                                                        "direction": "Inbound",
+                                                                        "priority": 124,
+                                                                        "protocol": "Tcp",
+                                                                        "sourceAddressPrefix": "*",
+                                                                        "sourcePortRange": "*"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        "type": "Microsoft.Network/networkSecurityGroups"
+                                                    },
+                                                    {
+                                                        "apiVersion": "2020-05-01",
+                                                        "location": "&amp;#091;parameters('location')]",
+                                                        "name": "&amp;#091;variables('publicIPAddressName')]",
+                                                        "properties": {
+                                                            "publicIPAllocationMethod": "Dynamic"
+                                                        },
+                                                        "sku": {
+                                                            "name": "Basic"
+                                                        },
+                                                        "type": "Microsoft.Network/publicIPAddresses"
+                                                    },
+                                                    {
+                                                        "apiVersion": "2020-05-01",
+                                                        "comments": "Simple Network Security Group for subnet &amp;#091;variables('vNetSubnetName')]",
+                                                        "location": "&amp;#091;parameters('location')]",
+                                                        "name": "&amp;#091;variables('networkSecurityGroupName2')]",
+                                                        "properties": {
+                                                            "securityRules": &amp;#091;
+                                                                {
+                                                                    "name": "default-allow-22",
+                                                                    "properties": {
+                                                                        "access": "Allow",
+                                                                        "destinationAddressPrefix": "*",
+                                                                        "destinationPortRange": "22",
+                                                                        "direction": "Inbound",
+                                                                        "priority": 1000,
+                                                                        "protocol": "Tcp",
+                                                                        "sourceAddressPrefix": "*",
+                                                                        "sourcePortRange": "*"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        "type": "Microsoft.Network/networkSecurityGroups"
+                                                    },
+                                                    {
+                                                        "apiVersion": "2020-05-01",
+                                                        "dependsOn": &amp;#091;
+                                                            "&amp;#091;resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName2'))]"
+                                                        ],
+                                                        "location": "&amp;#091;parameters('location')]",
+                                                        "name": "&amp;#091;variables('vNetName')]",
+                                                        "properties": {
+                                                            "addressSpace": {
+                                                                "addressPrefixes": &amp;#091;
+                                                                    "&amp;#091;variables('vNetAddressPrefixes')]"
+                                                                ]
+                                                            },
+                                                            "subnets": &amp;#091;
+                                                                {
+                                                                    "name": "&amp;#091;variables('vNetSubnetName')]",
+                                                                    "properties": {
+                                                                        "addressPrefix": "&amp;#091;variables('vNetSubnetAddressPrefix')]",
+                                                                        "networkSecurityGroup": {
+                                                                            "id": "&amp;#091;resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        "type": "Microsoft.Network/virtualNetworks"
+                                                    },
+                                                    {
+                                                        "apiVersion": "2020-05-01",
+                                                        "dependsOn": &amp;#091;
+                                                            "&amp;#091;resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddressName'))]",
+                                                            "&amp;#091;resourceId('Microsoft.Network/virtualNetworks', variables('vNetName'))]",
+                                                            "&amp;#091;resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]"
+                                                        ],
+                                                        "location": "&amp;#091;parameters('location')]",
+                                                        "name": "&amp;#091;variables('networkInterfaceName')]",
+                                                        "properties": {
+                                                            "ipConfigurations": &amp;#091;
+                                                                {
+                                                                    "name": "ipconfig1",
+                                                                    "properties": {
+                                                                        "privateIPAllocationMethod": "Dynamic",
+                                                                        "publicIPAddress": {
+                                                                            "id": "&amp;#091;resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddressName'))]"
+                                                                        },
+                                                                        "subnet": {
+                                                                            "id": "&amp;#091;resourceId('Microsoft.Network/virtualNetworks/subnets', variables('vNetName'), variables('vNetSubnetName'))]"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        "type": "Microsoft.Network/networkInterfaces"
+                                                    },
+                                                    {
+                                                        "apiVersion": "2021-11-01",
+                                                        "dependsOn": &amp;#091;
+                                                            "&amp;#091;resourceId('Microsoft.Network/networkInterfaces', variables('networkInterfaceName'))]"
+                                                        ],
+                                                        "location": "&amp;#091;parameters('location')]",
+                                                        "name": "&amp;#091;variables('vmName')]",
+                                                        "properties": {
+                                                            "hardwareProfile": {
+                                                                "vmSize": "&amp;#091;parameters('vmSize')]"
+                                                            },
+                                                            "networkProfile": {
+                                                                "networkInterfaces": &amp;#091;
+                                                                    {
+                                                                        "id": "&amp;#091;resourceId('Microsoft.Network/networkInterfaces', variables('networkInterfaceName'))]"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            "osProfile": {
+                                                                "adminPassword": "@{parameters('vmpassword')}",
+                                                                "adminUsername": "&amp;#091;parameters('adminUsername')]",
+                                                                "computerName": "&amp;#091;variables('vmName')]",
+                                                                "linuxConfiguration": {
+                                                                    "disablePasswordAuthentication": false
+                                                                }
+                                                            },
+                                                            "storageProfile": {
+                                                                "imageReference": {
+                                                                    "offer": "UbuntuServer",
+                                                                    "publisher": "Canonical",
+                                                                    "sku": "18_04-lts-gen2",
+                                                                    "version": "latest"
+                                                                },
+                                                                "osDisk": {
+                                                                    "createOption": "fromImage"
+                                                                }
+                                                            }
+                                                        },
+                                                        "type": "Microsoft.Compute/virtualMachines"
+                                                    }
+                                                ],
+                                                "variables": {
+                                                    "networkInterfaceName": "&amp;#091;concat(parameters('projectName'), '-nic')]",
+                                                    "networkSecurityGroupName": "&amp;#091;concat(parameters('projectName'), '-nsg')]",
+                                                    "networkSecurityGroupName2": "&amp;#091;concat(variables('vNetSubnetName'), '-nsg')]",
+                                                    "publicIPAddressName": "&amp;#091;concat(parameters('projectName'), '-ip')]",
+                                                    "vNetAddressPrefixes": "10.0.0.0/16",
+                                                    "vNetName": "&amp;#091;concat(parameters('projectName'), '-vnet')]",
+                                                    "vNetSubnetAddressPrefix": "10.0.0.0/24",
+                                                    "vNetSubnetName": "default",
+                                                    "vmName": "&amp;#091;concat(parameters('projectName'), '-vm')]"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "host": {
+                                        "connection": {
+                                            "name": "@parameters('$connections')&amp;#091;'arm']&amp;#091;'connectionId']"
+                                        }
+                                    },
+                                    "method": "put",
+                                    "path": "/subscriptions/@{encodeURIComponent('2cb217c1-366d-41c0-8934-3f82869320d8')}/resourcegroups/@{encodeURIComponent('Openshift')}/providers/Microsoft.Resources/deployments/@{encodeURIComponent('linuxhost2')}",
+                                    "queries": {
+                                        "wait": false,
+                                        "x-ms-api-version": "2016-06-01"
+                                    }
+                                },
+                                "runAfter": {},
+                                "type": "ApiConnection"
+                            }
+                        },
+                        "contentVersion": "1.0.0.0",
+                        "outputs": {},
+                        "parameters": {
+                            "$connections": {
+                                "defaultValue": {},
+                                "type": "Object"
+                            },
+                            "vmpassword": {
+                                "defaultValue": "YYmm123!YYmm123!",
+                                "type": "String"
+                            }
+                        },
+                        "triggers": {
+                            "manual": {
+                                "inputs": {
+                                    "schema": {}
+                                },
+                                "kind": "Http",
+                                "type": "Request"
+                            }
+                        }
+                    },
+                    "parameters": {
+                        "$connections": {
+                            "value": {
+                                "arm": {
+                                    "connectionId": "/subscriptions/2cb217c1-366d-41c0-8934-3f82869320d8/resourceGroups/OpenshiftHelper/providers/Microsoft.Web/connections/arm",
+                                    "connectionName": "arm",
+                                    "id": "/subscriptions/2cb217c1-366d-41c0-8934-3f82869320d8/providers/Microsoft.Web/locations/uksouth/managedApis/arm"
+                                }
+                            }
+                        }
+                    }
+                }</code></p>
+                <p><img src="images/the-virtual-machine-74.png" alt="the virtual machine 74" class="article-image" loading="lazy"></p>
+                <p>now make sure the sh automation is added &gt; use incremental for practical checks</p>
+                <p>Get ideas</p>
+                <p><img src="images/the-virtual-machine-75.png" alt="the virtual machine 75" class="article-image" loading="lazy"></p>
+                <p>To add a shell script that runs during the VM creation in Azure using your provided Logic Apps-based VM deployment template, you'll want to include the shell script in the ARM template section that defines the virtual machine configuration. This is typically done using the <code>customScriptExtension</code> which allows you to execute scripts on the VM after it's been provisioned.</p>
+                <p>Here’s a step-by-step guide on how to modify your existing template to include a shell script for installing packages:</p>
+                <ul>
+                <li>
+                <p><strong>Define the Custom Script Extension in the ARM Template</strong>: You will add a new resource to the ARM template that uses the <code>Microsoft.Compute/virtualMachines/extensions</code> type. This extension will run your shell script.</p>
+                </li>
+                <li>
+                <p><strong>Add Your Script</strong>: You'll need the script available either in a publicly accessible location (like a GitHub gist or a storage account) or you can directly encode it in the ARM template if it's not too long.</p>
+                </li>
+                </ul>
+                <p>Here's an example of how you might configure the <code>customScriptExtension</code>:</p>
+                <p>{<br />
+                    "type": "extensions",<br />
+                    "name": "customScriptExtension",<br />
+                    "apiVersion": "2021-11-01",<br />
+                    "location": "[parameters('location')]",<br />
+                    "dependsOn": [<br />
+                        "[resourceId('Microsoft.Compute/virtualMachines', variables('vmName'))]"<br />
+                    ],<br />
+                    "properties": {<br />
+                        "publisher": "Microsoft.Azure.Extensions",<br />
+                        "type": "CustomScript",<br />
+                        "typeHandlerVersion": "2.1",<br />
+                        "autoUpgradeMinorVersion": true,<br />
+                        "settings": {<br />
+                            "fileUris": ["<URL_to_your_script>"] // URL to the shell script you want to execute<br />
+                        },<br />
+                        "protectedSettings": {<br />
+                            "commandToExecute": "bash <name_of_your_script.sh> arguments_if_any"<br />
+                        }<br />
+                    }<br />
+                }</p>
+                <ul>
+                <li>
+                <p><strong>Add the Extension to Your ARM Template</strong>:</p>
+                </li>
+                <li>
+                <p>Place the above JSON block into the <code>resources</code> array of the VM definition in your ARM template. Ensure that you replace <code>&lt;URL_to_your_script&gt;</code> and <code>&lt;name_of_your_script.sh&gt;</code> with actual values.</p>
+                </li>
+                <li>
+                <p>The <code>"dependsOn"</code> section should correctly reference the VM resource to ensure that the script runs after the VM is provisioned.</p>
+                </li>
+                <li>
+                <p><strong>Update Any Necessary Parameters and Variables</strong>: Make sure that any new parameters or variables you introduce (like URLs or script names) are defined in the parameters or variables section of the template.</p>
+                </li>
+                <li>
+                <p><strong>Deploy the Updated Template</strong>: Once the ARM template is updated, deploy it through the same mechanism you usually would (e.g., through the Azure portal, using Azure CLI, or directly from Logic Apps).</p>
+                </li>
+                </ul>
+                <p>If your shell script is intended to configure the VM further or install specific packages, ensure that it contains all the necessary commands to do so and that it's tested in a local or staging environment before being applied to production VMs.</p>
+                <p>By following these steps, you should be able to integrate a shell script for installing packages into your Azure VM provisioning process using Azure Logic Apps and ARM templates.</p>
+                <p>Get key part and add it to the helper resource group</p>
+                <p><img src="images/the-virtual-machine-76.png" alt="the virtual machine 76" class="article-image" loading="lazy"></p>
+                <p>Favorites &gt; Storage</p>
+                <p><img src="images/the-virtual-machine-77.png" alt="the virtual machine 77" class="article-image" loading="lazy"></p>
+                <p><img src="images/the-virtual-machine-78.png" alt="the virtual machine 78" class="article-image" loading="lazy"></p>
+                <p>Goal keep the helper resource group cost as low as possible</p>
+                <p>Linux container</p>
+                <p><img src="images/the-virtual-machine-79.png" alt="the virtual machine 79" class="article-image" loading="lazy"></p>
+                <p>download as text and change the extension</p>
+                <p><img src="images/the-virtual-machine-80.png" alt="the virtual machine 80" class="article-image" loading="lazy"></p>
+                <p><img src="images/the-virtual-machine-81.png" alt="the virtual machine 81" class="article-image" loading="lazy"></p>
+                <p>upload and get the link</p>
+                <p><img src="images/the-virtual-machine-82.png" alt="the virtual machine 82" class="article-image" loading="lazy"></p>
+                <p>SAS URL genereate</p>
+                <p><img src="images/the-virtual-machine-83.png" alt="the virtual machine 83" class="article-image" loading="lazy"></p>
+                <p><img src="images/the-virtual-machine-84.png" alt="the virtual machine 84" class="article-image" loading="lazy"></p>
+                <p><code>https:&amp;#047;&amp;#047;scritpts.blob.core.windows.net/linux/xrdpsetup.sh?sp=r&amp;st=2024-04-14T10:56:09Z&amp;se=2029-04-14T18:56:09Z&amp;spr=https&amp;sv=2022-11-02&amp;sr=b&amp;sig=eIBoiRyT4m0xUJCHI%2BdZbGKcqzNfn7VUHXIDpxifESc%3D</code></p>
+                <p>ask gpt to add it </p>
+                <p><img src="images/the-virtual-machine-85.png" alt="the virtual machine 85" class="article-image" loading="lazy"></p>
+                <p><code>{
+                    "type": "extensions",
+                    "name": "customScriptExtension",
+                    "apiVersion": "2021-11-01",
+                    "location": "&amp;#091;parameters('location')]",
+                    "dependsOn": &amp;#091;
+                        "&amp;#091;resourceId('Microsoft.Compute/virtualMachines', variables('vmName'))]"
+                    ],
+                    "properties": {
+                        "publisher": "Microsoft.Azure.Extensions",
+                        "type": "CustomScript",
+                        "typeHandlerVersion": "2.1",
+                        "autoUpgradeMinorVersion": true,
+                        "settings": {
+                            "fileUris": &amp;#091;
+                                "https://scritpts.blob.core.windows.net/linux/xrdpsetup.sh?sp=r&amp;st=2024-04-14T10:56:09Z&amp;se=2029-04-14T18:56:09Z&amp;spr=https&amp;sv=2022-11-02&amp;sr=b&amp;sig=eIBoiRyT4m0xUJCHI%2BdZbGKcqzNfn7VUHXIDpxifESc%3D"
+                            ]
+                        },
+                        "protectedSettings": {
+                            "commandToExecute": "bash xrdpsetup.sh"
+                        }
+                    }
+                }</code></p>
+                <p>URL for the sh&gt; <a href="https://docs.google.com/document/d/1AzbSs5pvMs7MZUDctIH3r-o_Ha_XBs68MfhCeAhUvQI/edit?usp=sharing">https://docs.google.com/document/d/1AzbSs5pvMs7MZUDctIH3r-o_Ha_XBs68MfhCeAhUvQI/edit?usp=sharing</a></p>
+                <p>Easier to add to the top with the comma</p>
+                <p><img src="images/the-virtual-machine-86.png" alt="the virtual machine 86" class="article-image" loading="lazy"></p>
+                <p>make it thelinuxhost4withscript more understandtable</p>
+                <p>and run leave breadcrumbs</p>
+                <p><img src="images/the-virtual-machine-87.png" alt="the virtual machine 87" class="article-image" loading="lazy"></p>
+                <p>vm name can be wrong the depends on</p>
+                <p><img src="images/the-virtual-machine-88.png" alt="the virtual machine 88" class="article-image" loading="lazy"></p>
+                <p><img src="images/the-virtual-machine-89.png" alt="the virtual machine 89" class="article-image" loading="lazy"></p>
+                <p>as it is on the top easier to find &gt; and update [concat(parameters('projectName'), '-vm')]</p>
+                <p>update</p>
+                <p><img src="images/the-virtual-machine-90.png" alt="the virtual machine 90" class="article-image" loading="lazy"></p>
+                <p>name in multiple places</p>
+                <p><img src="images/the-virtual-machine-91.png" alt="the virtual machine 91" class="article-image" loading="lazy"></p>
+                <p>add new version</p>
+                <p><img src="images/the-virtual-machine-92.png" alt="the virtual machine 92" class="article-image" loading="lazy"></p>
+                <p>syntax error </p>
+                <p><img src="images/the-virtual-machine-93.png" alt="the virtual machine 93" class="article-image" loading="lazy"></p>
+                <p>ask gpt &gt; not one error multiple errors</p>
+                <p><img src="images/the-virtual-machine-94.png" alt="the virtual machine 94" class="article-image" loading="lazy"></p>
+                <p>save and rerun</p>
+                <p><img src="images/the-virtual-machine-95.png" alt="the virtual machine 95" class="article-image" loading="lazy"></p>
+                <p>see the green</p>
+                <p><img src="images/the-virtual-machine-96.png" alt="the virtual machine 96" class="article-image" loading="lazy"></p>
+                <p>check incremental deployments</p>
+                <p><img src="images/the-virtual-machine-97.png" alt="the virtual machine 97" class="article-image" loading="lazy"></p>
+                <p>now destroy manually dont wait 3 days</p>
+                <p>you can always rename better by cloning</p>
+                <p><img src="images/the-virtual-machine-98.png" alt="the virtual machine 98" class="article-image" loading="lazy"></p>
+                <p>renamed</p>
+                <p><img src="images/the-virtual-machine-99.png" alt="the virtual machine 99" class="article-image" loading="lazy"></p>
+                <p>createresourcegroup to deletecreateresourcegroup</p>
+                <p>remove the old one</p>
+                <p>Get better at symbols every time</p>
+                <p><img src="images/the-virtual-machine-100.png" alt="the virtual machine 100" class="article-image" loading="lazy"></p>
+                <p>Breadcrumbs for yourself</p>
+                <p><img src="images/the-virtual-machine-101.png" alt="the virtual machine 101" class="article-image" loading="lazy"></p>
+                <p>Deletion takes time &gt; get coffee and you can not connect</p>
+                <p><img src="images/the-virtual-machine-102.png" alt="the virtual machine 102" class="article-image" loading="lazy"></p>
+                <p>Cleaned up</p>
+                <p><img src="images/the-virtual-machine-103.png" alt="the virtual machine 103" class="article-image" loading="lazy"></p>
+                <p>Rerun &gt; this can be also createupdate host </p>
+                <p><img src="images/the-virtual-machine-104.png" alt="the virtual machine 104" class="article-image" loading="lazy"></p>
+                <p>Coming in </p>
+                <p><img src="images/the-virtual-machine-105.png" alt="the virtual machine 105" class="article-image" loading="lazy"></p>
+                <p>Check the new ip</p>
+                <p><img src="images/the-virtual-machine-106.png" alt="the virtual machine 106" class="article-image" loading="lazy"></p>
+                <p>52.151.91.57</p>
+                <p>edit in remote desktop</p>
+                <p><img src="images/the-virtual-machine-107.png" alt="the virtual machine 107" class="article-image" loading="lazy"></p>
+                <p>initial connection makes you wait as the system needs to reboot</p>
+                <p>add reboot at the end</p>
+                <p>add to sh file make it richer</p>
+                <p><img src="images/the-virtual-machine-108.png" alt="the virtual machine 108" class="article-image" loading="lazy"></p>
+                <p>edit script with what you learned</p>
+                <p><img src="images/the-virtual-machine-109.png" alt="the virtual machine 109" class="article-image" loading="lazy"></p>
+                <p>^^^Save it</p>
+                <p><img src="images/the-virtual-machine-110.png" alt="the virtual machine 110" class="article-image" loading="lazy"></p>
+                <p>GPT improve the script and read it </p>
+                <p><img src="images/the-virtual-machine-111.png" alt="the virtual machine 111" class="article-image" loading="lazy"></p>
+                <p>Much richer and more to learn</p>
+                <p><img src="images/the-virtual-machine-112.png" alt="the virtual machine 112" class="article-image" loading="lazy"></p>
+                <p>Before copy paste</p>
+                <p><img src="images/the-virtual-machine-113.png" alt="the virtual machine 113" class="article-image" loading="lazy"></p>
+                <p>Read with gpt</p>
+                <p><img src="images/the-virtual-machine-114.png" alt="the virtual machine 114" class="article-image" loading="lazy"></p>
+                <p><img src="images/the-virtual-machine-115.png" alt="the virtual machine 115" class="article-image" loading="lazy"></p>
+                <p><img src="images/the-virtual-machine-116.png" alt="the virtual machine 116" class="article-image" loading="lazy"></p>
+                <p>Added logging that we desperately wanted</p>
+                <p><img src="images/the-virtual-machine-117.png" alt="the virtual machine 117" class="article-image" loading="lazy"></p>
+                <p>Manual restart is there</p>
+                <p><img src="images/the-virtual-machine-118.png" alt="the virtual machine 118" class="article-image" loading="lazy"></p>
+                <p>Check activity log for cloud logs</p>
+                <p><img src="images/the-virtual-machine-119.png" alt="the virtual machine 119" class="article-image" loading="lazy"></p>
+                <p>Black screen problem is back &gt; the desktop might not be installed </p>
+                <p>firewall and xrdp is there but not ui</p>
+                <p><img src="images/the-virtual-machine-120.png" alt="the virtual machine 120" class="article-image" loading="lazy"></p>
+                <p>Go to zero point and retry and now you know the code gets triggered </p>
+                <p><img src="images/the-virtual-machine-121.png" alt="the virtual machine 121" class="article-image" loading="lazy"></p>
+                <p>have detailed logs &gt; after deletion it would be much harder</p>
+                <p><img src="images/the-virtual-machine-122.png" alt="the virtual machine 122" class="article-image" loading="lazy"></p>
+                <p>unique resources takes longer time to delete and can get locked! &gt;&gt; shared infra and names!</p>
+                <p><img src="images/the-virtual-machine-123.png" alt="the virtual machine 123" class="article-image" loading="lazy"></p>
+                <p>Refresh would show them going out</p>
+                <p><img src="images/the-virtual-machine-124.png" alt="the virtual machine 124" class="article-image" loading="lazy"></p>
+                <p>update this </p>
+                <p><img src="images/the-virtual-machine-125.png" alt="the virtual machine 125" class="article-image" loading="lazy"></p>
+                <p><img src="images/the-virtual-machine-126.png" alt="the virtual machine 126" class="article-image" loading="lazy"></p>
+                <p>not that fast</p>
+                <p><img src="images/the-virtual-machine-127.png" alt="the virtual machine 127" class="article-image" loading="lazy"></p>
+                <p>use gpt</p>
+                <p><img src="images/the-virtual-machine-128.png" alt="the virtual machine 128" class="article-image" loading="lazy"></p>
+                <p><img src="images/the-virtual-machine-129.png" alt="the virtual machine 129" class="article-image" loading="lazy"></p>
+                <p>generic and auto update</p>
+                <p><img src="images/the-virtual-machine-130.png" alt="the virtual machine 130" class="article-image" loading="lazy"></p>
+                <p>Green light check seconds and colors</p>
+                <p><img src="images/the-virtual-machine-131.png" alt="the virtual machine 131" class="article-image" loading="lazy"></p>
+                <p>Better naming coming on</p>
+                <p><img src="images/the-virtual-machine-132.png" alt="the virtual machine 132" class="article-image" loading="lazy"></p>
+                <p>more transactional customextensions is taking a longer time</p>
+                <p><img src="images/the-virtual-machine-133.png" alt="the virtual machine 133" class="article-image" loading="lazy"></p>
+                <p>Let it finish and time it</p>
+                <p><img src="images/the-virtual-machine-134.png" alt="the virtual machine 134" class="article-image" loading="lazy"></p>
+                <p>8minutes</p>
+                <p><img src="images/the-virtual-machine-135.png" alt="the virtual machine 135" class="article-image" loading="lazy"></p>
+                <p><img src="images/the-virtual-machine-136.png" alt="the virtual machine 136" class="article-image" loading="lazy"></p>
+                <p>Add a library becomes another task</p>
+                <p>update the operating system is another task</p>
+                <p><img src="images/the-virtual-machine-137.png" alt="the virtual machine 137" class="article-image" loading="lazy"></p>
+                <p>Thanks for joining the training hope the pain of creating a linux vm in the cloud with automation and connecting with the ui is solved. Meet you in the next exercise.</p>
+                <p>Moving to express it</p>
+                <p><img src="images/the-virtual-machine-138.png" alt="the virtual machine 138" class="article-image" loading="lazy"></p>
+                <p>References &gt;</p>
+                <p>^^^</p>
+                <p>https://rifaterdemsahin.com/2024/04/09/openshift-is-back</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

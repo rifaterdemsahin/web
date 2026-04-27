@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unlocking the Power of XML with xq and YAML with yq: A Beginner's Guide - Rifat Erdem Sahin</title>
+    <meta name="description" content="Unlocking the Power of XML with xq and YAML with yq: A Beginner's Guide XML (eXtensible Markup Language) has been a staple in data exchange formats for decades, particularly in enterprise systems, con">
+    <meta name="keywords" content="Unlocking the Power of XML with xq and YAML with yq: A Beginner's Guide">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/10/13/unlocking-the-power-of-xml-with-xq-and-yaml-with-yq-a-beginners-guide/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/10/13/unlocking-the-power-of-xml-with-xq-and-yaml-with-yq-a-beginners-guide/">
+    <meta property="og:title" content="Unlocking the Power of XML with xq and YAML with yq: A Beginner's Guide">
+    <meta property="og:description" content="Unlocking the Power of XML with xq and YAML with yq: A Beginner's Guide XML (eXtensible Markup Language) has been a staple in data exchange formats for decades, particularly in enterprise systems, con">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/10/13/unlocking-the-power-of-xml-with-xq-and-yaml-with-yq-a-beginners-guide/">
+    <meta property="twitter:title" content="Unlocking the Power of XML with xq and YAML with yq: A Beginner's Guide">
+    <meta property="twitter:description" content="Unlocking the Power of XML with xq and YAML with yq: A Beginner's Guide XML (eXtensible Markup Language) has been a staple in data exchange formats for decades, particularly in enterprise systems, con">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Unlocking the Power of XML with xq and YAML with yq: A Beginner's Guide",
+      "description": "Unlocking the Power of XML with xq and YAML with yq: A Beginner's Guide XML (eXtensible Markup Language) has been a staple in data exchange formats for decades, particularly in enterprise systems, con",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-10-13",
+      "dateModified": "2024-10-13",
+      "url": "https://www.rifaterdemsahin.com/2024/10/13/unlocking-the-power-of-xml-with-xq-and-yaml-with-yq-a-beginners-guide/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/10/13/unlocking-the-power-of-xml-with-xq-and-yaml-with-yq-a-beginners-guide/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Unlocking the Power of XML with xq and YAML with yq: A Beginner's Guide</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>October 13, 2024</span>
+                    <span>&bull;</span>
+                    <span>6 min read</span>
+                </div>
+                <p class="article-excerpt">Unlocking the Power of XML with xq and YAML with yq: A Beginner's Guide XML (eXtensible Markup Language) has been a staple in data exchange formats for decades, particularly in enterprise systems, configuration files, and web services.</p>
+            </header>
+            <article class="article-content">
+                <h1>Unlocking the Power of XML with xq and YAML with yq: A Beginner's Guide</h1>
+                <p>XML (eXtensible Markup Language) has been a staple in data exchange formats for decades, particularly in enterprise systems, configuration files, and web services. However, navigating and processing XML data from the command line can be challenging without the right tools. Enter <strong><code>xq</code></strong>, a powerful command-line utility designed to make XML processing as simple and flexible as working with JSON. Similarly, <strong><code>yq</code></strong> is a robust command-line tool tailored for processing YAML (Yet Another Markup Language) files with the flexibility of <code>jq</code>.</p>
+                <p>If you're familiar with <code>jq</code> for JSON, <code>xq</code> and <code>yq</code> will feel like natural extensions for your XML and YAML processing needs.</p>
+                <h2>What are <code>xq</code> and <code>yq</code>?</h2>
+                <ul>
+                <li>
+                <p><strong><code>xq</code></strong>: A command-line tool that extends the capabilities of <code>jq</code> to XML data. It allows you to convert XML to JSON, process it using the robust filtering and transformation capabilities of <code>jq</code>, and then convert it back to XML if needed.</p>
+                </li>
+                <li>
+                <p><strong><code>yq</code></strong>: A command-line YAML processor that leverages the power of <code>jq</code> for JSON, providing a similar set of tools for querying and manipulating YAML data.</p>
+                </li>
+                </ul>
+                <p>Both tools provide a seamless way to handle XML and YAML data with the same ease and flexibility as JSON.</p>
+                <h2>Why Use <code>xq</code> and <code>yq</code>?</h2>
+                <p>Here are some compelling reasons to add <code>xq</code> and <code>yq</code> to your command-line toolkit:</p>
+                <ul>
+                <li>
+                <p><strong>Simplified Data Processing</strong>: Both <code>xq</code> and <code>yq</code> leverage the power of <code>jq</code> to handle XML and YAML, allowing for concise and readable scripts.</p>
+                </li>
+                <li>
+                <p><strong>Flexible Data Transformation</strong>: Easily convert XML or YAML to JSON, manipulate it, and transform it back, giving you the best of both worlds.</p>
+                </li>
+                <li>
+                <p><strong>Powerful Filtering and Querying</strong>: Use <code>jq</code>'s rich set of functions to filter, map, and transform XML and YAML data as if they were JSON.</p>
+                </li>
+                <li>
+                <p><strong>Automation Friendly</strong>: Ideal for use in shell scripts and automation tasks where XML or YAML data is prevalent.</p>
+                </li>
+                </ul>
+                <h2>Getting Started with <code>xq</code> and <code>yq</code></h2>
+                <h3>Installation</h3>
+                <p>Before you can start using <code>xq</code> or <code>yq</code>, you need to install <code>yq</code>, a lightweight and powerful command-line YAML/XML processor that comes bundled with <code>xq</code> support. Here’s how to install it on different operating systems:</p>
+                <ul>
+                <li><strong>macOS</strong>: Use Homebrew to install <code>yq</code> with the following command:</li>
+                </ul>
+                <p>brew install yq</p>
+                <ul>
+                <li><strong>Linux</strong>: Download the binary from <a href="https://github.com/mikefarah/yq/releases">GitHub Releases</a> and place it in your executable path:</li>
+                </ul>
+                <p>wget https://github.com/mikefarah/yq/releases/download/v4.0.0/yq_linux_amd64 -O /usr/bin/yq<br />
+                  chmod +x /usr/bin/yq</p>
+                <ul>
+                <li><strong>Windows</strong>: Download the executable from <a href="https://github.com/mikefarah/yq/releases">GitHub Releases</a> and add it to your PATH.</li>
+                </ul>
+                <h2>Proof of Concept Examples for <code>xq</code></h2>
+                <p>Let's dive into some practical examples that demonstrate how to use <code>xq</code> for XML processing directly from the command line. These examples will help you understand how <code>xq</code> simplifies handling XML data, making it as straightforward as processing JSON with <code>jq</code>.</p>
+                <h3>Example 1: Converting XML to JSON</h3>
+                <p>Suppose you have an XML file named <code>books.xml</code> that looks like this:</p>
+                <p><library><br />
+                  <book><br />
+                    <title>Learning XML</title><br />
+                    <author>Erik T. Ray</author><br />
+                    <price>39.95</price><br />
+                  </book><br />
+                  <book><br />
+                    <title>XML in a Nutshell</title><br />
+                    <author>Elliotte Rusty Harold</author><br />
+                    <price>29.95</price><br />
+                  </book><br />
+                </library></p>
+                <p>To convert this XML to JSON using <code>xq</code>, run the following command:</p>
+                <p>xq . books.xml</p>
+                <p>This will output the XML content as JSON:</p>
+                <p>{<br />
+                  "library": {<br />
+                    "book": [<br />
+                      {<br />
+                        "title": "Learning XML",<br />
+                        "author": "Erik T. Ray",<br />
+                        "price": 39.95<br />
+                      },<br />
+                      {<br />
+                        "title": "XML in a Nutshell",<br />
+                        "author": "Elliotte Rusty Harold",<br />
+                        "price": 29.95<br />
+                      }<br />
+                    ]<br />
+                  }<br />
+                }</p>
+                <h3>Example 2: Filtering XML Data</h3>
+                <p>Let's say you want to extract only the titles of the books from the XML. You can use <code>jq</code> filtering capabilities directly on the converted JSON:</p>
+                <p>xq '.library.book[] | .title' books.xml</p>
+                <p>The output will be:</p>
+                <p>"Learning XML"<br />
+                "XML in a Nutshell"</p>
+                <h3>Example 3: Modifying XML Data</h3>
+                <p>Suppose you want to update the price of "Learning XML" to <code>34.95</code>. You can achieve this by converting the XML to JSON, modifying it, and converting it back to XML:</p>
+                <p>xq '(.. | .book? | select(.title == "Learning XML") | .price) |= 34.95' books.xml</p>
+                <p>This will output the modified XML:</p>
+                <p><library><br />
+                  <book><br />
+                    <title>Learning XML</title><br />
+                    <author>Erik T. Ray</author><br />
+                    <price>34.95</price><br />
+                  </book><br />
+                  <book><br />
+                    <title>XML in a Nutshell</title><br />
+                    <author>Elliotte Rusty Harold</author><br />
+                    <price>29.95</price><br />
+                  </book><br />
+                </library></p>
+                <h3>Example 4: Converting Back to XML</h3>
+                <p>After processing and modifying your XML data as JSON, you can convert it back to its XML form using <code>xq</code>. Suppose you want to output the modified JSON as XML:</p>
+                <p>xq --xml-output '(.. | .book? | select(.title == "Learning XML") | .price) |= 34.95' books.xml</p>
+                <h3>Example 5: Combining XML Processing in a Shell Script</h3>
+                <p>You can use <code>xq</code> in a shell script to automate XML processing tasks. Here is a simple script to find books cheaper than $35 and print their titles:</p>
+                <h1>!/bin/bash</h1>
+                <p>xq '.library.book[] | select(.price &lt; 35) | .title' books.xml</p>
+                <p>Running this script will output:</p>
+                <p>"XML in a Nutshell"</p>
+                <h2>Proof of Concept Examples for <code>yq</code></h2>
+                <p>Now, let’s explore some examples of using <code>yq</code> to handle YAML data. YAML is often used for configuration files and data serialization in applications. <code>yq</code> allows you to manipulate YAML files with ease.</p>
+                <h3>Example 1: Reading YAML Data</h3>
+                <p>Suppose you have a YAML file named <code>config.yaml</code>:</p>
+                <p>database:<br />
+                  host: localhost<br />
+                  port: 5432<br />
+                  username: user<br />
+                  password: pass</p>
+                <p>To read this YAML file and output its content, you can use:</p>
+                <p>yq eval . config.yaml</p>
+                <p>The output will be:</p>
+                <p>database:<br />
+                  host: localhost<br />
+                  port: 5432<br />
+                  username: user<br />
+                  password: pass</p>
+                <h3>Example 2: Filtering YAML Data</h3>
+                <p>If you want to retrieve only the <code>host</code> and <code>port</code> fields of the database configuration, use:</p>
+                <p>yq eval '.database | {host, port}' config.yaml</p>
+                <p>The output will be:</p>
+                <p>host: localhost<br />
+                port: 5432</p>
+                <h3>Example 3: Modifying YAML Data</h3>
+                <p>To change the database <code>username</code> to <code>admin</code>, run:</p>
+                <p>yq eval '.database.username = "admin"' config.yaml</p>
+                <p>The output will reflect the updated username:</p>
+                <p>database:<br />
+                  host: localhost<br />
+                  port: 5432<br />
+                  username: admin<br />
+                  password: pass</p>
+                <h3>Example 4: Adding Data to YAML</h3>
+                <p>If you want to add a new field under <code>database</code> for <code>timeout</code> set to <code>30</code>, you can do:</p>
+                <p>yq eval '.database.timeout = 30' config.yaml</p>
+                <p>The output will show the updated YAML:</p>
+                <p>database:<br />
+                  host: localhost<br />
+                  port: 5432<br />
+                  username: user<br />
+                  password: pass<br />
+                  timeout: 30</p>
+                <h3>Example 5: Scripting with <code>yq</code></h3>
+                <p>Here’s a shell script to check if the <code>timeout</code> setting exists in the YAML and add it if it doesn’t:</p>
+                <h1>!/bin/bash</h1>
+                <p>if ! yq eval '.database.timeout' config.yaml &gt; /dev/null; then<br />
+                  yq eval '.database.timeout = 30' config.yaml -i<br />
+                fi</p>
+                <p>This script checks for the <code>timeout</code> setting and adds it if missing.</p>
+                <h3>Conclusion</h3>
+                <p>These examples demonstrate the versatility and power of <code>xq</code> and <code>yq</code> for handling XML and YAML data. With <code>xq</code> and <code>yq</code>, you can easily convert data to JSON, apply complex queries and transformations, and convert it back—all with simple command-line instructions. By integrating these tools into your toolkit, you gain the ability to manipulate XML and YAML data with the same ease and flexibility that <code>jq</code> provides for JSON, making them valuable tools for developers and data engineers alike.</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

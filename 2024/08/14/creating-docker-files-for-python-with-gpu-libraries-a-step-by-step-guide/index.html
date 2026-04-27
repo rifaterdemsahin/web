@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creating Docker Files for Python with GPU Libraries: A Step-by-Step Guide - Rifat Erdem Sahin</title>
+    <meta name="description" content="Creating Docker Files for Python with GPU Libraries: A Step-by-Step Guide Creating Docker Files for Python with GPU Libraries: A Step-by-Step Guide Introduction Hello, this is Erdem.">
+    <meta name="keywords" content="Creating Docker Files for Python with GPU Libraries: A Step-by-Step Guide">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/08/14/creating-docker-files-for-python-with-gpu-libraries-a-step-by-step-guide/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/08/14/creating-docker-files-for-python-with-gpu-libraries-a-step-by-step-guide/">
+    <meta property="og:title" content="Creating Docker Files for Python with GPU Libraries: A Step-by-Step Guide">
+    <meta property="og:description" content="Creating Docker Files for Python with GPU Libraries: A Step-by-Step Guide Creating Docker Files for Python with GPU Libraries: A Step-by-Step Guide Introduction Hello, this is Erdem.">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/08/14/creating-docker-files-for-python-with-gpu-libraries-a-step-by-step-guide/">
+    <meta property="twitter:title" content="Creating Docker Files for Python with GPU Libraries: A Step-by-Step Guide">
+    <meta property="twitter:description" content="Creating Docker Files for Python with GPU Libraries: A Step-by-Step Guide Creating Docker Files for Python with GPU Libraries: A Step-by-Step Guide Introduction Hello, this is Erdem.">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Creating Docker Files for Python with GPU Libraries: A Step-by-Step Guide",
+      "description": "Creating Docker Files for Python with GPU Libraries: A Step-by-Step Guide Creating Docker Files for Python with GPU Libraries: A Step-by-Step Guide Introduction Hello, this is Erdem.",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-08-14",
+      "dateModified": "2024-08-14",
+      "url": "https://www.rifaterdemsahin.com/2024/08/14/creating-docker-files-for-python-with-gpu-libraries-a-step-by-step-guide/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/08/14/creating-docker-files-for-python-with-gpu-libraries-a-step-by-step-guide/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Creating Docker Files for Python with GPU Libraries: A Step-by-Step Guide</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>August 14, 2024</span>
+                    <span>&bull;</span>
+                    <span>3 min read</span>
+                </div>
+                <p class="article-excerpt">Creating Docker Files for Python with GPU Libraries: A Step-by-Step Guide Creating Docker Files for Python with GPU Libraries: A Step-by-Step Guide Introduction Hello, this is Erdem.</p>
+            </header>
+            <article class="article-content">
+                <h1>Creating Docker Files for Python with GPU Libraries: A Step-by-Step Guide</h1>
+                <div class="video-embed"><iframe src="https://www.loom.com/embed/290a4691806b42c8be537b545be1580b" frameborder="0" allowfullscreen></iframe></div>
+                
+                <h2>Creating Docker Files for Python with GPU Libraries: A Step-by-Step Guide</h2>
+                <h3>Introduction</h3>
+                <p>Hello, this is Erdem. Today, we'll continue our discussion on creating Docker files, specifically focusing on installing Python and integrating GPU libraries based on Nvidia architecture. If you enjoy this content, please subscribe to the playlist to receive updates directly in your inbox.</p>
+                <h3>Understanding Pip and Python Versions</h3>
+                <p>When dealing with Python and pip installations, it's important to recognize the differences between pip versions. The default pip version might not suffice, so you may need to upgrade it to ensure compatibility with your project. This is particularly true when dealing with different timelines in your project, as packages may need backward compatibility.</p>
+                <h3>Installing Python and Dependencies in Docker</h3>
+                <h4>Step-by-Step Installation</h4>
+                <ul>
+                <li><strong>Update and Upgrade System Packages</strong>:</li>
+                </ul>
+                <p>RUN apt-get update &amp;&amp; apt-get upgrade -y</p>
+                <ul>
+                <li><strong>Install Necessary Libraries</strong>:</li>
+                </ul>
+                <p>RUN apt-get install -y python3-pip python3-dev</p>
+                <ul>
+                <li><strong>Upgrade Pip</strong>:</li>
+                </ul>
+                <p>RUN pip3 install --upgrade pip</p>
+                <h3>Managing Dependencies with Conda</h3>
+                <p>Sometimes, managing dependencies with pip can be challenging, especially when dealing with complex projects. Conda can be a useful alternative for dependency management.</p>
+                <h4>Installing Conda</h4>
+                <ul>
+                <li><strong>Download and Install Miniconda</strong>:</li>
+                </ul>
+                <p>RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh<br />
+                   RUN bash ~/miniconda.sh -b -p $HOME/miniconda<br />
+                   RUN export PATH="$HOME/miniconda/bin:$PATH"</p>
+                <ul>
+                <li><strong>Create and Activate Conda Environment</strong>:</li>
+                </ul>
+                <p>RUN conda create -n myenv python=3.8<br />
+                   RUN echo "conda activate myenv" &gt;&gt; ~/.bashrc</p>
+                <h3>Working with Nvidia Libraries</h3>
+                <p>For GPU-based projects, Nvidia libraries and tools are crucial. Ensure that you include these in your Dockerfile.</p>
+                <ul>
+                <li><strong>Install Nvidia CUDA and CuDNN</strong>:</li>
+                </ul>
+                <p>RUN apt-get install -y nvidia-cuda-toolkit</p>
+                <ul>
+                <li><strong>Verify NVCC Installation</strong>:</li>
+                </ul>
+                <p>RUN nvcc --version</p>
+                <h3>Best Practices for Dockerfile Creation</h3>
+                <h4>Layer Management</h4>
+                <p>Docker builds images in layers. Each <code>RUN</code> command creates a new layer, which can be cached to speed up future builds. However, exceeding 50 layers can cause issues, so it's essential to optimize your Dockerfile.</p>
+                <ul>
+                <li><strong>Combine Commands to Reduce Layers</strong>:</li>
+                </ul>
+                <p>RUN apt-get update &amp;&amp; apt-get install -y \<br />
+                       python3-pip \<br />
+                       python3-dev \<br />
+                       &amp;&amp; apt-get clean \<br />
+                       &amp;&amp; rm -rf /var/lib/apt/lists/*</p>
+                <ul>
+                <li><strong>Use Caching Wisely</strong>:</li>
+                </ul>
+                <p>COPY requirements.txt .<br />
+                   RUN pip3 install -r requirements.txt</p>
+                <h4>Repository Management</h4>
+                <ul>
+                <li><strong>Add Repositories for Additional Packages</strong>:</li>
+                </ul>
+                <p>RUN add-apt-repository -y ppa:some/ppa</p>
+                <ul>
+                <li><strong>Manage Storage</strong>: Be mindful of storage limitations when building Docker images, especially for GPU-based projects that can be quite large.</li>
+                </ul>
+                <h3>Using Base Images</h3>
+                <p>Choosing the right base image is critical. Nvidia provides pre-configured images for GPU-based projects, which can save time and ensure compatibility.</p>
+                <ul>
+                <li><strong>Using Nvidia Base Image</strong>:</li>
+                </ul>
+                <p>FROM nvidia/cuda:10.2-cudnn7-runtime-ubuntu18.04</p>
+                <h3>Continuous Integration with Docker</h3>
+                <p>Integrate Docker with CI/CD pipelines to automate the build and deployment process.</p>
+                <ul>
+                <li><strong>Azure DevOps Pipeline</strong>:</li>
+                </ul>
+                <p>pool:<br />
+                     vmImage: 'ubuntu-latest'<br />
+                   steps:<br />
+                   - task: UsePythonVersion@0<br />
+                     inputs:<br />
+                       versionSpec: '3.x'<br />
+                       addToPath: true<br />
+                   - script: |<br />
+                       pip install -r requirements.txt<br />
+                     displayName: 'Install dependencies'<br />
+                   - task: Docker@2<br />
+                     inputs:<br />
+                       containerRegistry: 'myContainerRegistry'<br />
+                       repository: 'myRepository'<br />
+                       command: 'buildAndPush'<br />
+                       Dockerfile: '**/Dockerfile'<br />
+                       tags: '$(Build.BuildId)'</p>
+                <h3>Conclusion</h3>
+                <p>Creating Docker files for Python with GPU libraries involves careful management of dependencies, layers, and storage. By following these best practices and utilizing tools like Conda and Nvidia base images, you can streamline the process and ensure efficient and reliable builds.</p>
+                <p>If you found this content useful, please like and subscribe to the channel. Your support is essential for continuing to create helpful content. Let's learn and grow together. Thank you for watching!</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

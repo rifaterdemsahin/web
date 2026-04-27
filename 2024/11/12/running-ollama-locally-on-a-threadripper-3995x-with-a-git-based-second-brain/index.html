@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Running Ollama Locally on a Threadripper 3995X with a Git-Based Second Brain - Rifat Erdem Sahin</title>
+    <meta name="description" content="Running Ollama Locally on a Threadripper 3995X with a Git-Based Second Brain In today’s AI-driven world, tools like Ollama have emerged as powerful options for localized, generative AI capabilities.">
+    <meta name="keywords" content="Running Ollama Locally on a Threadripper 3995X with a Git-Based Second Brain">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/11/12/running-ollama-locally-on-a-threadripper-3995x-with-a-git-based-second-brain/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/11/12/running-ollama-locally-on-a-threadripper-3995x-with-a-git-based-second-brain/">
+    <meta property="og:title" content="Running Ollama Locally on a Threadripper 3995X with a Git-Based Second Brain">
+    <meta property="og:description" content="Running Ollama Locally on a Threadripper 3995X with a Git-Based Second Brain In today’s AI-driven world, tools like Ollama have emerged as powerful options for localized, generative AI capabilities.">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/11/12/running-ollama-locally-on-a-threadripper-3995x-with-a-git-based-second-brain/">
+    <meta property="twitter:title" content="Running Ollama Locally on a Threadripper 3995X with a Git-Based Second Brain">
+    <meta property="twitter:description" content="Running Ollama Locally on a Threadripper 3995X with a Git-Based Second Brain In today’s AI-driven world, tools like Ollama have emerged as powerful options for localized, generative AI capabilities.">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Running Ollama Locally on a Threadripper 3995X with a Git-Based Second Brain",
+      "description": "Running Ollama Locally on a Threadripper 3995X with a Git-Based Second Brain In today’s AI-driven world, tools like Ollama have emerged as powerful options for localized, generative AI capabilities.",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-11-12",
+      "dateModified": "2024-11-12",
+      "url": "https://www.rifaterdemsahin.com/2024/11/12/running-ollama-locally-on-a-threadripper-3995x-with-a-git-based-second-brain/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/11/12/running-ollama-locally-on-a-threadripper-3995x-with-a-git-based-second-brain/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Running Ollama Locally on a Threadripper 3995X with a Git-Based Second Brain</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>November 12, 2024</span>
+                    <span>&bull;</span>
+                    <span>8 min read</span>
+                </div>
+                <p class="article-excerpt">Running Ollama Locally on a Threadripper 3995X with a Git-Based Second Brain In today’s AI-driven world, tools like Ollama have emerged as powerful options for localized, generative AI capabilities.</p>
+            </header>
+            <article class="article-content">
+                <h1>Running Ollama Locally on a Threadripper 3995X with a Git-Based Second Brain</h1>
+                <p>In today’s AI-driven world, tools like Ollama have emerged as powerful options for localized, generative AI capabilities. Running Ollama locally on a high-performance machine, like a Threadripper 3995X, can offer immense computational benefits. Coupled with a git-based “second brain” (a knowledge management system organized with Git), you can efficiently leverage and organize vast amounts of data with speed and flexibility.</p>
+                <p>Let’s explore the steps for setting up Ollama locally, why a high-core CPU like the 3995X is ideal, and how integrating a Git-based second brain can maximize your workflow.</p>
+                <p><strong>Why the Threadripper 3995X?</strong></p>
+                <p>The AMD Threadripper 3995X is a powerhouse with 64 cores and 128 threads, making it ideal for heavy computational loads like running localized AI models. With the 3995X, you can expect:</p>
+                <p>• <strong>High Parallel Processing</strong>: The multi-threading capabilities allow Ollama to perform tasks more efficiently, especially when handling large datasets or running multiple instances.</p>
+                <p>• <strong>Reduced Latency</strong>: Localized AI processes are faster and more responsive since they don’t rely on cloud services, making real-time interactions with the AI smoother.</p>
+                <p>• <strong>Privacy Control</strong>: Running models locally ensures all data stays on your machine, essential for privacy-sensitive tasks.</p>
+                <p><strong>Setting Up Ollama Locally</strong></p>
+                <ol>
+                <li><strong>Install Ollama</strong>:</li>
+                </ol>
+                <p>First, install Ollama on your local machine. It’s essential to have the latest versions of Python and CUDA (for GPUs) if using an NVIDIA GPU, as well as any other dependencies required by Ollama.</p>
+                <p>git clone https://github.com/ollama/ollama.git</p>
+                <p>cd ollama</p>
+                <p>pip install -r requirements.txt</p>
+                <ol start="2">
+                <li><strong>Optimize for Multi-Core Performance</strong>:</li>
+                </ol>
+                <p>On a Threadripper, you can configure Ollama to leverage all available cores. Ollama configurations usually allow settings to adjust CPU usage, so make sure to enable multi-threaded processing to get the most out of your 3995X.</p>
+                <ol start="3">
+                <li><strong>Configure Data Storage</strong>:</li>
+                </ol>
+                <p>Since local setups can use significant storage, ensure your SSDs are up to the task. Use NVMe SSDs if possible, as they offer the best read/write speeds.</p>
+                <p><strong>Setting Up a Git-Based Second Brain</strong></p>
+                <p>A “second brain” organizes knowledge, research, and ideas in a structured and easily retrievable way. Using Git as the backbone allows you to track changes, collaborate, and access your notes from any device. Here’s how to set it up:</p>
+                <ol>
+                <li><strong>Create Your Knowledge Repository</strong>:</li>
+                </ol>
+                <p>Start by creating a repository on GitHub, GitLab, or a local Git server. This will store all of your notes, research materials, and any AI model outputs you wish to reference.</p>
+                <p>git init second_brain</p>
+                <p>cd second_brain</p>
+                <ol start="2">
+                <li><strong>Organize Notes</strong>:</li>
+                </ol>
+                <p>Structure your repository with folders for different topics or projects, and use markdown files for each note. Markdown is lightweight, easy to read, and compatible with Git.</p>
+                <p>Example structure:</p>
+                <p>second_brain/</p>
+                <p>├── AI_Research/</p>
+                <p>│ ├── Generative_Models.md</p>
+                <p>│ └── NLP_Experiments.md</p>
+                <p>├── Work_Projects/</p>
+                <p>├── Personal_Notes/</p>
+                <ol start="3">
+                <li><strong>Automate with Git Hooks</strong>:</li>
+                </ol>
+                <p>You can set up Git hooks to automate tasks, such as syncing notes with cloud storage or triggering AI processes on specific files. For example, a pre-commit hook could clean up data formats, while a post-commit hook could push updates to a backup server.</p>
+                <ol start="4">
+                <li><strong>Version Control Insights and Experiments</strong>:</li>
+                </ol>
+                <p>By saving AI model outputs or analysis results into your Git-based second brain, you can track the evolution of ideas and experiments. Use tags or branches for major updates to keep your work organized.</p>
+                <p><strong>Integrating Ollama with Your Second Brain</strong></p>
+                <p>Now that you have Ollama running and a structured second brain, you can start combining the two to enhance your knowledge management:</p>
+                <ol>
+                <li><strong>Automated Knowledge Generation</strong>:</li>
+                </ol>
+                <p>Use Ollama to generate summaries, insights, or experiment with data-driven content generation. Save these outputs directly to your second brain for easy reference and version control.</p>
+                <p>ollama run my_model --input data/input.txt --output second_brain/AI_Research/Model_Output.md</p>
+                <p>git add second_brain/AI_Research/Model_Output.md</p>
+                <p>git commit -m "Add new insights from model output"</p>
+                <ol start="2">
+                <li><strong>Refine and Query Notes</strong>:</li>
+                </ol>
+                <p>Running Ollama locally allows for more flexible and customized queries across your knowledge base. You can design queries or generate Q&amp;A pairs based on specific topics, automatically logging these into relevant files.</p>
+                <ol start="3">
+                <li><strong>Scheduled Data Updates</strong>:</li>
+                </ol>
+                <p>With a high-performance setup, you can schedule regular data refreshes or re-runs of your Ollama models based on updated content in your second brain. Use cron jobs or a task scheduler to automate these tasks.</p>
+                <p><strong>Advantages of This Setup</strong></p>
+                <ol>
+                <li>
+                <p><strong>Enhanced Speed and Efficiency</strong>: Localized processing on a Threadripper 3995X drastically reduces latency, enabling quicker responses and real-time adjustments.</p>
+                </li>
+                <li>
+                <p><strong>Organized and Searchable Knowledge</strong>: The Git-based second brain keeps all information organized and version-controlled, allowing you to track the progression of ideas and model outputs.</p>
+                </li>
+                <li>
+                <p><strong>Improved Collaboration</strong>: If you’re working with a team, a Git-based approach enables multiple contributors to add insights, merge changes, and track updates seamlessly.</p>
+                </li>
+                </ol>
+                <p><strong>Final Thoughts</strong></p>
+                <p>By combining the processing power of a Threadripper 3995X with Ollama’s localized AI capabilities and a Git-based second brain, you can create a high-performance, privacy-respecting, and well-organized knowledge management system. This setup not only improves productivity but also allows for a dynamic way to capture, process, and refine information. As you explore this powerful combination, you’ll find new efficiencies and creative workflows to help manage and harness your data-driven insights.</p>
+                <hr />
+                <p>With a setup featuring a Threadripper 3995X and a Radeon 6900XT, you’re positioned for a powerful local AI environment, but understanding the electric costs, model generation times, and update times can help maximize efficiency. Let’s break these down.</p>
+                <p><strong>1. Electric Costs</strong></p>
+                <p>Running high-performance hardware like the Threadripper 3995X and Radeon 6900XT can draw significant power. Here’s an estimate of the electric costs based on typical power consumption and average electricity rates. Keep in mind these numbers can vary based on usage patterns and local electricity costs.</p>
+                <p>• <strong>Threadripper 3995X</strong>: The 3995X has a TDP (Thermal Design Power) of 280W, though it can draw more power under heavy load, potentially reaching around 300-350W. For light workloads, it could average closer to 150-200W.</p>
+                <p>• <strong>Radeon 6900XT</strong>: The 6900XT has a TDP of 300W but can consume up to 350W when fully utilized, especially during intensive AI tasks.</p>
+                <p>Let’s assume you’re running at a near-max load for 6 hours daily:</p>
+                <ol>
+                <li>
+                <p><strong>Power consumption per hour</strong>: (350W CPU + 350W GPU) = 700W, or 0.7 kWh</p>
+                </li>
+                <li>
+                <p><strong>Total daily power consumption</strong>: 0.7 kWh x 6 hours = 4.2 kWh</p>
+                </li>
+                <li>
+                <p><strong>Monthly power consumption</strong>: 4.2 kWh x 30 = 126 kWh</p>
+                </li>
+                </ol>
+                <p>With an average electricity rate (let’s say $0.15 per kWh), this setup could cost around:</p>
+                <p>• <strong>Monthly cost</strong>: 126 kWh x $0.15 = $18.90</p>
+                <p>• <strong>Annual cost</strong>: 12 x $18.90 = $226.80</p>
+                <p>These costs will vary based on usage, but this gives a baseline for regular model generation or AI tasks.</p>
+                <p><strong>2. Model Generation Times</strong></p>
+                <p>Model generation times on your setup will vary by model complexity, size, and the framework you’re using, but here’s a general estimate based on similar hardware setups.</p>
+                <p><strong>Common Generative Model Examples:</strong></p>
+                <p>• <strong>LLM (Large Language Models)</strong>: Generating text or fine-tuning large models (e.g., GPT-2) locally on a CPU like the 3995X can take several hours for larger datasets. With the Radeon 6900XT (which supports ROCm for PyTorch), you can offload processing to the GPU, potentially reducing time by half or more.</p>
+                <p>• <strong>GPT-2 fine-tuning on 3995X alone</strong>: Could take ~8–12 hours per epoch, depending on data size.</p>
+                <p>• <strong>GPT-2 fine-tuning with 3995X + 6900XT</strong>: Approximately 4–6 hours per epoch.</p>
+                <p>• <strong>Mid-sized Models</strong> (e.g., DistilBERT): Fine-tuning can complete in 1–3 hours per epoch, especially with GPU acceleration.</p>
+                <p><strong>Image Generation Models (e.g., Stable Diffusion):</strong></p>
+                <p>• <strong>Model Inference</strong>: The 6900XT is well-suited for image generation models. With GPU acceleration, Stable Diffusion or similar models can generate images in <strong>1–2 seconds per image</strong> at standard resolutions.</p>
+                <p>• <strong>Fine-tuning</strong>: Fine-tuning a large image generation model like Stable Diffusion could take anywhere from 2–10 hours with GPU acceleration, depending on dataset size and resolution.</p>
+                <p><strong>3. Update Times</strong></p>
+                <p>When updating models or datasets within your Git-based second brain, the 3995X’s parallel processing can help manage and reorganize large amounts of data quickly:</p>
+                <p>• <strong>Large Data Sync</strong>: If you’re syncing or re-indexing hundreds of gigabytes of data in your second brain, the 3995X’s I/O capacity will help keep things efficient, potentially indexing or reorganizing tens of gigabytes within minutes.</p>
+                <p>• <strong>Model Update Integration</strong>: If you’re frequently updating models (such as generating new embeddings or metadata), you can automate this to run during off-hours or low-energy periods, reducing active costs and allowing updates without interrupting other workflows.</p>
+                <p><strong>Optimizing Costs and Times</strong></p>
+                <p>Given the high power and model times, here are a few tips to optimize:</p>
+                <p>• <strong>Batch Processing</strong>: Schedule model generation or training in batches overnight or during times when electricity costs are lower.</p>
+                <p>• <strong>Undervolting/Overclocking</strong>: Adjusting the CPU/GPU power limits can reduce power draw without substantial performance loss for certain tasks.</p>
+                <p>• <strong>Energy-Efficient Storage</strong>: Use NVMe SSDs, which are more energy-efficient and improve read/write speeds, reducing model load times and data sync time with your second brain.</p>
+                <p>By balancing load, power management, and leveraging both CPU and GPU, your setup can run high-performance AI tasks at a reasonable cost, making it an efficient local solution for regular model updates and powerful AI workflows.</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

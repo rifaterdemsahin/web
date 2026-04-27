@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Openai costs building up - Rifat Erdem Sahin</title>
+    <meta name="description" content="Openai costs building up 106 calls 50 fails &gt; https://portal.azure.com/#@pexabo.com/resource/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsof">
+    <meta name="keywords" content="Openai costs building up">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/06/05/openai-costs-building-up/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/06/05/openai-costs-building-up/">
+    <meta property="og:title" content="Openai costs building up">
+    <meta property="og:description" content="Openai costs building up 106 calls 50 fails &gt; https://portal.azure.com/#@pexabo.com/resource/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsof">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/06/05/openai-costs-building-up/">
+    <meta property="twitter:title" content="Openai costs building up">
+    <meta property="twitter:description" content="Openai costs building up 106 calls 50 fails &gt; https://portal.azure.com/#@pexabo.com/resource/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsof">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Openai costs building up",
+      "description": "Openai costs building up 106 calls 50 fails &gt; https://portal.azure.com/#@pexabo.com/resource/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsof",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-06-05",
+      "dateModified": "2024-06-05",
+      "url": "https://www.rifaterdemsahin.com/2024/06/05/openai-costs-building-up/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/06/05/openai-costs-building-up/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Openai costs building up</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>June 5, 2024</span>
+                    <span>&bull;</span>
+                    <span>6 min read</span>
+                </div>
+                <p class="article-excerpt">Openai costs building up 106 calls 50 fails &gt; https://portal.azure.com/#@pexabo.com/resource/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Logic/workflows/contractormarketing-gpt-coverletter/logicApp maybe it is time </p>
+            </header>
+            <article class="article-content">
+                <h1>Openai costs building up</h1>
+                <p><img src="images/openai-costs-building-1.png" alt="openai costs building 1" class="article-image" loading="lazy"></p>
+                <p><img src="images/openai-costs-building-2.png" alt="openai costs building 2" class="article-image" loading="lazy"></p>
+                <p><img src="images/openai-costs-building-3.png" alt="openai costs building 3" class="article-image" loading="lazy"></p>
+                <p><img src="images/openai-costs-building-4.png" alt="openai costs building 4" class="article-image" loading="lazy"></p>
+                <p><img src="images/openai-costs-building-5.png" alt="openai costs building 5" class="article-image" loading="lazy"></p>
+                <p><img src="images/openai-costs-building-6.png" alt="openai costs building 6" class="article-image" loading="lazy"></p>
+                <p>106 calls  50 fails &gt;<a href="https://portal.azure.com/#@pexabo.com/resource/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Logic/workflows/contractormarketing-gpt-coverletter/logicApp">https://portal.azure.com/#@pexabo.com/resource/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Logic/workflows/contractormarketing-gpt-coverletter/logicApp</a></p>
+                <p><img src="images/openai-costs-building-7.png" alt="openai costs building 7" class="article-image" loading="lazy"></p>
+                <p>maybe it is time to down grade for a cheaper model </p>
+                <p><img src="images/openai-costs-building-8.png" alt="openai costs building 8" class="article-image" loading="lazy"></p>
+                <p>The pricing for OpenAI API calls varies depending on the model and the specific usage. Here's a breakdown of some of the key costs associated with different models:</p>
+                <ul>
+                <li>
+                <p><strong>GPT-3.5 Turbo</strong>:</p>
+                </li>
+                <li>
+                <p>Input: $0.0015 per 1,000 tokens</p>
+                </li>
+                <li>
+                <p>Output: $0.002 per 1,000 tokens</p>
+                </li>
+                <li>
+                <p><strong>GPT-4 Turbo</strong>:</p>
+                </li>
+                <li>
+                <p>Input: $0.03 per 1,000 tokens</p>
+                </li>
+                <li>
+                <p>Output: $0.06 per 1,000 tokens</p>
+                </li>
+                <li>
+                <p><strong>Text-Embedding Models</strong>:</p>
+                </li>
+                <li>
+                <p>For example, <code>text-embedding-3-large</code> costs $0.00013 per 1,000 tokens.</p>
+                </li>
+                <li>
+                <p><strong>Older Models</strong>:</p>
+                </li>
+                <li>
+                <p>Ada: $0.0008 per 1,000 tokens</p>
+                </li>
+                <li>
+                <p>Babbage: $0.0012 per 1,000 tokens</p>
+                </li>
+                <li>
+                <p>Curie: $0.006 per 1,000 tokens</p>
+                </li>
+                <li>
+                <p>Davinci: $0.06 per 1,000 tokens</p>
+                </li>
+                </ul>
+                <p>For a specific call, if you were charged $5 for 150 units, it translates to approximately $0.033 per unit. This would be significantly higher than typical costs per token for text models, suggesting a different pricing structure or model might be involved, potentially involving image generation or more complex operations.</p>
+                <p>For more detailed and updated information, you can visit OpenAI's <a href="https://platform.openai.com/docs/models/pricing">pricing page</a>【9†source】【10†source】【13†source】【14†source】.</p>
+                <p>Updated the model name </p>
+                <p><img src="images/openai-costs-building-9.png" alt="openai costs building 9" class="article-image" loading="lazy"></p>
+                <p>after the error </p>
+                <p><img src="images/openai-costs-building-10.png" alt="openai costs building 10" class="article-image" loading="lazy"></p>
+                <p>The error message indicates that either the model <code>gpt-3.5</code> does not exist or you do not have access to it. Here are some possible reasons and steps to resolve the issue:</p>
+                <ul>
+                <li>
+                <p><strong>Model Availability</strong>:</p>
+                </li>
+                <li>
+                <p>Ensure that the model name is correctly specified. For example, the correct model names include <code>gpt-3.5-turbo</code>, <code>gpt-3.5-turbo-0301</code>, etc. The exact model name must match what is available in the OpenAI API documentation.</p>
+                </li>
+                <li>
+                <p><strong>Access Permissions</strong>:</p>
+                </li>
+                <li>
+                <p>Check if your API key has the necessary permissions to access the specified model. Access to certain models might be restricted based on your subscription plan or account settings.</p>
+                </li>
+                <li>
+                <p><strong>Subscription Plan</strong>:</p>
+                </li>
+                <li>
+                <p>Verify that your subscription plan includes access to the model you are trying to use. Some models might only be available under certain plans.</p>
+                </li>
+                <li>
+                <p><strong>Account Configuration</strong>:</p>
+                </li>
+                <li>
+                <p>Ensure that your OpenAI account is properly configured. You might need to enable certain settings or upgrade your account to gain access to specific models.</p>
+                </li>
+                </ul>
+                <h3>Steps to Troubleshoot</h3>
+                <ul>
+                <li>
+                <p><strong>Verify Model Name</strong>:</p>
+                </li>
+                <li>
+                <p>Double-check the model name in your API request. For example, use <code>gpt-3.5-turbo</code> instead of <code>gpt-3.5</code>.</p>
+                </li>
+                <li>
+                <p><strong>Check API Documentation</strong>:</p>
+                </li>
+                <li>
+                <p>Review the <a href="https://platform.openai.com/docs/models">OpenAI API documentation</a> to ensure you are using a valid model name and have the necessary access.</p>
+                </li>
+                <li>
+                <p><strong>Update API Key</strong>:</p>
+                </li>
+                <li>
+                <p>Ensure your API key is valid and has not expired. If necessary, generate a new API key from your OpenAI account dashboard.</p>
+                </li>
+                <li>
+                <p><strong>Account and Subscription</strong>:</p>
+                </li>
+                <li>
+                <p>Log in to your OpenAI account and check your subscription plan and model access permissions. You might need to upgrade your plan or request access to specific models.</p>
+                </li>
+                <li>
+                <p><strong>Contact Support</strong>:</p>
+                </li>
+                <li>
+                <p>If the issue persists, contact OpenAI support for assistance. Provide them with the error message and details about your account and API request.</p>
+                </li>
+                </ul>
+                <p>By following these steps, you should be able to identify and resolve the issue with accessing the <code>gpt-3.5</code> model.</p>
+                <p>Testing runid &gt; <a href="https://portal.azure.com/#view/Microsoft_Azure_EMA/LogicAppsMonitorBlade/runid/%2Fsubscriptions%2Fad744a08-2411-4d78-b417-1f1c83f4f741%2FresourceGroups%2FContractorMarketing%2Fproviders%2FMicrosoft.Logic%2Fworkflows%2Fcontractormarketing-gpt-coverletter%2Fruns%2F08584840039695503712367133215CU31">https://portal.azure.com/#view/Microsoft_Azure_EMA/LogicAppsMonitorBlade/runid/%2Fsubscriptions%2Fad744a08-2411-4d78-b417-1f1c83f4f741%2FresourceGroups%2FContractorMarketing%2Fproviders%2FMicrosoft.Logic%2Fworkflows%2Fcontractormarketing-gpt-coverletter%2Fruns%2F08584840039695503712367133215CU31</a></p>
+                <p>it can generate the output</p>
+                <p><img src="images/openai-costs-building-11.png" alt="openai costs building 11" class="article-image" loading="lazy"></p>
+                <p>The error message indicates that either the model <code>gpt-3.5</code> does not exist or you do not have access to it. Here are some possible reasons and steps to resolve the issue:</p>
+                <ul>
+                <li>
+                <p><strong>Model Availability</strong>:</p>
+                </li>
+                <li>
+                <p>Ensure that the model name is correctly specified. For example, the correct model names include <code>gpt-3.5-turbo</code>, <code>gpt-3.5-turbo-0301</code>, etc. The exact model name must match what is available in the OpenAI API documentation.</p>
+                </li>
+                <li>
+                <p><strong>Access Permissions</strong>:</p>
+                </li>
+                <li>
+                <p>Check if your API key has the necessary permissions to access the specified model. Access to certain models might be restricted based on your subscription plan or account settings.</p>
+                </li>
+                <li>
+                <p><strong>Subscription Plan</strong>:</p>
+                </li>
+                <li>
+                <p>Verify that your subscription plan includes access to the model you are trying to use. Some models might only be available under certain plans.</p>
+                </li>
+                <li>
+                <p><strong>Account Configuration</strong>:</p>
+                </li>
+                <li>
+                <p>Ensure that your OpenAI account is properly configured. You might need to enable certain settings or upgrade your account to gain access to specific models.</p>
+                </li>
+                </ul>
+                <h3>Steps to Troubleshoot</h3>
+                <ul>
+                <li>
+                <p><strong>Verify Model Name</strong>:</p>
+                </li>
+                <li>
+                <p>Double-check the model name in your API request. For example, use <code>gpt-3.5-turbo</code> instead of <code>gpt-3.5</code>.</p>
+                </li>
+                <li>
+                <p><strong>Check API Documentation</strong>:</p>
+                </li>
+                <li>
+                <p>Review the <a href="https://platform.openai.com/docs/models">OpenAI API documentation</a> to ensure you are using a valid model name and have the necessary access.</p>
+                </li>
+                <li>
+                <p><strong>Update API Key</strong>:</p>
+                </li>
+                <li>
+                <p>Ensure your API key is valid and has not expired. If necessary, generate a new API key from your OpenAI account dashboard.</p>
+                </li>
+                <li>
+                <p><strong>Account and Subscription</strong>:</p>
+                </li>
+                <li>
+                <p>Log in to your OpenAI account and check your subscription plan and model access permissions. You might need to upgrade your plan or request access to specific models.</p>
+                </li>
+                <li>
+                <p><strong>Contact Support</strong>:</p>
+                </li>
+                <li>
+                <p>If the issue persists, contact OpenAI support for assistance. Provide them with the error message and details about your account and API request.</p>
+                </li>
+                </ul>
+                <p>By following these steps, you should be able to identify and resolve the issue with accessing the <code>gpt-3.5</code> model.</p>
+                <hr />
+                <p>SAVED 73 DOLLARS FOR NOW</p>
+                <p>To calculate the cost savings when switching from GPT-4 to GPT-3.5-turbo-0301, we need to compare the costs for the same usage. Let's use the pricing provided:</p>
+                <ul>
+                <li>
+                <p><strong>GPT-4</strong> costs:</p>
+                </li>
+                <li>
+                <p>Input: $0.03 per 1,000 tokens</p>
+                </li>
+                <li>
+                <p>Output: $0.06 per 1,000 tokens</p>
+                </li>
+                <li>
+                <p><strong>GPT-3.5-turbo-0301</strong> costs:</p>
+                </li>
+                <li>
+                <p>Input: $0.0015 per 1,000 tokens</p>
+                </li>
+                <li>
+                <p>Output: $0.002 per 1,000 tokens</p>
+                </li>
+                </ul>
+                <p>Assuming your usage translates to $80 per month on GPT-4, let's break down the costs and then apply them to GPT-3.5-turbo-0301.</p>
+                <h3>Calculation for GPT-4</h3>
+                <p>Let's say your monthly usage in terms of tokens is:</p>
+                <ul>
+                <li>
+                <p>( X ) tokens for input</p>
+                </li>
+                <li>
+                <p>( Y ) tokens for output</p>
+                </li>
+                </ul>
+                <p>The total cost is then:<br />
+                [ 80 = (X \times 0.03) + (Y \times 0.06) ]</p>
+                <h3>Calculation for GPT-3.5-turbo-0301</h3>
+                <p>Using the same ( X ) and ( Y ) tokens, the cost for GPT-3.5-turbo-0301 would be:<br />
+                [ \text{New cost} = (X \times 0.0015) + (Y \times 0.002) ]</p>
+                <h3>Ratio of Costs</h3>
+                <p>The cost ratio between GPT-4 and GPT-3.5-turbo-0301 for both input and output tokens is:<br />
+                [ \text{Input cost ratio} = \frac{0.0015}{0.03} = 0.05 ]<br />
+                [ \text{Output cost ratio} = \frac{0.002}{0.06} = 0.0333 ]</p>
+                <h3>Applying the Cost Ratios</h3>
+                <p>If the original cost on GPT-4 is $80:</p>
+                <ul>
+                <li>
+                <p>5% of the cost is attributed to input tokens.</p>
+                </li>
+                <li>
+                <p>3.33% of the cost is attributed to output tokens.</p>
+                </li>
+                </ul>
+                <p>Therefore, the total new cost on GPT-3.5-turbo-0301 would be:<br />
+                [ \text{New cost} = 80 \times 0.05 + 80 \times 0.0333 ]<br />
+                [ \text{New cost} = 4 + 2.664 ]<br />
+                [ \text{New cost} = 6.664 ]</p>
+                <h3>Cost Savings</h3>
+                <p>The cost savings can be calculated as:<br />
+                [ \text{Savings} = 80 - 6.664 ]<br />
+                [ \text{Savings} = 73.336 ]</p>
+                <h3>Conclusion</h3>
+                <p>By switching from GPT-4 to GPT-3.5-turbo-0301, you would save approximately $73.34 per month.</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Bulk Move Files on Synology NAS for Cloud Storage Management - Rifat Erdem Sahin</title>
+    <meta name="description" content="🚀 Bulk Move Files on Synology NAS for Cloud Storage Management Managing cloud storage effectively can be challenging, especially when you have large files or extensive libraries of data. That's where ">
+    <meta name="keywords" content="🚀 Bulk Move Files on Synology NAS for Cloud Storage Management">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/11/02/🚀-bulk-move-files-on-synology-nas-for-cloud-storage-management/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/11/02/🚀-bulk-move-files-on-synology-nas-for-cloud-storage-management/">
+    <meta property="og:title" content="🚀 Bulk Move Files on Synology NAS for Cloud Storage Management">
+    <meta property="og:description" content="🚀 Bulk Move Files on Synology NAS for Cloud Storage Management Managing cloud storage effectively can be challenging, especially when you have large files or extensive libraries of data. That's where ">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/11/02/🚀-bulk-move-files-on-synology-nas-for-cloud-storage-management/">
+    <meta property="twitter:title" content="🚀 Bulk Move Files on Synology NAS for Cloud Storage Management">
+    <meta property="twitter:description" content="🚀 Bulk Move Files on Synology NAS for Cloud Storage Management Managing cloud storage effectively can be challenging, especially when you have large files or extensive libraries of data. That's where ">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "🚀 Bulk Move Files on Synology NAS for Cloud Storage Management",
+      "description": "🚀 Bulk Move Files on Synology NAS for Cloud Storage Management Managing cloud storage effectively can be challenging, especially when you have large files or extensive libraries of data. That's where ",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-11-02",
+      "dateModified": "2024-11-02",
+      "url": "https://www.rifaterdemsahin.com/2024/11/02/🚀-bulk-move-files-on-synology-nas-for-cloud-storage-management/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/11/02/🚀-bulk-move-files-on-synology-nas-for-cloud-storage-management/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">🚀 Bulk Move Files on Synology NAS for Cloud Storage Management</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>November 2, 2024</span>
+                    <span>&bull;</span>
+                    <span>3 min read</span>
+                </div>
+                <p class="article-excerpt">🚀 Bulk Move Files on Synology NAS for Cloud Storage Management Managing cloud storage effectively can be challenging, especially when you have large files or extensive libraries of data. That's where a Synology NAS (Network Attached Storage) device comes to the rescue!</p>
+            </header>
+            <article class="article-content">
+                <h1>🚀 Bulk Move Files on Synology NAS for Cloud Storage Management</h1>
+                <p>Managing cloud storage effectively can be challenging, especially when you have large files or extensive libraries of data. That's where a <strong>Synology NAS</strong> (Network Attached Storage) device comes to the rescue! In this post, I'll walk you through <strong>how to bulk move files</strong> using Synology NAS, a powerful tool that offers a centralized way to organize, store, and move files seamlessly. This setup can help you save time and keep your cloud storage organized. Let’s dive in!</p>
+                <hr />
+                <h2>🎯 Why Bulk Move Files?</h2>
+                <p>Whether it's documents, photos, videos, or work files, manually transferring items one by one can be time-consuming and prone to errors. A Synology NAS provides you with the flexibility to:</p>
+                <ul>
+                <li>
+                <p>🌐 <strong>Easily manage cloud storage</strong> by keeping files organized in bulk.</p>
+                </li>
+                <li>
+                <p>📂 <strong>Save bandwidth</strong> and prevent repetitive downloads/uploads.</p>
+                </li>
+                <li>
+                <p>🔒 <strong>Protect data</strong> by managing backups automatically to multiple cloud services.</p>
+                </li>
+                </ul>
+                <hr />
+                <h2>📋 Prerequisites</h2>
+                <p>Before we start, make sure you have:</p>
+                <ul>
+                <li>
+                <p>A <strong>Synology NAS device</strong> with DSM (DiskStation Manager) software installed.</p>
+                </li>
+                <li>
+                <p><strong>Cloud Sync</strong> or <strong>Hyper Backup</strong> installed on your NAS (available in Package Center).</p>
+                </li>
+                <li>
+                <p>Active <strong>cloud storage accounts</strong> (e.g., Google Drive, Dropbox, OneDrive, or Amazon S3).</p>
+                </li>
+                </ul>
+                <hr />
+                <h2>🛠️ Steps to Bulk Move Files on Synology NAS</h2>
+                <h3>Step 1: Setting Up Your Cloud Sync</h3>
+                <ul>
+                <li>
+                <p><strong>Open DSM on Synology NAS</strong> by entering the IP address of your NAS in your web browser.</p>
+                </li>
+                <li>
+                <p>Go to <strong>Package Center</strong> and install <strong>Cloud Sync</strong>.</p>
+                </li>
+                <li>
+                <p>Launch <strong>Cloud Sync</strong> and connect it to your cloud storage account. You’ll need to authorize Synology NAS to access your cloud service.</p>
+                </li>
+                <li>
+                <p>Choose the <strong>local NAS folder</strong> and the <strong>cloud storage folder</strong> you want to sync.</p>
+                </li>
+                </ul>
+                <p>💡 <strong>Tip:</strong> Set up multiple cloud connections to easily bulk transfer files to different cloud accounts from one central hub!</p>
+                <hr />
+                <h3>Step 2: Creating Bulk Move Folders</h3>
+                <ul>
+                <li>
+                <p><strong>Organize files locally</strong> on your NAS by creating separate folders for each cloud storage account.</p>
+                </li>
+                <li>
+                <p>Drag and drop files into these designated folders, so you have all files intended for cloud storage in one place.</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>Step 3: Configuring Sync and Scheduling</h3>
+                <ul>
+                <li>
+                <p>In <strong>Cloud Sync</strong>, select the folder you created and configure <strong>sync settings</strong>.</p>
+                </li>
+                <li>
+                <p><strong>Choose sync type</strong> based on your needs:</p>
+                </li>
+                <li>
+                <p><strong>Upload local changes only:</strong> To move files to the cloud without syncing back.</p>
+                </li>
+                <li>
+                <p><strong>Bidirectional sync:</strong> To keep both NAS and cloud up to date.</p>
+                </li>
+                <li>
+                <p>Schedule the sync operation to run at a specific time or continuously.</p>
+                </li>
+                </ul>
+                <p>🕰️ <strong>Pro Tip:</strong> If you have a large volume of files, set a low-traffic time to avoid delays or lag.</p>
+                <hr />
+                <h3>Step 4: Monitoring Your File Transfers</h3>
+                <p>To ensure files are transferring correctly, open <strong>Cloud Sync</strong> and check the status of each sync job. You'll see which files are still moving, have finished, or encountered errors.</p>
+                <hr />
+                <h3>Step 5: Automation and File Organization</h3>
+                <p>Set up <strong>automated rules</strong> for file sorting within DSM to keep files organized once they’re transferred. For example:</p>
+                <ul>
+                <li>
+                <p>Use <strong>File Station</strong> to move files to specific folders by type, name, or date.</p>
+                </li>
+                <li>
+                <p>Organize files into <strong>subfolders</strong> based on your project or team.</p>
+                </li>
+                </ul>
+                <p>By setting up automation, you can keep your files in order, which makes locating and retrieving them from cloud storage much faster.</p>
+                <hr />
+                <p><img src="images/bulk-move-files-1.png" alt="bulk move files 1" class="article-image" loading="lazy"></p>
+                <hr />
+                <h2>🌟 Additional Tips</h2>
+                <ul>
+                <li>
+                <p><strong>Consider Hyper Backup</strong> if you want to create backup versions instead of just syncing files.</p>
+                </li>
+                <li>
+                <p><strong>Encrypt sensitive files</strong> before syncing if you're handling sensitive or personal information.</p>
+                </li>
+                <li>
+                <p><strong>Check storage quotas</strong> on your cloud provider regularly to avoid running out of space.</p>
+                </li>
+                </ul>
+                <hr />
+                <h2>🔗 Connect with me:</h2>
+                <p>I'd love to hear how you use Synology NAS for managing cloud storage! Share your experiences, tips, or questions.</p>
+                <ul>
+                <li>
+                <p>💼 <strong>LinkedIn</strong>: <a href="https://www.linkedin.com/in/rifaterdemsahin/">Connect on LinkedIn</a></p>
+                </li>
+                <li>
+                <p>🐦 <strong>Twitter</strong>: <a href="https://x.com/rifaterdemsahin">Follow me on Twitter</a></p>
+                </li>
+                <li>
+                <p>🎥 <strong>YouTube</strong>: <a href="https://www.youtube.com/@RifatErdemSahin">Watch my Tutorials</a></p>
+                </li>
+                <li>
+                <p>💻 <strong>GitHub</strong>: <a href="https://github.com/rifaterdemsahin">View my Projects</a></p>
+                </li>
+                </ul>
+                <p>Happy file organizing! 📁✨</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

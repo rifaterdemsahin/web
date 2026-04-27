@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Updating Secrets for Service Accounts in Red Hat Advanced Cluster Security (ACS) for OpenShift - Rifat Erdem Sahin</title>
+    <meta name="description" content="Updating Secrets for Service Accounts in Red Hat Advanced Cluster Security (ACS) for OpenShift Introduction Managing secrets is a crucial aspect of Kubernetes security, especially when it comes to ser">
+    <meta name="keywords" content="Updating Secrets for Service Accounts in Red Hat Advanced Cluster Security (ACS) for OpenShift">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/09/26/updating-secrets-for-service-accounts-in-red-hat-advanced-cluster-security-acs-for-openshift/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/09/26/updating-secrets-for-service-accounts-in-red-hat-advanced-cluster-security-acs-for-openshift/">
+    <meta property="og:title" content="Updating Secrets for Service Accounts in Red Hat Advanced Cluster Security (ACS) for OpenShift">
+    <meta property="og:description" content="Updating Secrets for Service Accounts in Red Hat Advanced Cluster Security (ACS) for OpenShift Introduction Managing secrets is a crucial aspect of Kubernetes security, especially when it comes to ser">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/09/26/updating-secrets-for-service-accounts-in-red-hat-advanced-cluster-security-acs-for-openshift/">
+    <meta property="twitter:title" content="Updating Secrets for Service Accounts in Red Hat Advanced Cluster Security (ACS) for OpenShift">
+    <meta property="twitter:description" content="Updating Secrets for Service Accounts in Red Hat Advanced Cluster Security (ACS) for OpenShift Introduction Managing secrets is a crucial aspect of Kubernetes security, especially when it comes to ser">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Updating Secrets for Service Accounts in Red Hat Advanced Cluster Security (ACS) for OpenShift",
+      "description": "Updating Secrets for Service Accounts in Red Hat Advanced Cluster Security (ACS) for OpenShift Introduction Managing secrets is a crucial aspect of Kubernetes security, especially when it comes to ser",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-09-26",
+      "dateModified": "2024-09-26",
+      "url": "https://www.rifaterdemsahin.com/2024/09/26/updating-secrets-for-service-accounts-in-red-hat-advanced-cluster-security-acs-for-openshift/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/09/26/updating-secrets-for-service-accounts-in-red-hat-advanced-cluster-security-acs-for-openshift/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Updating Secrets for Service Accounts in Red Hat Advanced Cluster Security (ACS) for OpenShift</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>September 26, 2024</span>
+                    <span>&bull;</span>
+                    <span>6 min read</span>
+                </div>
+                <p class="article-excerpt">Updating Secrets for Service Accounts in Red Hat Advanced Cluster Security (ACS) for OpenShift Introduction Managing secrets is a crucial aspect of Kubernetes security, especially when it comes to service accounts that require access to sensitive information like API keys, tokens</p>
+            </header>
+            <article class="article-content">
+                <h1>Updating Secrets for Service Accounts in Red Hat Advanced Cluster Security (ACS) for OpenShift</h1>
+                <hr />
+                <h2></h2>
+                <h3><strong>Introduction</strong></h3>
+                <p>Managing secrets is a crucial aspect of Kubernetes security, especially when it comes to service accounts that require access to sensitive information like API keys, tokens, and certificates. Red Hat Advanced Cluster Security (ACS) for OpenShift provides robust mechanisms to handle these secrets securely within your Kubernetes or OpenShift clusters. In this blog post, we'll explore how to update secrets specifically for service accounts in ACS for OpenShift, providing practical steps and code examples to help you automate this process effectively.</p>
+                <h3><strong>Understanding Service Account Secrets in OpenShift</strong></h3>
+                <p>In OpenShift, service accounts are Kubernetes objects that provide an identity for processes running in a pod. Secrets linked to these service accounts often contain sensitive information necessary for accessing the cluster's resources or external services securely.</p>
+                <h3><strong>Why Regularly Update Service Account Secrets?</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Enhanced Security</strong>: Regularly updating secrets reduces the risk of unauthorized access if a secret is compromised.</p>
+                </li>
+                <li>
+                <p><strong>Compliance Requirements</strong>: Some organizations must rotate secrets periodically to comply with security policies or regulations.</p>
+                </li>
+                <li>
+                <p><strong>Mitigating Security Incidents</strong>: Updating secrets promptly in response to a security breach can help contain and minimize potential damage.</p>
+                </li>
+                </ul>
+                <h3><strong>Steps to Update Secrets for Service Accounts Using ACS</strong></h3>
+                <h4><strong>1. Accessing the ACS Console</strong></h4>
+                <p>Start by ensuring you have access to the ACS console. You can access it either through the OpenShift web console or directly via the ACS dashboard.</p>
+                <h4><strong>2. Identifying Service Accounts and Their Secrets</strong></h4>
+                <p>Navigate to the <strong>Service Accounts</strong> section under the <strong>Configuration</strong> or <strong>Platform Configuration</strong> tab in the ACS console. Identify which service accounts have secrets that need updating. These secrets might include API tokens, SSH keys, or other credentials associated with the service accounts.</p>
+                <h4><strong>3. Updating Service Account Secrets Using the OpenShift CLI (oc)</strong></h4>
+                <p>The OpenShift CLI (<code>oc</code>) is a powerful tool for managing service account secrets. Here's how you can update these secrets:</p>
+                <h5><strong>Example: Updating a Token Secret for a Service Account</strong></h5>
+                <p>Suppose you have a service account <code>my-service-account</code> with a token secret named <code>my-token-secret</code> that needs updating. Follow these steps to update the token:</p>
+                <h1>Step 1: Retrieve the current secret to a YAML file</h1>
+                <p>oc get secret my-token-secret -o yaml &gt; my-token-secret.yaml</p>
+                <h1>Step 2: Edit the YAML file to update the <code>token</code> field</h1>
+                <h1>Encode the new token if required</h1>
+                <p>echo -n 'new_token' | base64</p>
+                <h1>Update the <code>data.token</code> field in the YAML file with the new base64-encoded token</h1>
+                <h1>Save the changes</h1>
+                <h1>Step 3: Apply the updated secret</h1>
+                <p>oc apply -f my-token-secret.yaml</p>
+                <p>Alternatively, you can create a new token secret and link it to the service account:</p>
+                <h1>Create a new token secret</h1>
+                <p>oc create secret generic new-token-secret \<br />
+                  --from-literal=token='new_token_value'</p>
+                <h1>Link the new secret to the service account</h1>
+                <p>oc secrets add serviceaccount/my-service-account secrets/new-token-secret --for=mount</p>
+                <h4><strong>4. Verifying the Secret Update</strong></h4>
+                <p>After updating the secret, verify that the service account has the updated secret associated with it:</p>
+                <p>oc describe serviceaccount my-service-account</p>
+                <p>Check that the newly updated or added secret is listed under the secrets section.</p>
+                <h4><strong>5. Automating Secret Updates with Scripts</strong></h4>
+                <p>To streamline secret updates for service accounts, you can use a script to automate the process. Here’s a sample bash script to update a service account token:</p>
+                <h1>!/bin/bash</h1>
+                <p>SERVICE_ACCOUNT="my-service-account"<br />
+                NEW_TOKEN="new_token_value"<br />
+                SECRET_NAME="my-token-secret"</p>
+                <h1>Base64 encode the new token</h1>
+                <p>NEW_TOKEN_ENCODED=$(echo -n $NEW_TOKEN | base64)</p>
+                <h1>Retrieve the current secret to a file</h1>
+                <p>oc get secret $SECRET_NAME -o yaml &gt; ${SECRET_NAME}.yaml</p>
+                <h1>Update the token in the YAML file</h1>
+                <p>sed -i "s/(token:).*/\1 $NEW_TOKEN_ENCODED/" ${SECRET_NAME}.yaml</p>
+                <h1>Apply the updated secret</h1>
+                <p>oc apply -f ${SECRET_NAME}.yaml</p>
+                <p>echo "Secret $SECRET_NAME for service account $SERVICE_ACCOUNT updated successfully."</p>
+                <h3><strong>Conclusion</strong></h3>
+                <p>Regularly updating secrets for service accounts in OpenShift clusters using Red Hat Advanced Cluster Security (ACS) is essential for maintaining cluster security and compliance. The steps outlined in this post—identifying secrets, using the <code>oc</code> CLI to apply updates, and verifying changes—ensure that your service accounts remain secure. Automating these processes with scripts can further streamline your secret management practices, making it easier to maintain a secure and compliant cluster environment.</p>
+                <p>By following these guidelines and utilizing the provided code examples, you can effectively manage and update secrets for service accounts in your OpenShift environment.</p>
+                <hr />
+                <p>Feel free to adapt this post as needed to match your specific use case or environment!</p>
+                <p>The script you provided updates a Kubernetes secret in OpenShift by replacing the token value with a new one. However, to determine if this script would be allowed in OpenShift ACS (Advanced Cluster Security), we need to consider a few factors:</p>
+                <h3>1. <strong>Security Policies and Controls:</strong></h3>
+                <ul>
+                <li>
+                <p><strong>OpenShift ACS (StackRox)</strong> is a security platform designed to enhance Kubernetes security by enforcing policies and detecting vulnerabilities and compliance issues.</p>
+                </li>
+                <li>
+                <p>Whether the script is allowed depends on the specific security policies configured in OpenShift ACS. If there are strict policies against modifying secrets or using certain commands like <code>oc apply</code>, the script might be flagged or blocked.</p>
+                </li>
+                </ul>
+                <h3>2. <strong>Access Control and Permissions:</strong></h3>
+                <ul>
+                <li>
+                <p>The script requires sufficient permissions to retrieve and update secrets. The user running this script needs permissions to execute <code>oc get secret</code> and <code>oc apply</code>. Typically, this would require permissions such as <code>get</code> and <code>patch</code> for secrets in the specified namespace.</p>
+                </li>
+                <li>
+                <p>Additionally, the service account or user must be authorized to encode/decode base64 and perform file operations on the cluster.</p>
+                </li>
+                </ul>
+                <h3>3. <strong>Security Best Practices:</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Base64 Encoding:</strong> The script uses base64 to encode the token, which is standard practice when handling Kubernetes secrets.</p>
+                </li>
+                <li>
+                <p><strong>Modifying YAML Files:</strong> The script directly modifies YAML files, which could potentially be dangerous if not handled carefully, especially when running in production environments.</p>
+                </li>
+                <li>
+                <p><strong>Audit and Logging:</strong> Actions performed by the script should be audited and logged, particularly when dealing with secrets.</p>
+                </li>
+                </ul>
+                <h3>4. <strong>Compliance and Audit:</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Compliance Requirements:</strong> Depending on the compliance requirements set up in OpenShift ACS, directly modifying secrets might need to go through an additional approval process or have a specific compliance check.</p>
+                </li>
+                <li>
+                <p><strong>Audit Logs:</strong> The script should be used in a way that does not bypass audit logging. For instance, if OpenShift ACS is configured to monitor secret changes, this operation should be logged.</p>
+                </li>
+                </ul>
+                <h3>5. <strong>Specific ACS Policies:</strong></h3>
+                <ul>
+                <li>
+                <p>OpenShift ACS allows administrators to define specific policies that can prevent the execution of scripts or commands that modify critical resources or perform sensitive operations without proper authorization or checks.</p>
+                </li>
+                <li>
+                <p>If there are policies in place that restrict updates to secrets or require changes to go through a pipeline or automation tool with proper approvals, this script might not be allowed.</p>
+                </li>
+                </ul>
+                <h3><strong>Conclusion:</strong></h3>
+                <p>While there is nothing inherently wrong with the script from a technical perspective, whether it would be allowed in an OpenShift ACS environment depends on the configured policies and the permissions granted to the user or service account running the script.</p>
+                <p><strong>To ensure compliance and security:</strong></p>
+                <ul>
+                <li>
+                <p><strong>Check the OpenShift ACS policies:</strong> Review the configured policies in OpenShift ACS to ensure that this type of operation is allowed.</p>
+                </li>
+                <li>
+                <p><strong>Ensure proper permissions:</strong> Make sure the user or service account has the necessary permissions to execute the commands.</p>
+                </li>
+                <li>
+                <p><strong>Follow best practices:</strong> Consider using automation tools and pipelines that can handle secrets more securely and maintain an audit trail.</p>
+                </li>
+                </ul>
+                <p>If you have control over the ACS policies or can work with an administrator, you can verify if this script aligns with the security posture of your OpenShift environment.</p>
+                <p><strong>🔗 Connect with me:</strong></p>
+                <ul>
+                <li>
+                <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/rifaterdemsahin/">https://www.linkedin.com/in/rifaterdemsahin/</a></p>
+                </li>
+                <li>
+                <p>🐦 Twitter: <a href="https://x.com/rifaterdemsahin">https://x.com/rifaterdemsahin</a></p>
+                </li>
+                <li>
+                <p>🎥 YouTube: <a href="https://www.youtube.com/@RifatErdemSahin">https://www.youtube.com/@RifatErdemSahin</a></p>
+                </li>
+                <li>
+                <p>💻 GitHub: <a href="https://github.com/rifaterdemsahin">https://github.com/rifaterdemsahin</a></p>
+                </li>
+                </ul>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

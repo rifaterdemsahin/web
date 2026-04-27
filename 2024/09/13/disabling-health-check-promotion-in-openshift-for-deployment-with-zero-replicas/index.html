@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disabling Health Check Promotion in OpenShift for Deployment with Zero Replicas - Rifat Erdem Sahin</title>
+    <meta name="description" content="Disabling Health Check Promotion in OpenShift for Deployment with Zero Replicas When working with OpenShift, there are times when you need to deploy a module without triggering the usual health check ">
+    <meta name="keywords" content="Disabling Health Check Promotion in OpenShift for Deployment with Zero Replicas">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/09/13/disabling-health-check-promotion-in-openshift-for-deployment-with-zero-replicas/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/09/13/disabling-health-check-promotion-in-openshift-for-deployment-with-zero-replicas/">
+    <meta property="og:title" content="Disabling Health Check Promotion in OpenShift for Deployment with Zero Replicas">
+    <meta property="og:description" content="Disabling Health Check Promotion in OpenShift for Deployment with Zero Replicas When working with OpenShift, there are times when you need to deploy a module without triggering the usual health check ">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/09/13/disabling-health-check-promotion-in-openshift-for-deployment-with-zero-replicas/">
+    <meta property="twitter:title" content="Disabling Health Check Promotion in OpenShift for Deployment with Zero Replicas">
+    <meta property="twitter:description" content="Disabling Health Check Promotion in OpenShift for Deployment with Zero Replicas When working with OpenShift, there are times when you need to deploy a module without triggering the usual health check ">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Disabling Health Check Promotion in OpenShift for Deployment with Zero Replicas",
+      "description": "Disabling Health Check Promotion in OpenShift for Deployment with Zero Replicas When working with OpenShift, there are times when you need to deploy a module without triggering the usual health check ",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-09-13",
+      "dateModified": "2024-09-13",
+      "url": "https://www.rifaterdemsahin.com/2024/09/13/disabling-health-check-promotion-in-openshift-for-deployment-with-zero-replicas/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/09/13/disabling-health-check-promotion-in-openshift-for-deployment-with-zero-replicas/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Disabling Health Check Promotion in OpenShift for Deployment with Zero Replicas</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>September 13, 2024</span>
+                    <span>&bull;</span>
+                    <span>27 min read</span>
+                </div>
+                <p class="article-excerpt">Disabling Health Check Promotion in OpenShift for Deployment with Zero Replicas When working with OpenShift, there are times when you need to deploy a module without triggering the usual health check promotion pipeline.</p>
+            </header>
+            <article class="article-content">
+                <h1>Disabling Health Check Promotion in OpenShift for Deployment with Zero Replicas</h1>
+                <p>When working with OpenShift, there are times when you need to deploy a module without triggering the usual health check promotion pipeline. This <em>might be necessary for various reasons</em>, such as performing <em>maintenance </em>or updating the application with zero downtime. In this blog post, we’ll go over how to temporarily disable the production module health check <strong>promotion pipeline to facilitate a deployment with zero replicas.</strong></p>
+                <h4>Why Disable Health Check Promotion?</h4>
+                <p>By default, OpenShift uses health checks to ensure that each module is running correctly before promoting it to production. However, there are scenarios where you may want to bypass these checks temporarily, such as when:</p>
+                <ul>
+                <li>
+                <p>Deploying updates or patches that don't require immediate scaling.</p>
+                </li>
+                <li>
+                <p>Performing maintenance tasks that necessitate starting with zero replicas.</p>
+                </li>
+                <li>
+                <p>Preparing an environment for a controlled deployment where immediate promotion isn't desired.</p>
+                </li>
+                </ul>
+                <h4>Steps to Disable Health Check Promotion</h4>
+                <p><img src="images/disabling-health-check-1.png" alt="disabling health check 1" class="article-image" loading="lazy"></p>
+                <p><img src="images/disabling-health-check-2.png" alt="disabling health check 2" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>
+                <p><strong>Access Your OpenShift Console:</strong><br />
+                Begin by logging into your OpenShift console. Ensure you have the appropriate permissions to modify deployment configurations.</p>
+                </li>
+                <li>
+                <p><strong>Navigate to the Deployment Configuration:</strong><br />
+                Find the deployment configuration (DC) of the module you wish to modify. This can typically be found under the "Workloads" section in the OpenShift console.</p>
+                </li>
+                <li>
+                <p><strong>Edit the Deployment Configuration:</strong><br />
+                Click on the module's deployment configuration to edit it. You'll need to adjust the settings to temporarily disable health checks.</p>
+                </li>
+                <li>
+                <p><strong>Set the Replicas to Zero:</strong><br />
+                Adjust the <code>replicas</code> field in your deployment configuration to <code>0</code>. This ensures that no pods are running during the initial stage of deployment.</p>
+                </li>
+                <li>
+                <p><strong>Disable Health Check Promotion:</strong><br />
+                Locate the health check settings in the deployment configuration. These are often found under the "Health Checks" tab or section. Temporarily disable the readiness and liveness probes to prevent the deployment pipeline from promoting the module based on health checks.</p>
+                </li>
+                <li>
+                <p><strong>Apply Changes:</strong><br />
+                Save and apply your changes to the deployment configuration. This will update the configuration and disable the health check promotion for this module.</p>
+                </li>
+                <li>
+                <p><strong>Deploy Your Module:</strong><br />
+                With health checks disabled and replicas set to zero, you can now deploy your module without triggering the health check promotion pipeline. This setup allows for controlled updates or maintenance without the usual checks and balances.</p>
+                </li>
+                <li>
+                <p><strong>Re-enable Health Checks After Deployment:</strong><br />
+                Once your deployment or maintenance task is complete, remember to re-enable the health checks and adjust the replicas back to the desired number to resume normal operations.</p>
+                </li>
+                </ul>
+                <p>Reach on CRC</p>
+                <p><img src="images/disabling-health-check-3.png" alt="disabling health check 3" class="article-image" loading="lazy"></p>
+                <p>CRC start</p>
+                <p><code>WARN A new version (2.41.0) has been published on https://developers.redhat.com/content-gateway/file/pub/openshift-v4/clients/crc/2.41.0/crc-windows-installer.zip
+                INFO Using bundle path C:\Users\Pexabo\.crc\cache\crc_hyperv_4.16.4_amd64.crcbundle
+                INFO Checking minimum RAM requirements
+                INFO Check if Podman binary exists in: C:\Users\Pexabo\.crc\bin\oc
+                INFO Checking if running in a shell with administrator rights
+                WARN Preflight checks failed during</code>crc start<code>, please try to run</code>crc setup<code>first in case you haven't done so yet
+                crc should be run in a shell without administrator rights</code></p>
+                <hr />
+                <p>None Admin</p>
+                <p><img src="images/disabling-health-check-4.png" alt="disabling health check 4" class="article-image" loading="lazy"></p>
+                <p>I have the url in my hand to logi at the end</p>
+                <p>one more run to enter</p>
+                <p><img src="images/disabling-health-check-5.png" alt="disabling health check 5" class="article-image" loading="lazy"></p>
+                <p><img src="images/disabling-health-check-6.png" alt="disabling health check 6" class="article-image" loading="lazy"></p>
+                <p>Deployment config is all empty </p>
+                <p><img src="images/disabling-health-check-7.png" alt="disabling health check 7" class="article-image" loading="lazy"></p>
+                <p>I have an app there that is running </p>
+                <p><img src="images/disabling-health-check-8.png" alt="disabling health check 8" class="article-image" loading="lazy"></p>
+                <p>go lang running pod there </p>
+                <p><img src="images/disabling-health-check-9.png" alt="disabling health check 9" class="article-image" loading="lazy"></p>
+                <p><img src="images/disabling-health-check-10.png" alt="disabling health check 10" class="article-image" loading="lazy"></p>
+                <p>Create the deployment Config</p>
+                <p><img src="images/disabling-health-check-11.png" alt="disabling health check 11" class="article-image" loading="lazy"></p>
+                <p>llm nuggets for you</p>
+                <p><img src="images/disabling-health-check-12.png" alt="disabling health check 12" class="article-image" loading="lazy"></p>
+                <p>For view makes it easier </p>
+                <p><img src="images/disabling-health-check-13.png" alt="disabling health check 13" class="article-image" loading="lazy"></p>
+                <p>Deployments are not empty </p>
+                <p><img src="images/disabling-health-check-14.png" alt="disabling health check 14" class="article-image" loading="lazy"></p>
+                <p><img src="images/disabling-health-check-15.png" alt="disabling health check 15" class="article-image" loading="lazy"></p>
+                <p>only running with one </p>
+                <p><img src="images/disabling-health-check-16.png" alt="disabling health check 16" class="article-image" loading="lazy"></p>
+                <p>gpt in action to write the deployment </p>
+                <p><img src="images/disabling-health-check-17.png" alt="disabling health check 17" class="article-image" loading="lazy"></p>
+                <p><img src="images/disabling-health-check-18.png" alt="disabling health check 18" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>To create a Kubernetes Deployment with 3 replicas based on the given Pod specification, you'll need to use a <code>Deployment</code> object. The <code>Deployment</code> will manage the creation and scaling of the specified Pod replicas. Below is the YAML configuration for a Deployment with 3 replicas:</p>
+                <p>apiVersion: apps/v1<br />
+                kind: Deployment<br />
+                metadata:<br />
+                  name: golang-ex-deployment<br />
+                  namespace: myapp-project<br />
+                spec:<br />
+                  replicas: 3<br />
+                  selector:<br />
+                    matchLabels:<br />
+                      app: golang-ex<br />
+                  template:<br />
+                    metadata:<br />
+                      labels:<br />
+                        app: golang-ex<br />
+                    spec:<br />
+                      restartPolicy: Always<br />
+                      serviceAccountName: default<br />
+                      imagePullSecrets:<br />
+                        - name: default-dockercfg-xlv29<br />
+                      priority: 0<br />
+                      schedulerName: default-scheduler<br />
+                      enableServiceLinks: true<br />
+                      terminationGracePeriodSeconds: 30<br />
+                      preemptionPolicy: PreemptLowerPriority<br />
+                      securityContext:<br />
+                        seLinuxOptions:<br />
+                          level: 's0:c26,c5'<br />
+                        fsGroup: 1000660000<br />
+                        seccompProfile:<br />
+                          type: RuntimeDefault<br />
+                      containers:<br />
+                        - name: golang-ex<br />
+                          image: 'image-registry.openshift-image-registry.svc:5000/myapp-project/golang-ex@sha256:5285855b739c8613fa614a9ac991b7e70164bb4db819b0f327a42937a3b9dac2'<br />
+                          resources: {}<br />
+                          volumeMounts:<br />
+                            - name: kube-api-access-kmdlt<br />
+                              readOnly: true<br />
+                              mountPath: /var/run/secrets/kubernetes.io/serviceaccount<br />
+                          terminationMessagePath: /dev/termination-log<br />
+                          terminationMessagePolicy: File<br />
+                          imagePullPolicy: IfNotPresent<br />
+                          securityContext:<br />
+                            capabilities:<br />
+                              drop:<br />
+                                - ALL<br />
+                            runAsUser: 1000660000<br />
+                            runAsNonRoot: true<br />
+                            allowPrivilegeEscalation: false<br />
+                      serviceAccount: default<br />
+                      volumes:<br />
+                        - name: kube-api-access-kmdlt<br />
+                          projected:<br />
+                            sources:<br />
+                              - serviceAccountToken:<br />
+                                  expirationSeconds: 3607<br />
+                                  path: token<br />
+                              - configMap:<br />
+                                  name: kube-root-ca.crt<br />
+                                  items:<br />
+                                    - key: ca.crt<br />
+                                      path: ca.crt<br />
+                              - downwardAPI:<br />
+                                  items:<br />
+                                    - path: namespace<br />
+                                      fieldRef:<br />
+                                        apiVersion: v1<br />
+                                        fieldPath: metadata.namespace<br />
+                              - configMap:<br />
+                                  name: openshift-service-ca.crt<br />
+                                  items:<br />
+                                    - key: service-ca.crt<br />
+                                      path: service-ca.crt<br />
+                            defaultMode: 420<br />
+                      dnsPolicy: ClusterFirst<br />
+                      tolerations:<br />
+                        - key: node.kubernetes.io/not-ready<br />
+                          operator: Exists<br />
+                          effect: NoExecute<br />
+                          tolerationSeconds: 300<br />
+                        - key: node.kubernetes.io/unreachable<br />
+                          operator: Exists<br />
+                          effect: NoExecute<br />
+                          tolerationSeconds: 300</p>
+                <h3>Key Points of This Deployment YAML:</h3>
+                <ul>
+                <li>
+                <p><strong>Replicas</strong>: Set to <code>3</code> to ensure three instances of the pod are running.</p>
+                </li>
+                <li>
+                <p><strong>Selector</strong>: Matches the label <code>app: golang-ex</code> to ensure the Deployment manages pods with this label.</p>
+                </li>
+                <li>
+                <p><strong>Template</strong>: The pod template in the <code>Deployment</code> matches the provided pod specification, including all containers, volumes, and security contexts.</p>
+                </li>
+                </ul>
+                <p>Apply this configuration with <code>kubectl</code>:</p>
+                <p>kubectl apply -f deployment.yaml</p>
+                <p>Replace <code>deployment.yaml</code> with the file name you saved the YAML configuration in. This command will create the Deployment and manage 3 replicas of the specified pod.</p>
+                <p>Trigger and see 3</p>
+                <p><img src="images/disabling-health-check-19.png" alt="disabling health check 19" class="article-image" loading="lazy"></p>
+                <p>no label is mine </p>
+                <p><img src="images/disabling-health-check-20.png" alt="disabling health check 20" class="article-image" loading="lazy"></p>
+                <p>Running pods</p>
+                <p><img src="images/disabling-health-check-21.png" alt="disabling health check 21" class="article-image" loading="lazy"></p>
+                <p>When i created it </p>
+                <p><img src="images/disabling-health-check-22.png" alt="disabling health check 22" class="article-image" loading="lazy"></p>
+                <h4>Delete pod and it goes back up</h4>
+                <p><img src="images/disabling-health-check-23.png" alt="disabling health check 23" class="article-image" loading="lazy"></p>
+                <p><img src="images/disabling-health-check-24.png" alt="disabling health check 24" class="article-image" loading="lazy"></p>
+                <p>Process in the back &gt;&gt;&gt; train engines </p>
+                <p><img src="images/disabling-health-check-25.png" alt="disabling health check 25" class="article-image" loading="lazy"></p>
+                <p>Replica Set Given by GPT</p>
+                <p><img src="images/disabling-health-check-26.png" alt="disabling health check 26" class="article-image" loading="lazy"></p>
+                <p><code>apiVersion: apps/v1
+                kind: Deployment
+                metadata:
+                  name: golang-ex-deployment
+                  namespace: myapp-project
+                spec:
+                  replicas: 3
+                  selector:
+                    matchLabels:
+                      app: golang-ex
+                  template:
+                    metadata:
+                      labels:
+                        app: golang-ex
+                    spec:
+                      restartPolicy: Always
+                      serviceAccountName: default
+                      imagePullSecrets:
+                        - name: default-dockercfg-xlv29
+                      priority: 0
+                      schedulerName: default-scheduler
+                      enableServiceLinks: true
+                      terminationGracePeriodSeconds: 30
+                      preemptionPolicy: PreemptLowerPriority
+                      securityContext:
+                        seLinuxOptions:
+                          level: 's0:c26,c5'
+                        fsGroup: 1000660000
+                        seccompProfile:
+                          type: RuntimeDefault
+                      containers:
+                        - name: golang-ex
+                          image: 'image-registry.openshift-image-registry.svc:5000/myapp-project/golang-ex@sha256:5285855b739c8613fa614a9ac991b7e70164bb4db819b0f327a42937a3b9dac2'
+                          resources: {}
+                          volumeMounts:
+                            - name: kube-api-access-kmdlt
+                              readOnly: true
+                              mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+                          terminationMessagePath: /dev/termination-log
+                          terminationMessagePolicy: File
+                          imagePullPolicy: IfNotPresent
+                          securityContext:
+                            capabilities:
+                              drop:
+                                - ALL
+                            runAsUser: 1000660000
+                            runAsNonRoot: true
+                            allowPrivilegeEscalation: false
+                      serviceAccount: default
+                      volumes:
+                        - name: kube-api-access-kmdlt
+                          projected:
+                            sources:
+                              - serviceAccountToken:
+                                  expirationSeconds: 3607
+                                  path: token
+                              - configMap:
+                                  name: kube-root-ca.crt
+                                  items:
+                                    - key: ca.crt
+                                      path: ca.crt
+                              - downwardAPI:
+                                  items:
+                                    - path: namespace
+                                      fieldRef:
+                                        apiVersion: v1
+                                        fieldPath: metadata.namespace
+                              - configMap:
+                                  name: openshift-service-ca.crt
+                                  items:
+                                    - key: service-ca.crt
+                                      path: service-ca.crt
+                            defaultMode: 420
+                      dnsPolicy: ClusterFirst
+                      tolerations:
+                        - key: node.kubernetes.io/not-ready
+                          operator: Exists
+                          effect: NoExecute
+                          tolerationSeconds: 300
+                        - key: node.kubernetes.io/unreachable
+                          operator: Exists
+                          effect: NoExecute
+                          tolerationSeconds: 300</code></p>
+                <p>in the source</p>
+                <p><img src="images/disabling-health-check-27.png" alt="disabling health check 27" class="article-image" loading="lazy"></p>
+                <p>in yaml just the generic code is there</p>
+                <p><img src="images/disabling-health-check-28.png" alt="disabling health check 28" class="article-image" loading="lazy"></p>
+                <p>Lets Analyse</p>
+                <p><img src="images/disabling-health-check-29.png" alt="disabling health check 29" class="article-image" loading="lazy"></p>
+                <p>The provided YAML configuration is for a Kubernetes <code>Deployment</code> resource, which defines a set of pods to be managed by Kubernetes. Each line in the configuration specifies particular settings and options for the deployment, including its metadata, the pod template, the number of replicas, and various other settings related to the runtime environment of the pods.</p>
+                <p>Here's a line-by-line breakdown of the YAML:</p>
+                <ul>
+                <li>
+                <p><strong><code>apiVersion: apps/v1</code></strong><br />
+                Specifies the version of the Kubernetes API being used for this configuration. <code>apps/v1</code> is a stable version used for deployments.</p>
+                </li>
+                <li>
+                <p><strong><code>kind: Deployment</code></strong><br />
+                Declares the type of Kubernetes object being defined. In this case, it is a <code>Deployment</code>, which manages a set of replicated pods for application scaling and updates.</p>
+                </li>
+                <li>
+                <p><strong><code>metadata:</code></strong><br />
+                Metadata provides information about the deployment such as its name and namespace.</p>
+                </li>
+                <li>
+                <p><strong><code>name: golang-ex-deployment</code></strong><br />
+                The name of the deployment, used to identify it within the namespace.</p>
+                </li>
+                <li>
+                <p><strong><code>namespace: myapp-project</code></strong><br />
+                The namespace in which this deployment is created. Namespaces provide a scope for Kubernetes objects and help organize resources.</p>
+                </li>
+                <li>
+                <p><strong><code>spec:</code></strong><br />
+                The specification of the desired behavior of the deployment, detailing the number of replicas, the template for creating pods, and other settings.</p>
+                </li>
+                <li>
+                <p><strong><code>replicas: 3</code></strong><br />
+                Indicates that three replicas (instances) of the pod defined in the template should be maintained.</p>
+                </li>
+                <li>
+                <p><strong><code>selector:</code></strong><br />
+                Defines how the deployment identifies the set of pods to manage. This is done using labels.</p>
+                </li>
+                <li>
+                <p><strong><code>matchLabels:</code></strong><br />
+                A map of key-value pairs used to select pods. Only pods with matching labels will be managed by this deployment.</p>
+                </li>
+                <li>
+                <p><strong><code>app: golang-ex</code></strong><br />
+                The label key and value that the selector uses to match pods. In this case, it matches pods labeled <code>app: golang-ex</code>.</p>
+                </li>
+                <li>
+                <p><strong><code>template:</code></strong><br />
+                Describes the pod template for creating replicas. This section defines the specifications of the pods that will be deployed.</p>
+                </li>
+                <li>
+                <p><strong><code>metadata:</code></strong><br />
+                Metadata for the pod template. This often includes labels.</p>
+                </li>
+                <li>
+                <p><strong><code>labels:</code></strong><br />
+                Key-value pairs that will be applied as labels to the pods created from this template.</p>
+                </li>
+                <li>
+                <p><strong><code>app: golang-ex</code></strong><br />
+                A label applied to the pods for identification and selection purposes.</p>
+                </li>
+                <li>
+                <p><strong><code>spec:</code></strong><br />
+                The pod specification, describing the containers, volumes, and other aspects of the pod runtime environment.</p>
+                </li>
+                <li>
+                <p><strong><code>restartPolicy: Always</code></strong><br />
+                Indicates that the pods should always be restarted if they are terminated, except when they are manually stopped.</p>
+                </li>
+                <li>
+                <p><strong><code>serviceAccountName: default</code></strong><br />
+                Specifies the service account under which the pods will run. Here, the default service account is used.</p>
+                </li>
+                <li>
+                <p><strong><code>imagePullSecrets:</code></strong><br />
+                Specifies a list of secrets used to pull private Docker images.</p>
+                </li>
+                <li>
+                <p><strong><code>- name: default-dockercfg-xlv29</code></strong><br />
+                The name of the secret containing Docker credentials, used to pull images from a private registry.</p>
+                </li>
+                <li>
+                <p><strong><code>priority: 0</code></strong><br />
+                Specifies the priority of the pods. A lower value means lower priority.</p>
+                </li>
+                <li>
+                <p><strong><code>schedulerName: default-scheduler</code></strong><br />
+                Specifies the scheduler to be used for placing the pods on nodes. The default Kubernetes scheduler is being used here.</p>
+                </li>
+                <li>
+                <p><strong><code>enableServiceLinks: true</code></strong><br />
+                Determines whether information about services (environment variables) should be automatically injected into pods.</p>
+                </li>
+                <li>
+                <p><strong><code>terminationGracePeriodSeconds: 30</code></strong><br />
+                Specifies the grace period to allow for pod termination. Kubernetes waits for 30 seconds before forcefully terminating the pod.</p>
+                </li>
+                <li>
+                <p><strong><code>preemptionPolicy: PreemptLowerPriority</code></strong><br />
+                Defines the preemption policy for pods, which allows this pod to evict other lower-priority pods if resources are constrained.</p>
+                </li>
+                <li>
+                <p><strong><code>securityContext:</code></strong><br />
+                Defines security settings for the pod, including user permissions and SELinux options.</p>
+                </li>
+                <li>
+                <p><strong><code>seLinuxOptions:</code></strong><br />
+                Configures SELinux options for the pod.</p>
+                </li>
+                <li>
+                <p><strong><code>level: 's0:c26,c5'</code></strong><br />
+                Sets the SELinux level for the pod.</p>
+                </li>
+                <li>
+                <p><strong><code>fsGroup: 1000660000</code></strong><br />
+                Defines a group ID that will be applied to all files that are created by the pod. It allows sharing files between containers in a pod.</p>
+                </li>
+                <li>
+                <p><strong><code>seccompProfile:</code></strong><br />
+                Configures the seccomp profile for the pod, which is a security feature to restrict the system calls a process can make.</p>
+                </li>
+                <li>
+                <p><strong><code>type: RuntimeDefault</code></strong><br />
+                Uses the default seccomp profile provided by the container runtime.</p>
+                </li>
+                <li>
+                <p><strong><code>containers:</code></strong><br />
+                Lists the containers that will run inside the pods created by this deployment.</p>
+                </li>
+                <li>
+                <p><strong><code>- name: golang-ex</code></strong><br />
+                The name of the container. Each container in a pod must have a unique name.</p>
+                </li>
+                <li>
+                <p><strong><code>image: 'image-registry.openshift-image-registry.svc:5000/myapp-project/golang-ex@sha256:5285855b739c8613fa614a9ac991b7e70164bb4db819b0f327a42937a3b9dac2'</code></strong><br />
+                Specifies the image used for the container. This image is pulled from a private registry and is identified by its SHA256 digest.</p>
+                </li>
+                <li>
+                <p><strong><code>resources: {}</code></strong><br />
+                Resource requests and limits for the container are left empty here, meaning no specific CPU or memory constraints are applied.</p>
+                </li>
+                <li>
+                <p><strong><code>volumeMounts:</code></strong><br />
+                Lists the volumes to be mounted into the container’s filesystem.</p>
+                </li>
+                <li>
+                <p><strong><code>- name: kube-api-access-kmdlt</code></strong><br />
+                Specifies the volume name to be mounted.</p>
+                </li>
+                <li>
+                <p><strong><code>readOnly: true</code></strong><br />
+                Indicates that the volume is mounted as read-only.</p>
+                </li>
+                <li>
+                <p><strong><code>mountPath: /var/run/secrets/kubernetes.io/serviceaccount</code></strong><br />
+                The path in the container where the volume is mounted. This is typically used to provide the service account credentials to the container.</p>
+                </li>
+                <li>
+                <p><strong><code>terminationMessagePath: /dev/termination-log</code></strong><br />
+                Specifies the path where the termination message (logs) of the container is written.</p>
+                </li>
+                <li>
+                <p><strong><code>terminationMessagePolicy: File</code></strong><br />
+                Defines how the termination messages are retrieved. Here, it specifies using a file to retrieve these messages.</p>
+                </li>
+                <li>
+                <p><strong><code>imagePullPolicy: IfNotPresent</code></strong><br />
+                Indicates the container image is pulled only if it is not already present on the node. This optimizes image pulls.</p>
+                </li>
+                <li>
+                <p><strong><code>securityContext:</code></strong><br />
+                Security settings specific to this container.</p>
+                </li>
+                <li>
+                <p><strong><code>capabilities:</code></strong><br />
+                Configures Linux capabilities for the container.</p>
+                </li>
+                <li>
+                <p><strong><code>drop:</code></strong><br />
+                Specifies capabilities to drop from the default set.</p>
+                </li>
+                <li>
+                <p><strong><code>- ALL</code></strong><br />
+                All Linux capabilities are dropped, providing a more secure environment.</p>
+                </li>
+                <li>
+                <p><strong><code>runAsUser: 1000660000</code></strong><br />
+                Specifies the user ID under which the container should run.</p>
+                </li>
+                <li>
+                <p><strong><code>runAsNonRoot: true</code></strong><br />
+                Ensures the container runs as a non-root user, enhancing security.</p>
+                </li>
+                <li>
+                <p><strong><code>allowPrivilegeEscalation: false</code></strong><br />
+                Prevents the container from gaining more privileges than its parent process, improving security.</p>
+                </li>
+                <li>
+                <p><strong><code>serviceAccount: default</code></strong><br />
+                Specifies the service account to be used by the pod.</p>
+                </li>
+                <li>
+                <p><strong><code>volumes:</code></strong><br />
+                Lists the volumes available to the containers in the pod.</p>
+                </li>
+                <li>
+                <p><strong><code>- name: kube-api-access-kmdlt</code></strong><br />
+                Defines a projected volume, which is a collection of various volume sources.</p>
+                </li>
+                <li>
+                <p><strong><code>projected:</code></strong><br />
+                Defines the projected volume type, allowing for multiple sources to be projected into the same directory.</p>
+                </li>
+                <li>
+                <p><strong><code>sources:</code></strong><br />
+                The list of different sources included in the projected volume.</p>
+                </li>
+                <li>
+                <p><strong><code>- serviceAccountToken:</code></strong><br />
+                Defines a volume source containing a service account token.</p>
+                </li>
+                <li>
+                <p><strong><code>expirationSeconds: 3607</code></strong><br />
+                The time in seconds after which the service account token expires.</p>
+                </li>
+                <li>
+                <p><strong><code>path: token</code></strong><br />
+                The path within the projected volume where the token is placed.</p>
+                </li>
+                <li>
+                <p><strong><code>- configMap:</code></strong><br />
+                Defines a volume source coming from a ConfigMap, which is a key-value store used to hold configuration data.</p>
+                </li>
+                <li>
+                <p><strong><code>name: kube-root-ca.crt</code></strong><br />
+                The name of the ConfigMap used as a volume source.</p>
+                </li>
+                <li>
+                <p><strong><code>items:</code></strong><br />
+                Lists specific keys to project from the ConfigMap.</p>
+                </li>
+                <li>
+                <p><strong><code>- key: ca.crt</code></strong><br />
+                The key from the ConfigMap.</p>
+                </li>
+                <li>
+                <p><strong><code>path: ca.crt</code></strong><br />
+                The path within the projected volume where the ConfigMap data is placed.</p>
+                </li>
+                <li>
+                <p><strong><code>- downwardAPI:</code></strong><br />
+                Defines a volume source from the Downward API, which provides metadata about the pod or container.</p>
+                </li>
+                <li>
+                <p><strong><code>items:</code></strong><br />
+                Specifies individual fields to be projected from the Downward API.</p>
+                </li>
+                <li>
+                <p><strong><code>- path: namespace</code></strong><br />
+                The path within the projected volume for this Downward API item.</p>
+                </li>
+                <li>
+                <p><strong><code>fieldRef:</code></strong><br />
+                References a specific field of the pod.</p>
+                </li>
+                <li>
+                <p><strong><code>apiVersion: v1</code></strong><br />
+                Specifies the API version of the field.</p>
+                </li>
+                <li>
+                <p><strong><code>fieldPath: metadata.namespace</code></strong><br />
+                The field path to project. In this case, it projects the namespace of the pod.</p>
+                </li>
+                </ul>
+                <p>68.</p>
+                <p><strong><code>- configMap:</code></strong><br />
+                Another ConfigMap used as a volume source.</p>
+                <ul>
+                <li>
+                <p><strong><code>name: openshift-service-ca.crt</code></strong><br />
+                The name of the ConfigMap providing a certificate.</p>
+                </li>
+                <li>
+                <p><strong><code>items:</code></strong><br />
+                Specifies the particular item from the ConfigMap to use.</p>
+                </li>
+                <li>
+                <p><strong><code>- key: service-ca.crt</code></strong><br />
+                The key in the ConfigMap to use.</p>
+                </li>
+                <li>
+                <p><strong><code>path: service-ca.crt</code></strong><br />
+                The path within the projected volume where the certificate is placed.</p>
+                </li>
+                <li>
+                <p><strong><code>defaultMode: 420</code></strong><br />
+                Sets the default file permissions for files in this volume.</p>
+                </li>
+                <li>
+                <p><strong><code>dnsPolicy: ClusterFirst</code></strong><br />
+                Sets the DNS policy for the pod. <code>ClusterFirst</code> prefers the DNS entries in the cluster.</p>
+                </li>
+                <li>
+                <p><strong><code>tolerations:</code></strong><br />
+                Specifies tolerations for the pods, which allows them to be scheduled on nodes with matching taints.</p>
+                </li>
+                <li>
+                <p><strong><code>- key: node.kubernetes.io/not-ready</code></strong><br />
+                A toleration key indicating the pod can tolerate nodes marked as "not ready".</p>
+                </li>
+                <li>
+                <p><strong><code>operator: Exists</code></strong><br />
+                The operator to match the toleration key. <code>Exists</code> means this toleration matches any value.</p>
+                </li>
+                <li>
+                <p><strong><code>effect: NoExecute</code></strong><br />
+                Indicates the effect of the taint, which in this case prevents execution on the node unless the toleration is set.</p>
+                </li>
+                <li>
+                <p><strong><code>tolerationSeconds: 300</code></strong><br />
+                The duration for which the toleration is valid, in seconds.</p>
+                </li>
+                <li>
+                <p><strong><code>- key: node.kubernetes.io/unreachable</code></strong><br />
+                Another toleration key indicating the pod can tolerate nodes marked as "unreachable".</p>
+                </li>
+                <li>
+                <p><strong><code>operator: Exists</code></strong><br />
+                Matches the key if it exists, regardless of value.</p>
+                </li>
+                <li>
+                <p><strong><code>effect: NoExecute</code></strong><br />
+                The effect, as with the previous toleration, is to prevent execution on the node unless the toleration is applied.</p>
+                </li>
+                <li>
+                <p><strong><code>tolerationSeconds: 300</code></strong><br />
+                The duration for which this toleration is valid, allowing the pod to remain scheduled on unreachable nodes for up to 300 seconds.</p>
+                </li>
+                </ul>
+                <p>This YAML file defines a Kubernetes Deployment for an application named "golang-ex" within the "myapp-project" namespace. It specifies detailed configuration for the deployment, including three replicas, security contexts, image pulling policies, and various tolerations and volumes to ensure the pods operate securely and with the correct configurations.</p>
+                <p>replicas was the second step</p>
+                <p><img src="images/disabling-health-check-30.png" alt="disabling health check 30" class="article-image" loading="lazy"></p>
+                <p>At least evaluate for a health check is another deployment</p>
+                <p><img src="images/disabling-health-check-31.png" alt="disabling health check 31" class="article-image" loading="lazy"></p>
+                <p>Error at deployment</p>
+                <p><img src="images/disabling-health-check-32.png" alt="disabling health check 32" class="article-image" loading="lazy"></p>
+                <p>To add a health check (readiness and liveness probe) to your Kubernetes Deployment YAML for the <code>golang-ex</code> application, you need to specify the <code>livenessProbe</code> and <code>readinessProbe</code> settings under the container spec. Below is your modified YAML with these health checks added:</p>
+                <p>kind: Deployment<br />
+                apiVersion: apps/v1<br />
+                metadata:<br />
+                  annotations:<br />
+                    deployment.kubernetes.io/revision: '2'<br />
+                    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"golang-ex:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"golang-ex\")].image"}]'<br />
+                    openshift.io/generated-by: OpenShiftNewApp<br />
+                  resourceVersion: '234328'<br />
+                  name: golang-ex<br />
+                  uid: 135f03f6-ba79-4cfe-98b6-c000b5705583<br />
+                  creationTimestamp: '2024-08-21T12:24:34Z'<br />
+                  generation: 2<br />
+                  managedFields:<br />
+                    - manager: oc.exe<br />
+                      operation: Update<br />
+                      apiVersion: apps/v1<br />
+                      time: '2024-08-21T12:24:34Z'<br />
+                      fieldsType: FieldsV1<br />
+                      fieldsV1:<br />
+                        'f:metadata':<br />
+                          'f:annotations':<br />
+                            .: {}<br />
+                            'f:image.openshift.io/triggers': {}<br />
+                            'f:openshift.io/generated-by': {}<br />
+                          'f:labels':<br />
+                            .: {}<br />
+                            'f:app': {}<br />
+                            'f:app.kubernetes.io/component': {}<br />
+                            'f:app.kubernetes.io/instance': {}<br />
+                        'f:spec':<br />
+                          'f:progressDeadlineSeconds': {}<br />
+                          'f:replicas': {}<br />
+                          'f:revisionHistoryLimit': {}<br />
+                          'f:selector': {}<br />
+                          'f:strategy':<br />
+                            'f:rollingUpdate':<br />
+                              .: {}<br />
+                              'f:maxSurge': {}<br />
+                              'f:maxUnavailable': {}<br />
+                            'f:type': {}<br />
+                          'f:template':<br />
+                            'f:metadata':<br />
+                              'f:annotations':<br />
+                                .: {}<br />
+                                'f:openshift.io/generated-by': {}<br />
+                              'f:labels':<br />
+                                .: {}<br />
+                                'f:deployment': {}<br />
+                            'f:spec':<br />
+                              'f:containers':<br />
+                                'k:{"name":"golang-ex"}':<br />
+                                  .: {}<br />
+                                  'f:imagePullPolicy': {}<br />
+                                  'f:name': {}<br />
+                                  'f:resources': {}<br />
+                                  'f:terminationMessagePath': {}<br />
+                                  'f:terminationMessagePolicy': {}<br />
+                              'f:dnsPolicy': {}<br />
+                              'f:restartPolicy': {}<br />
+                              'f:schedulerName': {}<br />
+                              'f:securityContext': {}<br />
+                              'f:terminationGracePeriodSeconds': {}<br />
+                    - manager: openshift-controller-manager<br />
+                      operation: Update<br />
+                      apiVersion: apps/v1<br />
+                      time: '2024-08-21T12:25:05Z'<br />
+                      fieldsType: FieldsV1<br />
+                      fieldsV1:<br />
+                        'f:spec':<br />
+                          'f:template':<br />
+                            'f:spec':<br />
+                              'f:containers':<br />
+                                'k:{"name":"golang-ex"}':<br />
+                                  'f:image': {}<br />
+                    - manager: kube-controller-manager<br />
+                      operation: Update<br />
+                      apiVersion: apps/v1<br />
+                      time: '2024-09-02T11:27:01Z'<br />
+                      fieldsType: FieldsV1<br />
+                      fieldsV1:<br />
+                        'f:metadata':<br />
+                          'f:annotations':<br />
+                            'f:deployment.kubernetes.io/revision': {}<br />
+                        'f:status':<br />
+                          'f:availableReplicas': {}<br />
+                          'f:conditions':<br />
+                            .: {}<br />
+                            'k:{"type":"Available"}':<br />
+                              .: {}<br />
+                              'f:lastTransitionTime': {}<br />
+                              'f:lastUpdateTime': {}<br />
+                              'f:message': {}<br />
+                              'f:reason': {}<br />
+                              'f:status': {}<br />
+                              'f:type': {}<br />
+                            'k:{"type":"Progressing"}':<br />
+                              .: {}<br />
+                              'f:lastTransitionTime': {}<br />
+                              'f:lastUpdateTime': {}<br />
+                              'f:message': {}<br />
+                              'f:reason': {}<br />
+                              'f:status': {}<br />
+                              'f:type': {}<br />
+                          'f:observedGeneration': {}<br />
+                          'f:readyReplicas': {}<br />
+                          'f:replicas': {}<br />
+                          'f:updatedReplicas': {}<br />
+                      subresource: status<br />
+                  namespace: myapp-project<br />
+                  labels:<br />
+                    app: golang-ex<br />
+                    app.kubernetes.io/component: golang-ex<br />
+                    app.kubernetes.io/instance: golang-ex<br />
+                spec:<br />
+                  replicas: 1<br />
+                  selector:<br />
+                    matchLabels:<br />
+                      deployment: golang-ex<br />
+                  template:<br />
+                    metadata:<br />
+                      creationTimestamp: null<br />
+                      labels:<br />
+                        deployment: golang-ex<br />
+                      annotations:<br />
+                        openshift.io/generated-by: OpenShiftNewApp<br />
+                    spec:<br />
+                      containers:<br />
+                        - name: golang-ex<br />
+                          image: 'image-registry.openshift-image-registry.svc:5000/myapp-project/golang-ex@sha256:5285855b739c8613fa614a9ac991b7e70164bb4db819b0f327a42937a3b9dac2'<br />
+                          resources: {}<br />
+                          terminationMessagePath: /dev/termination-log<br />
+                          terminationMessagePolicy: File<br />
+                          imagePullPolicy: IfNotPresent<br />
+                          livenessProbe:<br />
+                            httpGet:<br />
+                              path: /healthz<br />
+                              port: 8080<br />
+                            initialDelaySeconds: 10<br />
+                            periodSeconds: 10<br />
+                            timeoutSeconds: 5<br />
+                            failureThreshold: 3<br />
+                            successThreshold: 1<br />
+                          readinessProbe:<br />
+                            httpGet:<br />
+                              path: /readiness<br />
+                              port: 8080<br />
+                            initialDelaySeconds: 5<br />
+                            periodSeconds: 5<br />
+                            timeoutSeconds: 3<br />
+                            failureThreshold: 3<br />
+                            successThreshold: 1<br />
+                      restartPolicy: Always<br />
+                      terminationGracePeriodSeconds: 30<br />
+                      dnsPolicy: ClusterFirst<br />
+                      securityContext: {}<br />
+                      schedulerName: default-scheduler<br />
+                  strategy:<br />
+                    type: RollingUpdate<br />
+                    rollingUpdate:<br />
+                      maxUnavailable: 25%<br />
+                      maxSurge: 25%<br />
+                  revisionHistoryLimit: 10<br />
+                  progressDeadlineSeconds: 600<br />
+                status:<br />
+                  observedGeneration: 2<br />
+                  replicas: 1<br />
+                  updatedReplicas: 1<br />
+                  readyReplicas: 1<br />
+                  availableReplicas: 1<br />
+                  conditions:<br />
+                    - type: Progressing<br />
+                      status: 'True'<br />
+                      lastUpdateTime: '2024-08-21T12:25:16Z'<br />
+                      lastTransitionTime: '2024-08-21T12:24:34Z'<br />
+                      reason: NewReplicaSetAvailable<br />
+                      message: ReplicaSet "golang-ex-774567f659" has successfully progressed.<br />
+                    - type: Available<br />
+                      status: 'True'<br />
+                      lastUpdateTime: '2024-09-02T11:27:01Z'<br />
+                      lastTransitionTime: '2024-09-02T11:27:01Z'<br />
+                      reason: MinimumReplicasAvailable<br />
+                      message: Deployment has minimum availability.</p>
+                <h3>Key Changes:</h3>
+                <ul>
+                <li>
+                <p><strong>Liveness Probe</strong>:</p>
+                </li>
+                <li>
+                <p>Checks if the application is alive and should be restarted if it is not responding.</p>
+                </li>
+                <li>
+                <p>Configured to check the <code>/healthz</code> endpoint on port <code>8080</code>.</p>
+                </li>
+                <li>
+                <p>Begins checking 10 seconds after the container starts (<code>initialDelaySeconds: 10</code>), with checks every 10 seconds (<code>periodSeconds: 10</code>).</p>
+                </li>
+                <li>
+                <p>A 5-second timeout is set for each check (<code>timeoutSeconds: 5</code>).</p>
+                </li>
+                <li>
+                <p><strong>Readiness Probe</strong>:</p>
+                </li>
+                <li>
+                <p>Determines if the application is ready to serve traffic.</p>
+                </li>
+                <li>
+                <p>Configured to check the <code>/readiness</code> endpoint on port <code>8080</code>.</p>
+                </li>
+                <li>
+                <p>Begins checking 5 seconds after the container starts (<code>initialDelaySeconds: 5</code>), with checks every 5 seconds (<code>periodSeconds: 5</code>).</p>
+                </li>
+                <li>
+                <p>A 3-second timeout is set for each check (<code>timeoutSeconds: 3</code>).</p>
+                </li>
+                </ul>
+                <p>Ensure that your application properly handles requests to the <code>/healthz</code> and <code>/readiness</code> endpoints. Adjust paths, ports, and timings as necessary to fit your specific application's requirements.</p>
+                <hr />
+                <p><img src="images/disabling-health-check-33.png" alt="disabling health check 33" class="article-image" loading="lazy"></p>
+                <p>You're right. When defining a Kubernetes Deployment manifest for a new resource, the <code>resourceVersion</code> field should not be set. The <code>resourceVersion</code> field is managed by Kubernetes and is used for concurrency control to ensure the object being updated is consistent with the current version in the cluster.</p>
+                <p>Here is the modified YAML for your <code>golang-ex</code> Deployment without the <code>resourceVersion</code> field:</p>
+                <p>kind: Deployment<br />
+                apiVersion: apps/v1<br />
+                metadata:<br />
+                  annotations:<br />
+                    deployment.kubernetes.io/revision: '2'<br />
+                    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"golang-ex:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"golang-ex\")].image"}]'<br />
+                    openshift.io/generated-by: OpenShiftNewApp<br />
+                  name: golang-ex<br />
+                  uid: 135f03f6-ba79-4cfe-98b6-c000b5705583<br />
+                  creationTimestamp: '2024-08-21T12:24:34Z'<br />
+                  generation: 2<br />
+                  managedFields:<br />
+                    - manager: oc.exe<br />
+                      operation: Update<br />
+                      apiVersion: apps/v1<br />
+                      time: '2024-08-21T12:24:34Z'<br />
+                      fieldsType: FieldsV1<br />
+                      fieldsV1:<br />
+                        'f:metadata':<br />
+                          'f:annotations':<br />
+                            .: {}<br />
+                            'f:image.openshift.io/triggers': {}<br />
+                            'f:openshift.io/generated-by': {}<br />
+                          'f:labels':<br />
+                            .: {}<br />
+                            'f:app': {}<br />
+                            'f:app.kubernetes.io/component': {}<br />
+                            'f:app.kubernetes.io/instance': {}<br />
+                        'f:spec':<br />
+                          'f:progressDeadlineSeconds': {}<br />
+                          'f:replicas': {}<br />
+                          'f:revisionHistoryLimit': {}<br />
+                          'f:selector': {}<br />
+                          'f:strategy':<br />
+                            'f:rollingUpdate':<br />
+                              .: {}<br />
+                              'f:maxSurge': {}<br />
+                              'f:maxUnavailable': {}<br />
+                            'f:type': {}<br />
+                          'f:template':<br />
+                            'f:metadata':<br />
+                              'f:annotations':<br />
+                                .: {}<br />
+                                'f:openshift.io/generated-by': {}<br />
+                              'f:labels':<br />
+                                .: {}<br />
+                                'f:deployment': {}<br />
+                            'f:spec':<br />
+                              'f:containers':<br />
+                                'k:{"name":"golang-ex"}':<br />
+                                  .: {}<br />
+                                  'f:imagePullPolicy': {}<br />
+                                  'f:name': {}<br />
+                                  'f:resources': {}<br />
+                                  'f:terminationMessagePath': {}<br />
+                                  'f:terminationMessagePolicy': {}<br />
+                              'f:dnsPolicy': {}<br />
+                              'f:restartPolicy': {}<br />
+                              'f:schedulerName': {}<br />
+                              'f:securityContext': {}<br />
+                              'f:terminationGracePeriodSeconds': {}<br />
+                    - manager: openshift-controller-manager<br />
+                      operation: Update<br />
+                      apiVersion: apps/v1<br />
+                      time: '2024-08-21T12:25:05Z'<br />
+                      fieldsType: FieldsV1<br />
+                      fieldsV1:<br />
+                        'f:spec':<br />
+                          'f:template':<br />
+                            'f:spec':<br />
+                              'f:containers':<br />
+                                'k:{"name":"golang-ex"}':<br />
+                                  'f:image': {}<br />
+                    - manager: kube-controller-manager<br />
+                      operation: Update<br />
+                      apiVersion: apps/v1<br />
+                      time: '2024-09-02T11:27:01Z'<br />
+                      fieldsType: FieldsV1<br />
+                      fieldsV1:<br />
+                        'f:metadata':<br />
+                          'f:annotations':<br />
+                            'f:deployment.kubernetes.io/revision': {}<br />
+                        'f:status':<br />
+                          'f:availableReplicas': {}<br />
+                          'f:conditions':<br />
+                            .: {}<br />
+                            'k:{"type":"Available"}':<br />
+                              .: {}<br />
+                              'f:lastTransitionTime': {}<br />
+                              'f:lastUpdateTime': {}<br />
+                              'f:message': {}<br />
+                              'f:reason': {}<br />
+                              'f:status': {}<br />
+                              'f:type': {}<br />
+                            'k:{"type":"Progressing"}':<br />
+                              .: {}<br />
+                              'f:lastTransitionTime': {}<br />
+                              'f:lastUpdateTime': {}<br />
+                              'f:message': {}<br />
+                              'f:reason': {}<br />
+                              'f:status': {}<br />
+                              'f:type': {}<br />
+                          'f:observedGeneration': {}<br />
+                          'f:readyReplicas': {}<br />
+                          'f:replicas': {}<br />
+                          'f:updatedReplicas': {}<br />
+                      subresource: status<br />
+                  namespace: myapp-project<br />
+                  labels:<br />
+                    app: golang-ex<br />
+                    app.kubernetes.io/component: golang-ex<br />
+                    app.kubernetes.io/instance: golang-ex<br />
+                spec:<br />
+                  replicas: 1<br />
+                  selector:<br />
+                    matchLabels:<br />
+                      deployment: golang-ex<br />
+                  template:<br />
+                    metadata:<br />
+                      creationTimestamp: null<br />
+                      labels:<br />
+                        deployment: golang-ex<br />
+                      annotations:<br />
+                        openshift.io/generated-by: OpenShiftNewApp<br />
+                    spec:<br />
+                      containers:<br />
+                        - name: golang-ex<br />
+                          image: 'image-registry.openshift-image-registry.svc:5000/myapp-project/golang-ex@sha256:5285855b739c8613fa614a9ac991b7e70164bb4db819b0f327a42937a3b9dac2'<br />
+                          resources: {}<br />
+                          terminationMessagePath: /dev/termination-log<br />
+                          terminationMessagePolicy: File<br />
+                          imagePullPolicy: IfNotPresent<br />
+                          livenessProbe:<br />
+                            httpGet:<br />
+                              path: /healthz<br />
+                              port: 8080<br />
+                            initialDelaySeconds: 10<br />
+                            periodSeconds: 10<br />
+                            timeoutSeconds: 5<br />
+                            failureThreshold: 3<br />
+                            successThreshold: 1<br />
+                          readinessProbe:<br />
+                            httpGet:<br />
+                              path: /readiness<br />
+                              port: 8080<br />
+                            initialDelaySeconds: 5<br />
+                            periodSeconds: 5<br />
+                            timeoutSeconds: 3<br />
+                            failureThreshold: 3<br />
+                            successThreshold: 1<br />
+                      restartPolicy: Always<br />
+                      terminationGracePeriodSeconds: 30<br />
+                      dnsPolicy: ClusterFirst<br />
+                      securityContext: {}<br />
+                      schedulerName: default-scheduler<br />
+                  strategy:<br />
+                    type: RollingUpdate<br />
+                    rollingUpdate:<br />
+                      maxUnavailable: 25%<br />
+                      maxSurge: 25%<br />
+                  revisionHistoryLimit: 10<br />
+                  progressDeadlineSeconds: 600<br />
+                status:<br />
+                  observedGeneration: 2<br />
+                  replicas: 1<br />
+                  updatedReplicas: 1<br />
+                  readyReplicas: 1<br />
+                  availableReplicas: 1<br />
+                  conditions:<br />
+                    - type: Progressing<br />
+                      status: 'True'<br />
+                      lastUpdateTime: '2024-08-21T12:25:16Z'<br />
+                      lastTransitionTime: '2024-08-21T12:24:34Z'<br />
+                      reason: NewReplicaSetAvailable<br />
+                      message: ReplicaSet "golang-ex-774567f659" has successfully progressed.<br />
+                    - type: Available<br />
+                      status: 'True'<br />
+                      lastUpdateTime: '2024-09-02T11:27:01Z'<br />
+                      lastTransitionTime: '2024-09-02T11:27:01Z'<br />
+                      reason: MinimumReplicasAvailable<br />
+                      message: Deployment has minimum availability.</p>
+                <h3>Key Changes:</h3>
+                <ul>
+                <li>Removed the <code>resourceVersion</code> field under the <code>metadata</code> section, as it should not be set when creating a new resource.</li>
+                </ul>
+                <p>Now, this YAML is ready to be used to create a new deployment without issues related to <code>resourceVersion</code>. Make sure the application handles requests to the specified endpoints for the liveness and readiness probes. Adjust the paths, ports, and timings as necessary to fit your specific application's requirements.</p>
+                <hr />
+                <p>deployments.apps "golang-ex" already exists</p>
+                <p><img src="images/disabling-health-check-34.png" alt="disabling health check 34" class="article-image" loading="lazy"></p>
+                <p>If the <code>Deployment</code> named <code>golang-ex</code> already exists in your Kubernetes cluster and you want to update it (for example, to add the health checks), you should use the <code>kubectl apply</code> or <code>kubectl patch</code> command to modify the existing deployment rather than creating a new one.</p>
+                <p>Here's how you can update the existing <code>Deployment</code>:</p>
+                <ul>
+                <li><strong>Edit the Deployment Manifest</strong>:<br />
+                Remove the <code>resourceVersion</code>, <code>uid</code>, <code>creationTimestamp</code>, and <code>managedFields</code> fields from your YAML file because these fields are automatically managed by Kubernetes and shouldn't be specified in the update. Here's an updated YAML for the <code>Deployment</code>:</li>
+                </ul>
+                <p>kind: Deployment<br />
+                apiVersion: apps/v1<br />
+                metadata:<br />
+                  name: golang-ex<br />
+                  namespace: myapp-project<br />
+                  labels:<br />
+                    app: golang-ex<br />
+                    app.kubernetes.io/component: golang-ex<br />
+                    app.kubernetes.io/instance: golang-ex<br />
+                  annotations:<br />
+                    deployment.kubernetes.io/revision: '2'<br />
+                    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"golang-ex:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"golang-ex\")].image"}]'<br />
+                    openshift.io/generated-by: OpenShiftNewApp<br />
+                spec:<br />
+                  replicas: 1<br />
+                  selector:<br />
+                    matchLabels:<br />
+                      deployment: golang-ex<br />
+                  template:<br />
+                    metadata:<br />
+                      labels:<br />
+                        deployment: golang-ex<br />
+                      annotations:<br />
+                        openshift.io/generated-by: OpenShiftNewApp<br />
+                    spec:<br />
+                      containers:<br />
+                        - name: golang-ex<br />
+                          image: 'image-registry.openshift-image-registry.svc:5000/myapp-project/golang-ex@sha256:5285855b739c8613fa614a9ac991b7e70164bb4db819b0f327a42937a3b9dac2'<br />
+                          resources: {}<br />
+                          terminationMessagePath: /dev/termination-log<br />
+                          terminationMessagePolicy: File<br />
+                          imagePullPolicy: IfNotPresent<br />
+                          livenessProbe:<br />
+                            httpGet:<br />
+                              path: /healthz<br />
+                              port: 8080<br />
+                            initialDelaySeconds: 10<br />
+                            periodSeconds: 10<br />
+                            timeoutSeconds: 5<br />
+                            failureThreshold: 3<br />
+                            successThreshold: 1<br />
+                          readinessProbe:<br />
+                            httpGet:<br />
+                              path: /readiness<br />
+                              port: 8080<br />
+                            initialDelaySeconds: 5<br />
+                            periodSeconds: 5<br />
+                            timeoutSeconds: 3<br />
+                            failureThreshold: 3<br />
+                            successThreshold: 1<br />
+                      restartPolicy: Always<br />
+                      terminationGracePeriodSeconds: 30<br />
+                      dnsPolicy: ClusterFirst<br />
+                      securityContext: {}<br />
+                      schedulerName: default-scheduler<br />
+                  strategy:<br />
+                    type: RollingUpdate<br />
+                    rollingUpdate:<br />
+                      maxUnavailable: 25%<br />
+                      maxSurge: 25%<br />
+                  revisionHistoryLimit: 10<br />
+                  progressDeadlineSeconds: 600</p>
+                <ul>
+                <li><strong>Apply the Changes</strong>:<br />
+                Use the <code>kubectl apply</code> command to update the existing deployment with the new configuration.</li>
+                </ul>
+                <p>kubectl apply -f updated-deployment.yaml</p>
+                <p>Make sure to replace <code>updated-deployment.yaml</code> with the filename where you've saved the modified YAML configuration.</p>
+                <ul>
+                <li><strong>Check the Deployment Status</strong>:<br />
+                After applying the changes, you can check the status of your deployment to ensure that it is updated correctly and the pods are running with the new configuration.</li>
+                </ul>
+                <p>kubectl get deployment golang-ex -n myapp-project<br />
+                   kubectl describe deployment golang-ex -n myapp-project<br />
+                   kubectl get pods -n myapp-project</p>
+                <p>By following these steps, you should be able to update the existing <code>Deployment</code> without any issues related to trying to create a resource that already exists.</p>
+                <p><img src="images/disabling-health-check-35.png" alt="disabling health check 35" class="article-image" loading="lazy"></p>
+                <p>Go in with a different name</p>
+                <p><img src="images/disabling-health-check-36.png" alt="disabling health check 36" class="article-image" loading="lazy"></p>
+                <p>404 at the start</p>
+                <p><img src="images/disabling-health-check-37.png" alt="disabling health check 37" class="article-image" loading="lazy"></p>
+                <p>new deployment </p>
+                <p><img src="images/disabling-health-check-38.png" alt="disabling health check 38" class="article-image" loading="lazy"></p>
+                <p>**With health checks i can see there are requests coming in **</p>
+                <p><img src="images/disabling-health-check-39.png" alt="disabling health check 39" class="article-image" loading="lazy"></p>
+                <p>ask if you cant find</p>
+                <p><img src="images/disabling-health-check-40.png" alt="disabling health check 40" class="article-image" loading="lazy"></p>
+                <p><img src="images/disabling-health-check-41.png" alt="disabling health check 41" class="article-image" loading="lazy"></p>
+                <p><img src="images/disabling-health-check-42.png" alt="disabling health check 42" class="article-image" loading="lazy"></p>
+                <p><img src="images/disabling-health-check-43.png" alt="disabling health check 43" class="article-image" loading="lazy"></p>
+                <p>In the provided YAML for the <code>golang-ex-new</code> Deployment, the health checks (liveness and readiness probes) are defined under the container specification for the <code>golang-ex</code> container. Here's where they are located in the YAML:</p>
+                <h3>Location of Health Checks in the YAML:</h3>
+                <p>spec:<br />
+                  template:<br />
+                    spec:<br />
+                      containers:<br />
+                        - name: golang-ex<br />
+                          image: 'image-registry.openshift-image-registry.svc:5000/myapp-project/golang-ex@sha256:5285855b739c8613fa614a9ac991b7e70164bb4db819b0f327a42937a3b9dac2'<br />
+                          resources: {}<br />
+                          terminationMessagePath: /dev/termination-log<br />
+                          terminationMessagePolicy: File<br />
+                          imagePullPolicy: IfNotPresent<br />
+                          livenessProbe:                  # Liveness probe definition<br />
+                            httpGet:<br />
+                              path: /healthz             # Endpoint to check for liveness<br />
+                              port: 8080<br />
+                            initialDelaySeconds: 10      # Delay before the probe starts<br />
+                            periodSeconds: 10            # Frequency of the probe<br />
+                            timeoutSeconds: 5            # Timeout for the probe response<br />
+                            failureThreshold: 3          # Number of failures before marking as failed<br />
+                            successThreshold: 1          # Number of successes before marking as successful<br />
+                          readinessProbe:                # Readiness probe definition<br />
+                            httpGet:<br />
+                              path: /readiness           # Endpoint to check for readiness<br />
+                              port: 8080<br />
+                            initialDelaySeconds: 5       # Delay before the probe starts<br />
+                            periodSeconds: 5             # Frequency of the probe<br />
+                            timeoutSeconds: 3            # Timeout for the probe response<br />
+                            failureThreshold: 3          # Number of failures before marking as not ready<br />
+                            successThreshold: 1          # Number of successes before marking as ready</p>
+                <h3>Explanation of Health Checks:</h3>
+                <ul>
+                <li>
+                <p><strong>Liveness Probe</strong> (<code>livenessProbe</code>):</p>
+                </li>
+                <li>
+                <p><strong>Purpose</strong>: Checks if the application is still running. If the probe fails, Kubernetes will restart the container.</p>
+                </li>
+                <li>
+                <p><strong>Configuration</strong>:</p>
+                </li>
+                </ul>
+                <p><strong><code>httpGet</code></strong>: Makes an HTTP GET request to the <code>/healthz</code> endpoint on port <code>8080</code>.</p>
+                <ul>
+                <li>
+                <p><strong><code>initialDelaySeconds</code></strong>: Waits 10 seconds after the container starts before performing the first check.</p>
+                </li>
+                <li>
+                <p><strong><code>periodSeconds</code></strong>: Checks every 10 seconds.</p>
+                </li>
+                <li>
+                <p><strong><code>timeoutSeconds</code></strong>: Waits up to 5 seconds for a response before timing out.</p>
+                </li>
+                <li>
+                <p><strong><code>failureThreshold</code></strong>: If the probe fails 3 times consecutively, the container is considered unhealthy and will be restarted.</p>
+                </li>
+                <li>
+                <p><strong><code>successThreshold</code></strong>: The number of consecutive successes required to mark the container as healthy (only 1 is needed here).</p>
+                </li>
+                <li>
+                <p><strong>Readiness Probe</strong> (<code>readinessProbe</code>):</p>
+                </li>
+                <li>
+                <p><strong>Purpose</strong>: Checks if the application is ready to accept traffic. If the probe fails, the container is marked as not ready, and traffic is not routed to it.</p>
+                </li>
+                <li>
+                <p><strong>Configuration</strong>:</p>
+                </li>
+                </ul>
+                <p><strong><code>httpGet</code></strong>: Makes an HTTP GET request to the <code>/readiness</code> endpoint on port <code>8080</code>.</p>
+                <ul>
+                <li>
+                <p><strong><code>initialDelaySeconds</code></strong>: Waits 5 seconds after the container starts before performing the first check.</p>
+                </li>
+                <li>
+                <p><strong><code>periodSeconds</code></strong>: Checks every 5 seconds.</p>
+                </li>
+                <li>
+                <p><strong><code>timeoutSeconds</code></strong>: Waits up to 3 seconds for a response before timing out.</p>
+                </li>
+                <li>
+                <p><strong><code>failureThreshold</code></strong>: If the probe fails 3 times consecutively, the container is marked as not ready.</p>
+                </li>
+                <li>
+                <p><strong><code>successThreshold</code></strong>: The number of consecutive successes required to mark the container as ready (only 1 is needed here).</p>
+                </li>
+                </ul>
+                <h3>What to Adjust if Needed:</h3>
+                <ul>
+                <li>
+                <p><strong>Path</strong>: Ensure that the <code>/healthz</code> and <code>/readiness</code> endpoints are correctly implemented in your application. Adjust these paths as needed.</p>
+                </li>
+                <li>
+                <p><strong>Port</strong>: Make sure port <code>8080</code> is the correct port where your application is running. Update it if necessary.</p>
+                </li>
+                <li>
+                <p><strong>Timings</strong>: Adjust <code>initialDelaySeconds</code>, <code>periodSeconds</code>, <code>timeoutSeconds</code>, <code>failureThreshold</code>, and <code>successThreshold</code> based on your application’s startup and runtime behavior.</p>
+                </li>
+                </ul>
+                <p>By defining these probes, Kubernetes can automatically manage the availability and readiness of your application, improving its resilience and reliability.</p>
+                <hr />
+                <p><img src="images/disabling-health-check-44.png" alt="disabling health check 44" class="article-image" loading="lazy"></p>
+                <p><img src="images/disabling-health-check-45.png" alt="disabling health check 45" class="article-image" loading="lazy"></p>
+                <p>To spot and configure a liveness probe in the OpenShift Web Console, follow these steps:</p>
+                <h3>1. Access the OpenShift Web Console</h3>
+                <ul>
+                <li>
+                <p><strong>Log in</strong> to your OpenShift Web Console using your credentials.</p>
+                </li>
+                <li>
+                <p>Navigate to the <strong>project</strong> (namespace) where your deployment (e.g., <code>golang-ex-new</code>) is located. You can switch projects from the top-left corner dropdown.</p>
+                </li>
+                </ul>
+                <h3>2. Navigate to the Workloads Section</h3>
+                <ul>
+                <li>
+                <p>In the left-hand navigation pane, click on <strong>"Workloads"</strong>.</p>
+                </li>
+                <li>
+                <p>Click on <strong>"Deployments"</strong> to see the list of deployments in the selected project.</p>
+                </li>
+                </ul>
+                <h3>3. Find and Select Your Deployment</h3>
+                <ul>
+                <li>
+                <p>Find your deployment (e.g., <code>golang-ex-new</code>) in the list of deployments.</p>
+                </li>
+                <li>
+                <p>Click on the <strong>deployment name</strong> to open its details page.</p>
+                </li>
+                </ul>
+                <h3>4. View or Edit the Liveness Probe</h3>
+                <ul>
+                <li>
+                <p>Once you are on the deployment's details page, click on the <strong>"Actions"</strong> dropdown menu at the top right corner.</p>
+                </li>
+                <li>
+                <p>Select <strong>"Edit Health Checks"</strong> from the dropdown menu. This option allows you to view and configure the liveness and readiness probes for your containers. Alternatively, you might directly see an option for <strong>"Health Checks"</strong> or <strong>"Edit Health Checks"</strong> in the navigation tabs of the deployment's details page, depending on the version of OpenShift you are using.</p>
+                </li>
+                </ul>
+                <h3>5. Spot the Liveness Probe Configuration</h3>
+                <ul>
+                <li>
+                <p>In the <strong>Health Checks</strong> configuration window:</p>
+                </li>
+                <li>
+                <p>You will see sections for <strong>Liveness Probe</strong>, <strong>Readiness Probe</strong>, and possibly <strong>Startup Probe</strong>.</p>
+                </li>
+                <li>
+                <p>The <strong>Liveness Probe</strong> section displays the current configuration if it is already set. Look for fields such as:</p>
+                </li>
+                </ul>
+                <p><strong>Type</strong> (HTTP, Command, or TCP)</p>
+                <ul>
+                <li>
+                <p><strong>HTTP GET Path</strong> (e.g., <code>/healthz</code>)</p>
+                </li>
+                <li>
+                <p><strong>Port</strong> (e.g., <code>8080</code>)</p>
+                </li>
+                <li>
+                <p><strong>Initial Delay</strong> (seconds)</p>
+                </li>
+                <li>
+                <p><strong>Timeout</strong> (seconds)</p>
+                </li>
+                <li>
+                <p><strong>Period</strong> (seconds)</p>
+                </li>
+                <li>
+                <p><strong>Failure Threshold</strong></p>
+                </li>
+                </ul>
+                <h3>6. Edit the Liveness Probe</h3>
+                <ul>
+                <li>
+                <p>To <strong>edit</strong> the liveness probe:</p>
+                </li>
+                <li>
+                <p>Adjust the <strong>type</strong> (HTTP GET, Command, or TCP), <strong>path</strong>, <strong>port</strong>, <strong>initial delay</strong>, <strong>timeout</strong>, <strong>period</strong>, and <strong>failure threshold</strong> according to your requirements.</p>
+                </li>
+                <li>
+                <p>Click <strong>"Save"</strong> or <strong>"Update"</strong> to apply the changes.</p>
+                </li>
+                </ul>
+                <h3>7. Apply and Monitor Changes</h3>
+                <ul>
+                <li>
+                <p>After updating the liveness probe, OpenShift will automatically restart the deployment pods to apply the new settings.</p>
+                </li>
+                <li>
+                <p>You can monitor the status of your pods and the effects of the new liveness probe settings by going back to the <strong>"Pods"</strong> section under <strong>"Workloads"</strong> and checking their status and logs.</p>
+                </li>
+                </ul>
+                <h3>Additional Tips:</h3>
+                <ul>
+                <li>
+                <p><strong>Logs and Events</strong>: If you encounter issues, you can check the <strong>Events</strong> tab on the deployment page or view the logs of individual pods to troubleshoot the behavior of the liveness probe.</p>
+                </li>
+                <li>
+                <p><strong>Command Line</strong>: Alternatively, you can use the OpenShift CLI (<code>oc</code>) to check the liveness probe configuration by describing the deployment:</p>
+                </li>
+                </ul>
+                <p>oc describe deployment golang-ex-new -n myapp-project</p>
+                <p>Look for the <strong>Liveness</strong> section under <code>Containers</code> to see the current settings.</p>
+                <p>By following these steps, you can easily spot, view, and modify the liveness probe configuration for your deployment in the OpenShift Web Console.</p>
+                <p><img src="images/disabling-health-check-46.png" alt="disabling health check 46" class="article-image" loading="lazy"></p>
+                <p><img src="images/disabling-health-check-47.png" alt="disabling health check 47" class="article-image" loading="lazy"></p>
+                <p><img src="images/disabling-health-check-48.png" alt="disabling health check 48" class="article-image" loading="lazy"></p>
+                <p>remove is the way to take it down </p>
+                <p><img src="images/disabling-health-check-49.png" alt="disabling health check 49" class="article-image" loading="lazy"></p>
+                <p>Add health checks is the way to go </p>
+                <p><img src="images/disabling-health-check-50.png" alt="disabling health check 50" class="article-image" loading="lazy"></p>
+                <p><strong>Converge and Summary Repo</strong></p>
+                <p>https://github.com/rifaterdemsahin/openshifthealthchecks/blob/main/README.md</p>
+                <p><img src="images/disabling-health-check-51.png" alt="disabling health check 51" class="article-image" loading="lazy"></p>
+                <p><strong>Conclusion</strong></p>
+                <p>Disabling health check promotion in OpenShift is a useful strategy for managing deployments with specific requirements, such as starting with zero replicas or bypassing automatic promotions temporarily. Always remember to re-enable these settings post-deployment to maintain a healthy and resilient production environment. By understanding when and how to adjust these settings, you can better control your deployment processes and ensure smoother operations within your OpenShift environments.</p>
+                <p><strong>🔗 Connect with me:</strong></p>
+                <ul>
+                <li>
+                <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/rifaterdemsahin/">https://www.linkedin.com/in/rifaterdemsahin/</a></p>
+                </li>
+                <li>
+                <p>🐦 Twitter: <a href="https://x.com/rifaterdemsahin">https://x.com/rifaterdemsahin</a></p>
+                </li>
+                <li>
+                <p>🎥 YouTube: <a href="https://www.youtube.com/@RifatErdemSahin">https://www.youtube.com/@RifatErdemSahin</a></p>
+                </li>
+                <li>
+                <p>💻 GitHub: <a href="https://github.com/rifaterdemsahin">https://github.com/rifaterdemsahin</a></p>
+                </li>
+                </ul>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

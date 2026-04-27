@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deploying applications using ArgoCD with Helm on a brand new CodeReady Containers (CRC) - Rifat Erdem Sahin</title>
+    <meta name="description" content="Deploying applications using ArgoCD with Helm on a brand new CodeReady Containers (CRC) OpenShift cluster can streamline your CI/CD workflow by integrating GitOps practices.">
+    <meta name="keywords" content="Deploying applications using ArgoCD with Helm on a brand new CodeReady Containers (CRC)">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/10/06/deploying-applications-using-argocd-with-helm-on-a-brand-new-codeready-containers-crc/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/10/06/deploying-applications-using-argocd-with-helm-on-a-brand-new-codeready-containers-crc/">
+    <meta property="og:title" content="Deploying applications using ArgoCD with Helm on a brand new CodeReady Containers (CRC)">
+    <meta property="og:description" content="Deploying applications using ArgoCD with Helm on a brand new CodeReady Containers (CRC) OpenShift cluster can streamline your CI/CD workflow by integrating GitOps practices.">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/10/06/deploying-applications-using-argocd-with-helm-on-a-brand-new-codeready-containers-crc/">
+    <meta property="twitter:title" content="Deploying applications using ArgoCD with Helm on a brand new CodeReady Containers (CRC)">
+    <meta property="twitter:description" content="Deploying applications using ArgoCD with Helm on a brand new CodeReady Containers (CRC) OpenShift cluster can streamline your CI/CD workflow by integrating GitOps practices.">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Deploying applications using ArgoCD with Helm on a brand new CodeReady Containers (CRC)",
+      "description": "Deploying applications using ArgoCD with Helm on a brand new CodeReady Containers (CRC) OpenShift cluster can streamline your CI/CD workflow by integrating GitOps practices.",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-10-06",
+      "dateModified": "2024-10-06",
+      "url": "https://www.rifaterdemsahin.com/2024/10/06/deploying-applications-using-argocd-with-helm-on-a-brand-new-codeready-containers-crc/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/10/06/deploying-applications-using-argocd-with-helm-on-a-brand-new-codeready-containers-crc/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Deploying applications using ArgoCD with Helm on a brand new CodeReady Containers (CRC)</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>October 6, 2024</span>
+                    <span>&bull;</span>
+                    <span>7 min read</span>
+                </div>
+                <p class="article-excerpt">Deploying applications using ArgoCD with Helm on a brand new CodeReady Containers (CRC) OpenShift cluster can streamline your CI/CD workflow by integrating GitOps practices.</p>
+            </header>
+            <article class="article-content">
+                <h1>Deploying applications using ArgoCD with Helm on a brand new CodeReady Containers (CRC)</h1>
+                <p>OpenShift cluster can streamline your CI/CD workflow by integrating GitOps practices. This blog post will guide you through setting up ArgoCD, configuring Helm, and deploying an application on a CRC OpenShift cluster. We will cover the following steps:</p>
+                <ul>
+                <li>
+                <p><strong>Setting Up CRC (CodeReady Containers) OpenShift Cluster</strong></p>
+                </li>
+                <li>
+                <p><strong>Installing ArgoCD on OpenShift</strong></p>
+                </li>
+                <li>
+                <p><strong>Configuring Helm on OpenShift</strong></p>
+                </li>
+                <li>
+                <p><strong>Deploying an Application using Helm and ArgoCD</strong></p>
+                </li>
+                </ul>
+                <p>Let's dive in!</p>
+                <h3>1. Setting Up CRC (CodeReady Containers) OpenShift Cluster</h3>
+                <p>CodeReady Containers (CRC) provides a minimal OpenShift 4 cluster, making it easy to test and develop on OpenShift locally. Follow these steps to get your CRC OpenShift cluster up and running:</p>
+                <p><img src="images/deploying-applications-using-1.png" alt="deploying applications using 1" class="article-image" loading="lazy"></p>
+                <p><strong>Step 1: Install CRC</strong></p>
+                <p>Download and install CRC from the official Red Hat website. Make sure your system meets the <a href="https://access.redhat.com/documentation/en-us/red_hat_codeready_containers/1.22/html/getting_started_guide/assembly-using-codeready-containers_gsg">minimum requirements</a>. Once installed, start the CRC cluster:</p>
+                <p>crc setup<br />
+                crc start</p>
+                <p>During the <code>crc start</code> command, you’ll be prompted to provide a pull secret. You can obtain this secret from the <a href="https://cloud.redhat.com/openshift/install/crc/installer-provisioned">Red Hat OpenShift Cluster Manager</a>.</p>
+                <p><strong>Step 2: Log in to OpenShift</strong></p>
+                <p>After starting the CRC, log in to your OpenShift cluster using the credentials provided:</p>
+                <p>oc login -u kubeadmin -p <password> https://api.crc.testing:6443</p>
+                <p>Replace <code>&lt;password&gt;</code> with the one displayed at the end of the <code>crc start</code> process.</p>
+                <h3></h3>
+                <p>To deploy Argo CD using Helm, you need to follow several steps to ensure a smooth installation and configuration of the tool. Helm is a package manager for Kubernetes that allows you to define, install, and upgrade complex Kubernetes applications. Argo CD is a popular continuous delivery tool for Kubernetes, which makes it easy to implement GitOps practices by managing application deployments in a declarative manner.</p>
+                <p>Here's a step-by-step guide on how to deploy Argo CD using Helm:</p>
+                <h3>Step 1: Install Helm</h3>
+                <p>If you haven't installed Helm yet, you can install it by following the instructions on the <a href="https://helm.sh/docs/intro/install/">official Helm website</a>.</p>
+                <h3>Step 2: Add the Argo CD Helm repository</h3>
+                <p>First, add the Argo CD Helm repository to your Helm client:</p>
+                <p>helm repo add argo https://argoproj.github.io/argo-helm<br />
+                helm repo update</p>
+                <p>Helm local with argo manifests ready to go </p>
+                <p><img src="images/deploying-applications-using-2.png" alt="deploying applications using 2" class="article-image" loading="lazy"></p>
+                <h3>Step 3: Create a Namespace for Argo CD</h3>
+                <p>It's a good practice to deploy Argo CD in its own namespace. Create a namespace for Argo CD:</p>
+                <p>oc create namespace argocd</p>
+                <h3>Step 4: Install Argo CD using Helm</h3>
+                <p>Now, use Helm to install Argo CD into the namespace you just created. You can use the default values or customize them as needed.</p>
+                <p>To install Argo CD with the default settings, run:</p>
+                <p>helm install argocd argo/argo-cd --namespace argocd</p>
+                <p><img src="images/deploying-applications-using-3.png" alt="deploying applications using 3" class="article-image" loading="lazy"></p>
+                <h3>Step 5: Check the Installation</h3>
+                <p>To verify that Argo CD has been installed correctly, you can check the pods running in the <code>argocd</code> namespace:</p>
+                <p>oc get pods -n argocd</p>
+                <p><img src="images/deploying-applications-using-4.png" alt="deploying applications using 4" class="article-image" loading="lazy"></p>
+                <p>You should see several pods, including <code>argocd-server</code>, <code>argocd-repo-server</code>, <code>argocd-redis</code>, and others.</p>
+                <h3>Step 6: Access the Argo CD UI</h3>
+                <p>By default, Argo CD's API server is not exposed via a LoadBalancer or Ingress. You can access it using <code>kubectl port-forward</code>:</p>
+                <p>oc port-forward svc/argocd-server -n argocd 8080:443</p>
+                <p><img src="images/deploying-applications-using-5.png" alt="deploying applications using 5" class="article-image" loading="lazy"></p>
+                <p>Now you can open your web browser and go to <code>https://localhost:8080</code> to access the Argo CD web UI.</p>
+                <h3>Step 7: Login to Argo CD</h3>
+                <p>The initial password for the <code>admin</code> user is auto-generated and stored in a Kubernetes secret. To get this password, run:</p>
+                <p>oc-n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d</p>
+                <p>oc-n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | ForEach-Object { [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($_)) }</p>
+                <p>Use the username <code>admin</code> and the password you retrieved to log in to the Argo CD UI.</p>
+                <p><img src="images/deploying-applications-using-6.png" alt="deploying applications using 6" class="article-image" loading="lazy"></p>
+                <p>Port forward is online</p>
+                <p><img src="images/deploying-applications-using-7.png" alt="deploying applications using 7" class="article-image" loading="lazy"></p>
+                <blockquote>
+                <blockquote>
+                <blockquote>
+                <blockquote>
+                <p>and i got the password</p>
+                </blockquote>
+                </blockquote>
+                </blockquote>
+                </blockquote>
+                <p><code>vD-hLiGz1FJiPPsd</code></p>
+                <p><img src="images/deploying-applications-using-8.png" alt="deploying applications using 8" class="article-image" loading="lazy"></p>
+                <p>happiness</p>
+                <p><img src="images/deploying-applications-using-9.png" alt="deploying applications using 9" class="article-image" loading="lazy"></p>
+                <h3>Step 8: (Optional) Customize Argo CD Installation</h3>
+                <p>If you need to customize your Argo CD installation, you can create a <code>values.yaml</code> file and specify your custom configurations there. Here’s an example command to install Argo CD with custom values:</p>
+                <ul>
+                <li>Create a <code>values.yaml</code> file:</li>
+                </ul>
+                <p>server:<br />
+                  service:<br />
+                    type: LoadBalancer</p>
+                <ul>
+                <li>Install Argo CD using the custom <code>values.yaml</code>:</li>
+                </ul>
+                <p>helm install argocd argo/argo-cd --namespace argocd -f values.yaml</p>
+                <p>This will install Argo CD with the specified customizations.</p>
+                <p><img src="images/deploying-applications-using-10.png" alt="deploying applications using 10" class="article-image" loading="lazy"></p>
+                <p><img src="images/deploying-applications-using-11.png" alt="deploying applications using 11" class="article-image" loading="lazy"></p>
+                <p>The error message you're encountering, "INSTALLATION FAILED: cannot re-use a name that is still in use," indicates that there is already an existing Helm release with the name <code>argocd</code> in the <code>argocd</code> namespace. To resolve this, you have a few options:</p>
+                <h3>Option 1: Upgrade the Existing Release</h3>
+                <p>If you want to update the existing <code>argocd</code> installation with new values or configurations, you should use the <code>helm upgrade</code> command instead of <code>helm install</code>. Here’s how you can do it:</p>
+                <p>helm upgrade argocd argo/argo-cd --namespace argocd -f values.yaml</p>
+                <p><img src="images/deploying-applications-using-12.png" alt="deploying applications using 12" class="article-image" loading="lazy"></p>
+                <p>Can i turn off ?</p>
+                <p><img src="images/deploying-applications-using-13.png" alt="deploying applications using 13" class="article-image" loading="lazy"></p>
+                <p><img src="images/deploying-applications-using-14.png" alt="deploying applications using 14" class="article-image" loading="lazy"></p>
+                <p>Load balancer &gt;&gt;&gt; is not enough to keep this on </p>
+                <p>`PS C:\projects\argocd\openshift-argocd&gt; helm upgrade argocd argo/argo-cd --namespace argocd -f values.yaml<br />
+                Release "argocd" has been upgraded. Happy Helming!<br />
+                NAME: argocd<br />
+                LAST DEPLOYED: Tue Sep  3 16:01:15 2024<br />
+                NAMESPACE: argocd<br />
+                STATUS: deployed<br />
+                REVISION: 2<br />
+                TEST SUITE: None<br />
+                NOTES:<br />
+                In order to access the server UI you have the following options:</p>
+                <ol>
+                <li>
+                <p>kubectl port-forward service/argocd-server -n argocd 8080:443</p>
+                <p>and then open the browser on http://localhost:8080 and accept the certificate</p>
+                </li>
+                <li>
+                <p>enable ingress in the values file <code>server.ingress.enabled</code> and either</p>
+                <ul>
+                <li>Add the annotation for ssl passthrough: https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#option-1-ssl-passthrough</li>
+                <li>Set the <code>configs.params."server.insecure"</code> in the values file and terminate SSL at your ingress: https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#option-2-multiple-ingress-objects-and-hosts</li>
+                </ul>
+                </li>
+                </ol>
+                <p>After reaching the UI the first time you can login with username: admin and the random password generated during the installation. You can find the password by running:</p>
+                <p>kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d</p>
+                <p>(You should delete the initial secret afterwards as suggested by the Getting Started Guide: https://argo-cd.readthedocs.io/en/stable/getting_started/#4-login-using-the-cli)<br />
+                PS C:\projects\argocd\openshift-argocd&gt; history`</p>
+                <h3>Option 2: Uninstall the Existing Release</h3>
+                <p>If you want to completely remove the existing <code>argocd</code> release and start fresh, you can uninstall it and then run the install command again:</p>
+                <ul>
+                <li><strong>Uninstall the existing release</strong>:</li>
+                </ul>
+                <p>helm uninstall argocd --namespace argocd</p>
+                <ul>
+                <li><strong>Install Argo CD again</strong>:</li>
+                </ul>
+                <p>helm install argocd argo/argo-cd --namespace argocd -f values.yaml</p>
+                <h3>Option 3: Install with a Different Release Name</h3>
+                <p>If you want to keep the existing <code>argocd</code> release but install a new instance with different configurations or in a different namespace, you can use a different release name:</p>
+                <p>helm install argocd-new argo/argo-cd --namespace argocd -f values.yaml</p>
+                <p>Replace <code>argocd-new</code> with your desired new release name.</p>
+                <h3>Option 4: Check Existing Releases and Clean Up</h3>
+                <p>To see all existing Helm releases in the <code>argocd</code> namespace, you can use:</p>
+                <p>helm list --namespace argocd</p>
+                <p>If you see an old or failed release, you can decide whether to delete it or upgrade it.</p>
+                <p>By following one of these options, you should be able to resolve the "cannot re-use a name that is still in use" error and successfully manage your Helm releases.</p>
+                <h3>Summary</h3>
+                <p>You've now deployed Argo CD on your Kubernetes cluster using Helm! You can customize further based on your requirements, such as enabling SSL, configuring authentication, or setting up Argo CD projects and applications.</p>
+                <p>If you have any further questions or need more customization details, feel free to ask!</p>
+                <p>Repo &gt; <a href="https://github.com/rifaterdemsahin/openshift-argocd">https://github.com/rifaterdemsahin/openshift-argocd</a></p>
+                <p><strong>🔗 Connect with me:</strong></p>
+                <ul>
+                <li>
+                <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/rifaterdemsahin/">https://www.linkedin.com/in/rifaterdemsahin/</a></p>
+                </li>
+                <li>
+                <p>🐦 Twitter: <a href="https://x.com/rifaterdemsahin">https://x.com/rifaterdemsahin</a></p>
+                </li>
+                <li>
+                <p>🎥 YouTube: <a href="https://www.youtube.com/@RifatErdemSahin">https://www.youtube.com/@RifatErdemSahin</a></p>
+                </li>
+                <li>
+                <p>💻 GitHub: <a href="https://github.com/rifaterdemsahin">https://github.com/rifaterdemsahin</a></p>
+                </li>
+                </ul>
+                <p>History commands 1</p>
+                <p>`PS C:\projects\argocd\openshift-argocd&gt; history</p>
+                <p>Id CommandLine</p>
+                <hr />
+                <p>1 try { . "c:\Program Files\Microsoft VS Code\resources\app\out\vs\workbench\contrib\terminal\browser\media\shellIntegration.ps1" } catch {}<br />
+                   2 helm install argocd argo/argo-cd --namespace argocd -f values.yaml<br />
+                   3 helm install argocd argo/argo-cd --namespace argocd -f .\values.yaml<br />
+                   4 helm upgrade argocd argo/argo-cd --namespace argocd -f values.yaml<br />
+                   5 history<br />
+                `</p>
+                <p>PS2: TURN ON TO SERVE</p>
+                <p><img src="images/deploying-applications-using-15.png" alt="deploying applications using 15" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

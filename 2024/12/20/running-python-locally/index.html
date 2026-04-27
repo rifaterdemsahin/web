@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Running Python Locally - Rifat Erdem Sahin</title>
+    <meta name="description" content="Running Python Locally gpt for the symbols &gt; To create a Python application that displays an ASCII flower based on a user-provided flower count, we need to consider how to structure the program.">
+    <meta name="keywords" content="Running Python Locally">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/12/20/running-python-locally/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/12/20/running-python-locally/">
+    <meta property="og:title" content="Running Python Locally">
+    <meta property="og:description" content="Running Python Locally gpt for the symbols &gt; To create a Python application that displays an ASCII flower based on a user-provided flower count, we need to consider how to structure the program.">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/12/20/running-python-locally/">
+    <meta property="twitter:title" content="Running Python Locally">
+    <meta property="twitter:description" content="Running Python Locally gpt for the symbols &gt; To create a Python application that displays an ASCII flower based on a user-provided flower count, we need to consider how to structure the program.">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Running Python Locally",
+      "description": "Running Python Locally gpt for the symbols &gt; To create a Python application that displays an ASCII flower based on a user-provided flower count, we need to consider how to structure the program.",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-12-20",
+      "dateModified": "2024-12-20",
+      "url": "https://www.rifaterdemsahin.com/2024/12/20/running-python-locally/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/12/20/running-python-locally/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Running Python Locally</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>December 20, 2024</span>
+                    <span>&bull;</span>
+                    <span>3 min read</span>
+                </div>
+                <p class="article-excerpt">Running Python Locally gpt for the symbols &gt; To create a Python application that displays an ASCII flower based on a user-provided flower count, we need to consider how to structure the program.</p>
+            </header>
+            <article class="article-content">
+                <h1>Running Python Locally</h1>
+                <p><img src="images/running-python-locally-1.png" alt="running python locally 1" class="article-image" loading="lazy"></p>
+                <p>gpt for the symbols &gt;</p>
+                <p>To create a Python application that displays an ASCII flower based on a user-provided flower count, we need to consider how to structure the program. The program should ask for a number from the user, then display the corresponding number of ASCII flowers.</p>
+                <p>Here's a simple Python application that does just that:</p>
+                <p>def print_flower():<br />
+                    # ASCII representation of a flower<br />
+                    flower = """<br />
+                <em><br />
+                </em>/ \<br />
+                   \|/<br />
+                   (_)<br />
+                   /|\<br />
+                  ' | ' <br />
+                """<br />
+                    return flower</p>
+                <p>def main():<br />
+                    # Get the number of flowers from the user<br />
+                    try:<br />
+                        count = int(input("Enter the number of flowers to display: "))<br />
+                        if count &lt;= 0:<br />
+                            print("Please enter a positive number.")<br />
+                            return</p>
+                <pre><code>    # Display the flowers
+                    for _ in range(count):
+                        print(print_flower())
+                
+                except ValueError:
+                    print("Invalid input. Please enter a valid number.")
+                </code></pre>
+                <p>if <strong>name</strong> == "<strong>main</strong>":<br />
+                    main()</p>
+                <h3>How This Python App Works:</h3>
+                <ul>
+                <li>
+                <p><strong>Function Definition (<code>print_flower</code>)</strong>:</p>
+                </li>
+                <li>
+                <p>This function returns an ASCII representation of a flower.</p>
+                </li>
+                <li>
+                <p><strong>Main Function (<code>main</code>)</strong>:</p>
+                </li>
+                <li>
+                <p>It asks the user to input the number of flowers they want to display.</p>
+                </li>
+                <li>
+                <p>It validates that the input is a positive integer.</p>
+                </li>
+                <li>
+                <p>If valid, it prints the specified number of flowers. If not, it displays an error message.</p>
+                </li>
+                <li>
+                <p><strong>Error Handling</strong>:</p>
+                </li>
+                <li>
+                <p>The app handles non-integer inputs by catching a <code>ValueError</code> and displaying a friendly message.</p>
+                </li>
+                </ul>
+                <h3>How to Run the Application:</h3>
+                <ul>
+                <li>
+                <p>Copy and paste the code into a Python file, e.g., <code>ascii_flower.py</code>.</p>
+                </li>
+                <li>
+                <p>Run the file using a Python interpreter (Python 3.x recommended):</p>
+                </li>
+                </ul>
+                <p>python ascii_flower.py</p>
+                <ul>
+                <li>When prompted, enter the number of flowers you want to see, and the ASCII flowers will be displayed in the terminal.</li>
+                </ul>
+                <p>This simple program gives a good start to understanding basic input handling, error checking, and ASCII art in Python.</p>
+                <p>The error</p>
+                <p><img src="images/running-python-locally-2.png" alt="running python locally 2" class="article-image" loading="lazy"></p>
+                <p>Mitigation Virtual Machine &gt; Vmware workstation</p>
+                <p>Rationale : Davinci Resolve Fails if there is a pythn environment conflict </p>
+                <p>Mitigation 2 &gt; Testing use online environments</p>
+                <p>Yes, there are several ways to run Python code online without needing to install Python on your computer. Here are some popular options:</p>
+                <h3>1. <strong>Online Python Interpreters and Compilers</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Repl.it</strong>: A popular online IDE that supports Python and many other languages. You can write, run, and share your code directly from the browser. <a href="https://replit.com/">Repl.it</a></p>
+                </li>
+                <li>
+                <p><strong>Google Colab</strong>: A free Jupyter notebook environment that runs in the cloud. It's especially useful for data science and machine learning tasks. <a href="https://colab.research.google.com/">Google Colab</a></p>
+                </li>
+                <li>
+                <p><strong>PythonAnywhere</strong>: An online environment that allows you to run Python scripts and even host simple web apps. <a href="https://www.pythonanywhere.com/">PythonAnywhere</a></p>
+                </li>
+                <li>
+                <p><strong>OnlineGDB</strong>: A simple online compiler and debugger for Python and other programming languages. <a href="https://www.onlinegdb.com/">OnlineGDB</a></p>
+                </li>
+                <li>
+                <p><strong>Trinket</strong>: A platform that allows you to run Python code directly in the browser, ideal for beginners and educators. <a href="https://trinket.io/">Trinket</a></p>
+                </li>
+                </ul>
+                <h3>2. <strong>Browser Extensions</strong></h3>
+                <ul>
+                <li><strong>Jupyter Notebook Viewer</strong>: Allows you to view Jupyter Notebooks directly in your browser. While this is more for viewing than running code, it can be useful for sharing and collaborating on notebooks.</li>
+                </ul>
+                <h3>3. <strong>Cloud Platforms</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Azure Notebooks</strong>: Microsoft’s cloud-based Jupyter Notebook service, though it may require an account.</p>
+                </li>
+                <li>
+                <p><strong>Kaggle Kernels</strong>: Kaggle provides free cloud resources to run Python notebooks, often used for data science and machine learning competitions. <a href="https://www.kaggle.com/kernels">Kaggle</a></p>
+                </li>
+                </ul>
+                <h3>4. <strong>Educational Platforms</strong></h3>
+                <ul>
+                <li><strong>Codecademy</strong> and <strong>Coursera</strong>: These platforms offer Python courses with built-in coding environments that allow you to write and execute Python code.</li>
+                </ul>
+                <p>These tools are great for quickly testing code, learning Python, or even doing more extensive projects without installing Python locally.</p>
+                <p>Faster Results</p>
+                <p><img src="images/running-python-locally-3.png" alt="running python locally 3" class="article-image" loading="lazy"></p>
+                <p>Easy results not to have issues </p>
+                <p><img src="images/running-python-locally-4.png" alt="running python locally 4" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill’s matching - Rifat Erdem Sahin</title>
+    <meta name="description" content="Skill’s matching Use the intersection with the body array and it is done.">
+    <meta name="keywords" content="Skill’s matching">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/02/28/skills-matching/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/02/28/skills-matching/">
+    <meta property="og:title" content="Skill’s matching">
+    <meta property="og:description" content="Skill’s matching Use the intersection with the body array and it is done.">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/02/28/skills-matching/">
+    <meta property="twitter:title" content="Skill’s matching">
+    <meta property="twitter:description" content="Skill’s matching Use the intersection with the body array and it is done.">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Skill’s matching",
+      "description": "Skill’s matching Use the intersection with the body array and it is done.",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-02-28",
+      "dateModified": "2024-02-28",
+      "url": "https://www.rifaterdemsahin.com/2024/02/28/skills-matching/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/02/28/skills-matching/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Skill’s matching</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>February 28, 2024</span>
+                    <span>&bull;</span>
+                    <span>10 min read</span>
+                </div>
+                <p class="article-excerpt">Skill’s matching Use the intersection with the body array and it is done.</p>
+            </header>
+            <article class="article-content">
+                <h1>Skill’s matching</h1>
+                <p>Use the intersection with the body array and it is done.</p>
+                <p>Use main json with key value</p>
+                <p>Intersect with the email</p>
+                <p>And use the values to point out your relevant experience</p>
+                <p>Gpt not needed &gt; </p>
+                <p>Getting the title could be gpt task</p>
+                <p>Video is ok but my list on vscode and git would be better like before autoselection</p>
+                <p>https://www.youtube.com/live/7GCrLhHqgJs?si=mohynnZUtMo3kSuk</p>
+                <p>Github reference &gt; rifaterdemsahin coverletter</p>
+                <p>https://github.com/rifaterdemsahin/pexabo/blob/master/coverletter.html</p>
+                <p>Reality is got side tracked &gt; key mapping is enough for most roles and i sort the skills alphabetically than it is a great service for the recruiter</p>
+                <p>Next stage is to create word and pdf document from logic apps and mark the old documents and generic with created ones as bespoke</p>
+                <p>Convert it to json</p>
+                <p>https://dev.azure.com/pexabo/contractormarketing/_git/contractormarketing-data?path=/skills.json&amp;version=GBmain</p>
+                <p>Create a Json with years of experience &gt;</p>
+                <p><img src="images/skills-matching-1.png" alt="skills matching 1" class="article-image" loading="lazy"></p>
+                <p>it is already in skills matrix</p>
+                <p><img src="images/skills-matching-2.png" alt="skills matching 2" class="article-image" loading="lazy"></p>
+                <p>https://drive.google.com/drive/folders/1kS1YjHVZlcNyrGqHzYL7wKIEhwtvVE3J</p>
+                <p>move it</p>
+                <p><img src="images/skills-matching-3.png" alt="skills matching 3" class="article-image" loading="lazy"></p>
+                <p>move it to the top skills matrix</p>
+                <p><img src="images/skills-matching-4.png" alt="skills matching 4" class="article-image" loading="lazy"></p>
+                <p>maybe keeping it in excel makes more sense &gt; easy to edit metadata</p>
+                <p>Created with the pluralsight role &gt; metadata Courseware</p>
+                <p><img src="images/skills-matching-5.png" alt="skills matching 5" class="article-image" loading="lazy"></p>
+                <p>Version it and make it easier</p>
+                <p><img src="images/skills-matching-6.png" alt="skills matching 6" class="article-image" loading="lazy"></p>
+                <p>limits on drive</p>
+                <p><img src="images/skills-matching-7.png" alt="skills matching 7" class="article-image" loading="lazy"></p>
+                <p><img src="images/skills-matching-8.png" alt="skills matching 8" class="article-image" loading="lazy"></p>
+                <p>naming did not resolve it</p>
+                <p><img src="images/skills-matching-9.png" alt="skills matching 9" class="article-image" loading="lazy"></p>
+                <p>iterate row by row ?</p>
+                <p><strong><em>skilmatrix</em></strong></p>
+                <p><img src="images/skills-matching-10.png" alt="skills matching 10" class="article-image" loading="lazy"></p>
+                <p>Pivot from sheets to drive</p>
+                <p><img src="images/skills-matching-11.png" alt="skills matching 11" class="article-image" loading="lazy"></p>
+                <p>File has issues</p>
+                <p><img src="images/skills-matching-12.png" alt="skills matching 12" class="article-image" loading="lazy"></p>
+                <p>renamed</p>
+                <p><img src="images/skills-matching-13.png" alt="skills matching 13" class="article-image" loading="lazy"></p>
+                <p>Maybe top level issues</p>
+                <p><img src="images/skills-matching-14.png" alt="skills matching 14" class="article-image" loading="lazy"></p>
+                <p><img src="images/skills-matching-15.png" alt="skills matching 15" class="article-image" loading="lazy"></p>
+                <p>Understood the issue powerapps needs to add a metadata and data to be there</p>
+                <p><img src="images/skills-matching-16.png" alt="skills matching 16" class="article-image" loading="lazy"></p>
+                <p>Add one coloumn to the tight</p>
+                <p>it loads now it is time to test &gt; contractormarketing-skillsgap-json-test</p>
+                <p>Json loading in 2 seconds that is ok</p>
+                <p><img src="images/skills-matching-17.png" alt="skills matching 17" class="article-image" loading="lazy"></p>
+                <p>Backup the data</p>
+                <p><img src="images/skills-matching-18.png" alt="skills matching 18" class="article-image" loading="lazy"></p>
+                <p>I cant get the body as the debug is messed up</p>
+                <p><img src="images/skills-matching-19.png" alt="skills matching 19" class="article-image" loading="lazy"></p>
+                <p>my debugger failed the system for a day </p>
+                <p><img src="images/skills-matching-20.png" alt="skills matching 20" class="article-image" loading="lazy"></p>
+                <p>I need different environments to run stg and prd</p>
+                <blockquote>
+                <blockquote>
+                <p>at least a prd for starters &gt;&gt;&gt; more environments more work to be committed</p>
+                </blockquote>
+                </blockquote>
+                <p>Take it from a working one operator and the implementer would need to work side by side....implementer causing errors...operator fixing them and moving them to the production</p>
+                <p><img src="images/skills-matching-21.png" alt="skills matching 21" class="article-image" loading="lazy"></p>
+                <p>Needs to by pass after 11:00</p>
+                <p><img src="images/skills-matching-22.png" alt="skills matching 22" class="article-image" loading="lazy"></p>
+                <p>Operator has to run the queue &gt;&gt;&gt; to make sure the leads are processed</p>
+                <p>the resubmut would use the old schema?</p>
+                <p><img src="images/skills-matching-23.png" alt="skills matching 23" class="article-image" loading="lazy"></p>
+                <p>waiting on it for the debug step</p>
+                <p><img src="images/skills-matching-24.png" alt="skills matching 24" class="article-image" loading="lazy"></p>
+                <p>Learned resubmit uses the latest schema and the new data</p>
+                <p><img src="images/skills-matching-25.png" alt="skills matching 25" class="article-image" loading="lazy"></p>
+                <p>No interseact very direct</p>
+                <p><img src="images/skills-matching-26.png" alt="skills matching 26" class="article-image" loading="lazy"></p>
+                <p>Testing runs around 350 items with ( 256 ) with 25 seconds</p>
+                <p><img src="images/skills-matching-27.png" alt="skills matching 27" class="article-image" loading="lazy"></p>
+                <p>java and javascript written the correct way </p>
+                <p><img src="images/skills-matching-28.png" alt="skills matching 28" class="article-image" loading="lazy"></p>
+                <p>todo:1 &gt;&gt;&gt; add all the skills</p>
+                <p>todo2&gt;&gt;&gt; match the words</p>
+                <p>todo3&gt;&gt;&gt; add it to the main email</p>
+                <p>It is there with the numbers and the array lines up</p>
+                <p><img src="images/skills-matching-29.png" alt="skills matching 29" class="article-image" loading="lazy"></p>
+                <p>it should have worked?</p>
+                <p><img src="images/skills-matching-30.png" alt="skills matching 30" class="article-image" loading="lazy"></p>
+                <p>Concurrency turned off </p>
+                <p><img src="images/skills-matching-31.png" alt="skills matching 31" class="article-image" loading="lazy"></p>
+                <p>Fixed the syntax</p>
+                <p><img src="images/skills-matching-32.png" alt="skills matching 32" class="article-image" loading="lazy"></p>
+                <p>Foreach is taking time to process it &gt;&gt;&gt; when it is not in parallel</p>
+                <p><img src="images/skills-matching-33.png" alt="skills matching 33" class="article-image" loading="lazy"></p>
+                <p>10x slow down</p>
+                <p><img src="images/skills-matching-34.png" alt="skills matching 34" class="article-image" loading="lazy"></p>
+                <p>Concurrecny to 50 and i would still make it input and ouput based on the array that arrives on my end </p>
+                <p>todo 4&gt; isolate the method</p>
+                <p>but when it is parallel the result is not there</p>
+                <p><img src="images/skills-matching-35.png" alt="skills matching 35" class="article-image" loading="lazy"></p>
+                <p>Concurrency to 1 and now we are retrying to get the end of the results</p>
+                <p><img src="images/skills-matching-36.png" alt="skills matching 36" class="article-image" loading="lazy"></p>
+                <p>Empty value does not mean much</p>
+                <p>Much Slower mapping to be done &gt;&gt;&gt; better to be done on my end of rmy cv than on the recuiters end</p>
+                <p><img src="images/skills-matching-37.png" alt="skills matching 37" class="article-image" loading="lazy"></p>
+                <p>Return the result that they are looking for</p>
+                <p><img src="images/skills-matching-38.png" alt="skills matching 38" class="article-image" loading="lazy"></p>
+                <p>other skills have to be added aswell</p>
+                <p><img src="images/skills-matching-39.png" alt="skills matching 39" class="article-image" loading="lazy"></p>
+                <p>skip and get all the rows for the skills</p>
+                <p><img src="images/skills-matching-40.png" alt="skills matching 40" class="article-image" loading="lazy"></p>
+                <p>Links &gt;</p>
+                <p>Spreadsheet &gt; <a href="https://docs.google.com/spreadsheets/d/1Bu73MaR7nWbMv4IlUzqUVEwlriwilMMpextTyRYUfKg/edit#gid=1165371247">https://docs.google.com/spreadsheets/d/1Bu73MaR7nWbMv4IlUzqUVEwlriwilMMpextTyRYUfKg/edit#gid=1165371247</a></p>
+                <p>Distill Worksheet &gt;</p>
+                <p>https://portal.azure.com/#@pexabo.com/resource/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourcegroups/ContractorMarketing/providers/Microsoft.Logic/workflows/contractormarketing-skillgap-distill/logicApp</p>
+                <p>Merge inside !</p>
+                <p><img src="images/skills-matching-41.png" alt="skills matching 41" class="article-image" loading="lazy"></p>
+                <p>Bold header to make the recruiter life easier</p>
+                <p><img src="images/skills-matching-42.png" alt="skills matching 42" class="article-image" loading="lazy"></p>
+                <p>Resubmit is there &gt; 2 emails would be there</p>
+                <p><img src="images/skills-matching-43.png" alt="skills matching 43" class="article-image" loading="lazy"></p>
+                <p>that is a good candidate</p>
+                <p><img src="images/skills-matching-44.png" alt="skills matching 44" class="article-image" loading="lazy"></p>
+                <p>Lets check if it is there</p>
+                <p>https://portal.azure.com/#view/Microsoft_Azure_EMA/LogicAppsMonitorBlade/runid/%2Fsubscriptions%2Fad744a08-2411-4d78-b417-1f1c83f4f741%2Fresourcegroups%2FContractorMarketing%2Fproviders%2FMicrosoft.Logic%2Fworkflows%2Fcontractormarketing-replygmail-realtime%2Fruns%2F08584923941192510654573396931CU31</p>
+                <p>Scope skills is there &gt; it is great for the <strong>operations </strong>team</p>
+                <p><img src="images/skills-matching-45.png" alt="skills matching 45" class="article-image" loading="lazy"></p>
+                <p>working one stops so that is a good test</p>
+                <p><img src="images/skills-matching-46.png" alt="skills matching 46" class="article-image" loading="lazy"></p>
+                <p>sub jsons fail and you need to go through them</p>
+                <p><img src="images/skills-matching-47.png" alt="skills matching 47" class="article-image" loading="lazy"></p>
+                <p><img src="images/skills-matching-48.png" alt="skills matching 48" class="article-image" loading="lazy"></p>
+                <p>Update from the parse part</p>
+                <p><img src="images/skills-matching-49.png" alt="skills matching 49" class="article-image" loading="lazy"></p>
+                <p><img src="images/skills-matching-50.png" alt="skills matching 50" class="article-image" loading="lazy"></p>
+                <p>it is coming up</p>
+                <p><img src="images/skills-matching-51.png" alt="skills matching 51" class="article-image" loading="lazy"></p>
+                <p>Fill and see the end as an operator you are bottom up</p>
+                <p><img src="images/skills-matching-52.png" alt="skills matching 52" class="article-image" loading="lazy"></p>
+                <p>Make this part faster now &gt;&gt;&gt; it is the time &gt;&gt;&gt; ading 5 more minutes is too much </p>
+                <p><img src="images/skills-matching-53.png" alt="skills matching 53" class="article-image" loading="lazy"></p>
+                <p>Filter array might not be able to do it </p>
+                <p><img src="images/skills-matching-54.png" alt="skills matching 54" class="article-image" loading="lazy"></p>
+                <p>Lets have a scope</p>
+                <p><img src="images/skills-matching-55.png" alt="skills matching 55" class="article-image" loading="lazy"></p>
+                <p>I need to resolve the issue at the source otherwise it becomes harder to manage!</p>
+                <p><img src="images/skills-matching-56.png" alt="skills matching 56" class="article-image" loading="lazy"></p>
+                <p>https://portal.azure.com/#view/Microsoft_Azure_EMA/LogicAppsDesignerBlade/id/%2Fsubscriptions%2Fad744a08-2411-4d78-b417-1f1c83f4f741%2FresourceGroups%2FContractorMarketing%2Fproviders%2FMicrosoft.Logic%2Fworkflows%2Fcontractormarketing-skillsgap-json</p>
+                <p>Even harder here it makes sense to clean up before pass it to others</p>
+                <p><img src="images/skills-matching-57.png" alt="skills matching 57" class="article-image" loading="lazy"></p>
+                <p>Join alwo messed up make it longer but easier</p>
+                <p><img src="images/skills-matching-58.png" alt="skills matching 58" class="article-image" loading="lazy"></p>
+                <p>First principles and easier move out</p>
+                <p>i need to be in the gym</p>
+                <p><img src="images/skills-matching-59.png" alt="skills matching 59" class="article-image" loading="lazy"></p>
+                <p>Longer</p>
+                <p><img src="images/skills-matching-60.png" alt="skills matching 60" class="article-image" loading="lazy"></p>
+                <p><img src="images/skills-matching-61.png" alt="skills matching 61" class="article-image" loading="lazy"></p>
+                <p>foreach much slower</p>
+                <p><img src="images/skills-matching-62.png" alt="skills matching 62" class="article-image" loading="lazy"></p>
+                <p>use cached results to make it faster if needed!</p>
+                <p>Always some kind of logic app metadata incoming</p>
+                <p><img src="images/skills-matching-63.png" alt="skills matching 63" class="article-image" loading="lazy"></p>
+                <p>Too long to create and it would block the process</p>
+                <p><img src="images/skills-matching-64.png" alt="skills matching 64" class="article-image" loading="lazy"></p>
+                <p>remove the last step</p>
+                <p><img src="images/skills-matching-65.png" alt="skills matching 65" class="article-image" loading="lazy"></p>
+                <p>Save it in the back and run this once a day&gt;&gt; use the cache data all day long!</p>
+                <p>Skills not changing all the time!</p>
+                <p><img src="images/skills-matching-66.png" alt="skills matching 66" class="article-image" loading="lazy"></p>
+                <p>Take the latest created one </p>
+                <p><img src="images/skills-matching-67.png" alt="skills matching 67" class="article-image" loading="lazy"></p>
+                <p>Expect to have a cleaner version of this one</p>
+                <p><img src="images/skills-matching-68.png" alt="skills matching 68" class="article-image" loading="lazy"></p>
+                <p><img src="images/skills-matching-69.png" alt="skills matching 69" class="article-image" loading="lazy"></p>
+                <p><img src="images/skills-matching-70.png" alt="skills matching 70" class="article-image" loading="lazy"></p>
+                <p><img src="images/skills-matching-71.png" alt="skills matching 71" class="article-image" loading="lazy"></p>
+                <p>rerun the test on storage </p>
+                <p>much faster</p>
+                <p><img src="images/skills-matching-72.png" alt="skills matching 72" class="article-image" loading="lazy"></p>
+                <p>application octet stream and json does not match </p>
+                <p><img src="images/skills-matching-73.png" alt="skills matching 73" class="article-image" loading="lazy"></p>
+                <p>Added one more</p>
+                <p><img src="images/skills-matching-74.png" alt="skills matching 74" class="article-image" loading="lazy"></p>
+                <p>this is not enoug so it is 2 parts</p>
+                <p><img src="images/skills-matching-75.png" alt="skills matching 75" class="article-image" loading="lazy"></p>
+                <p><strong>1)Resolve the storage octet issue &gt; application/json content disposition maybe</strong></p>
+                <p>2)Reolve the main logic app</p>
+                <p>3)rerun the parts that did not work with labels</p>
+                <p>too many files created check if there is file is not bypass</p>
+                <p><img src="images/skills-matching-76.png" alt="skills matching 76" class="article-image" loading="lazy"></p>
+                <p>Shorter filename</p>
+                <p><img src="images/skills-matching-77.png" alt="skills matching 77" class="article-image" loading="lazy"></p>
+                <p>Single file is here</p>
+                <p><img src="images/skills-matching-78.png" alt="skills matching 78" class="article-image" loading="lazy"></p>
+                <p>add json at the end</p>
+                <p><img src="images/skills-matching-79.png" alt="skills matching 79" class="article-image" loading="lazy"></p>
+                <p>ver complicated process &gt; thanks ms &gt;&gt;&gt; converting needs a middle app...gash!</p>
+                <p>https://pkirch.github.io/2017-11/logic-apps-data-type-issues</p>
+                <p>generate a sas url is even easier</p>
+                <p><img src="images/skills-matching-80.png" alt="skills matching 80" class="article-image" loading="lazy"></p>
+                <p><img src="images/skills-matching-81.png" alt="skills matching 81" class="article-image" loading="lazy"></p>
+                <p>Still too slow to match ?</p>
+                <p><img src="images/skills-matching-82.png" alt="skills matching 82" class="article-image" loading="lazy"></p>
+                <p>too many fails is there</p>
+                <p><img src="images/skills-matching-83.png" alt="skills matching 83" class="article-image" loading="lazy"></p>
+                <p>maybe none error one would be faster</p>
+                <p><img src="images/skills-matching-84.png" alt="skills matching 84" class="article-image" loading="lazy"></p>
+                <p>working one looks slower</p>
+                <p><img src="images/skills-matching-85.png" alt="skills matching 85" class="article-image" loading="lazy"></p>
+                <p>10 minute mark so slow</p>
+                <p><img src="images/skills-matching-86.png" alt="skills matching 86" class="article-image" loading="lazy"></p>
+                <p>zero second pass time</p>
+                <p><img src="images/skills-matching-87.png" alt="skills matching 87" class="article-image" loading="lazy"></p>
+                <p>Looping after 27 minutes</p>
+                <p><img src="images/skills-matching-88.png" alt="skills matching 88" class="article-image" loading="lazy"></p>
+                <p>even this is taking time maybe i also need to create the keys as well</p>
+                <p><img src="images/skills-matching-89.png" alt="skills matching 89" class="article-image" loading="lazy"></p>
+                <p>Key creation takes 60 seconds everytime</p>
+                <p><img src="images/skills-matching-90.png" alt="skills matching 90" class="article-image" loading="lazy"></p>
+                <p>than another step is better</p>
+                <p><img src="images/skills-matching-91.png" alt="skills matching 91" class="article-image" loading="lazy"></p>
+                <p>3 lists are needed</p>
+                <ul>
+                <li>
+                <p>fulllist</p>
+                </li>
+                <li>
+                <p>keylist</p>
+                </li>
+                <li>
+                <p>keyvaluelist</p>
+                </li>
+                </ul>
+                <p>Dont generate with date with every update rerun it</p>
+                <p>it is better to have a filter service</p>
+                <p><img src="images/skills-matching-92.png" alt="skills matching 92" class="article-image" loading="lazy"></p>
+                <p>3 list and 3 files makes much more sense</p>
+                <p>3 different files</p>
+                <p><img src="images/skills-matching-93.png" alt="skills matching 93" class="article-image" loading="lazy"></p>
+                <p>All of them generated</p>
+                <p><img src="images/skills-matching-94.png" alt="skills matching 94" class="article-image" loading="lazy"></p>
+                <p>Kay value action didnot work </p>
+                <p><img src="images/skills-matching-95.png" alt="skills matching 95" class="article-image" loading="lazy"></p>
+                <p>moved back to key value</p>
+                <p><img src="images/skills-matching-96.png" alt="skills matching 96" class="article-image" loading="lazy"></p>
+                <p>refactor and rerun</p>
+                <p><img src="images/skills-matching-97.png" alt="skills matching 97" class="article-image" loading="lazy"></p>
+                <p>Key also needs to be in caps</p>
+                <p><img src="images/skills-matching-98.png" alt="skills matching 98" class="article-image" loading="lazy"></p>
+                <p>updated keys</p>
+                <p><img src="images/skills-matching-99.png" alt="skills matching 99" class="article-image" loading="lazy"></p>
+                <p>updated</p>
+                <p><img src="images/skills-matching-100.png" alt="skills matching 100" class="article-image" loading="lazy"></p>
+                <p>empty skills and relevant experience</p>
+                <p><img src="images/skills-matching-101.png" alt="skills matching 101" class="article-image" loading="lazy"></p>
+                <p>it could not match</p>
+                <p><img src="images/skills-matching-102.png" alt="skills matching 102" class="article-image" loading="lazy"></p>
+                <p>https://mail.google.com/mail/u/0/#search/08584923666947104726846416191CU22/FMfcgzGxRxCQMmMWJmzqPdjTKKpvsMxH</p>
+                <p>not matched</p>
+                <p><img src="images/skills-matching-103.png" alt="skills matching 103" class="article-image" loading="lazy"></p>
+                <p>there is aws</p>
+                <p><img src="images/skills-matching-104.png" alt="skills matching 104" class="article-image" loading="lazy"></p>
+                <p>aws and azure is there</p>
+                <p><img src="images/skills-matching-105.png" alt="skills matching 105" class="article-image" loading="lazy"></p>
+                <p>Azure</p>
+                <p><img src="images/skills-matching-106.png" alt="skills matching 106" class="article-image" loading="lazy"></p>
+                <p>Check it one more time </p>
+                <p><img src="images/skills-matching-107.png" alt="skills matching 107" class="article-image" loading="lazy"></p>
+                <p>Clean the text a bit better otherwise it is an issue</p>
+                <p><img src="images/skills-matching-108.png" alt="skills matching 108" class="article-image" loading="lazy"></p>
+                <p>Space and comma cleanup</p>
+                <p><img src="images/skills-matching-109.png" alt="skills matching 109" class="article-image" loading="lazy"></p>
+                <p>resubmit 9:01</p>
+                <p><img src="images/skills-matching-110.png" alt="skills matching 110" class="article-image" loading="lazy"></p>
+                <p>looks like bad assignment</p>
+                <p><img src="images/skills-matching-111.png" alt="skills matching 111" class="article-image" loading="lazy"></p>
+                <p>Parse fixed there is more items coming in not 3</p>
+                <p><img src="images/skills-matching-112.png" alt="skills matching 112" class="article-image" loading="lazy"></p>
+                <p>Fix the Direct keywords and focus on it </p>
+                <p><img src="images/skills-matching-113.png" alt="skills matching 113" class="article-image" loading="lazy"></p>
+                <p>Did we send the emails ?</p>
+                <p>Empty</p>
+                <p><img src="images/skills-matching-114.png" alt="skills matching 114" class="article-image" loading="lazy"></p>
+                <p><img src="images/skills-matching-115.png" alt="skills matching 115" class="article-image" loading="lazy"></p>
+                <p>There is a worked one </p>
+                <p><img src="images/skills-matching-116.png" alt="skills matching 116" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

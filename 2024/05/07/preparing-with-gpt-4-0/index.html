@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preparing with gpt 4.0 - Rifat Erdem Sahin</title>
+    <meta name="description" content="Preparing with gpt 4.0 Preparing for a DevOps Engineer interview, especially when specific technologies like Azure, .net core, and Octopus Deploy are involved, can be approached systematically. Here’s">
+    <meta name="keywords" content="Preparing with gpt 4.0">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/05/07/preparing-with-gpt-4-0/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/05/07/preparing-with-gpt-4-0/">
+    <meta property="og:title" content="Preparing with gpt 4.0">
+    <meta property="og:description" content="Preparing with gpt 4.0 Preparing for a DevOps Engineer interview, especially when specific technologies like Azure, .net core, and Octopus Deploy are involved, can be approached systematically. Here’s">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/05/07/preparing-with-gpt-4-0/">
+    <meta property="twitter:title" content="Preparing with gpt 4.0">
+    <meta property="twitter:description" content="Preparing with gpt 4.0 Preparing for a DevOps Engineer interview, especially when specific technologies like Azure, .net core, and Octopus Deploy are involved, can be approached systematically. Here’s">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Preparing with gpt 4.0",
+      "description": "Preparing with gpt 4.0 Preparing for a DevOps Engineer interview, especially when specific technologies like Azure, .net core, and Octopus Deploy are involved, can be approached systematically. Here’s",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-05-07",
+      "dateModified": "2024-05-07",
+      "url": "https://www.rifaterdemsahin.com/2024/05/07/preparing-with-gpt-4-0/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/05/07/preparing-with-gpt-4-0/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Preparing with gpt 4.0</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>May 7, 2024</span>
+                    <span>&bull;</span>
+                    <span>8 min read</span>
+                </div>
+                <p class="article-excerpt">Preparing with gpt 4.0 Preparing for a DevOps Engineer interview, especially when specific technologies like Azure, .net core, and Octopus Deploy are involved, can be approached systematically. Here’s a step-by-step guide to help you get ready: 1.</p>
+            </header>
+            <article class="article-content">
+                <h1>Preparing with gpt 4.0</h1>
+                <p>Preparing for a DevOps Engineer interview, especially when specific technologies like Azure, .net core, and <strong>Octopus</strong> Deploy are involved, can be approached systematically. Here’s a step-by-step guide to help you get ready:</p>
+                <h3>1. Technical Skills Preparation</h3>
+                <p><strong>Understand the Core Technologies:</strong></p>
+                <ul>
+                <li>
+                <p><strong>Azure:</strong> Familiarize yourself with Azure's services related to computing, storage, and networking. Focus on services commonly used in DevOps workflows, such as Azure DevOps, Azure Pipelines, and Azure Kubernetes Service.</p>
+                </li>
+                <li>
+                <p><strong>.NET Core:</strong> Make sure you understand the basics of .NET Core, particularly how it can be used in cloud-based and scalable applications.</p>
+                </li>
+                <li>
+                <p><strong>Octopus Deploy:</strong> Since this tool is used for deployment automation, review how it integrates with existing CI/CD pipelines and manages releases.</p>
+                </li>
+                </ul>
+                <p><strong>Practice Common DevOps Scenarios:</strong></p>
+                <ul>
+                <li>
+                <p>Work on setting up CI/CD pipelines.</p>
+                </li>
+                <li>
+                <p>Automate infrastructure provisioning with tools like Terraform or Azure-specific scripts.</p>
+                </li>
+                <li>
+                <p>Configure monitoring and logging using Azure Monitor or similar tools.</p>
+                </li>
+                </ul>
+                <h3>2. Behavioral and Leadership Skills</h3>
+                <p><strong>Prepare to Discuss Leadership Experiences:</strong></p>
+                <ul>
+                <li>Think of situations where you led a team or project, made key decisions, or mentored colleagues.</li>
+                </ul>
+                <p>ILKON &gt; Lead an reverse engineering team </p>
+                <ul>
+                <li>
+                <p>Broadage &gt; Lead on microservices enviroment </p>
+                </li>
+                <li>
+                <p>BTCTrader &gt; Build the DevOps</p>
+                </li>
+                <li>
+                <p>Accenture &gt; Lead teams in quality assesment in EuroBank merger</p>
+                </li>
+                <li>
+                <p>Pexabo &gt; Lead content generation teams working remotely</p>
+                </li>
+                <li>
+                <p>Be ready to discuss how you handle project management, deadlines, and team conflicts.</p>
+                </li>
+                </ul>
+                <p><strong>STAR Technique:</strong></p>
+                <ul>
+                <li>Structure your answers using the Situation, Task, Action, Result (STAR) format to clearly convey your experiences and achievements.</li>
+                </ul>
+                <h3>3. Research the Company</h3>
+                <ul>
+                <li><strong>Learn about Company:</strong> Understand their business model, products, and the industry they operate in. Knowing their goals and challenges can help you tailor your answers more effectively during the interview.</li>
+                </ul>
+                <h3>4. Prepare Intelligent Questions</h3>
+                <ul>
+                <li>
+                <p>Ask about the team you will be working with, ongoing projects, and the technologies they use.</p>
+                </li>
+                <li>
+                <p>Inquire about the company's future plans and how they see the role of a DevOps engineer contributing to their objectives.</p>
+                </li>
+                </ul>
+                <h3>5. Mock Interviews</h3>
+                <ul>
+                <li><strong>Conduct mock interviews </strong>with friends or mentors who have experience in DevOps. This can help you refine your answers and improve your confidence.</li>
+                </ul>
+                <h3>6. Review Job Description and Prepare Relevant Examples</h3>
+                <ul>
+                <li>Go through the job description again and align your skills and experiences with the requirements stated. Prepare to discuss specific examples where you have used the required skills.</li>
+                </ul>
+                <h3>7. Rest and Prepare Logistically</h3>
+                <ul>
+                <li>
+                <p><strong>Ensure you have a quiet, comfortable environment </strong>for the interview if it's remote. &gt; Studio!</p>
+                </li>
+                <li>
+                <p>Get a good night’s sleep before the interview day, and have your resume and notes ready for easy reference.</p>
+                </li>
+                </ul>
+                <p>By following these steps, you'll be better prepared to impress the interviewers with your skills and readiness for the role. Good luck! If you need more specific tips or resources, feel free to ask.</p>
+                <hr />
+                <p>For an interview focused on Octopus Deploy, you can anticipate both general and specific questions that test your understanding of its capabilities, common use cases, and integration into DevOps practices. Below are some possible interview questions on Octopus Deploy along with suggested answers:</p>
+                <h3>1. <strong>What is Octopus Deploy and how does it integrate with CI/CD pipelines?</strong></h3>
+                <p><strong>Answer:</strong> Octopus Deploy is an <strong>automated deployment server </strong>that helps manage releases, automate deployments, and automate the runbooks in a production environment. It works seamlessly with <strong>CI (Continuous Integration) systems</strong> to manage a series of releases through different environments, ensuring that software is deployed reliably. It can package the built code from CI systems, and then deploy it to various environments based on predefined processes.</p>
+                <h3>2. <strong>Can you explain the key features of Octopus Deploy?</strong></h3>
+                <p><strong>Answer:</strong> Key features of Octopus Deploy include:</p>
+                <ul>
+                <li>
+                <p><strong>Environment and Configuration Management:</strong> Allows you to define and manage deployment environments and their configurations separately.</p>
+                </li>
+                <li>
+                <p><strong>Deployment Automation:</strong> Automates the deployment of applications across various environments.</p>
+                </li>
+                <li>
+                <p><strong>Release Management:</strong> Tracks releases and provides tools for managing them through different stages.</p>
+                </li>
+                <li>
+                <p><strong>Variable Management:</strong> Manages variables that differ between environments without hard-coding them into the deployment scripts.</p>
+                </li>
+                <li>
+                <p><strong>Extensions and Integrations:</strong> Offers integration with various build servers, issue tracking systems, and configuration management tools.</p>
+                </li>
+                </ul>
+                <h3>3. <strong>Describe the process of setting up a project in Octopus Deploy.</strong></h3>
+                <p><strong>Answer:</strong> Setting up a project in Octopus Deploy involves several steps:</p>
+                <ul>
+                <li>
+                <p><strong>Create a Project:</strong> First, you define a new project in the Octopus Dashboard.</p>
+                </li>
+                <li>
+                <p><strong>Define Deployment Process:</strong> Configure the steps that Octopus will execute during deployment, such as deploying a package or running a script.</p>
+                </li>
+                <li>
+                <p><strong>Configure Environments:</strong> Define the environments where the software will be deployed, such as Development, Testing, and Production.</p>
+                </li>
+                <li>
+                <p><strong>Set Variables:</strong> Define any necessary variables that may change between deployments or environments.</p>
+                </li>
+                <li>
+                <p><strong>Create and Deploy Releases:</strong> Finally, create a release by selecting the project and version of the software to deploy, and then deploy this release to an environment.</p>
+                </li>
+                </ul>
+                <h3>4. <strong>How does Octopus Deploy handle rollbacks?</strong></h3>
+                <p><strong>Answer:</strong> O<em>ctopus Deploy handles rollbacks by allowing you to deploy any previous release to any environment.</em> It does not automatically roll back changes but instead uses the concept of promoting a known good release to replace a failed release. This ensures that the rollback is a full deployment of a stable release, maintaining consistency in the deployment process.</p>
+                <h3>5. <strong>What are some common challenges when using Octopus Deploy and how can they be addressed?</strong></h3>
+                <p><strong>Answer:</strong> Some common challenges include:</p>
+                <ul>
+                <li>
+                <p><strong>Complex Configuration Management:</strong> As projects grow, managing configurations can become complex. This can be mitigated by extensively using variables and leveraging Octopus’s built-in configuration features.</p>
+                </li>
+                <li>
+                <p><strong>Learning Curve:</strong> New users may find Octopus’s interface and vast features overwhelming. Proper training and documentation can help ease this.</p>
+                </li>
+                <li>
+                <p><strong>Integration Issues:</strong> Sometimes integration with external tools or legacy systems can be challenging. Custom scripts or additional tooling might be necessary to bridge these gaps.</p>
+                </li>
+                </ul>
+                <h3>6. <strong>Explain how you can use Octopus Deploy for database deployments.</strong></h3>
+                <p><strong>Answer:</strong> Octopus Deploy can manage database deployments by executing scripts to update the database as part of a deployment process. It can run SQL scripts or use database migration tools like <strong>DbUp or Redgate SQL Change Automation</strong>, which are integrated into the deployment process. Octopus ensures that database deployments are consistent across environments and integrates them into the overall deployment plan.</p>
+                <p>Preparing answers to these questions can help demonstrate your proficiency with Octopus Deploy in an interview. Tailoring your responses with specific examples from your experience will further strengthen your presentation.</p>
+                <hr />
+                <p>When using the STAR (Situation, Task, Action, Result) technique to describe your leadership experiences across different companies, it’s crucial to outline the context, your role, the specific actions you took, and the outcomes of those actions. Here’s how you might structure your experiences using the STAR method:</p>
+                <h3>1. ILKON – Leading a Reverse Engineering Team</h3>
+                <ul>
+                <li>
+                <p><strong>Situation:</strong> At ILKON, I was appointed to lead a team tasked with reverse engineering competitive products to enhance our market understanding and improve our own products.</p>
+                </li>
+                <li>
+                <p><strong>Task:</strong> My main responsibility was to manage the team effectively, ensuring that we gathered accurate and actionable insights.</p>
+                </li>
+                <li>
+                <p><strong>Action:</strong> I organized and led regular brainstorming sessions to identify key areas for technological improvement, facilitated advanced training workshops to improve technical skills, and established a systematic approach for analyzing competitors' products.</p>
+                </li>
+                <li>
+                <p><strong>Result:</strong> Our efforts led to the development of three new product features that significantly increased the efficiency and user satisfaction of our existing products, boosting product sales by 20% within six months.</p>
+                </li>
+                </ul>
+                <h3>2. Broadage – Leading a Microservices Environment</h3>
+                <ul>
+                <li>
+                <p><strong>Situation:</strong> At Broadage, I was responsible for leading the transition of our application development processes to a microservices architecture.</p>
+                </li>
+                <li>
+                <p><strong>Task:</strong> The task involved overseeing the architectural redesign, ensuring minimal disruption to ongoing services.</p>
+                </li>
+                <li>
+                <p><strong>Action:</strong> I collaborated with IT architects to design a phased rollout plan, conducted extensive training sessions to familiarize the development team with microservices principles, and closely monitored the deployment process to handle any immediate issues.</p>
+                </li>
+                <li>
+                <p><strong>Result:</strong> The successful implementation of the microservices architecture improved system scalability and reduced downtime by 40%, enhancing customer satisfaction and operational efficiency.</p>
+                </li>
+                </ul>
+                <h3>3. BTCTrader – Building the DevOps Infrastructure</h3>
+                <ul>
+                <li>
+                <p><strong>Situation:</strong> At BTCTrader, I was tasked with building the company’s first formal DevOps infrastructure from the ground up.</p>
+                </li>
+                <li>
+                <p><strong>Task:</strong> The goal was to implement standardized practices for continuous integration and continuous deployment (CI/CD) to accelerate product releases.</p>
+                </li>
+                <li>
+                <p><strong>Action:</strong> I developed a comprehensive CI/CD pipeline, integrated essential DevOps tools, and led workshops to train the team on these new processes.</p>
+                </li>
+                <li>
+                <p><strong>Result:</strong> This led to a 50% reduction in time-to-market for new product features and significantly reduced the incidence of critical bugs in production by 75%.</p>
+                </li>
+                </ul>
+                <h3>4. Accenture – Leading Teams in Quality Assessment for EuroBank Merger</h3>
+                <ul>
+                <li>
+                <p><strong>Situation:</strong> At Accenture, during the merger of EuroBank with another major financial institution, I led the quality assessment teams.</p>
+                </li>
+                <li>
+                <p><strong>Task:</strong> My role was to ensure the seamless integration of banking systems and maintain <strong>high-quality standards</strong> throughout the merger process.</p>
+                </li>
+                <li>
+                <p><strong>Action:</strong> I designed and implemented a rigorous quality assessment framework, coordinated with multiple stakeholders to align quality standards, and led daily status meetings to keep the project on track.</p>
+                </li>
+                <li>
+                <p><strong>Result:</strong> My leadership in this critical phase contributed to the successful merger, with system compatibility maintained at a 99% success rate, significantly reducing post-merger integration issues.</p>
+                </li>
+                </ul>
+                <h3>5. Pexabo – Leading Remote Content Generation Teams</h3>
+                <ul>
+                <li>
+                <p><strong>Situation:</strong> At Pexabo, I led a team of content creators who were located in various parts of the world.</p>
+                </li>
+                <li>
+                <p><strong>Task:</strong> The challenge was to maintain high productivity and creativity in content generation remotely.</p>
+                </li>
+                <li>
+                <p><strong>Action:</strong> I implemented a suite of collaboration tools tailored to creative tasks, established regular virtual brainstorming sessions, and set clear, measurable goals for team members.</p>
+                </li>
+                <li>
+                <p><strong>Result:</strong> These initiatives resulted in a 30% increase in content output, while also enhancing the quality of the content, which led to a 40% growth in audience engagement across our platforms.</p>
+                </li>
+                </ul>
+                <p>Each of these examples clearly illustrates your leadership capabilities and the positive impact of your actions, using the <strong>STAR</strong> format to provide a coherent and compelling narrative.</p>
+                <p>Reference &gt; <a href="https://chatgpt.com/c/f52b5089-5d77-419f-a3e9-5379e63dc67b">https://chatgpt.com/c/f52b5089-5d77-419f-a3e9-5379e63dc67b</a></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

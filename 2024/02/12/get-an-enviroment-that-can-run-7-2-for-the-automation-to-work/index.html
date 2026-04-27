@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get an enviroment that can run 7.2 for the automation to work with keys for a Logic App run on Azure Automation - Rifat Erdem Sahin</title>
+    <meta name="description" content="Get an enviroment that can run 7.2 for the automation to work with keys for a Logic App run on Azure Automation Goal : to have the azure automation run on its own Azure automation has the 7.2 Can i te">
+    <meta name="keywords" content="Get an enviroment that can run 7.2 for the automation to work with keys for a Logic App run on Azure Automation">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/02/12/get-an-enviroment-that-can-run-7-2-for-the-automation-to-work/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/02/12/get-an-enviroment-that-can-run-7-2-for-the-automation-to-work/">
+    <meta property="og:title" content="Get an enviroment that can run 7.2 for the automation to work with keys for a Logic App run on Azure Automation">
+    <meta property="og:description" content="Get an enviroment that can run 7.2 for the automation to work with keys for a Logic App run on Azure Automation Goal : to have the azure automation run on its own Azure automation has the 7.2 Can i te">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/02/12/get-an-enviroment-that-can-run-7-2-for-the-automation-to-work/">
+    <meta property="twitter:title" content="Get an enviroment that can run 7.2 for the automation to work with keys for a Logic App run on Azure Automation">
+    <meta property="twitter:description" content="Get an enviroment that can run 7.2 for the automation to work with keys for a Logic App run on Azure Automation Goal : to have the azure automation run on its own Azure automation has the 7.2 Can i te">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Get an enviroment that can run 7.2 for the automation to work with keys for a Logic App run on Azure Automation",
+      "description": "Get an enviroment that can run 7.2 for the automation to work with keys for a Logic App run on Azure Automation Goal : to have the azure automation run on its own Azure automation has the 7.2 Can i te",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-02-12",
+      "dateModified": "2024-02-12",
+      "url": "https://www.rifaterdemsahin.com/2024/02/12/get-an-enviroment-that-can-run-7-2-for-the-automation-to-work/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/02/12/get-an-enviroment-that-can-run-7-2-for-the-automation-to-work/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Get an enviroment that can run 7.2 for the automation to work with keys for a Logic App run on Azure Automation</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>February 12, 2024</span>
+                    <span>&bull;</span>
+                    <span>15 min read</span>
+                </div>
+                <p class="article-excerpt">Get an enviroment that can run 7.2 for the automation to work with keys for a Logic App run on Azure Automation Goal : to have the azure automation run on its own Azure automation has the 7.2 Can i test in the cli azure? cloud shell and powershell runtime would they match ?</p>
+            </header>
+            <article class="article-content">
+                <h1>Get an enviroment that can run 7.2 for the automation to work with keys for a Logic App run on Azure Automation</h1>
+                <p>Goal : to have the azure automation run on its own</p>
+                <p>Azure automation has the 7.2</p>
+                <p>Can i test in the cli azure?</p>
+                <p><img src="images/get-an-enviroment-1.png" alt="get an enviroment 1" class="article-image" loading="lazy"></p>
+                <p>cloud shell and powershell runtime would they match ?</p>
+                <p><img src="images/get-an-enviroment-2.png" alt="get an enviroment 2" class="article-image" loading="lazy"></p>
+                <p>7.4 could overlap with 7.2?</p>
+                <p><img src="images/get-an-enviroment-3.png" alt="get an enviroment 3" class="article-image" loading="lazy"></p>
+                <p>maybe my main error was the popup error and the basics are not covered in scripting tools</p>
+                <p><img src="images/get-an-enviroment-4.png" alt="get an enviroment 4" class="article-image" loading="lazy"></p>
+                <p>Silent olmasi onemli</p>
+                <p><img src="images/get-an-enviroment-5.png" alt="get an enviroment 5" class="article-image" loading="lazy"></p>
+                <p>All lines did not work </p>
+                <p><img src="images/get-an-enviroment-6.png" alt="get an enviroment 6" class="article-image" loading="lazy"></p>
+                <p><strong>error at fist line</strong></p>
+                <p>Connect-AzAccount -UseDeviceAuthentication</p>
+                <p>$rsg = 'ContractorMarketing'</p>
+                <p>$storageid = '/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Storage/storageAccounts/contractormarketing'</p>
+                <p>$diagname = 'mydiagnostics'</p>
+                <p>$resourceid = '/ContractorMarketing/providers/Microsoft.Logic/workflows/contractormarketing-schedule-dailyreport'</p>
+                <p>Set-AzDiagnosticSetting -Name $diagname -ResourceId $resourceid -StorageAccountId $storageid -Enabled $true -Categories CoreAnalytics</p>
+                <p>find the new functions</p>
+                <p><img src="images/get-an-enviroment-7.png" alt="get an enviroment 7" class="article-image" loading="lazy"></p>
+                <p>https://learn.microsoft.com/en-us/powershell/module/az.monitor/new-azdiagnosticsetting?view=azps-11.3.0&amp;viewFallbackFrom=azps-9.7.1</p>
+                <p>different type of creation</p>
+                <p><img src="images/get-an-enviroment-8.png" alt="get an enviroment 8" class="article-image" loading="lazy"></p>
+                <p>New-AzDiagnosticSetting -Name mydiag -setting -ResourceId /subscriptions/$subscriptionId/resourceGroups/test-rg-name/providers/Microsoft.AppPlatform/Spring/springcloud-001 -WorkspaceId /subscriptions/$subscriptionId/resourcegroups/test-rg-name/providers/microsoft.operationalinsights/workspaces/test-workspace -Log $log -Metric $metric</p>
+                <p>Practical grab the resource id</p>
+                <p><img src="images/get-an-enviroment-9.png" alt="get an enviroment 9" class="article-image" loading="lazy"></p>
+                <p>/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Logic/workflows/contractormarketing-schedule-dailyreport</p>
+                <p>New-AzDiagnosticSetting -Name mydiag -setting -ResourceId /subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Logic/workflows/contractormarketing-schedule-dailyreport -WorkspaceId /subscriptions/$subscriptionId/resourcegroups/test-rg-name/providers/microsoft.operationalinsights/workspaces/test-workspace -Log $log -Metric $metric</p>
+                <p>workspaceid simil.ar grab</p>
+                <p><img src="images/get-an-enviroment-10.png" alt="get an enviroment 10" class="article-image" loading="lazy"></p>
+                <p>/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourcegroups/contractormarketing/providers/microsoft.operationalinsights/workspaces/contractormarketing-loganalytics</p>
+                <p>New-AzDiagnosticSetting -Name mydiag -setting -ResourceId /subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Logic/workflows/contractormarketing-schedule-dailyreport -WorkspaceId /subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourcegroups/contractormarketing/providers/microsoft.operationalinsights/workspaces/contractormarketing-loganalytics -Log $log -Metric $metric</p>
+                <p><strong>All Code</strong></p>
+                <p><code>$subscriptionId = (Get-AzContext).Subscription.Id
+                $metric = @()
+                $log = @()
+                $metric += New-AzDiagnosticSettingMetricSettingsObject -Enabled $true -Category AllMetrics -RetentionPolicyDay 7 -RetentionPolicyEnabled $true
+                $log += New-AzDiagnosticSettingLogSettingsObject -Enabled $true -Category ContainerEventLogs -RetentionPolicyDay 7 -RetentionPolicyEnabled $true
+                New-AzDiagnosticSetting -Name mydiag -ResourceId /subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Logic/workflows/contractormarketing-schedule-dailyreport -WorkspaceId /subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourcegroups/contractormarketing/providers/microsoft.operationalinsights/workspaces/contractormarketing-loganalytics -Log $log -Metric $metric</code></p>
+                <p><img src="images/get-an-enviroment-11.png" alt="get an enviroment 11" class="article-image" loading="lazy"></p>
+                <p>$log += New-AzDiagnosticSettingLogSettingsObject -Enabled $true -Category ContainerEventLogs -RetentionPolicyDay 7 -RetentionPolicyEnabled $true<br />
+                $log += New-AzDiagnosticSettingLogSettingsObject -Enabled $true -RetentionPolicyDay 7 -RetentionPolicyEnabled $true</p>
+                <p>category error &gt; switch to all </p>
+                <p>$categories = Get-AzDiagnosticSettingCategory -ResourceId /subscriptions/$subscriptionId/resourceGroups/test-rg-name/providers/Microsoft.AppPlatform/Spring/springcloud-001</p>
+                <p>$categories = Get-AzDiagnosticSettingCategory -ResourceId /subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Logic/workflows/contractormarketing-schedule-dailyreport</p>
+                <p>$categories | ForEach-Object {if($<em>.CategoryType -eq "Metrics"){$metric+=New-AzDiagnosticSettingMetricSettingsObject -Enabled $true -Category $</em>.Name -RetentionPolicyDay 7 -RetentionPolicyEnabled $true} else{$log+=New-AzDiagnosticSettingLogSettingsObject -Enabled $true -Category $_.Name -RetentionPolicyDay 7 -RetentionPolicyEnabled $true}}</p>
+                <p>New-AzDiagnosticSetting -Name test-setting -ResourceId /subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Logic/workflows/contractormarketing-schedule-dailyreport -WorkspaceId /subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourcegroups/contractormarketing/providers/microsoft.operationalinsights/workspaces/contractormarketing-loganalytics -Log $log -Metric $metric</p>
+                <p>still missing</p>
+                <p><img src="images/get-an-enviroment-12.png" alt="get an enviroment 12" class="article-image" loading="lazy"></p>
+                <p>bigger screen needed</p>
+                <p>runner ps1 </p>
+                <p><img src="images/get-an-enviroment-13.png" alt="get an enviroment 13" class="article-image" loading="lazy"></p>
+                <p>bigger action can be run</p>
+                <p><img src="images/get-an-enviroment-14.png" alt="get an enviroment 14" class="article-image" loading="lazy"></p>
+                <p>Longer script testing is there</p>
+                <p><img src="images/get-an-enviroment-15.png" alt="get an enviroment 15" class="article-image" loading="lazy"></p>
+                <p>cloud runner took time</p>
+                <p><img src="images/get-an-enviroment-16.png" alt="get an enviroment 16" class="article-image" loading="lazy"></p>
+                <p>$subscriptionId = (Get-AzContext).Subscription.Id</p>
+                <p>$metric = @()</p>
+                <p>$log = @()</p>
+                <p>$categories = Get-AzDiagnosticSettingCategory -ResourceId /subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Logic/workflows/contractormarketing-schedule-dailyreport</p>
+                <p>$categories | ForEach-Object {if($<em>.CategoryType -eq "Metrics"){$metric+=New-AzDiagnosticSettingMetricSettingsObject -Enabled $true -Category $</em>.Name} else{$log+=New-AzDiagnosticSettingLogSettingsObject -Enabled $true -Category $_.Name}}</p>
+                <p>New-AzDiagnosticSetting -Name test-setting -ResourceId /subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Logic/workflows/contractormarketing-schedule-dailyreport -WorkspaceId /subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourcegroups/contractormarketing/providers/microsoft.operationalinsights/workspaces/contractormarketing-loganalytics -Log $log -Metric $metric</p>
+                <p>Missing settings</p>
+                <p><img src="images/get-an-enviroment-17.png" alt="get an enviroment 17" class="article-image" loading="lazy"></p>
+                <p>arm id</p>
+                <p><img src="images/get-an-enviroment-18.png" alt="get an enviroment 18" class="article-image" loading="lazy"></p>
+                <p>too many settings</p>
+                <p><img src="images/get-an-enviroment-19.png" alt="get an enviroment 19" class="article-image" loading="lazy"></p>
+                <p>$subscriptionId = (Get-AzContext).Subscription.Id</p>
+                <p>$metric = @()</p>
+                <p>$log = @()</p>
+                <p>$categories = Get-AzDiagnosticSettingCategory -ResourceId /subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Logic/workflows/contractormarketing-schedule-dailyreport</p>
+                <p>$categories | ForEach-Object {if($<em>.CategoryType -eq "Metrics"){$metric+=New-AzDiagnosticSettingMetricSettingsObject -Enabled $true -Category $</em>.Name} else{$log+=New-AzDiagnosticSettingLogSettingsObject -Enabled $true -Category $_.Name}}</p>
+                <p>New-AzDiagnosticSetting -Name test-setting3 -EventHubAuthorizationRuleId /subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourcegroups/ContractorMarketing/providers/Microsoft.EventHub/namespaces/contractormarketing/authorizationrules/RootManageSharedAccessKey -EventHubName contractormarketing-logicapp -StorageAccountId /subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Storage/storageAccounts/contractormarketing -ResourceId /subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Logic/workflows/contractormarketing-schedule-dailyreport -WorkspaceId /subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourcegroups/contractormarketing/providers/microsoft.operationalinsights/workspaces/contractormarketing-loganalytics -Log $log -Metric $metric</p>
+                <p><img src="images/get-an-enviroment-20.png" alt="get an enviroment 20" class="article-image" loading="lazy"></p>
+                <p>other than alllogs selected</p>
+                <p><img src="images/get-an-enviroment-21.png" alt="get an enviroment 21" class="article-image" loading="lazy"></p>
+                <p>go with what you can </p>
+                <p><img src="images/get-an-enviroment-22.png" alt="get an enviroment 22" class="article-image" loading="lazy"></p>
+                <p>still cant run something new?</p>
+                <p><img src="images/get-an-enviroment-23.png" alt="get an enviroment 23" class="article-image" loading="lazy"></p>
+                <p><img src="images/get-an-enviroment-24.png" alt="get an enviroment 24" class="article-image" loading="lazy"></p>
+                <p>republish to overwrite and rerun</p>
+                <p><img src="images/get-an-enviroment-25.png" alt="get an enviroment 25" class="article-image" loading="lazy"></p>
+                <p>better errors</p>
+                <p><img src="images/get-an-enviroment-26.png" alt="get an enviroment 26" class="article-image" loading="lazy"></p>
+                <p>maybe i connect it</p>
+                <p><img src="images/get-an-enviroment-27.png" alt="get an enviroment 27" class="article-image" loading="lazy"></p>
+                <p>added to the top</p>
+                <p><img src="images/get-an-enviroment-28.png" alt="get an enviroment 28" class="article-image" loading="lazy"></p>
+                <p>at least i can see the runs</p>
+                <p><img src="images/get-an-enviroment-29.png" alt="get an enviroment 29" class="article-image" loading="lazy"></p>
+                <p>much longer runtime</p>
+                <p><img src="images/get-an-enviroment-30.png" alt="get an enviroment 30" class="article-image" loading="lazy"></p>
+                <p>automation run has issues</p>
+                <p><img src="images/get-an-enviroment-31.png" alt="get an enviroment 31" class="article-image" loading="lazy"></p>
+                <p>the connections it has</p>
+                <p><img src="images/get-an-enviroment-32.png" alt="get an enviroment 32" class="article-image" loading="lazy"></p>
+                <p>Add Connection</p>
+                <p><img src="images/get-an-enviroment-33.png" alt="get an enviroment 33" class="article-image" loading="lazy"></p>
+                <p><img src="images/get-an-enviroment-34.png" alt="get an enviroment 34" class="article-image" loading="lazy"></p>
+                <p>here we need a cert</p>
+                <p>https://github.com/Huachao/azure-content/blob/master/articles/automation/automation-certificates.md</p>
+                <p>this one can not create it</p>
+                <p><img src="images/get-an-enviroment-35.png" alt="get an enviroment 35" class="article-image" loading="lazy"></p>
+                <p>Open cloud shell to try it</p>
+                <p><img src="images/get-an-enviroment-36.png" alt="get an enviroment 36" class="article-image" loading="lazy"></p>
+                <p>tenant selection</p>
+                <p><img src="images/get-an-enviroment-37.png" alt="get an enviroment 37" class="article-image" loading="lazy"></p>
+                <p><img src="images/get-an-enviroment-38.png" alt="get an enviroment 38" class="article-image" loading="lazy"></p>
+                <p>based on a resource group as well</p>
+                <p>Create the automation account and delete it</p>
+                <p><img src="images/get-an-enviroment-39.png" alt="get an enviroment 39" class="article-image" loading="lazy"></p>
+                <p>certificate uploader should have rights to the folder</p>
+                <p><img src="images/get-an-enviroment-40.png" alt="get an enviroment 40" class="article-image" loading="lazy"></p>
+                <p>Longer time to create</p>
+                <p><img src="images/get-an-enviroment-41.png" alt="get an enviroment 41" class="article-image" loading="lazy"></p>
+                <p>$certName = 'MyCertificate'<br />
+                $certPath = '.\MyCert.pfx'<br />
+                $certPwd = ConvertTo-SecureString -String 'YY.....' -AsPlainText -Force</p>
+                <p>New-AzureAutomationCertificate -AutomationAccountName "MyAutomationAccount" -Name $certName -Path $certPath –Password $certPwd -Exportable</p>
+                <p>in 5 i am in</p>
+                <p><img src="images/get-an-enviroment-42.png" alt="get an enviroment 42" class="article-image" loading="lazy"></p>
+                <p>again the same error</p>
+                <p><img src="images/get-an-enviroment-43.png" alt="get an enviroment 43" class="article-image" loading="lazy"></p>
+                <p>install Az.Automation</p>
+                <p><img src="images/get-an-enviroment-44.png" alt="get an enviroment 44" class="article-image" loading="lazy"></p>
+                <p>correct one gets installed by ease</p>
+                <p><img src="images/get-an-enviroment-45.png" alt="get an enviroment 45" class="article-image" loading="lazy"></p>
+                <p>can not create it in the cloud as well</p>
+                <p><img src="images/get-an-enviroment-46.png" alt="get an enviroment 46" class="article-image" loading="lazy"></p>
+                <p>Feels like a none connetion error</p>
+                <p><img src="images/get-an-enviroment-47.png" alt="get an enviroment 47" class="article-image" loading="lazy"></p>
+                <p>First principles</p>
+                <p><img src="images/get-an-enviroment-48.png" alt="get an enviroment 48" class="article-image" loading="lazy"></p>
+                <p>Creating the pfx file also did not work</p>
+                <p><img src="images/get-an-enviroment-49.png" alt="get an enviroment 49" class="article-image" loading="lazy"></p>
+                <p>maybe a valid one has to be there</p>
+                <p><img src="images/get-an-enviroment-50.png" alt="get an enviroment 50" class="article-image" loading="lazy"></p>
+                <p>creating your certificate file</p>
+                <p>https://www.advancedinstaller.com/what-is-pfx-certificate.html</p>
+                <p><img src="images/get-an-enviroment-51.png" alt="get an enviroment 51" class="article-image" loading="lazy"></p>
+                <p>Read from scratch</p>
+                <p>https://endjin.com/blog/<strong>2015</strong>/02/generating-and-using-a-certificate-to-authorise-azure-automation</p>
+                <p><img src="images/get-an-enviroment-52.png" alt="get an enviroment 52" class="article-image" loading="lazy"></p>
+                <p>certificate creation</p>
+                <p><img src="images/get-an-enviroment-53.png" alt="get an enviroment 53" class="article-image" loading="lazy"></p>
+                <p>There is also changes in the back for the security</p>
+                <p><img src="images/get-an-enviroment-54.png" alt="get an enviroment 54" class="article-image" loading="lazy"></p>
+                <p>Dev kit</p>
+                <p><img src="images/get-an-enviroment-55.png" alt="get an enviroment 55" class="article-image" loading="lazy"></p>
+                <p>good packing with problem solution fit</p>
+                <p><img src="images/get-an-enviroment-56.png" alt="get an enviroment 56" class="article-image" loading="lazy"></p>
+                <p>https://endjin.com/blog/2015/02/generating-and-using-a-certificate-to-authorise-azure-automation</p>
+                <p>powershell did not work </p>
+                <p><img src="images/get-an-enviroment-57.png" alt="get an enviroment 57" class="article-image" loading="lazy"></p>
+                <p>google might not be the great answer check gpt</p>
+                <p><img src="images/get-an-enviroment-58.png" alt="get an enviroment 58" class="article-image" loading="lazy"></p>
+                <p><img src="images/get-an-enviroment-59.png" alt="get an enviroment 59" class="article-image" loading="lazy"></p>
+                <p><img src="images/get-an-enviroment-60.png" alt="get an enviroment 60" class="article-image" loading="lazy"></p>
+                <p>difference it is Azure SDK</p>
+                <p>https://azure.github.io/azure-sdk/releases/latest/dotnet.html</p>
+                <p><img src="images/get-an-enviroment-61.png" alt="get an enviroment 61" class="article-image" loading="lazy"></p>
+                <p>feels most modern</p>
+                <p><img src="images/get-an-enviroment-62.png" alt="get an enviroment 62" class="article-image" loading="lazy"></p>
+                <p>https://learn.microsoft.com/en-gb/dotnet/api/overview/azure/security.keyvault.certificates-readme?view=azure-dotnet</p>
+                <p>have a keyvault</p>
+                <p><img src="images/get-an-enviroment-63.png" alt="get an enviroment 63" class="article-image" loading="lazy"></p>
+                <p><img src="images/get-an-enviroment-64.png" alt="get an enviroment 64" class="article-image" loading="lazy"></p>
+                <p>now there is create and chat option</p>
+                <p><img src="images/get-an-enviroment-65.png" alt="get an enviroment 65" class="article-image" loading="lazy"></p>
+                <p>this could be promising &gt; during the day</p>
+                <p><img src="images/get-an-enviroment-66.png" alt="get an enviroment 66" class="article-image" loading="lazy"></p>
+                <p>I do not wanna use a VM to create a key where i forget it on</p>
+                <p>I am deleting it.</p>
+                <p><img src="images/get-an-enviroment-67.png" alt="get an enviroment 67" class="article-image" loading="lazy"></p>
+                <p>Deleted it &gt; if i can create the certificate in the cloud shell that works</p>
+                <p><img src="images/get-an-enviroment-68.png" alt="get an enviroment 68" class="article-image" loading="lazy"></p>
+                <p><img src="images/get-an-enviroment-69.png" alt="get an enviroment 69" class="article-image" loading="lazy"></p>
+                <p>Active tickets to be there to be in the handson action &gt; leverage the support</p>
+                <p><img src="images/get-an-enviroment-70.png" alt="get an enviroment 70" class="article-image" loading="lazy"></p>
+                <p>Chat is the new support type microsoft working in the background all the time</p>
+                <p><img src="images/get-an-enviroment-71.png" alt="get an enviroment 71" class="article-image" loading="lazy"></p>
+                <p>someone tried it</p>
+                <p>https://techcommunity.microsoft.com/t5/itops-talk-blog/how-to-create-a-self-signed-certificate-in-azure-using-cloud/ba-p/401403</p>
+                <p>reality it would always fail and you got to be in the state of always fixing it</p>
+                <p><img src="images/get-an-enviroment-72.png" alt="get an enviroment 72" class="article-image" loading="lazy"></p>
+                <p>2019 and looks like it works</p>
+                <p><img src="images/get-an-enviroment-73.png" alt="get an enviroment 73" class="article-image" loading="lazy"></p>
+                <p>Similar testing with the gpt so the search and the gpt has to be mixed</p>
+                <p><img src="images/get-an-enviroment-74.png" alt="get an enviroment 74" class="article-image" loading="lazy"></p>
+                <p>from none structured world to a structured one</p>
+                <p>try to go over the gpt</p>
+                <p><img src="images/get-an-enviroment-75.png" alt="get an enviroment 75" class="article-image" loading="lazy"></p>
+                <p>Created a cert as pem</p>
+                <p><img src="images/get-an-enviroment-76.png" alt="get an enviroment 76" class="article-image" loading="lazy"></p>
+                <p>private key and certificate packed together</p>
+                <p><img src="images/get-an-enviroment-77.png" alt="get an enviroment 77" class="article-image" loading="lazy"></p>
+                <p><img src="images/get-an-enviroment-78.png" alt="get an enviroment 78" class="article-image" loading="lazy"></p>
+                <p>Shared resources lets do it</p>
+                <p><img src="images/get-an-enviroment-79.png" alt="get an enviroment 79" class="article-image" loading="lazy"></p>
+                <p>First try it with lastpass</p>
+                <p><img src="images/get-an-enviroment-80.png" alt="get an enviroment 80" class="article-image" loading="lazy"></p>
+                <p>Privacy Enhanced Mail (PEM) files are <strong>a type of Public Key Infrastructure (PKI) file used for keys and certificates</strong>. PEM, initially invented to make e-mail secure, is now an Internet security standard.</p>
+                <p>Certificate here</p>
+                <p><img src="images/get-an-enviroment-81.png" alt="get an enviroment 81" class="article-image" loading="lazy"></p>
+                <p>type different</p>
+                <p><img src="images/get-an-enviroment-82.png" alt="get an enviroment 82" class="article-image" loading="lazy"></p>
+                <p><img src="images/get-an-enviroment-83.png" alt="get an enviroment 83" class="article-image" loading="lazy"></p>
+                <p>https://stackoverflow.com/questions/13732826/convert-pem-to-crt-and-key</p>
+                <p>PS /home/rifat&gt; openssl x509 -outform der -in mycert.pem -out mycert.crt<br />
+                PS /home/rifat&gt; ls<br />
+                Microsoft mycert.crt mycert.pem<br />
+                PS /home/rifat&gt;</p>
+                <p>CRT format is different</p>
+                <p><img src="images/get-an-enviroment-84.png" alt="get an enviroment 84" class="article-image" loading="lazy"></p>
+                <p>different</p>
+                <p><img src="images/get-an-enviroment-85.png" alt="get an enviroment 85" class="article-image" loading="lazy"></p>
+                <p><img src="images/get-an-enviroment-86.png" alt="get an enviroment 86" class="article-image" loading="lazy"></p>
+                <p>p12 file is also different</p>
+                <p><img src="images/get-an-enviroment-87.png" alt="get an enviroment 87" class="article-image" loading="lazy"></p>
+                <p>without a tool</p>
+                <p><img src="images/get-an-enviroment-88.png" alt="get an enviroment 88" class="article-image" loading="lazy"></p>
+                <p>Practical file download is there</p>
+                <p><img src="images/get-an-enviroment-89.png" alt="get an enviroment 89" class="article-image" loading="lazy"></p>
+                <p><img src="images/get-an-enviroment-90.png" alt="get an enviroment 90" class="article-image" loading="lazy"></p>
+                <p>ending has an issue</p>
+                <p><img src="images/get-an-enviroment-91.png" alt="get an enviroment 91" class="article-image" loading="lazy"></p>
+                <p>Explain how i did it here</p>
+                <p><img src="images/get-an-enviroment-92.png" alt="get an enviroment 92" class="article-image" loading="lazy"></p>
+                <p>Created the link ?</p>
+                <p><img src="images/get-an-enviroment-93.png" alt="get an enviroment 93" class="article-image" loading="lazy"></p>
+                <p>There are rules</p>
+                <p><img src="images/get-an-enviroment-94.png" alt="get an enviroment 94" class="article-image" loading="lazy"></p>
+                <p>Online creation is there as well</p>
+                <p><img src="images/get-an-enviroment-95.png" alt="get an enviroment 95" class="article-image" loading="lazy"></p>
+                <p><img src="images/get-an-enviroment-96.png" alt="get an enviroment 96" class="article-image" loading="lazy"></p>
+                <p>You need the rights to be able to import?</p>
+                <p><img src="images/get-an-enviroment-97.png" alt="get an enviroment 97" class="article-image" loading="lazy"></p>
+                <p>fails</p>
+                <p><img src="images/get-an-enviroment-98.png" alt="get an enviroment 98" class="article-image" loading="lazy"></p>
+                <p>Service principal could be easier</p>
+                <p>PS /home/rifat&gt; az ad sp create-for-rbac --name myServicePrincipalName --role reader --scopes /subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing</p>
+                <p>info created by itself and shared once</p>
+                <p><img src="images/get-an-enviroment-99.png" alt="get an enviroment 99" class="article-image" loading="lazy"></p>
+                <p>at least saved</p>
+                <p><img src="images/get-an-enviroment-100.png" alt="get an enviroment 100" class="article-image" loading="lazy"></p>
+                <p>Service principal creation is practical &gt;&gt; as it gives the info</p>
+                <p>a minute to run so that is not a big deal and service principal created by Azure cloud shell easier &gt;&gt;&gt; no files management just paste into last pass</p>
+                <p><img src="images/get-an-enviroment-101.png" alt="get an enviroment 101" class="article-image" loading="lazy"></p>
+                <p>No certificate was found in the certificate store with thumbprint </p>
+                <p>maybe thumbprint is taken from AD</p>
+                <p><img src="images/get-an-enviroment-102.png" alt="get an enviroment 102" class="article-image" loading="lazy"></p>
+                <p>not there but hidden</p>
+                <p><img src="images/get-an-enviroment-103.png" alt="get an enviroment 103" class="article-image" loading="lazy"></p>
+                <p>$CustomKeyIdentifier = (Get-AzureADApplicationKeyCredential -ObjectId "<object-id>").CustomKeyIdentifier<br />
+                $Thumbprint = [System.Convert]::ToBase64String($CustomKeyIdentifier)</p>
+                <p>maybe i need it before adding the cert it wont work</p>
+                <p><img src="images/get-an-enviroment-104.png" alt="get an enviroment 104" class="article-image" loading="lazy"></p>
+                <p>pem file added to the user &gt;&gt;&gt; so there is maybe 2 level</p>
+                <p>1.level create the user &gt;&gt;&gt; have one username and pass</p>
+                <p>2.level have a certificate that means that is your user. which has the certificate and private key in it.</p>
+                <p>powershell has so many modules to work right have the system working</p>
+                <p><img src="images/get-an-enviroment-105.png" alt="get an enviroment 105" class="article-image" loading="lazy"></p>
+                <p>script runners have hard time</p>
+                <p><img src="images/get-an-enviroment-106.png" alt="get an enviroment 106" class="article-image" loading="lazy"></p>
+                <p>thumprint is here</p>
+                <p>https://portal.azure.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/Credentials/appId/26b349e7-9736-4f6b-8b94-1352738efb14</p>
+                <p>added to the last pass</p>
+                <p><img src="images/get-an-enviroment-107.png" alt="get an enviroment 107" class="article-image" loading="lazy"></p>
+                <p>now after the certiciate only one error is there</p>
+                <p><img src="images/get-an-enviroment-108.png" alt="get an enviroment 108" class="article-image" loading="lazy"></p>
+                <p>owner or role adding ?</p>
+                <p><img src="images/get-an-enviroment-109.png" alt="get an enviroment 109" class="article-image" loading="lazy"></p>
+                <p>New-AzDiagnosticSetting_CreateExpanded: Line | 15 | New-AzDiagnosticSetting -Name test-setting3 -EventHubAuthorizationRul … | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ | The client 'b23ced15-6bff-4a99-b8d0-7350f9e61f3b' with object id 'b23ced15-6bff-4a99-b8d0-7350f9e61f3b' does not have authorization to perform action 'Microsoft.Insights/diagnosticSettings/write' over scope '/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Logic/workflows/contractormarketing-schedule-dailyreport/providers/Microsoft.Insights/diagnosticSettings/test-setting3' or the scope is invalid. If access was recently granted, please refresh your credentials.</p>
+                <p>Just a reader &gt;</p>
+                <p><img src="images/get-an-enviroment-110.png" alt="get an enviroment 110" class="article-image" loading="lazy"></p>
+                <p>Make it a contributor and an owner</p>
+                <p><img src="images/get-an-enviroment-111.png" alt="get an enviroment 111" class="article-image" loading="lazy"></p>
+                <p>THEY ARE BOTH IN</p>
+                <p><img src="images/get-an-enviroment-112.png" alt="get an enviroment 112" class="article-image" loading="lazy"></p>
+                <p>detail of key creation &gt;&gt;&gt; 2 way action</p>
+                <p>1) i created service principal ( json ) &gt;&gt; cloud shell</p>
+                <p>2)create the pem key &gt;&gt;&gt; clould shelll</p>
+                <p>3) convert the pem to crt file</p>
+                <p>4)uploaded the crt to certificated of the serviceprincipal (got thumbprint )</p>
+                <p>5)created a connection in automation account with serviceprincal ( used thumbprint )</p>
+                <p>6)added the code to the automation using the connection</p>
+                <p>Waited in the queue and rerun </p>
+                <p><img src="images/get-an-enviroment-113.png" alt="get an enviroment 113" class="article-image" loading="lazy"></p>
+                <p>`$Conn = Get-AutomationConnection -Name "serviceprincipal"<br />
+                Connect-AzAccount -ServicePrincipal -Tenant $Conn.TenantID -ApplicationId $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint</p>
+                <p>$subscriptionId = $Conn.Subscription.Id</p>
+                <p>$metric = @()</p>
+                <p>$log = @()</p>
+                <p>$categories = Get-AzDiagnosticSettingCategory -ResourceId /subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Logic/workflows/contractormarketing-schedule-dailyreport</p>
+                <p>$categories | ForEach-Object {if($<em>.CategoryType -eq "Metrics"){$metric+=New-AzDiagnosticSettingMetricSettingsObject -Enabled $true -Category $</em>.Name} else{$log+=New-AzDiagnosticSettingLogSettingsObject -Enabled $true -Category $_.Name}}</p>
+                <p>New-AzDiagnosticSetting -Name test-setting3 -EventHubAuthorizationRuleId /subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourcegroups/ContractorMarketing/providers/Microsoft.EventHub/namespaces/contractormarketing/authorizationrules/RootManageSharedAccessKey -EventHubName contractormarketing-logicapp -StorageAccountId /subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Storage/storageAccounts/contractormarketing -ResourceId /subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Logic/workflows/contractormarketing-schedule-dailyreport -WorkspaceId /subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourcegroups/contractormarketing/providers/microsoft.operationalinsights/workspaces/contractormarketing-loganalytics -Log $log -Metric $metric`</p>
+                <p>first time it is getting connected</p>
+                <p><img src="images/get-an-enviroment-114.png" alt="get an enviroment 114" class="article-image" loading="lazy"></p>
+                <p>so much hassle for this</p>
+                <p><img src="images/get-an-enviroment-115.png" alt="get an enviroment 115" class="article-image" loading="lazy"></p>
+                <p>$Conn = Get-AutomationConnection -Name "serviceprincipal"<br />
+                Connect-AzAccount -ServicePrincipal -Tenant $Conn.TenantID -ApplicationId $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint</p>
+                <p>Connection works &gt;&gt;&gt; as it has it all and the password is protected over the certificate as we know the thumbprint for the cert</p>
+                <p>Created this know we need to take in a parameter and run this 46 times and in future diagnogistics that we need and be able to debug our serverless applications</p>
+                <p><img src="images/get-an-enviroment-116.png" alt="get an enviroment 116" class="article-image" loading="lazy"></p>
+                <p>There are also other run books there </p>
+                <p><img src="images/get-an-enviroment-117.png" alt="get an enviroment 117" class="article-image" loading="lazy"></p>
+                <p>top line is powershell added</p>
+                <p><img src="images/get-an-enviroment-118.png" alt="get an enviroment 118" class="article-image" loading="lazy"></p>
+                <p><strong>TODOS</strong></p>
+                <p>todo 1 app paramaters</p>
+                <p>todo2 add this to the logic app</p>
+                <p>todo3 trigger the logic app create 46 configs</p>
+                <p><img src="images/get-an-enviroment-119.png" alt="get an enviroment 119" class="article-image" loading="lazy"></p>
+                <p>Check if created</p>
+                <p><img src="images/get-an-enviroment-120.png" alt="get an enviroment 120" class="article-image" loading="lazy"></p>
+                <p>Basic</p>
+                <p><img src="images/get-an-enviroment-121.png" alt="get an enviroment 121" class="article-image" loading="lazy"></p>
+                <p>terminate and test a limited scope</p>
+                <p><img src="images/get-an-enviroment-122.png" alt="get an enviroment 122" class="article-image" loading="lazy"></p>
+                <p><img src="images/get-an-enviroment-123.png" alt="get an enviroment 123" class="article-image" loading="lazy"></p>
+                <p>Parameter <strong>landing</strong></p>
+                <p><img src="images/get-an-enviroment-124.png" alt="get an enviroment 124" class="article-image" loading="lazy"></p>
+                <p>Todos</p>
+                <p>todo 1 app paramaters <strong>( inprogress )</strong></p>
+                <p>todo2 add this to the logic app <strong>( inprogress )</strong></p>
+                <p>todo3 trigger the logic app create 46 configs ( )</p>
+                <p>Job ID is the output</p>
+                <p><img src="images/get-an-enviroment-125.png" alt="get an enviroment 125" class="article-image" loading="lazy"></p>
+                <p>3 minute to run to much to debug</p>
+                <p><img src="images/get-an-enviroment-126.png" alt="get an enviroment 126" class="article-image" loading="lazy"></p>
+                <p>So many queued at the same time</p>
+                <p><img src="images/get-an-enviroment-127.png" alt="get an enviroment 127" class="article-image" loading="lazy"></p>
+                <p>Starting all at the same time </p>
+                <p><img src="images/get-an-enviroment-128.png" alt="get an enviroment 128" class="article-image" loading="lazy"></p>
+                <p>it is not here</p>
+                <p><img src="images/get-an-enviroment-129.png" alt="get an enviroment 129" class="article-image" loading="lazy"></p>
+                <p>Line 16 error</p>
+                <p><img src="images/get-an-enviroment-130.png" alt="get an enviroment 130" class="article-image" loading="lazy"></p>
+                <p><strong>46 errors piled up</strong></p>
+                <p><img src="images/get-an-enviroment-131.png" alt="get an enviroment 131" class="article-image" loading="lazy"></p>
+                <p>Get-AzDiagnosticSettingCategory_List: Line | 16 | $categories = Get-AzDiagnosticSettingCategory -ResourceId $myresource … | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ | The Resource 'Microsoft.Logic/workflows/providers' under resource group 'ContractorMarketing' was not found. For more details please go to https://aka.ms/ARMResourceNotFoundFix</p>
+                <p>param looks empty?</p>
+                <p><img src="images/get-an-enviroment-132.png" alt="get an enviroment 132" class="article-image" loading="lazy"></p>
+                <p>snapshot write is not there</p>
+                <p><img src="images/get-an-enviroment-133.png" alt="get an enviroment 133" class="article-image" loading="lazy"></p>
+                <p>this time the snapshot as published with latest updates</p>
+                <p><img src="images/get-an-enviroment-134.png" alt="get an enviroment 134" class="article-image" loading="lazy"></p>
+                <p>Basic string error is there</p>
+                <p>https://lazyadmin.nl/powershell/concatenate-string</p>
+                <p>test basics on cloud shell</p>
+                <p><img src="images/get-an-enviroment-135.png" alt="get an enviroment 135" class="article-image" loading="lazy"></p>
+                <p>param1 incoming</p>
+                <p><img src="images/get-an-enviroment-136.png" alt="get an enviroment 136" class="article-image" loading="lazy"></p>
+                <p>remove all extras to find where is the error</p>
+                <p><img src="images/get-an-enviroment-137.png" alt="get an enviroment 137" class="article-image" loading="lazy"></p>
+                <p>simplier code</p>
+                <p><img src="images/get-an-enviroment-138.png" alt="get an enviroment 138" class="article-image" loading="lazy"></p>
+                <p>stubbing</p>
+                <p><img src="images/get-an-enviroment-139.png" alt="get an enviroment 139" class="article-image" loading="lazy"></p>
+                <p>meybe better parameters needed</p>
+                <p><img src="images/get-an-enviroment-140.png" alt="get an enviroment 140" class="article-image" loading="lazy"></p>
+                <p>Json reading is different than string reading </p>
+                <p><img src="images/get-an-enviroment-141.png" alt="get an enviroment 141" class="article-image" loading="lazy"></p>
+                <p>Json and string are not the same just the semblance </p>
+                <p><img src="images/get-an-enviroment-142.png" alt="get an enviroment 142" class="article-image" loading="lazy"></p>
+                <p><strong>other errors</strong></p>
+                <p><img src="images/get-an-enviroment-143.png" alt="get an enviroment 143" class="article-image" loading="lazy"></p>
+                <p><img src="images/get-an-enviroment-144.png" alt="get an enviroment 144" class="article-image" loading="lazy"></p>
+                <p><img src="images/get-an-enviroment-145.png" alt="get an enviroment 145" class="article-image" loading="lazy"></p>
+                <p>https://stackoverflow.com/questions/1315140/powershell-2-0-and-the-term-param-is-not-recognized-as-the-name-of-a-cmdlet</p>
+                <p>Json</p>
+                <p><img src="images/get-an-enviroment-146.png" alt="get an enviroment 146" class="article-image" loading="lazy"></p>
+                <p><strong>J</strong>son valid</p>
+                <p><img src="images/get-an-enviroment-147.png" alt="get an enviroment 147" class="article-image" loading="lazy"></p>
+                <p><strong>w</strong>ebui fails</p>
+                <p><img src="images/get-an-enviroment-148.png" alt="get an enviroment 148" class="article-image" loading="lazy"></p>
+                <p><strong>Saved code</strong></p>
+                <p>"Please have the serviceprincipal with the certificate and give the resource group the access needed. Otherwise, the runbook may fail..."</p>
+                <p>Param(</p>
+                <p>[object]$json</p>
+                <p>)</p>
+                <p>"parameter is send to the json"</p>
+                <p>$json = $json | ConvertFrom-Json</p>
+                <p>"parameter read into json"</p>
+                <p>$param1 = $json.param1</p>
+                <p>"param1 assigned"</p>
+                <p>$Conn = Get-AutomationConnection -Name "serviceprincipal"</p>
+                <p>"connection created"</p>
+                <p>Connect-AzAccount -ServicePrincipal -Tenant $Conn.TenantID -ApplicationId $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint</p>
+                <p>"connection established"</p>
+                <p>$subscriptionId = $Conn.Subscription.Id</p>
+                <p>$metric = @()</p>
+                <p>$log = @()</p>
+                <p>$myresourceid = "/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Logic/workflows/"+$param1</p>
+                <p>"category load started"</p>
+                <p>$categories = Get-AzDiagnosticSettingCategory -ResourceId $myresourceid</p>
+                <p>$categories | ForEach-Object {if($<em>.CategoryType -eq "Metrics"){$metric+=New-AzDiagnosticSettingMetricSettingsObject -Enabled $true -Category $</em>.Name} else{$log+=New-AzDiagnosticSettingLogSettingsObject -Enabled $true -Category $_.Name}}</p>
+                <p>"category load ended"</p>
+                <p>$mydiagname = "mydiagsetting"</p>
+                <p>$workspaceid = "/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourcegroups/contractormarketing/providers/microsoft.operationalinsights/workspaces/contractormarketing-loganalytics"</p>
+                <p>$ruleid = "/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourcegroups/ContractorMarketing/providers/Microsoft.EventHub/namespaces/contractormarketing/authorizationrules/RootManageSharedAccessKey"</p>
+                <p>$storageaccountid = "/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Storage/storageAccounts/contractormarketing"</p>
+                <p>"diag started"</p>
+                <p>New-AzDiagnosticSetting -Name $mydiagname -EventHubAuthorizationRuleId $ruleid -EventHubName contractormarketing-logicapp -StorageAccountId $storageaccountid -ResourceId $myresourceid -WorkspaceId $workspaceid -Log $log -Metric $metric</p>
+                <p>"diag ended"</p>
+                <p>json is null</p>
+                <p><img src="images/get-an-enviroment-149.png" alt="get an enviroment 149" class="article-image" loading="lazy"></p>
+                <p><strong>s</strong>aved json one more time</p>
+                <p><img src="images/get-an-enviroment-150.png" alt="get an enviroment 150" class="article-image" loading="lazy"></p>
+                <p>for the first time it says JSON</p>
+                <p><img src="images/get-an-enviroment-151.png" alt="get an enviroment 151" class="article-image" loading="lazy"></p>
+                <p>line 8</p>
+                <p><img src="images/get-an-enviroment-152.png" alt="get an enviroment 152" class="article-image" loading="lazy"></p>
+                <p><strong>it worked with an error?</strong></p>
+                <p><img src="images/get-an-enviroment-153.png" alt="get an enviroment 153" class="article-image" loading="lazy"></p>
+                <p><img src="images/get-an-enviroment-154.png" alt="get an enviroment 154" class="article-image" loading="lazy"></p>
+                <p>there could be this kind of errors</p>
+                <p><img src="images/get-an-enviroment-155.png" alt="get an enviroment 155" class="article-image" loading="lazy"></p>
+                <p><strong>E</strong>vent hub Started working</p>
+                <p><img src="images/get-an-enviroment-156.png" alt="get an enviroment 156" class="article-image" loading="lazy"></p>
+                <p><strong>i</strong>n the favorites now</p>
+                <p><img src="images/get-an-enviroment-157.png" alt="get an enviroment 157" class="article-image" loading="lazy"></p>
+                <p><img src="images/get-an-enviroment-158.png" alt="get an enviroment 158" class="article-image" loading="lazy"></p>
+                <p><strong>References</strong></p>
+                <p>https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-7?tabs=bash</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work by implementation on Azure Logic Apps - Rifat Erdem Sahin</title>
+    <meta name="description" content="Work by implementation on Azure Logic Apps trigger the send email use the send bulk email &gt;&gt;&gt; for the most Parameter take an id from the db and send the email with attachments a new workflow ">
+    <meta name="keywords" content="Work by implementation on Azure Logic Apps">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/01/11/work-by-implementation/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/01/11/work-by-implementation/">
+    <meta property="og:title" content="Work by implementation on Azure Logic Apps">
+    <meta property="og:description" content="Work by implementation on Azure Logic Apps trigger the send email use the send bulk email &gt;&gt;&gt; for the most Parameter take an id from the db and send the email with attachments a new workflow ">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/01/11/work-by-implementation/">
+    <meta property="twitter:title" content="Work by implementation on Azure Logic Apps">
+    <meta property="twitter:description" content="Work by implementation on Azure Logic Apps trigger the send email use the send bulk email &gt;&gt;&gt; for the most Parameter take an id from the db and send the email with attachments a new workflow ">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Work by implementation on Azure Logic Apps",
+      "description": "Work by implementation on Azure Logic Apps trigger the send email use the send bulk email &gt;&gt;&gt; for the most Parameter take an id from the db and send the email with attachments a new workflow ",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-01-11",
+      "dateModified": "2024-01-11",
+      "url": "https://www.rifaterdemsahin.com/2024/01/11/work-by-implementation/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/01/11/work-by-implementation/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Work by implementation on Azure Logic Apps</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>January 11, 2024</span>
+                    <span>&bull;</span>
+                    <span>11 min read</span>
+                </div>
+                <p class="article-excerpt">Work by implementation on Azure Logic Apps trigger the send email use the send bulk email &gt;&gt;&gt; for the most Parameter take an id from the db and send the email with attachments a new workflow needed this one is sending the email we need to send it by id Send by id consume</p>
+            </header>
+            <article class="article-content">
+                <h1>Work by implementation on Azure Logic Apps</h1>
+                <p>trigger the send email</p>
+                <p><img src="images/work-by-implementation-1.png" alt="work by implementation 1" class="article-image" loading="lazy"></p>
+                <p>use the send bulk email &gt;&gt;&gt; for the most</p>
+                <p>Parameter take an id from the db and send the email with attachments</p>
+                <p>a new workflow needed this one is sending the email we need to send it by id</p>
+                <p><img src="images/work-by-implementation-2.png" alt="work by implementation 2" class="article-image" loading="lazy"></p>
+                <p>Send by id consume the send email workflow</p>
+                <p><img src="images/work-by-implementation-3.png" alt="work by implementation 3" class="article-image" loading="lazy"></p>
+                <p>Pay as you go</p>
+                <p><img src="images/work-by-implementation-4.png" alt="work by implementation 4" class="article-image" loading="lazy"></p>
+                <p>Json coded</p>
+                <p><img src="images/work-by-implementation-5.png" alt="work by implementation 5" class="article-image" loading="lazy"></p>
+                <p>load the db</p>
+                <p><img src="images/work-by-implementation-6.png" alt="work by implementation 6" class="article-image" loading="lazy"></p>
+                <p>init and set variable</p>
+                <p><img src="images/work-by-implementation-7.png" alt="work by implementation 7" class="article-image" loading="lazy"></p>
+                <p>Send email to id 11</p>
+                <p><img src="images/work-by-implementation-8.png" alt="work by implementation 8" class="article-image" loading="lazy"></p>
+                <p>get parameters map it</p>
+                <p><img src="images/work-by-implementation-9.png" alt="work by implementation 9" class="article-image" loading="lazy"></p>
+                <p>Run with pay loads or parameters</p>
+                <p><img src="images/work-by-implementation-10.png" alt="work by implementation 10" class="article-image" loading="lazy"></p>
+                <p>See the green light</p>
+                <p><img src="images/work-by-implementation-11.png" alt="work by implementation 11" class="article-image" loading="lazy"></p>
+                <p>add missing use cases</p>
+                <p><img src="images/work-by-implementation-12.png" alt="work by implementation 12" class="article-image" loading="lazy"></p>
+                <p>Check email sender</p>
+                <p><img src="images/work-by-implementation-13.png" alt="work by implementation 13" class="article-image" loading="lazy"></p>
+                <p>9 documents to be added</p>
+                <p>Email send by the target is not correct</p>
+                <p><img src="images/work-by-implementation-14.png" alt="work by implementation 14" class="article-image" loading="lazy"></p>
+                <p><strong>3 links</strong> and resources</p>
+                <p>https://portal.azure.com/#view/Microsoft_Azure_EMA/LogicAppsDesignerBlade/id/%2Fsubscriptions%2Fad744a08-2411-4d78-b417-1f1c83f4f741%2FresourceGroups%2FContractorMarketing%2Fproviders%2FMicrosoft.Logic%2Fworkflows%2Fcontractormarketing-<strong>sendemailbyleadid</strong></p>
+                <p>https://portal.azure.com/#view/Microsoft_Azure_EMA/LogicAppsMonitorBlade/runid/%2Fsubscriptions%2Fad744a08-2411-4d78-b417-1f1c83f4f741%2FresourceGroups%2FContractorMarketing%2Fproviders%2FMicrosoft.Logic%2Fworkflows%2Fcontractormarketing-<strong>sendemail</strong>%2Fruns%2F08584966130438918259873121491CU11</p>
+                <p>https://portal.azure.com/#@pexabo.com/resource/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Sql/servers/<strong>databaseservercontracting</strong>/databases/database/queryEditor</p>
+                <p>Reply By id the one now &gt; get the id &gt; set the location and send &gt;&gt;&gt; help yourself</p>
+                <p>too many to answer &gt;&gt; time release needed</p>
+                <p><img src="images/work-by-implementation-15.png" alt="work by implementation 15" class="article-image" loading="lazy"></p>
+                <p>get id</p>
+                <p><img src="images/work-by-implementation-16.png" alt="work by implementation 16" class="article-image" loading="lazy"></p>
+                <p><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#67;&#87;&#76;&#80;&#49;&#50;&#51;&#77;&#66;&#51;&#56;&#50;&#54;&#67;&#55;&#70;&#57;&#69;&#57;&#50;&#52;&#67;&#50;&#68;&#56;&#52;&#48;&#55;&#56;&#67;&#54;&#52;&#66;&#65;&#49;&#54;&#70;&#50;&#64;&#67;&#87;&#76;&#80;&#49;&#50;&#51;&#77;&#66;&#51;&#56;&#50;&#54;&#46;&#71;&#66;&#82;&#80;&#49;&#50;&#51;&#46;&#80;&#82;&#79;&#68;&#46;&#79;&#85;&#84;&#76;&#79;&#79;&#75;&#46;&#67;&#79;&#77;">&#67;&#87;&#76;&#80;&#49;&#50;&#51;&#77;&#66;&#51;&#56;&#50;&#54;&#67;&#55;&#70;&#57;&#69;&#57;&#50;&#52;&#67;&#50;&#68;&#56;&#52;&#48;&#55;&#56;&#67;&#54;&#52;&#66;&#65;&#49;&#54;&#70;&#50;&#64;&#67;&#87;&#76;&#80;&#49;&#50;&#51;&#77;&#66;&#51;&#56;&#50;&#54;&#46;&#71;&#66;&#82;&#80;&#49;&#50;&#51;&#46;&#80;&#82;&#79;&#68;&#46;&#79;&#85;&#84;&#76;&#79;&#79;&#75;&#46;&#67;&#79;&#77;</a></p>
+                <p><img src="images/work-by-implementation-17.png" alt="work by implementation 17" class="article-image" loading="lazy"></p>
+                <p>Add the variable</p>
+                <p>replyid &gt; call the reply &gt; call the load documents &gt; send email</p>
+                <p><img src="images/work-by-implementation-18.png" alt="work by implementation 18" class="article-image" loading="lazy"></p>
+                <p>is not equal and the programmatic assign</p>
+                <p><img src="images/work-by-implementation-19.png" alt="work by implementation 19" class="article-image" loading="lazy"></p>
+                <p>maybe email id is in the way section</p>
+                <p><img src="images/work-by-implementation-20.png" alt="work by implementation 20" class="article-image" loading="lazy"></p>
+                <p>maybe the message id has &lt;&gt;</p>
+                <p><img src="images/work-by-implementation-21.png" alt="work by implementation 21" class="article-image" loading="lazy"></p>
+                <p>response not json format error</p>
+                <p><img src="images/work-by-implementation-22.png" alt="work by implementation 22" class="article-image" loading="lazy"></p>
+                <p>replyid errors out</p>
+                <p><img src="images/work-by-implementation-23.png" alt="work by implementation 23" class="article-image" loading="lazy"></p>
+                <p>null errors</p>
+                <p><img src="images/work-by-implementation-24.png" alt="work by implementation 24" class="article-image" loading="lazy"></p>
+                <p>Gmail fails scnerio</p>
+                <p><img src="images/work-by-implementation-25.png" alt="work by implementation 25" class="article-image" loading="lazy"></p>
+                <p>Send the email in here</p>
+                <p><img src="images/work-by-implementation-26.png" alt="work by implementation 26" class="article-image" loading="lazy"></p>
+                <p>Replyid &lt;&gt; is making it fail</p>
+                <p><img src="images/work-by-implementation-27.png" alt="work by implementation 27" class="article-image" loading="lazy"></p>
+                <p>Load contebts</p>
+                <p><img src="images/work-by-implementation-28.png" alt="work by implementation 28" class="article-image" loading="lazy"></p>
+                <p>tester logic app</p>
+                <p><img src="images/work-by-implementation-29.png" alt="work by implementation 29" class="article-image" loading="lazy"></p>
+                <p>load attachments</p>
+                <p><img src="images/work-by-implementation-30.png" alt="work by implementation 30" class="article-image" loading="lazy"></p>
+                <p>switch and terminate at basics</p>
+                <p><img src="images/work-by-implementation-31.png" alt="work by implementation 31" class="article-image" loading="lazy"></p>
+                <p>content bytes more files slower</p>
+                <p><img src="images/work-by-implementation-32.png" alt="work by implementation 32" class="article-image" loading="lazy"></p>
+                <p>base 64 and collection &gt;&gt; Hack &gt; <a href="https://rifaterdemsahin.com/2023/12/08/7-month-saga-email-issue/">https://rifaterdemsahin.com/2023/12/08/7-month-saga-email-issue/</a></p>
+                <p>test drive development</p>
+                <p><img src="images/work-by-implementation-33.png" alt="work by implementation 33" class="article-image" loading="lazy"></p>
+                <p>Leaves the email but does not reach the destination</p>
+                <p><img src="images/work-by-implementation-34.png" alt="work by implementation 34" class="article-image" loading="lazy"></p>
+                <p>testing the email system</p>
+                <p><img src="images/work-by-implementation-35.png" alt="work by implementation 35" class="article-image" loading="lazy"></p>
+                <p>https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/email-authentication-dmarc-configure?view=o365-worldwide</p>
+                <p>outbound dkim</p>
+                <p><img src="images/work-by-implementation-36.png" alt="work by implementation 36" class="article-image" loading="lazy"></p>
+                <p>https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/email-authentication-dkim-configure?view=o365-worldwide</p>
+                <p><img src="images/work-by-implementation-37.png" alt="work by implementation 37" class="article-image" loading="lazy"></p>
+                <p><img src="images/work-by-implementation-38.png" alt="work by implementation 38" class="article-image" loading="lazy"></p>
+                <p>Host Name : selector1._domainkey<br />
+                Points to address or value: selector1-devops-engineering._domainkey.pexabo.onmicrosoft.com</p>
+                <p>Host Name : selector2._domainkey<br />
+                Points to address or value: selector2-devops-engineering._domainkey.pexabo.onmicrosoft.com</p>
+                <p><img src="images/work-by-implementation-39.png" alt="work by implementation 39" class="article-image" loading="lazy"></p>
+                <p>Set it up on wix</p>
+                <p><img src="images/work-by-implementation-40.png" alt="work by implementation 40" class="article-image" loading="lazy"></p>
+                <p><img src="images/work-by-implementation-41.png" alt="work by implementation 41" class="article-image" loading="lazy"></p>
+                <p><img src="images/work-by-implementation-42.png" alt="work by implementation 42" class="article-image" loading="lazy"></p>
+                <p><img src="images/work-by-implementation-43.png" alt="work by implementation 43" class="article-image" loading="lazy"></p>
+                <p>turn on for the cname records</p>
+                <p><img src="images/work-by-implementation-44.png" alt="work by implementation 44" class="article-image" loading="lazy"></p>
+                <p>multi try test</p>
+                <p><img src="images/work-by-implementation-45.png" alt="work by implementation 45" class="article-image" loading="lazy"></p>
+                <p>Error</p>
+                <p>|Microsoft.Exchange.Management.Tasks.ValidationException|CNAME record does not exist for this config. Please publish the following two CNAME records first. Domain Name : devops.engineering Host Name : selector1._domainkey Points to address or value: selector1-devops-engineering._domainkey.pexabo.onmicrosoft.com Host Name : selector2._domainkey Points to address or value: selector2-devops-engineering._domainkey.pexabo.onmicrosoft.com . If you have already published the CNAME records, sync will take a few minutes to as many as 4 days based on your specific DNS. Return and retry this step later.</p>
+                <p>https://mxtoolbox.com/SuperTool.aspx?action=mx%3adevops.engineering&amp;run=toolpage</p>
+                <p><img src="images/work-by-implementation-46.png" alt="work by implementation 46" class="article-image" loading="lazy"></p>
+                <p>Maybe it is in limbo ?</p>
+                <p><img src="images/work-by-implementation-47.png" alt="work by implementation 47" class="article-image" loading="lazy"></p>
+                <p><img src="images/work-by-implementation-48.png" alt="work by implementation 48" class="article-image" loading="lazy"></p>
+                <p><img src="images/work-by-implementation-49.png" alt="work by implementation 49" class="article-image" loading="lazy"></p>
+                <p>why 2 dns providers is in action is another days problem</p>
+                <p><img src="images/work-by-implementation-50.png" alt="work by implementation 50" class="article-image" loading="lazy"></p>
+                <p>https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones?region=us-east-1#ListRecordSets/Z2QK9LSHRP09KZ</p>
+                <p><img src="images/work-by-implementation-51.png" alt="work by implementation 51" class="article-image" loading="lazy"></p>
+                <p>Name server time might be too much</p>
+                <p><img src="images/work-by-implementation-52.png" alt="work by implementation 52" class="article-image" loading="lazy"></p>
+                <p>Lowered it</p>
+                <p><img src="images/work-by-implementation-53.png" alt="work by implementation 53" class="article-image" loading="lazy"></p>
+                <p><img src="images/work-by-implementation-54.png" alt="work by implementation 54" class="article-image" loading="lazy"></p>
+                <p>after the aws one</p>
+                <p><img src="images/work-by-implementation-55.png" alt="work by implementation 55" class="article-image" loading="lazy"></p>
+                <p>still errors are there</p>
+                <p><img src="images/work-by-implementation-56.png" alt="work by implementation 56" class="article-image" loading="lazy"></p>
+                <p>aFTER DKIM BASIC EMAIL ALSOI NOT REACHING GMAIL</p>
+                <p><img src="images/work-by-implementation-57.png" alt="work by implementation 57" class="article-image" loading="lazy"></p>
+                <p><img src="images/work-by-implementation-58.png" alt="work by implementation 58" class="article-image" loading="lazy"></p>
+                <p>added spf</p>
+                <p><img src="images/work-by-implementation-59.png" alt="work by implementation 59" class="article-image" loading="lazy"></p>
+                <p><img src="images/work-by-implementation-60.png" alt="work by implementation 60" class="article-image" loading="lazy"></p>
+                <p><img src="images/work-by-implementation-61.png" alt="work by implementation 61" class="article-image" loading="lazy"></p>
+                <p><img src="images/work-by-implementation-62.png" alt="work by implementation 62" class="article-image" loading="lazy"></p>
+                <p>https://learn.microsoft.com/en-gb/microsoft-365/security/office-365-security/email-authentication-spf-configure?view=o365-worldwide</p>
+                <p>https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones?region=us-east-1#ListRecordSets/Z2QK9LSHRP09KZ</p>
+                <p>practical parameter implementation</p>
+                <p><img src="images/work-by-implementation-63.png" alt="work by implementation 63" class="article-image" loading="lazy"></p>
+                <p>still in the back the mx records are problematic</p>
+                <p><img src="images/work-by-implementation-64.png" alt="work by implementation 64" class="article-image" loading="lazy"></p>
+                <p>hotmail and gmail testing</p>
+                <p><img src="images/work-by-implementation-65.png" alt="work by implementation 65" class="article-image" loading="lazy"></p>
+                <p>Loaded attachments go both ways</p>
+                <p><img src="images/work-by-implementation-66.png" alt="work by implementation 66" class="article-image" loading="lazy"></p>
+                <p>gmail does not work but hotmail works &gt;&gt;&gt; at least start sending them ( faster )</p>
+                <p><img src="images/work-by-implementation-67.png" alt="work by implementation 67" class="article-image" loading="lazy"></p>
+                <p>todo : solve delivery issues in the long run</p>
+                <p>todo: centalised db and remarketing to daisy chain</p>
+                <p>todo: get data from source rifaterdemsahin@gmail.com &gt;&gt;&gt; older might not work..</p>
+                <p>better naming to make your life easier</p>
+                <p><img src="images/work-by-implementation-68.png" alt="work by implementation 68" class="article-image" loading="lazy"></p>
+                <p><img src="images/work-by-implementation-69.png" alt="work by implementation 69" class="article-image" loading="lazy"></p>
+                <p>indentifier</p>
+                <p><img src="images/work-by-implementation-70.png" alt="work by implementation 70" class="article-image" loading="lazy"></p>
+                <p>to get workflowid</p>
+                <blockquote>
+                <blockquote>
+                <blockquote>
+                <p><a href="https://stackoverflow.com/questions/43753283/possible-to-put-logic-app-run-history-identifier-inside-logic-app-action-input-f">https://stackoverflow.com/questions/43753283/possible-to-put-logic-app-run-history-identifier-inside-logic-app-action-input-f</a></p>
+                </blockquote>
+                </blockquote>
+                </blockquote>
+                <p>Also gmail server having issues to reach the hotmail server</p>
+                <p><img src="images/work-by-implementation-71.png" alt="work by implementation 71" class="article-image" loading="lazy"></p>
+                <p>Find the lead and add it to the system</p>
+                <p><img src="images/work-by-implementation-72.png" alt="work by implementation 72" class="article-image" loading="lazy"></p>
+                <p>Email sender workflow</p>
+                <p><img src="images/work-by-implementation-73.png" alt="work by implementation 73" class="article-image" loading="lazy"></p>
+                <p>Check workflow and identify the missing part while running it &gt; iterate and make it better</p>
+                <p><img src="images/work-by-implementation-74.png" alt="work by implementation 74" class="article-image" loading="lazy"></p>
+                <p>reflects ikigai update</p>
+                <p><img src="images/work-by-implementation-75.png" alt="work by implementation 75" class="article-image" loading="lazy"></p>
+                <p>Zero to one &gt;&gt;&gt; sell the product at top rate</p>
+                <p>https://www.canva.com/design/DAFdEFcuD3c/RKk-goHn9Zsf7Lj2AD066Q/edit</p>
+                <p>Load parameters</p>
+                <p><img src="images/work-by-implementation-76.png" alt="work by implementation 76" class="article-image" loading="lazy"></p>
+                <p>updated values in </p>
+                <p><img src="images/work-by-implementation-77.png" alt="work by implementation 77" class="article-image" loading="lazy"></p>
+                <p>remove the factored parts &gt;&gt;&gt;&gt; refactor to another logic app and encapsulate for cyclomatic complexity </p>
+                <p>old</p>
+                <p><img src="images/work-by-implementation-78.png" alt="work by implementation 78" class="article-image" loading="lazy"></p>
+                <p>new</p>
+                <p><img src="images/work-by-implementation-79.png" alt="work by implementation 79" class="article-image" loading="lazy"></p>
+                <p>Trigger and fix</p>
+                <p><img src="images/work-by-implementation-80.png" alt="work by implementation 80" class="article-image" loading="lazy"></p>
+                <p>other error maximum size</p>
+                <p><img src="images/work-by-implementation-81.png" alt="work by implementation 81" class="article-image" loading="lazy"></p>
+                <p>Data too big retry to send</p>
+                <p><img src="images/work-by-implementation-82.png" alt="work by implementation 82" class="article-image" loading="lazy"></p>
+                <p>Adding the usecase</p>
+                <p><img src="images/work-by-implementation-83.png" alt="work by implementation 83" class="article-image" loading="lazy"></p>
+                <p>refactor as you go along</p>
+                <p><img src="images/work-by-implementation-84.png" alt="work by implementation 84" class="article-image" loading="lazy"></p>
+                <p>your own dsl</p>
+                <p><img src="images/work-by-implementation-85.png" alt="work by implementation 85" class="article-image" loading="lazy"></p>
+                <p>adding smaller files</p>
+                <p><img src="images/work-by-implementation-86.png" alt="work by implementation 86" class="article-image" loading="lazy"></p>
+                <p>Optimized parameter added to testing</p>
+                <p><img src="images/work-by-implementation-87.png" alt="work by implementation 87" class="article-image" loading="lazy"></p>
+                <p>Stop reinventing the wheel for the size</p>
+                <p><img src="images/work-by-implementation-88.png" alt="work by implementation 88" class="article-image" loading="lazy"></p>
+                <p>IS THIS KB ?</p>
+                <p><img src="images/work-by-implementation-89.png" alt="work by implementation 89" class="article-image" loading="lazy"></p>
+                <p>KB so smaller than 5000 is normal</p>
+                <p><img src="images/work-by-implementation-90.png" alt="work by implementation 90" class="article-image" loading="lazy"></p>
+                <p>bad way to check </p>
+                <p><img src="images/work-by-implementation-91.png" alt="work by implementation 91" class="article-image" loading="lazy"></p>
+                <p><img src="images/work-by-implementation-92.png" alt="work by implementation 92" class="article-image" loading="lazy"></p>
+                <p>Headers contains is direct&gt;&gt;&gt; and not creating the world of collection search</p>
+                <p>Less risk of null value mapping </p>
+                <p><img src="images/work-by-implementation-93.png" alt="work by implementation 93" class="article-image" loading="lazy"></p>
+                <p>classical 11 files&gt;&gt;&gt; optimized should be less</p>
+                <p>Should be 10 as the videos gets removed</p>
+                <p><img src="images/work-by-implementation-94.png" alt="work by implementation 94" class="article-image" loading="lazy"></p>
+                <p>Feels like comma problem ?</p>
+                <p><img src="images/work-by-implementation-95.png" alt="work by implementation 95" class="article-image" loading="lazy"></p>
+                <p>header and value</p>
+                <p><img src="images/work-by-implementation-96.png" alt="work by implementation 96" class="article-image" loading="lazy"></p>
+                <p>forget doublecheck and make it easier by flag based naming</p>
+                <p><img src="images/work-by-implementation-97.png" alt="work by implementation 97" class="article-image" loading="lazy"></p>
+                <p>practical</p>
+                <p><img src="images/work-by-implementation-98.png" alt="work by implementation 98" class="article-image" loading="lazy"></p>
+                <p>less files but wrong debug info</p>
+                <p><img src="images/work-by-implementation-99.png" alt="work by implementation 99" class="article-image" loading="lazy"></p>
+                <p>dynamic parameter than 10x bigger files are ok</p>
+                <p><img src="images/work-by-implementation-100.png" alt="work by implementation 100" class="article-image" loading="lazy"></p>
+                <p>500KB </p>
+                <p><img src="images/work-by-implementation-101.png" alt="work by implementation 101" class="article-image" loading="lazy"></p>
+                <p>Tester workflows removes the need for the postman</p>
+                <p><img src="images/work-by-implementation-102.png" alt="work by implementation 102" class="article-image" loading="lazy"></p>
+                <p>References and the video file is out</p>
+                <p><img src="images/work-by-implementation-103.png" alt="work by implementation 103" class="article-image" loading="lazy"></p>
+                <p>Learn and retrigger</p>
+                <p><img src="images/work-by-implementation-104.png" alt="work by implementation 104" class="article-image" loading="lazy"></p>
+                <p>the files are filtered</p>
+                <p>https://portal.azure.com/#view/Microsoft_Azure_Storage/ContainerMenuBlade/~/overview/storageAccountId/%2Fsubscriptions%2Fad744a08-2411-4d78-b417-1f1c83f4f741%2FresourceGroups%2FContractorMarketing%2Fproviders%2FMicrosoft.Storage%2FstorageAccounts%2Fartifactsmarketing/path/usacontract/etag/%220x8DBFEF1F76E7CCA%22/defaultEncryptionScope/%24account-encryption-key/denyEncryptionScopeOverride~/false/defaultId//publicAccessVal/None</p>
+                <p>Smaller version push with scope</p>
+                <p><img src="images/work-by-implementation-105.png" alt="work by implementation 105" class="article-image" loading="lazy"></p>
+                <p>timeout or the fail try smaller version is a good strategy</p>
+                <p><img src="images/work-by-implementation-106.png" alt="work by implementation 106" class="article-image" loading="lazy"></p>
+                <p>it did nit work base 64</p>
+                <p><img src="images/work-by-implementation-107.png" alt="work by implementation 107" class="article-image" loading="lazy"></p>
+                <p>base 64</p>
+                <p><img src="images/work-by-implementation-108.png" alt="work by implementation 108" class="article-image" loading="lazy"></p>
+                <p>rerun and check the id</p>
+                <p><img src="images/work-by-implementation-109.png" alt="work by implementation 109" class="article-image" loading="lazy"></p>
+                <p>40 emails to send 40 minutes saved&gt;&gt;&gt; productitiyy and ai based workflows...connect the dots for Erdem</p>
+                <p><img src="images/work-by-implementation-110.png" alt="work by implementation 110" class="article-image" loading="lazy"></p>
+                <p>email address issue</p>
+                <p><img src="images/work-by-implementation-111.png" alt="work by implementation 111" class="article-image" loading="lazy"></p>
+                <p><img src="images/work-by-implementation-112.png" alt="work by implementation 112" class="article-image" loading="lazy"></p>
+                <p>Fill the gaps</p>
+                <p><img src="images/work-by-implementation-113.png" alt="work by implementation 113" class="article-image" loading="lazy"></p>
+                <p>Too spammy make it better</p>
+                <p><img src="images/work-by-implementation-114.png" alt="work by implementation 114" class="article-image" loading="lazy"></p>
+                <p>check the output by loader of the emailbodyloader</p>
+                <p><img src="images/work-by-implementation-115.png" alt="work by implementation 115" class="article-image" loading="lazy"></p>
+                <p>Random email generate and test</p>
+                <p><img src="images/work-by-implementation-116.png" alt="work by implementation 116" class="article-image" loading="lazy"></p>
+                <p>Email here and json backup</p>
+                <p><img src="images/work-by-implementation-117.png" alt="work by implementation 117" class="article-image" loading="lazy"></p>
+                <p><img src="images/work-by-implementation-118.png" alt="work by implementation 118" class="article-image" loading="lazy"></p>
+                <p>Running with updated parameters is easier than the payload</p>
+                <p><img src="images/work-by-implementation-119.png" alt="work by implementation 119" class="article-image" loading="lazy"></p>
+                <p>Save the lead to the db manually and test the process</p>
+                <p><img src="images/work-by-implementation-120.png" alt="work by implementation 120" class="article-image" loading="lazy"></p>
+                <p>Waiting takes time </p>
+                <p><img src="images/work-by-implementation-121.png" alt="work by implementation 121" class="article-image" loading="lazy"></p>
+                <p>Some progress the email is send</p>
+                <p><img src="images/work-by-implementation-122.png" alt="work by implementation 122" class="article-image" loading="lazy"></p>
+                <p>Scope &gt; header &gt; assign pattern</p>
+                <p><img src="images/work-by-implementation-123.png" alt="work by implementation 123" class="article-image" loading="lazy"></p>
+                <p>Dont overshoot test with 5</p>
+                <p><img src="images/work-by-implementation-124.png" alt="work by implementation 124" class="article-image" loading="lazy"></p>
+                <p>Remove parallel action be patient and wait</p>
+                <p><img src="images/work-by-implementation-125.png" alt="work by implementation 125" class="article-image" loading="lazy"></p>
+                <p>Moving some weight</p>
+                <p><img src="images/work-by-implementation-126.png" alt="work by implementation 126" class="article-image" loading="lazy"></p>
+                <p>5 emails running more than 10 minutes&gt; todo future use in memory objects and run it faster still easier then mine</p>
+                <p><img src="images/work-by-implementation-127.png" alt="work by implementation 127" class="article-image" loading="lazy"></p>
+                <p>Sending emails in bulk</p>
+                <p><img src="images/work-by-implementation-128.png" alt="work by implementation 128" class="article-image" loading="lazy"></p>
+                <p><img src="images/work-by-implementation-129.png" alt="work by implementation 129" class="article-image" loading="lazy"></p>
+                <p>12 minutes saved still need the ai to answer it in a better way </p>
+                <p>Recruiters questions has to be answered ( todo )</p>
+                <p><img src="images/work-by-implementation-130.png" alt="work by implementation 130" class="article-image" loading="lazy"></p>
+                <p>test with a different artifact type</p>
+                <p><img src="images/work-by-implementation-131.png" alt="work by implementation 131" class="article-image" loading="lazy"></p>
+                <p>use stared resources</p>
+                <p><img src="images/work-by-implementation-132.png" alt="work by implementation 132" class="article-image" loading="lazy"></p>
+                <p><img src="images/work-by-implementation-133.png" alt="work by implementation 133" class="article-image" loading="lazy"></p>
+                <p>Parallel sending to 4 is ok</p>
+                <p><img src="images/work-by-implementation-134.png" alt="work by implementation 134" class="article-image" loading="lazy"></p>
+                <p>add missing location</p>
+                <p><img src="images/work-by-implementation-135.png" alt="work by implementation 135" class="article-image" loading="lazy"></p>
+                <p>Added recruiter location check it</p>
+                <p><img src="images/work-by-implementation-136.png" alt="work by implementation 136" class="article-image" loading="lazy"></p>
+                <p>Also expect it to complete in 3 minutes &gt;&gt;&gt; 3 minutes to refactor to a new one</p>
+                <p><img src="images/work-by-implementation-137.png" alt="work by implementation 137" class="article-image" loading="lazy"></p>
+                <p>error uk email body is not in</p>
+                <p><img src="images/work-by-implementation-138.png" alt="work by implementation 138" class="article-image" loading="lazy"></p>
+                <p>This should have been done properly</p>
+                <p><img src="images/work-by-implementation-139.png" alt="work by implementation 139" class="article-image" loading="lazy"></p>
+                <p>Loader has an issue with the files and the content</p>
+                <p><img src="images/work-by-implementation-140.png" alt="work by implementation 140" class="article-image" loading="lazy"></p>
+                <p>Paremeter passed is wrong</p>
+                <p><img src="images/work-by-implementation-141.png" alt="work by implementation 141" class="article-image" loading="lazy"></p>
+                <p>multi sending it 4 at the same time</p>
+                <p><img src="images/work-by-implementation-142.png" alt="work by implementation 142" class="article-image" loading="lazy"></p>
+                <p>Running 2 bulk runners 8 emails &gt;&gt;&gt; extra storage usage &gt;&gt;&gt; check the future costs.</p>
+                <p><img src="images/work-by-implementation-143.png" alt="work by implementation 143" class="article-image" loading="lazy"></p>
+                <p>Expected future run &gt;&gt;&gt; run with the cv updates</p>
+                <p>todo remove the not working email address</p>
+                <p><img src="images/work-by-implementation-144.png" alt="work by implementation 144" class="article-image" loading="lazy"></p>
+                <p>todo &gt; add failed email delivery count</p>
+                <p>todo &gt; if more than 5 dont try to resend to a failed one.</p>
+                <p>Check what the recruiter sees</p>
+                <p><img src="images/work-by-implementation-145.png" alt="work by implementation 145" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

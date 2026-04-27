@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logic apps integrate - Rifat Erdem Sahin</title>
+    <meta name="description" content="Logic apps integrate Subs name make it easier to comprehend 10 minutes Fixer https://learn.microsoft.com/en-us/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-arm-temp">
+    <meta name="keywords" content="Logic apps integrate">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/02/12/logic-apps-integrate/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/02/12/logic-apps-integrate/">
+    <meta property="og:title" content="Logic apps integrate">
+    <meta property="og:description" content="Logic apps integrate Subs name make it easier to comprehend 10 minutes Fixer https://learn.microsoft.com/en-us/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-arm-temp">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/02/12/logic-apps-integrate/">
+    <meta property="twitter:title" content="Logic apps integrate">
+    <meta property="twitter:description" content="Logic apps integrate Subs name make it easier to comprehend 10 minutes Fixer https://learn.microsoft.com/en-us/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-arm-temp">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Logic apps integrate",
+      "description": "Logic apps integrate Subs name make it easier to comprehend 10 minutes Fixer https://learn.microsoft.com/en-us/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-arm-temp",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-02-12",
+      "dateModified": "2024-02-12",
+      "url": "https://www.rifaterdemsahin.com/2024/02/12/logic-apps-integrate/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/02/12/logic-apps-integrate/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Logic apps integrate</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>February 12, 2024</span>
+                    <span>&bull;</span>
+                    <span>4 min read</span>
+                </div>
+                <p class="article-excerpt">Logic apps integrate Subs name make it easier to comprehend 10 minutes Fixer https://learn.microsoft.com/en-us/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-arm-template { &quot;id&quot;: &quot;/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups</p>
+            </header>
+            <article class="article-content">
+                <h1>Logic apps integrate</h1>
+                <p>Subs name make it easier to comprehend</p>
+                <p><img src="images/logic-apps-integrate-1.png" alt="logic apps integrate 1" class="article-image" loading="lazy"></p>
+                <p>10 minutes</p>
+                <p><img src="images/logic-apps-integrate-2.png" alt="logic apps integrate 2" class="article-image" loading="lazy"></p>
+                <p>Fixer</p>
+                <p><img src="images/logic-apps-integrate-3.png" alt="logic apps integrate 3" class="article-image" loading="lazy"></p>
+                <p><img src="images/logic-apps-integrate-4.png" alt="logic apps integrate 4" class="article-image" loading="lazy"></p>
+                <p><img src="images/logic-apps-integrate-5.png" alt="logic apps integrate 5" class="article-image" loading="lazy"></p>
+                <p>https://learn.microsoft.com/en-us/azure/templates/microsoft.insights/diagnosticsettings?pivots=deployment-language-arm-template</p>
+                <p>{<br />
+                "id": "/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Logic/workflows/contractormarketing-calendlyfollowup/providers/microsoft.insights/diagnosticSettings/mydiagnostics",<br />
+                "name": "mydiagnostics",<br />
+                "properties": {<br />
+                "logs": [<br />
+                {<br />
+                "category": null,<br />
+                "categoryGroup": "allLogs",<br />
+                "enabled": true,<br />
+                "retentionPolicy": {<br />
+                "days": 0,<br />
+                "enabled": false<br />
+                }<br />
+                }<br />
+                ],<br />
+                "metrics": [<br />
+                {<br />
+                "timeGrain": null,<br />
+                "enabled": true,<br />
+                "retentionPolicy": {<br />
+                "days": 0,<br />
+                "enabled": false<br />
+                },<br />
+                "category": "AllMetrics"<br />
+                }<br />
+                ],<br />
+                "storageAccountId": "/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Storage/storageAccounts/contractormarketing",<br />
+                "workspaceId": "/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.OperationalInsights/workspaces/contractormarketing-loganalytics",<br />
+                "logAnalyticsDestinationType": null,<br />
+                "eventHubAuthorizationRuleId": "/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourcegroups/ContractorMarketing/providers/Microsoft.EventHub/namespaces/contractormarketing/authorizationrules/RootManageSharedAccessKey",<br />
+                "eventHubName": "contractormarketing-logicapp"<br />
+                }<br />
+                }</p>
+                <p>old value</p>
+                <p>{<br />
+                "id": "/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Logic/workflows/contractormarketing-<strong>calendlyfollowup</strong>/providers/microsoft.insights/diagnosticSettings/mydiagnostics",<br />
+                "name": "mydiagnostics",<br />
+                "properties": {<br />
+                "logs": [<br />
+                {<br />
+                "category": null,<br />
+                "categoryGroup": "allLogs",<br />
+                "enabled": true,<br />
+                "retentionPolicy": {<br />
+                "days": 0,<br />
+                "enabled": false<br />
+                }<br />
+                }<br />
+                ],<br />
+                "metrics": [<br />
+                {<br />
+                "timeGrain": null,<br />
+                "enabled": true,<br />
+                "retentionPolicy": {<br />
+                "days": 0,<br />
+                "enabled": false<br />
+                },<br />
+                "category": "AllMetrics"<br />
+                }<br />
+                ],<br />
+                "storageAccountId": "/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Storage/storageAccounts/contractormarketing",<br />
+                "workspaceId": "/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.OperationalInsights/workspaces/contractormarketing-loganalytics",<br />
+                "logAnalyticsDestinationType": null,<br />
+                "eventHubAuthorizationRuleId": "/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourcegroups/ContractorMarketing/providers/Microsoft.EventHub/namespaces/contractormarketing/authorizationrules/RootManageSharedAccessKey",<br />
+                "eventHubName": "contractormarketing-logicapp"<br />
+                }<br />
+                }</p>
+                <p><strong>new value empty</strong></p>
+                <p>{<br />
+                "type": "Microsoft.Insights/diagnosticSettings",<br />
+                "apiVersion": "2021-05-01-preview",<br />
+                "name": "string",<br />
+                "scope": "string",<br />
+                "properties": {<br />
+                "eventHubAuthorizationRuleId": "string",<br />
+                "eventHubName": "string",<br />
+                "logAnalyticsDestinationType": "string",<br />
+                "logs": [<br />
+                {<br />
+                "category": "string",<br />
+                "categoryGroup": "string",<br />
+                "enabled": "bool",<br />
+                "retentionPolicy": {<br />
+                "days": "int",<br />
+                "enabled": "bool"<br />
+                }<br />
+                }<br />
+                ],<br />
+                "marketplacePartnerId": "string",<br />
+                "metrics": [<br />
+                {<br />
+                "category": "string",<br />
+                "enabled": "bool",<br />
+                "retentionPolicy": {<br />
+                "days": "int",<br />
+                "enabled": "bool"<br />
+                },<br />
+                "timeGrain": "string"<br />
+                }<br />
+                ],<br />
+                "serviceBusRuleId": "string",<br />
+                "storageAccountId": "string",<br />
+                "workspaceId": "string"<br />
+                }<br />
+                }</p>
+                <p><strong>Type:</strong></p>
+                <p><img src="images/logic-apps-integrate-6.png" alt="logic apps integrate 6" class="article-image" loading="lazy"></p>
+                <p>Logic App Type&gt;&gt;&gt; Type:Microsoft.Logic/workflows</p>
+                <p><img src="images/logic-apps-integrate-7.png" alt="logic apps integrate 7" class="article-image" loading="lazy"></p>
+                <p>see at the end</p>
+                <p><img src="images/logic-apps-integrate-8.png" alt="logic apps integrate 8" class="article-image" loading="lazy"></p>
+                <p>zero increment easier</p>
+                <p><img src="images/logic-apps-integrate-9.png" alt="logic apps integrate 9" class="article-image" loading="lazy"></p>
+                <p>Starts with enters not equals to works</p>
+                <p><img src="images/logic-apps-integrate-10.png" alt="logic apps integrate 10" class="article-image" loading="lazy"></p>
+                <p>the last ending has an issue</p>
+                <p><img src="images/logic-apps-integrate-11.png" alt="logic apps integrate 11" class="article-image" loading="lazy"></p>
+                <p>{</p>
+                <p>"message": "No HTTP resource was found that matches the request URI 'https://management.azure.com/<strong>subscriptions</strong>/ad744a08-2411-4d78-b417-1f1c83f4f741/resourcegroups/ContractorMarketing/providers/Microsoft.Resources/deployments/mydeploy-contractormarketing-schedule-dailyreport-/<strong>subscriptions</strong>/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Logic/workflows/contractormarketing-schedule-dailyreport?x-ms-api-version=2016-06-01&amp;wait=False&amp;api-version=2016-06-01'."</p>
+                <p>}</p>
+                <p>mydeploy?</p>
+                <p><img src="images/logic-apps-integrate-12.png" alt="logic apps integrate 12" class="article-image" loading="lazy"></p>
+                <p>Name fixing</p>
+                <p><img src="images/logic-apps-integrate-13.png" alt="logic apps integrate 13" class="article-image" loading="lazy"></p>
+                <p>new error</p>
+                <p>{</p>
+                <p>"error": {</p>
+                <pre><code>"code": "InvalidRequestContent",
+                </code></pre>
+                <p>"message": "The request content was invalid and could not be deserialized: 'Could not f<strong>ind member 'id' on object of type </strong>'Template'. Path 'properties.template.id', line 1, position 32.'."</p>
+                <p>}</p>
+                <p>}</p>
+                <p><img src="images/logic-apps-integrate-14.png" alt="logic apps integrate 14" class="article-image" loading="lazy"></p>
+                <p>no id in here...?</p>
+                <p><img src="images/logic-apps-integrate-15.png" alt="logic apps integrate 15" class="article-image" loading="lazy"></p>
+                <p>remove id how to associate with logic app</p>
+                <p><img src="images/logic-apps-integrate-16.png" alt="logic apps integrate 16" class="article-image" loading="lazy"></p>
+                <p>Maybe it is not the resource trigger</p>
+                <p><img src="images/logic-apps-integrate-17.png" alt="logic apps integrate 17" class="article-image" loading="lazy"></p>
+                <p>maybe it is here</p>
+                <p>https://learn.microsoft.com/en-us/azure/cdn/cdn-azure-diagnostic-logs</p>
+                <p>46</p>
+                <p><img src="images/logic-apps-integrate-18.png" alt="logic apps integrate 18" class="article-image" loading="lazy"></p>
+                <p>autopmation</p>
+                <p><img src="images/logic-apps-integrate-19.png" alt="logic apps integrate 19" class="article-image" loading="lazy"></p>
+                <p><img src="images/logic-apps-integrate-20.png" alt="logic apps integrate 20" class="article-image" loading="lazy"></p>
+                <p>runbook</p>
+                <p><img src="images/logic-apps-integrate-21.png" alt="logic apps integrate 21" class="article-image" loading="lazy"></p>
+                <p><img src="images/logic-apps-integrate-22.png" alt="logic apps integrate 22" class="article-image" loading="lazy"></p>
+                <p>https://stackoverflow.com/questions/53414671/azure-logic-apps-how-to-run-powershell-script-or-azure-cli</p>
+                <p>fast testing</p>
+                <p><img src="images/logic-apps-integrate-23.png" alt="logic apps integrate 23" class="article-image" loading="lazy"></p>
+                <p><img src="images/logic-apps-integrate-24.png" alt="logic apps integrate 24" class="article-image" loading="lazy"></p>
+                <p>Powershell takes time as well</p>
+                <p><img src="images/logic-apps-integrate-25.png" alt="logic apps integrate 25" class="article-image" loading="lazy"></p>
+                <p>Basics</p>
+                <p><img src="images/logic-apps-integrate-26.png" alt="logic apps integrate 26" class="article-image" loading="lazy"></p>
+                <p>get id</p>
+                <p><img src="images/logic-apps-integrate-27.png" alt="logic apps integrate 27" class="article-image" loading="lazy"></p>
+                <p>Code</p>
+                <p>Connect-AzAccount </p>
+                <p>$rsg = 'ContractorMarketing'</p>
+                <p>$storageid = '/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Storage/storageAccounts/contractormarketing'</p>
+                <p>$diagname = 'mydiagnostics'</p>
+                <p>$resourceid = '/ContractorMarketing/providers/Microsoft.Logic/workflows/contractormarketing-schedule-dailyreport'</p>
+                <p>Set-AzDiagnosticSetting -Name $diagname -ResourceId $resourceid -StorageAccountId $storageid -Enabled $true -Categories CoreAnalytics</p>
+                <p>Powershell running long time </p>
+                <p><img src="images/logic-apps-integrate-28.png" alt="logic apps integrate 28" class="article-image" loading="lazy"></p>
+                <p><img src="images/logic-apps-integrate-29.png" alt="logic apps integrate 29" class="article-image" loading="lazy"></p>
+                <p>it did not get created</p>
+                <p><img src="images/logic-apps-integrate-30.png" alt="logic apps integrate 30" class="article-image" loading="lazy"></p>
+                <p>edit in vscode to see the error easier</p>
+                <p><img src="images/logic-apps-integrate-31.png" alt="logic apps integrate 31" class="article-image" loading="lazy"></p>
+                <p><img src="images/logic-apps-integrate-32.png" alt="logic apps integrate 32" class="article-image" loading="lazy"></p>
+                <p>error is there</p>
+                <p><img src="images/logic-apps-integrate-33.png" alt="logic apps integrate 33" class="article-image" loading="lazy"></p>
+                <p><img src="images/logic-apps-integrate-34.png" alt="logic apps integrate 34" class="article-image" loading="lazy"></p>
+                <p><img src="images/logic-apps-integrate-35.png" alt="logic apps integrate 35" class="article-image" loading="lazy"></p>
+                <p>Install-Module Az</p>
+                <p>Connect-AzAccount</p>
+                <p>$rsg = 'ContractorMarketing'</p>
+                <p>$storageid = '/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourceGroups/ContractorMarketing/providers/Microsoft.Storage/storageAccounts/contractormarketing'</p>
+                <p>$diagname = 'mydiagnostics'</p>
+                <p>$resourceid = '/ContractorMarketing/providers/Microsoft.Logic/workflows/contractormarketing-schedule-dailyreport'</p>
+                <p>Set-AzDiagnosticSetting -Name $diagname -ResourceId $resourceid -StorageAccountId $storageid -Enabled $true -Categories CoreAnalytics</p>
+                <p><img src="images/logic-apps-integrate-36.png" alt="logic apps integrate 36" class="article-image" loading="lazy"></p>
+                <p>Maybe storage does not have the module</p>
+                <p><img src="images/logic-apps-integrate-37.png" alt="logic apps integrate 37" class="article-image" loading="lazy"></p>
+                <p>Create a job</p>
+                <p><img src="images/logic-apps-integrate-38.png" alt="logic apps integrate 38" class="article-image" loading="lazy"></p>
+                <p>Where is the parameter?</p>
+                <p><img src="images/logic-apps-integrate-39.png" alt="logic apps integrate 39" class="article-image" loading="lazy"></p>
+                <p>Logicapp/</p>
+                <p><img src="images/logic-apps-integrate-40.png" alt="logic apps integrate 40" class="article-image" loading="lazy"></p>
+                <p>Json accepted</p>
+                <p><img src="images/logic-apps-integrate-41.png" alt="logic apps integrate 41" class="article-image" loading="lazy"></p>
+                <p>Logging opened up maybe we can see now</p>
+                <p><img src="images/logic-apps-integrate-42.png" alt="logic apps integrate 42" class="article-image" loading="lazy"></p>
+                <p>tempates are there</p>
+                <p><img src="images/logic-apps-integrate-43.png" alt="logic apps integrate 43" class="article-image" loading="lazy"></p>
+                <p>Powershell so many errors</p>
+                <p><img src="images/logic-apps-integrate-44.png" alt="logic apps integrate 44" class="article-image" loading="lazy"></p>
+                <p>updated version is not woirking as well</p>
+                <p><img src="images/logic-apps-integrate-45.png" alt="logic apps integrate 45" class="article-image" loading="lazy"></p>
+                <p>so many powershell versions are outthere the client side has the issues</p>
+                <p><img src="images/logic-apps-integrate-46.png" alt="logic apps integrate 46" class="article-image" loading="lazy"></p>
+                <p>Powershell version are way too many </p>
+                <p><img src="images/logic-apps-integrate-47.png" alt="logic apps integrate 47" class="article-image" loading="lazy"></p>
+                <p>runtime 7.2 testing needed</p>
+                <p><img src="images/logic-apps-integrate-48.png" alt="logic apps integrate 48" class="article-image" loading="lazy"></p>
+                <p><img src="images/logic-apps-integrate-49.png" alt="logic apps integrate 49" class="article-image" loading="lazy"></p>
+                <p>Old version</p>
+                <p><img src="images/logic-apps-integrate-50.png" alt="logic apps integrate 50" class="article-image" loading="lazy"></p>
+                <p>7.2 is different</p>
+                <p><img src="images/logic-apps-integrate-51.png" alt="logic apps integrate 51" class="article-image" loading="lazy"></p>
+                <p>powershell too complex setup</p>
+                <p><img src="images/logic-apps-integrate-52.png" alt="logic apps integrate 52" class="article-image" loading="lazy"></p>
+                <p><img src="images/logic-apps-integrate-53.png" alt="logic apps integrate 53" class="article-image" loading="lazy"></p>
+                <p>multiple enviroment</p>
+                <p><img src="images/logic-apps-integrate-54.png" alt="logic apps integrate 54" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

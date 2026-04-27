@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAS not looking ok - Rifat Erdem Sahin</title>
+    <meta name="description" content="NAS not looking ok health of drives ok the usage not ok files are not there Storage analyzer has issues Drives Triggering updates DSM to to date todo &gt; understand what happened ( in progress ) unli">
+    <meta name="keywords" content="NAS not looking ok">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/05/30/nas-not-looking-ok/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/05/30/nas-not-looking-ok/">
+    <meta property="og:title" content="NAS not looking ok">
+    <meta property="og:description" content="NAS not looking ok health of drives ok the usage not ok files are not there Storage analyzer has issues Drives Triggering updates DSM to to date todo &gt; understand what happened ( in progress ) unli">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/05/30/nas-not-looking-ok/">
+    <meta property="twitter:title" content="NAS not looking ok">
+    <meta property="twitter:description" content="NAS not looking ok health of drives ok the usage not ok files are not there Storage analyzer has issues Drives Triggering updates DSM to to date todo &gt; understand what happened ( in progress ) unli">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "NAS not looking ok",
+      "description": "NAS not looking ok health of drives ok the usage not ok files are not there Storage analyzer has issues Drives Triggering updates DSM to to date todo &gt; understand what happened ( in progress ) unli",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-05-30",
+      "dateModified": "2024-05-30",
+      "url": "https://www.rifaterdemsahin.com/2024/05/30/nas-not-looking-ok/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/05/30/nas-not-looking-ok/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">NAS not looking ok</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>May 30, 2024</span>
+                    <span>&bull;</span>
+                    <span>31 min read</span>
+                </div>
+                <p class="article-excerpt">NAS not looking ok health of drives ok the usage not ok files are not there Storage analyzer has issues Drives Triggering updates DSM to to date todo &gt; understand what happened ( in progress ) unlikely &gt; to download 40 TB data likely &gt; production account does not have th</p>
+            </header>
+            <article class="article-content">
+                <h1>NAS not looking ok</h1>
+                <p>health of drives ok</p>
+                <p><img src="images/nas-not-looking-1.png" alt="nas not looking 1" class="article-image" loading="lazy"></p>
+                <p>the usage not ok</p>
+                <p><img src="images/nas-not-looking-2.png" alt="nas not looking 2" class="article-image" loading="lazy"></p>
+                <p>files are not there</p>
+                <p><img src="images/nas-not-looking-3.png" alt="nas not looking 3" class="article-image" loading="lazy"></p>
+                <p>Storage analyzer has issues</p>
+                <p><img src="images/nas-not-looking-4.png" alt="nas not looking 4" class="article-image" loading="lazy"></p>
+                <p>Drives</p>
+                <p><img src="images/nas-not-looking-5.png" alt="nas not looking 5" class="article-image" loading="lazy"></p>
+                <p>Triggering updates</p>
+                <p><img src="images/nas-not-looking-6.png" alt="nas not looking 6" class="article-image" loading="lazy"></p>
+                <p>DSM to to date</p>
+                <p><img src="images/nas-not-looking-7.png" alt="nas not looking 7" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-8.png" alt="nas not looking 8" class="article-image" loading="lazy"></p>
+                <p>todo &gt; understand what happened ( in progress )</p>
+                <p>unlikely &gt; to download 40 TB data</p>
+                <p><img src="images/nas-not-looking-9.png" alt="nas not looking 9" class="article-image" loading="lazy"></p>
+                <p>likely &gt; production account does not have the main account access but admin access can nuke the system</p>
+                <p>todo &gt; baran &gt; get cyber secrity insurance &gt; <a href="https://www.hiscox.co.uk/business-insurance/cyber-and-data-insurance">https://www.hiscox.co.uk/business-insurance/cyber-and-data-insurance</a></p>
+                <p>todo &gt; <strong>update passwords </strong>classical password wont cut it anymore &gt;&gt;&gt; go over the password</p>
+                <p>todo &gt; uninstall everything!</p>
+                <p>todo &gt; got the system from ftp and ip scan feels like the source</p>
+                <p>todo &gt; get the blue ray writer and back it &gt;&gt;&gt;&gt; too many drives needed</p>
+                <p><img src="images/nas-not-looking-10.png" alt="nas not looking 10" class="article-image" loading="lazy"></p>
+                <p>todo &gt; check google drive </p>
+                <p><img src="images/nas-not-looking-11.png" alt="nas not looking 11" class="article-image" loading="lazy"></p>
+                <p>Google drive is there</p>
+                <p><img src="images/nas-not-looking-12.png" alt="nas not looking 12" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-13.png" alt="nas not looking 13" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-14.png" alt="nas not looking 14" class="article-image" loading="lazy"></p>
+                <p>hiscox as well</p>
+                <p>urls</p>
+                <ul>
+                <li>
+                <p><a href="https://quote.markeluk.com/quote/decline">https://quote.markeluk.com/quote/decline</a></p>
+                </li>
+                <li>
+                <p><a href="https://cyber-insurance.quotezone.co.uk/cyber-insurance-ui/39bd96f25618255ce49377f91dc2439a28617bde64a9aa5160f212c4200963eb">https://cyber-insurance.quotezone.co.uk/cyber-insurance-ui/39bd96f25618255ce49377f91dc2439a28617bde64a9aa5160f212c4200963eb</a></p>
+                </li>
+                </ul>
+                <p><img src="images/nas-not-looking-15.png" alt="nas not looking 15" class="article-image" loading="lazy"></p>
+                <p>50 gb is also small </p>
+                <p>quote insurance &gt; <a href="https://mail.google.com/mail/u/0/#inbox/FMfcgzQVwnZlcnWnXpbjDmLcbbNhLrxG">https://mail.google.com/mail/u/0/#inbox/FMfcgzQVwnZlcnWnXpbjDmLcbbNhLrxG</a></p>
+                <p><img src="images/nas-not-looking-16.png" alt="nas not looking 16" class="article-image" loading="lazy"></p>
+                <p>https://register.fca.org.uk/s/firm?id=001b000003ruLJyAAM</p>
+                <blockquote></blockquote>
+                <p>cant contact hacker than we are in his game &gt;&gt;&gt; unique email to catch you</p>
+                <p>pay insurance and move on &gt; <a href="https://mail.google.com/mail/u/0/#inbox/FMfcgzQVwnZlcnWnXpbjDmLcbbNhLrxG">https://mail.google.com/mail/u/0/#inbox/FMfcgzQVwnZlcnWnXpbjDmLcbbNhLrxG</a></p>
+                <p>they attack synology </p>
+                <p><img src="images/nas-not-looking-17.png" alt="nas not looking 17" class="article-image" loading="lazy"></p>
+                <p>it looks like a linux fail</p>
+                <p>When considering the cheapest per-storage backup solution using Blu-ray discs, here are the key points to consider:</p>
+                <h3>Blu-ray Disc Types and Costs</h3>
+                <ul>
+                <li>
+                <p><strong>BD-R (25GB)</strong>: Standard writable Blu-ray discs that can store up to 25GB of data.</p>
+                </li>
+                <li>
+                <p>Cost: Approximately $0.30 to $1 per disc, depending on the brand and quantity purchased in bulk.</p>
+                </li>
+                <li>
+                <p><strong>BD-R DL (50GB)</strong>: Dual-layer writable Blu-ray discs that can store up to 50GB of data.</p>
+                </li>
+                <li>
+                <p>Cost: Approximately $1.50 to $3 per disc, depending on the brand and quantity purchased in bulk.</p>
+                </li>
+                <li>
+                <p><strong>BD-R XL (100GB and 128GB)</strong>: High-capacity Blu-ray discs that can store 100GB (triple layer) or 128GB (quad layer) of data.</p>
+                </li>
+                <li>
+                <p>Cost: Approximately $8 to $15 per disc for 100GB and $15 to $25 per disc for 128GB.</p>
+                </li>
+                </ul>
+                <h3>Calculating Cost per GB</h3>
+                <p>To determine the cost-effectiveness of each type, we calculate the cost per GB:</p>
+                <ul>
+                <li>
+                <p><strong>BD-R (25GB)</strong></p>
+                </li>
+                <li>
+                <p>Cost per GB: ( \frac{0.30}{25} \text{ to } \frac{1}{25} = \text{\$0.012 to \$0.04 per GB} )</p>
+                </li>
+                <li>
+                <p><strong>BD-R DL (50GB)</strong></p>
+                </li>
+                <li>
+                <p>Cost per GB: ( \frac{1.50}{50} \text{ to } \frac{3}{50} = \text{\$0.03 to \$0.06 per GB} )</p>
+                </li>
+                <li>
+                <p><strong>BD-R XL (100GB)</strong></p>
+                </li>
+                <li>
+                <p>Cost per GB: ( \frac{8}{100} \text{ to } \frac{15}{100} = \text{\$0.08 to \$0.15 per GB} )</p>
+                </li>
+                <li>
+                <p><strong>BD-R XL (128GB)</strong></p>
+                </li>
+                <li>
+                <p>Cost per GB: ( \frac{15}{128} \text{ to } \frac{25}{128} = \text{\$0.12 to \$0.20 per GB} )</p>
+                </li>
+                </ul>
+                <h3>Summary of Cheapest Options</h3>
+                <ul>
+                <li>
+                <p><strong>BD-R (25GB)</strong>: Offers the lowest cost per GB, especially when purchased in bulk.</p>
+                </li>
+                <li>
+                <p><strong>BD-R DL (50GB)</strong>: Slightly higher cost per GB but still relatively economical for larger backups.</p>
+                </li>
+                <li>
+                <p><strong>BD-R XL (100GB and 128GB)</strong>: Significantly higher cost per GB but useful for very large backups with fewer discs.</p>
+                </li>
+                </ul>
+                <h3>Conclusion</h3>
+                <p>The cheapest per-storage backup solution using Blu-ray is to use BD-R (25GB) discs, especially when bought in bulk, due to their lower cost per GB. For larger, more consolidated backups, BD-R DL (50GB) discs offer a reasonable compromise between cost and storage capacity.</p>
+                <p><img src="images/nas-not-looking-18.png" alt="nas not looking 18" class="article-image" loading="lazy"></p>
+                <blockquote></blockquote>
+                <p>todo : hit analysis &gt; videos / files/ photos</p>
+                <p>todo&gt; recovery</p>
+                <p><img src="images/nas-not-looking-19.png" alt="nas not looking 19" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-20.png" alt="nas not looking 20" class="article-image" loading="lazy"></p>
+                <p>Analysis &gt; Drive folder &gt; hack analysis 2024 May</p>
+                <p><img src="images/nas-not-looking-21.png" alt="nas not looking 21" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-22.png" alt="nas not looking 22" class="article-image" loading="lazy"></p>
+                <p>mostly unmounting the system</p>
+                <p><img src="images/nas-not-looking-23.png" alt="nas not looking 23" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-24.png" alt="nas not looking 24" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-25.png" alt="nas not looking 25" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-26.png" alt="nas not looking 26" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-27.png" alt="nas not looking 27" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-28.png" alt="nas not looking 28" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-29.png" alt="nas not looking 29" class="article-image" loading="lazy"></p>
+                <p>enabled</p>
+                <p><img src="images/nas-not-looking-30.png" alt="nas not looking 30" class="article-image" loading="lazy"></p>
+                <p>45 GB could be out in one hour</p>
+                <p><img src="images/nas-not-looking-31.png" alt="nas not looking 31" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-32.png" alt="nas not looking 32" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-33.png" alt="nas not looking 33" class="article-image" loading="lazy"></p>
+                <p>could be an ftp attack</p>
+                <p><img src="images/nas-not-looking-34.png" alt="nas not looking 34" class="article-image" loading="lazy"></p>
+                <p>todo &gt; nuke the synology &gt; restart from scracth &gt;&gt;&gt; google drive has the important files </p>
+                <p><img src="images/nas-not-looking-35.png" alt="nas not looking 35" class="article-image" loading="lazy"></p>
+                <p>To retrieve deleted shared drives on a Synology NAS, you can follow these steps. The process typically involves using the Synology Drive Admin Console or File Station, depending on your setup and the specifics of your NAS configuration.</p>
+                <h3>Method 1: Using Synology Drive Admin Console</h3>
+                <ul>
+                <li>
+                <p><strong>Log in to Synology Drive Admin Console</strong>:</p>
+                </li>
+                <li>
+                <p>Open a web browser and log in to your Synology NAS.</p>
+                </li>
+                <li>
+                <p>Navigate to the Synology Drive Admin Console.</p>
+                </li>
+                <li>
+                <p><strong>Go to Team Folder</strong>:</p>
+                </li>
+                <li>
+                <p>In the Synology Drive Admin Console, click on "Team Folder" in the left panel.</p>
+                </li>
+                <li>
+                <p>Here, you can see the list of shared drives (Team Folders).</p>
+                </li>
+                <li>
+                <p><strong>Check for Deleted Shared Drives</strong>:</p>
+                </li>
+                <li>
+                <p>Look for any shared drives that might have been disabled instead of deleted. Disabled shared drives can be re-enabled.</p>
+                </li>
+                <li>
+                <p><strong>Enable the Shared Drive</strong>:</p>
+                </li>
+                <li>
+                <p>If you find the shared drive, select it and click on "Enable" to restore it.</p>
+                </li>
+                </ul>
+                <h3>Method 2: Using File Station</h3>
+                <ul>
+                <li>
+                <p><strong>Log in to DSM</strong>:</p>
+                </li>
+                <li>
+                <p>Open a web browser and log in to your Synology DSM (DiskStation Manager).</p>
+                </li>
+                <li>
+                <p><strong>Open File Station</strong>:</p>
+                </li>
+                <li>
+                <p>Launch File Station from the main menu.</p>
+                </li>
+                <li>
+                <p><strong>Check the Recycle Bin</strong>:</p>
+                </li>
+                <li>
+                <p>Navigate to the Recycle Bin of the volume where the shared drive was located.</p>
+                </li>
+                <li>
+                <p>The Recycle Bin might contain the deleted shared drive if the Recycle Bin feature was enabled before deletion.</p>
+                </li>
+                <li>
+                <p><strong>Restore from Recycle Bin</strong>:</p>
+                </li>
+                <li>
+                <p>If you find the deleted shared drive in the Recycle Bin, right-click on it and select "Restore" to recover the shared drive.</p>
+                </li>
+                </ul>
+                <h3>Method 3: Using Hyper Backup</h3>
+                <p>If you have Hyper Backup configured, you can restore the shared drives from a backup.</p>
+                <ul>
+                <li>
+                <p><strong>Open Hyper Backup</strong>:</p>
+                </li>
+                <li>
+                <p>Open Hyper Backup from the main menu.</p>
+                </li>
+                <li>
+                <p><strong>Select the Backup Task</strong>:</p>
+                </li>
+                <li>
+                <p>Choose the backup task that contains the shared drives.</p>
+                </li>
+                <li>
+                <p><strong>Restore Data</strong>:</p>
+                </li>
+                <li>
+                <p>Follow the prompts to restore the specific shared drive from the backup.</p>
+                </li>
+                </ul>
+                <h3>Method 4: Data Recovery Tools</h3>
+                <p>If the shared drives are not found in the Recycle Bin or backups, you might need to use data recovery tools.</p>
+                <ul>
+                <li>
+                <p><strong>Use Data Recovery Tools</strong>:</p>
+                </li>
+                <li>
+                <p>Connect to your Synology NAS via SSH (using a tool like PuTTY).</p>
+                </li>
+                <li>
+                <p>Use Linux data recovery tools such as <code>extundelete</code> or <code>testdisk</code> to attempt to recover the deleted shared drives. These tools can scan the disk for deleted files and attempt to restore them. <strong>Note</strong>: Using data recovery tools can be complex and may require technical expertise. It's recommended to seek professional help if you're not comfortable with these tools.</p>
+                </li>
+                </ul>
+                <h3>Preventive Measures</h3>
+                <p>To prevent data loss in the future:</p>
+                <ul>
+                <li>
+                <p><strong>Enable Recycle Bin</strong>:</p>
+                </li>
+                <li>
+                <p>Enable the Recycle Bin for shared folders. This will allow you to recover deleted files easily.</p>
+                </li>
+                <li>
+                <p><strong>Regular Backups</strong>:</p>
+                </li>
+                <li>
+                <p>Regularly back up your data using Hyper Backup or another backup solution.</p>
+                </li>
+                <li>
+                <p><strong>Permissions Management</strong>:</p>
+                </li>
+                <li>
+                <p>Carefully manage permissions to prevent accidental deletions.</p>
+                </li>
+                </ul>
+                <p>If you encounter any issues or need further assistance, consider contacting Synology support for help.</p>
+                <p><img src="images/nas-not-looking-36.png" alt="nas not looking 36" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-37.png" alt="nas not looking 37" class="article-image" loading="lazy"></p>
+                <p>todo &gt; change the quick connect id</p>
+                <p><img src="images/nas-not-looking-38.png" alt="nas not looking 38" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-39.png" alt="nas not looking 39" class="article-image" loading="lazy"></p>
+                <p>todo &gt; nuke dsm as it could have a trojan inside &gt;</p>
+                <p><img src="images/nas-not-looking-40.png" alt="nas not looking 40" class="article-image" loading="lazy"></p>
+                <p>move to correct time not to confuse yourself</p>
+                <p><img src="images/nas-not-looking-41.png" alt="nas not looking 41" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-42.png" alt="nas not looking 42" class="article-image" loading="lazy"></p>
+                <p>looks like only the deletion took place</p>
+                <p><img src="images/nas-not-looking-43.png" alt="nas not looking 43" class="article-image" loading="lazy"></p>
+                <p>looks only deletion</p>
+                <p><img src="images/nas-not-looking-44.png" alt="nas not looking 44" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-45.png" alt="nas not looking 45" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-46.png" alt="nas not looking 46" class="article-image" loading="lazy"></p>
+                <p>`# SSH into NAS<br />
+                ssh admin_username@nas_ip_address</p>
+                <h1>Identify disks</h1>
+                <p>sudo fdisk -l</p>
+                <h1>Unmount the disk</h1>
+                <p>sudo umount /dev/sda1</p>
+                <h1>Install extundelete (if needed)</h1>
+                <p>sudo opkg install extundelete</p>
+                <h1>Recover all deleted files</h1>
+                <p>sudo extundelete --restore-all /dev/sda1</p>
+                <h1>Or recover a specific directory or file</h1>
+                <p>sudo extundelete --restore-directory /path/to/directory /dev/sda1<br />
+                sudo extundelete --restore-file /path/to/file /dev/sda1</p>
+                <h1>Check recovered files</h1>
+                <p>ls RECOVERED_FILES</p>
+                <h1>Remount the disk</h1>
+                <p>sudo mount /dev/sda1 /path/to/mountpoint<br />
+                `</p>
+                <blockquote>
+                <p>no forwarding should try from the studio</p>
+                </blockquote>
+                <p><img src="images/nas-not-looking-47.png" alt="nas not looking 47" class="article-image" loading="lazy"></p>
+                <p>ask gpt</p>
+                <p>Receiving a ransom note indicating that your Synology NAS has been compromised is a serious situation. Here are the steps you should take immediately:</p>
+                <h3>1. <strong>Do Not Pay the Ransom</strong></h3>
+                <p>Paying the ransom does not guarantee that you will get your data back and can make you a target for future attacks.</p>
+                <h3>2. <strong>Disconnect the NAS from the Network</strong></h3>
+                <p>Disconnect your NAS from the internet to prevent further data leakage or damage.</p>
+                <h3>3. <strong>Report the Incident</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Local Authorities</strong>: Report the incident to your local law enforcement agency.</p>
+                </li>
+                <li>
+                <p><strong>Data Protection Authorities</strong>: If you are in the EU or are handling data of EU citizens, report the breach to your local GDPR supervisory authority.</p>
+                </li>
+                </ul>
+                <h3>4. <strong>Assess the Damage</strong></h3>
+                <ul>
+                <li>
+                <p>Check if you have backups of your data that are not compromised.</p>
+                </li>
+                <li>
+                <p>Determine the extent of the breach and what data might have been accessed or stolen.</p>
+                </li>
+                </ul>
+                <h3>5. <strong>Contact Synology Support</strong></h3>
+                <p>Contact Synology Support for assistance. They can provide specific guidance tailored to your device and situation.</p>
+                <h3>6. <strong>Implement a Disaster Recovery Plan</strong></h3>
+                <p>If you have a disaster recovery plan, now is the time to implement it. This plan should include steps for restoring data from backups.</p>
+                <h3>7. <strong>Strengthen Security Measures</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Update Firmware and Software</strong>: Ensure all firmware and software on your NAS and network are up to date.</p>
+                </li>
+                <li>
+                <p><strong>Change Passwords</strong>: Change all passwords for accounts that have access to your NAS.</p>
+                </li>
+                <li>
+                <p><strong>Enable Two-Factor Authentication (2FA)</strong>: Enable 2FA for an additional layer of security.</p>
+                </li>
+                <li>
+                <p><strong>Firewall and VPN</strong>: Use a firewall and consider setting up a VPN for accessing your NAS remotely.</p>
+                </li>
+                <li>
+                <p><strong>Antivirus and Anti-Malware</strong>: Run a full antivirus and anti-malware scan on your systems.</p>
+                </li>
+                </ul>
+                <h3>8. <strong>Monitor for Further Threats</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Log Monitoring</strong>: Regularly check logs for any suspicious activity.</p>
+                </li>
+                <li>
+                <p><strong>Security Software</strong>: Utilize security software to monitor your network and devices for future threats.</p>
+                </li>
+                </ul>
+                <h3>9. <strong>Consult with a Cybersecurity Expert</strong></h3>
+                <p>If needed, consult with a cybersecurity expert to assess your network's security and get professional assistance in dealing with the breach.</p>
+                <h3>Template for Reporting the Incident</h3>
+                <p><strong>Subject: Security Breach Report</strong></p>
+                <p>Dear [Recipient's Name],</p>
+                <p>I am writing to inform you about a security breach that occurred on our Synology NAS device. We received a ransom note indicating that our NAS has been compromised, and sensitive data may have been accessed or stolen.</p>
+                <p>Details of the Incident:</p>
+                <ul>
+                <li>
+                <p>Date of Incident: [Date]</p>
+                </li>
+                <li>
+                <p>Affected Systems: Synology NAS</p>
+                </li>
+                <li>
+                <p>Nature of Data Compromised: [Details]</p>
+                </li>
+                </ul>
+                <p>We have taken immediate action to disconnect the NAS from the network and are currently working on assessing the full extent of the breach. We are in the process of reporting this incident to the relevant authorities and have contacted Synology Support for assistance.</p>
+                <p>We are also implementing additional security measures to prevent future incidents and will keep you updated on any further developments.</p>
+                <p>Thank you for your attention to this matter.</p>
+                <p>Sincerely,</p>
+                <p>[Your Name]<br />
+                [Your Position]<br />
+                [Your Contact Information]</p>
+                <h3>Final Note</h3>
+                <p>Dealing with a security breach is challenging, but taking prompt and appropriate actions can mitigate the damage and help you recover more effectively.</p>
+                <p>Connect over to the jump point</p>
+                <p><img src="images/nas-not-looking-48.png" alt="nas not looking 48" class="article-image" loading="lazy"></p>
+                <p>make it harder</p>
+                <p><img src="images/nas-not-looking-49.png" alt="nas not looking 49" class="article-image" loading="lazy"></p>
+                <p>disconnect it as it might be backing up in the back</p>
+                <p><img src="images/nas-not-looking-50.png" alt="nas not looking 50" class="article-image" loading="lazy"></p>
+                <p>can not login there</p>
+                <p><img src="images/nas-not-looking-51.png" alt="nas not looking 51" class="article-image" loading="lazy"></p>
+                <p>https://community.synology.com/enu/forum/17/post/18518</p>
+                <blockquote>
+                <blockquote>
+                <blockquote>
+                <p>cut the internet connection is the way to go</p>
+                </blockquote>
+                </blockquote>
+                </blockquote>
+                <p>maybe it is there by default</p>
+                <p>router</p>
+                <p><img src="images/nas-not-looking-52.png" alt="nas not looking 52" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-53.png" alt="nas not looking 53" class="article-image" loading="lazy"></p>
+                <p>it was off now turned on the traffic analysis</p>
+                <p><img src="images/nas-not-looking-54.png" alt="nas not looking 54" class="article-image" loading="lazy"></p>
+                <p>todo &gt; enable clickatell</p>
+                <p><img src="images/nas-not-looking-55.png" alt="nas not looking 55" class="article-image" loading="lazy"></p>
+                <p>browser push is there synology is also working on it</p>
+                <p><img src="images/nas-not-looking-56.png" alt="nas not looking 56" class="article-image" loading="lazy"></p>
+                <p>ftp off</p>
+                <p><img src="images/nas-not-looking-57.png" alt="nas not looking 57" class="article-image" loading="lazy"></p>
+                <p>updated the ssh port &gt; i need to be in the studio to do that in that network &gt;&gt;&gt; oer the router it did not work...it should have worked?</p>
+                <p>after port change i am in</p>
+                <p>`Disk /dev/ram0: 640 MiB, 671088640 bytes, 1310720 sectors                     <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                             </p>
+                <p>Disk /dev/ram1: 640 MiB, 671088640 bytes, 1310720 sectors                     <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                             </p>
+                <p>Disk /dev/ram2: 640 MiB, 671088640 bytes, 1310720 sectors                     <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                             </p>
+                <p>Disk /dev/ram3: 640 MiB, 671088640 bytes, 1310720 sectors                     <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                             </p>
+                <p>Disk /dev/ram4: 640 MiB, 671088640 bytes, 1310720 sectors                     <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                             </p>
+                <p>Disk /dev/ram5: 640 MiB, 671088640 bytes, 1310720 sectors                     <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                             </p>
+                <p>Disk /dev/ram6: 640 MiB, 671088640 bytes, 1310720 sectors                     <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                             </p>
+                <p>Disk /dev/ram7: 640 MiB, 671088640 bytes, 1310720 sectors                     <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                             </p>
+                <p>Disk /dev/ram8: 640 MiB, 671088640 bytes, 1310720 sectors                     <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                             </p>
+                <p>Disk /dev/ram9: 640 MiB, 671088640 bytes, 1310720 sectors                     <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                             </p>
+                <p>Disk /dev/ram10: 640 MiB, 671088640 bytes, 1310720 sectors                    <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                             </p>
+                <p>Disk /dev/ram11: 640 MiB, 671088640 bytes, 1310720 sectors                    <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                             </p>
+                <p>Disk /dev/ram12: 640 MiB, 671088640 bytes, 1310720 sectors                    <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                             </p>
+                <p>Disk /dev/ram13: 640 MiB, 671088640 bytes, 1310720 sectors                    <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                             </p>
+                <p>Disk /dev/ram14: 640 MiB, 671088640 bytes, 1310720 sectors                    <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                             </p>
+                <p>Disk /dev/ram15: 640 MiB, 671088640 bytes, 1310720 sectors                    <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                             </p>
+                <p>Disk /dev/nvme0n1: 953.9 GiB, 1024209543168 bytes, 2000409264 sectors         <br />
+                Disk model: Sabrent                                                           <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 512 bytes                         <br />
+                I/O size (minimum/optimal): 512 bytes / 512 bytes                             <br />
+                Disklabel type: dos                                                           <br />
+                Disk identifier: 0x6d64a1e7                                                     </p>
+                <p>Device         Boot Start        End    Sectors   Size Id Type                <br />
+                /dev/nvme0n1p1       2048 2000397734 2000395687 953.9G fd Linux raid autodetect </p>
+                <p>Disk /dev/nvme1n1: 953.9 GiB, 1024209543168 bytes, 2000409264 sectors         <br />
+                Disk model: Sabrent                                                           <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 512 bytes                         <br />
+                I/O size (minimum/optimal): 512 bytes / 512 bytes                             <br />
+                Disklabel type: dos                                                           <br />
+                Disk identifier: 0x7416dd48                                                     </p>
+                <p>Device         Boot Start        End    Sectors   Size Id Type                <br />
+                /dev/nvme1n1p1       2048 2000397734 2000395687 953.9G fd Linux raid autodetect </p>
+                <p>Disk /dev/sdc: 3.7 TiB, 4000787030016 bytes, 7814037168 sectors               <br />
+                Disk model: WD40EFRX-68WT0N0                                                  <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                           <br />
+                Disklabel type: gpt                                                           <br />
+                Disk identifier: D0E4059F-AB8D-4A11-8A3F-6946020B629A                           </p>
+                <p>Device       Start        End    Sectors  Size Type                           <br />
+                /dev/sdc1     2048    4982527    4980480  2.4G Linux RAID                     <br />
+                /dev/sdc2  4982528    9176831    4194304    2G Linux RAID                     <br />
+                /dev/sdc5  9453280 7813830239 7804376960  3.6T Linux RAID                       </p>
+                <p>Disk /dev/sdd: 3.7 TiB, 4000787030016 bytes, 7814037168 sectors               <br />
+                Disk model: ST4000VN008-2DR166                                                <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                           <br />
+                Disklabel type: gpt                                                           <br />
+                Disk identifier: C51556C9-AFA6-4C7F-909C-B54891A8F955                           </p>
+                <p>Device       Start        End    Sectors  Size Type                           <br />
+                /dev/sdd1     2048    4982527    4980480  2.4G Linux RAID                     <br />
+                /dev/sdd2  4982528    9176831    4194304    2G Linux RAID                     <br />
+                /dev/sdd5  9453280 7813830239 7804376960  3.6T Linux RAID                       </p>
+                <p>Disk /dev/sda: 3.7 TiB, 4000787030016 bytes, 7814037168 sectors               <br />
+                Disk model: ST4000VN008-2DR166                                                <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                           <br />
+                Disklabel type: gpt                                                           <br />
+                Disk identifier: 72070AA7-D1F2-4486-BB1B-13496D6E9931                           </p>
+                <p>Device       Start        End    Sectors  Size Type                           <br />
+                /dev/sda1     2048    4982527    4980480  2.4G Linux RAID                     <br />
+                /dev/sda2  4982528    9176831    4194304    2G Linux RAID                     <br />
+                /dev/sda5  9453280 7813830239 7804376960  3.6T Linux RAID                       </p>
+                <p>Disk /dev/sdb: 3.7 TiB, 4000787030016 bytes, 7814037168 sectors               <br />
+                Disk model: ST4000VN008-2DR166                                                <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                           <br />
+                Disklabel type: gpt                                                           <br />
+                Disk identifier: 8A5E79C8-32E3-451F-B3A0-DDBFF2A6C3AC                           </p>
+                <p>Device       Start        End    Sectors  Size Type                           <br />
+                /dev/sdb1     2048    4982527    4980480  2.4G Linux RAID                     <br />
+                /dev/sdb2  4982528    9176831    4194304    2G Linux RAID                     <br />
+                /dev/sdb5  9453280 7813830239 7804376960  3.6T Linux RAID                       </p>
+                <p>Disk /dev/sdeb: 7.3 TiB, 8001563222016 bytes, 15628053168 sectors             <br />
+                Disk model: ST8000VN004-2M2101                                                <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                           <br />
+                Disklabel type: gpt                                                           <br />
+                Disk identifier: 14CE4DFF-A71D-4E8F-BABA-30260DAB65D5                           </p>
+                <p>Device       Start         End     Sectors  Size Type                         <br />
+                /dev/sdeb1    2048     4982527     4980480  2.4G Linux RAID                   <br />
+                /dev/sdeb2 4982528     9176831     4194304    2G Linux RAID                   <br />
+                /dev/sdeb3 9437184 15627848351 15618411168  7.3T Linux RAID                     </p>
+                <p>Disk /dev/sdec: 7.3 TiB, 8001563222016 bytes, 15628053168 sectors             <br />
+                Disk model: ST8000VN004-2M2101                                                <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                           <br />
+                Disklabel type: gpt                                                           <br />
+                Disk identifier: 0AB15BFF-81D9-4C16-B1F3-05C655CC051C                           </p>
+                <p>Device       Start         End     Sectors  Size Type                         <br />
+                /dev/sdec1    2048     4982527     4980480  2.4G Linux RAID                   <br />
+                /dev/sdec2 4982528     9176831     4194304    2G Linux RAID                   <br />
+                /dev/sdec3 9437184 15627848351 15618411168  7.3T Linux RAID                     </p>
+                <p>Disk /dev/sded: 7.3 TiB, 8001563222016 bytes, 15628053168 sectors             <br />
+                Disk model: ST8000VN004-2M2101                                                <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                           <br />
+                Disklabel type: gpt                                                           <br />
+                Disk identifier: D9F6B9D6-2127-4CC8-AE65-D89B56D93AF1                           </p>
+                <p>Device       Start         End     Sectors  Size Type                         <br />
+                /dev/sded1    2048     4982527     4980480  2.4G Linux RAID                   <br />
+                /dev/sded2 4982528     9176831     4194304    2G Linux RAID                   <br />
+                /dev/sded3 9437184 15627848351 15618411168  7.3T Linux RAID                     </p>
+                <p>Disk /dev/sdee: 7.3 TiB, 8001563222016 bytes, 15628053168 sectors             <br />
+                Disk model: ST8000VN004-2M2101                                                <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                           <br />
+                Disklabel type: gpt                                                           <br />
+                Disk identifier: 9096D738-58D4-48CB-A737-CC1F86F0AFD2                           </p>
+                <p>Device       Start         End     Sectors  Size Type                         <br />
+                /dev/sdee1    2048     4982527     4980480  2.4G Linux RAID                   <br />
+                /dev/sdee2 4982528     9176831     4194304    2G Linux RAID                   <br />
+                /dev/sdee3 9437184 15627848351 15618411168  7.3T Linux RAID                     </p>
+                <p>Disk /dev/sdea: 7.3 TiB, 8001563222016 bytes, 15628053168 sectors             <br />
+                Disk model: ST8000VN004-2M2101                                                <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                           <br />
+                Disklabel type: gpt                                                           <br />
+                Disk identifier: 811403DD-2F61-498A-838D-06D906BD9BC4                           </p>
+                <p>Device       Start         End     Sectors  Size Type                         <br />
+                /dev/sdea1    2048     4982527     4980480  2.4G Linux RAID                   <br />
+                /dev/sdea2 4982528     9176831     4194304    2G Linux RAID                   <br />
+                /dev/sdea3 9437184 15627848351 15618411168  7.3T Linux RAID                     </p>
+                <p>Disk /dev/md0: 2.4 GiB, 2549940224 bytes, 4980352 sectors                     <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                             </p>
+                <p>Disk /dev/zram0: 1.8 GiB, 1860173824 bytes, 454144 sectors                    <br />
+                Units: sectors of 1 * 4096 = 4096 bytes                                       <br />
+                Sector size (logical/physical): 4096 bytes / 4096 bytes                       <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                             </p>
+                <p>Disk /dev/zram1: 1.8 GiB, 1860173824 bytes, 454144 sectors                    <br />
+                Units: sectors of 1 * 4096 = 4096 bytes                                       <br />
+                Sector size (logical/physical): 4096 bytes / 4096 bytes                       <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                             </p>
+                <p>Disk /dev/zram2: 1.8 GiB, 1860173824 bytes, 454144 sectors                    <br />
+                Units: sectors of 1 * 4096 = 4096 bytes                                       <br />
+                Sector size (logical/physical): 4096 bytes / 4096 bytes                       <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                             </p>
+                <p>Disk /dev/zram3: 1.8 GiB, 1860173824 bytes, 454144 sectors                    <br />
+                Units: sectors of 1 * 4096 = 4096 bytes                                       <br />
+                Sector size (logical/physical): 4096 bytes / 4096 bytes                       <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                             </p>
+                <p>Disk /dev/md1: 2 GiB, 2147418112 bytes, 4194176 sectors                       <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 4096 bytes / 4096 bytes                             </p>
+                <p>GPT PMBR size mismatch (239649 != 245759) will be corrected by write.         <br />
+                The backup GPT table is not on the end of the device. This problem will be corre<br />
+                cted by write.                                                                <br />
+                Disk /dev/synoboot: 120 MiB, 125829120 bytes, 245760 sectors                  <br />
+                Disk model: DiskStation                                                       <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 512 bytes                         <br />
+                I/O size (minimum/optimal): 512 bytes / 512 bytes                             <br />
+                Disklabel type: gpt                                                           <br />
+                Disk identifier: 69CADB00-B415-4EFF-841F-7AFBC84E1A0B                           </p>
+                <p>Device         Start    End Sectors Size Type                                 <br />
+                /dev/synoboot1  2048  67583   65536  32M EFI System                           <br />
+                /dev/synoboot2 67584 239615  172032  84M Linux filesystem                       </p>
+                <p>Disk /dev/md4: 953.9 GiB, 1024201523200 bytes, 2000393600 sectors             <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 512 bytes                         <br />
+                I/O size (minimum/optimal): 512 bytes / 512 bytes                               </p>
+                <p>Disk /dev/md3: 953.9 GiB, 1024201523200 bytes, 2000393600 sectors             <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 512 bytes                         <br />
+                I/O size (minimum/optimal): 512 bytes / 512 bytes                               </p>
+                <p>Disk /dev/md7: 29.1 TiB, 31986501812224 bytes, 62473636352 sectors            <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 65536 bytes / 262144 bytes                          </p>
+                <p>Disk /dev/md2: 7.3 TiB, 7991679909888 bytes, 15608749824 sectors              <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 65536 bytes / 131072 bytes                          </p>
+                <p>Disk /dev/mapper/shared_cache_vg1-syno_vg_reserved_area: 12 MiB, 12582912 bytes,<br />
+                 24576 sectors                                                                <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 512 bytes                         <br />
+                I/O size (minimum/optimal): 512 bytes / 512 bytes                               </p>
+                <p>Disk /dev/mapper/shared_cache_vg1-alloc_cache_1: 953 GiB, 1023275958272 bytes, 1<br />
+                998585856 sectors                                                             <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 512 bytes                         <br />
+                I/O size (minimum/optimal): 512 bytes / 512 bytes                               </p>
+                <p>Disk /dev/mapper/shared_cache_vg2-syno_vg_reserved_area: 12 MiB, 12582912 bytes,<br />
+                 24576 sectors                                                                <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 512 bytes                         <br />
+                I/O size (minimum/optimal): 512 bytes / 512 bytes                               </p>
+                <p>Disk /dev/mapper/shared_cache_vg2-alloc_cache_1: 953 GiB, 1023275958272 bytes, 1<br />
+                998585856 sectors                                                             <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 512 bytes                         <br />
+                I/O size (minimum/optimal): 512 bytes / 512 bytes                               </p>
+                <p>Disk /dev/mapper/vg1000-lv: 7.3 TiB, 7991675846656 bytes, 15608741888 sectors <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 65536 bytes / 131072 bytes                          </p>
+                <p>Disk /dev/mapper/vg2-syno_vg_reserved_area: 12 MiB, 12582912 bytes, 24576 sector<br />
+                s                                                                             <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 65536 bytes / 262144 bytes                          </p>
+                <p>Disk /dev/mapper/vg2-volume_5: 29.1 TiB, 31985695195136 bytes, 62472060928 secto<br />
+                rs                                                                            <br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 65536 bytes / 262144 bytes                          </p>
+                <p>Disk /dev/mapper/cachedev_0: 29.1 TiB, 31985695195136 bytes, 62472060928 sectors<br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 65536 bytes / 262144 bytes                          </p>
+                <p>Disk /dev/mapper/cachedev_1: 7.3 TiB, 7991675846656 bytes, 15608741888 sectors<br />
+                Units: sectors of 1 * 512 = 512 bytes                                         <br />
+                Sector size (logical/physical): 512 bytes / 4096 bytes                        <br />
+                I/O size (minimum/optimal): 65536 bytes / 131072 bytes                        <br />
+                rifaterdemsahin@SINGULARITY:/$                            `</p>
+                <hr />
+                <p><img src="images/nas-not-looking-58.png" alt="nas not looking 58" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-59.png" alt="nas not looking 59" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-60.png" alt="nas not looking 60" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-61.png" alt="nas not looking 61" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-62.png" alt="nas not looking 62" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-63.png" alt="nas not looking 63" class="article-image" loading="lazy"></p>
+                <p>switch to root</p>
+                <p><img src="images/nas-not-looking-64.png" alt="nas not looking 64" class="article-image" loading="lazy"></p>
+                <p>The error "Bad magic number in super-block" suggests that <code>extundelete</code> cannot recognize the filesystem on <code>/dev/md7</code>. This typically happens when the filesystem is not ext3 or ext4, which are the only filesystems <code>extundelete</code> supports.</p>
+                <p>Given this, we need to determine the correct filesystem on the RAID device and use appropriate tools for recovery. Here's how you can proceed:</p>
+                <h3>Check the Filesystem Type</h3>
+                <ul>
+                <li><strong>Identify the Filesystem Type:</strong></li>
+                </ul>
+                <p>sudo file -s /dev/md7</p>
+                <h3>Alternative Recovery Tools</h3>
+                <p>If the filesystem is not ext3/ext4, you might need to use a different recovery tool. Synology NAS typically uses Btrfs or EXT4. Here’s how to handle both:</p>
+                <h4>For Btrfs Filesystems</h4>
+                <p>If the filesystem is Btrfs, you can use Btrfs-specific tools:</p>
+                <ul>
+                <li><strong>Install Btrfs Tools (if not already installed):</strong></li>
+                </ul>
+                <p>opkg install btrfs-progs</p>
+                <ul>
+                <li><strong>Use Btrfs Restore to Recover Files:</strong></li>
+                </ul>
+                <p>sudo btrfs restore -v /dev/md7 /path/to/recovery_directory</p>
+                <h4>For EXT4 Filesystems</h4>
+                <p>If the filesystem is EXT4 and <code>extundelete</code> still cannot recognize it, you can try <code>ext4magic</code>:</p>
+                <ul>
+                <li><strong>Install ext4magic:</strong></li>
+                </ul>
+                <p>opkg install ext4magic</p>
+                <ul>
+                <li><strong>Recover Files Using ext4magic:</strong></li>
+                </ul>
+                <p>sudo ext4magic /dev/md7 -d /path/to/recovery_directory</p>
+                <h3>Synology’s Built-In Recovery Options</h3>
+                <p>If the above methods are not feasible or you encounter further issues, consider using Synology’s built-in options:</p>
+                <ul>
+                <li>
+                <p><strong>Check the Recycle Bin:</strong></p>
+                </li>
+                <li>
+                <p>If enabled, deleted files might be in the shared folder’s <code>#recycle</code> directory.</p>
+                </li>
+                <li>
+                <p>Access this through the DSM File Station.</p>
+                </li>
+                <li>
+                <p><strong>Use Hyper Backup:</strong></p>
+                </li>
+                <li>
+                <p>If you have backups created with Hyper Backup, you can restore files from there.</p>
+                </li>
+                <li>
+                <p><strong>Contact Synology Support:</strong></p>
+                </li>
+                <li>
+                <p>For critical data recovery, reaching out to Synology Support or a professional data recovery service may be the best option.</p>
+                </li>
+                </ul>
+                <h3>Steps to Check Recycle Bin</h3>
+                <ul>
+                <li>
+                <p><strong>Open DSM and log in.</strong></p>
+                </li>
+                <li>
+                <p><strong>Go to Control Panel &gt; Shared Folder.</strong></p>
+                </li>
+                <li>
+                <p><strong>Select the shared folder and click Edit.</strong></p>
+                </li>
+                <li>
+                <p><strong>Go to the Recycle Bin tab and enable it if not already enabled.</strong></p>
+                </li>
+                <li>
+                <p><strong>Navigate to the shared folder via File Station and check the <code>#recycle</code> subfolder for deleted files.</strong></p>
+                </li>
+                </ul>
+                <p>Let’s start by identifying the filesystem type on <code>/dev/md7</code> and proceed accordingly.</p>
+                <p><img src="images/nas-not-looking-65.png" alt="nas not looking 65" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-66.png" alt="nas not looking 66" class="article-image" loading="lazy"></p>
+                <p>The output indicates that <code>/dev/md7</code> is part of an LVM (Logical Volume Manager) setup. The device is identified as an LVM Physical Volume (PV), which means the filesystem is not directly on <code>/dev/md7</code>, but on logical volumes (LVs) managed by LVM.</p>
+                <p>To proceed with file recovery, you need to identify the logical volumes and then determine the filesystem type on those volumes.</p>
+                <h3>Steps to Identify Logical Volumes and Filesystem Type</h3>
+                <ul>
+                <li><strong>List the Volume Groups:</strong></li>
+                </ul>
+                <p>sudo vgdisplay</p>
+                <ul>
+                <li><strong>List the Logical Volumes:</strong></li>
+                </ul>
+                <p>sudo lvdisplay</p>
+                <ul>
+                <li><strong>Identify Filesystem on Logical Volumes:</strong></li>
+                </ul>
+                <p>sudo file -s /dev/mapper/<vg_name>-<lv_name></p>
+                <p>Replace <code>&lt;vg_name&gt;</code> with the name of the volume group and <code>&lt;lv_name&gt;</code> with the name of the logical volume.</p>
+                <h3>Example Commands</h3>
+                <p>Assuming your volume group is <code>vg1</code> and logical volume is <code>lv1</code>:</p>
+                <ul>
+                <li><strong>Check Filesystem on Logical Volume:</strong></li>
+                </ul>
+                <p>sudo file -s /dev/mapper/vg1-lv1</p>
+                <h3>Recover Deleted Files</h3>
+                <h4>For EXT4 Filesystem</h4>
+                <ul>
+                <li><strong>Install ext4magic:</strong></li>
+                </ul>
+                <p>opkg install ext4magic</p>
+                <ul>
+                <li><strong>Recover Files Using ext4magic:</strong></li>
+                </ul>
+                <p>sudo ext4magic /dev/mapper/vg1-lv1 -d /path/to/recovery_directory</p>
+                <h4>For Btrfs Filesystem</h4>
+                <ul>
+                <li><strong>Install Btrfs Tools:</strong></li>
+                </ul>
+                <p>opkg install btrfs-progs</p>
+                <ul>
+                <li><strong>Use Btrfs Restore to Recover Files:</strong></li>
+                </ul>
+                <p>sudo btrfs restore -v /dev/mapper/vg1-lv1 /path/to/recovery_directory</p>
+                <h3>Example Recovery Steps</h3>
+                <p>Here’s a hypothetical example assuming the filesystem is EXT4:</p>
+                <ul>
+                <li><strong>Check Filesystem on Logical Volume:</strong></li>
+                </ul>
+                <p>sudo file -s /dev/mapper/vg1-lv1</p>
+                <p>If the output confirms it is EXT4, proceed with:</p>
+                <ul>
+                <li><strong>Install ext4magic:</strong></li>
+                </ul>
+                <p>opkg install ext4magic</p>
+                <ul>
+                <li><strong>Recover Files Using ext4magic:</strong></li>
+                </ul>
+                <p>sudo ext4magic /dev/mapper/vg1-lv1 -d /path/to/recovery_directory</p>
+                <h3>Using Synology’s Built-In Recovery Options</h3>
+                <ul>
+                <li>
+                <p><strong>Check the Recycle Bin:</strong></p>
+                </li>
+                <li>
+                <p>If enabled, deleted files might be in the shared folder’s <code>#recycle</code> directory.</p>
+                </li>
+                <li>
+                <p>Access this through the DSM File Station.</p>
+                </li>
+                <li>
+                <p><strong>Use Hyper Backup:</strong></p>
+                </li>
+                <li>
+                <p>If you have backups created with Hyper Backup, you can restore files from there.</p>
+                </li>
+                <li>
+                <p><strong>Contact Synology Support:</strong></p>
+                </li>
+                <li>
+                <p>For critical data recovery, reaching out to Synology Support or a professional data recovery service may be the best option.</p>
+                </li>
+                </ul>
+                <p>Please proceed with identifying the logical volumes and determining the filesystem type on those volumes.</p>
+                <hr />
+                <p>root@SINGULARITY:~# sudo vgdisplay<br />
+                --- Volume group ---<br />
+                VG Name vg2<br />
+                System ID<br />
+                Format lvm2<br />
+                Metadata Areas 1<br />
+                Metadata Sequence No 3<br />
+                VG Access read/write<br />
+                VG Status resizable<br />
+                MAX LV 0<br />
+                Cur LV 2<br />
+                Open LV 1<br />
+                Max PV 0<br />
+                Cur PV 1<br />
+                Act PV 1<br />
+                VG Size 29.09 TiB<br />
+                PE Size 4.00 MiB<br />
+                Total PE 7626176<br />
+                Alloc PE / Size 7625987 / 29.09 TiB<br />
+                Free PE / Size 189 / 756.00 MiB<br />
+                VG UUID aR5xzY-RXsc-KtGQ-QEi0-J04k-jlC6-83fZXY</p>
+                <p>--- Volume group ---<br />
+                VG Name shared_cache_vg2<br />
+                System ID<br />
+                Format lvm2<br />
+                Metadata Areas 1<br />
+                Metadata Sequence No 3<br />
+                VG Access read/write<br />
+                VG Status resizable<br />
+                MAX LV 0<br />
+                Cur LV 2<br />
+                Open LV 1<br />
+                Max PV 0<br />
+                Cur PV 1<br />
+                Act PV 1<br />
+                VG Size 953.86 GiB<br />
+                PE Size 4.00 MiB<br />
+                Total PE 244188<br />
+                Alloc PE / Size 243971 / 953.01 GiB<br />
+                Free PE / Size 217 / 868.00 MiB<br />
+                VG UUID CjHfca-vcwV-kc5I-gyV1-29Rj-abKy-fyqCOM</p>
+                <p>--- Volume group ---<br />
+                VG Name shared_cache_vg1<br />
+                System ID<br />
+                Format lvm2<br />
+                Metadata Areas 1<br />
+                Metadata Sequence No 3<br />
+                VG Access read/write<br />
+                VG Status resizable<br />
+                MAX LV 0<br />
+                Cur LV 2<br />
+                Open LV 1<br />
+                Max PV 0<br />
+                Cur PV 1<br />
+                Act PV 1<br />
+                VG Size 953.86 GiB<br />
+                PE Size 4.00 MiB<br />
+                Total PE 244188<br />
+                Alloc PE / Size 243971 / 953.01 GiB<br />
+                Free PE / Size 217 / 868.00 MiB<br />
+                VG UUID 8NGAd8-SgNt-eaUM-ScbB-Cohv-ucm6-teH1BQ</p>
+                <p>--- Volume group ---<br />
+                VG Name vg1000<br />
+                System ID<br />
+                Format lvm2<br />
+                Metadata Areas 1<br />
+                Metadata Sequence No 4<br />
+                VG Access read/write<br />
+                VG Status resizable<br />
+                MAX LV 0<br />
+                Cur LV 1<br />
+                Open LV 1<br />
+                Max PV 0<br />
+                Cur PV 1<br />
+                Act PV 1<br />
+                VG Size 7.27 TiB<br />
+                PE Size 4.00 MiB<br />
+                Total PE 1905364<br />
+                Alloc PE / Size 1905364 / 7.27 TiB<br />
+                Free PE / Size 0 / 0<br />
+                VG UUID zMMm9L-UKAS-1RmA-cIpZ-Ed5I-Q31O-2PcDUc</p>
+                <hr />
+                <p>root@SINGULARITY:~# sudo lvdisplay<br />
+                --- Logical volume ---<br />
+                LV Path /dev/vg2/syno_vg_reserved_area<br />
+                LV Name syno_vg_reserved_area<br />
+                VG Name vg2<br />
+                LV UUID Do7Ja1-DCkh-orIq-eymB-Hs0u-S5Kx-m036Os<br />
+                LV Write Access read/write<br />
+                LV Creation host, time ,<br />
+                LV Status available</p>
+                <h1>open 0</h1>
+                <p>LV Size 12.00 MiB<br />
+                Current LE 3<br />
+                Segments 1<br />
+                Allocation inherit<br />
+                Read ahead sectors auto</p>
+                <ul>
+                <li>
+                <p>currently set to 1024<br />
+                Block device 248:5 --- Logical volume ---<br />
+                LV Path /dev/vg2/volume_5<br />
+                LV Name volume_5<br />
+                VG Name vg2<br />
+                LV UUID CuAe7f-tzRJ-VQZ6-sqkH-usV3-HFV9-sy7BCS<br />
+                LV Write Access read/write<br />
+                LV Creation host, time ,<br />
+                LV Status available open 1 LV Size 29.09 TiB<br />
+                Current LE 7625984<br />
+                Segments 1<br />
+                Allocation inherit<br />
+                Read ahead sectors auto</p>
+                </li>
+                <li>
+                <p>currently set to 1024<br />
+                Block device 248:6 --- Logical volume ---<br />
+                LV Path /dev/shared_cache_vg2/syno_vg_reserved_area<br />
+                LV Name syno_vg_reserved_area<br />
+                VG Name shared_cache_vg2<br />
+                LV UUID iFuVFR-G31p-47WX-5Byn-U3N3-vi61-iLysXV<br />
+                LV Write Access read/write<br />
+                LV Creation host, time ,<br />
+                LV Status available open 0 LV Size 12.00 MiB<br />
+                Current LE 3<br />
+                Segments 1<br />
+                Allocation inherit<br />
+                Read ahead sectors auto</p>
+                </li>
+                <li>
+                <p>currently set to 384<br />
+                Block device 248:2 --- Logical volume ---<br />
+                LV Path /dev/shared_cache_vg2/alloc_cache_1<br />
+                LV Name alloc_cache_1<br />
+                VG Name shared_cache_vg2<br />
+                LV UUID 5yNjcK-cl9t-wedw-LGoc-yppP-38Jn-TDZpHY<br />
+                LV Write Access read/write<br />
+                LV Creation host, time ,<br />
+                LV Status available open 1 LV Size 953.00 GiB<br />
+                Current LE 243968<br />
+                Segments 1<br />
+                Allocation inherit<br />
+                Read ahead sectors auto</p>
+                </li>
+                <li>
+                <p>currently set to 384<br />
+                Block device 248:3 --- Logical volume ---<br />
+                LV Path /dev/shared_cache_vg1/syno_vg_reserved_area<br />
+                LV Name syno_vg_reserved_area<br />
+                VG Name shared_cache_vg1<br />
+                LV UUID SMCHeg-eQhK-zxkn-WoAU-Ds30-U0bA-P0eu8b<br />
+                LV Write Access read/write<br />
+                LV Creation host, time ,<br />
+                LV Status available open 0 LV Size 12.00 MiB<br />
+                Current LE 3<br />
+                Segments 1<br />
+                Allocation inherit<br />
+                Read ahead sectors auto</p>
+                </li>
+                <li>
+                <p>currently set to 384<br />
+                Block device 248:0 --- Logical volume ---<br />
+                LV Path /dev/shared_cache_vg1/alloc_cache_1<br />
+                LV Name alloc_cache_1<br />
+                VG Name shared_cache_vg1<br />
+                LV UUID tXOMtY-iS2O-qcpx-ejzT-WHF8-M8EG-JtXdMt<br />
+                LV Write Access read/write<br />
+                LV Creation host, time ,<br />
+                LV Status available open 1 LV Size 953.00 GiB<br />
+                Current LE 243968<br />
+                Segments 1<br />
+                Allocation inherit<br />
+                Read ahead sectors auto</p>
+                </li>
+                <li>
+                <p>currently set to 384<br />
+                Block device 248:1 --- Logical volume ---<br />
+                LV Path /dev/vg1000/lv<br />
+                LV Name lv<br />
+                VG Name vg1000<br />
+                LV UUID WxtqdU-x37b-poaD-UeK4-Enrr-IFvt-KRXJUQ<br />
+                LV Write Access read/write<br />
+                LV Creation host, time ,<br />
+                LV Status available open 1 LV Size 7.27 TiB<br />
+                Current LE 1905364<br />
+                Segments 1<br />
+                Allocation inherit<br />
+                Read ahead sectors auto</p>
+                </li>
+                <li>
+                <p>currently set to 512<br />
+                Block device 248:4</p>
+                </li>
+                </ul>
+                <hr />
+                <p>root@SINGULARITY:~# sudo file -s /dev/vg2/volume_5<br />
+                /dev/vg2/volume_5: symbolic link to /dev/mapper/vg2-volume_5</p>
+                <p>root@SINGULARITY:~# sudo file -s /dev/mapper/vg2-volume_5<br />
+                /dev/mapper/vg2-volume_5: BTRFS Filesystem label "2021.11.03-11:50:47 v41890", sectorsize 4096, nodesize 16384, leafsize 16384, UUID=e22d5701-f7cb-494d-a2b8-5e0c95907508, 361388879872/31985695195136 bytes used, 1 devices</p>
+                <p>root@SINGULARITY:~# sudo file -s /dev/mapper/vg1000-lv<br />
+                /dev/mapper/vg1000-lv: BTRFS Filesystem label "2019.10.25-17:54:34 v24922", sectorsize 4096, nodesize 16384, leafsize 16384, UUID=3510d87c-db3a-4462-8e14-9e7d8a57e4d8, 94442868736/7991675846656 bytes used, 1 devices</p>
+                <p>If you want to restore the files to their original locations instead of a separate recovery directory, you can mount the Btrfs filesystem and manually copy the recovered files back to their original locations. However, Btrfs does not directly support restoring deleted files back to their original location in-place.</p>
+                <p>To ensure no further data is overwritten during recovery, it’s recommended to restore to a different directory and then move the files back to their original locations manually.</p>
+                <h3>Step-by-Step Guide to Recover Deleted Files</h3>
+                <ul>
+                <li><strong>Create a Recovery Directory:</strong></li>
+                </ul>
+                <p>mkdir /volume1/recovery_directory</p>
+                <ul>
+                <li><strong>Recover All Deleted Files to the Recovery Directory:</strong></li>
+                </ul>
+                <p>sudo btrfs restore -v /dev/mapper/vg1000-lv /volume1/recovery_directory</p>
+                <h3>Verify and Move Files to Original Locations</h3>
+                <p>After the recovery process is completed, manually verify the recovered files and move them back to their original locations.</p>
+                <h3>Example Commands to Move Files</h3>
+                <p>Assuming you have recovered the files to <code>/volume1/recovery_directory</code>:</p>
+                <ul>
+                <li><strong>Navigate to the Recovery Directory:</strong></li>
+                </ul>
+                <p>cd /volume1/recovery_directory</p>
+                <ul>
+                <li><strong>Move Recovered Files to Their Original Locations:</strong></li>
+                </ul>
+                <p>sudo mv path/to/recovered_file /original/location</p>
+                <p>Repeat the move command for each file or directory you need to restore to its original location.</p>
+                <h3>If Recycle Bin is Enabled</h3>
+                <p>If you have Recycle Bin enabled on your Synology NAS, check the <code>#recycle</code> directory in your shared folders:</p>
+                <ul>
+                <li>
+                <p><strong>Open DSM and log in.</strong></p>
+                </li>
+                <li>
+                <p><strong>Go to File Station.</strong></p>
+                </li>
+                <li>
+                <p><strong>Navigate to the shared folder and check the <code>#recycle</code> directory.</strong></p>
+                </li>
+                </ul>
+                <h3>Summary</h3>
+                <p>To recover all deleted files to a recovery directory and then manually move them back to their original locations:</p>
+                <ul>
+                <li><strong>Recover files to a recovery directory:</strong></li>
+                </ul>
+                <p>sudo btrfs restore -v /dev/mapper/vg1000-lv /volume1/recovery_directory</p>
+                <ul>
+                <li><strong>Manually move files to their original locations.</strong></li>
+                </ul>
+                <p>This method ensures the recovered files are safely stored and verified before moving them back, minimizing the risk of data loss.</p>
+                <p>If you need further assistance or have additional questions, feel free to ask!</p>
+                <p><img src="images/nas-not-looking-67.png" alt="nas not looking 67" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-68.png" alt="nas not looking 68" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-69.png" alt="nas not looking 69" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-70.png" alt="nas not looking 70" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-71.png" alt="nas not looking 71" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-72.png" alt="nas not looking 72" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-73.png" alt="nas not looking 73" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-74.png" alt="nas not looking 74" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-75.png" alt="nas not looking 75" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-76.png" alt="nas not looking 76" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-77.png" alt="nas not looking 77" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-78.png" alt="nas not looking 78" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-79.png" alt="nas not looking 79" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-80.png" alt="nas not looking 80" class="article-image" loading="lazy"></p>
+                <p><img src="images/nas-not-looking-81.png" alt="nas not looking 81" class="article-image" loading="lazy"></p>
+                <p>tomorrow continue with secure connection as there is a reset</p>
+                <p><img src="images/nas-not-looking-82.png" alt="nas not looking 82" class="article-image" loading="lazy"></p>
+                <p>https://chatgpt.com/c/9ba9a24c-75a1-4a86-ab8d-4217e854974f</p>
+                <p>second run</p>
+                <p><img src="images/nas-not-looking-83.png" alt="nas not looking 83" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

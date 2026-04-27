@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Report CRC OpenShift Status to Azure Dashboards 🚀 - Rifat Erdem Sahin</title>
+    <meta name="description" content="How to Report CRC OpenShift Status to Azure Dashboards 🚀 And Build an Alerting System to Push Infrastructure State to Azure Managing the infrastructure state of your CRC (CodeReady Containers) OpenShi">
+    <meta name="keywords" content="How to Report CRC OpenShift Status to Azure Dashboards 🚀">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/11/19/how-to-report-crc-openshift-status-to-azure-dashboards-🚀/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/11/19/how-to-report-crc-openshift-status-to-azure-dashboards-🚀/">
+    <meta property="og:title" content="How to Report CRC OpenShift Status to Azure Dashboards 🚀">
+    <meta property="og:description" content="How to Report CRC OpenShift Status to Azure Dashboards 🚀 And Build an Alerting System to Push Infrastructure State to Azure Managing the infrastructure state of your CRC (CodeReady Containers) OpenShi">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/11/19/how-to-report-crc-openshift-status-to-azure-dashboards-🚀/">
+    <meta property="twitter:title" content="How to Report CRC OpenShift Status to Azure Dashboards 🚀">
+    <meta property="twitter:description" content="How to Report CRC OpenShift Status to Azure Dashboards 🚀 And Build an Alerting System to Push Infrastructure State to Azure Managing the infrastructure state of your CRC (CodeReady Containers) OpenShi">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "How to Report CRC OpenShift Status to Azure Dashboards 🚀",
+      "description": "How to Report CRC OpenShift Status to Azure Dashboards 🚀 And Build an Alerting System to Push Infrastructure State to Azure Managing the infrastructure state of your CRC (CodeReady Containers) OpenShi",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-11-19",
+      "dateModified": "2024-11-19",
+      "url": "https://www.rifaterdemsahin.com/2024/11/19/how-to-report-crc-openshift-status-to-azure-dashboards-🚀/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/11/19/how-to-report-crc-openshift-status-to-azure-dashboards-🚀/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">How to Report CRC OpenShift Status to Azure Dashboards 🚀</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>November 19, 2024</span>
+                    <span>&bull;</span>
+                    <span>16 min read</span>
+                </div>
+                <p class="article-excerpt">How to Report CRC OpenShift Status to Azure Dashboards 🚀 And Build an Alerting System to Push Infrastructure State to Azure Managing the infrastructure state of your CRC (CodeReady Containers) OpenShift locally can get tricky if you don’t have a clear way of reporting it to a cen</p>
+            </header>
+            <article class="article-content">
+                <h1>How to Report CRC OpenShift Status to Azure Dashboards 🚀</h1>
+                <hr />
+                <h3></h3>
+                <p><img src="images/how-to-report-1.png" alt="how to report 1" class="article-image" loading="lazy"></p>
+                <p><em>And Build an Alerting System to Push Infrastructure State to Azure</em></p>
+                <p>Managing the infrastructure state of your CRC (CodeReady Containers) OpenShift locally can get tricky if you don’t have a clear way of reporting it to a central monitoring system. That’s where Azure Dashboards come in! By integrating your CRC with Azure, you can create an alerting system that monitors your infrastructure’s health in real-time and notifies you of any changes. Let's dive in!</p>
+                <hr />
+                <h4><strong>Step 1: Set Up CRC OpenShift on Your Local Machine 💻</strong></h4>
+                <p>Before we can push any data to Azure, ensure your CRC OpenShift is running smoothly on your local system.</p>
+                <p>🛠 <strong>Key steps</strong>:</p>
+                <ul>
+                <li>
+                <p>Download CRC OpenShift from <a href="https://developers.redhat.com/products/codeready-containers/overview">Red Hat CRC site</a>.</p>
+                </li>
+                <li>
+                <p>Install and configure CRC OpenShift using the following commands:</p>
+                </li>
+                </ul>
+                <p>crc setup<br />
+                crc start</p>
+                <p>🎯 <strong>Goal</strong>: Get a fully running OpenShift environment locally.</p>
+                <hr />
+                <p><img src="images/how-to-report-2.png" alt="how to report 2" class="article-image" loading="lazy"></p>
+                <hr />
+                <h4><strong>Step 2: Configure Azure Monitor and Dashboards ☁️</strong></h4>
+                <p>Azure Monitor is a powerful tool that lets you track, analyze, and visualize the health of your infrastructure. To start, you’ll need an Azure account and the Azure CLI.</p>
+                <p>🛠 <strong>Key steps</strong>:</p>
+                <ul>
+                <li>Log in to your Azure account:</li>
+                </ul>
+                <p>az login</p>
+                <ul>
+                <li>Create a new Resource Group for your CRC monitoring:</li>
+                </ul>
+                <p>az group create --name CRC-Monitoring --location <your-location></p>
+                <p><img src="images/how-to-report-3.png" alt="how to report 3" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Set up Azure Monitor:</strong></li>
+                </ul>
+                <p>az monitor log-analytics workspace create --resource-group CRC-Monitoring --workspace-name CRC-Workspace</p>
+                <p>🎯 <strong>Goal</strong>: Set up the basics of Azure monitoring where we will be sending CRC data.</p>
+                <p><img src="images/how-to-report-4.png" alt="how to report 4" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>Running a <strong>Log Analytics workspace</strong> in <strong>Azure</strong> comes with a cost that depends on several factors such as:</p>
+                <ul>
+                <li>
+                <p><strong>Data Ingestion</strong>: Cost is incurred based on the amount of data ingested into the workspace. The pricing is typically calculated per GB of data ingested.</p>
+                </li>
+                <li>
+                <p><strong>Data Retention</strong>: The price varies based on how long the data is retained. Default retention (up to 31 days) is included at no additional charge. For longer retention, an additional fee is charged.</p>
+                </li>
+                <li>
+                <p><strong>Data Export</strong>: If you are exporting data from the workspace to other services, that will also have a cost.</p>
+                </li>
+                </ul>
+                <p>For a general estimate, Azure Log Analytics pricing as of 2024 is structured like this:</p>
+                <ul>
+                <li>
+                <p><strong>Data Ingestion Cost</strong>: Approximately <strong>£2.3 - £4.5 per GB</strong> (after free tier, varies by region).</p>
+                </li>
+                <li>
+                <p><strong>Data Retention</strong>: After the free 31-day retention period, <strong>£0.1 - £0.2 per GB per month</strong> for extended storage.</p>
+                </li>
+                </ul>
+                <h3>Example Calculation:</h3>
+                <p>If your CRC monitoring generates <strong>5 GB</strong> of logs daily, the monthly ingestion would be approximately <strong>150 GB</strong>. The costs might look like this:</p>
+                <ul>
+                <li>
+                <p><strong>Ingestion</strong>: 150 GB * £2.3 = <strong>£345/month</strong>.</p>
+                </li>
+                <li>
+                <p><strong>Extended Retention (if needed)</strong>: For example, storing <strong>50 GB</strong> for more than 31 days would cost an extra <strong>£10/month</strong>.</p>
+                </li>
+                </ul>
+                <p>To avoid running these directly in Azure, consider storing logs in cheaper alternatives or self-hosted solutions to save costs, depending on your monitoring needs.</p>
+                <p>Would you like more detailed cost estimations based on specific metrics or services?</p>
+                <p>THERE IS A FREE TIER</p>
+                <p>If you are pushing less than <strong>10 MB</strong> of data to an Azure Log Analytics workspace, the cost would likely fall under Azure's <strong>free tier</strong>, as it allows a small amount of data ingestion without charges.</p>
+                <p>Azure's free tier for Log Analytics generally includes:</p>
+                <ul>
+                <li>
+                <p><strong>Free data ingestion</strong>: Up to <strong>5 GB per month</strong> of data ingestion for free (varies by region, but this is typical for many regions).</p>
+                </li>
+                <li>
+                <p><strong>Free data retention</strong>: Data is retained for up to <strong>31 days</strong> for free.</p>
+                </li>
+                </ul>
+                <p>Since <strong>10 MB</strong> is far below the <strong>5 GB free tier</strong>, you should incur <strong>no cost</strong> for data ingestion or retention as long as you stay within this limit.</p>
+                <p>However, keep in mind that if you extend data retention beyond the default 31 days or add premium features, additional costs may apply. But based purely on pushing less than 10 MB, you will most likely remain within the free tier.</p>
+                <p><img src="images/how-to-report-5.png" alt="how to report 5" class="article-image" loading="lazy"></p>
+                <hr />
+                <h4><strong>Step 3: Install Azure CLI in CRC OpenShift 🛠</strong></h4>
+                <p>Now that your Azure workspace is ready, we need to ensure you can send your CRC OpenShift status to Azure.</p>
+                <p>🛠 <strong>Key steps</strong>:</p>
+                <ul>
+                <li>
+                <p>Access your CRC OpenShift terminal.</p>
+                </li>
+                <li>
+                <p>Install Azure CLI inside the OpenShift environment:</p>
+                </li>
+                </ul>
+                <p>oc exec -it myazurerunner -- curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash</p>
+                <ul>
+                <li>Log in to Azure from the CRC environment:</li>
+                </ul>
+                <p>az login</p>
+                <p>🎯 <strong>Goal</strong>: Ensure Azure CLI is accessible from within CRC OpenShift.</p>
+                <hr />
+                <p>It seems like the pod <code>myazurerunner</code> you're trying to execute the command in doesn't exist, which is why you're getting the <code>Error from server (NotFound): pods "myazurerunner" not found</code> error.</p>
+                <p>Here are a few steps to troubleshoot and resolve the issue:</p>
+                <h3>Step 1: Verify the Pod Name</h3>
+                <p>Run the following command to list all the pods in your namespace. This will help you confirm if the pod name is correct or if there’s a typo:</p>
+                <p>oc get pods</p>
+                <p>Look through the list and identify the correct pod name. If the pod you want isn’t listed, you may need to create it or troubleshoot its deployment.</p>
+                <hr />
+                <h3>Step 2: Check Namespace</h3>
+                <p>Make sure you’re operating in the correct namespace. Sometimes, the pod might exist in a different namespace than the one you're currently working in.</p>
+                <p>To switch to the correct namespace, use:</p>
+                <p>oc project <your-namespace></p>
+                <p>And then recheck the pod with:</p>
+                <p>oc get pods</p>
+                <hr />
+                <h3>Step 3: Deploy a Pod if None Exists</h3>
+                <p>If no suitable pod exists, you can deploy a new one. For example, you can deploy a basic container to act as your "runner" pod for executing commands:</p>
+                <p>oc run myazurerunner --image=registry.access.redhat.com/ubi8/ubi -- sleep infinity</p>
+                <p>This will create a pod named <code>myazurerunner</code> using a minimal Red Hat UBI image, and it will stay active.</p>
+                <p><img src="images/how-to-report-6.png" alt="how to report 6" class="article-image" loading="lazy"></p>
+                <hr />
+                <h3>Step 4: Retry the Azure CLI Installation</h3>
+                <p>Once the pod is available, execute the command again:</p>
+                <p>oc exec -it myazurerunner -- curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash</p>
+                <p>If your pod doesn't have <code>sudo</code> installed, you may need to elevate permissions or run the command without <code>sudo</code> (depending on the container's user permissions).</p>
+                <hr />
+                <p>Let me know if the issue persists or if you need more guidance!</p>
+                <hr />
+                <p>The error you're encountering suggests that the <code>bash</code> shell inside the pod may not be compatible with the script you're trying to run, or that the environment within the pod lacks some of the necessary tools (such as <code>sudo</code> or <code>bash</code>).</p>
+                <p>Here’s what you can try to resolve this:</p>
+                <h3>Option 1: Install Azure CLI Without <code>sudo</code></h3>
+                <p>The container you’ve launched might not have <code>sudo</code> installed, and it’s likely running as a non-root user, which prevents commands requiring elevated privileges. Here’s how you can attempt the installation without using <code>sudo</code>.</p>
+                <ul>
+                <li><strong>Execute the Azure CLI Installation Without <code>sudo</code></strong>:<br />
+                Remove the <code>sudo</code> part from the command and try:</li>
+                </ul>
+                <p>oc exec -it myazurerunner -- curl -sL https://aka.ms/InstallAzureCLIDeb | bash</p>
+                <p>This will attempt to install Azure CLI as the current user. If the pod's user permissions allow it, the installation will succeed.</p>
+                <hr />
+                <h3>Option 2: Use a Root User Pod</h3>
+                <p>If the pod’s current user lacks the necessary permissions to install software, you can try using a pod that runs as <code>root</code> to avoid permission issues.</p>
+                <ul>
+                <li><strong>Delete the existing pod</strong>:</li>
+                </ul>
+                <p>oc delete pod myazurerunner</p>
+                <ul>
+                <li><strong>Create a new pod with root privileges</strong>:<br />
+                Create a pod that runs as <code>root</code>, such as:</li>
+                </ul>
+                <p>oc run myazurerunner --image=registry.access.redhat.com/ubi8/ubi -- bash -c "sleep infinity"</p>
+                <ul>
+                <li><strong>Install the Azure CLI</strong>:<br />
+                Now that you have a pod running with root privileges, retry the Azure CLI installation:</li>
+                </ul>
+                <p>oc exec -it myazurerunner -- curl -sL https://aka.ms/InstallAzureCLIDeb | bash</p>
+                <hr />
+                <h3>Option 3: Install Manually Using a Different Image</h3>
+                <p>Alternatively, you can use an image that already includes the Azure CLI tools, which saves the hassle of installing them manually.</p>
+                <ul>
+                <li><strong>Delete the existing pod</strong>:</li>
+                </ul>
+                <p>oc delete pod myazurerunner</p>
+                <ul>
+                <li><strong>Deploy a pod with Azure CLI pre-installed</strong>:<br />
+                Use the following command to run a container that already has Azure CLI installed:</li>
+                </ul>
+                <p>oc run myazurerunner --image=mcr.microsoft.com/azure-cli -- bash</p>
+                <ul>
+                <li><strong>Access the pod</strong>:</li>
+                </ul>
+                <p>oc exec -it myazurerunner -- bash</p>
+                <ul>
+                <li><strong>Confirm that Azure CLI is installed</strong>:<br />
+                Once inside the pod, verify Azure CLI is installed by running:</li>
+                </ul>
+                <p>az --version</p>
+                <hr />
+                <p>These steps should help you resolve the command execution issue and get Azure CLI installed inside your OpenShift pod. Let me know if you need further assistance!</p>
+                <p><img src="images/how-to-report-7.png" alt="how to report 7" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>FIXED</p>
+                <p><img src="images/how-to-report-8.png" alt="how to report 8" class="article-image" loading="lazy"></p>
+                <p><img src="images/how-to-report-9.png" alt="how to report 9" class="article-image" loading="lazy"></p>
+                <p><img src="images/how-to-report-10.png" alt="how to report 10" class="article-image" loading="lazy"></p>
+                <p>The error you're encountering (<code>apt-get: command not found</code>) is due to the fact that the Red Hat UBI (Universal Base Image) you’re using is based on <code>yum</code> (the package manager for Red Hat-based distributions) rather than <code>apt-get</code>, which is used in Debian-based distributions like Ubuntu.</p>
+                <p>Since you're working in a Red Hat-based environment, here's how you can install the Azure CLI using <code>yum</code> instead of <code>apt-get</code>.</p>
+                <h3>Step 1: Install Required Dependencies</h3>
+                <p>Run the following commands inside your pod to install the necessary tools using <code>yum</code>:</p>
+                <p>yum install -y curl<br />
+                rpm --import https://packages.microsoft.com/keys/microsoft.asc</p>
+                <p><img src="images/how-to-report-11.png" alt="how to report 11" class="article-image" loading="lazy"></p>
+                <p><img src="images/how-to-report-12.png" alt="how to report 12" class="article-image" loading="lazy"></p>
+                <h3>Step 2: Add Azure CLI Repository</h3>
+                <p>Next, you’ll need to add the Microsoft package repository for Red Hat:</p>
+                <p>sh -c 'echo -e "[azure-cli]\nname=Azure CLI\nbaseurl=https://packages.microsoft.com/yumrepos/azure-cli\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" &gt; /etc/yum.repos.d/azure-cli.repo'</p>
+                <p><img src="images/how-to-report-13.png" alt="how to report 13" class="article-image" loading="lazy"></p>
+                <h3>Step 3: Install Azure CLI</h3>
+                <p>Now you can install the Azure CLI using <code>yum</code>:</p>
+                <p>yum install -y azure-cli</p>
+                <p><img src="images/how-to-report-14.png" alt="how to report 14" class="article-image" loading="lazy"></p>
+                <h3>Step 4: Verify Azure CLI Installation</h3>
+                <p>Once installed, verify that the Azure CLI is installed correctly by running:</p>
+                <p>az --version</p>
+                <hr />
+                <p>This should install the Azure CLI in your Red Hat-based environment (the <code>myazurerunner</code> pod), and you can then proceed with configuring and using it as needed.</p>
+                <p>Let me know if you encounter any further issues!</p>
+                <p><img src="images/how-to-report-15.png" alt="how to report 15" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>It sounds like the pod you tried to run using the official Azure CLI image is entering a crash loop on your local CRC OpenShift cluster. This could be caused by the way the image or command is being used within your environment. Let's try an alternative approach to prevent the crash loop.</p>
+                <h3>Updated Approach</h3>
+                <h4>Step 1: Delete the current pod if it's still running in a crash loop</h4>
+                <p>oc delete pod myazurerunner</p>
+                <h4>Step 2: Create a new pod using the Azure CLI image, but ensure it runs with a long-lived command to avoid instant termination</h4>
+                <p>Instead of using the <code>bash</code> command, which might exit immediately and cause the pod to crash, you can instruct the pod to sleep indefinitely to keep it running. Here's how:</p>
+                <p>oc run myazurerunner --image=mcr.microsoft.com/azure-cli --command -- sleep infinity</p>
+                <p>This ensures the pod stays running so that you can <code>exec</code> into it.</p>
+                <h4>Step 3: Verify the pod is running</h4>
+                <p>Check the status of the pod to ensure it's in a "Running" state:</p>
+                <p>oc get pods</p>
+                <p>You should see the <code>myazurerunner</code> pod listed as "Running."</p>
+                <h4>Step 4: Access the pod's shell</h4>
+                <p>Once the pod is up and running, you can access its shell:</p>
+                <p>oc exec -it myazurerunner -- bash</p>
+                <h4>Step 5: Verify Azure CLI is installed</h4>
+                <p>Now that you're inside the pod, you can confirm that the Azure CLI is installed by running:</p>
+                <p>az --version</p>
+                <p>If the Azure CLI is installed, you should see version information printed to the terminal.</p>
+                <hr />
+                <h3>Debugging Crash Loops</h3>
+                <p>If the pod still enters a crash loop, it could be useful to check the logs for more information:</p>
+                <p>oc logs myazurerunner</p>
+                <p>This will provide insight into what’s causing the pod to crash, which will help in further troubleshooting.</p>
+                <p>Let me know if this resolves the issue or if you'd like additional troubleshooting steps!</p>
+                <p>Authenticate it</p>
+                <p><img src="images/how-to-report-16.png" alt="how to report 16" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><img src="images/how-to-report-17.png" alt="how to report 17" class="article-image" loading="lazy"></p>
+                <p><img src="images/how-to-report-18.png" alt="how to report 18" class="article-image" loading="lazy"></p>
+                <p>PROBLEM &gt;&gt; HOW DOES THE CONTAINER INSIDE THE CRC CONNECT TO THE OPENSHIFT IT IS RUNNING ON &gt;&gt;&gt; THE CONTAINERS NEED THE AZ AND OC</p>
+                <p><img src="images/how-to-report-19.png" alt="how to report 19" class="article-image" loading="lazy"></p>
+                <p>To connect a container running inside your <strong>CRC (CodeReady Containers)</strong> instance to the <strong>OpenShift cluster</strong> it is hosted on, you need to ensure that the container can access the OpenShift API. Here's a step-by-step guide on how this can be achieved:</p>
+                <h3><strong>Steps to Connect a Container in CRC to the OpenShift Cluster</strong></h3>
+                <h4><strong>Step 1: Set Up OpenShift Credentials in the Pod</strong></h4>
+                <p>You’ll need to provide the container with access to OpenShift’s API by supplying authentication credentials (like a token or <code>kubeconfig</code> file). The most common approach is to mount the OpenShift API token and use it inside the container.</p>
+                <h4><strong>Step 2: Access OpenShift API from Inside the Container</strong></h4>
+                <ul>
+                <li><strong>Get the OpenShift API URL</strong>:<br />
+                Inside CRC, the OpenShift API is typically accessible via the internal service URL. You can find this using:</li>
+                </ul>
+                <p>oc whoami --show-server</p>
+                <p>This will return the API server's address, something like <code>https://api.crc.testing:6443</code>.</p>
+                <ul>
+                <li><strong>Get the OpenShift Token</strong>:<br />
+                The easiest way to authenticate from within the container is using an API token. To obtain it:</li>
+                </ul>
+                <p>oc whoami -t</p>
+                <p>This will return your authentication token. You'll use this to authenticate the container to the OpenShift API.</p>
+                <h4><strong>Step 3: Inject the OpenShift API Token into the Pod</strong></h4>
+                <p>You can pass this token as an environment variable or mount it as a secret.</p>
+                <ul>
+                <li><strong>Create a secret with the token</strong>: First, create a secret that contains the OpenShift API token:</li>
+                </ul>
+                <p>oc create secret generic my-openshift-token --from-literal=token=$(oc whoami -t)</p>
+                <p><img src="images/how-to-report-20.png" alt="how to report 20" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Mount the secret into your container</strong>: When creating your pod, mount this secret into the container as an environment variable or a file:</li>
+                </ul>
+                <p>oc run myazurerunner --image=mcr.microsoft.com/azure-cli --env="OPENSHIFT_TOKEN=$(oc get secret my-openshift-token -o jsonpath='{.data.token}' | base64 -d)" --command -- sleep infinity</p>
+                <p>Alternatively, you can mount the secret as a file and access it from within the container.</p>
+                <h4><strong>Step 4: Use the Token to Access the OpenShift API</strong></h4>
+                <p>Once the token is available inside the container, you can make API calls to OpenShift. For example, you could use <code>curl</code> to interact with the OpenShift API.</p>
+                <ul>
+                <li><strong>Access the OpenShift API from within the container</strong>: If you are inside the container, use the token and API URL like this:</li>
+                </ul>
+                <p>curl -k -H "Authorization: Bearer $OPENSHIFT_TOKEN" https://api.crc.testing:6443/apis</p>
+                <p>This should return the list of APIs available in your OpenShift cluster.</p>
+                <h4><strong>Step 5: Install and Use <code>oc</code> CLI Inside the Container (Optional)</strong></h4>
+                <p>If you want to use <code>oc</code> commands directly inside the container, you’ll need to install the OpenShift CLI within the container or pod.</p>
+                <ul>
+                <li><strong>Install the <code>oc</code> CLI</strong>: You can install the <code>oc</code> CLI inside the container:</li>
+                </ul>
+                <p>curl -LO https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz<br />
+                   tar -xvzf openshift-client-linux.tar.gz<br />
+                   mv oc /usr/local/bin</p>
+                <ul>
+                <li><strong>Log in to OpenShift inside the container</strong>: Once <code>oc</code> is installed, you can log in using the token:</li>
+                </ul>
+                <p>oc login https://api.crc.testing:6443 --token=$OPENSHIFT_TOKEN</p>
+                <p>Now, the container will be connected to the OpenShift API and you can interact with the OpenShift resources as needed.</p>
+                <hr />
+                <h3><strong>Summary</strong></h3>
+                <ul>
+                <li>
+                <p>Use the OpenShift API token (<code>oc whoami -t</code>) to authenticate from inside the container.</p>
+                </li>
+                <li>
+                <p>Create a secret with the token and inject it into the container.</p>
+                </li>
+                <li>
+                <p>Use <code>curl</code> or <code>oc</code> inside the container to interact with the OpenShift cluster.</p>
+                </li>
+                </ul>
+                <p>By following these steps, your container inside CRC should be able to connect and interact with the OpenShift cluster it is running on.</p>
+                <hr />
+                <h4><strong>Step 4: Push CRC Metrics to Azure Dashboards 📊</strong></h4>
+                <p>Now that Azure and CRC are connected, we need to push metrics from CRC OpenShift to Azure Monitor so they can be visualized on Azure Dashboards.</p>
+                <p>🛠 <strong>Key steps</strong>: KEY BRAKER!</p>
+                <ul>
+                <li>Use <code>oc get</code> commands to gather important metrics from CRC, like pod status, CPU usage, and memory utilization:</li>
+                </ul>
+                <p>oc get pods --all-namespaces<br />
+                   oc top node</p>
+                <ul>
+                <li>Send these metrics to Azure Monitor with the help of custom scripts. Example:</li>
+                </ul>
+                <p>METRICS=$(oc top node)<br />
+                   az monitor log-analytics workspace data-export create \<br />
+                   --resource-group CRC-Monitoring \<br />
+                   --workspace-name CRC-Workspace \<br />
+                   --name CRC-MetricsExport \<br />
+                   --destination <your-Azure-destination> \<br />
+                   --data $METRICS</p>
+                <ul>
+                <li>In Azure Monitor, create a new dashboard and visualize these metrics.</li>
+                </ul>
+                <p>🎯 <strong>Goal</strong>: Metrics from CRC OpenShift are now visible in Azure Dashboards.</p>
+                <hr />
+                <p><img src="images/how-to-report-21.png" alt="how to report 21" class="article-image" loading="lazy"></p>
+                <hr />
+                <h4><strong>Step 5: Build an Alerting System for CRC 📣</strong></h4>
+                <p>Once you have the metrics flowing to Azure, it’s time to set up alerting! This will notify you whenever there are critical changes or failures in your CRC OpenShift.</p>
+                <p>🛠 <strong>Key steps</strong>:</p>
+                <ul>
+                <li>
+                <p>In Azure Monitor, go to the “Alerts” section and create a new rule.</p>
+                </li>
+                <li>
+                <p>Select the resource group or workspace tied to your CRC metrics.</p>
+                </li>
+                <li>
+                <p>Set conditions for the alert—for example, if CPU usage exceeds 80% or pods crash.</p>
+                </li>
+                <li>
+                <p>Configure the action group to receive alerts via email, SMS, or webhook.</p>
+                </li>
+                </ul>
+                <p>🎯 <strong>Goal</strong>: You now have a robust alerting system that will notify you of any CRC infrastructure issues.</p>
+                <hr />
+                <p>✏️ <strong>Add Image Here:</strong> Display the alert creation page on Azure Monitor.</p>
+                <hr />
+                <h4><strong>Step 6: Automate the Reporting Process with Azure Logic Apps 🔄</strong></h4>
+                <p>To make this entire process hands-free, use Azure Logic Apps to automatically report the status of your CRC OpenShift at regular intervals.</p>
+                <p>🛠 <strong>Key steps</strong>:</p>
+                <ul>
+                <li>
+                <p>Create a new Logic App in Azure.</p>
+                </li>
+                <li>
+                <p>Set up a trigger for when the CRC metrics should be sent (e.g., every 10 minutes).</p>
+                </li>
+                <li>
+                <p>Add an action that runs the scripts to gather CRC metrics and pushes them to Azure Monitor.</p>
+                </li>
+                <li>
+                <p>Set an alert rule to notify you if any issues are detected.</p>
+                </li>
+                </ul>
+                <p>🎯 <strong>Goal</strong>: Automate the entire monitoring and alerting workflow for CRC OpenShift.</p>
+                <hr />
+                <p>✏️ <strong>Add Image Here:</strong> Show Azure Logic Apps workflow.</p>
+                <hr />
+                <h3><strong>Conclusion 🎉</strong></h3>
+                <p>By following these steps, you’ve now successfully integrated CRC OpenShift with Azure Dashboards. You can monitor the status of your local OpenShift environment, visualize it in Azure, and receive real-time alerts if anything goes wrong. Best of all, with Azure Logic Apps, this process is automated and hands-free!</p>
+                <p>Let me know if you have any questions or if you need help with any specific steps! 😊</p>
+                <hr />
+                <p><strong>🔗 Connect with me:</strong></p>
+                <ul>
+                <li>
+                <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/rifaterdemsahin/">https://www.linkedin.com/in/rifaterdemsahin/</a></p>
+                </li>
+                <li>
+                <p>🐦 Twitter: <a href="https://x.com/rifaterdemsahin">https://x.com/rifaterdemsahin</a></p>
+                </li>
+                <li>
+                <p>🎥 YouTube: <a href="https://www.youtube.com/@RifatErdemSahin">https://www.youtube.com/@RifatErdemSahin</a></p>
+                </li>
+                <li>
+                <p>💻 GitHub: <a href="https://github.com/rifaterdemsahin">https://github.com/rifaterdemsahin</a></p>
+                </li>
+                </ul>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

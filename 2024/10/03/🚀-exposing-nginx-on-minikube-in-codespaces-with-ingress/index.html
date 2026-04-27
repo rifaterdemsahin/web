@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Exposing NGINX on Minikube in Codespaces with Ingress - Rifat Erdem Sahin</title>
+    <meta name="description" content="🚀 Exposing NGINX on Minikube in Codespaces with Ingress In this tutorial, I’ll walk you through the process of exposing an NGINX service on Minikube using an Ingress resource inside Codespaces.">
+    <meta name="keywords" content="🚀 Exposing NGINX on Minikube in Codespaces with Ingress">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/10/03/🚀-exposing-nginx-on-minikube-in-codespaces-with-ingress/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/10/03/🚀-exposing-nginx-on-minikube-in-codespaces-with-ingress/">
+    <meta property="og:title" content="🚀 Exposing NGINX on Minikube in Codespaces with Ingress">
+    <meta property="og:description" content="🚀 Exposing NGINX on Minikube in Codespaces with Ingress In this tutorial, I’ll walk you through the process of exposing an NGINX service on Minikube using an Ingress resource inside Codespaces.">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/10/03/🚀-exposing-nginx-on-minikube-in-codespaces-with-ingress/">
+    <meta property="twitter:title" content="🚀 Exposing NGINX on Minikube in Codespaces with Ingress">
+    <meta property="twitter:description" content="🚀 Exposing NGINX on Minikube in Codespaces with Ingress In this tutorial, I’ll walk you through the process of exposing an NGINX service on Minikube using an Ingress resource inside Codespaces.">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "🚀 Exposing NGINX on Minikube in Codespaces with Ingress",
+      "description": "🚀 Exposing NGINX on Minikube in Codespaces with Ingress In this tutorial, I’ll walk you through the process of exposing an NGINX service on Minikube using an Ingress resource inside Codespaces.",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-10-03",
+      "dateModified": "2024-10-03",
+      "url": "https://www.rifaterdemsahin.com/2024/10/03/🚀-exposing-nginx-on-minikube-in-codespaces-with-ingress/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/10/03/🚀-exposing-nginx-on-minikube-in-codespaces-with-ingress/",
+      "articleSection": "aws",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">🚀 Exposing NGINX on Minikube in Codespaces with Ingress</h1>
+                <div class="article-meta">
+                    <span class="article-category">aws</span>
+                    <span>&bull;</span>
+                    <span>October 3, 2024</span>
+                    <span>&bull;</span>
+                    <span>2 min read</span>
+                </div>
+                <p class="article-excerpt">🚀 Exposing NGINX on Minikube in Codespaces with Ingress In this tutorial, I’ll walk you through the process of exposing an NGINX service on Minikube using an Ingress resource inside Codespaces.</p>
+            </header>
+            <article class="article-content">
+                <h1>🚀 Exposing NGINX on Minikube in Codespaces with Ingress</h1>
+                <p>In this tutorial, I’ll walk you through the process of exposing an NGINX service on Minikube using an Ingress resource inside Codespaces. By the end, you’ll be able to access your NGINX service via a public DNS and domain name.</p>
+                <p>Let’s jump into it! 💡</p>
+                <h2>1. Install NGINX Ingress Controller in Minikube</h2>
+                <p>First, we need to enable the NGINX Ingress controller in Minikube. This handles traffic routing for your Ingress resources.</p>
+                <p>minikube start<br />
+                minikube addons enable ingress</p>
+                <h2>2. Create an NGINX Deployment 🖥️</h2>
+                <p>Next, we’ll create an NGINX deployment to serve our content.</p>
+                <p>kubectl create deployment nginx --image=nginx</p>
+                <h2>3. Expose NGINX as a ClusterIP Service</h2>
+                <p>Expose the NGINX deployment internally via a ClusterIP service. This is necessary to route traffic through the Ingress.</p>
+                <p>kubectl expose deployment nginx --port=80 --target-port=80 --type=ClusterIP</p>
+                <h2>4. Create an Ingress Resource 🌐</h2>
+                <p>Now, let’s create an Ingress resource that routes traffic to the NGINX service. Save this YAML file as <code>nginx-ingress.yaml</code>:</p>
+                <p>apiVersion: networking.k8s.io/v1<br />
+                kind: Ingress<br />
+                metadata:<br />
+                  name: nginx-ingress<br />
+                  annotations:<br />
+                    nginx.ingress.kubernetes.io/rewrite-target: /<br />
+                spec:<br />
+                  rules:<br />
+                  - host: nginx.local<br />
+                    http:<br />
+                      paths:<br />
+                      - path: /<br />
+                        pathType: Prefix<br />
+                        backend:<br />
+                          service:<br />
+                            name: nginx<br />
+                            port:<br />
+                              number: 80</p>
+                <p>Apply the Ingress configuration:</p>
+                <p>kubectl apply -f nginx-ingress.yaml</p>
+                <h2>5. Configure DNS Resolution for Ingress Hostname 🗺️</h2>
+                <p>To resolve the domain <code>nginx.local</code> to the IP of your Minikube instance, you’ll need to add it to your local <code>/etc/hosts</code> file.</p>
+                <p>minikube ip</p>
+                <p>Add this line to your <code>/etc/hosts</code> file (replacing <code>&lt;minikube-ip&gt;</code> with your Minikube IP):</p>
+                <p><minikube-ip> nginx.local</p>
+                <p>Save the file to enable local DNS resolution.</p>
+                <h2>6. Access NGINX via Ingress 🚀</h2>
+                <p>Open your browser and go to:</p>
+                <p>http:&#047;&#047;nginx.local</p>
+                <p>Alternatively, in Codespaces, forward port 80 using the Ports tab. Add a port forwarding rule, and you’ll get a generated URL.</p>
+                <h2>7. Verify the Ingress Setup 🔍</h2>
+                <p>Finally, confirm that your Ingress resource has been picked up by the NGINX Ingress controller:</p>
+                <p>kubectl get ingress</p>
+                <p>You should see <code>nginx-ingress</code> listed, indicating that the service is ready and accessible via the domain name.</p>
+                <hr />
+                <p>💥 And that’s it! You’ve successfully set up NGINX with a LoadBalancer service using DNS and domain name configuration in Codespaces.</p>
+                <hr />
+                <h2>🔗 Connect with me:</h2>
+                <ul>
+                <li>
+                <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/rifaterdemsahin/">Rifat Erdem Sahin</a></p>
+                </li>
+                <li>
+                <p>🐦 Twitter: <a href="https://x.com/rifaterdemsahin">@rifaterdemsahin</a></p>
+                </li>
+                <li>
+                <p>🎥 YouTube: <a href="https://www.youtube.com/@RifatErdemSahin">Rifat Erdem Sahin</a></p>
+                </li>
+                <li>
+                <p>💻 GitHub: <a href="https://github.com/rifaterdemsahin">@rifaterdemsahin</a></p>
+                </li>
+                </ul>
+                <p>Need further help? Drop me a message! 👋</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

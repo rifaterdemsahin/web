@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selenium data creation process - Rifat Erdem Sahin</title>
+    <meta name="description" content="Selenium data creation process dont repeat The provided code for automating browser interactions using Selenium in C# appears well-structured, but there are a few points and suggestions to address the">
+    <meta name="keywords" content="Selenium data creation process">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/05/21/selenium-data-creation-process/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/05/21/selenium-data-creation-process/">
+    <meta property="og:title" content="Selenium data creation process">
+    <meta property="og:description" content="Selenium data creation process dont repeat The provided code for automating browser interactions using Selenium in C# appears well-structured, but there are a few points and suggestions to address the">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/05/21/selenium-data-creation-process/">
+    <meta property="twitter:title" content="Selenium data creation process">
+    <meta property="twitter:description" content="Selenium data creation process dont repeat The provided code for automating browser interactions using Selenium in C# appears well-structured, but there are a few points and suggestions to address the">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Selenium data creation process",
+      "description": "Selenium data creation process dont repeat The provided code for automating browser interactions using Selenium in C# appears well-structured, but there are a few points and suggestions to address the",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-05-21",
+      "dateModified": "2024-05-21",
+      "url": "https://www.rifaterdemsahin.com/2024/05/21/selenium-data-creation-process/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/05/21/selenium-data-creation-process/",
+      "articleSection": "Image",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Selenium data creation process</h1>
+                <div class="article-meta">
+                    <span class="article-category">Image</span>
+                    <span>&bull;</span>
+                    <span>May 21, 2024</span>
+                    <span>&bull;</span>
+                    <span>3 min read</span>
+                </div>
+                <p class="article-excerpt">Selenium data creation process dont repeat The provided code for automating browser interactions using Selenium in C# appears well-structured, but there are a few points and suggestions to address the error and improve the overall reliability of the script: Ensure ChromeDriver Pa</p>
+            </header>
+            <article class="article-content">
+                <h1>Selenium data creation process</h1>
+                <p><img src="images/selenium-data-creation-1.png" alt="selenium data creation 1" class="article-image" loading="lazy"></p>
+                <p>dont repeat</p>
+                <p>The provided code for automating browser interactions using Selenium in C# appears well-structured, but there are a few points and suggestions to address the error and improve the overall reliability of the script:</p>
+                <ul>
+                <li>
+                <p><strong>Ensure ChromeDriver Path and Chrome Installation</strong>:<br />
+                Make sure that ChromeDriver is in the system's PATH, or provide an explicit path to ChromeDriver. Also, ensure that Chrome is installed in the expected location.</p>
+                </li>
+                <li>
+                <p><strong>Configure ChromeDriver Options</strong>:<br />
+                Use additional ChromeOptions to avoid potential issues with sandboxing and memory usage.</p>
+                </li>
+                <li>
+                <p><strong>Use WebDriverWait for Synchronization</strong>:<br />
+                Replace <code>Thread.Sleep</code> with <code>WebDriverWait</code> to make the script more reliable and responsive.</p>
+                </li>
+                <li>
+                <p><strong>Handle Exceptions Gracefully</strong>:<br />
+                Enhance exception handling to catch specific exceptions and provide more detailed error messages.</p>
+                </li>
+                </ul>
+                <p>Here’s the revised code with these improvements:</p>
+                <p>using OpenQA.Selenium;<br />
+                using OpenQA.Selenium.Chrome;<br />
+                using OpenQA.Selenium.Support.UI;<br />
+                using Microsoft.Extensions.Configuration;<br />
+                using System;<br />
+                using System.IO;<br />
+                using System.Threading;</p>
+                <p>namespace SeleniumCourseLoader<br />
+                {<br />
+                    class Program<br />
+                    {<br />
+                        static void Main(string[] args)<br />
+                        {<br />
+                            Logger.InitLogFile();<br />
+                            Logger.Log("Program started!");</p>
+                <pre><code>            .AddJsonFile("F:\\source\\SeleniumThinkific\\SeleniumThinkific\\appsettings.json", optional: true, reloadOnChange: true);
+                        IConfigurationRoot configuration = builder.Build();
+                
+                        string email = configuration["Login:Email"];
+                        string password = configuration["Login:Password"];
+                
+                        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+                        {
+                            Logger.Log("Email or password are not set in the configuration file.");
+                            return;
+                        }
+                
+                        ChromeOptions options = new ChromeOptions();
+                        options.AddArgument(@"user-data-dir=C:\Users\Pexabo\AppData\Local\Google\Chrome\User Data"); // Replace with your Chrome user data path
+                        options.AddArgument(@"profile-directory=Profile 15"); // Replace with your profile directory
+                        options.AddArgument("--no-sandbox");
+                        options.AddArgument("--disable-dev-shm-usage");
+                        options.AddArgument("--disable-gpu");
+                
+                        driver.Manage().Window.Size = new System.Drawing.Size(1273, 672);
+                
+                        try
+                        {
+                            Logger.Log("Navigating to login page...");
+                            driver.Navigate().GoToUrl("https://courses.devops.engineering/users/sign_in");
+                
+                            PerformLogin(driver, email, password);
+                
+                            ProcessCourses(driver);
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.Log($"Test failed: {ex.Message}");
+                        }
+                        finally
+                        {
+                            driver.Quit();
+                        }
+                
+                        Logger.Log("Program ended!");
+                    }
+                
+                    static void PerformLogin(IWebDriver driver, string email, string password)
+                    {
+                        try
+                        {
+                            Logger.Log("Performing login...");
+                            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+                
+                            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("user[email]"))).SendKeys(email);
+                            driver.FindElement(By.Id("user[password]")).SendKeys(password);
+                            driver.FindElement(By.CssSelector(".button-primary")).Click();
+                
+                            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("user[email]"))).SendKeys(email);
+                            driver.FindElement(By.Id("user[password]")).SendKeys(password);
+                            wait.Until(ExpectedConditions.ElementToBeClickable(By.CssSelector(".button-primary"))).Click();
+                
+                            Logger.Log("Login performed successfully.");
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.Log($"Login failed: {ex.Message}");
+                        }
+                    }
+                
+                    static bool CheckSectionExists(IWebDriver driver, string sectionTitle)
+                    {
+                        try
+                        {
+                            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+                
+                            foreach (var section in sections)
+                            {
+                                if (section.Text.Contains(sectionTitle, StringComparison.OrdinalIgnoreCase))
+                                {
+                                    return true;
+                                }
+                            }
+                
+                            return false;
+                        }
+                        catch (NoSuchElementException)
+                        {
+                            return false;
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"An error occurred while checking for the section: {ex.Message}");
+                            return false;
+                        }
+                    }
+                
+                    static void ProcessCourses(IWebDriver driver)
+                    {
+                        Logger.Log("Processing courses...");
+                
+                        foreach (var course in courses)
+                        {
+                            Logger.Log($"Processing course: {course.MainUrl}");
+                            driver.Navigate().GoToUrl(course.MainUrl);
+                            Thread.Sleep(5000);
+                
+                            foreach (var section in course.Sections)
+                            {
+                                if (!CheckSectionExists(driver, section.Name))
+                                {
+                                    AddChapter(driver, section);
+                
+                                    foreach (var video in section.Videos)
+                                    {
+                                        AddVideo(driver, course.MainUrl, section, video);
+                                    }
+                                }
+                            }
+                        }
+                
+                        Logger.Log("Courses processed successfully.");
+                    }
+                
+                    static void AddChapter(IWebDriver driver, Section section)
+                    {
+                        Logger.Log($"Adding chapter: {section.Name}");
+                        WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+                
+                        wait.Until(ExpectedConditions.ElementToBeClickable(By.CssSelector("button[data-qa='add-chapter__btn']"))).Click();
+                        wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//input[@data-qa='chapter-name__input']"))).SendKeys(section.Name);
+                
+                        IWebElement sectionInputField = driver.FindElement(By.XPath("//input[@data-qa='chapter-name__input']"));
+                        IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+                        js.ExecuteScript("arguments[0].value='';", sectionInputField);
+                        sectionInputField.Clear();
+                        sectionInputField.SendKeys(section.Name);
+                
+                        wait.Until(ExpectedConditions.ElementToBeClickable(By.CssSelector("button[data-qa='actions-bar__save-button']"))).Click();
+                        Thread.Sleep(5000);
+                
+                        string url = driver.Url;
+                        string[] parts = url.Split('/');
+                        string chapterId = parts[parts.Length - 2]; // Second last part is the chapter ID
+                
+                        Logger.Log($"Chapter ID: {chapterId}"); // Output the chapter ID
+                        Thread.Sleep(5000);
+                
+                        section.ChapterId = chapterId; // Store the chapter ID for later use
+                    }
+                
+                    static void AddVideo(IWebDriver driver, string mainUrl, Section section, Video video)
+                    {
+                        Logger.Log($"Adding video: {video.Name} to section: {section.Name}");
+                        driver.Navigate().GoToUrl(mainUrl + "/chapters/" + section.ChapterId + "/contents/new_video_lesson");
+                        Thread.Sleep(7000);
+                
+                        WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+                        wait.Until(ExpectedConditions.ElementToBeClickable(By.CssSelector("label[for='lesson-draft-status']"))).Click();
+                
+                        wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector("input[data-qa='lesson-form__name']"))).SendKeys(video.Name);
+                        wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//button[@data-qa='actions-bar__save-button']"))).Click();
+                        Thread.Sleep(5000);
+                
+                        try
+                        {
+                            IWebElement toastMessage = wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector("div[class^='Toast_toast__message_']")));
+                            toastMessage.Click();
+                            Thread.Sleep(1000);
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.Log($"Error handling toast message: {ex.Message}");
+                        }
+                    }
+                }
+                
+                public static class Logger
+                {
+                    private static string logFilePath = "logfile.txt";
+                
+                    public static void InitLogFile()
+                    {
+                        if (File.Exists(logFilePath))
+                        {
+                            File.Delete(logFilePath);
+                        }
+                        using (StreamWriter sw = File.CreateText(logFilePath))
+                        {
+                            sw.WriteLine($"Log file created on {DateTime.Now}");
+                        }
+                    }
+                
+                    public static void Log(string message)
+                    {
+                        string logMessage = $"{DateTime.Now}: {message}";
+                        Console.WriteLine(logMessage);
+                        using (StreamWriter sw = File.AppendText(logFilePath))
+                        {
+                            sw.WriteLine(logMessage);
+                        }
+                    }
+                }
+                </code></pre>
+                <p>}</p>
+                <h3>Key Changes:</h3>
+                <ul>
+                <li>
+                <p><strong>Improved Synchronization</strong>:</p>
+                </li>
+                <li>
+                <p>Replaced <code>Thread.Sleep</code> with <code>WebDriverWait</code> to handle dynamic loading elements more effectively.</p>
+                </li>
+                <li>
+                <p><strong>Error Handling</strong>:</p>
+                </li>
+                <li>
+                <p>Enhanced error handling with detailed log messages.</p>
+                </li>
+                <li>
+                <p><strong>ChromeDriver Configuration</strong>:</p>
+                </li>
+                <li>
+                <p>Added more ChromeOptions for improved stability.</p>
+                </li>
+                </ul>
+                <p>By implementing</p>
+                <p>these changes, the script should be more robust and less prone to timing issues and errors related to ChromeDriver.</p>
+                <p><img src="images/selenium-data-creation-2.png" alt="selenium data creation 2" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

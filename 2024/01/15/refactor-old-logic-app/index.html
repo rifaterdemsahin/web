@@ -1,0 +1,2250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refactor old logic app - Rifat Erdem Sahin</title>
+    <meta name="description" content="Refactor old logic app it was sending replies &gt;&gt;&gt; now the email sending is semi fixed it can at least work and we can relearn email has the adding parts with it remove goal turn it on and mov">
+    <meta name="keywords" content="Refactor old logic app">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/01/15/refactor-old-logic-app/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/01/15/refactor-old-logic-app/">
+    <meta property="og:title" content="Refactor old logic app">
+    <meta property="og:description" content="Refactor old logic app it was sending replies &gt;&gt;&gt; now the email sending is semi fixed it can at least work and we can relearn email has the adding parts with it remove goal turn it on and mov">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/01/15/refactor-old-logic-app/">
+    <meta property="twitter:title" content="Refactor old logic app">
+    <meta property="twitter:description" content="Refactor old logic app it was sending replies &gt;&gt;&gt; now the email sending is semi fixed it can at least work and we can relearn email has the adding parts with it remove goal turn it on and mov">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Refactor old logic app",
+      "description": "Refactor old logic app it was sending replies &gt;&gt;&gt; now the email sending is semi fixed it can at least work and we can relearn email has the adding parts with it remove goal turn it on and mov",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-01-15",
+      "dateModified": "2024-01-15",
+      "url": "https://www.rifaterdemsahin.com/2024/01/15/refactor-old-logic-app/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/01/15/refactor-old-logic-app/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Refactor old logic app</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>January 15, 2024</span>
+                    <span>&bull;</span>
+                    <span>20 min read</span>
+                </div>
+                <p class="article-excerpt">Refactor old logic app it was sending replies &gt;&gt;&gt; now the email sending is semi fixed it can at least work and we can relearn email has the adding parts with it remove goal turn it on and move the fixes to the new resource group!</p>
+            </header>
+            <article class="article-content">
+                <h1>Refactor old logic app</h1>
+                <blockquote>
+                <blockquote>
+                <blockquote>
+                <p>it was sending replies &gt;&gt;&gt; now the email sending is semi fixed it can at least work and we can relearn</p>
+                <p>email has the adding parts with it</p>
+                </blockquote>
+                </blockquote>
+                </blockquote>
+                <p><img src="images/refactor-old-logic-1.png" alt="refactor old logic 1" class="article-image" loading="lazy"></p>
+                <p>remove</p>
+                <p><img src="images/refactor-old-logic-2.png" alt="refactor old logic 2" class="article-image" loading="lazy"></p>
+                <p><img src="images/refactor-old-logic-3.png" alt="refactor old logic 3" class="article-image" loading="lazy"></p>
+                <blockquote>
+                <blockquote>
+                <blockquote>
+                <p>goal turn it on and move the fixes to the new resource group!</p>
+                </blockquote>
+                </blockquote>
+                </blockquote>
+                <p>back it up as state machine</p>
+                <p><img src="images/refactor-old-logic-4.png" alt="refactor old logic 4" class="article-image" loading="lazy"></p>
+                <p><img src="images/refactor-old-logic-5.png" alt="refactor old logic 5" class="article-image" loading="lazy"></p>
+                <p><img src="images/refactor-old-logic-6.png" alt="refactor old logic 6" class="article-image" loading="lazy"></p>
+                <p><img src="images/refactor-old-logic-7.png" alt="refactor old logic 7" class="article-image" loading="lazy"></p>
+                <p><img src="images/refactor-old-logic-8.png" alt="refactor old logic 8" class="article-image" loading="lazy"></p>
+                <p><img src="images/refactor-old-logic-9.png" alt="refactor old logic 9" class="article-image" loading="lazy"></p>
+                <p>run the application in a practical manner and see and reflect to the other side.</p>
+                <p>Creating an real time ivr system for one contractor is the key while upgrade the package and work on it.</p>
+                <p>enterprises dont care about studio but they care about the training.</p>
+                <p>give a custom training for on demand delivery</p>
+                <p><strong>Backup by Code</strong></p>
+                <pre><code>{
+                    &quot;definition&quot;: {
+                        &quot;$schema&quot;: &quot;https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#&quot;,
+                        &quot;actions&quot;: {
+                            &quot;Check_devops&quot;: {
+                                &quot;actions&quot;: {
+                                    &quot;Set_variable&quot;: {
+                                        &quot;inputs&quot;: {
+                                            &quot;name&quot;: &quot;devopsrole&quot;,
+                                            &quot;value&quot;: true
+                                        },
+                                        &quot;runAfter&quot;: {},
+                                        &quot;type&quot;: &quot;SetVariable&quot;
+                                    }
+                                },
+                                &quot;expression&quot;: {
+                                    &quot;and&quot;: &amp;#091;
+                                        {
+                                            &quot;contains&quot;: &amp;#091;
+                                                &quot;@triggerBody()?&amp;#091;'Body']&quot;,
+                                                &quot;devops&quot;
+                                            ]
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;check_recruiter&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;If&quot;
+                            },
+                            &quot;Check_uk_&quot;: {
+                                &quot;actions&quot;: {
+                                    &quot;Set_variable_2&quot;: {
+                                        &quot;inputs&quot;: {
+                                            &quot;name&quot;: &quot;ukrole&quot;,
+                                            &quot;value&quot;: true
+                                        },
+                                        &quot;runAfter&quot;: {},
+                                        &quot;type&quot;: &quot;SetVariable&quot;
+                                    }
+                                },
+                                &quot;expression&quot;: {
+                                    &quot;and&quot;: &amp;#091;
+                                        {
+                                            &quot;contains&quot;: &amp;#091;
+                                                &quot;@triggerBody()?&amp;#091;'Body']&quot;,
+                                                &quot;UK&quot;
+                                            ]
+                                        },
+                                        {
+                                            &quot;or&quot;: &amp;#091;
+                                                {
+                                                    &quot;contains&quot;: &amp;#091;
+                                                        &quot;@triggerBody()&quot;,
+                                                        &quot;permanent&quot;
+                                                    ]
+                                                },
+                                                {
+                                                    &quot;contains&quot;: &amp;#091;
+                                                        &quot;@triggerBody()&quot;,
+                                                        &quot;contract&quot;
+                                                    ]
+                                                },
+                                                {
+                                                    &quot;contains&quot;: &amp;#091;
+                                                        &quot;@triggerBody()&quot;,
+                                                        &quot;ir35&quot;
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Check_devops&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;If&quot;
+                            },
+                            &quot;Condition_blacklisted_check&quot;: {
+                                &quot;actions&quot;: {
+                                    &quot;Terminate&quot;: {
+                                        &quot;inputs&quot;: {
+                                            &quot;runError&quot;: {
+                                                &quot;code&quot;: &quot;2222&quot;,
+                                                &quot;message&quot;: &quot;found  @{item('Foreachblacklisted_keywords')}&quot;
+                                            },
+                                            &quot;runStatus&quot;: &quot;Failed&quot;
+                                        },
+                                        &quot;runAfter&quot;: {},
+                                        &quot;type&quot;: &quot;Terminate&quot;
+                                    }
+                                },
+                                &quot;expression&quot;: {
+                                    &quot;and&quot;: &amp;#091;
+                                        {
+                                            &quot;greater&quot;: &amp;#091;
+                                                &quot;@variables('blacklistedwordscount')&quot;,
+                                                0
+                                            ]
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Foreachblacklisted_keywords&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;If&quot;
+                            },
+                            &quot;Condition_check_usa_role&quot;: {
+                                &quot;actions&quot;: {
+                                    &quot;Set_variable_to_usa&quot;: {
+                                        &quot;inputs&quot;: {
+                                            &quot;name&quot;: &quot;cvlink&quot;,
+                                            &quot;value&quot;: &quot;@{variables('cvusa')}&quot;
+                                        },
+                                        &quot;runAfter&quot;: {},
+                                        &quot;type&quot;: &quot;SetVariable&quot;
+                                    }
+                                },
+                                &quot;expression&quot;: {
+                                    &quot;and&quot;: &amp;#091;
+                                        {
+                                            &quot;equals&quot;: &amp;#091;
+                                                &quot;@variables('usarole')&quot;,
+                                                true
+                                            ]
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_cvlink&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;If&quot;
+                            },
+                            &quot;Condition_global&quot;: {
+                                &quot;actions&quot;: {
+                                    &quot;Set_variable_to_global&quot;: {
+                                        &quot;inputs&quot;: {
+                                            &quot;name&quot;: &quot;cvlink&quot;,
+                                            &quot;value&quot;: &quot;@{variables('cvglobal')}&quot;
+                                        },
+                                        &quot;runAfter&quot;: {},
+                                        &quot;type&quot;: &quot;SetVariable&quot;
+                                    }
+                                },
+                                &quot;expression&quot;: {
+                                    &quot;and&quot;: &amp;#091;
+                                        {
+                                            &quot;equals&quot;: &amp;#091;
+                                                &quot;@variables('ukrole')&quot;,
+                                                false
+                                            ]
+                                        },
+                                        {
+                                            &quot;equals&quot;: &amp;#091;
+                                                &quot;@variables('usarole')&quot;,
+                                                false
+                                            ]
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Condition_check_usa_role&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;If&quot;
+                            },
+                            &quot;Condition_isitaskingaresume&quot;: {
+                                &quot;actions&quot;: {
+                                    &quot;Set_variable_isitaskingaresume&quot;: {
+                                        &quot;inputs&quot;: {
+                                            &quot;name&quot;: &quot;isitaskingaresume&quot;,
+                                            &quot;value&quot;: true
+                                        },
+                                        &quot;runAfter&quot;: {},
+                                        &quot;type&quot;: &quot;SetVariable&quot;
+                                    }
+                                },
+                                &quot;expression&quot;: {
+                                    &quot;and&quot;: &amp;#091;
+                                        {
+                                            &quot;contains&quot;: &amp;#091;
+                                                &quot;@triggerBody()&quot;,
+                                                &quot;resume&quot;
+                                            ]
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Condition_solution_architect&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;If&quot;
+                            },
+                            &quot;Condition_solution_architect&quot;: {
+                                &quot;actions&quot;: {
+                                    &quot;Set_variable_solution_architect&quot;: {
+                                        &quot;inputs&quot;: {
+                                            &quot;name&quot;: &quot;issolutionarchitectrole&quot;,
+                                            &quot;value&quot;: true
+                                        },
+                                        &quot;runAfter&quot;: {},
+                                        &quot;type&quot;: &quot;SetVariable&quot;
+                                    }
+                                },
+                                &quot;expression&quot;: {
+                                    &quot;or&quot;: &amp;#091;
+                                        {
+                                            &quot;contains&quot;: &amp;#091;
+                                                &quot;@triggerBody()&quot;,
+                                                &quot;solution architect&quot;
+                                            ]
+                                        },
+                                        {
+                                            &quot;contains&quot;: &amp;#091;
+                                                &quot;@triggerBody()&quot;,
+                                                &quot;Solution Architect&quot;
+                                            ]
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;For_each_skills_match_one_is_enough&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;If&quot;
+                            },
+                            &quot;Condition_till_fixed_opening_up_emails_could_be_v2_isold_template&quot;: {
+                                &quot;actions&quot;: {
+                                    &quot;Get_blob_content_(V2)_attachmentspexabo_cvanswermatrix&quot;: {
+                                        &quot;inputs&quot;: {
+                                            &quot;host&quot;: {
+                                                &quot;connection&quot;: {
+                                                    &quot;name&quot;: &quot;@parameters('$connections')&amp;#091;'azureblob-6']&amp;#091;'connectionId']&quot;
+                                                }
+                                            },
+                                            &quot;method&quot;: &quot;get&quot;,
+                                            &quot;path&quot;: &quot;/v2/datasets/@{encodeURIComponent(encodeURIComponent('attachmentspexabo'))}/files/@{encodeURIComponent(encodeURIComponent('JTJmZW1haWxzJTJmUmlmYXQrRXJkZW0rU2FoaW4rQ1YrQW5zd2VyK01hdHJpeC5jc3Y='))}/content&quot;,
+                                            &quot;queries&quot;: {
+                                                &quot;inferContentType&quot;: true
+                                            }
+                                        },
+                                        &quot;metadata&quot;: {
+                                            &quot;JTJmZW1haWxzJTJmUmlmYXQrRXJkZW0rU2FoaW4rQ1YrQW5zd2VyK01hdHJpeC5jc3Y=&quot;: &quot;/emails/Rifat Erdem Sahin CV Answer Matrix.csv&quot;
+                                        },
+                                        &quot;runAfter&quot;: {
+                                            &quot;Get_blob_content_(V2)_attachmentspexabo_video&quot;: &amp;#091;
+                                                &quot;Succeeded&quot;
+                                            ]
+                                        },
+                                        &quot;type&quot;: &quot;ApiConnection&quot;
+                                    },
+                                    &quot;Get_blob_content_(V2)_attachmentspexabo_handsonskillmatrix&quot;: {
+                                        &quot;inputs&quot;: {
+                                            &quot;host&quot;: {
+                                                &quot;connection&quot;: {
+                                                    &quot;name&quot;: &quot;@parameters('$connections')&amp;#091;'azureblob-6']&amp;#091;'connectionId']&quot;
+                                                }
+                                            },
+                                            &quot;method&quot;: &quot;get&quot;,
+                                            &quot;path&quot;: &quot;/v2/datasets/@{encodeURIComponent(encodeURIComponent('AccountNameFromSettings'))}/files/@{encodeURIComponent(encodeURIComponent('JTJmZW1haWxzJTJmUmlmYXQrRXJkZW0rU2FoaW4rSGFuZHMtb24rU2tpbGwrTWF0cml4LmNzdg=='))}/content&quot;,
+                                            &quot;queries&quot;: {
+                                                &quot;inferContentType&quot;: true
+                                            }
+                                        },
+                                        &quot;metadata&quot;: {
+                                            &quot;JTJmZW1haWxzJTJmUmlmYXQrRXJkZW0rU2FoaW4rSGFuZHMtb24rU2tpbGwrTWF0cml4LmNzdg==&quot;: &quot;/emails/Rifat Erdem Sahin Hands-on Skill Matrix.csv&quot;
+                                        },
+                                        &quot;runAfter&quot;: {
+                                            &quot;Get_blob_content_(V2)_attachmentspexabo_cvanswermatrix&quot;: &amp;#091;
+                                                &quot;Succeeded&quot;
+                                            ]
+                                        },
+                                        &quot;type&quot;: &quot;ApiConnection&quot;
+                                    },
+                                    &quot;Get_blob_content_(V2)_attachmentspexabo_references&quot;: {
+                                        &quot;inputs&quot;: {
+                                            &quot;host&quot;: {
+                                                &quot;connection&quot;: {
+                                                    &quot;name&quot;: &quot;@parameters('$connections')&amp;#091;'azureblob-2']&amp;#091;'connectionId']&quot;
+                                                }
+                                            },
+                                            &quot;method&quot;: &quot;get&quot;,
+                                            &quot;path&quot;: &quot;/v2/datasets/@{encodeURIComponent(encodeURIComponent('AccountNameFromSettings'))}/files/@{encodeURIComponent(encodeURIComponent('JTJmZW1haWxzJTJmUmVmZXJlbmNlcytXb3JrK1JpZmF0K0VyZGVtK1NhaGluLnBkZg=='))}/content&quot;,
+                                            &quot;queries&quot;: {
+                                                &quot;inferContentType&quot;: true
+                                            }
+                                        },
+                                        &quot;metadata&quot;: {
+                                            &quot;JTJmZW1haWxzJTJmUmVmZXJlbmNlcytXb3JrK1JpZmF0K0VyZGVtK1NhaGluLnBkZg==&quot;: &quot;/emails/References Work Rifat Erdem Sahin.pdf&quot;
+                                        },
+                                        &quot;runAfter&quot;: {},
+                                        &quot;type&quot;: &quot;ApiConnection&quot;
+                                    },
+                                    &quot;Get_blob_content_(V2)_attachmentspexabo_video&quot;: {
+                                        &quot;inputs&quot;: {
+                                            &quot;host&quot;: {
+                                                &quot;connection&quot;: {
+                                                    &quot;name&quot;: &quot;@parameters('$connections')&amp;#091;'azureblob-6']&amp;#091;'connectionId']&quot;
+                                                }
+                                            },
+                                            &quot;method&quot;: &quot;get&quot;,
+                                            &quot;path&quot;: &quot;/v2/datasets/@{encodeURIComponent(encodeURIComponent('AccountNameFromSettings'))}/files/@{encodeURIComponent(encodeURIComponent('JTJmZW1haWxzJTJmRXJkZW12aWRlbzIwMjMubXA0'))}/content&quot;,
+                                            &quot;queries&quot;: {
+                                                &quot;inferContentType&quot;: true
+                                            }
+                                        },
+                                        &quot;metadata&quot;: {
+                                            &quot;JTJmZW1haWxzJTJmRXJkZW12aWRlbzIwMjMubXA0&quot;: &quot;/emails/Erdemvideo2023.mp4&quot;
+                                        },
+                                        &quot;runAfter&quot;: {
+                                            &quot;Get_blob_content_(V2)_attachmentspexabo_references&quot;: &amp;#091;
+                                                &quot;Succeeded&quot;
+                                            ]
+                                        },
+                                        &quot;type&quot;: &quot;ApiConnection&quot;
+                                    }
+                                },
+                                &quot;expression&quot;: {
+                                    &quot;and&quot;: &amp;#091;
+                                        {
+                                            &quot;equals&quot;: &amp;#091;
+                                                1,
+                                                0
+                                            ]
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_debug_to_sender&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;If&quot;
+                            },
+                            &quot;Content_Initialize_variable_keywords_blacklist&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;blacklistedkeywords&quot;,
+                                            &quot;type&quot;: &quot;array&quot;,
+                                            &quot;value&quot;: &amp;#091;
+                                                &quot;The recipient's mailbox is full&quot;,
+                                                &quot;Your message couldn't be delivered&quot;,
+                                                &quot;postmaster wasn't found at&quot;,
+                                                &quot;Message not delivered&quot;,
+                                                &quot;Remote server returned&quot;,
+                                                &quot;Delivery incomplete&quot;,
+                                                &quot; GB-0011100860&quot;,
+                                                &quot;The response from the remote server was&quot;,
+                                                &quot;There was a temporary problem while delivering your message to&quot;,
+                                                &quot;Code Ninjas&quot;,
+                                                &quot;Your message couldn't be delivered to&quot;,
+                                                &quot;Message too large&quot;,
+                                                &quot;Undeliverable: Thanks for your email&quot;,
+                                                &quot;&quot;,
+                                                &quot;Nathan Hesketh&quot;,
+                                                &quot;ACL Digital&quot;,
+                                                &quot;because the address couldn't be found&quot;,
+                                                &quot;Undeliverable: Thanks for your email&quot;,
+                                                &quot;I have attached several documents for your reference.&quot;,
+                                                &quot;external senders aren't permitted to send to this group&quot;,
+                                                &quot;IP address has been temporarily rate limited&quot;,
+                                                &quot;Recipient address rejected&quot;,
+                                                &quot;service@paypal.co.uk&quot;,
+                                                &quot;fundingcircle&quot;,
+                                                &quot;couldn't be delivered.&quot;,
+                                                &quot;here's your billing summary&quot;,
+                                                &quot;pluralsight&quot;,
+                                                &quot;RADTAC&quot;,
+                                                &quot;cprime&quot;,
+                                                &quot;devopsengineering.thinkific.com&quot;,
+                                                &quot;Tax Assist&quot;,
+                                                &quot;Undeliverable&quot;,
+                                                &quot;CV in text Format&quot;,
+                                                &quot;Your message to the Microsoft 365 group&quot;,
+                                                &quot;Recipient address rejected: Access denied.&quot;
+                                            ]
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_todos&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Delay_3&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;interval&quot;: {
+                                        &quot;count&quot;: 3,
+                                        &quot;unit&quot;: &quot;Minute&quot;
+                                    }
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Reply_to_email_(V2)_new_template_simple_add&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;Wait&quot;
+                            },
+                            &quot;Delay_30&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;interval&quot;: {
+                                        &quot;count&quot;: 30,
+                                        &quot;unit&quot;: &quot;Minute&quot;
+                                    }
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;skillsmatrixerdem&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;Wait&quot;
+                            },
+                            &quot;Emails_Initialize_DontSendlistRecruitersContractsVendors_blacklist&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;emailsnottosend use hotmail to test&quot;,
+                                            &quot;type&quot;: &quot;array&quot;,
+                                            &quot;value&quot;: &amp;#091;
+                                                &quot;jobalert@rnms.recruit.net&quot;,
+                                                &quot;James.Newton@marshall.co.uk&quot;,
+                                                &quot;hello@mercury.com&quot;,
+                                                &quot;Self.Service@omantel.om&quot;,
+                                                &quot;omantel.om&quot;,
+                                                &quot;marshall.co.uk&quot;,
+                                                &quot;echosign@echosign.com&quot;,
+                                                &quot;ivisa&quot;,
+                                                &quot;mercury.com&quot;,
+                                                &quot;incfile.com&quot;,
+                                                &quot;contact@gitpod.io&quot;,
+                                                &quot;cprime.com&quot;,
+                                                &quot;oxfordcorp.com&quot;,
+                                                &quot;hello@mercury.com&quot;,
+                                                &quot;uk-operations@cprime.com&quot;,
+                                                &quot;acldigital.com&quot;,
+                                                &quot;savings@mp1.tripadvisor.com&quot;,
+                                                &quot;supportmail@microsoft.com&quot;,
+                                                &quot;events+noreply@send.zapier.com&quot;,
+                                                &quot;help+visa@ivisa.com&quot;,
+                                                &quot;do-not-reply@zipcar.co.uk&quot;,
+                                                &quot;meetup.com&quot;,
+                                                &quot;rental-instant-updates@mail.zillow.com&quot;,
+                                                &quot;ivisa-travel.intercom-mail.com&quot;,
+                                                &quot;do-not-reply@&quot;,
+                                                &quot;do-not-reply@zipcar.co.uk&quot;,
+                                                &quot;do-not-reply@technojobs.co.uk&quot;,
+                                                &quot;calendar-notification@google.com&quot;,
+                                                &quot;invitations@linkedin.com&quot;,
+                                                &quot;postmaster&quot;,
+                                                &quot;news@email.experteer.com&quot;,
+                                                &quot;IT_Notification@vmware.com&quot;,
+                                                &quot;care.com&quot;,
+                                                &quot;1800accountant.com&quot;,
+                                                &quot;postmaster@emeaemail.teams.microsoft.com&quot;,
+                                                &quot;supportmail@microsoft.com&quot;,
+                                                &quot;taxassist.co.uk&quot;,
+                                                &quot;gov.uk.email@notifications.service.gov.uk&quot;,
+                                                &quot;pluralsight.com&quot;,
+                                                &quot;postmaster@payoneerinc.onmicrosoft.com&quot;,
+                                                &quot;docusign.net&quot;,
+                                                &quot;notification@slack.com&quot;,
+                                                &quot;postmaster@accountprotection.microsoft.com&quot;,
+                                                &quot;credit@fundingcircle.com&quot;,
+                                                &quot;shipment-tracking@amazon.co.uk&quot;,
+                                                &quot;notifications@notify.thinkific.com&quot;,
+                                                &quot;return@amazon.co.uk&quot;,
+                                                &quot;new-listings@alerts.trulia.com&quot;,
+                                                &quot;support@mail.support.microsoft.com&quot;,
+                                                &quot;info@pexabo.com&quot;,
+                                                &quot;storebox.co.uk&quot;,
+                                                &quot;elgato&quot;,
+                                                &quot;no-reply&quot;,
+                                                &quot;do-not-reply@technojobs.co.uk&quot;,
+                                                &quot;evmux&quot;,
+                                                &quot;donotreply&quot;,
+                                                &quot;do-not-reply&quot;,
+                                                &quot;rifaterdemsahin@gmail.com&quot;,
+                                                &quot;info@jobplacements.com&quot;,
+                                                &quot;notifications@calendly.com&quot;,
+                                                &quot;ypsomed.com&quot;,
+                                                &quot;jobalerts-noreply@linkedin.com&quot;,
+                                                &quot;noreply@&quot;,
+                                                &quot;apps.jobserve.com&quot;,
+                                                &quot;comment-reply@wordpress.com&quot;,
+                                                &quot;contractspy.co.uk&quot;,
+                                                &quot;alert@indeed.com&quot;,
+                                                &quot;Nathan Hesketh&quot;,
+                                                &quot;cprime&quot;,
+                                                &quot;mailer-daemon@googlemail.com&quot;
+                                            ]
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Content_Initialize_variable_keywords_blacklist&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;For_each_check_and_stop&quot;: {
+                                &quot;actions&quot;: {
+                                    &quot;Condition_check_email&quot;: {
+                                        &quot;actions&quot;: {
+                                            &quot;Set_variable_dontsend&quot;: {
+                                                &quot;inputs&quot;: {
+                                                    &quot;name&quot;: &quot;dontsend&quot;,
+                                                    &quot;value&quot;: true
+                                                },
+                                                &quot;runAfter&quot;: {},
+                                                &quot;type&quot;: &quot;SetVariable&quot;
+                                            }
+                                        },
+                                        &quot;expression&quot;: {
+                                            &quot;and&quot;: &amp;#091;
+                                                {
+                                                    &quot;contains&quot;: &amp;#091;
+                                                        &quot;@triggerBody()?&amp;#091;'From']&quot;,
+                                                        &quot;@items('For_each_check_and_stop')&quot;
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        &quot;runAfter&quot;: {},
+                                        &quot;type&quot;: &quot;If&quot;
+                                    }
+                                },
+                                &quot;foreach&quot;: &quot;@variables('emailsnottosend use hotmail to test')&quot;,
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_dont_send&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;Foreach&quot;
+                            },
+                            &quot;For_each_skills_match_one_is_enough&quot;: {
+                                &quot;actions&quot;: {
+                                    &quot;Condition_check_for_it&quot;: {
+                                        &quot;actions&quot;: {
+                                            &quot;Increment_variable_skills&quot;: {
+                                                &quot;inputs&quot;: {
+                                                    &quot;name&quot;: &quot;matchskillcount&quot;,
+                                                    &quot;value&quot;: 1
+                                                },
+                                                &quot;runAfter&quot;: {
+                                                    &quot;Set_variable_skills_match&quot;: &amp;#091;
+                                                        &quot;Succeeded&quot;
+                                                    ]
+                                                },
+                                                &quot;type&quot;: &quot;IncrementVariable&quot;
+                                            },
+                                            &quot;Set_variable_skills_match&quot;: {
+                                                &quot;inputs&quot;: {
+                                                    &quot;name&quot;: &quot;istherearematchingskill&quot;,
+                                                    &quot;value&quot;: true
+                                                },
+                                                &quot;runAfter&quot;: {},
+                                                &quot;type&quot;: &quot;SetVariable&quot;
+                                            }
+                                        },
+                                        &quot;else&quot;: {
+                                            &quot;actions&quot;: {
+                                                &quot;Set_variable_debugger_check&quot;: {
+                                                    &quot;inputs&quot;: {
+                                                        &quot;name&quot;: &quot;debugstringonwhatwecanfindintinemail&quot;,
+                                                        &quot;value&quot;: &quot;@{body('Html_to_text_for_the_emailbody')}\n---------------- contains ------------------------\n@{item()}&quot;
+                                                    },
+                                                    &quot;runAfter&quot;: {},
+                                                    &quot;type&quot;: &quot;SetVariable&quot;
+                                                }
+                                            }
+                                        },
+                                        &quot;expression&quot;: {
+                                            &quot;and&quot;: &amp;#091;
+                                                {
+                                                    &quot;contains&quot;: &amp;#091;
+                                                        &quot;@body('Html_to_text_for_the_emailbody')&quot;,
+                                                        &quot;@item()&quot;
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        &quot;runAfter&quot;: {},
+                                        &quot;type&quot;: &quot;If&quot;
+                                    }
+                                },
+                                &quot;foreach&quot;: &quot;@variables('matchingskills')&quot;,
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_debug_string_email_seek_for_skill&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;trackedProperties&quot;: {},
+                                &quot;type&quot;: &quot;Foreach&quot;
+                            },
+                            &quot;Foreachblacklisted_keywords&quot;: {
+                                &quot;actions&quot;: {
+                                    &quot;Condition_check_blacklisted&quot;: {
+                                        &quot;actions&quot;: {
+                                            &quot;Increment_variable&quot;: {
+                                                &quot;inputs&quot;: {
+                                                    &quot;name&quot;: &quot;blacklistedwordscount&quot;,
+                                                    &quot;value&quot;: 1
+                                                },
+                                                &quot;runAfter&quot;: {},
+                                                &quot;type&quot;: &quot;IncrementVariable&quot;
+                                            }
+                                        },
+                                        &quot;expression&quot;: {
+                                            &quot;and&quot;: &amp;#091;
+                                                {
+                                                    &quot;contains&quot;: &amp;#091;
+                                                        &quot;@triggerBody()&quot;,
+                                                        &quot;@item()&quot;
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        &quot;runAfter&quot;: {},
+                                        &quot;type&quot;: &quot;If&quot;
+                                    }
+                                },
+                                &quot;foreach&quot;: &quot;@variables('blacklistedkeywords')&quot;,
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_blacklisted&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;Foreach&quot;
+                            },
+                            &quot;Html_to_text_for_the_emailbody&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;body&quot;: &quot;&lt;p&gt;@{triggerBody()?&amp;#091;'Body']}&lt;/p&gt;&quot;,
+                                    &quot;host&quot;: {
+                                        &quot;connection&quot;: {
+                                            &quot;name&quot;: &quot;@parameters('$connections')&amp;#091;'conversionservice']&amp;#091;'connectionId']&quot;
+                                        }
+                                    },
+                                    &quot;method&quot;: &quot;post&quot;,
+                                    &quot;path&quot;: &quot;/html2text&quot;
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_plaintextemailreceived&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;ApiConnection&quot;
+                            },
+                            &quot;Initialize_variable_EmailSendingBody_Html_Format_it&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;EmailSendingBody&quot;,
+                                            &quot;type&quot;: &quot;string&quot;,
+                                            &quot;value&quot;: &quot;&lt;p&gt;@{variables('mysendingemailbody')}&lt;/p&gt;\n\n&lt;p&gt;\n&lt;b&gt;\nCV in text Format&lt;/b&gt;\n@{variables('maincvtxt')}\n&lt;/p&gt;\n\n&lt;p&gt;&lt;i&gt;\nTo download the CV, Skill Matrix, References, Photo, Introduction Video, and FAQ please use the link&lt;/i&gt;\n@{variables('cvlink')}\n&lt;/p&gt;\n&lt;p&gt;&lt;i&gt;\nVideo for the most asked questions;&lt;/i&gt;\nhttps://www.loom.com/share/3a0f58ccc99049d3b1519eb4598cd05d?sid=f370c96a-448e-4111-89e2-38a64bbbe2f4\n&lt;/p&gt;\n\n&lt;p&gt;&lt;b&gt;\nTo schedule a call to discuss my application further https://calendly.com/rifaterdem/schedule\n&lt;/b&gt;\n&lt;/p&gt;&quot;
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_email_text_mysendingemailbody&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_attachments&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;myattachments&quot;,
+                                            &quot;type&quot;: &quot;array&quot;
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;check_c2c&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_blacklisted&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;blacklistedwordscount&quot;,
+                                            &quot;type&quot;: &quot;integer&quot;
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Emails_Initialize_DontSendlistRecruitersContractsVendors_blacklist&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_cc_person&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;ccperson&quot;,
+                                            &quot;type&quot;: &quot;string&quot;,
+                                            &quot;value&quot;: &quot;ece.pakkan@gmail.com&quot;
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_todo&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_cvlink&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;cvlink&quot;,
+                                            &quot;type&quot;: &quot;string&quot;,
+                                            &quot;value&quot;: &quot;@{variables('cvuk')}&quot;
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_global&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_debug_string_email_seek_for_skill&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;debugstringonwhatwecanfindintinemail&quot;,
+                                            &quot;type&quot;: &quot;string&quot;,
+                                            &quot;value&quot;: &quot;---&quot;
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_isitaskingaresume&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_debug_to_sender&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;debugforsender&quot;,
+                                            &quot;type&quot;: &quot;string&quot;,
+                                            &quot;value&quot;: &quot;send to &gt; @{triggerBody()?&amp;#091;'To']}\nemail content &gt; @{body('Html_to_text_for_the_emailbody')}&quot;
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_EmailSendingBody_Html_Format_it&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_devopsrole&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;devopsrole&quot;,
+                                            &quot;type&quot;: &quot;boolean&quot;,
+                                            &quot;value&quot;: false
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_skillcount&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_dont_send&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;dontsend&quot;,
+                                            &quot;type&quot;: &quot;boolean&quot;,
+                                            &quot;value&quot;: false
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_mydebugerrortext_helper&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_email_text_mysendingemailbody&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;mysendingemailbody&quot;,
+                                            &quot;type&quot;: &quot;string&quot;,
+                                            &quot;value&quot;: &quot;&lt;p&gt;I appreciate your interest in my profile for this position. I would love to work with your team and help your company achieve its goals. Please find attached some additional documents that showcase my skills and experience.\n&lt;/p&gt;\n&lt;p&gt;Please find my linked CV, which includes a short and detailed version of my work history and education. Additionally, I have included a document outlining my skills and specific areas of expertise that I believe would be valuable in this role.\n&lt;/p&gt;\n&lt;p&gt;\nIn order to give you a better sense of my personality and communication style, I have also created an initial video that you will find informative and engaging.\n&lt;/p&gt;\n&lt;p&gt;\nThank you again for your time and consideration. I look forward to speaking with you soon.\n&lt;/p&gt;\n&lt;p&gt;\nBest regards\nErdem\n&lt;/p&gt;&quot;
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_maincv_txt&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_global&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;cvglobal&quot;,
+                                            &quot;type&quot;: &quot;string&quot;,
+                                            &quot;value&quot;: &quot;http://gofile.me/4Vwuv/0Hq9WDOcn&quot;
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_usa&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_globalrole&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;globalrole&quot;,
+                                            &quot;type&quot;: &quot;boolean&quot;,
+                                            &quot;value&quot;: false
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_us_role&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_iscontract&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;iscontract&quot;,
+                                            &quot;type&quot;: &quot;boolean&quot;,
+                                            &quot;value&quot;: false
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_ukrole&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_isitaskingaresume&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;isitaskingaresume&quot;,
+                                            &quot;type&quot;: &quot;boolean&quot;,
+                                            &quot;value&quot;: false
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_isthisarecruiter&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_issolutionarchitectrole&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;issolutionarchitectrole&quot;,
+                                            &quot;type&quot;: &quot;boolean&quot;,
+                                            &quot;value&quot;: false
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_devopsrole&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_istherearematchingskill&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;istherearematchingskill&quot;,
+                                            &quot;type&quot;: &quot;boolean&quot;,
+                                            &quot;value&quot;: false
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_matchingskills_&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_isthisarecruiter&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;isthisarecruiter&quot;,
+                                            &quot;type&quot;: &quot;boolean&quot;,
+                                            &quot;value&quot;: false
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_globalrole&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_maincv_txt&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;maincvtxt&quot;,
+                                            &quot;type&quot;: &quot;string&quot;,
+                                            &quot;value&quot;: &quot;&lt;p&gt;Erdem Sahin&lt;/p&gt;\n&lt;p&gt;Summary Experienced hands-on architect with expertise in DevOps, migration, CI/CD, and Scrum. Recognizes client needs to deliver projects and has a history of successful project completion.&lt;/p&gt;\n\n&lt;p&gt;Skills&lt;/p&gt;\n&lt;p&gt;\nDevOps, migration, CI/CD, ScrumDomain-Driven Design, software architectural design, artificial intelligence, software project management, continuous delivery, game design, continuous integration, architectural patterns, big data, team leadership, business intelligence, test-driven development, sales management, full stack .NET development, code coverage, messaging, object-oriented development, microservices, Kanban, UML, UI/UX, web development, database, Agile, TDD, BDD, XP, cloud computing, continuous deployment, project estimation, software quality, execute full lifecycle software development, SDLC, Rational Unified Process, web services, ORM, virtual machine management, virtual network management, load balancing, cloud backup, MVC, SOLID design, design patterns, JavaScript, debugging, ChatOps, feature toggles, release flow, reverse proxy, PAAS, tenant, multi-tenancy architecture, adaptive object modeling, virtual reality, Oculus Quest, Facebook Enterprise, video editing, blockchain, Bitcoin, Greenfield projects, ELK, VSS, TFS, BizTalk, messaging queue\n&lt;/p&gt;\n&lt;p&gt;\nProjects\n&lt;/p&gt;\n&lt;p&gt;\nHere is a list of some of the projects I have worked on in recent years:\n&lt;ul&gt; &lt;li&gt;Pexabo LTD (AWS Solution Architect), United Kingdom, 2023&lt;/li&gt; &lt;li&gt;Ypsomed (Git Migration, TFS Migration), Switzerland, 2023&lt;/li&gt; &lt;li&gt;Cushman Wakefield (IAC, ETL Automation, DataBricks, MuleSoft, Database), London, 2022&lt;/li&gt; &lt;li&gt;Emerson (Kubernetes, Docker Containers), USA, 2021&lt;/li&gt; &lt;li&gt;RHIM (Azure AI, GPU Processing, Docker Containers), 2021&lt;/li&gt; &lt;li&gt;Sword (Azure Bicep, Octopus, Infrastructure as Code, Pipeline as Code), UK, 2020&lt;/li&gt; &lt;li&gt;Theta (Serverless, LogicApp Automation, API Management Automation), London, 2020&lt;/li&gt; &lt;li&gt;Ardent Blue Technologies LLC (Python, Serverless CI/CD of Virtual Reality Oculus Ent), USA, 2019&lt;/li&gt; &lt;li&gt;ZTE/Netas/Qatar World Cup (Architecture for DevOps Consulting), Qatar, 2019&lt;/li&gt; &lt;li&gt;Concentra Analytics (Terraform-based Python DevOps Framework Azure to AWS), London, 2019&lt;/li&gt; &lt;li&gt;SmartSpace-Finance (Service Fabric automation for continuous delivery), London, 2019&lt;/li&gt; &lt;li&gt;Redbox-TelCo (On-premise Kubernetes Migration, ELK, Confluence), Nottingham, 2018&lt;/li&gt; &lt;li&gt;MMT-Translink Ticketing (Docker Microservice Architecture, Python, Confluence), Oakham, 2018&lt;/li&gt; &lt;li&gt;Craneware-HealthCare (ChatOps for Continuous Delivery, Confluence), Edinburgh, 2018&lt;/li&gt; &lt;li&gt;Scottish Enterprise-Government (Continuous Delivery in Azure, ELK), Glasgow, 2017&lt;/li&gt; &lt;li&gt;Ticket Arena-E-commerce (Continuous Integration), Leeds, 2017&lt;/li&gt; &lt;li&gt;Holovis International LTD-Gaming (Continuous Build &amp; Cloud backend services), Rugby, 2017&lt;/li&gt; &lt;li&gt;Microsoft (Drives high-priority customer initiatives on Azure, Enterprise migration to the cloud, Implementing proof of concepts, pilots, and prototypes), 2016&lt;/li&gt; &lt;li&gt;Accenture (Ensure quality assurance of the enterprise software as a manager, Implement agile methodologies such as Kanban and Scrum), 2015&lt;/li&gt; &lt;li&gt;Bitcoin Trader (Implement continuous delivery practice as team lead, Bitcoin white label system in multiple regions, Cloud Transformation), 2014&lt;/li&gt; &lt;li&gt;Broadage (Implemented microservices design as team lead, CQRS implementation to support a big data system, 24/7 monitoring system), 2013&lt;/li&gt; &lt;li&gt;Wordego (Ad server platform implementing dynamic scaling, showcased in San Francisco), 2012&lt;/li&gt; &lt;/ul&gt;\n&lt;/p&gt;\n&lt;p&gt;\nCertifications\n&lt;/p&gt;\nMicrosoft Certified Professional, Developing Solutions in Azure (70-532)\n&lt;p&gt;Education&lt;/p&gt;\nSouthern New Hampshire University, USA - Information Tech (BA), 2013\n&quot;
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Condition_global&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_matchingskills_&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;matchingskills&quot;,
+                                            &quot;type&quot;: &quot;array&quot;,
+                                            &quot;value&quot;: &amp;#091;
+                                                &quot;Natural Language Processing&quot;,
+                                                &quot;.NET&quot;,
+                                                &quot;.Net Core&quot;,
+                                                &quot;Adaptive Security&quot;,
+                                                &quot;Advanced Java&quot;,
+                                                &quot;Agile Coaching&quot;,
+                                                &quot;Agile Development&quot;,
+                                                &quot;AIOps&quot;,
+                                                &quot;Ajax&quot;,
+                                                &quot;Amazon RDS&quot;,
+                                                &quot;Angular&quot;,
+                                                &quot;Ansible&quot;,
+                                                &quot;AnyDesk&quot;,
+                                                &quot;AnyDesk&quot;,
+                                                &quot;Apache Hadoop&quot;,
+                                                &quot;Apache Zookeeper&quot;,
+                                                &quot;API&quot;,
+                                                &quot;API&quot;,
+                                                &quot;apim / api management gateway / app gateway&quot;,
+                                                &quot;appdynamics&quot;,
+                                                &quot;Apple&quot;,
+                                                &quot;Architect&quot;,
+                                                &quot;Architecture Systems&quot;,
+                                                &quot;Artifactory&quot;,
+                                                &quot;Artificial Intelligence&quot;,
+                                                &quot;Asp.NetASP.NET Core&quot;,
+                                                &quot;AWS&quot;,
+                                                &quot;AWS CloudFormation&quot;,
+                                                &quot;AWS CloudWatch&quot;,
+                                                &quot;AWS Dynamo DB&quot;,
+                                                &quot;AWS EC2&quot;,
+                                                &quot;AWS Fargate&quot;,
+                                                &quot;AWS Lambda&quot;,
+                                                &quot;AWS RDS&quot;,
+                                                &quot;AWS Route 53&quot;,
+                                                &quot;AWS S3&quot;,
+                                                &quot;AWS VPC&quot;,
+                                                &quot;Azure&quot;,
+                                                &quot;Azure AKS&quot;,
+                                                &quot;Azure App Service&quot;,
+                                                &quot;Azure Blob Storage&quot;,
+                                                &quot;Azure Cosmos DB&quot;,
+                                                &quot;Azure Data Factory&quot;,
+                                                &quot;Azure Database&quot;,
+                                                &quot;Azure DevOps&quot;,
+                                                &quot;Azure Devops&quot;,
+                                                &quot;Azure DNS&quot;,
+                                                &quot;Azure Functions&quot;,
+                                                &quot;Azure Pipelines&quot;,
+                                                &quot;Azure Virtual Machines&quot;,
+                                                &quot;Azure Virtual Network&quot;,
+                                                &quot;BackEnd&quot;,
+                                                &quot;Bash&quot;,
+                                                &quot;Bash&quot;,
+                                                &quot;BDD ( Behavior Driven Development )&quot;,
+                                                &quot;Bitbucket&quot;,
+                                                &quot;Biz Talk&quot;,
+                                                &quot;Blockchain&quot;,
+                                                &quot;Bootstrap&quot;,
+                                                &quot;Building Effective Teams&quot;,
+                                                &quot;C#&quot;,
+                                                &quot;C#&quot;,
+                                                &quot;Canva&quot;,
+                                                &quot;Canva&quot;,
+                                                &quot;CD Continuous Delivery&quot;,
+                                                &quot;CDN Content Delivery Networks&quot;,
+                                                &quot;Change Management&quot;,
+                                                &quot;Channel bonding&quot;,
+                                                &quot;Chatbot&quot;,
+                                                &quot;ChatOps&quot;,
+                                                &quot;Chef&quot;,
+                                                &quot;Chocolately&quot;,
+                                                &quot;Clean Code&quot;,
+                                                &quot;Cloud&quot;,
+                                                &quot;Cloud Budget Management&quot;,
+                                                &quot;Cloud Computing&quot;,
+                                                &quot;Cloud Front&quot;,
+                                                &quot;Cloud Native&quot;,
+                                                &quot;Cloud Security&quot;,
+                                                &quot;Cloudwatch&quot;,
+                                                &quot;Code Reviews&quot;,
+                                                &quot;Communication Skills&quot;,
+                                                &quot;Configuration automation&quot;,
+                                                &quot;Confluence&quot;,
+                                                &quot;Consulting&quot;,
+                                                &quot;Containers&quot;,
+                                                &quot;Containers&quot;,
+                                                &quot;Continuous Delivery&quot;,
+                                                &quot;Continuous Delivery&quot;,
+                                                &quot;Continuous Integration&quot;,
+                                                &quot;Core Java&quot;,
+                                                &quot;CRM&quot;,
+                                                &quot;CSS&quot;,
+                                                &quot;CSS&quot;,
+                                                &quot;Cybersecurity&quot;,
+                                                &quot;Dashboard&quot;,
+                                                &quot;Data Architecture&quot;,
+                                                &quot;Data Center&quot;,
+                                                &quot;Databricks&quot;,
+                                                &quot;Databricks&quot;,
+                                                &quot;datadog&quot;,
+                                                &quot;Datafactory&quot;,
+                                                &quot;Davinci Resolve&quot;,
+                                                &quot;Davinci Resolve&quot;,
+                                                &quot;Db40&quot;,
+                                                &quot;DDD&quot;,
+                                                &quot;Design patterns&quot;,
+                                                &quot;Design Patterns&quot;,
+                                                &quot;Development Tools&quot;,
+                                                &quot;Devops&quot;,
+                                                &quot;DevSecOps&quot;,
+                                                &quot;Digital Marketing&quot;,
+                                                &quot;DISC assessment&quot;,
+                                                &quot;Discord&quot;,
+                                                &quot;Discord&quot;,
+                                                &quot;Docker&quot;,
+                                                &quot;Docker Swarm&quot;,
+                                                &quot;Driving (UK Left Side )&quot;,
+                                                &quot;Driving (USA Right Side )&quot;,
+                                                &quot;Dynamodb&quot;,
+                                                &quot;Eclipse&quot;,
+                                                &quot;Effective Communication&quot;,
+                                                &quot;Elastic Search&quot;,
+                                                &quot;ELK Stack&quot;,
+                                                &quot;Embedded systems&quot;,
+                                                &quot;English&quot;,
+                                                &quot;Entity Framework&quot;,
+                                                &quot;ETL  ( Extract Transform Load )&quot;,
+                                                &quot;evmux&quot;,
+                                                &quot;Excel&quot;,
+                                                &quot;Games&quot;,
+                                                &quot;Gem&quot;,
+                                                &quot;Git&quot;,
+                                                &quot;Git&quot;,
+                                                &quot;Gitflow&quot;,
+                                                &quot;Github&quot;,
+                                                &quot;Gitlab&quot;,
+                                                &quot;GitlabCI&quot;,
+                                                &quot;Gmail&quot;,
+                                                &quot;Google Cloud Functions&quot;,
+                                                &quot;Google Compute Engine&quot;,
+                                                &quot;Google Enterprise&quot;,
+                                                &quot;Google Firebase&quot;,
+                                                &quot;Google Play&quot;,
+                                                &quot;Gpu&quot;,
+                                                &quot;Grafana&quot;,
+                                                &quot;Hadoop&quot;,
+                                                &quot;Helm&quot;,
+                                                &quot;HTML&quot;,
+                                                &quot;HTML5&quot;,
+                                                &quot;HTTP&quot;,
+                                                &quot;HTTPS&quot;,
+                                                &quot;IaaS&quot;,
+                                                &quot;IaC&quot;,
+                                                &quot;IaC&quot;,
+                                                &quot;IIS&quot;,
+                                                &quot;Infrastructure management&quot;,
+                                                &quot;Introduction to Programming&quot;,
+                                                &quot;Invoicing&quot;,
+                                                &quot;Iot&quot;,
+                                                &quot;Iso 27001&quot;,
+                                                &quot;Java&quot;,
+                                                &quot;Javascript&quot;,
+                                                &quot;JavaScript&quot;,
+                                                &quot;Jekyll&quot;,
+                                                &quot;Jenkins&quot;,
+                                                &quot;Jenkins&quot;,
+                                                &quot;Jira&quot;,
+                                                &quot;jQuery&quot;,
+                                                &quot;JSON&quot;,
+                                                &quot;Kanban&quot;,
+                                                &quot;Kanban&quot;,
+                                                &quot;Kubernetes&quot;,
+                                                &quot;Language Proficiency English&quot;,
+                                                &quot;Language Proficiency Turkish&quot;,
+                                                &quot;Lastpass&quot;,
+                                                &quot;Linux&quot;,
+                                                &quot;Logstash&quot;,
+                                                &quot;MacOs&quot;,
+                                                &quot;Management&quot;,
+                                                &quot;Maven&quot;,
+                                                &quot;Mercurial&quot;,
+                                                &quot;Microservices&quot;,
+                                                &quot;Microsoft SQL Server&quot;,
+                                                &quot;Microsoft Visual Studio&quot;,
+                                                &quot;Mindmaps&quot;,
+                                                &quot;Mindmeister&quot;,
+                                                &quot;Miro&quot;,
+                                                &quot;Mobility&quot;,
+                                                &quot;Mongodb&quot;,
+                                                &quot;Monolith&quot;,
+                                                &quot;MQ (Message Brokering/Message Queues)&quot;,
+                                                &quot;MSSQL SSIS&quot;,
+                                                &quot;MVC&quot;,
+                                                &quot;MVP&quot;,
+                                                &quot;MyGet&quot;,
+                                                &quot;MySQL&quot;,
+                                                &quot;Negotiation&quot;,
+                                                &quot;Neo4j&quot;,
+                                                &quot;Networking&quot;,
+                                                &quot;Networking&quot;,
+                                                &quot;New Relic&quot;,
+                                                &quot;NewRelic&quot;,
+                                                &quot;nginx&quot;,
+                                                &quot;Node.JS&quot;,
+                                                &quot;NodeJs&quot;,
+                                                &quot;Non-Relational Databases&quot;,
+                                                &quot;Nosql&quot;,
+                                                &quot;obs&quot;,
+                                                &quot;OBS&quot;,
+                                                &quot;Octopus&quot;,
+                                                &quot;Oculus&quot;,
+                                                &quot;Office 365&quot;,
+                                                &quot;Okta&quot;,
+                                                &quot;OO Programming&quot;,
+                                                &quot;Open ID&quot;,
+                                                &quot;Open Source Training&quot;,
+                                                &quot;OpenCL / CUDA&quot;,
+                                                &quot;Oracle&quot;,
+                                                &quot;Parsec&quot;,
+                                                &quot;Patterns of Enterprise Application Architecture&quot;,
+                                                &quot;Penetration Testing&quot;,
+                                                &quot;Pentest&quot;,
+                                                &quot;Perforce&quot;,
+                                                &quot;Personality Profiles&quot;,
+                                                &quot;Pipelines&quot;,
+                                                &quot;PostgreSQL&quot;,
+                                                &quot;PowerBI&quot;,
+                                                &quot;Powershell&quot;,
+                                                &quot;Presentation Skills&quot;,
+                                                &quot;Product Owner&quot;,
+                                                &quot;Professional Development&quot;,
+                                                &quot;Proxmox&quot;,
+                                                &quot;Puppet&quot;,
+                                                &quot;Python&quot;,
+                                                &quot;Python&quot;,
+                                                &quot;Quickbooks&quot;,
+                                                &quot;Quickbooks&quot;,
+                                                &quot;Raspberry Pi&quot;,
+                                                &quot;Rational Unified Process&quot;,
+                                                &quot;RDP&quot;,
+                                                &quot;Redis&quot;,
+                                                &quot;Redis&quot;,
+                                                &quot;Remote&quot;,
+                                                &quot;Responsive Design&quot;,
+                                                &quot;REST&quot;,
+                                                &quot;Restream.IO&quot;,
+                                                &quot;Router&quot;,
+                                                &quot;RPA&quot;,
+                                                &quot;Ruby&quot;,
+                                                &quot;S3&quot;,
+                                                &quot;Screenshot&quot;,
+                                                &quot;Script Programming&quot;,
+                                                &quot;Scripting&quot;,
+                                                &quot;Scrum&quot;,
+                                                &quot;Scrum&quot;,
+                                                &quot;Scrumban&quot;,
+                                                &quot;SDLC&quot;,
+                                                &quot;Search Engine Optimization (SEO)&quot;,
+                                                &quot;Secret Manager&quot;,
+                                                &quot;Secrets Management&quot;,
+                                                &quot;Security&quot;,
+                                                &quot;Server Administration&quot;,
+                                                &quot;Serverless&quot;,
+                                                &quot;Service Fabric&quot;,
+                                                &quot;SES&quot;,
+                                                &quot;Shell&quot;,
+                                                &quot;Site Reliability Engineering&quot;,
+                                                &quot;Slack&quot;,
+                                                &quot;SNS&quot;,
+                                                &quot;SOA&quot;,
+                                                &quot;Social Media Marketing&quot;,
+                                                &quot;Software Architecture Methodologies&quot;,
+                                                &quot;Software Design&quot;,
+                                                &quot;Software Engineering Training&quot;,
+                                                &quot;SOLR&quot;,
+                                                &quot;Sonarqube&quot;,
+                                                &quot;Splunk&quot;,
+                                                &quot;SQS&quot;,
+                                                &quot;SSH&quot;,
+                                                &quot;Strategy Communication / Storytelling&quot;,
+                                                &quot;Streaming&quot;,
+                                                &quot;System Architecture&quot;,
+                                                &quot;TDD&quot;,
+                                                &quot;TDD&quot;,
+                                                &quot;Teaching and mentoring skills&quot;,
+                                                &quot;Team Foundation Server&quot;,
+                                                &quot;Teams&quot;,
+                                                &quot;Teams&quot;,
+                                                &quot;Teamviewer&quot;,
+                                                &quot;Technical Writing&quot;,
+                                                &quot;Terraform&quot;,
+                                                &quot;Testing&quot;,
+                                                &quot;Trello&quot;,
+                                                &quot;Trunk Based Development&quot;,
+                                                &quot;Typescript&quot;,
+                                                &quot;Ubuntu&quot;,
+                                                &quot;Ubuntu&quot;,
+                                                &quot;Ubuntu&quot;,
+                                                &quot;UI&quot;,
+                                                &quot;UIPath&quot;,
+                                                &quot;UML modelling&quot;,
+                                                &quot;Unit Testing&quot;,
+                                                &quot;Unity 3D&quot;,
+                                                &quot;Unreal&quot;,
+                                                &quot;UX&quot;,
+                                                &quot;Vagrant&quot;,
+                                                &quot;VB.NET&quot;,
+                                                &quot;vdo.ninja&quot;,
+                                                &quot;Video Production&quot;,
+                                                &quot;Visa&quot;,
+                                                &quot;Visual Studio&quot;,
+                                                &quot;Visual Studio Code&quot;,
+                                                &quot;Vmware workstation&quot;,
+                                                &quot;Voicemeeter&quot;,
+                                                &quot;VoiceMeeter&quot;,
+                                                &quot;VR&quot;,
+                                                &quot;VR&quot;,
+                                                &quot;VSS&quot;,
+                                                &quot;VSTS&quot;,
+                                                &quot;WAF&quot;,
+                                                &quot;Web Access Firewall&quot;,
+                                                &quot;Web Design&quot;,
+                                                &quot;Web Performance&quot;,
+                                                &quot;Web Services&quot;,
+                                                &quot;WebEx&quot;,
+                                                &quot;Windows&quot;,
+                                                &quot;Wireshark&quot;,
+                                                &quot;Workflow&quot;,
+                                                &quot;Writing Technical White Papers&quot;,
+                                                &quot;WSDL&quot;,
+                                                &quot;XML&quot;,
+                                                &quot;XP&quot;,
+                                                &quot;XP (Extreme Programming)&quot;,
+                                                &quot;Xsplit&quot;,
+                                                &quot;Youtube&quot;,
+                                                &quot;Zoom&quot;
+                                            ]
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;self_reference_or_to_a_reply_back_for_the_second_time&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_monitoring_string&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;MONITOR VARIABLE&quot;,
+                                            &quot;type&quot;: &quot;string&quot;,
+                                            &quot;value&quot;: &quot;Markers\n======================\nis this a recuriter: @{variables('isthisarecruiter')}\nglobal role : @{variables('globalrole')}\nusa role : @{variables('usarole')}\ndont send : @{variables('dontsend')}\ndevopsrole : @{variables('devopsrole')}\niscontract: @{variables('iscontract')}\nisukrole : @{variables('ukrole')}\nisitaskingaresume: @{variables('isitaskingaresume')}\nissolutionarchitect: @{variables('issolutionarchitectrole')}\nismatchingskills: @{variables('istherearematchingskill')}\nskillsmatchcount: @{variables('matchskillcount')}\nPlaintext email -\n-------------------------\n@{variables('plaintextemailreceived')}&quot;
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_attachments&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_mydebugerrortext_helper&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;mydebugerrortext&quot;,
+                                            &quot;type&quot;: &quot;string&quot;,
+                                            &quot;value&quot;: &quot;XXX&quot;
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Condition_blacklisted_check&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_plaintextemailreceived&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;plaintextemailreceived&quot;,
+                                            &quot;type&quot;: &quot;string&quot;,
+                                            &quot;value&quot;: &quot;-&quot;
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;check_sending_condition&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_skillcount&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;matchskillcount&quot;,
+                                            &quot;type&quot;: &quot;integer&quot;,
+                                            &quot;value&quot;: 0
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_istherearematchingskill&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_to_debug_sender_and_the_skills_count_&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;sendtodebug&quot;,
+                                            &quot;type&quot;: &quot;string&quot;,
+                                            &quot;value&quot;: &quot;@{triggerBody()?&amp;#091;'SenderName']} skill count : @{variables('matchskillcount')}&quot;
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;check_valid_email_to_be_send_to_target_market_as_a_reply&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_todo&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;todoattheendusetwologicapps&quot;,
+                                            &quot;type&quot;: &quot;string&quot;,
+                                            &quot;value&quot;: &quot;use 3 logic apps ( main text cv / attachments / cover letter ) have the delays to show the time that you are writing on this.&quot;
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Condition_till_fixed_opening_up_emails_could_be_v2_isold_template&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_todos&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;todos&quot;,
+                                            &quot;type&quot;: &quot;string&quot;,
+                                            &quot;value&quot;: &quot;cv  embed / cv by loc / ai integrate custom email / backlist without opening workflow easier place needed &gt; auto add to the blacklist\ntodo &gt; ai to answer the questions &gt; https://mail.google.com/mail/u/0/#advanced-search/is_unread=true&amp;query=label%3A_borrow_followupmain&amp;isrefinement=true/FMfcgzGtxKRbTHdrGBTjZLxZcVLqltlf&quot;
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {},
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_uk&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;cvuk&quot;,
+                                            &quot;type&quot;: &quot;string&quot;,
+                                            &quot;value&quot;: &quot;http://gofile.me/4Vwuv/ItDjQzKik&quot;
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_to_debug_sender_and_the_skills_count_&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_ukrole&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;ukrole&quot;,
+                                            &quot;type&quot;: &quot;boolean&quot;,
+                                            &quot;value&quot;: false
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_issolutionarchitectrole&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_us_role&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;usarole&quot;,
+                                            &quot;type&quot;: &quot;boolean&quot;,
+                                            &quot;value&quot;: false
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_iscontract&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Initialize_variable_usa&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;variables&quot;: &amp;#091;
+                                        {
+                                            &quot;name&quot;: &quot;cvusa&quot;,
+                                            &quot;type&quot;: &quot;string&quot;,
+                                            &quot;value&quot;: &quot;http://gofile.me/4Vwuv/DUAk9L60T&quot;
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_uk&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;InitializeVariable&quot;
+                            },
+                            &quot;Reply_to_email_(V2)_new_template_simple_add&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;body&quot;: {
+                                        &quot;Body&quot;: &quot;&lt;p&gt;@{variables('EmailSendingBody')}&lt;/p&gt;&quot;,
+                                        &quot;Importance&quot;: &quot;High&quot;,
+                                        &quot;Subject&quot;: &quot;Thanks for the email&quot;,
+                                        &quot;To&quot;: &quot;@triggerBody()?&amp;#091;'From']&quot;
+                                    },
+                                    &quot;host&quot;: {
+                                        &quot;connection&quot;: {
+                                            &quot;name&quot;: &quot;@parameters('$connections')&amp;#091;'gmail']&amp;#091;'connectionId']&quot;
+                                        }
+                                    },
+                                    &quot;method&quot;: &quot;post&quot;,
+                                    &quot;path&quot;: &quot;/v2/Mail/ReplyTo/@{encodeURIComponent(triggerBody()?&amp;#091;'Id'])}&quot;
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_cc_person&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;ApiConnection&quot;
+                            },
+                            &quot;Set_variable_text_of_the_email_that_is_received&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;name&quot;: &quot;plaintextemailreceived&quot;,
+                                    &quot;value&quot;: &quot;@body('Html_to_text_for_the_emailbody')&quot;
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Html_to_text_for_the_emailbody&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;SetVariable&quot;
+                            },
+                            &quot;check_c2c&quot;: {
+                                &quot;actions&quot;: {
+                                    &quot;Set_variable_usa_role_with_c2c_match&quot;: {
+                                        &quot;inputs&quot;: {
+                                            &quot;name&quot;: &quot;usarole&quot;,
+                                            &quot;value&quot;: true
+                                        },
+                                        &quot;runAfter&quot;: {},
+                                        &quot;type&quot;: &quot;SetVariable&quot;
+                                    }
+                                },
+                                &quot;expression&quot;: {
+                                    &quot;and&quot;: &amp;#091;
+                                        {
+                                            &quot;contains&quot;: &amp;#091;
+                                                &quot;@triggerBody()?&amp;#091;'Body']&quot;,
+                                                &quot;c2c&quot;
+                                            ]
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;check_ir35&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;If&quot;
+                            },
+                            &quot;check_ir35&quot;: {
+                                &quot;actions&quot;: {
+                                    &quot;Set_variable_is_it_a_contract&quot;: {
+                                        &quot;inputs&quot;: {
+                                            &quot;name&quot;: &quot;iscontract&quot;,
+                                            &quot;value&quot;: true
+                                        },
+                                        &quot;runAfter&quot;: {
+                                            &quot;Set_variable_uk_contract&quot;: &amp;#091;
+                                                &quot;Succeeded&quot;
+                                            ]
+                                        },
+                                        &quot;type&quot;: &quot;SetVariable&quot;
+                                    },
+                                    &quot;Set_variable_uk_contract&quot;: {
+                                        &quot;inputs&quot;: {
+                                            &quot;name&quot;: &quot;ukrole&quot;,
+                                            &quot;value&quot;: true
+                                        },
+                                        &quot;runAfter&quot;: {},
+                                        &quot;type&quot;: &quot;SetVariable&quot;
+                                    }
+                                },
+                                &quot;expression&quot;: {
+                                    &quot;and&quot;: &amp;#091;
+                                        {
+                                            &quot;contains&quot;: &amp;#091;
+                                                &quot;@triggerBody()?&amp;#091;'Body']&quot;,
+                                                &quot;ir35&quot;
+                                            ]
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Check_uk_&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;If&quot;
+                            },
+                            &quot;check_recruiter&quot;: {
+                                &quot;actions&quot;: {
+                                    &quot;Set_variable_5&quot;: {
+                                        &quot;inputs&quot;: {
+                                            &quot;name&quot;: &quot;isthisarecruiter&quot;,
+                                            &quot;value&quot;: true
+                                        },
+                                        &quot;runAfter&quot;: {},
+                                        &quot;type&quot;: &quot;SetVariable&quot;
+                                    }
+                                },
+                                &quot;expression&quot;: {
+                                    &quot;and&quot;: &amp;#091;
+                                        {
+                                            &quot;contains&quot;: &amp;#091;
+                                                &quot;@triggerBody()?&amp;#091;'Body']&quot;,
+                                                &quot;Recruitment &quot;
+                                            ]
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Condition_isitaskingaresume&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;If&quot;
+                            },
+                            &quot;check_sending_condition&quot;: {
+                                &quot;actions&quot;: {
+                                    &quot;See_the_blocked_email_address&quot;: {
+                                        &quot;inputs&quot;: {
+                                            &quot;name&quot;: &quot;mydebugerrortext&quot;,
+                                            &quot;value&quot;: &quot;@{triggerBody()?&amp;#091;'From']}&quot;
+                                        },
+                                        &quot;runAfter&quot;: {},
+                                        &quot;type&quot;: &quot;SetVariable&quot;
+                                    },
+                                    &quot;Terminate_blacklisted_emails&quot;: {
+                                        &quot;inputs&quot;: {
+                                            &quot;runError&quot;: {
+                                                &quot;code&quot;: &quot;5555&quot;,
+                                                &quot;message&quot;: &quot;5555&quot;
+                                            },
+                                            &quot;runStatus&quot;: &quot;Failed&quot;
+                                        },
+                                        &quot;runAfter&quot;: {
+                                            &quot;See_the_blocked_email_address&quot;: &amp;#091;
+                                                &quot;Succeeded&quot;
+                                            ]
+                                        },
+                                        &quot;type&quot;: &quot;Terminate&quot;
+                                    }
+                                },
+                                &quot;expression&quot;: {
+                                    &quot;and&quot;: &amp;#091;
+                                        {
+                                            &quot;equals&quot;: &amp;#091;
+                                                &quot;@variables('dontsend')&quot;,
+                                                true
+                                            ]
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;For_each_check_and_stop&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;If&quot;
+                            },
+                            &quot;check_valid_email_to_be_send_to_target_market_as_a_reply&quot;: {
+                                &quot;actions&quot;: {},
+                                &quot;else&quot;: {
+                                    &quot;actions&quot;: {
+                                        &quot;Append_to_string_variable_with_from_address&quot;: {
+                                            &quot;inputs&quot;: {
+                                                &quot;name&quot;: &quot;mydebugerrortext&quot;,
+                                                &quot;value&quot;: &quot;@triggerBody()?&amp;#091;'From']&quot;
+                                            },
+                                            &quot;runAfter&quot;: {
+                                                &quot;Append_to_string_with_body&quot;: &amp;#091;
+                                                    &quot;Succeeded&quot;
+                                                ]
+                                            },
+                                            &quot;type&quot;: &quot;AppendToStringVariable&quot;
+                                        },
+                                        &quot;Append_to_string_with_body&quot;: {
+                                            &quot;inputs&quot;: {
+                                                &quot;name&quot;: &quot;mydebugerrortext&quot;,
+                                                &quot;value&quot;: &quot;@body('Html_to_text_for_the_emailbody')&quot;
+                                            },
+                                            &quot;runAfter&quot;: {
+                                                &quot;Set_variable_with_title&quot;: &amp;#091;
+                                                    &quot;Succeeded&quot;
+                                                ]
+                                            },
+                                            &quot;type&quot;: &quot;AppendToStringVariable&quot;
+                                        },
+                                        &quot;Set_variable_with_title&quot;: {
+                                            &quot;inputs&quot;: {
+                                                &quot;name&quot;: &quot;mydebugerrortext&quot;,
+                                                &quot;value&quot;: &quot;@{triggerBody()?&amp;#091;'Subject']}&quot;
+                                            },
+                                            &quot;runAfter&quot;: {},
+                                            &quot;type&quot;: &quot;SetVariable&quot;
+                                        },
+                                        &quot;Terminate_not_maching_email&quot;: {
+                                            &quot;inputs&quot;: {
+                                                &quot;runError&quot;: {
+                                                    &quot;code&quot;: &quot;e999&quot;,
+                                                    &quot;message&quot;: &quot;not matched email, discarding this to be used as the direct response email&quot;
+                                                },
+                                                &quot;runStatus&quot;: &quot;Failed&quot;
+                                            },
+                                            &quot;runAfter&quot;: {
+                                                &quot;Append_to_string_variable_with_from_address&quot;: &amp;#091;
+                                                    &quot;Succeeded&quot;
+                                                ]
+                                            },
+                                            &quot;type&quot;: &quot;Terminate&quot;
+                                        }
+                                    }
+                                },
+                                &quot;expression&quot;: {
+                                    &quot;or&quot;: &amp;#091;
+                                        {
+                                            &quot;equals&quot;: &amp;#091;
+                                                &quot;@variables('iscontract')&quot;,
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            &quot;equals&quot;: &amp;#091;
+                                                &quot;@variables('usarole')&quot;,
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            &quot;equals&quot;: &amp;#091;
+                                                &quot;@variables('iscontract')&quot;,
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            &quot;equals&quot;: &amp;#091;
+                                                &quot;@variables('ukrole')&quot;,
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            &quot;equals&quot;: &amp;#091;
+                                                &quot;@variables('devopsrole')&quot;,
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            &quot;equals&quot;: &amp;#091;
+                                                &quot;@variables('isthisarecruiter')&quot;,
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            &quot;equals&quot;: &amp;#091;
+                                                &quot;@variables('issolutionarchitectrole')&quot;,
+                                                true
+                                            ]
+                                        },
+                                        {
+                                            &quot;equals&quot;: &amp;#091;
+                                                &quot;@variables('istherearematchingskill')&quot;,
+                                                true
+                                            ]
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Initialize_variable_monitoring_string&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;If&quot;
+                            },
+                            &quot;self_reference_or_to_a_reply_back_for_the_second_time&quot;: {
+                                &quot;actions&quot;: {
+                                    &quot;Terminate_with_self_reference&quot;: {
+                                        &quot;inputs&quot;: {
+                                            &quot;runError&quot;: {
+                                                &quot;code&quot;: &quot;E777&quot;,
+                                                &quot;message&quot;: &quot;self refencing email&quot;
+                                            },
+                                            &quot;runStatus&quot;: &quot;Failed&quot;
+                                        },
+                                        &quot;runAfter&quot;: {},
+                                        &quot;type&quot;: &quot;Terminate&quot;
+                                    }
+                                },
+                                &quot;expression&quot;: {
+                                    &quot;and&quot;: &amp;#091;
+                                        {
+                                            &quot;contains&quot;: &amp;#091;
+                                                &quot;@triggerBody()?&amp;#091;'Body']&quot;,
+                                                &quot; I am excited about the possibility of joining your team&quot;
+                                            ]
+                                        }
+                                    ]
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Set_variable_text_of_the_email_that_is_received&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;If&quot;
+                            },
+                            &quot;sendemailwithattachmentspexabo&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;headers&quot;: {
+                                        &quot;messageid&quot;: &quot;@{triggerBody()?&amp;#091;'Id']}&quot;,
+                                        &quot;mybody&quot;: &quot;@{variables('EmailSendingBody')}&quot;,
+                                        &quot;to&quot;: &quot;@{triggerBody()?&amp;#091;'From']}&quot;
+                                    },
+                                    &quot;host&quot;: {
+                                        &quot;triggerName&quot;: &quot;manual&quot;,
+                                        &quot;workflow&quot;: {
+                                            &quot;id&quot;: &quot;/subscriptions/15704bda-bb65-45ef-bd84-55b56bb32733/resourceGroups/PexaboAutomations/providers/Microsoft.Logic/workflows/sendemailwithattachmentspexabo&quot;
+                                        }
+                                    }
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Delay_30&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;Workflow&quot;
+                            },
+                            &quot;skillsmatrixerdem&quot;: {
+                                &quot;inputs&quot;: {
+                                    &quot;headers&quot;: {
+                                        &quot;messageid&quot;: &quot;@{triggerBody()?&amp;#091;'Id']}&quot;,
+                                        &quot;myemailbody&quot;: &quot;@{triggerBody()}&quot;,
+                                        &quot;to&quot;: &quot;@{triggerBody()?&amp;#091;'From']}&quot;
+                                    },
+                                    &quot;host&quot;: {
+                                        &quot;triggerName&quot;: &quot;manual&quot;,
+                                        &quot;workflow&quot;: {
+                                            &quot;id&quot;: &quot;/subscriptions/15704bda-bb65-45ef-bd84-55b56bb32733/resourceGroups/PexaboAutomations/providers/Microsoft.Logic/workflows/skillsmatrixerdem&quot;
+                                        }
+                                    }
+                                },
+                                &quot;runAfter&quot;: {
+                                    &quot;Delay_3&quot;: &amp;#091;
+                                        &quot;Succeeded&quot;
+                                    ]
+                                },
+                                &quot;type&quot;: &quot;Workflow&quot;
+                            }
+                        },
+                        &quot;contentVersion&quot;: &quot;1.0.0.0&quot;,
+                        &quot;outputs&quot;: {},
+                        &quot;parameters&quot;: {
+                            &quot;$connections&quot;: {
+                                &quot;defaultValue&quot;: {},
+                                &quot;type&quot;: &quot;Object&quot;
+                            }
+                        },
+                        &quot;triggers&quot;: {
+                            &quot;When_a_new_email_arrives_build_it_for_recruiterEmbed&quot;: {
+                                &quot;evaluatedRecurrence&quot;: {
+                                    &quot;frequency&quot;: &quot;Minute&quot;,
+                                    &quot;interval&quot;: 4,
+                                    &quot;timeZone&quot;: &quot;GMT Standard Time&quot;
+                                },
+                                &quot;inputs&quot;: {
+                                    &quot;host&quot;: {
+                                        &quot;connection&quot;: {
+                                            &quot;name&quot;: &quot;@parameters('$connections')&amp;#091;'gmail']&amp;#091;'connectionId']&quot;
+                                        }
+                                    },
+                                    &quot;method&quot;: &quot;get&quot;,
+                                    &quot;path&quot;: &quot;/Mail/OnNewEmail&quot;
+                                },
+                                &quot;recurrence&quot;: {
+                                    &quot;frequency&quot;: &quot;Minute&quot;,
+                                    &quot;interval&quot;: 4,
+                                    &quot;timeZone&quot;: &quot;GMT Standard Time&quot;
+                                },
+                                &quot;type&quot;: &quot;ApiConnection&quot;
+                            }
+                        }
+                    },
+                    &quot;parameters&quot;: {
+                        &quot;$connections&quot;: {
+                            &quot;value&quot;: {
+                                &quot;azureblob-2&quot;: {
+                                    &quot;connectionId&quot;: &quot;/subscriptions/15704bda-bb65-45ef-bd84-55b56bb32733/resourceGroups/PexaboAutomations/providers/Microsoft.Web/connections/azureblob-5&quot;,
+                                    &quot;connectionName&quot;: &quot;azureblob-5&quot;,
+                                    &quot;id&quot;: &quot;/subscriptions/15704bda-bb65-45ef-bd84-55b56bb32733/providers/Microsoft.Web/locations/eastus/managedApis/azureblob&quot;
+                                },
+                                &quot;azureblob-6&quot;: {
+                                    &quot;connectionId&quot;: &quot;/subscriptions/15704bda-bb65-45ef-bd84-55b56bb32733/resourceGroups/PexaboAutomations/providers/Microsoft.Web/connections/azureblob-6&quot;,
+                                    &quot;connectionName&quot;: &quot;azureblob-6&quot;,
+                                    &quot;id&quot;: &quot;/subscriptions/15704bda-bb65-45ef-bd84-55b56bb32733/providers/Microsoft.Web/locations/eastus/managedApis/azureblob&quot;
+                                },
+                                &quot;conversionservice&quot;: {
+                                    &quot;connectionId&quot;: &quot;/subscriptions/15704bda-bb65-45ef-bd84-55b56bb32733/resourceGroups/PexaboAutomations/providers/Microsoft.Web/connections/conversionservice&quot;,
+                                    &quot;connectionName&quot;: &quot;conversionservice&quot;,
+                                    &quot;id&quot;: &quot;/subscriptions/15704bda-bb65-45ef-bd84-55b56bb32733/providers/Microsoft.Web/locations/eastus/managedApis/conversionservice&quot;
+                                },
+                                &quot;gmail&quot;: {
+                                    &quot;connectionId&quot;: &quot;/subscriptions/15704bda-bb65-45ef-bd84-55b56bb32733/resourceGroups/PexaboAutomations/providers/Microsoft.Web/connections/gmail-1&quot;,
+                                    &quot;connectionName&quot;: &quot;gmail-1&quot;,
+                                    &quot;id&quot;: &quot;/subscriptions/15704bda-bb65-45ef-bd84-55b56bb32733/providers/Microsoft.Web/locations/eastus/managedApis/gmail&quot;
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                </code></pre>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operator sees the issue - Rifat Erdem Sahin</title>
+    <meta name="description" content="Operator sees the issue 2 am does not make sense we need to send last 48 hours of leads and logic app flows email &gt; https://mail.google.com/mail/u/0/#advanced-search/is_unread=true&amp;query=label%">
+    <meta name="keywords" content="Operator sees the issue">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/05/15/operator-sees-the-issue/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/05/15/operator-sees-the-issue/">
+    <meta property="og:title" content="Operator sees the issue">
+    <meta property="og:description" content="Operator sees the issue 2 am does not make sense we need to send last 48 hours of leads and logic app flows email &gt; https://mail.google.com/mail/u/0/#advanced-search/is_unread=true&amp;query=label%">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/05/15/operator-sees-the-issue/">
+    <meta property="twitter:title" content="Operator sees the issue">
+    <meta property="twitter:description" content="Operator sees the issue 2 am does not make sense we need to send last 48 hours of leads and logic app flows email &gt; https://mail.google.com/mail/u/0/#advanced-search/is_unread=true&amp;query=label%">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Operator sees the issue",
+      "description": "Operator sees the issue 2 am does not make sense we need to send last 48 hours of leads and logic app flows email &gt; https://mail.google.com/mail/u/0/#advanced-search/is_unread=true&amp;query=label%",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-05-15",
+      "dateModified": "2024-05-15",
+      "url": "https://www.rifaterdemsahin.com/2024/05/15/operator-sees-the-issue/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/05/15/operator-sees-the-issue/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Operator sees the issue</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>May 15, 2024</span>
+                    <span>&bull;</span>
+                    <span>25 min read</span>
+                </div>
+                <p class="article-excerpt">Operator sees the issue 2 am does not make sense we need to send last 48 hours of leads and logic app flows email &gt; https://mail.google.com/mail/u/0/#advanced-search/is_unread=true&amp;query=label%3A1_borrow_followup&amp;isrefinement=true/FMfcgzGxTNsdpchkJNlMTSZHWRZPmmJB For s</p>
+            </header>
+            <article class="article-content">
+                <h1>Operator sees the issue</h1>
+                <p>2 am does not make sense we need to send last 48 hours of leads and logic app flows</p>
+                <p><img src="images/operator-sees-the-1.png" alt="operator sees the 1" class="article-image" loading="lazy"></p>
+                <p>email &gt; <a href="https://mail.google.com/mail/u/0/#advanced-search/is_unread=true&amp;query=label%3A1_borrow_followup&amp;isrefinement=true/FMfcgzGxTNsdpchkJNlMTSZHWRZPmmJB">https://mail.google.com/mail/u/0/#advanced-search/is_unread=true&amp;query=label%3A1_borrow_followup&amp;isrefinement=true/FMfcgzGxTNsdpchkJNlMTSZHWRZPmmJB</a></p>
+                <p>For some reaon there are 2 emails.</p>
+                <p>Report update now &gt; #</p>
+                <p>old code #</p>
+                <p>$startDate = (Get-Date).Date  # Start from the beginning of today</p>
+                <pre><code>$endDate = $startDate.AddDays(1)  # End at the beginning of tomorrow
+                </code></pre>
+                <p>new code</p>
+                <p><code>$startDate = (Get-Date).Date.AddDays(-1)   # Start from the beginning of today
+                    $endDate = $startDate.AddDays(1)  # End at the beginning of tomorrow</code></p>
+                <p>Run and check it &gt; </p>
+                <p>this is problematic</p>
+                <p><img src="images/operator-sees-the-2.png" alt="operator sees the 2" class="article-image" loading="lazy"></p>
+                <p>reference &gt; fix</p>
+                <p><img src="images/operator-sees-the-3.png" alt="operator sees the 3" class="article-image" loading="lazy"></p>
+                <p>Looks like still failing</p>
+                <p><img src="images/operator-sees-the-4.png" alt="operator sees the 4" class="article-image" loading="lazy"></p>
+                <p>output &gt; </p>
+                <p>no success run is an issue</p>
+                <p><img src="images/operator-sees-the-5.png" alt="operator sees the 5" class="article-image" loading="lazy"></p>
+                <p>implementer needs to fix it properly</p>
+                <p>there ae success why dont i see it </p>
+                <p><img src="images/operator-sees-the-6.png" alt="operator sees the 6" class="article-image" loading="lazy"></p>
+                <p>it is there but did not see 10 success why ?</p>
+                <p><img src="images/operator-sees-the-7.png" alt="operator sees the 7" class="article-image" loading="lazy"></p>
+                <p>gpt failed but it is there</p>
+                <p><img src="images/operator-sees-the-8.png" alt="operator sees the 8" class="article-image" loading="lazy"></p>
+                <p><img src="images/operator-sees-the-9.png" alt="operator sees the 9" class="article-image" loading="lazy"></p>
+                <p>email 1&gt; <a href="https://mail.google.com/mail/u/0/#search/08584858836733415246031838484CU13/FMfcgzGxTNsdgDzpgKgWJRDzHZcsSwQf">https://mail.google.com/mail/u/0/#search/08584858836733415246031838484CU13/FMfcgzGxTNsdgDzpgKgWJRDzHZcsSwQf</a></p>
+                <p>email 2&gt; <a href="https://mail.google.com/mail/u/0/#search/08584859006804012800364575177CU27/FMfcgzGxTNsdMTBdChrFRLxjCgTWZGKr">https://mail.google.com/mail/u/0/#search/08584859006804012800364575177CU27/FMfcgzGxTNsdMTBdChrFRLxjCgTWZGKr</a></p>
+                <p>gpt calls have issue from time to time &gt; <a href="https://portal.azure.com/#view/Microsoft_Azure_EMA/LogicAppsMonitorBlade/runid/%2Fsubscriptions%2Fad744a08-2411-4d78-b417-1f1c83f4f741%2FresourceGroups%2FContractorMarketing%2Fproviders%2FMicrosoft.Logic%2Fworkflows%2Fcontractormarketing-gpt-coverletter%2Fruns%2F08584858463217535730491258056CU16">https://portal.azure.com/#view/Microsoft_Azure_EMA/LogicAppsMonitorBlade/runid/%2Fsubscriptions%2Fad744a08-2411-4d78-b417-1f1c83f4f741%2FresourceGroups%2FContractorMarketing%2Fproviders%2FMicrosoft.Logic%2Fworkflows%2Fcontractormarketing-gpt-coverletter%2Fruns%2F08584858463217535730491258056CU16</a></p>
+                <p>there is a double trigger for some reason </p>
+                <p><img src="images/operator-sees-the-10.png" alt="operator sees the 10" class="article-image" loading="lazy"></p>
+                <p>To select leads created between the start of tomorrow and the start of yesterday, you'll need to calculate the start of tomorrow and the start of yesterday. Here is the SQL query that achieves this:</p>
+                <p>SELECT * <br />
+                FROM leads <br />
+                WHERE createdate &gt;= DATEADD(day, DATEDIFF(day, 0, GETDATE()) - 1, 0)<br />
+                  AND createdate &lt; DATEADD(day, DATEDIFF(day, 0, GETDATE()) + 2, 0);</p>
+                <p>Explanation:</p>
+                <ul>
+                <li>
+                <p><code>DATEADD(day, DATEDIFF(day, 0, GETDATE()) - 1, 0)</code> calculates the start of yesterday.</p>
+                </li>
+                <li>
+                <p><code>DATEADD(day, DATEDIFF(day, 0, GETDATE()) + 2, 0)</code> calculates the start of the day after tomorrow.</p>
+                </li>
+                <li>
+                <p>The query then selects all leads created between the start of yesterday and the start of the day after tomorrow.</p>
+                </li>
+                </ul>
+                <p>This will give you the leads created in the 48-hour period starting at the beginning of yesterday and ending at the beginning of the day after tomorrow.</p>
+                <p>implementer role updates it </p>
+                <p><img src="images/operator-sees-the-11.png" alt="operator sees the 11" class="article-image" loading="lazy"></p>
+                <p>there is some data there</p>
+                <p><img src="images/operator-sees-the-12.png" alt="operator sees the 12" class="article-image" loading="lazy"></p>
+                <p>fix the html structure</p>
+                <p>To update the Logic App syntax for the body to send a more structured email in a table format, you can use HTML to create the table. Below is the updated version of the Logic App definition for the "Send_an_email_(V2)" action:</p>
+                <p>"Send_an_email_(V2)": {<br />
+                    "inputs": {<br />
+                        "body": {<br />
+                            "Attachments": [<br />
+                                {<br />
+                                    "ContentBytes": "@{base64(binary(body('Parse_JSON_sql')?['ResultSets']))}",<br />
+                                    "Name": "leads.json"<br />
+                                }<br />
+                            ],<br />
+                            "Bcc": "rifaterdemsahin@gmail.com",<br />
+                            "Body": "<p><strong>Daily Report</strong></p><br />
+                                     <table border='1' style='border-collapse:collapse; width: 100%;'><br />
+                                        <tr><br />
+                                            <th>Processed Items</th><br />
+                                            <td>@{variables('mycounter')}</td><br />
+                                        </tr><br />
+                                        <tr><br />
+                                            <th>Recruiters</th><br />
+                                            <td>@{variables('recruiters')}</td><br />
+                                        </tr><br />
+                                        <tr><br />
+                                            <th>Logic App Runs</th><br />
+                                            <td>@{body('GetLogsForLogicApp')}</td><br />
+                                        </tr><br />
+                                     </table><br />
+                                     <br><br />
+                                     <strong>Logic App: contractormarketing-replygmail-realtime</strong>",<br />
+                            "Cc": "rifaterdemsahin@hotmail.com",<br />
+                            "Importance": "Normal",<br />
+                            "Subject": "Daily Report: Lead Generation and Logic App Runs",<br />
+                            "To": "info@pexabo.com"<br />
+                        },<br />
+                        "host": {<br />
+                            "connection": {<br />
+                                "name": "@parameters('$connections')['office365']['connectionId']"<br />
+                            }<br />
+                        },<br />
+                        "method": "post",<br />
+                        "path": "/v2/Mail"<br />
+                    },<br />
+                    "runAfter": {<br />
+                        "Scope_Logic_app_Runs": [<br />
+                            "Succeeded"<br />
+                        ]<br />
+                    },<br />
+                    "type": "ApiConnection"<br />
+                }</p>
+                <h3>Key Changes:</h3>
+                <ul>
+                <li>
+                <p><strong>HTML Table</strong>: The email body now includes an HTML table to present the data in a structured format.</p>
+                </li>
+                <li>
+                <p><strong>Styling</strong>: The table has a border and collapses borders for better readability.</p>
+                </li>
+                <li>
+                <p><strong>Content Placement</strong>: Each piece of data (processed items, recruiters, and logic app runs) is placed in its own table row.</p>
+                </li>
+                </ul>
+                <p>This structure helps in making the email content more readable and professional.</p>
+                <p>too ugly</p>
+                <p><img src="images/operator-sees-the-13.png" alt="operator sees the 13" class="article-image" loading="lazy"></p>
+                <p>one liner to paste</p>
+                <p><img src="images/operator-sees-the-14.png" alt="operator sees the 14" class="article-image" loading="lazy"></p>
+                <p>Old Email </p>
+                <p>New Email</p>
+                <p>Fix the gpt now that would help as well </p>
+                <p>Too many errors</p>
+                <p><img src="images/operator-sees-the-15.png" alt="operator sees the 15" class="article-image" loading="lazy"></p>
+                <p><code>{
+                  "error": {
+                    "message": "This model's maximum context length is 16385 tokens. However, your messages resulted in 30408 tokens. Please reduce the length of the messages.",
+                    "type": "invalid_request_error",
+                    "param": "messages",
+                    "code": "context_length_exceeded"
+                  }
+                }</code></p>
+                <p>using the screenshtos is also important </p>
+                <p><img src="images/operator-sees-the-16.png" alt="operator sees the 16" class="article-image" loading="lazy"></p>
+                <p>The images you've uploaded show a setup for making an HTTP call to the OpenAI API using what appears to be Microsoft Power Automate. The error you're encountering is due to the maximum context length being exceeded.</p>
+                <p>Here are some steps you can take to resolve the issue:</p>
+                <ul>
+                <li>
+                <p><strong>Check the size of the <code>messages</code> variable</strong>: Ensure that the <code>messages</code> variable does not exceed the token limit. The <code>gpt-3.5-turbo</code> model has a context length of 4096 tokens, including the prompt and the response.</p>
+                </li>
+                <li>
+                <p><strong>Split your messages</strong>: If the <code>messages</code> variable contains a long conversation, consider splitting it into smaller parts and making multiple API calls.</p>
+                </li>
+                <li>
+                <p><strong>Summarize or truncate messages</strong>: Summarize longer messages or truncate the conversation history to stay within the token limit.</p>
+                </li>
+                <li>
+                <p><strong>Use a different model</strong>: If the token limit is frequently an issue, consider using a model with a higher context length if available.</p>
+                </li>
+                </ul>
+                <h3>Example Adjustments</h3>
+                <p>Here’s how you might modify your setup to check and manage the length of your <code>messages</code>:</p>
+                <h4>1. Adjusting the Body Initialization</h4>
+                <ul>
+                <li>Ensure that you’re only sending necessary parts of the conversation.</li>
+                </ul>
+                <p>{<br />
+                    "max_tokens": @{variables('maxtokens')},<br />
+                    "model": @{variables('model')},<br />
+                    "temperature": 0.7,<br />
+                    "messages": @{variables('messages')}<br />
+                }</p>
+                <h4>2. Truncating Messages (Pseudocode)</h4>
+                <ul>
+                <li>Before sending the API request, truncate or summarize the messages.</li>
+                </ul>
+                <p>if (messages.length &gt; token_limit) {<br />
+                    truncate_messages(messages, token_limit);<br />
+                }</p>
+                <h4>3. Power Automate Example</h4>
+                <p>Below is an example approach you could take in Power Automate to handle long messages:</p>
+                <ul>
+                <li>
+                <p><strong>Initialize a Variable for Truncated Messages</strong></p>
+                </li>
+                <li>
+                <p>Create a new variable to store the truncated messages.</p>
+                </li>
+                </ul>
+                <p>Initialize Variable<br />
+                Name: truncatedMessages<br />
+                Type: String<br />
+                Value: empty</p>
+                <ul>
+                <li>
+                <p><strong>Add a Condition to Truncate Messages</strong></p>
+                </li>
+                <li>
+                <p>Use a condition to check the length of the <code>messages</code> variable and truncate if necessary.</p>
+                </li>
+                </ul>
+                <p>Condition: length(variables('messages')) &gt; token_limit<br />
+                If true: Set variable truncatedMessages to truncate(variables('messages'), token_limit)<br />
+                Else: Set variable truncatedMessages to variables('messages')</p>
+                <ul>
+                <li>
+                <p><strong>Use the Truncated Messages in the HTTP Call</strong></p>
+                </li>
+                <li>
+                <p>Update the HTTP call to use <code>truncatedMessages</code>.</p>
+                </li>
+                </ul>
+                <p>{<br />
+                    "max_tokens": @{variables('maxtokens')},<br />
+                    "model": @{variables('model')},<br />
+                    "temperature": 0.7,<br />
+                    "messages": @{variables('truncatedMessages')}<br />
+                }</p>
+                <h3>Summary</h3>
+                <p>By managing the size of the <code>messages</code> variable and ensuring it stays within the token limit, you can avoid the context length error. If you need further assistance, please provide details on the length and structure of your <code>messages</code> variable.</p>
+                <p>As of my last update in May 2023, the OpenAI model with the largest context length is <code>gpt-4-turbo-32k</code>. This model supports a context length of up to 32,768 tokens, which is significantly larger than the 4096 tokens limit of <code>gpt-3.5-turbo</code>.</p>
+                <p>Here’s how you can update your setup to use <code>gpt-4-turbo-32k</code> for handling larger input contexts:</p>
+                <h3>Updating the Model in Power Automate</h3>
+                <ul>
+                <li>
+                <p><strong>Initialize Variable for Model</strong></p>
+                </li>
+                <li>
+                <p>Change the <code>model</code> variable value to <code>gpt-4-turbo-32k</code>.</p>
+                </li>
+                </ul>
+                <p>Initialize Variable<br />
+                Name: model<br />
+                Type: String<br />
+                Value: gpt-4-turbo-32k</p>
+                <ul>
+                <li>
+                <p><strong>Ensure Other Settings are Compatible</strong></p>
+                </li>
+                <li>
+                <p>Ensure the rest of your setup is compatible with the new model, particularly the token limit in the <code>max_tokens</code> field.</p>
+                </li>
+                </ul>
+                <h3>Example Adjustments</h3>
+                <p>Here's an example of how you might set up the variables and HTTP call in Power Automate:</p>
+                <h4>1. Initialize Variables</h4>
+                <ul>
+                <li>Adjust the <code>model</code> and <code>max_tokens</code> variables to align with the capabilities of <code>gpt-4-turbo-32k</code>.</li>
+                </ul>
+                <p>Initialize Variable<br />
+                Name: model<br />
+                Type: String<br />
+                Value: gpt-4-turbo-32k</p>
+                <p>Initialize Variable<br />
+                Name: maxtokens<br />
+                Type: Integer<br />
+                Value: 32768</p>
+                <h4>2. Adjust Body Initialization</h4>
+                <ul>
+                <li>Use these variables in your HTTP request body.</li>
+                </ul>
+                <p>{<br />
+                    "max_tokens": @{variables('maxtokens')},<br />
+                    "model": @{variables('model')},<br />
+                    "temperature": 0.7,<br />
+                    "messages": @{variables('messages')}<br />
+                }</p>
+                <h4>3. Check Message Length (Optional)</h4>
+                <ul>
+                <li>If you still need to manage message lengths, ensure the <code>messages</code> variable is appropriately truncated or summarized.</li>
+                </ul>
+                <h3>Example HTTP Call Setup</h3>
+                <p>Here’s a full example of how you might configure the HTTP request in Power Automate:</p>
+                <ul>
+                <li><strong>HTTP OpenAI Call Configuration</strong></li>
+                </ul>
+                <p>Method: POST<br />
+                URI: https://api.openai.com/v1/completions<br />
+                Headers:<br />
+                  Authorization: Bearer YOUR_API_KEY<br />
+                  Content-type: application/json<br />
+                Body:<br />
+                {<br />
+                    "max_tokens": @{variables('maxtokens')},<br />
+                    "model": @{variables('model')},<br />
+                    "temperature": 0.7,<br />
+                    "messages": @{variables('messages')}<br />
+                }</p>
+                <h3>Handling Token Limits in Practice</h3>
+                <p>If you’re dealing with extremely long input texts, you may still need to implement logic to summarize or split input data. Here’s a brief outline of how you can approach this:</p>
+                <ul>
+                <li>
+                <p><strong>Summarize Long Messages</strong>: Implement a summarization step before sending data to the model.</p>
+                </li>
+                <li>
+                <p><strong>Split Input into Multiple Calls</strong>: If summarization is not feasible, consider breaking the input into smaller chunks and making multiple API calls.</p>
+                </li>
+                </ul>
+                <h3>Summary</h3>
+                <p>Switching to <code>gpt-4-turbo-32k</code> will allow you to handle much larger contexts, up to 32,768 tokens. This should help mitigate issues with exceeding the token limit. However, it’s still good practice to manage and optimize your input data to ensure efficient use of the API.</p>
+                <p><img src="images/operator-sees-the-17.png" alt="operator sees the 17" class="article-image" loading="lazy"></p>
+                <p><img src="images/operator-sees-the-18.png" alt="operator sees the 18" class="article-image" loading="lazy"></p>
+                <p><img src="images/operator-sees-the-19.png" alt="operator sees the 19" class="article-image" loading="lazy"></p>
+                <p>4 worked</p>
+                <p><img src="images/operator-sees-the-20.png" alt="operator sees the 20" class="article-image" loading="lazy"></p>
+                <p>running one</p>
+                <p><img src="images/operator-sees-the-21.png" alt="operator sees the 21" class="article-image" loading="lazy"></p>
+                <p>Also another error &gt;</p>
+                <p>{</p>
+                <p>"error": {</p>
+                <pre><code>"message": "We could not parse the JSON body of your request. (HINT: This likely means you aren't using your HTTP library correctly. The OpenAI API expects a JSON payload, but what was sent was not valid JSON. If you have trouble figuring out how to fix this, please contact us through our help center at help.openai.com.)",
+                
+                "type": "invalid_request_error",
+                
+                "param": null,
+                
+                "code": null
+                </code></pre>
+                <p>}</p>
+                <p>}</p>
+                <p>**Fix it **</p>
+                <p><img src="images/operator-sees-the-22.png" alt="operator sees the 22" class="article-image" loading="lazy"></p>
+                <p>at least it is a stopper before reaching the openai</p>
+                <p>In Azure Logic Apps, you can use the "Parse JSON" action to verify and work with JSON data within your workflow. Here's a step-by-step guide on how to set this up:</p>
+                <h3>Step-by-Step Guide to Verify JSON String in Azure Logic App</h3>
+                <ul>
+                <li>
+                <p><strong>Create a Logic App</strong>:</p>
+                </li>
+                <li>
+                <p>Go to the Azure portal and create a new Logic App.</p>
+                </li>
+                <li>
+                <p><strong>Add a Trigger</strong>:</p>
+                </li>
+                <li>
+                <p>Add a trigger to start the workflow. For example, you can use the "When a HTTP request is received" trigger to receive the JSON string via an HTTP request.</p>
+                </li>
+                <li>
+                <p><strong>Add a "Parse JSON" Action</strong>:</p>
+                </li>
+                <li>
+                <p>After the trigger, add the "Parse JSON" action.</p>
+                </li>
+                <li>
+                <p>In the "Content" field of the "Parse JSON" action, select the output of the trigger (the JSON string you want to verify).</p>
+                </li>
+                <li>
+                <p>You will need to provide a JSON schema for the "Parse JSON" action. The schema defines the structure of the JSON data. You can generate this schema based on a sample JSON payload. Example of a JSON schema:</p>
+                </li>
+                </ul>
+                <p>{<br />
+                     "type": "object",<br />
+                     "properties": {<br />
+                       "max_tokens": {<br />
+                         "type": "integer"<br />
+                       },<br />
+                       "model": {<br />
+                         "type": "string"<br />
+                       },<br />
+                       "temperature": {<br />
+                         "type": "number"<br />
+                       },<br />
+                       "messages": {<br />
+                         "type": "array",<br />
+                         "items": {<br />
+                           "type": "object",<br />
+                           "properties": {<br />
+                             "role": {<br />
+                               "type": "string"<br />
+                             },<br />
+                             "content": {<br />
+                               "type": "string"<br />
+                             }<br />
+                           },<br />
+                           "required": ["role", "content"]<br />
+                         }<br />
+                       }<br />
+                     },<br />
+                     "required": ["max_tokens", "model", "temperature", "messages"]<br />
+                   }</p>
+                <ul>
+                <li>
+                <p><strong>Handle the Output</strong>:</p>
+                </li>
+                <li>
+                <p>If the JSON string matches the schema, the "Parse JSON" action will succeed, and you can use the parsed data in subsequent actions in your Logic App.</p>
+                </li>
+                <li>
+                <p>If the JSON string does not match the schema, the "Parse JSON" action will fail, and you can handle this failure using a "Scope" action with "Configure run after" settings to catch and manage errors.</p>
+                </li>
+                </ul>
+                <h3>Example Workflow</h3>
+                <ul>
+                <li>
+                <p><strong>Trigger</strong>:</p>
+                </li>
+                <li>
+                <p>"When a HTTP request is received"</p>
+                </li>
+                <li>
+                <p><strong>Parse JSON Action</strong>:</p>
+                </li>
+                <li>
+                <p>Add the "Parse JSON" action and set up as described above.</p>
+                </li>
+                <li>
+                <p><strong>Condition (Optional)</strong>:</p>
+                </li>
+                <li>
+                <p>You can add a condition to perform different actions based on the success or failure of the "Parse JSON" action.</p>
+                </li>
+                <li>
+                <p>For example, if the JSON is valid, proceed with further processing; if not, send an error response.</p>
+                </li>
+                </ul>
+                <h3>Example JSON Schema for Your JSON String</h3>
+                <p>Given your specific JSON structure, here is a more detailed example of the schema:</p>
+                <p>{<br />
+                  "type": "object",<br />
+                  "properties": {<br />
+                    "max_tokens": {<br />
+                      "type": "integer"<br />
+                    },<br />
+                    "model": {<br />
+                      "type": "string"<br />
+                    },<br />
+                    "temperature": {<br />
+                      "type": "number"<br />
+                    },<br />
+                    "messages": {<br />
+                      "type": "array",<br />
+                      "items": {<br />
+                        "type": "object",<br />
+                        "properties": {<br />
+                          "role": {<br />
+                            "type": "string"<br />
+                          },<br />
+                          "content": {<br />
+                            "type": "string"<br />
+                          }<br />
+                        },<br />
+                        "required": ["role", "content"]<br />
+                      }<br />
+                    }<br />
+                  },<br />
+                  "required": ["max_tokens", "model", "temperature", "messages"]<br />
+                }</p>
+                <h3>Final Workflow Example</h3>
+                <p>Here's a simplified visualization of the Logic App workflow:</p>
+                <ul>
+                <li>
+                <p><strong>Trigger</strong>: "When a HTTP request is received"</p>
+                </li>
+                <li>
+                <p><strong>Action</strong>: "Parse JSON"</p>
+                </li>
+                <li>
+                <p><strong>Content</strong>: Body from the trigger</p>
+                </li>
+                <li>
+                <p><strong>Schema</strong>: Provided schema above</p>
+                </li>
+                <li>
+                <p><strong>Condition</strong>: Check if "Parse JSON" succeeded</p>
+                </li>
+                <li>
+                <p><strong>True Branch</strong>: Continue with further processing</p>
+                </li>
+                <li>
+                <p><strong>False Branch</strong>: Handle the error (e.g., send an error response)</p>
+                </li>
+                </ul>
+                <h3>Testing</h3>
+                <ul>
+                <li>
+                <p><strong>Send a request</strong> to your Logic App's HTTP endpoint with the JSON string to verify if the schema validation works correctly.</p>
+                </li>
+                <li>
+                <p><strong>Check the runs</strong> in the Azure portal to see the results of the JSON parsing and handle any errors accordingly.</p>
+                </li>
+                </ul>
+                <p>By following these steps, you can verify and work with JSON strings effectively within an Azure Logic App.</p>
+                <p><img src="images/operator-sees-the-23.png" alt="operator sees the 23" class="article-image" loading="lazy"></p>
+                <p>resubmit your errors</p>
+                <p><img src="images/operator-sees-the-24.png" alt="operator sees the 24" class="article-image" loading="lazy"></p>
+                <p>it fails before that is great</p>
+                <p><img src="images/operator-sees-the-25.png" alt="operator sees the 25" class="article-image" loading="lazy"></p>
+                <p>Fixes? </p>
+                <p>There are a few issues with your JSON data. Here are the problems and the steps to resolve them:</p>
+                <ul>
+                <li>
+                <p><strong>URL Encoding</strong>: The URLs in the content should not have escaped slashes. They should be properly formatted as URLs.</p>
+                </li>
+                <li>
+                <p><strong>HTML and JSON formatting</strong>: The JSON contains HTML-like elements and URLs that are not escaped properly.</p>
+                </li>
+                <li>
+                <p><strong>Message Content</strong>: The content of the user message includes a large block of text that needs to be cleaned up to make it suitable for JSON format.</p>
+                </li>
+                </ul>
+                <p>Here's how to fix it:</p>
+                <h3>Step 1: Properly Format the URLs</h3>
+                <p>Ensure that all URLs are properly formatted without unnecessary escaping.</p>
+                <h3>Step 2: Clean Up Message Content</h3>
+                <p>The message content provided by the user is cluttered with unnecessary details like timestamps and image URLs from emails. Clean it up to keep only the relevant parts.</p>
+                <h3>Step 3: Correct JSON Formatting</h3>
+                <p>Make sure the JSON is formatted correctly, with proper escaping of special characters.</p>
+                <h3>Corrected JSON:</h3>
+                <p>{<br />
+                  "max_tokens": 880,<br />
+                  "model": "gpt-4",<br />
+                  "temperature": 0.7,<br />
+                  "messages": [<br />
+                    {<br />
+                      "role": "system",<br />
+                      "content": "creating a cover letter for Rifat Erdem Sahin for the job spec that is provided"<br />
+                    },<br />
+                    {<br />
+                      "role": "user",<br />
+                      "content": "I see from your job posting that you have been looking for me. My skills in software engineering, building high-performance trading systems, test-driven development, and video production make me an ideal candidate. I have experience working globally in diverse environments and am confident in my ability to contribute effectively to your team."<br />
+                    },<br />
+                    {<br />
+                      "role": "assistant",<br />
+                      "content": "Write a cover letter for Rifat Erdem Sahin who has matched skills for the job spec. Remove not filled placeholders."<br />
+                    },<br />
+                    {<br />
+                      "role": "assistant",<br />
+                      "content": "Based on the cover letter update accordingly for the email response: Use the company name in the job spec, use the job title in the job spec, set [Your Address] : 50 Petersfield Mansions, set [City, State, Zip] : Cambridge, Cambridgeshire, CB11BB, set [Email Address] : info@pexabo.com, set [Phone Number] : +447848024173, set [LinkedIn Profile] : https://www.linkedin.com/in/rifaterdemsahin/, set [Date] : today's date, set [Recipient's Name] : Take the name in the job spec, set [Company Name] : Take the company name in the job spec, set [Company Address] : Take the company address in the job spec, set [City, State, Zip] : Take the City, State, Zip in the job spec, set [Job Title] : Take the job title in the job spec."<br />
+                    },<br />
+                    {<br />
+                      "role": "assistant",<br />
+                      "content": "Use the cover letter to generate an HTML document based on the following requirements:\n\n1. <strong>Doctype and Head</strong>: The document should begin with the <code>&lt;!DOCTYPE html&gt;</code> declaration followed by an <code>&lt;html&gt;</code> tag. Inside the <code>&lt;html&gt;</code> tag, include a <code>&lt;head&gt;</code> section with a <code>&lt;title&gt;</code> tag that says 'Cover Letter'. Also, include a <code>&lt;meta&gt;</code> tag with <code>charset=\"UTF-8\"</code> to ensure proper text encoding.\n\n2. <strong>Body Structure</strong>: Within the <code>&lt;body&gt;</code>, the page should be divided into three main sections: a header, a main content area, and a footer.\n   - The <strong>header</strong> should contain an <code>&lt;h1&gt;</code> tag with the text from the job spec title.\n   - The <strong>main content area</strong> should have the cover letter (<code>&lt;p&gt;</code> tags) with placeholder text.\n   - The <strong>footer</strong> should contain a paragraph with the text 'Copyright © DevOps Engineering'.\n\n3. <strong>CSS Styling</strong>: Include a <code>&lt;style&gt;</code> tag within the <code>&lt;head&gt;</code> section. The CSS should specify that the body has a margin of 0, the header text is centered and colored blue, the main content background is light gray, and the footer text is aligned to the center and has a smaller font size.\n\n4. Place the generated cover letter inside HTML."<br />
+                    },<br />
+                    {<br />
+                      "role": "assistant",<br />
+                      "content": "If a placeholder is not filled, omit it from the output or replace unfilled placeholders with relevant information or remove them if not applicable."<br />
+                    }<br />
+                  ]<br />
+                }</p>
+                <h3>Explanation:</h3>
+                <ul>
+                <li>
+                <p><strong>Role "user" Content</strong>: Cleaned up the user content to make it more coherent and relevant.</p>
+                </li>
+                <li>
+                <p><strong>Role "assistant" Contents</strong>: Clearly outlined steps and instructions.</p>
+                </li>
+                <li>
+                <p><strong>URLs and Placeholders</strong>: Ensured proper formatting for URLs and clarified how to handle placeholders.</p>
+                </li>
+                </ul>
+                <p>This should resolve the issues and make the JSON suitable for use in Logic Apps.</p>
+                <p>In Logic Apps, you can use expressions and actions to find and fix URLs by encoding them properly. Here's a step-by-step guide to achieve this:</p>
+                <h3>Step 1: Trigger the Logic App</h3>
+                <p>Start with a trigger that initiates the Logic App, such as a new email, HTTP request, or a recurrence.</p>
+                <h3>Step 2: Initialize Variables</h3>
+                <p>Initialize a variable to store the input string and another variable to store the output string.</p>
+                <ul>
+                <li>
+                <p><strong>Initialize Variable</strong> action to store the input string (e.g., <code>inputString</code>).</p>
+                </li>
+                <li>
+                <p><strong>Initialize Variable</strong> action to store the processed string (e.g., <code>outputString</code>).</p>
+                </li>
+                </ul>
+                <h3>Step 3: Find and Extract URLs</h3>
+                <p>Use the <code>split</code> and <code>match</code> expressions to find URLs in the input string.</p>
+                <ul>
+                <li>Add a <strong>Compose</strong> action to define a regular expression for URLs:</li>
+                </ul>
+                <p>{<br />
+                     "name": "urlRegex",<br />
+                     "value": "(https?:\/\/[^\s]+)"<br />
+                   }</p>
+                <ul>
+                <li>Use the <strong>Compose</strong> action to split the input string based on the URL pattern:</li>
+                </ul>
+                <p>{<br />
+                     "name": "splitParts",<br />
+                     "inputs": "@split(variables('inputString'), ' ')"<br />
+                   }</p>
+                <h3>Step 4: Encode URLs</h3>
+                <p>Loop through the split parts and encode any URLs found.</p>
+                <ul>
+                <li>Add a <strong>For Each</strong> action to iterate over the parts from the split action:</li>
+                </ul>
+                <p>{<br />
+                     "inputs": "@outputs('splitParts')"<br />
+                   }</p>
+                <ul>
+                <li>Inside the <strong>For Each</strong> action, add a <strong>Condition</strong> action to check if the part matches the URL regex:</li>
+                </ul>
+                <p>{<br />
+                     "inputs": {<br />
+                       "condition": "@match(item(), variables('urlRegex'))"<br />
+                     }<br />
+                   }</p>
+                <ul>
+                <li>If the condition is true (i.e., the part is a URL), use the <strong>Compose</strong> action with the <code>uriComponent</code> function to encode the URL:</li>
+                </ul>
+                <p>{<br />
+                     "name": "encodedURL",<br />
+                     "inputs": "@uriComponent(item())"<br />
+                   }</p>
+                <ul>
+                <li>Append the encoded URL to the <code>outputString</code> variable using the <strong>Append to string variable</strong> action:</li>
+                </ul>
+                <p>{<br />
+                     "name": "AppendEncodedURL",<br />
+                     "inputs": {<br />
+                       "variableName": "outputString",<br />
+                       "value": "@{outputs('encodedURL')}"<br />
+                     }<br />
+                   }</p>
+                <ul>
+                <li>If the condition is false (i.e., the part is not a URL), append the original part to the <code>outputString</code> variable:</li>
+                </ul>
+                <p>{<br />
+                     "name": "AppendOriginalPart",<br />
+                     "inputs": {<br />
+                       "variableName": "outputString",<br />
+                       "value": "@{item()}"<br />
+                     }<br />
+                   }</p>
+                <h3>Step 5: Combine Processed Parts</h3>
+                <p>After the <strong>For Each</strong> action, combine the processed parts back into a single string.</p>
+                <ul>
+                <li>Use a <strong>Compose</strong> action to join the processed parts:</li>
+                </ul>
+                <p>{<br />
+                     "name": "joinedString",<br />
+                     "inputs": "@join(variables('outputString'), ' ')"<br />
+                   }</p>
+                <h3>Step 6: Output the Processed String</h3>
+                <p>Finally, output the processed string from the Logic App.</p>
+                <ul>
+                <li>Add an appropriate action to output or use the processed string, such as sending an email, HTTP response, or another desired action.</li>
+                </ul>
+                <p>Here's a summarized JSON representation of the Logic App structure for reference:</p>
+                <p>{<br />
+                  "definition": {<br />
+                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",<br />
+                    "actions": {<br />
+                      "Initialize_inputString": {<br />
+                        "inputs": {<br />
+                          "variables": [<br />
+                            {<br />
+                              "name": "inputString",<br />
+                              "type": "String",<br />
+                              "value": "Your input string with URLs here"<br />
+                            }<br />
+                          ]<br />
+                        },<br />
+                        "runAfter": {},<br />
+                        "type": "InitializeVariable"<br />
+                      },<br />
+                      "Initialize_outputString": {<br />
+                        "inputs": {<br />
+                          "variables": [<br />
+                            {<br />
+                              "name": "outputString",<br />
+                              "type": "String",<br />
+                              "value": ""<br />
+                            }<br />
+                          ]<br />
+                        },<br />
+                        "runAfter": {},<br />
+                        "type": "InitializeVariable"<br />
+                      },<br />
+                      "Compose_urlRegex": {<br />
+                        "inputs": {<br />
+                          "name": "urlRegex",<br />
+                          "value": "(https?:\/\/[^\s]+)"<br />
+                        },<br />
+                        "runAfter": {},<br />
+                        "type": "Compose"<br />
+                      },<br />
+                      "Compose_splitParts": {<br />
+                        "inputs": "@split(variables('inputString'), ' ')",<br />
+                        "runAfter": {<br />
+                          "Initialize_inputString": [<br />
+                            "Succeeded"<br />
+                          ]<br />
+                        },<br />
+                        "type": "Compose"<br />
+                      },<br />
+                      "For_Each_Part": {<br />
+                        "actions": {<br />
+                          "Condition_isURL": {<br />
+                            "actions": {<br />
+                              "AppendEncodedURL": {<br />
+                                "inputs": {<br />
+                                  "name": "encodedURL",<br />
+                                  "inputs": "@uriComponent(item())"<br />
+                                },<br />
+                                "runAfter": {},<br />
+                                "type": "Compose"<br />
+                              },<br />
+                              "Append_to_outputString_Encoded": {<br />
+                                "inputs": {<br />
+                                  "variableName": "outputString",<br />
+                                  "value": "@{outputs('encodedURL')}"<br />
+                                },<br />
+                                "runAfter": {<br />
+                                  "AppendEncodedURL": [<br />
+                                    "Succeeded"<br />
+                                  ]<br />
+                                },<br />
+                                "type": "AppendToStringVariable"<br />
+                              }<br />
+                            },<br />
+                            "else": {<br />
+                              "actions": {<br />
+                                "AppendOriginalPart": {<br />
+                                  "inputs": {<br />
+                                    "variableName": "outputString",<br />
+                                    "value": "@{item()}"<br />
+                                  },<br />
+                                  "runAfter": {},<br />
+                                  "type": "AppendToStringVariable"<br />
+                                }<br />
+                              }<br />
+                            },<br />
+                            "expression": "@match(item(), variables('urlRegex'))",<br />
+                            "runAfter": {},<br />
+                            "type": "If"<br />
+                          }<br />
+                        },<br />
+                        "inputs": {<br />
+                          "items": "@outputs('Compose_splitParts')"<br />
+                        },<br />
+                        "runAfter": {<br />
+                          "Compose_splitParts": [<br />
+                            "Succeeded"<br />
+                          ]<br />
+                        },<br />
+                        "type": "Foreach"<br />
+                      },<br />
+                      "Compose_joinedString": {<br />
+                        "inputs": "@join(variables('outputString'), ' ')",<br />
+                        "runAfter": {<br />
+                          "For_Each_Part": [<br />
+                            "Succeeded"<br />
+                          ]<br />
+                        },<br />
+                        "type": "Compose"<br />
+                      }<br />
+                    },<br />
+                    "triggers": {<br />
+                      "manual": {<br />
+                        "inputs": {},<br />
+                        "type": "Request"<br />
+                      }<br />
+                    }<br />
+                  }<br />
+                }</p>
+                <p>This example demonstrates how to find and fix URLs in a string by encoding them properly using Logic Apps. Adjust the actions and expressions based on your specific needs.</p>
+                <p>Yes, you can use a single expression to remove URLs from a string in Logic Apps. You can achieve this using the <code>replace</code> function combined with a regular expression. Here's how you can do it:</p>
+                <h3>Step 1: Define the Input String</h3>
+                <p>You should have an input string variable that contains the text with URLs.</p>
+                <h3>Step 2: Use the <code>replace</code> Function with a Regular Expression</h3>
+                <p>You can use the <code>replace</code> function to remove URLs by replacing them with an empty string. The regular expression pattern for URLs can be used to match and remove them.</p>
+                <h3>Expression to Remove URLs</h3>
+                <p>Here's the expression you can use:</p>
+                <pre><code class="language-json">{
+                  &quot;name&quot;: &quot;Compose_RemoveURLs&quot;,
+                  &quot;inputs&quot;: &quot;@replace(variables('inputString'), 'https?://[^\\s]+', '')&quot;
+                }
+                </code></pre>
+                <p>This expression uses a regular expression pattern to match URLs and replaces them with an empty string.</p>
+                <h3>Example Implementation</h3>
+                <p>Here's an example of how to implement this in a Logic App:</p>
+                <ol>
+                <li>
+                <p><strong>Initialize Variable</strong> action to store the input string:</p>
+                <p><code>json
+                {
+                  "name": "Initialize_inputString",
+                  "inputs": {
+                    "variables": [
+                      {
+                        "name": "inputString",
+                        "type": "String",
+                        "value": "Your input string with URLs here"
+                      }
+                    ]
+                  }
+                }</code></p>
+                </li>
+                <li>
+                <p><strong>Compose</strong> action to remove URLs using the expression:</p>
+                <p><code>json
+                {
+                  "name": "Compose_RemoveURLs",
+                  "inputs": "@replace(variables('inputString'), 'https?://[^\\s]+', '')"
+                }</code></p>
+                </li>
+                <li>
+                <p><strong>Output</strong> action to see the result:</p>
+                <p><code>json
+                {
+                  "name": "Output_CleanedString",
+                  "inputs": {
+                    "string": "@outputs('Compose_RemoveURLs')"
+                  }
+                }</code></p>
+                </li>
+                </ol>
+                <h3>Complete JSON Representation</h3>
+                <p>Here is the complete JSON representation of the Logic App with the steps:</p>
+                <pre><code class="language-json">{
+                  &quot;definition&quot;: {
+                    &quot;$schema&quot;: &quot;https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#&quot;,
+                    &quot;actions&quot;: {
+                      &quot;Initialize_inputString&quot;: {
+                        &quot;inputs&quot;: {
+                          &quot;variables&quot;: [
+                            {
+                              &quot;name&quot;: &quot;inputString&quot;,
+                              &quot;type&quot;: &quot;String&quot;,
+                              &quot;value&quot;: &quot;Here is a link https://example.com and another one http://example.org&quot;
+                            }
+                          ]
+                        },
+                        &quot;runAfter&quot;: {},
+                        &quot;type&quot;: &quot;InitializeVariable&quot;
+                      },
+                      &quot;Compose_RemoveURLs&quot;: {
+                        &quot;inputs&quot;: &quot;@replace(variables('inputString'), 'https?://[^\\s]+', '')&quot;,
+                        &quot;runAfter&quot;: {
+                          &quot;Initialize_inputString&quot;: [
+                            &quot;Succeeded&quot;
+                          ]
+                        },
+                        &quot;type&quot;: &quot;Compose&quot;
+                      },
+                      &quot;Output_CleanedString&quot;: {
+                        &quot;inputs&quot;: {
+                          &quot;string&quot;: &quot;@outputs('Compose_RemoveURLs')&quot;
+                        },
+                        &quot;runAfter&quot;: {
+                          &quot;Compose_RemoveURLs&quot;: [
+                            &quot;Succeeded&quot;
+                          ]
+                        },
+                        &quot;type&quot;: &quot;Compose&quot;
+                      }
+                    },
+                    &quot;triggers&quot;: {
+                      &quot;manual&quot;: {
+                        &quot;inputs&quot;: {},
+                        &quot;type&quot;: &quot;Request&quot;
+                      }
+                    }
+                  }
+                }
+                </code></pre>
+                <h3>Explanation</h3>
+                <ul>
+                <li>The <code>Initialize_inputString</code> action initializes the <code>inputString</code> variable with the text containing URLs.</li>
+                <li>The <code>Compose_RemoveURLs</code> action uses the <code>replace</code> function with a regular expression to remove all URLs from the input string.</li>
+                <li>The <code>Output_CleanedString</code> action outputs the cleaned string, which no longer contains URLs.</li>
+                </ul>
+                <p>This approach allows you to remove URLs from a string using a single expression in Logic Apps. Adjust the input string value as needed.</p>
+                <p>rebutmit failed one</p>
+                <p><img src="images/operator-sees-the-26.png" alt="operator sees the 26" class="article-image" loading="lazy"></p>
+                <p>It seems that the <code>replace</code> function in Logic Apps doesn't directly support regular expressions. Instead, you can achieve this by combining multiple actions. Here’s how you can remove URLs from a string in Logic Apps using a series of actions.</p>
+                <h3>Step-by-Step Guide to Remove URLs</h3>
+                <ul>
+                <li>
+                <p><strong>Trigger the Logic App</strong></p>
+                </li>
+                <li>
+                <p>Start with a trigger that fits your scenario, such as a new HTTP request or email.</p>
+                </li>
+                <li>
+                <p><strong>Initialize the Input String</strong></p>
+                </li>
+                <li>
+                <p>Initialize a variable to hold the input string containing URLs.</p>
+                </li>
+                <li>
+                <p><strong>Split the String</strong></p>
+                </li>
+                <li>
+                <p>Use the <code>split</code> function to break the string into an array of words. This will help identify parts that are URLs.</p>
+                </li>
+                <li>
+                <p><strong>Identify and Remove URLs</strong></p>
+                </li>
+                <li>
+                <p>Iterate through the array and check each part to see if it matches the URL pattern. If it does, remove it.</p>
+                </li>
+                <li>
+                <p><strong>Combine the Cleaned Parts</strong></p>
+                </li>
+                <li>
+                <p>Combine the remaining parts back into a single string without the URLs.</p>
+                </li>
+                </ul>
+                <h3>Implementation Details</h3>
+                <p>Here is how you can implement this in Logic Apps:</p>
+                <h4>1. Initialize the Input String</h4>
+                <p>{<br />
+                  "name": "Initialize_inputString",<br />
+                  "type": "InitializeVariable",<br />
+                  "inputs": {<br />
+                    "variables": [<br />
+                      {<br />
+                        "name": "inputString",<br />
+                        "type": "String",<br />
+                        "value": "Here is a link https://example.com and another one http://example.org and some text without URLs."<br />
+                      }<br />
+                    ]<br />
+                  }<br />
+                }</p>
+                <h4>2. Split the Input String</h4>
+                <p>{<br />
+                  "name": "Compose_SplitString",<br />
+                  "type": "Compose",<br />
+                  "inputs": "@split(variables('inputString'), ' ')"<br />
+                }</p>
+                <h4>3. Iterate and Check Each Part</h4>
+                <p>Add a <strong>For Each</strong> action to iterate over the array produced by the split operation:</p>
+                <p>{<br />
+                  "name": "ForEach_Parts",<br />
+                  "type": "Foreach",<br />
+                  "inputs": {<br />
+                    "items": "@outputs('Compose_SplitString')"<br />
+                  },<br />
+                  "actions": {<br />
+                    "Condition_IsURL": {<br />
+                      "type": "If",<br />
+                      "expression": {<br />
+                        "equals": [<br />
+                          "@if(equals(substring(item(), 0, 4), 'http'), true, false)",<br />
+                          true<br />
+                        ]<br />
+                      },<br />
+                      "actions": {<br />
+                        "Do_Nothing": {<br />
+                          "type": "Compose",<br />
+                          "inputs": "URL found, doing nothing."<br />
+                        }<br />
+                      },<br />
+                      "else": {<br />
+                        "actions": {<br />
+                          "Append_NonURLPart": {<br />
+                            "type": "AppendToStringVariable",<br />
+                            "inputs": {<br />
+                              "name": "outputString",<br />
+                              "value": "@{item()}"<br />
+                            }<br />
+                          }<br />
+                        }<br />
+                      }<br />
+                    }<br />
+                  }<br />
+                }</p>
+                <h4>4. Initialize and Append to Output String</h4>
+                <p>Initialize the output string before the loop:</p>
+                <p>{<br />
+                  "name": "Initialize_outputString",<br />
+                  "type": "InitializeVariable",<br />
+                  "inputs": {<br />
+                    "variables": [<br />
+                      {<br />
+                        "name": "outputString",<br />
+                        "type": "String",<br />
+                        "value": ""<br />
+                      }<br />
+                    ]<br />
+                  }<br />
+                }</p>
+                <p>Append each non-URL part to the output string within the loop:</p>
+                <p>{<br />
+                  "name": "Append_NonURLPart",<br />
+                  "type": "AppendToStringVariable",<br />
+                  "inputs": {<br />
+                    "name": "outputString",<br />
+                    "value": "@{item()} "<br />
+                  }<br />
+                }</p>
+                <h4>5. Output the Cleaned String</h4>
+                <p>Finally, use a <strong>Compose</strong> action to output the cleaned string:</p>
+                <p>{<br />
+                  "name": "Output_CleanedString",<br />
+                  "type": "Compose",<br />
+                  "inputs": "@variables('outputString')"<br />
+                }</p>
+                <h3>Complete JSON Representation</h3>
+                <p>Here is the complete JSON representation of the Logic App:</p>
+                <p>{<br />
+                  "definition": {<br />
+                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",<br />
+                    "actions": {<br />
+                      "Initialize_inputString": {<br />
+                        "inputs": {<br />
+                          "variables": [<br />
+                            {<br />
+                              "name": "inputString",<br />
+                              "type": "String",<br />
+                              "value": "Here is a link https://example.com and another one http://example.org and some text without URLs."<br />
+                            }<br />
+                          ]<br />
+                        },<br />
+                        "runAfter": {},<br />
+                        "type": "InitializeVariable"<br />
+                      },<br />
+                      "Compose_SplitString": {<br />
+                        "inputs": "@split(variables('inputString'), ' ')",<br />
+                        "runAfter": {<br />
+                          "Initialize_inputString": [<br />
+                            "Succeeded"<br />
+                          ]<br />
+                        },<br />
+                        "type": "Compose"<br />
+                      },<br />
+                      "Initialize_outputString": {<br />
+                        "inputs": {<br />
+                          "variables": [<br />
+                            {<br />
+                              "name": "outputString",<br />
+                              "type": "String",<br />
+                              "value": ""<br />
+                            }<br />
+                          ]<br />
+                        },<br />
+                        "runAfter": {<br />
+                          "Initialize_inputString": [<br />
+                            "Succeeded"<br />
+                          ]<br />
+                        },<br />
+                        "type": "InitializeVariable"<br />
+                      },<br />
+                      "ForEach_Parts": {<br />
+                        "actions": {<br />
+                          "Condition_IsURL": {<br />
+                            "actions": {<br />
+                              "Do_Nothing": {<br />
+                                "inputs": "URL found, doing nothing.",<br />
+                                "runAfter": {},<br />
+                                "type": "Compose"<br />
+                              },<br />
+                              "Append_NonURLPart": {<br />
+                                "inputs": {<br />
+                                  "name": "outputString",<br />
+                                  "value": "@{item()} "<br />
+                                },<br />
+                                "runAfter": {},<br />
+                                "type": "AppendToStringVariable"<br />
+                              }<br />
+                            },<br />
+                            "else": {<br />
+                              "actions": {<br />
+                                "Append_NonURLPart": {<br />
+                                  "inputs": {<br />
+                                    "name": "outputString",<br />
+                                    "value": "@{item()} "<br />
+                                  },<br />
+                                  "runAfter": {},<br />
+                                  "type": "AppendToStringVariable"<br />
+                                }<br />
+                              }<br />
+                            },<br />
+                            "expression": {<br />
+                              "equals": [<br />
+                                "@if(equals(substring(item(), 0, 4), 'http'), true, false)",<br />
+                                true<br />
+                              ]<br />
+                            },<br />
+                            "runAfter": {}<br />
+                          }<br />
+                        },<br />
+                        "inputs": {<br />
+                          "items": "@outputs('Compose_SplitString')"<br />
+                        },<br />
+                        "runAfter": {<br />
+                          "Compose_SplitString": [<br />
+                            "Succeeded"<br />
+                          ]<br />
+                        },<br />
+                        "type": "Foreach"<br />
+                      },<br />
+                      "Output_CleanedString": {<br />
+                        "inputs": "@variables('outputString')",<br />
+                        "runAfter": {<br />
+                          "ForEach_Parts": [<br />
+                            "Succeeded"<br />
+                          ]<br />
+                        },<br />
+                        "type": "Compose"<br />
+                      }<br />
+                    },<br />
+                    "triggers": {<br />
+                      "manual": {<br />
+                        "inputs": {},<br />
+                        "type": "Request"<br />
+                      }<br />
+                    }<br />
+                  }<br />
+                }</p>
+                <h3>Explanation:</h3>
+                <ul>
+                <li>
+                <p><strong>Initialize Variables</strong>: The input string and output string are initialized.</p>
+                </li>
+                <li>
+                <p><strong>Split Input String</strong>: The input string is split into parts based on spaces.</p>
+                </li>
+                <li>
+                <p><strong>For Each Loop</strong>: Iterates through each part, checks if it starts with "http" or "https", and either ignores it or appends it to the output string.</p>
+                </li>
+                <li>
+                <p><strong>Output Cleaned String</strong>: The final cleaned string is outputted, which does not contain any URLs.</p>
+                </li>
+                </ul>
+                <p>This approach removes URLs from a string using Logic Apps without direct support for regular expressions in the <code>replace</code> function.</p>
+                <p>this one worked?</p>
+                <p><img src="images/operator-sees-the-27.png" alt="operator sees the 27" class="article-image" loading="lazy"></p>
+                <p>cleaner method is not so great</p>
+                <p><img src="images/operator-sees-the-28.png" alt="operator sees the 28" class="article-image" loading="lazy"></p>
+                <p>old code</p>
+                <p>`module.exports = async function (context, req) {<br />
+                    context.log('JavaScript HTTP trigger function processed a request.');</p>
+                <pre><code>if (!req.body || typeof req.body !== 'string') {
+                    context.res = {
+                        status: 400,
+                        body: "Invalid input. Please provide a valid text input in the request body."
+                    return;
+                }
+                
+                const textInput = req.body;
+                
+                function removeHtmlTags(text) {
+                    return text.replace(/&lt;&amp;#091;^&gt;]+&gt;/g, '');
+                }
+                
+                function removeSensitiveInfo(text) {
+                    const sensitiveInfoRegex = /\&amp;#091;Your Name\]|\&amp;#091;Your Address\]|\&amp;#091;City, State, ZIP Code\]|\&amp;#091;Email Address\]|\&amp;#091;Phone Number\]|\&amp;#091;Date\]/g;
+                    return text.replace(sensitiveInfoRegex, '');
+                }
+                
+                function escapeSpecialChars(text) {
+                    return text.replace(/&amp;#091;"\\\/\b\f\n\r\t]/g, function(match) {
+                        switch(match) {
+                            case '"':
+                                return '\\"';
+                            case '\\':
+                                return '\\\\';
+                            case '/':
+                                return '\\/';
+                            case '\b':
+                                return '\\b';
+                            case '\f':
+                                return '\\f';
+                            case '\n':
+                                return '\\n';
+                            case '\r':
+                                return '\\r';
+                            case '\t':
+                                return '\\t';
+                        }
+                }
+                
+                let sanitizedText = removeHtmlTags(textInput);
+                sanitizedText = removeSensitiveInfo(sanitizedText);
+                
+                sanitizedText = escapeSpecialChars(sanitizedText);
+                
+                const responseMessage = {
+                    status: 200,
+                    body: sanitizedText
+                
+                context.res = responseMessage;
+                </code></pre>
+                <p>`</p>
+                <p>new code</p>
+                <p>`module.exports = async function (context, req) {<br />
+                    context.log('JavaScript HTTP trigger function processed a request.');</p>
+                <pre><code>if (!req.body || typeof req.body !== 'string') {
+                    context.res = {
+                        status: 400,
+                        body: "Invalid input. Please provide a valid text input in the request body."
+                    return;
+                }
+                
+                const textInput = req.body;
+                
+                function removeHtmlTags(text) {
+                    return text.replace(/&lt;&amp;#091;^&gt;]+&gt;/g, '');
+                }
+                
+                function removeSensitiveInfo(text) {
+                    const sensitiveInfoRegex = /\&amp;#091;Your Name\]|\&amp;#091;Your Address\]|\&amp;#091;City, State, ZIP Code\]|\&amp;#091;Email Address\]|\&amp;#091;Phone Number\]|\&amp;#091;Date\]/g;
+                    return text.replace(sensitiveInfoRegex, '');
+                }
+                
+                function escapeSpecialChars(text) {
+                    return text.replace(/&amp;#091;"\\\/\b\f\n\r\t]/g, function(match) {
+                        switch(match) {
+                            case '"':
+                                return '\\"';
+                            case '\\':
+                                return '\\\\';
+                            case '/':
+                                return '\\/';
+                            case '\b':
+                                return '\\b';
+                            case '\f':
+                                return '\\f';
+                            case '\n':
+                                return '\\n';
+                            case '\r':
+                                return '\\r';
+                            case '\t':
+                                return '\\t';
+                            default:
+                                return match;
+                        }
+                }
+                
+                function cleanUrls(text) {
+                    const urlRegex = /(https?:\/\/&amp;#091;^\s]+)/g;
+                    return text.replace(urlRegex, function(url) {
+                        try {
+                            const urlObj = new URL(url);
+                            return urlObj.origin; // return the origin (scheme + domain)
+                        } catch (e) {
+                            return ''; // return empty string if URL is invalid
+                        }
+                }
+                
+                let sanitizedText = removeHtmlTags(textInput);
+                sanitizedText = removeSensitiveInfo(sanitizedText);
+                sanitizedText = cleanUrls(sanitizedText);
+                
+                sanitizedText = escapeSpecialChars(sanitizedText);
+                
+                context.res = {
+                    status: 200,
+                    body: sanitizedText
+                </code></pre>
+                <p>`</p>
+                <p>removed not needed urls</p>
+                <p><img src="images/operator-sees-the-29.png" alt="operator sees the 29" class="article-image" loading="lazy"></p>
+                <p>running instance &gt; <a href="https://portal.azure.com/#view/Microsoft_Azure_EMA/LogicAppsMonitorBlade/runid/%2Fsubscriptions%2Fad744a08-2411-4d78-b417-1f1c83f4f741%2Fresourcegroups%2FContractorMarketing%2Fproviders%2FMicrosoft.Logic%2Fworkflows%2Fcontractormarketing-gpt-coverletter%2Fruns%2F08584858418832263156716872829CU03">https://portal.azure.com/#view/Microsoft_Azure_EMA/LogicAppsMonitorBlade/runid/%2Fsubscriptions%2Fad744a08-2411-4d78-b417-1f1c83f4f741%2Fresourcegroups%2FContractorMarketing%2Fproviders%2FMicrosoft.Logic%2Fworkflows%2Fcontractormarketing-gpt-coverletter%2Fruns%2F08584858418832263156716872829CU03</a></p>
+                <p><img src="images/operator-sees-the-30.png" alt="operator sees the 30" class="article-image" loading="lazy"></p>
+                <p>more cleanup</p>
+                <p><img src="images/operator-sees-the-31.png" alt="operator sees the 31" class="article-image" loading="lazy"></p>
+                <p>it is coming from my end</p>
+                <p><img src="images/operator-sees-the-32.png" alt="operator sees the 32" class="article-image" loading="lazy"></p>
+                <p>matchedskills  clean</p>
+                <p><img src="images/operator-sees-the-33.png" alt="operator sees the 33" class="article-image" loading="lazy"></p>
+                <p>Fixed your error withg jsonlint so manual and digital gets mixed in the studio </p>
+                <p>Now it works and updated to gpt 4 with my system errors are taken out thanks to jsonlint ! &gt; <a href="https://jsonlint.com/">https://jsonlint.com/</a></p>
+                <p><img src="images/operator-sees-the-34.png" alt="operator sees the 34" class="article-image" loading="lazy"></p>
+                <p>try another one as implementer make sure it is working we dont want it to turn back from planner and operator</p>
+                <p><img src="images/operator-sees-the-35.png" alt="operator sees the 35" class="article-image" loading="lazy"></p>
+                <p><strong>it runs &gt; </strong><a href="https://portal.azure.com/#view/Microsoft_Azure_EMA/LogicAppsMonitorBlade/runid/%2Fsubscriptions%2Fad744a08-2411-4d78-b417-1f1c83f4f741%2Fresourcegroups%2FContractorMarketing%2Fproviders%2FMicrosoft.Logic%2Fworkflows%2Fcontractormarketing-gpt-coverletter%2Fruns%2F08584858408674381562583290092CU01">https://portal.azure.com/#view/Microsoft_Azure_EMA/LogicAppsMonitorBlade/runid/%2Fsubscriptions%2Fad744a08-2411-4d78-b417-1f1c83f4f741%2Fresourcegroups%2FContractorMarketing%2Fproviders%2FMicrosoft.Logic%2Fworkflows%2Fcontractormarketing-gpt-coverletter%2Fruns%2F08584858408674381562583290092CU01</a></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

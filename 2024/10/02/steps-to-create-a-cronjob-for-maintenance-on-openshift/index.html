@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steps to Create a CronJob for Maintenance on OpenShift - Rifat Erdem Sahin</title>
+    <meta name="description" content="Steps to Create a CronJob for Maintenance on OpenShift Creating a Proof of Concept (PoC) for CronJobs on OpenShift involves setting up automated tasks to perform maintenance activities at scheduled in">
+    <meta name="keywords" content="Steps to Create a CronJob for Maintenance on OpenShift">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/10/02/steps-to-create-a-cronjob-for-maintenance-on-openshift/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/10/02/steps-to-create-a-cronjob-for-maintenance-on-openshift/">
+    <meta property="og:title" content="Steps to Create a CronJob for Maintenance on OpenShift">
+    <meta property="og:description" content="Steps to Create a CronJob for Maintenance on OpenShift Creating a Proof of Concept (PoC) for CronJobs on OpenShift involves setting up automated tasks to perform maintenance activities at scheduled in">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/10/02/steps-to-create-a-cronjob-for-maintenance-on-openshift/">
+    <meta property="twitter:title" content="Steps to Create a CronJob for Maintenance on OpenShift">
+    <meta property="twitter:description" content="Steps to Create a CronJob for Maintenance on OpenShift Creating a Proof of Concept (PoC) for CronJobs on OpenShift involves setting up automated tasks to perform maintenance activities at scheduled in">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Steps to Create a CronJob for Maintenance on OpenShift",
+      "description": "Steps to Create a CronJob for Maintenance on OpenShift Creating a Proof of Concept (PoC) for CronJobs on OpenShift involves setting up automated tasks to perform maintenance activities at scheduled in",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-10-02",
+      "dateModified": "2024-10-02",
+      "url": "https://www.rifaterdemsahin.com/2024/10/02/steps-to-create-a-cronjob-for-maintenance-on-openshift/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/10/02/steps-to-create-a-cronjob-for-maintenance-on-openshift/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Steps to Create a CronJob for Maintenance on OpenShift</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>October 2, 2024</span>
+                    <span>&bull;</span>
+                    <span>6 min read</span>
+                </div>
+                <p class="article-excerpt">Steps to Create a CronJob for Maintenance on OpenShift Creating a Proof of Concept (PoC) for CronJobs on OpenShift involves setting up automated tasks to perform maintenance activities at scheduled intervals.</p>
+            </header>
+            <article class="article-content">
+                <h1>Steps to Create a CronJob for Maintenance on OpenShift</h1>
+                <p><img src="images/steps-to-create-1.png" alt="steps to create 1" class="article-image" loading="lazy"></p>
+                <p>Creating a Proof of Concept (PoC) for CronJobs on OpenShift involves setting up automated tasks to perform maintenance activities at scheduled intervals. CronJobs in OpenShift are used to run Kubernetes jobs on a time-based schedule, similar to cron jobs in Unix-like operating systems.</p>
+                <h3>restart from <strong>github</strong></h3>
+                <p>https://github.com/rifaterdemsahin/cronjobs/tree/main</p>
+                <p><img src="images/steps-to-create-2.png" alt="steps to create 2" class="article-image" loading="lazy"></p>
+                <p>Here’s a step-by-step guide to create a CronJob for maintenance tasks:</p>
+                <h4>1. <strong>Log in to Your OpenShift Cluster</strong></h4>
+                <p><img src="images/steps-to-create-3.png" alt="steps to create 3" class="article-image" loading="lazy"></p>
+                <p>First, ensure you are logged in to your OpenShift cluster using the <code>oc</code> command-line tool.</p>
+                <p><img src="images/steps-to-create-4.png" alt="steps to create 4" class="article-image" loading="lazy"></p>
+                <p>oc login --server=https://your-openshift-cluster-url:port</p>
+                <p><img src="images/steps-to-create-5.png" alt="steps to create 5" class="article-image" loading="lazy"></p>
+                <p>Stop start</p>
+                <p><img src="images/steps-to-create-6.png" alt="steps to create 6" class="article-image" loading="lazy"></p>
+                <p>now more logs coming on</p>
+                <p><img src="images/steps-to-create-7.png" alt="steps to create 7" class="article-image" loading="lazy"></p>
+                <p>now logged in</p>
+                <p><img src="images/steps-to-create-8.png" alt="steps to create 8" class="article-image" loading="lazy"></p>
+                <h4>2. <strong>Create a New Project or Use an Existing One</strong></h4>
+                <p>You can create a new project (namespace) or use an existing one to deploy your CronJob.</p>
+                <p>oc new-project maintenance-cronjobs</p>
+                <h1>or use an existing project</h1>
+                <p>oc project existing-project</p>
+                <p><img src="images/steps-to-create-9.png" alt="steps to create 9" class="article-image" loading="lazy"></p>
+                <p>it is not here</p>
+                <p><img src="images/steps-to-create-10.png" alt="steps to create 10" class="article-image" loading="lazy"></p>
+                <h4>3. <strong>Define the CronJob YAML File</strong></h4>
+                <p><img src="images/steps-to-create-11.png" alt="steps to create 11" class="article-image" loading="lazy"></p>
+                <p>Create a YAML file to define the CronJob. This file specifies the schedule, the container image to use, and the task to perform. Here’s an example YAML file named <code>maintenance-cronjob.yaml</code>:</p>
+                <p>apiVersion: batch/v1<br />
+                kind: CronJob<br />
+                metadata:<br />
+                  name: cleanup-job<br />
+                  namespace: maintenance-cronjobs  # Replace with your namespace<br />
+                spec:<br />
+                  schedule: "0 2 * * *"  # This schedule runs the job at 2:00 AM every day<br />
+                  jobTemplate:<br />
+                    spec:<br />
+                      template:<br />
+                        spec:<br />
+                          containers:<br />
+                          - name: cleanup<br />
+                            image: busybox  # Replace with an appropriate image<br />
+                            command:<br />
+                            - /bin/sh<br />
+                            - -c<br />
+                            - "echo 'Running cleanup tasks'; # add your cleanup commands here"<br />
+                          restartPolicy: OnFailure</p>
+                <ul>
+                <li>
+                <p><strong><code>schedule</code></strong>: Specifies the cron expression for the job’s schedule. The example <code>"0 2 * * *"</code> means the job will run daily at 2:00 AM.</p>
+                </li>
+                <li>
+                <p><strong><code>containers</code></strong>: Defines the container that runs your maintenance tasks. The <code>command</code> field specifies the commands to execute within the container.</p>
+                </li>
+                <li>
+                <p><strong><code>restartPolicy</code></strong>: Defines the job’s restart policy. <code>OnFailure</code> means the job will retry if it fails.</p>
+                </li>
+                </ul>
+                <p>oc apply -f maintenance-cronjob.yaml</p>
+                <p><img src="images/steps-to-create-12.png" alt="steps to create 12" class="article-image" loading="lazy"></p>
+                <p>Cleanup job in here</p>
+                <p><img src="images/steps-to-create-13.png" alt="steps to create 13" class="article-image" loading="lazy"></p>
+                <p><img src="images/steps-to-create-14.png" alt="steps to create 14" class="article-image" loading="lazy"></p>
+                <p>Start and End Update</p>
+                <p><img src="images/steps-to-create-15.png" alt="steps to create 15" class="article-image" loading="lazy"></p>
+                <p>ToolBag Suggested By VSCode</p>
+                <p><img src="images/steps-to-create-16.png" alt="steps to create 16" class="article-image" loading="lazy"></p>
+                <p><img src="images/steps-to-create-17.png" alt="steps to create 17" class="article-image" loading="lazy"></p>
+                <h4>4. <strong>Apply the CronJob Configuration</strong></h4>
+                <p>Apply the CronJob configuration to your OpenShift cluster using the <code>oc</code> command:</p>
+                <p>oc apply -f maintenance-cronjob.yaml</p>
+                <p>Second run removes my line in yaml and goes back to original yaml</p>
+                <p><img src="images/steps-to-create-18.png" alt="steps to create 18" class="article-image" loading="lazy"></p>
+                <h4>5. <strong>Verify the CronJob Creation</strong></h4>
+                <p><img src="images/steps-to-create-19.png" alt="steps to create 19" class="article-image" loading="lazy"></p>
+                <p>Check if the CronJob is created and scheduled correctly:</p>
+                <p>oc get cronjob</p>
+                <p>You should see output similar to this:</p>
+                <p>NAME          SCHEDULE    SUSPEND   ACTIVE   LAST SCHEDULE   AGE<br />
+                cleanup-job   0 2 * * *   False     0        <none>          5s</p>
+                <p>Parellel Jobs</p>
+                <p><img src="images/steps-to-create-20.png" alt="steps to create 20" class="article-image" loading="lazy"></p>
+                <h4>6. <strong>Monitor CronJob Execution</strong></h4>
+                <p>To monitor the execution of your CronJob, you can check the status of the Jobs created by the CronJob:</p>
+                <p><img src="images/steps-to-create-21.png" alt="steps to create 21" class="article-image" loading="lazy"></p>
+                <p>oc get jobs</p>
+                <p>For detailed logs of a specific job:</p>
+                <p>oc logs job/<job-name></p>
+                <h4>7. <strong>Edit or Update the CronJob</strong></h4>
+                <p>If you need to update the CronJob (e.g., change the schedule or modify the commands), edit the YAML file and reapply it:</p>
+                <p>oc apply -f maintenance-cronjob.yaml</p>
+                <h4>8. <strong>Suspend or Delete the CronJob</strong></h4>
+                <p>To temporarily disable (suspend) the CronJob:</p>
+                <p>oc patch cronjob cleanup-job -p '{"spec" : {"suspend" : true }}'</p>
+                <p><img src="images/steps-to-create-22.png" alt="steps to create 22" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>Based on the <code>CronJob</code> YAML you provided, it seems that you are trying to patch the <code>suspend</code> field to <code>true</code> using the <code>oc patch</code> command. However, you encountered errors due to improper JSON formatting or PowerShell syntax issues.</p>
+                <p>To successfully suspend the cron job using the <code>oc patch</code> command, follow these steps to ensure the JSON is formatted correctly and recognized by the command:</p>
+                <h3>Correct Command for PowerShell</h3>
+                <p>In PowerShell, use single quotes around the JSON payload to avoid needing to escape double quotes inside the JSON string:</p>
+                <p>oc patch cronjob cleanup-job -n maintenance-cronjobs -p '{"spec": {"suspend": true}}'</p>
+                <h3>Explanation:</h3>
+                <ul>
+                <li>
+                <p><strong>Single Quotes</strong>: Using single quotes around the JSON avoids issues with escape characters in PowerShell.</p>
+                </li>
+                <li>
+                <p><strong>Namespace</strong>: Make sure to include the namespace (<code>-n maintenance-cronjobs</code>) in your command since your <code>CronJob</code> is in the <code>maintenance-cronjobs</code> namespace. Without specifying the namespace, the command defaults to the current namespace, which may not be where your cron job is located.</p>
+                </li>
+                </ul>
+                <h3>Alternative Using <code>kubectl</code>/<code>oc</code> in PowerShell with Escape Characters</h3>
+                <p>If you prefer to use double quotes around the JSON string, ensure to escape properly in PowerShell:</p>
+                <p>oc patch cronjob cleanup-job -n maintenance-cronjobs -p "{\"spec\": {\"suspend\": true}}"</p>
+                <h3>Steps to Apply the Patch:</h3>
+                <ul>
+                <li>
+                <p><strong>Open PowerShell</strong>: Make sure you're running PowerShell where your <code>oc</code> (OpenShift CLI) or <code>kubectl</code> (Kubernetes CLI) is configured.</p>
+                </li>
+                <li>
+                <p><strong>Run the Correct Command</strong>: Copy and paste one of the commands above into your PowerShell window.</p>
+                </li>
+                <li>
+                <p><strong>Verify</strong>: Once the command is successfully executed, verify that the cron job is suspended by running:</p>
+                </li>
+                </ul>
+                <p>oc get cronjob cleanup-job -n maintenance-cronjobs -o yaml</p>
+                <p>Look for the <code>suspend</code> field in the output. It should be set to <code>true</code>.</p>
+                <p>By using the correct syntax and including the namespace, your <code>oc patch</code> command should execute without errors, successfully suspending the cron job.</p>
+                <hr />
+                <p>To delete the CronJob:</p>
+                <p>oc delete cronjob cleanup-job</p>
+                <h3>Example Maintenance Tasks</h3>
+                <p>Here are some typical maintenance tasks you might want to automate using CronJobs:</p>
+                <ul>
+                <li>
+                <p><strong>Cleaning Up Old Logs</strong>: Rotate and delete old logs to save disk space.</p>
+                </li>
+                <li>
+                <p><strong>Database Backups</strong>: Automate database backups and transfer them to a secure storage location.</p>
+                </li>
+                <li>
+                <p><strong>Resource Cleanup</strong>: Delete unused resources (like completed pods or old images) to free up cluster resources.</p>
+                </li>
+                <li>
+                <p><strong>Health Checks and Reports</strong>: Run periodic health checks and generate reports for monitoring purposes.</p>
+                </li>
+                </ul>
+                <h3>Conclusion</h3>
+                <p>Using CronJobs in OpenShift is a powerful way to automate routine maintenance tasks. By defining your tasks in a YAML file and applying it to your cluster, you can ensure regular execution of these tasks with minimal manual intervention. This setup can significantly enhance the management and stability of your OpenShift environment.</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

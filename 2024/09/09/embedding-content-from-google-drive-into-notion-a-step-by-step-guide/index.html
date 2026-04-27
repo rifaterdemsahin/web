@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embedding Content from Google Drive into Notion: A Step-by-Step Guide - Rifat Erdem Sahin</title>
+    <meta name="description" content="Embedding Content from Google Drive into Notion: A Step-by-Step Guide Embedding Content from Google Drive into Notion: A Step-by-Step Guide As a content creator, effectively managing and sharing your ">
+    <meta name="keywords" content="Embedding Content from Google Drive into Notion: A Step-by-Step Guide">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/09/09/embedding-content-from-google-drive-into-notion-a-step-by-step-guide/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/09/09/embedding-content-from-google-drive-into-notion-a-step-by-step-guide/">
+    <meta property="og:title" content="Embedding Content from Google Drive into Notion: A Step-by-Step Guide">
+    <meta property="og:description" content="Embedding Content from Google Drive into Notion: A Step-by-Step Guide Embedding Content from Google Drive into Notion: A Step-by-Step Guide As a content creator, effectively managing and sharing your ">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/09/09/embedding-content-from-google-drive-into-notion-a-step-by-step-guide/">
+    <meta property="twitter:title" content="Embedding Content from Google Drive into Notion: A Step-by-Step Guide">
+    <meta property="twitter:description" content="Embedding Content from Google Drive into Notion: A Step-by-Step Guide Embedding Content from Google Drive into Notion: A Step-by-Step Guide As a content creator, effectively managing and sharing your ">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Embedding Content from Google Drive into Notion: A Step-by-Step Guide",
+      "description": "Embedding Content from Google Drive into Notion: A Step-by-Step Guide Embedding Content from Google Drive into Notion: A Step-by-Step Guide As a content creator, effectively managing and sharing your ",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-09-09",
+      "dateModified": "2024-09-09",
+      "url": "https://www.rifaterdemsahin.com/2024/09/09/embedding-content-from-google-drive-into-notion-a-step-by-step-guide/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/09/09/embedding-content-from-google-drive-into-notion-a-step-by-step-guide/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Embedding Content from Google Drive into Notion: A Step-by-Step Guide</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>September 9, 2024</span>
+                    <span>&bull;</span>
+                    <span>3 min read</span>
+                </div>
+                <p class="article-excerpt">Embedding Content from Google Drive into Notion: A Step-by-Step Guide Embedding Content from Google Drive into Notion: A Step-by-Step Guide As a content creator, effectively managing and sharing your raw footage and videos is crucial.</p>
+            </header>
+            <article class="article-content">
+                <h1>Embedding Content from Google Drive into Notion: A Step-by-Step Guide</h1>
+                <div class="video-embed"><iframe src="https://www.loom.com/embed/1f3830cc0cb64b8299ff3ecad1166eb3" frameborder="0" allowfullscreen></iframe></div>
+                
+                <h2>Embedding Content from Google Drive into Notion: A Step-by-Step Guide</h2>
+                <p>As a content creator, effectively managing and sharing your raw footage and videos is crucial. One efficient way to do this is by embedding your Google Drive content directly into a Notion page. This guide will walk you through the process, ensuring your videos are easily accessible and neatly displayed.</p>
+                <h3>Why Use Google Drive with Notion?</h3>
+                <p>Google Drive offers a reliable storage solution for your raw footage, while Notion provides an organized workspace to manage and share your content. By embedding Google Drive videos into Notion, you can:</p>
+                <ul>
+                <li><strong>Back up your raw footage</strong>: Keep a secure copy on Google Drive.</li>
+                <li><strong>Display videos seamlessly</strong>: Use Notion to create an organized, accessible library of your videos.</li>
+                <li><strong>Improve workflow</strong>: Utilize tools like VVideo, which can pull content directly from Google Drive for editing.</li>
+                </ul>
+                <h3>Steps to Embed Google Drive Videos into Notion</h3>
+                <ol>
+                <li>
+                <p><strong>Upload Videos to Google Drive</strong>:<br />
+                   - Ensure your videos are uploaded to your Google Drive account.<br />
+                   - Organize them into folders for easy access.</p>
+                </li>
+                <li>
+                <p><strong>Generate Embed Code from Google Drive</strong>:<br />
+                   - Open the video file in Google Drive.<br />
+                   - Click on the three dots (More actions) in the top right corner and select "Embed item...".<br />
+                   - Copy the iFrame code provided. The code will look something like this:<br />
+                <code>html
+                     &lt;iframe src="https://drive.google.com/file/d/VIDEO_ID/preview" width="640" height="480"&gt;&lt;/iframe&gt;</code><br />
+                   - Extract the URL within the <code>src</code> attribute, which contains the video ID and the preview suffix.</p>
+                </li>
+                <li>
+                <p><strong>Embed the Video in Notion</strong>:<br />
+                   - Open your Notion page where you want to embed the video.<br />
+                   - Type <code>/embed</code> and paste the URL extracted from the iFrame code.<br />
+                   - Notion will generate an embedded video player, allowing you to resize and position it as needed.</p>
+                </li>
+                <li>
+                <p><strong>Organize and Annotate Your Videos in Notion</strong>:<br />
+                   - Add titles, descriptions, and captions to each video for better context.<br />
+                   - Use comments and tags to highlight important sections or notes.</p>
+                </li>
+                </ol>
+                <h3>Example of Embedding a Video</h3>
+                <ol>
+                <li>
+                <p><strong>Extracting the URL</strong>:<br />
+                   - Suppose your iFrame code is:<br />
+                <code>html
+                     &lt;iframe src="https://drive.google.com/file/d/1aBcD_efGhIJK2lmNOPqr3StuVW4Xyzab/preview" width="640" height="480"&gt;&lt;/iframe&gt;</code><br />
+                   - The URL to use is:<br />
+                <code>https://drive.google.com/file/d/1aBcD_efGhIJK2lmNOPqr3StuVW4Xyzab/preview</code></p>
+                </li>
+                <li>
+                <p><strong>Embedding in Notion</strong>:<br />
+                   - Open your Notion page and type <code>/embed</code>.<br />
+                   - Paste the URL:<br />
+                <code>https://drive.google.com/file/d/1aBcD_efGhIJK2lmNOPqr3StuVW4Xyzab/preview</code><br />
+                   - Resize the embedded player as needed.</p>
+                </li>
+                </ol>
+                <h3>Tips for a Smooth Workflow</h3>
+                <ul>
+                <li><strong>Use VVideo for Editing</strong>: VVideo can pull content directly from Google Drive, streamlining your editing process.</li>
+                <li><strong>Test Your Embeds</strong>: Ensure each video plays correctly in Notion before sharing the page.</li>
+                <li><strong>Organize by Projects or Topics</strong>: Group related videos together for easy navigation.</li>
+                </ul>
+                <h3>Conclusion</h3>
+                <p>Embedding Google Drive videos into Notion not only keeps your content organized but also makes it easily shareable and accessible. By following these steps, you can create a streamlined workflow that leverages the strengths of both platforms. Happy creating!</p>
+                <p><strong>Connect with me</strong>:</p>
+                <ul>
+                <li>
+                <p>LinkedIn: https://www.linkedin.com/in/rifaterdemsahin/</p>
+                </li>
+                <li>
+                <p>Twitter: https://x.com/rifaterdemsahin</p>
+                </li>
+                <li>
+                <p>YouTube: https://www.youtube.com/@RifatErdemSahin</p>
+                </li>
+                </ul>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

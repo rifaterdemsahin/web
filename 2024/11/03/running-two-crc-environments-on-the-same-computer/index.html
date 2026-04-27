@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Running Two CRC Environments on the Same Computer - Rifat Erdem Sahin</title>
+    <meta name="description" content="Running Two CRC Environments on the Same Computer Introduction In the world of software development and system testing, Container Runtime Environments (CRC) like OpenShift’s CRC are vital for creating">
+    <meta name="keywords" content="Running Two CRC Environments on the Same Computer">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/11/03/running-two-crc-environments-on-the-same-computer/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/11/03/running-two-crc-environments-on-the-same-computer/">
+    <meta property="og:title" content="Running Two CRC Environments on the Same Computer">
+    <meta property="og:description" content="Running Two CRC Environments on the Same Computer Introduction In the world of software development and system testing, Container Runtime Environments (CRC) like OpenShift’s CRC are vital for creating">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/11/03/running-two-crc-environments-on-the-same-computer/">
+    <meta property="twitter:title" content="Running Two CRC Environments on the Same Computer">
+    <meta property="twitter:description" content="Running Two CRC Environments on the Same Computer Introduction In the world of software development and system testing, Container Runtime Environments (CRC) like OpenShift’s CRC are vital for creating">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Running Two CRC Environments on the Same Computer",
+      "description": "Running Two CRC Environments on the Same Computer Introduction In the world of software development and system testing, Container Runtime Environments (CRC) like OpenShift’s CRC are vital for creating",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-11-03",
+      "dateModified": "2024-11-03",
+      "url": "https://www.rifaterdemsahin.com/2024/11/03/running-two-crc-environments-on-the-same-computer/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/11/03/running-two-crc-environments-on-the-same-computer/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Running Two CRC Environments on the Same Computer</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>November 3, 2024</span>
+                    <span>&bull;</span>
+                    <span>4 min read</span>
+                </div>
+                <p class="article-excerpt">Running Two CRC Environments on the Same Computer Introduction In the world of software development and system testing, Container Runtime Environments (CRC) like OpenShift’s CRC are vital for creating and managing containerized applications.</p>
+            </header>
+            <article class="article-content">
+                <h1>Running Two CRC Environments on the Same Computer</h1>
+                <h3></h3>
+                <h4>Introduction</h4>
+                <p>In the world of software development and system testing, Container Runtime Environments (CRC) like OpenShift’s CRC are vital for creating and managing containerized applications. For developers or teams needing to work with multiple CRC environments on the same computer, understanding how to configure and run two instances simultaneously can be crucial for various testing or development scenarios. This guide walks you through setting up and managing two CRC environments on a single machine.</p>
+                <h4>Why Run Multiple CRC Environments?</h4>
+                <ul>
+                <li>
+                <p><strong>Testing Different Versions</strong>: You may need to test applications or features against different versions of CRC.</p>
+                </li>
+                <li>
+                <p><strong>Isolated Environments</strong>: Running isolated environments helps prevent conflicts and ensures clean testing conditions.</p>
+                </li>
+                <li>
+                <p><strong>Comparative Analysis</strong>: Allows for direct comparison of different configurations or settings.</p>
+                </li>
+                </ul>
+                <h4>Prerequisites</h4>
+                <p>Before setting up two CRC environments, ensure you have the following:</p>
+                <ul>
+                <li>
+                <p><strong>Sufficient System Resources</strong>: Running multiple CRC instances requires more RAM and CPU. Ensure your system meets these requirements.</p>
+                </li>
+                <li>
+                <p><strong>Latest CRC Versions</strong>: Ensure you are using the latest CRC versions to avoid compatibility issues.</p>
+                </li>
+                </ul>
+                <h4>Steps to Set Up Two CRC Environments</h4>
+                <ul>
+                <li><strong>Install CRC</strong> First, make sure CRC is installed on your machine. If you haven’t installed CRC yet, follow the official installation guide for your operating system.</li>
+                </ul>
+                <p><img src="images/running-two-crc-1.png" alt="running two crc 1" class="article-image" loading="lazy"></p>
+                <p><img src="images/running-two-crc-2.png" alt="running two crc 2" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Create Separate CRC Configurations</strong> Each CRC environment needs its own configuration to avoid conflicts. You can achieve this by creating different directories for each instance.</li>
+                </ul>
+                <p>mkdir -p ~/crc-env1<br />
+                   mkdir -p ~/crc-env2</p>
+                <ul>
+                <li><strong>Initialize CRC Instances</strong> Start by initializing the first CRC environment:</li>
+                </ul>
+                <p>crc setup --config ~/crc-env1/crc-config<br />
+                   crc start --config ~/crc-env1/crc-config</p>
+                <p>Cant set it with the config</p>
+                <p><img src="images/running-two-crc-3.png" alt="running two crc 3" class="article-image" loading="lazy"></p>
+                <p>Google Search</p>
+                <p><img src="images/running-two-crc-4.png" alt="running two crc 4" class="article-image" loading="lazy"></p>
+                <p>Maybe delete and recreate</p>
+                <p><img src="images/running-two-crc-5.png" alt="running two crc 5" class="article-image" loading="lazy"></p>
+                <p><img src="images/running-two-crc-6.png" alt="running two crc 6" class="article-image" loading="lazy"></p>
+                <p><img src="images/running-two-crc-7.png" alt="running two crc 7" class="article-image" loading="lazy"></p>
+                <p>Repeat the process for the second environment, ensuring a different configuration directory:</p>
+                <p>Also new crc is here maybe the installed would fix that </p>
+                <p><img src="images/running-two-crc-8.png" alt="running two crc 8" class="article-image" loading="lazy"></p>
+                <p>crc setup config ~/crc-env2/crc-config<br />
+                   crc start config ~/crc-env2/crc-config</p>
+                <ul>
+                <li>
+                <p><strong>Managing Ports and Networks</strong> To avoid port conflicts between the two CRC environments, configure each instance to use different port ranges. You can specify this in the configuration files.</p>
+                </li>
+                <li>
+                <p><strong>Switching Between Environments</strong> When working with multiple CRC environments, you’ll need to switch contexts. Use environment variables to manage which CRC instance you are interacting with.</p>
+                </li>
+                </ul>
+                <p>export CRC_HOME=~/crc-env1</p>
+                <p>To switch to the second environment:</p>
+                <p>export CRC_HOME=~/crc-env2</p>
+                <ul>
+                <li><strong>Verify the Setup</strong> To ensure that both environments are running correctly and are isolated, check the status of each:</li>
+                </ul>
+                <p>crc status config ~/crc-env1/crc-config<br />
+                   crc status config ~/crc-env2/crc-config</p>
+                <h4>Troubleshooting Common Issues</h4>
+                <ul>
+                <li>
+                <p><strong>Port Conflicts</strong>: Ensure that each CRC environment is configured to use different ports.</p>
+                </li>
+                <li>
+                <p><strong>Resource Constraints</strong>: If you experience performance issues, consider allocating more resources or running fewer instances.</p>
+                </li>
+                <li>
+                <p><strong>Configuration Errors</strong>: Double-check configuration files for each CRC instance to ensure no settings are conflicting.</p>
+                </li>
+                </ul>
+                <h4>Conclusion</h4>
+                <p>Running two CRC environments on the same computer can be highly beneficial for development and testing. By following the steps outlined above, you can efficiently set up and manage multiple instances, ensuring isolated and effective testing conditions. Always monitor system resources and be mindful of configuration details to maintain smooth operation of both environments.</p>
+                <p>Feel free to reach out with any specific questions or issues you encounter while setting up your CRC environments!</p>
+                <p>Conflicting Post &gt; <a href="https://github.com/crc-org/crc/issues/935">https://github.com/crc-org/crc/issues/935</a></p>
+                <p><strong>Fails at this step</strong> &gt;&gt;&gt; remove --</p>
+                <p><img src="images/running-two-crc-9.png" alt="running two crc 9" class="article-image" loading="lazy"></p>
+                <p><strong>Verify the config to work</strong></p>
+                <p><img src="images/running-two-crc-10.png" alt="running two crc 10" class="article-image" loading="lazy"></p>
+                <p>Config View is here</p>
+                <p><img src="images/running-two-crc-11.png" alt="running two crc 11" class="article-image" loading="lazy"></p>
+                <p><img src="images/running-two-crc-12.png" alt="running two crc 12" class="article-image" loading="lazy"></p>
+                <p>Stop and reinstall on mac</p>
+                <p><img src="images/running-two-crc-13.png" alt="running two crc 13" class="article-image" loading="lazy"></p>
+                <p>After update</p>
+                <p><img src="images/running-two-crc-14.png" alt="running two crc 14" class="article-image" loading="lazy"></p>
+                <p>Restart and reinstall takes us to the config</p>
+                <p><img src="images/running-two-crc-15.png" alt="running two crc 15" class="article-image" loading="lazy"></p>
+                <p>there is hope</p>
+                <p><img src="images/running-two-crc-16.png" alt="running two crc 16" class="article-image" loading="lazy"></p>
+                <p><code>rifaterdemsahin@Rifats-MacBook-Pro crc-env1 % cat config        
+                apiVersion: v1
+                clusters:
+                - cluster:
+                    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURXekNDQWtPZ0F3SUJBZ0lJRWxnV3l1ZTJ5VWt3RFFZSktvWklodmNOQVFFTEJRQXdKakVrTUNJR0ExVUUKQXd3YmFXNW5jbVZ6Y3kxdmNHVnlZWFJ2Y2tBeE56SXlNalF3TXpFMU1CNFhEVEkwTURjeU9UQTRNRFV4TmxvWApEVEkyTURjeU9UQTRNRFV4TjFvd0hURWJNQmtHQTFVRUF3d1NLaTVoY0hCekxXTnlZeTUwWlhOMGFXNW5NSUlCCklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFyTUlxcmJSUkVJKzBCaU13RnBNQWJFVTAKYzFKZUs3dmV0LytJVGhEVzFIbHE5ZVRKdnZ1T0RWQ3Q3NFpaQzdPSVhoMnZhd0YxTVhDN2F0WW01bUs1M3VMVApPSnAxK2FQZThoRFVxaWpCZEdIWXc0V3NJbnI0bWJTWDZ5UWZkRWVSckJXTDVvUStxSUNjR0FQMUV1T1h2V2QyCnMzcjhVVnlISmUxL0hyVHI4Z0lrOWMrTXE2Q3pONWZORUZiWVFRbE5CeTF1UDNhRTYvWTc5aTJFOFBoYlFTVXMKUkg1MWxWaXZJSmlhUzRBcWYzbEFOZmxOWVdVVHlIclRPczE2UjJtd0xQYnNHYkVadVdWZDFTMHVaejFYOWtQdwp4WlFIblNmY0JEUG5UcVNveXZ4SmhwRVJCbkNjQXZ2OG5KNXdrV2pxTkVqYjNYTU5CMStOTDV0dWFRZkNZd0lECkFRQUJvNEdWTUlHU01BNEdBMVVkRHdFQi93UUVBd0lGb0RBVEJnTlZIU1VFRERBS0JnZ3JCZ0VGQlFjREFUQU0KQmdOVkhSTUJBZjhFQWpBQU1CMEdBMVVkRGdRV0JCUkdLZ3hyaExuR2dYNC9aY0k3eUJtR0g2V0d5VEFmQmdOVgpIU01FR0RBV2dCU2JaY2UvNVRGVzVRNDVhdjF0VnFNRGF6MjczVEFkQmdOVkhSRUVGakFVZ2hJcUxtRndjSE10ClkzSmpMblJsYzNScGJtY3dEUVlKS29aSWh2Y05BUUVMQlFBRGdnRUJBQ2hrTFpFNWFjRlNCQjBJazA2a1JLMkwKblQxOEVhK3k5bTV1bzdVVHhxd3NjTGM4dFpsaWJYaGg2Z3grKzh6ellkVThkNFN0aXZEbGdlV3AvRHEvbm9hRgozcXM3cVRZSlVVMFFoN2RSWGlXbkhUckdxYlBlVTBBRThiaWFzUFljeEVoalMzWktxdlI5Z0oybCtqdWRlZ3FSCmhwZzdQZWE4NHpPWk9ITEZvbCtuRjF6L1BNaldkV3lsUnpEM2h3T1VaUUxzTlJYRU1uL3dLY2d3ZG9ZWVRFTlcKYitoNWxJOGxoTWVHU0hJRDJXQmxZdlZveHpKd0tzbXRyM3g3aElJYzdpLzk2WDdyVE14SjlxWE0vdXFsWGJybwpac2ZmeXBBWVV1aWNSMGxFZlEra0crcVAxekFYNW1jeG13eW5EK0dzYW1SemJmWXpobWtKSDM3SW8rOGtMdUk9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0KLS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURERENDQWZTZ0F3SUJBZ0lCQVRBTkJna3Foa2lHOXcwQkFRc0ZBREFtTVNRd0lnWURWUVFEREJ0cGJtZHkKWlhOekxXOXdaWEpoZEc5eVFERTNNakl5TkRBek1UVXdIaGNOTWpRd056STVNRGd3TlRFMVdoY05Nall3TnpJNQpNRGd3TlRFMldqQW1NU1F3SWdZRFZRUUREQnRwYm1keVpYTnpMVzl3WlhKaGRHOXlRREUzTWpJeU5EQXpNVFV3CmdnRWlNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0SUJEd0F3Z2dFS0FvSUJBUURBdEtSM1E1YXZiOWd3WDhiYzFMQ3MKL2xUdnFPbndYQmNyR0ZtY3UyZTBQZTBzZnFDMjhvQk1WTUNpb2UwUEljK3lkSXpCeUNOYU0vS3JUb3B2Zk9keQp3VG9vWEpTclBzeHM2aDNtVTNDZUlBNUpFS1NSVm5Sd1RJakpTeEV2dEJPVUQ0cUt4ZWdNQmpnYk5RTUVma1g5Ci9RSEVaZG8zMDRCRnBYU0VtZ3ltZmYxNzNOSm1hQ2ZMSkJscWduY1RtUGJPWTdDeUhzcURpYjJFTlVNS0dJZ3EKWXNKVEROc05ZVi9NSnJRWXlBN05JWE85cE9CdGZlc3Yrc3dIM0c3MGdUcmVIV3NIS0tpWThmdDlGS055cHN2eQpUTml5RC8rUlN1U3JYb2V3bUhlMUFoR0VXeGcvaEs4UVZ2TGd4NVpESzBpbzNHNUVUTGRNeExDcVFRMWQxdnJ6CkFnTUJBQUdqUlRCRE1BNEdBMVVkRHdFQi93UUVBd0lDcERBU0JnTlZIUk1CQWY4RUNEQUdBUUgvQWdFQU1CMEcKQTFVZERnUVdCQlNiWmNlLzVURlc1UTQ1YXYxdFZxTURhejI3M1RBTkJna3Foa2lHOXcwQkFRc0ZBQU9DQVFFQQprTlZ0bkdwVm1TUGxyTG9vSGZqSUl1RFMva2RCTzl0WDJBb0JJbFJhVlFxcVE4TDVmcitVeEdGMWdndnZvdjVHCnQ1WW4zc2JZa3FzY0JHYXZmVDRmcUFYaXNwNjlZRU1WMTNWNFFFcWRWK1J1eCtWT3lkVGk2djVWbTVMZDJ6UUkKYzIzRXVNY0czbE5UWkhaWXZQZk5melJPYm9zbHdCUlhFR3VzdUErV3hrOU1UNUJCODIxaWM4bDMzdTB2dG44aQpqMFppMzNRWjBQY0RQMW1GdUl6VEhBbnRySUxCc09jbk5pK244LzBUbkxTNnRqOThkWVI5THZLUDQ3a2hNUWQ5CnZKbHJHUDRFdUJZajJ6dFJ4ZTRNd1ZBbzRqS2Nldi8yeW9zS0N0cDBlVXV4cGtyT2lJUXVia2VBTkNqRXFmdmgKM0c3LzRBZVJRcFRZcTJEY1JRaFA5UT09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0KLS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURXekNDQWtPZ0F3SUJBZ0lJRWxnV3l1ZTJ5VWt3RFFZSktvWklodmNOQVFFTEJRQXdKakVrTUNJR0ExVUUKQXd3YmFXNW5jbVZ6Y3kxdmNHVnlZWFJ2Y2tBeE56SXlNalF3TXpFMU1CNFhEVEkwTURjeU9UQTRNRFV4TmxvWApEVEkyTURjeU9UQTRNRFV4TjFvd0hURWJNQmtHQTFVRUF3d1NLaTVoY0hCekxXTnlZeTUwWlhOMGFXNW5NSUlCCklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFyTUlxcmJSUkVJKzBCaU13RnBNQWJFVTAKYzFKZUs3dmV0LytJVGhEVzFIbHE5ZVRKdnZ1T0RWQ3Q3NFpaQzdPSVhoMnZhd0YxTVhDN2F0WW01bUs1M3VMVApPSnAxK2FQZThoRFVxaWpCZEdIWXc0V3NJbnI0bWJTWDZ5UWZkRWVSckJXTDVvUStxSUNjR0FQMUV1T1h2V2QyCnMzcjhVVnlISmUxL0hyVHI4Z0lrOWMrTXE2Q3pONWZORUZiWVFRbE5CeTF1UDNhRTYvWTc5aTJFOFBoYlFTVXMKUkg1MWxWaXZJSmlhUzRBcWYzbEFOZmxOWVdVVHlIclRPczE2UjJtd0xQYnNHYkVadVdWZDFTMHVaejFYOWtQdwp4WlFIblNmY0JEUG5UcVNveXZ4SmhwRVJCbkNjQXZ2OG5KNXdrV2pxTkVqYjNYTU5CMStOTDV0dWFRZkNZd0lECkFRQUJvNEdWTUlHU01BNEdBMVVkRHdFQi93UUVBd0lGb0RBVEJnTlZIU1VFRERBS0JnZ3JCZ0VGQlFjREFUQU0KQmdOVkhSTUJBZjhFQWpBQU1CMEdBMVVkRGdRV0JCUkdLZ3hyaExuR2dYNC9aY0k3eUJtR0g2V0d5VEFmQmdOVgpIU01FR0RBV2dCU2JaY2UvNVRGVzVRNDVhdjF0VnFNRGF6MjczVEFkQmdOVkhSRUVGakFVZ2hJcUxtRndjSE10ClkzSmpMblJsYzNScGJtY3dEUVlKS29aSWh2Y05BUUVMQlFBRGdnRUJBQ2hrTFpFNWFjRlNCQjBJazA2a1JLMkwKblQxOEVhK3k5bTV1bzdVVHhxd3NjTGM4dFpsaWJYaGg2Z3grKzh6ellkVThkNFN0aXZEbGdlV3AvRHEvbm9hRgozcXM3cVRZSlVVMFFoN2RSWGlXbkhUckdxYlBlVTBBRThiaWFzUFljeEVoalMzWktxdlI5Z0oybCtqdWRlZ3FSCmhwZzdQZWE4NHpPWk9ITEZvbCtuRjF6L1BNaldkV3lsUnpEM2h3T1VaUUxzTlJYRU1uL3dLY2d3ZG9ZWVRFTlcKYitoNWxJOGxoTWVHU0hJRDJXQmxZdlZveHpKd0tzbXRyM3g3aElJYzdpLzk2WDdyVE14SjlxWE0vdXFsWGJybwpac2ZmeXBBWVV1aWNSMGxFZlEra0crcVAxekFYNW1jeG13eW5EK0dzYW1SemJmWXpobWtKSDM3SW8rOGtMdUk9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0KLS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURERENDQWZTZ0F3SUJBZ0lCQVRBTkJna3Foa2lHOXcwQkFRc0ZBREFtTVNRd0lnWURWUVFEREJ0cGJtZHkKWlhOekxXOXdaWEpoZEc5eVFERTNNakl5TkRBek1UVXdIaGNOTWpRd056STVNRGd3TlRFMVdoY05Nall3TnpJNQpNRGd3TlRFMldqQW1NU1F3SWdZRFZRUUREQnRwYm1keVpYTnpMVzl3WlhKaGRHOXlRREUzTWpJeU5EQXpNVFV3CmdnRWlNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0SUJEd0F3Z2dFS0FvSUJBUURBdEtSM1E1YXZiOWd3WDhiYzFMQ3MKL2xUdnFPbndYQmNyR0ZtY3UyZTBQZTBzZnFDMjhvQk1WTUNpb2UwUEljK3lkSXpCeUNOYU0vS3JUb3B2Zk9keQp3VG9vWEpTclBzeHM2aDNtVTNDZUlBNUpFS1NSVm5Sd1RJakpTeEV2dEJPVUQ0cUt4ZWdNQmpnYk5RTUVma1g5Ci9RSEVaZG8zMDRCRnBYU0VtZ3ltZmYxNzNOSm1hQ2ZMSkJscWduY1RtUGJPWTdDeUhzcURpYjJFTlVNS0dJZ3EKWXNKVEROc05ZVi9NSnJRWXlBN05JWE85cE9CdGZlc3Yrc3dIM0c3MGdUcmVIV3NIS0tpWThmdDlGS055cHN2eQpUTml5RC8rUlN1U3JYb2V3bUhlMUFoR0VXeGcvaEs4UVZ2TGd4NVpESzBpbzNHNUVUTGRNeExDcVFRMWQxdnJ6CkFnTUJBQUdqUlRCRE1BNEdBMVVkRHdFQi93UUVBd0lDcERBU0JnTlZIUk1CQWY4RUNEQUdBUUgvQWdFQU1CMEcKQTFVZERnUVdCQlNiWmNlLzVURlc1UTQ1YXYxdFZxTURhejI3M1RBTkJna3Foa2lHOXcwQkFRc0ZBQU9DQVFFQQprTlZ0bkdwVm1TUGxyTG9vSGZqSUl1RFMva2RCTzl0WDJBb0JJbFJhVlFxcVE4TDVmcitVeEdGMWdndnZvdjVHCnQ1WW4zc2JZa3FzY0JHYXZmVDRmcUFYaXNwNjlZRU1WMTNWNFFFcWRWK1J1eCtWT3lkVGk2djVWbTVMZDJ6UUkKYzIzRXVNY0czbE5UWkhaWXZQZk5melJPYm9zbHdCUlhFR3VzdUErV3hrOU1UNUJCODIxaWM4bDMzdTB2dG44aQpqMFppMzNRWjBQY0RQMW1GdUl6VEhBbnRySUxCc09jbk5pK244LzBUbkxTNnRqOThkWVI5THZLUDQ3a2hNUWQ5CnZKbHJHUDRFdUJZajJ6dFJ4ZTRNd1ZBbzRqS2Nldi8yeW9zS0N0cDBlVXV4cGtyT2lJUXVia2VBTkNqRXFmdmgKM0c3LzRBZVJRcFRZcTJEY1JRaFA5UT09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0KLS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURRRENDQWlpZ0F3SUJBZ0lJZjdORDFoeTRDZ1V3RFFZSktvWklodmNOQVFFTEJRQXdQakVTTUJBR0ExVUUKQ3hNSmIzQmxibk5vYVdaME1TZ3dKZ1lEVlFRREV4OXJkV0psTFdGd2FYTmxjblpsY2kxc2IyTmhiR2h2YzNRdApjMmxuYm1WeU1CNFhEVEkwTURjeU9UQTNOVEExTlZvWERUTTBNRGN5TnpBM05UQTFOVm93UGpFU01CQUdBMVVFCkN4TUpiM0JsYm5Ob2FXWjBNU2d3SmdZRFZRUURFeDlyZFdKbExXRndhWE5sY25abGNpMXNiMk5oYkdodmMzUXQKYzJsbmJtVnlNSUlCSWpBTkJna3Foa2lHOXcwQkFRRUZBQU9DQVE4QU1JSUJDZ0tDQVFFQXFPN3J1Vm8xK284cAo2ODVpNXFzVmFmNHNhVE9oNFZQSS9jV3VEZXlIa3Uxa2hGcmlEUmJtaEtyekd3NEg2SkVScVF1LzFKdzRScXo4CklkcHV5UjNzZ1E3aDNDRUJkMkNYaU5iS1RHR3RCeUhhK2J4ZVFmWjRzQXZmdENRSTB3N2JjVVNERmREdUgvWXkKamt4ZjVLZDBUMDZNMWIzTUs0VWorVGNmVGpFNkJXaFpSYVRVcmE2em5SZVRzZUczeDA2VjJ0SXU3Qkc3MmJXdApYTFMrN0RKWEttNXVMalA0NmRhT0JwQzNUSGg1NGVpeG4vcVRINGFkVnhIWE9JL1czdjVzTUtlbzdrSEFBL0d4CktVdEdkckJoeUFjRWM3YzRqdGhtUkt3NWljUHpPY2F3TldNWDBNUjVOU25SbTl5YlQ1Skt6ZXBVaTd0NWw1QU4KV1p5bG1yc3E1d0lEQVFBQm8wSXdRREFPQmdOVkhROEJBZjhFQkFNQ0FxUXdEd1lEVlIwVEFRSC9CQVV3QXdFQgovekFkQmdOVkhRNEVGZ1FVSFBSTWRWM3VJTVRuMFVmbFlEdlVxZUpycDFzd0RRWUpLb1pJaHZjTkFRRUxCUUFECmdnRUJBR3ZhTHBlaHBTMUpUTjBVL3lqMTZxdWlhS1J2TSt5azlFWEJteGNlNTY3UmEwVHNVbi9zQTZ2SkFBM1oKbFltYUtBUVZoQk1sODk4c213OW1QblNrWFlvMHVlS3pobGVNNFpsL3hjc0lyNHJoSDlHNHpMMFU0em90aHJsRwp2ajVvS1VXeUN1YlMweU9NUHA2OWhuejZjMTc4OWhLOE5nRXErenVNbGZMM2ovbFc5eEUxcXFWeUlPbFhST1F4CitLaXAxNk5MN3JLRnNyci8vZ0pJbVk0czAzY2VYUHZTa0ZZcll6TGFUTlNEdVNZUHkrUzlDTnpxZ0xCVCsvQUcKdDRVU0lqQ2F3Z05NVGc1Q2lTc1ZBNUVXYWdCNk1EdEJpRnM3QlU4VTFCQ3ZuL29oc1o2K1M3K1BkZnU3YWY5ZApYQWtuam5NOENzNlNjd1lvcHB1aS9GTXNOWVE9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0KLS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURURENDQWpTZ0F3SUJBZ0lJTFRkbkxFc2YycEl3RFFZSktvWklodmNOQVFFTEJRQXdSREVTTUJBR0ExVUUKQ3hNSmIzQmxibk5vYVdaME1TNHdMQVlEVlFRREV5VnJkV0psTFdGd2FYTmxjblpsY2kxelpYSjJhV05sTFc1bApkSGR2Y21zdGMybG5ibVZ5TUI0WERUSTBNRGN5T1RBM05UQTFOVm9YRFRNME1EY3lOekEzTlRBMU5Wb3dSREVTCk1CQUdBMVVFQ3hNSmIzQmxibk5vYVdaME1TNHdMQVlEVlFRREV5VnJkV0psTFdGd2FYTmxjblpsY2kxelpYSjIKYVdObExXNWxkSGR2Y21zdGMybG5ibVZ5TUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQwpBUUVBeGVNaHo1dkcrZlZPblpMN1JNajdHbUNuTEFTQlNTUHdZUkNFTXJPTFlJVXdkRlNCeDRleUJLQVdiTUNLCkZ5emFHRDcxQlVHWFBoVlpmZXdZMk5qalVwNjZoeXJrQVlubkxROXI1QWZ4RUM3UlJkS3EzM01QUWxOVnUzWHcKSHB1ZU9HcVdWMWNSdEtFdjJZK05lQ29JRzFGdk9ZU3VxVzJycGpDeTRDbk4xUHhvWTBFWkVGQnJTT2NBcC9UaQpzM25oLzRBTHF0dlQrOCtIT0EvR0ZiZG5Dc1dteU9Vc1lud05yeXFMTGpuRVBpRFpib3BvcTFHY2w3ZjI4NWZ2CmlWZzR6ZEN1T09Hc1MxK0NvS0poNmgrTjdpRHRRdm9yWitQeGJvUlAvdnMxMGtDc3Y4OWx4NTBBWVZycU1mRU4KV045b2VRMXBieU5aSVNzOCt4YkZnSWhuclFJREFRQUJvMEl3UURBT0JnTlZIUThCQWY4RUJBTUNBcVF3RHdZRApWUjBUQVFIL0JBVXdBd0VCL3pBZEJnTlZIUTRFRmdRVWFDY1hZcVJUMHlZaWdGc0tid2w1Uk4xWFlYd3dEUVlKCktvWklodmNOQVFFTEJRQURnZ0VCQUNnN0M1b2hUQmFESGY5eC9GRE1lZEZjUUZQb3kvWTZlelF6N25PbmRNWE0KbHZaZ3RXVTRqa1dIM2kvb0JyblZ3SjYwZ2R0cnhKYlFsTS9zckp3dW9lK2RlWllqeXVZKzNIbkdhL2tudnU0VApyMUVFazJXd0tXNnFRZWh5eFhyVVM5cnRqS0FMdERDOWFBNnFGVSttOFlHS3ZRVUVuTlNaT0pHWGhrV2VzK1Q2CnNxdDFZbjdiQS80d0dWay8renFmTFJlMUp6R3QyUDhaSXI1ZFNGM0NyOWExU2g0TDZzeXV6aTBXbmtaNDNBRjAKUHBITjFuUXVKc3lqOTVuems3RzRmVHNYajdUcXl3SndydEordlV3a3pDUDJXTXBVczE0eXFEaVh6di9BNkNITgpaOFhjYnBLVDJ3WVladUswVnVKbGhzcEFGUyt2SmMxb0d4Q0pJWEJJckpBPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCi0tLS0tQkVHSU4gQ0VSVElGSUNBVEUtLS0tLQpNSUlETWpDQ0FocWdBd0lCQWdJSVVXS0FyaThnQVhNd0RRWUpLb1pJaHZjTkFRRUxCUUF3TnpFU01CQUdBMVVFCkN4TUpiM0JsYm5Ob2FXWjBNU0V3SHdZRFZRUURFeGhyZFdKbExXRndhWE5sY25abGNpMXNZaTF6YVdkdVpYSXcKSGhjTk1qUXdOekk1TURjMU1EVTJXaGNOTXpRd056STNNRGMxTURVMldqQTNNUkl3RUFZRFZRUUxFd2x2Y0dWdQpjMmhwWm5ReElUQWZCZ05WQkFNVEdHdDFZbVV0WVhCcGMyVnlkbVZ5TFd4aUxYTnBaMjVsY2pDQ0FTSXdEUVlKCktvWklodmNOQVFFQkJRQURnZ0VQQURDQ0FRb0NnZ0VCQVBUbGY5MTRyK3Jjd2F1d2RSOWZjY3dkNi95SzQwU0YKZWFpUW5lMTJwYkJmMUlUaUMvcW56cGdEMDczS3dTKzJRdmlxbHlpY05HZUwyWDZUcE5wbm1oeDZQYWpkRXk1VQpCa2MvNUY4VGR4ZUJXbGh6cTNpUnVsSnBVZzZDNnMvdURVYTdiZlFXZjI3Y3J1UjJwRnAzeVBTdC9iNFFxWXV3CkhWUHoxQk5ralhhVjAxUU01SHBMSkpCb1kzMlR4NFdCQzlIUTQzNWU3MG5PWk4vdTFmS2lKV1YxVXk0ejBmQ2cKZWkxV25talBjVDdnM1FOYnZTZ0hIZk9lQ2U4dUtaeG9sVHkxUXpMWXMrWG9NQjdzdS9RZlQ0WkwrWHl6WXBRMgpDV3JDcm11VDlrTjhrbXRVSi9za2MrSGU1WjNIYlBIeXNNSHo0aWFQbEFMWm1OakIwQ3RFbEFjQ0F3RUFBYU5DCk1FQXdEZ1lEVlIwUEFRSC9CQVFEQWdLa01BOEdBMVVkRXdFQi93UUZNQU1CQWY4d0hRWURWUjBPQkJZRUZEdVgKSWhXa3JUNkdXejBlRXFLeHlBRmhwWHVzTUEwR0NTcUdTSWIzRFFFQkN3VUFBNElCQVFEVHRkOTNINkkwaWdlZgo4RU1JcjJRbVJyWVdxZDJNN3ByUG9EL3V5aWpqVVhKK1JhaWFFQlpCUWRNWWxpU2s3UWJYNjhod2VhaVVseEk1Cm43L0JxdzJYRWY5aWVFOW9JdlhzRitZWGRSTmhFb3lpb3BzeE92Tzd0bFYwUWJMQnZMaFRRSlRZUU82azdvSzEKc0g1WTVFdnNJaU5hVXB5OFJOWk1KbnVKMEVNVjIvUUlFTFNLK1hHL3VkOVY3Tm1JdmhtTzhDMUhQbG8zUUtISAoxYXRRQlpNV3Z3NDNJTmwvQUE4czlwMWhsWXk2N2FBZGVEaE1nU3lPQWpKaFJXSUcxZnJYTmVkOHlOTS9iZHRrClNLc21yK0NUVmZUNVMyaUp5dzlkM01JSThqN0VWTytXYUhySUJFOGZmYjZVKzFzUndyWmZEbVQwM3luTkFaRkIKTEVydTJRVFMKLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+                    server: https://api.crc.testing:6443
+                  name: api-crc-testing:6443
+                contexts:
+                - context:
+                    cluster: api-crc-testing:6443
+                    namespace: default
+                    user: kubeadmin/api-crc-testing:6443
+                  name: crc-admin
+                - context:
+                    cluster: api-crc-testing:6443
+                    namespace: default
+                    user: developer/api-crc-testing:6443
+                  name: crc-developer
+                current-context: crc-admin
+                kind: Config
+                preferences: {}
+                users:
+                - name: developer/api-crc-testing:6443
+                  user:
+                    token: sha256~4EYMkEVtBs8wRefTmbsS0kDF5GTpSmKRUaPNE-1fTNk
+                - name: kubeadmin/api-crc-testing:6443
+                  user:
+                    token: sha256~QgSeTbTPIqSVb5ycXE8x_HFyI_OD-gyUdk0jFxOGwyI</code></p>
+                <p>A new download on its way</p>
+                <p><img src="images/running-two-crc-17.png" alt="running two crc 17" class="article-image" loading="lazy"></p>
+                <p>Takes time to install it </p>
+                <p><img src="images/running-two-crc-18.png" alt="running two crc 18" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

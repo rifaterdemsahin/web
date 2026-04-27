@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering API Gateways and Serverless Architecture: A Deep Dive - Rifat Erdem Sahin</title>
+    <meta name="description" content="Mastering API Gateways and Serverless Architecture: A Deep Dive Mastering API Gateways and Serverless Architecture: A Deep Dive Hello, everyone! Initially scheduled for 11 a.m., we're now starting at ">
+    <meta name="keywords" content="Mastering API Gateways and Serverless Architecture: A Deep Dive">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/07/24/mastering-api-gateways-and-serverless-architecture-a-deep-dive/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/07/24/mastering-api-gateways-and-serverless-architecture-a-deep-dive/">
+    <meta property="og:title" content="Mastering API Gateways and Serverless Architecture: A Deep Dive">
+    <meta property="og:description" content="Mastering API Gateways and Serverless Architecture: A Deep Dive Mastering API Gateways and Serverless Architecture: A Deep Dive Hello, everyone! Initially scheduled for 11 a.m., we're now starting at ">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/07/24/mastering-api-gateways-and-serverless-architecture-a-deep-dive/">
+    <meta property="twitter:title" content="Mastering API Gateways and Serverless Architecture: A Deep Dive">
+    <meta property="twitter:description" content="Mastering API Gateways and Serverless Architecture: A Deep Dive Mastering API Gateways and Serverless Architecture: A Deep Dive Hello, everyone! Initially scheduled for 11 a.m., we're now starting at ">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Mastering API Gateways and Serverless Architecture: A Deep Dive",
+      "description": "Mastering API Gateways and Serverless Architecture: A Deep Dive Mastering API Gateways and Serverless Architecture: A Deep Dive Hello, everyone! Initially scheduled for 11 a.m., we're now starting at ",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-07-24",
+      "dateModified": "2024-07-24",
+      "url": "https://www.rifaterdemsahin.com/2024/07/24/mastering-api-gateways-and-serverless-architecture-a-deep-dive/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/07/24/mastering-api-gateways-and-serverless-architecture-a-deep-dive/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Mastering API Gateways and Serverless Architecture: A Deep Dive</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>July 24, 2024</span>
+                    <span>&bull;</span>
+                    <span>3 min read</span>
+                </div>
+                <p class="article-excerpt">Mastering API Gateways and Serverless Architecture: A Deep Dive Mastering API Gateways and Serverless Architecture: A Deep Dive Hello, everyone! Initially scheduled for 11 a.m., we're now starting at 11 p.m. due to some audio recording issues.</p>
+            </header>
+            <article class="article-content">
+                <h1>Mastering API Gateways and Serverless Architecture: A Deep Dive</h1>
+                <div class="video-embed"><iframe src="https://www.loom.com/embed/d2fdf50a5ac74ce389e4df26d7293fe8" frameborder="0" allowfullscreen></iframe></div>
+                
+                <h2>Mastering API Gateways and Serverless Architecture: A Deep Dive</h2>
+                <p>Hello, everyone! Welcome to today's session. Initially scheduled for 11 a.m., we're now starting at 11 p.m. due to some audio recording issues. Ensuring clear audio is crucial, and I've been working on setting up the studio for the last half hour. I appreciate your patience as I fine-tune these technical aspects.</p>
+                <h3>Today's Agenda: API Gateways and Serverless Architecture</h3>
+                <p>In today's session, we'll explore the tools we use, focusing specifically on API gateways and serverless architecture. If you have any questions, feel free to ask in the chat or our community forums.</p>
+                <h3>Tools We Use</h3>
+                <p>We utilize Notion, LinkedIn, StreamYard, Circle, and various Google tools to create and manage our content. This week, we've transitioned to ReStreamIO, a new platform that we're still getting accustomed to.</p>
+                <h3>Importance of API Gateways and Serverless Architecture</h3>
+                <p>API gateways play a crucial role in managing microservices in a cloud environment. They act as a reverse proxy, handling tasks such as routing, authentication, and rate limiting. Serverless architecture, on the other hand, allows us to build and run applications without managing servers, significantly simplifying the development process.</p>
+                <h3>Learning Process and Methodology</h3>
+                <p>To effectively learn and apply these concepts, I recommend a structured approach:</p>
+                <ul>
+                <li>
+                <p><strong>Capture</strong>: Gather as much information as possible about the topic.</p>
+                </li>
+                <li>
+                <p><strong>Organize</strong>: Categorize and structure the information logically.</p>
+                </li>
+                <li>
+                <p><strong>Understand</strong>: Use multimedia tools like Google Images, YouTube, and Notion AI to visualize concepts.</p>
+                </li>
+                <li>
+                <p><strong>Apply</strong>: Implement the knowledge through hands-on projects and real-world applications.</p>
+                </li>
+                </ul>
+                <h3>Practical Application: API Gateways</h3>
+                <p>API gateways are essential in a microservices architecture, acting as a single entry point for client requests. They manage cross-cutting concerns like SSL offloading, authentication, and rate limiting.</p>
+                <h4>Example: AWS Serverless Architecture</h4>
+                <p>In AWS, an API gateway sits at the front of your architecture, handling incoming requests and directing them to the appropriate backend services, such as AWS Lambda functions. This setup simplifies client-side code and enhances scalability.</p>
+                <h3>Reverse Proxy and API Gateways</h3>
+                <p>A reverse proxy like an API gateway handles requests by forwarding them to backend services. This setup ensures better load distribution, security, and scalability.</p>
+                <h3>Practical Tips for Using Cloud Services</h3>
+                <ul>
+                <li>
+                <p><strong>Register for Cloud Accounts</strong>: Use free credits from AWS, Azure, or other providers to test services.</p>
+                </li>
+                <li>
+                <p><strong>Open Support Tickets</strong>: Engage with cloud support early to resolve issues and gain insights.</p>
+                </li>
+                <li>
+                <p><strong>Document and Collaborate</strong>: Keep detailed documentation and collaborate with team members to streamline processes.</p>
+                </li>
+                </ul>
+                <h3>Embracing Serverless Architecture</h3>
+                <p>Serverless computing abstracts infrastructure management, allowing developers to focus on writing code. It uses backend services like AWS Lambda or Azure Functions to run applications on demand, ensuring efficient resource utilization.</p>
+                <h3>Conclusion: Continuous Learning and Application</h3>
+                <p>Learning API gateways and serverless architecture is an ongoing journey. By capturing information, organizing it, understanding through visualization, and applying it practically, you can master these concepts effectively.</p>
+                <h3>Join Our Community</h3>
+                <p>For more in-depth learning, join our Circle community and LinkedIn group. We offer courses, assignments, and coaching to help you along your DevOps journey. Engage with our community, ask questions, and collaborate with peers to enhance your skills.</p>
+                <p>Thank you for joining today's session. Stay tuned for more insights and practical tips in our next session. Keep learning and evolving in this exciting field!</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

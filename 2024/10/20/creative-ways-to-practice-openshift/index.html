@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative ways to practice Openshift - Rifat Erdem Sahin</title>
+    <meta name="description" content="Creative ways to practice Openshift See the yaml work on the yaml Small poc as possible is the goal Create Repo &gt; https://github.com/rifaterdemsahin/openshift/tree/main Delete Not Used Repl faster ">
+    <meta name="keywords" content="Creative ways to practice Openshift">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/10/20/creative-ways-to-practice-openshift/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/10/20/creative-ways-to-practice-openshift/">
+    <meta property="og:title" content="Creative ways to practice Openshift">
+    <meta property="og:description" content="Creative ways to practice Openshift See the yaml work on the yaml Small poc as possible is the goal Create Repo &gt; https://github.com/rifaterdemsahin/openshift/tree/main Delete Not Used Repl faster ">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/10/20/creative-ways-to-practice-openshift/">
+    <meta property="twitter:title" content="Creative ways to practice Openshift">
+    <meta property="twitter:description" content="Creative ways to practice Openshift See the yaml work on the yaml Small poc as possible is the goal Create Repo &gt; https://github.com/rifaterdemsahin/openshift/tree/main Delete Not Used Repl faster ">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Creative ways to practice Openshift",
+      "description": "Creative ways to practice Openshift See the yaml work on the yaml Small poc as possible is the goal Create Repo &gt; https://github.com/rifaterdemsahin/openshift/tree/main Delete Not Used Repl faster ",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-10-20",
+      "dateModified": "2024-10-20",
+      "url": "https://www.rifaterdemsahin.com/2024/10/20/creative-ways-to-practice-openshift/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/10/20/creative-ways-to-practice-openshift/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Creative ways to practice Openshift</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>October 20, 2024</span>
+                    <span>&bull;</span>
+                    <span>5 min read</span>
+                </div>
+                <p class="article-excerpt">Creative ways to practice Openshift See the yaml work on the yaml Small poc as possible is the goal Create Repo &gt; https://github.com/rifaterdemsahin/openshift/tree/main Delete Not Used Repl faster file creation process Github integration fast action push the file and read it C</p>
+            </header>
+            <article class="article-content">
+                <h1>Creative ways to practice Openshift</h1>
+                <p>See the yaml work on the yaml</p>
+                <p>Small poc as possible is the goal</p>
+                <p>Create Repo &gt;<a href="https://github.com/rifaterdemsahin/openshift/tree/main">https://github.com/rifaterdemsahin/openshift/tree/main</a></p>
+                <p><img src="images/creative-ways-to-1.png" alt="creative ways to 1" class="article-image" loading="lazy"></p>
+                <p>Delete Not Used Repl faster file creation process</p>
+                <p><img src="images/creative-ways-to-2.png" alt="creative ways to 2" class="article-image" loading="lazy"></p>
+                <p>Github integration fast action</p>
+                <p><img src="images/creative-ways-to-3.png" alt="creative ways to 3" class="article-image" loading="lazy"></p>
+                <p>push the file and read it </p>
+                <p><img src="images/creative-ways-to-4.png" alt="creative ways to 4" class="article-image" loading="lazy"></p>
+                <p>Check Files</p>
+                <p><img src="images/creative-ways-to-5.png" alt="creative ways to 5" class="article-image" loading="lazy"></p>
+                <p>Gpt request for practical saves</p>
+                <p><img src="images/creative-ways-to-6.png" alt="creative ways to 6" class="article-image" loading="lazy"></p>
+                <p>To make your Git commit process a one-liner with a unique comment each time, you can use the following shell command:</p>
+                <p>git add . &amp;&amp; git commit -m "update $(date '+%Y-%m-%d %H:%M:%S')" &amp;&amp; git push</p>
+                <p>This command will:</p>
+                <ul>
+                <li>
+                <p><code>git add .</code> - Stage all changes.</p>
+                </li>
+                <li>
+                <p><code>git commit -m "update $(date '+%Y-%m-%d %H:%M:%S')"</code> - Commit with a unique message using the current date and time.</p>
+                </li>
+                <li>
+                <p><code>git push</code> - Push the changes to the remote repository.</p>
+                </li>
+                </ul>
+                <p>Every time you run this command, the commit message will be unique due to the timestamp.</p>
+                <p>new file faster faster push </p>
+                <p><img src="images/creative-ways-to-7.png" alt="creative ways to 7" class="article-image" loading="lazy"></p>
+                <p>Date is at least a bigger marker &gt; but a dublicate </p>
+                <p><img src="images/creative-ways-to-8.png" alt="creative ways to 8" class="article-image" loading="lazy"></p>
+                <p>linting is there as well online</p>
+                <p><img src="images/creative-ways-to-9.png" alt="creative ways to 9" class="article-image" loading="lazy"></p>
+                <p>Bulk Push </p>
+                <p><img src="images/creative-ways-to-10.png" alt="creative ways to 10" class="article-image" loading="lazy"></p>
+                <p>Here are 20 different YAML templates in OpenShift, each representing a core aspect of deploying and managing applications and services in an OpenShift cluster. I'll explain each template briefly.</p>
+                <h3>1. <strong>Pod Template</strong></h3>
+                <p>apiVersion: v1<br />
+                kind: Pod<br />
+                metadata:<br />
+                  name: mypod<br />
+                spec:<br />
+                  containers:<br />
+                    - name: mycontainer<br />
+                      image: nginx<br />
+                      ports:<br />
+                        - containerPort: 80</p>
+                <ul>
+                <li><strong>Explanation</strong>: This is a basic template to create a Pod in OpenShift. A Pod is the smallest deployable unit and runs containers.</li>
+                </ul>
+                <h3>2. <strong>DeploymentConfig Template</strong></h3>
+                <p>apiVersion: v1<br />
+                kind: DeploymentConfig<br />
+                metadata:<br />
+                  name: myapp<br />
+                spec:<br />
+                  replicas: 3<br />
+                  template:<br />
+                    metadata:<br />
+                      labels:<br />
+                        app: myapp<br />
+                    spec:<br />
+                      containers:<br />
+                        - name: mycontainer<br />
+                          image: nginx</p>
+                <ul>
+                <li><strong>Explanation</strong>: A <code>DeploymentConfig</code> manages pod creation, scaling, and updates for applications in OpenShift.</li>
+                </ul>
+                <h3>3. <strong>Service Template</strong></h3>
+                <p>apiVersion: v1<br />
+                kind: Service<br />
+                metadata:<br />
+                  name: myservice<br />
+                spec:<br />
+                  selector:<br />
+                    app: myapp<br />
+                  ports:<br />
+                    - protocol: TCP<br />
+                      port: 80<br />
+                      targetPort: 8080</p>
+                <ul>
+                <li><strong>Explanation</strong>: Services expose a group of Pods and make them accessible internally within the OpenShift cluster or externally.</li>
+                </ul>
+                <h3>4. <strong>Route Template</strong></h3>
+                <p>apiVersion: route.openshift.io/v1<br />
+                kind: Route<br />
+                metadata:<br />
+                  name: myroute<br />
+                spec:<br />
+                  to:<br />
+                    kind: Service<br />
+                    name: myservice</p>
+                <ul>
+                <li><strong>Explanation</strong>: A <code>Route</code> allows external traffic to reach a service running within OpenShift.</li>
+                </ul>
+                <h3>5. <strong>PersistentVolumeClaim (PVC) Template</strong></h3>
+                <p>apiVersion: v1<br />
+                kind: PersistentVolumeClaim<br />
+                metadata:<br />
+                  name: mypvc<br />
+                spec:<br />
+                  accessModes:<br />
+                    - ReadWriteOnce<br />
+                  resources:<br />
+                    requests:<br />
+                      storage: 1Gi</p>
+                <ul>
+                <li><strong>Explanation</strong>: A PVC requests storage from the OpenShift cluster, and it's used by Pods that need persistent storage.</li>
+                </ul>
+                <h3>6. <strong>BuildConfig Template</strong></h3>
+                <p>apiVersion: build.openshift.io/v1<br />
+                kind: BuildConfig<br />
+                metadata:<br />
+                  name: myapp-build<br />
+                spec:<br />
+                  source:<br />
+                    type: Git<br />
+                    git:<br />
+                      uri: "https://github.com/example/myapp.git"<br />
+                  strategy:<br />
+                    type: Docker</p>
+                <ul>
+                <li><strong>Explanation</strong>: A <code>BuildConfig</code> defines how to build an image from source code in OpenShift.</li>
+                </ul>
+                <h3>7. <strong>ImageStream Template</strong></h3>
+                <p>apiVersion: image.openshift.io/v1<br />
+                kind: ImageStream<br />
+                metadata:<br />
+                  name: myapp</p>
+                <ul>
+                <li><strong>Explanation</strong>: An <code>ImageStream</code> tracks image versions in OpenShift, allowing easy management and updates of container images.</li>
+                </ul>
+                <h3>8. <strong>CronJob Template</strong></h3>
+                <p>apiVersion: batch/v1<br />
+                kind: CronJob<br />
+                metadata:<br />
+                  name: mycronjob<br />
+                spec:<br />
+                  schedule: "<em>/5 * * * </em>"<br />
+                  jobTemplate:<br />
+                    spec:<br />
+                      template:<br />
+                        spec:<br />
+                          containers:<br />
+                            - name: mycontainer<br />
+                              image: busybox<br />
+                              args:<br />
+                                - /bin/sh<br />
+                                - -c<br />
+                                - date; echo Hello from the cron job<br />
+                          restartPolicy: OnFailure</p>
+                <ul>
+                <li><strong>Explanation</strong>: A <code>CronJob</code> runs scheduled tasks at specified intervals within OpenShift.</li>
+                </ul>
+                <h3>9. <strong>Secret Template</strong></h3>
+                <p>apiVersion: v1<br />
+                kind: Secret<br />
+                metadata:<br />
+                  name: mysecret<br />
+                type: Opaque<br />
+                data:<br />
+                  username: YWRtaW4=<br />
+                  password: MWYyZDFlMmU=</p>
+                <ul>
+                <li><strong>Explanation</strong>: <code>Secret</code> stores sensitive information like passwords, API tokens, and more.</li>
+                </ul>
+                <h3>10. <strong>ConfigMap Template</strong></h3>
+                <p>apiVersion: v1<br />
+                kind: ConfigMap<br />
+                metadata:<br />
+                  name: myconfig<br />
+                data:<br />
+                  app.properties: |<br />
+                    key1=value1<br />
+                    key2=value2</p>
+                <ul>
+                <li><strong>Explanation</strong>: A <code>ConfigMap</code> stores non-sensitive data that can be used by applications in the OpenShift environment.</li>
+                </ul>
+                <h3>11. <strong>HorizontalPodAutoscaler (HPA) Template</strong></h3>
+                <p>apiVersion: autoscaling/v1<br />
+                kind: HorizontalPodAutoscaler<br />
+                metadata:<br />
+                  name: myapp-hpa<br />
+                spec:<br />
+                  scaleTargetRef:<br />
+                    apiVersion: apps/v1<br />
+                    kind: Deployment<br />
+                    name: myapp<br />
+                  minReplicas: 2<br />
+                  maxReplicas: 10<br />
+                  targetCPUUtilizationPercentage: 80</p>
+                <ul>
+                <li><strong>Explanation</strong>: HPA automatically scales the number of Pods in a deployment based on CPU utilization.</li>
+                </ul>
+                <h3>12. <strong>DaemonSet Template</strong></h3>
+                <p>apiVersion: apps/v1<br />
+                kind: DaemonSet<br />
+                metadata:<br />
+                  name: mydaemonset<br />
+                spec:<br />
+                  selector:<br />
+                    matchLabels:<br />
+                      app: myapp<br />
+                  template:<br />
+                    metadata:<br />
+                      labels:<br />
+                        app: myapp<br />
+                    spec:<br />
+                      containers:<br />
+                        - name: mycontainer<br />
+                          image: nginx</p>
+                <ul>
+                <li><strong>Explanation</strong>: A <code>DaemonSet</code> ensures that all or some nodes run a copy of a specific Pod.</li>
+                </ul>
+                <h3>13. <strong>StatefulSet Template</strong></h3>
+                <p>apiVersion: apps/v1<br />
+                kind: StatefulSet<br />
+                metadata:<br />
+                  name: mystatefulset<br />
+                spec:<br />
+                  serviceName: "myapp"<br />
+                  replicas: 3<br />
+                  selector:<br />
+                    matchLabels:<br />
+                      app: myapp<br />
+                  template:<br />
+                    metadata:<br />
+                      labels:<br />
+                        app: myapp<br />
+                    spec:<br />
+                      containers:<br />
+                        - name: mycontainer<br />
+                          image: nginx</p>
+                <ul>
+                <li><strong>Explanation</strong>: A <code>StatefulSet</code> manages stateful applications, ensuring ordered deployment and scaling of Pods.</li>
+                </ul>
+                <h3>14. <strong>Job Template</strong></h3>
+                <p>apiVersion: batch/v1<br />
+                kind: Job<br />
+                metadata:<br />
+                  name: myjob<br />
+                spec:<br />
+                  template:<br />
+                    spec:<br />
+                      containers:<br />
+                        - name: mycontainer<br />
+                          image: busybox<br />
+                          args:<br />
+                            - /bin/sh<br />
+                            - -c<br />
+                            - echo Hello World<br />
+                      restartPolicy: Never</p>
+                <ul>
+                <li><strong>Explanation</strong>: A <code>Job</code> runs a one-time task until completion.</li>
+                </ul>
+                <h3>15. <strong>ServiceAccount Template</strong></h3>
+                <p>apiVersion: v1<br />
+                kind: ServiceAccount<br />
+                metadata:<br />
+                  name: myserviceaccount</p>
+                <ul>
+                <li><strong>Explanation</strong>: A <code>ServiceAccount</code> provides identity for Pods to interact with the OpenShift API.</li>
+                </ul>
+                <h3>16. <strong>Role Template</strong></h3>
+                <p>apiVersion: rbac.authorization.k8s.io/v1<br />
+                kind: Role<br />
+                metadata:<br />
+                  namespace: mynamespace<br />
+                  name: pod-reader<br />
+                rules:<br />
+                - apiGroups: [""]<br />
+                  resources: ["pods"]<br />
+                  verbs: ["get", "watch", "list"]</p>
+                <ul>
+                <li><strong>Explanation</strong>: A <code>Role</code> defines access permissions to resources within a specific namespace.</li>
+                </ul>
+                <h3>17. <strong>RoleBinding Template</strong></h3>
+                <p>apiVersion: rbac.authorization.k8s.io/v1<br />
+                kind: RoleBinding<br />
+                metadata:<br />
+                  name: read-pods<br />
+                subjects:<br />
+                - kind: User<br />
+                  name: jane<br />
+                roleRef:<br />
+                  kind: Role<br />
+                  name: pod-reader<br />
+                  apiGroup: rbac.authorization.k8s.io</p>
+                <ul>
+                <li><strong>Explanation</strong>: A <code>RoleBinding</code> grants a user or group access to resources within a namespace.</li>
+                </ul>
+                <h3>18. <strong>NetworkPolicy Template</strong></h3>
+                <p>apiVersion: networking.k8s.io/v1<br />
+                kind: NetworkPolicy<br />
+                metadata:<br />
+                  name: allow-http<br />
+                spec:<br />
+                  podSelector:<br />
+                    matchLabels:<br />
+                      app: myapp<br />
+                  ingress:<br />
+                    - from:<br />
+                        - ipBlock:<br />
+                            cidr: 172.17.0.0/16<br />
+                      ports:<br />
+                        - protocol: TCP<br />
+                          port: 80</p>
+                <ul>
+                <li><strong>Explanation</strong>: A <code>NetworkPolicy</code> controls the traffic flow between Pods in an OpenShift cluster.</li>
+                </ul>
+                <h3>19. <strong>LimitRange Template</strong></h3>
+                <p>apiVersion: v1<br />
+                kind: LimitRange<br />
+                metadata:<br />
+                  name: mem-limit-range<br />
+                spec:<br />
+                  limits:<br />
+                    - max:<br />
+                        memory: "1Gi"<br />
+                      min:<br />
+                        memory: "128Mi"<br />
+                      type: Container</p>
+                <ul>
+                <li><strong>Explanation</strong>: A <code>LimitRange</code> enforces minimum and maximum resource usage constraints for Pods in a namespace.</li>
+                </ul>
+                <h3>20. <strong>ResourceQuota Template</strong></h3>
+                <p>apiVersion: v1<br />
+                kind: ResourceQuota<br />
+                metadata:<br />
+                  name: my-quota<br />
+                spec:<br />
+                  hard:<br />
+                    pods: "10"<br />
+                    requests.cpu: "4"<br />
+                    requests.memory: "4Gi"<br />
+                    limits.cpu: "8"<br />
+                    limits.memory: "16Gi"</p>
+                <ul>
+                <li><strong>Explanation</strong>: A <code>ResourceQuota</code> limits the resource usage within a namespace.</li>
+                </ul>
+                <p>These templates represent essential building blocks for deploying and managing applications in OpenShift.</p>
+                <p>missing ones with gpt</p>
+                <p><img src="images/creative-ways-to-11.png" alt="creative ways to 11" class="article-image" loading="lazy"></p>
+                <p>Update the index &gt; <a href="https://github.com/rifaterdemsahin/openshift/blob/main/README.md#20-resourcequota-template">https://github.com/rifaterdemsahin/openshift/blob/main/README.md#20-resourcequota-template</a></p>
+                <p><strong>🔗 Connect with me:</strong></p>
+                <ul>
+                <li>
+                <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/rifaterdemsahin/">https://www.linkedin.com/in/rifaterdemsahin/</a></p>
+                </li>
+                <li>
+                <p>🐦 Twitter: <a href="https://x.com/rifaterdemsahin">https://x.com/rifaterdemsahin</a></p>
+                </li>
+                <li>
+                <p>🎥 YouTube: <a href="https://www.youtube.com/@RifatErdemSahin">https://www.youtube.com/@RifatErdemSahin</a></p>
+                </li>
+                <li>
+                <p>💻 GitHub: <a href="https://github.com/rifaterdemsahin">https://github.com/rifaterdemsahin</a></p>
+                </li>
+                </ul>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

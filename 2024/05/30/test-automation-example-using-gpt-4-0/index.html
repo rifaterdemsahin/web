@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Automation Example using GPT 4.0 - Rifat Erdem Sahin</title>
+    <meta name="description" content="Test Automation Example using GPT 4.0 Create a page `&lt;!DOCTYPE html&gt; A&E Hospital Patient Form body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f2f2f2; } .cont">
+    <meta name="keywords" content="Test Automation Example using GPT 4.0">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/05/30/test-automation-example-using-gpt-4-0/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/05/30/test-automation-example-using-gpt-4-0/">
+    <meta property="og:title" content="Test Automation Example using GPT 4.0">
+    <meta property="og:description" content="Test Automation Example using GPT 4.0 Create a page `&lt;!DOCTYPE html&gt; A&E Hospital Patient Form body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f2f2f2; } .cont">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/05/30/test-automation-example-using-gpt-4-0/">
+    <meta property="twitter:title" content="Test Automation Example using GPT 4.0">
+    <meta property="twitter:description" content="Test Automation Example using GPT 4.0 Create a page `&lt;!DOCTYPE html&gt; A&E Hospital Patient Form body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f2f2f2; } .cont">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Test Automation Example using GPT 4.0",
+      "description": "Test Automation Example using GPT 4.0 Create a page `&lt;!DOCTYPE html&gt; A&E Hospital Patient Form body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f2f2f2; } .cont",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-05-30",
+      "dateModified": "2024-05-30",
+      "url": "https://www.rifaterdemsahin.com/2024/05/30/test-automation-example-using-gpt-4-0/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/05/30/test-automation-example-using-gpt-4-0/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Test Automation Example using GPT 4.0</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>May 30, 2024</span>
+                    <span>&bull;</span>
+                    <span>4 min read</span>
+                </div>
+                <p class="article-excerpt">Test Automation Example using GPT 4.0 Create a page `&lt;!DOCTYPE html&gt; A&E Hospital Patient Form body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f2f2f2; } .container { max-width: 600px; margin: 0 auto; padding: 20px; background-color: #fff;</p>
+            </header>
+            <article class="article-content">
+                <h1>Test Automation Example using GPT 4.0</h1>
+                <p>Create a page</p>
+                <p><img src="images/test-automation-example-1.png" alt="test automation example 1" class="article-image" loading="lazy"></p>
+                <p>`&lt;!DOCTYPE html&gt;</p>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>A&E Hospital Patient Form</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            margin: 0;
+                            padding: 20px;
+                            background-color: #f2f2f2;
+                        }
+                        .container {
+                            max-width: 600px;
+                            margin: 0 auto;
+                            padding: 20px;
+                            background-color: #fff;
+                            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                            border-radius: 5px;
+                        }
+                        h1 {
+                            text-align: center;
+                            color: #333;
+                        }
+                        label {
+                            display: block;
+                            margin: 10px 0 5px;
+                            color: #555;
+                        }
+                        input, textarea, select {
+                            width: 100%;
+                            padding: 10px;
+                            margin-bottom: 10px;
+                            border: 1px solid #ccc;
+                            border-radius: 3px;
+                        }
+                        input&#091;type="checkbox"] {
+                            width: auto;
+                            margin-right: 10px;
+                        }
+                        .checkbox-group {
+                            margin-bottom: 10px;
+                        }
+                        .checkbox-group label {
+                            display: flex;
+                            align-items: center;
+                        }
+                        button {
+                            width: 100%;
+                            padding: 10px;
+                            background-color: #007bff;
+                            border: none;
+                            border-radius: 3px;
+                            color: #fff;
+                            font-size: 16px;
+                            cursor: pointer;
+                        }
+                        button:hover {
+                            background-color: #0056b3;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <h1>A&E Hospital Patient Form</h1>
+                        <form action="/submit" method="POST">
+                            <label for="patientName">Patient Name</label>
+                            <input type="text" id="patientName" name="patientName" required>
+                
+                            <label for="hospitalName">Hospital Name</label>
+                            <input type="text" id="hospitalName" name="hospitalName" required>
+                
+                            <label for="address">Address</label>
+                            <textarea id="address" name="address" rows="3" required></textarea>
+                
+                            <label for="patientSituation">Patient's Situation</label>
+                            <textarea id="patientSituation" name="patientSituation" rows="4" required></textarea>
+                
+                            <label for="triage">Triage</label>
+                            <select id="triage" name="triage" required>
+                                <option value="">Select Triage Level</option>
+                                <option value="1">Triage 1 - Immediate</option>
+                                <option value="2">Triage 2 - Emergency</option>
+                                <option value="3">Triage 3 - Urgent</option>
+                                <option value="4">Triage 4 - Semi-Urgent</option>
+                                <option value="5">Triage 5 - Non-Urgent</option>
+                            </select>
+                
+                            <div class="checkbox-group">
+                                <label>Additional Questions (Check all that apply):</label>
+                                <label><input type="checkbox" name="questions" value="headInjury"> Head Injury</label>
+                                <label><input type="checkbox" name="questions" value="chestPain"> Chest Pain</label>
+                                <label><input type="checkbox" name="questions" value="breathingDifficulties"> Breathing Difficulties</label>
+                                <label><input type="checkbox" name="questions" value="severeBleeding"> Severe Bleeding</label>
+                                <label><input type="checkbox" name="questions" value="abdominalPain"> Abdominal Pain</label>
+                                <label><input type="checkbox" name="questions" value="other"> Other (specify in situation)</label>
+                            </div>
+                
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
+                </body>
+                </html>
+                <p>`</p>
+                <p>Sample Data</p>
+                <p><img src="images/test-automation-example-2.png" alt="test automation example 2" class="article-image" loading="lazy"></p>
+                <p><strong>Business Rules</strong></p>
+                <ul>
+                <li>
+                <p>Patient has to select at least one of the options.</p>
+                </li>
+                <li>
+                <p>If nothing is selected there would be an alert.</p>
+                </li>
+                </ul>
+                <p>**The Test use case should check **</p>
+                <ul>
+                <li>There cant be any submissions without selecting the options</li>
+                </ul>
+                <p><strong>Reference</strong></p>
+                <p>https://chatgpt.com/c/01e0f143-e399-4cb1-8a6f-0c8508376d2c</p>
+                <p><strong>Second iteration</strong></p>
+                <p>`&lt;!DOCTYPE html&gt;</p>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>A&E Hospital Patient Form</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            margin: 0;
+                            padding: 20px;
+                            background-color: #f2f2f2;
+                        }
+                        .container {
+                            max-width: 600px;
+                            margin: 0 auto;
+                            padding: 20px;
+                            background-color: #fff;
+                            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                            border-radius: 5px;
+                        }
+                        h1 {
+                            text-align: center;
+                            color: #333;
+                        }
+                        label {
+                            display: block;
+                            margin: 10px 0 5px;
+                            color: #555;
+                        }
+                        input, textarea, select {
+                            width: 100%;
+                            padding: 10px;
+                            margin-bottom: 10px;
+                            border: 1px solid #ccc;
+                            border-radius: 3px;
+                        }
+                        input&#091;type="checkbox"] {
+                            width: auto;
+                            margin-right: 10px;
+                        }
+                        .checkbox-group {
+                            margin-bottom: 10px;
+                        }
+                        .checkbox-group label {
+                            display: flex;
+                            align-items: center;
+                        }
+                        button {
+                            width: 100%;
+                            padding: 10px;
+                            background-color: #007bff;
+                            border: none;
+                            border-radius: 3px;
+                            color: #fff;
+                            font-size: 16px;
+                            cursor: pointer;
+                        }
+                        button:hover {
+                            background-color: #0056b3;
+                        }
+                    </style>
+                    <script>
+                        function validateForm() {
+                            const triage = document.getElementById('triage').value;
+                            if (triage === "") {
+                                alert('Please select a triage level.');
+                                return false;
+                            }
+                
+                            const checkboxes = document.querySelectorAll('input&#091;type="checkbox"]');
+                            let isChecked = false;
+                            checkboxes.forEach(checkbox => {
+                                if (checkbox.checked) {
+                                    isChecked = true;
+                                }
+                            if (!isChecked) {
+                                alert('Please select at least one option from the additional questions.');
+                                return false;
+                            }
+                            return true;
+                        }
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+                        <h1>A&E Hospital Patient Form</h1>
+                        <form action="/submit" method="POST" onsubmit="return validateForm()">
+                            <label for="patientName">Patient Name</label>
+                            <input type="text" id="patientName" name="patientName" value="Erdem" required>
+                
+                            <label for="hospitalName">Hospital Name</label>
+                            <input type="text" id="hospitalName" name="hospitalName" value="Addenbrooks" required>
+                
+                            <label for="address">Address</label>
+                            <textarea id="address" name="address" rows="3" required>Petersfield Mansions CB1 1BB Cambridge</textarea>
+                
+                            <label for="patientSituation">Patient's Situation</label>
+                            <textarea id="patientSituation" name="patientSituation" rows="4" required>I have a chest pain</textarea>
+                
+                            <label for="triage">Triage</label>
+                            <select id="triage" name="triage" required>
+                                <option value="">Select Triage Level</option>
+                                <option value="1">Triage 1 - Immediate</option>
+                                <option value="2">Triage 2 - Emergency</option>
+                                <option value="3">Triage 3 - Urgent</option>
+                                <option value="4">Triage 4 - Semi-Urgent</option>
+                                <option value="5">Triage 5 - Non-Urgent</option>
+                            </select>
+                
+                            <div class="checkbox-group">
+                                <label>Additional Questions (Check all that apply):</label>
+                                <label><input type="checkbox" name="questions" value="headInjury"> Head Injury</label>
+                                <label><input type="checkbox" name="questions" value="chestPain" checked> Chest Pain</label>
+                                <label><input type="checkbox" name="questions" value="breathingDifficulties"> Breathing Difficulties</label>
+                                <label><input type="checkbox" name="questions" value="severeBleeding"> Severe Bleeding</label>
+                                <label><input type="checkbox" name="questions" value="abdominalPain"> Abdominal Pain</label>
+                                <label><input type="checkbox" name="questions" value="other"> Other (specify in situation)</label>
+                            </div>
+                
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
+                </body>
+                </html>
+                <p>`</p>
+                <p>**Updated version **</p>
+                <pre><code>using OpenQA.Selenium;
+                using OpenQA.Selenium.Firefox;
+                using System;
+                
+                class Program
+                {
+                    static void Main(string&amp;#091;] args)
+                    {
+                        IWebDriver driver = new FirefoxDriver();
+                
+                        try
+                        {
+                            driver.Navigate().GoToUrl(&quot;file:///C:/Users/Pexabo/Downloads/care.html&quot;);
+                
+                            driver.FindElement(By.Id(&quot;patientName&quot;)).SendKeys(&quot;Erdem&quot;);
+                            Thread.Sleep(1000);
+                            driver.FindElement(By.Id(&quot;hospitalName&quot;)).SendKeys(&quot;Addenbrooks&quot;);
+                            Thread.Sleep(1000);
+                
+                            driver.FindElement(By.Id(&quot;address&quot;)).SendKeys(&quot;Petersfield Mansions CB1 1BB Cambridge&quot;);
+                            Thread.Sleep(1000);
+                
+                            driver.FindElement(By.Id(&quot;patientSituation&quot;)).SendKeys(&quot;I have a chest pain&quot;);
+                            Thread.Sleep(1000);
+                
+                            try
+                            {
+                                driver.FindElement(By.CssSelector(&quot;button&amp;#091;type='submit']&quot;)).Click();
+                                IAlert alert = driver.SwitchTo().Alert();
+                                string alertText = alert.Text;
+                                alert.Accept();
+                                Console.WriteLine(&quot;Alert displayed as expected: &quot; + alertText);
+                            }
+                            catch (NoAlertPresentException)
+                            {
+                                Console.WriteLine(&quot;No alert displayed when triage is not selected.&quot;);
+                            }
+                
+                            driver.FindElement(By.CssSelector(&quot;input&amp;#091;value='chestPain']&quot;)).Click();
+                
+                            try
+                            {
+                                driver.FindElement(By.CssSelector(&quot;button&amp;#091;type='submit']&quot;)).Click();
+                                IAlert alert = driver.SwitchTo().Alert();
+                                string alertText = alert.Text;
+                                alert.Accept();
+                                Console.WriteLine(&quot;Alert displayed as expected: &quot; + alertText);
+                            }
+                            catch (NoAlertPresentException)
+                            {
+                                Console.WriteLine(&quot;No alert displayed when no checkbox is selected.&quot;);
+                            }
+                
+                            driver.FindElement(By.CssSelector(&quot;input&amp;#091;value='headInjury']&quot;)).Click();
+                
+                            driver.FindElement(By.CssSelector(&quot;button&amp;#091;type='submit']&quot;)).Click();
+                
+                        }
+                        finally
+                        {
+                            driver.Quit();
+                        }
+                    }
+                }
+                
+                </code></pre>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

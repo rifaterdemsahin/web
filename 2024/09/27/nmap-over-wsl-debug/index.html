@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NMap over WSL Debug - Rifat Erdem Sahin</title>
+    <meta name="description" content="NMap over WSL Debug The output from nmap suggests that either the VM is blocking access to port 3000, or it is not responding to the default probe (ping) that nmap uses.">
+    <meta name="keywords" content="NMap over WSL Debug">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/09/27/nmap-over-wsl-debug/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/09/27/nmap-over-wsl-debug/">
+    <meta property="og:title" content="NMap over WSL Debug">
+    <meta property="og:description" content="NMap over WSL Debug The output from nmap suggests that either the VM is blocking access to port 3000, or it is not responding to the default probe (ping) that nmap uses.">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/09/27/nmap-over-wsl-debug/">
+    <meta property="twitter:title" content="NMap over WSL Debug">
+    <meta property="twitter:description" content="NMap over WSL Debug The output from nmap suggests that either the VM is blocking access to port 3000, or it is not responding to the default probe (ping) that nmap uses.">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "NMap over WSL Debug",
+      "description": "NMap over WSL Debug The output from nmap suggests that either the VM is blocking access to port 3000, or it is not responding to the default probe (ping) that nmap uses.",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-09-27",
+      "dateModified": "2024-09-27",
+      "url": "https://www.rifaterdemsahin.com/2024/09/27/nmap-over-wsl-debug/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/09/27/nmap-over-wsl-debug/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">NMap over WSL Debug</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>September 27, 2024</span>
+                    <span>&bull;</span>
+                    <span>16 min read</span>
+                </div>
+                <p class="article-excerpt">NMap over WSL Debug The output from nmap suggests that either the VM is blocking access to port 3000, or it is not responding to the default probe (ping) that nmap uses.</p>
+            </header>
+            <article class="article-content">
+                <h1>NMap over WSL Debug</h1>
+                <p>The output from <strong>nmap</strong> suggests that either the VM is blocking access to port 3000, or it is not responding to the default probe (ping) that <code>nmap</code> uses. Since you can ping the VM successfully from your host but <code>nmap</code> says the host seems down, it might be that Grafana is either not running, blocked by a firewall, or misconfigured.</p>
+                <p>Here are the next steps to troubleshoot:</p>
+                <h3>1. <strong>Run <code>nmap</code> with <code>-Pn</code> to Bypass Ping Check</strong></h3>
+                <p>Since <code>nmap</code> is indicating the host is down, but you know the VM is reachable (via ping), try scanning port 3000 with the <code>-Pn</code> option to skip the ping check:</p>
+                <p>nmap -Pn -p 3000 192.168.28.132</p>
+                <p>This will check whether port 3000 is open without relying on ping.</p>
+                <p>rifaterdemsahin@w11v32023720:~$ nmap -Pn -p 3000 192.168.28.132<br />
+                Starting Nmap 7.80 ( https://nmap.org ) at 2024-09-27 14:13 BST<br />
+                Nmap scan report for 192.168.28.132<br />
+                Host is up.</p>
+                <p>PORT STATE SERVICE<br />
+                3000/tcp filtered ppp</p>
+                <p>Nmap done: 1 IP address (1 host up) scanned in 2.04 seconds<br />
+                rifaterdemsahin@w11v32023720:~$</p>
+                <hr />
+                <h3>2. <strong>Double Check if Grafana is Running</strong></h3>
+                <p>Verify that Grafana is running and listening on port 3000:</p>
+                <p>sudo systemctl status grafana</p>
+                <p>If Grafana is not running, start it with:</p>
+                <p>sudo systemctl start grafana</p>
+                <p>Then verify it's listening:</p>
+                <p>sudo netstat -tuln | grep 3000</p>
+                <p>You should see something like <code>0.0.0.0:3000</code> if it's listening for external connections.</p>
+                <hr />
+                <h3>3. <strong>Check Firewall Settings on VM</strong></h3>
+                <p>Make sure that the firewall on the VM is not blocking port 3000. Check the firewall status and allow traffic on port 3000 if needed:</p>
+                <ul>
+                <li><strong>Check firewall status:</strong></li>
+                </ul>
+                <p>sudo ufw status</p>
+                <ul>
+                <li><strong>If the firewall is active, allow port 3000:</strong></li>
+                </ul>
+                <p>sudo ufw allow 3000/tcp<br />
+                   sudo ufw reload</p>
+                <hr />
+                <h3>4. <strong>Check Grafana Configuration for IP Binding</strong></h3>
+                <p>If Grafana is only bound to <code>127.0.0.1</code>, it will not be accessible from outside the VM.</p>
+                <ul>
+                <li><strong>Open the Grafana config file:</strong></li>
+                </ul>
+                <p>sudo nano /etc/grafana/grafana.ini</p>
+                <ul>
+                <li><strong>Ensure <code>http_addr</code> is set to <code>0.0.0.0</code>:</strong></li>
+                </ul>
+                <p>http_addr = 0.0.0.0</p>
+                <ul>
+                <li><strong>Restart Grafana to apply the changes:</strong></li>
+                </ul>
+                <p>sudo systemctl restart grafana</p>
+                <hr />
+                <h3>5. <strong>Retry Accessing Grafana</strong></h3>
+                <p>After confirming Grafana is running and listening, try accessing it again from the host machine:</p>
+                <ul>
+                <li>Open a browser and go to:</li>
+                </ul>
+                <p>http:&#047;&#047;192.168.28.132:3000</p>
+                <hr />
+                <p>Let me know the result after running these steps! If <code>nmap</code> still shows the port as closed or filtered, there may be additional network/firewall issues to explore.</p>
+                <p>==================================================================<br />
+                    *** after nmap ping ***<br />
+                ==================================================================</p>
+                <p>The <strong>nmap</strong> scan result shows that <strong>port 3000</strong> is in the <strong>filtered</strong> state, which means that something (most likely a firewall) is blocking access to this port, either on the virtual machine or somewhere along the network path.</p>
+                <h3>Next Steps to Resolve the Issue:</h3>
+                <hr />
+                <h3>1. <strong>Check VM's Firewall Again</strong></h3>
+                <p>Even if you allowed port 3000, the firewall might still block the connection for some reason. Double-check the firewall rules:</p>
+                <ul>
+                <li><strong>Check the firewall status</strong>:</li>
+                </ul>
+                <p>sudo ufw status</p>
+                <p>bitnami@debian:~$ sudo ufw status<br />
+                Status: inactive<br />
+                bitnami@debian:~$</p>
+                <ul>
+                <li>If you see that port 3000 is blocked or not listed, run these commands to allow it explicitly:</li>
+                </ul>
+                <p>sudo ufw allow 3000/tcp<br />
+                   sudo ufw reload</p>
+                <ul>
+                <li>If you're using <code>iptables</code> instead of <code>ufw</code>, check the rules with:</li>
+                </ul>
+                <p>sudo iptables -L -n</p>
+                <p>Look for rules that may be blocking port 3000.</p>
+                <p>bitnami@debian:~$ sudo iptables -L -n<br />
+                Chain INPUT (policy ACCEPT)<br />
+                target prot opt source destination</p>
+                <p>Chain FORWARD (policy ACCEPT)<br />
+                target prot opt source destination</p>
+                <p>Chain OUTPUT (policy ACCEPT)<br />
+                target prot opt source destination<br />
+                bitnami@debian:~$</p>
+                <hr />
+                <h3>2. <strong>Check if VMware Settings Might Be Blocking the Port</strong></h3>
+                <p>If the firewall rules are correct on the VM, ensure that the VMware network settings aren't restricting traffic:</p>
+                <ul>
+                <li>
+                <p>Open <strong>VMware Workstation</strong>.</p>
+                </li>
+                <li>
+                <p>Go to <strong>Edit</strong> &gt; <strong>Virtual Network Editor</strong>.</p>
+                </li>
+                <li>
+                <p>Check the settings for <strong>VMnet0</strong> (if using Bridged mode) or <strong>VMnet8</strong> (for NAT). Make sure there is no restriction on outgoing or incoming traffic on port 3000.</p>
+                </li>
+                <li>
+                <p>Restart the virtual machine after any changes.</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>3. <strong>Disable UFW Temporarily to Test</strong></h3>
+                <p>To see if the firewall is the issue, you can temporarily disable the firewall on the VM and test access:</p>
+                <ul>
+                <li><strong>Disable UFW</strong>:</li>
+                </ul>
+                <p>sudo ufw disable</p>
+                <ul>
+                <li><strong>Test accessing Grafana</strong> from your host again via <code>http://192.168.28.132:3000</code>.</li>
+                </ul>
+                <p>If you can access Grafana after disabling UFW, then the firewall is likely blocking port 3000, and you’ll need to adjust the firewall rules. If it still doesn’t work, the issue might lie elsewhere.</p>
+                <hr />
+                <h3>4. <strong>Check Grafana Logs</strong></h3>
+                <p>If the firewall is not blocking port 3000, check the Grafana logs for any errors related to external access:</p>
+                <ul>
+                <li><strong>View Grafana logs</strong>:</li>
+                </ul>
+                <p>sudo journalctl -u grafana</p>
+                <p>Look for any errors related to network binding or denied access.</p>
+                <p>Firewall stopped and disabled on system startup<br />
+                bitnami@debian:~$ sudo journalctl -u grafana<br />
+                -- No entries --<br />
+                bitnami@debian:~$</p>
+                <hr />
+                <h3>5. <strong>Ensure Port 3000 is Listening on All Interfaces</strong></h3>
+                <p>Verify that Grafana is listening on <code>0.0.0.0:3000</code>:</p>
+                <ul>
+                <li><strong>Check listening ports</strong>:</li>
+                </ul>
+                <p>sudo netstat -tuln | grep 3000</p>
+                <p>You should see:</p>
+                <p>tcp 0 0 0.0.0.0:3000 0.0.0.0:* LISTEN</p>
+                <p>bitnami@debian:~$ sudo netstat -tuln | grep 3000<br />
+                tcp6 0 0 :::3000 :::* LISTEN<br />
+                bitnami@debian:~$</p>
+                <p>If it's only showing <code>127.0.0.1:3000</code>, Grafana is not listening for external connections. In that case, you’ll need to modify <code>/etc/grafana/grafana.ini</code> as mentioned before:</p>
+                <p>http_addr = 0.0.0.0</p>
+                <p>Then restart Grafana:</p>
+                <p>sudo systemctl restart grafana</p>
+                <hr />
+                <h3>Summary of Next Steps:</h3>
+                <ul>
+                <li>
+                <p>Re-check the firewall on the VM.</p>
+                </li>
+                <li>
+                <p>Ensure VMware network settings don’t block the port.</p>
+                </li>
+                <li>
+                <p>Temporarily disable the VM's firewall to test.</p>
+                </li>
+                <li>
+                <p>Check Grafana logs for errors.</p>
+                </li>
+                <li>
+                <p>Verify that Grafana is listening on <code>0.0.0.0:3000</code>.</p>
+                </li>
+                </ul>
+                <p>Let me know how these steps go, and we can continue troubleshooting!</p>
+                <p>The output <code>:::3000 LISTEN</code> means that <strong>Grafana is listening</strong> on <strong>IPv6</strong> (<code>tcp6</code>), which might be the reason why you're not able to connect from your host via IPv4.</p>
+                <h3>Here's how to resolve the issue:</h3>
+                <hr />
+                <h3>1. <strong>Force Grafana to Listen on Both IPv4 and IPv6</strong></h3>
+                <p>By default, Grafana might be set to only listen on IPv6. To make it listen on both <strong>IPv4 (0.0.0.0)</strong> and <strong>IPv6 (::)</strong>, you need to update the Grafana configuration.</p>
+                <ul>
+                <li><strong>Edit the Grafana configuration file</strong>:</li>
+                </ul>
+                <p>sudo nano /opt/bitnami/grafana/conf/grafana.ini</p>
+                <ul>
+                <li><strong>Find the <code>http_addr</code> setting</strong> and ensure it is set to bind to all network interfaces, including IPv4:</li>
+                </ul>
+                <p>http_addr = 0.0.0.0</p>
+                <ul>
+                <li>
+                <p><strong>Save the file</strong> and <strong>exit</strong> (<code>Ctrl + X</code>, then <code>Y</code> to save).</p>
+                </li>
+                <li>
+                <p><strong>Restart Grafana</strong> to apply the changes:</p>
+                </li>
+                </ul>
+                <p>sudo /opt/bitnami/ctlscript.sh restart grafana</p>
+                <hr />
+                <h3>2. <strong>Check if Grafana is Now Listening on IPv4</strong></h3>
+                <p>After restarting, verify that Grafana is now listening on both IPv4 and IPv6:</p>
+                <ul>
+                <li><strong>Run netstat again</strong> to check if Grafana is now bound to <code>0.0.0.0</code> (IPv4):</li>
+                </ul>
+                <p>sudo netstat -tuln | grep 3000</p>
+                <p>You should see something like:</p>
+                <p>tcp  0  0 0.0.0.0:3000  0.0.0.0:*  LISTEN</p>
+                <hr />
+                <h3>3. <strong>Retry Accessing Grafana from the Host</strong></h3>
+                <p>Now, try accessing Grafana from your host machine again:</p>
+                <ul>
+                <li>Open your browser and go to:</li>
+                </ul>
+                <p>http:&#047;&#047;192.168.28.132:3000</p>
+                <hr />
+                <h3>4. <strong>If Still Not Working – Disable IPv6</strong></h3>
+                <p>If Grafana continues to listen only on IPv6 and you’re still unable to access it from your host, you could disable IPv6 temporarily on the VM to force it to use IPv4.</p>
+                <ul>
+                <li><strong>Disable IPv6 temporarily</strong> by editing the GRUB configuration:</li>
+                </ul>
+                <p>sudo nano /etc/default/grub</p>
+                <ul>
+                <li><strong>Add the following line</strong> to disable IPv6:</li>
+                </ul>
+                <p>GRUB_CMDLINE_LINUX="ipv6.disable=1"</p>
+                <p><img src="images/nmap-over-wsl-1.png" alt="nmap over wsl 1" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Update GRUB</strong>:</li>
+                </ul>
+                <p>sudo update-grub</p>
+                <p><img src="images/nmap-over-wsl-2.png" alt="nmap over wsl 2" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Reboot the VM</strong>:</li>
+                </ul>
+                <p>sudo reboot</p>
+                <p>After the reboot, Grafana should now only bind to IPv4.</p>
+                <hr />
+                <p>By forcing Grafana to bind to <code>0.0.0.0</code>, it should become accessible over both IPv4 and IPv6. Let me know if this resolves the issue or if you encounter any further difficulties!</p>
+                <p>now output </p>
+                <p>bitnami@debian:~$ sudo netstat -tuln | grep 3000<br />
+                tcp 0 0 0.0.0.0:3000 0.0.0.0:* LISTEN<br />
+                bitnami@debian:~$</p>
+                <p>old result has extra6 to it</p>
+                <p><img src="images/nmap-over-wsl-3.png" alt="nmap over wsl 3" class="article-image" loading="lazy"></p>
+                <p>Again Restart</p>
+                <p>https://twitter.com/rifaterdemsahin/status/1839657878358991258</p>
+                <p>It looks like Grafana is correctly running and listening on <code>0.0.0.0:3000</code>, and a <code>curl</code> test on the VM itself shows that Grafana is accessible via <code>http://192.168.3.180:3000</code>. Since you're still unable to access Grafana from your host machine, here are the next steps to resolve this:</p>
+                <h3>1. <strong>Reconfirm Firewall Rules on the VM</strong></h3>
+                <p>Ensure that the firewall on the VM isn't blocking external access to port 3000:</p>
+                <ul>
+                <li><strong>Check UFW status</strong>:</li>
+                </ul>
+                <p>sudo ufw status</p>
+                <ul>
+                <li>
+                <p>Ensure port 3000 is open.</p>
+                </li>
+                <li>
+                <p><strong>If not already allowed, explicitly allow port 3000</strong>:</p>
+                </li>
+                </ul>
+                <p>sudo ufw allow 3000/tcp<br />
+                   sudo ufw reload</p>
+                <hr />
+                <h3>2. <strong>Verify Host Firewall Rules</strong></h3>
+                <p>Ensure that the host machine (your physical machine) isn't blocking the connection to the VM:</p>
+                <ul>
+                <li><strong>Disable the Windows Firewall temporarily</strong>:</li>
+                </ul>
+                <p>Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False</p>
+                <ul>
+                <li>
+                <p><strong>Try accessing Grafana again</strong>:</p>
+                </li>
+                <li>
+                <p>Open a browser and navigate to <code>http://192.168.3.180:3000</code>. If disabling the firewall resolves the issue, you’ll need to create a rule to allow traffic on port 3000 from your VM’s IP.</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>3. <strong>Use <code>nmap</code> to Scan from Host Again</strong></h3>
+                <p>Run <code>nmap</code> from your host machine to check if port 3000 is reachable now:</p>
+                <ul>
+                <li><strong>On your host machine</strong>:</li>
+                </ul>
+                <p>nmap -Pn -p 3000 192.168.3.180</p>
+                <p>If port 3000 still shows as filtered or closed, there may be a network issue.</p>
+                <hr />
+                <h3>4. <strong>Verify Bridged Network Settings in VMware</strong></h3>
+                <p>Ensure that the <strong>Bridged Networking</strong> in VMware is correctly configured:</p>
+                <ul>
+                <li>
+                <p>Open <strong>VMware Workstation</strong> &gt; <strong>Settings</strong> &gt; <strong>Network Adapter</strong>.</p>
+                </li>
+                <li>
+                <p>Ensure <strong>Bridged Networking</strong> is selected and linked to the correct adapter (e.g., your Ethernet or Wi-Fi adapter, not VMware virtual adapters).</p>
+                </li>
+                <li>
+                <p>Restart the VM after confirming the settings.</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>5. <strong>Test Direct Communication Between Host and VM</strong></h3>
+                <p>Check if your host can reach the VM by attempting a connection directly to port 3000 using <code>telnet</code> or <code>curl</code>:</p>
+                <ul>
+                <li><strong>From the host</strong>:</li>
+                </ul>
+                <p>curl http://192.168.3.180:3000</p>
+                <p>If the connection times out, it confirms there's an issue with the network configuration or a firewall blocking the traffic.</p>
+                <hr />
+                <h3>6. <strong>Check Routing Table</strong></h3>
+                <p>Double-check your routing table to ensure your host machine knows how to reach the VM:</p>
+                <ul>
+                <li><strong>Run <code>route print</code></strong> on your host machine to verify that the route to the <code>192.168.3.x</code> subnet is properly configured.</li>
+                </ul>
+                <hr />
+                <p>Let me know the result of these steps, and we can continue troubleshooting from there.</p>
+                <p>==================================================================<br />
+                    *** EXPLAIN OUR BLOCK ***<br />
+                ==================================================================</p>
+                <p>In both of your <strong>nmap</strong> scans, you are seeing that <strong>port 3000</strong> is reported as <strong>filtered</strong>. This means that <strong>nmap</strong> was able to reach the host (the virtual machine), but it is detecting that traffic to <strong>port 3000</strong> is being <strong>blocked by a firewall</strong> or some other network security mechanism. The fact that the host is reachable but the port is filtered indicates that the problem is likely with firewall or network rules.</p>
+                <h3>Here's a breakdown of what each part means:</h3>
+                <ul>
+                <li>
+                <p><strong>Host is up</strong>:<br />
+                This means that your virtual machine (<code>192.168.28.132</code> and <code>192.168.3.180</code>) is reachable and responding to network requests.</p>
+                </li>
+                <li>
+                <p><strong>PORT 3000/tcp filtered</strong>:<br />
+                This means that <strong>port 3000</strong> is not responding to <strong>nmap</strong>’s probe because something (likely a firewall) is blocking or filtering the connection. When <code>nmap</code> reports a port as <strong>filtered</strong>, it generally indicates that a firewall is actively dropping the connection without providing a response (as opposed to being open or closed).</p>
+                </li>
+                </ul>
+                <p>WHEN NMAP REPORTS A PORT AS FILTERED, IT GENERALLY INDICATES THAT A FIREWALL IS ACTIVELY DROPPING THE CONNECTION WITHOUT PROVIDING A RESPONSE (AS OPPOSED TO BEING OPEN OR CLOSED).</p>
+                <hr />
+                <h3>What Could Be Happening:</h3>
+                <ul>
+                <li>
+                <p><strong>VM's Firewall is Blocking Access</strong>:<br />
+                Even though Grafana is running and listening on port 3000, the firewall on the virtual machine may still be blocking external access to the port.</p>
+                </li>
+                <li>
+                <p><strong>Host Firewall is Blocking Access</strong>:<br />
+                Your host machine's firewall might be blocking incoming or outgoing traffic to and from the VM on port 3000.</p>
+                </li>
+                <li>
+                <p><strong>Network Configuration in VMware</strong>:<br />
+                There might be an issue with the <strong>VMware Bridged</strong> or <strong>NAT</strong> settings. The VM might be set to a different virtual network (e.g., <code>192.168.28.x</code> vs. <code>192.168.3.x</code>), which is not properly configured for external access.</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>Next Steps to Resolve the Issue:</h3>
+                <hr />
+                <h3>1. <strong>Verify the Firewall on the VM Again</strong></h3>
+                <p>Since <strong>nmap</strong> shows the port is filtered, it’s possible the firewall on the VM is blocking port 3000. Double-check that the firewall is allowing external connections on port 3000:</p>
+                <ul>
+                <li><strong>Check UFW firewall status</strong>:</li>
+                </ul>
+                <p>sudo ufw status</p>
+                <p>If it shows <strong>inactive</strong>, then the firewall isn’t the problem. If it's <strong>active</strong>, ensure port 3000 is allowed:</p>
+                <ul>
+                <li><strong>If necessary, allow port 3000</strong>:</li>
+                </ul>
+                <p>sudo ufw allow 3000/tcp<br />
+                   sudo ufw reload</p>
+                <hr />
+                <h3>2. <strong>Disable the VM’s Firewall Temporarily to Test</strong></h3>
+                <p>If you want to rule out the firewall entirely, you can temporarily disable it and then test access from the host:</p>
+                <ul>
+                <li><strong>Disable UFW on the VM</strong>:</li>
+                </ul>
+                <p>sudo ufw disable</p>
+                <ul>
+                <li><strong>Try accessing Grafana from the host</strong>. If it works now, the firewall was blocking port 3000, and you'll need to adjust the rules.</li>
+                </ul>
+                <hr />
+                <h3>3. <strong>Check Host Machine's Firewall</strong></h3>
+                <p>The firewall on your host machine might be blocking outgoing traffic to the VM’s port 3000.</p>
+                <ul>
+                <li><strong>Disable the firewall on your host machine temporarily</strong>:</li>
+                </ul>
+                <p>Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False</p>
+                <ul>
+                <li><strong>Try accessing Grafana again</strong>:<br />
+                Go to <code>http://192.168.3.180:3000</code> in your browser. If it works now, your host’s firewall was blocking the connection, and you’ll need to allow the connection permanently by creating a firewall rule.</li>
+                </ul>
+                <hr />
+                <h3>4. <strong>Verify VMware Network Settings</strong></h3>
+                <p>If the firewalls are not the problem, the next step is to check your <strong>VMware</strong> settings.</p>
+                <ul>
+                <li>
+                <p><strong>Check if VMware is using Bridged Networking</strong>:<br />
+                Open <strong>VMware Workstation</strong>, go to your virtual machine settings, and ensure that <strong>Bridged Networking</strong> is selected.</p>
+                </li>
+                <li>
+                <p><strong>Restart the VM</strong>:<br />
+                After confirming the settings, reboot the VM to ensure the network configuration takes effect.</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>5. <strong>Use a Different Port</strong></h3>
+                <p>Sometimes, the port number might be blocked by system or network-level security policies. You could try changing Grafana’s default port to another port like <strong>8080</strong> and see if that works.</p>
+                <ul>
+                <li><strong>Edit the Grafana configuration file</strong>:</li>
+                </ul>
+                <p>sudo nano /etc/grafana/grafana.ini</p>
+                <ul>
+                <li><strong>Change the port number</strong> in the config file:</li>
+                </ul>
+                <p>http_port = 8080</p>
+                <ul>
+                <li><strong>Restart Grafana</strong>:</li>
+                </ul>
+                <p>sudo systemctl restart grafana</p>
+                <ul>
+                <li><strong>Try accessing it again</strong> using <code>http://192.168.3.180:8080</code>.</li>
+                </ul>
+                <hr />
+                <p>By following these steps, you should be able to pinpoint whether it's a firewall or network issue. Let me know how it goes!</p>
+                <p>Delete it </p>
+                <p><img src="images/nmap-over-wsl-4.png" alt="nmap over wsl 4" class="article-image" loading="lazy"></p>
+                <p>The configuration in the image you’ve provided shows several key settings related to <strong>Grafana’s server and protocol settings</strong>. Let me explain the difference between <strong><code>[server]</code></strong> and <strong><code>protocol</code></strong> in this context.</p>
+                <hr />
+                <h3>1. <strong><code>[server]</code> Section</strong>:</h3>
+                <p>The <code>[server]</code> section contains various settings that define <strong>how Grafana's server behaves</strong>—such as what IP address and port it binds to, the domain it uses, and more.</p>
+                <p>Key options inside <code>[server]</code>:</p>
+                <ul>
+                <li>
+                <p><strong><code>domain</code></strong>:<br />
+                Specifies the domain name or IP address used to access Grafana. In your case, it’s set to <code>192.168.3.180</code>. This is the IP where Grafana expects incoming requests.</p>
+                </li>
+                <li>
+                <p><strong><code>http_addr</code></strong>:<br />
+                The IP address to which Grafana binds. <code>0.0.0.0</code> means it binds to all available network interfaces, allowing access from any IP address.</p>
+                </li>
+                <li>
+                <p><strong><code>http_port</code></strong>:<br />
+                The port on which Grafana listens for incoming HTTP requests. You have <code>http_port = 8181</code> set, which means you will need to access Grafana via port <code>8181</code> (e.g., <code>http://192.168.3.180:8181</code>).</p>
+                </li>
+                <li>
+                <p><strong><code>root_url</code></strong>:<br />
+                Defines the base URL that Grafana uses for links. This is important when Grafana is running behind a proxy or has a specific domain. In your case, it’s set dynamically using the <code>http_port</code> and <code>domain</code>.</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>2. <strong><code>protocol</code> Setting</strong>:</h3>
+                <p>This setting specifically refers to <strong>how Grafana handles the HTTP requests</strong>—whether it's using HTTP, HTTPS, or other protocols.</p>
+                <p>Key options related to <code>protocol</code>:</p>
+                <ul>
+                <li>
+                <p><strong><code>protocol</code></strong>:<br />
+                Determines the protocol Grafana uses for communication. In your configuration, it’s set to <code>http</code>, which means Grafana will serve requests using HTTP. Other valid options might include:</p>
+                </li>
+                <li>
+                <p><code>http</code>: Basic, unencrypted traffic.</p>
+                </li>
+                <li>
+                <p><code>https</code>: Encrypted traffic using SSL/TLS.</p>
+                </li>
+                <li>
+                <p><code>h2</code>: HTTP/2 protocol, which is faster but may require special configuration.</p>
+                </li>
+                <li>
+                <p><code>socket</code>: If Grafana should listen on a Unix socket rather than a network port.</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>Summary of the Difference:</h3>
+                <ul>
+                <li>
+                <p><strong><code>[server]</code></strong>: Defines how Grafana’s internal web server is configured—what IP it listens on, which port it uses, and what domain is used for incoming connections.</p>
+                </li>
+                <li>
+                <p><strong><code>protocol</code></strong>: Specifies what kind of network protocol is used to serve Grafana (e.g., HTTP, HTTPS, etc.).</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>Recommendation:</h3>
+                <p>Since you've changed the <strong><code>http_port</code></strong> to <strong>8181</strong>, make sure you are accessing Grafana at <code>http://192.168.3.180:8181</code> instead of port 3000. If the server settings are correct, this should allow you to connect.</p>
+                <p>Let me know if this clarifies the difference, or if you have further questions!</p>
+                <p>Difference ?</p>
+                <p>==================================================================<br />
+                    *** GUESSING GAME ***<br />
+                ==================================================================</p>
+                <p>The change in service name from <strong><code>intermapper</code></strong> (for port 8181) to <strong><code>http-proxy</code></strong> (for port 8080) that you see in your <strong>nmap</strong> scans is based on <strong><code>nmap</code>’s service name guessing</strong>. Here's what’s happening:</p>
+                <h3>1. <strong>Port Service Name Guessing by <code>nmap</code></strong>:</h3>
+                <ul>
+                <li><strong><code>nmap</code></strong> has a built-in database that associates <strong>port numbers</strong> with <strong>common services</strong>. It uses this database to guess what service might be running on a specific port. These service names are based on widely known uses of those ports, not what is actually running on that port.</li>
+                </ul>
+                <h3>2. <strong><code>intermapper</code> for Port 8181</strong>:</h3>
+                <ul>
+                <li>
+                <p><strong>Port 8181</strong> is commonly associated with the <strong>InterMapper</strong> service, a network monitoring tool. Because <code>nmap</code> doesn't know exactly what's running on port 8181 in your case (since the port is filtered), it guesses based on what it commonly sees on that port.</p>
+                </li>
+                <li>
+                <p>In your case, Grafana is running on port 8181, but because the port is <strong>filtered</strong>, <code>nmap</code> can't definitively tell what service is running there, so it defaults to labeling it <strong>intermapper</strong>.</p>
+                </li>
+                </ul>
+                <h3>3. <strong><code>http-proxy</code> for Port 8080</strong>:</h3>
+                <ul>
+                <li>
+                <p><strong>Port 8080</strong> is often used by <strong>HTTP proxy services</strong>, which is why <code>nmap</code> identifies it as <strong>http-proxy</strong>.</p>
+                </li>
+                <li>
+                <p>Similar to the previous case, <code>nmap</code> is guessing based on the port number. Since port 8080 is filtered (blocked), <code>nmap</code> cannot verify what's actually running on that port and uses the common association with HTTP proxies.</p>
+                </li>
+                </ul>
+                <h3>Why Does This Happen?</h3>
+                <ul>
+                <li>
+                <p>The service name that <strong><code>nmap</code></strong> reports doesn’t indicate what is <em>actually</em> running on the port. It's just a <strong>best guess</strong> based on <strong>common services</strong> that run on those ports.</p>
+                </li>
+                <li>
+                <p>The fact that both ports are <strong>filtered</strong> means that <code>nmap</code> cannot probe further to confirm what is running, so it defaults to these common associations.</p>
+                </li>
+                </ul>
+                <h3>Solution:</h3>
+                <p>To confirm what is actually running on those ports (Grafana in your case), you need to ensure that:</p>
+                <ul>
+                <li>
+                <p>The ports are <strong>open</strong>, and</p>
+                </li>
+                <li>
+                <p>The firewall or network security settings are configured to allow access to those ports from your host machine.</p>
+                </li>
+                </ul>
+                <h3>Recap:</h3>
+                <ul>
+                <li>
+                <p><strong><code>nmap</code></strong> is simply guessing the service name based on the port number.</p>
+                </li>
+                <li>
+                <p><code>intermapper</code> is guessed for port <strong>8181</strong>, and <code>http-proxy</code> is guessed for port 8080 because those are common uses for these ports.</p>
+                </li>
+                <li>
+                <p>The key issue is that the ports are being reported as <strong>filtered</strong>, which means traffic is being blocked by a firewall or network configuration.</p>
+                </li>
+                </ul>
+                <p>To resolve the issue, continue focusing on <strong>opening the ports</strong> and adjusting firewall settings as discussed earlier.</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

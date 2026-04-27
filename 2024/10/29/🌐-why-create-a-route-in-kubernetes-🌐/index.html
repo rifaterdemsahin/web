@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌐 Why Create a Route in Kubernetes? 🌐 - Rifat Erdem Sahin</title>
+    <meta name="description" content="🌐 Why Create a Route in Kubernetes? 🌐 In today’s world of cloud-native applications and microservices, Kubernetes has become the go-to solution for orchestrating and managing containers. One of the es">
+    <meta name="keywords" content="🌐 Why Create a Route in Kubernetes? 🌐">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/10/29/🌐-why-create-a-route-in-kubernetes-🌐/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/10/29/🌐-why-create-a-route-in-kubernetes-🌐/">
+    <meta property="og:title" content="🌐 Why Create a Route in Kubernetes? 🌐">
+    <meta property="og:description" content="🌐 Why Create a Route in Kubernetes? 🌐 In today’s world of cloud-native applications and microservices, Kubernetes has become the go-to solution for orchestrating and managing containers. One of the es">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/10/29/🌐-why-create-a-route-in-kubernetes-🌐/">
+    <meta property="twitter:title" content="🌐 Why Create a Route in Kubernetes? 🌐">
+    <meta property="twitter:description" content="🌐 Why Create a Route in Kubernetes? 🌐 In today’s world of cloud-native applications and microservices, Kubernetes has become the go-to solution for orchestrating and managing containers. One of the es">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "🌐 Why Create a Route in Kubernetes? 🌐",
+      "description": "🌐 Why Create a Route in Kubernetes? 🌐 In today’s world of cloud-native applications and microservices, Kubernetes has become the go-to solution for orchestrating and managing containers. One of the es",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-10-29",
+      "dateModified": "2024-10-29",
+      "url": "https://www.rifaterdemsahin.com/2024/10/29/🌐-why-create-a-route-in-kubernetes-🌐/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/10/29/🌐-why-create-a-route-in-kubernetes-🌐/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">🌐 Why Create a Route in Kubernetes? 🌐</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>October 29, 2024</span>
+                    <span>&bull;</span>
+                    <span>3 min read</span>
+                </div>
+                <p class="article-excerpt">🌐 Why Create a Route in Kubernetes? 🌐 In today’s world of cloud-native applications and microservices, Kubernetes has become the go-to solution for orchestrating and managing containers. One of the essential elements to understand in Kubernetes networking is routes .</p>
+            </header>
+            <article class="article-content">
+                <h1>🌐 Why Create a Route in Kubernetes? 🌐</h1>
+                <p><img src="images/why-create-a-1.png" alt="why create a 1" class="article-image" loading="lazy"></p>
+                <p>In today’s world of cloud-native applications and microservices, <strong>Kubernetes</strong> has become the go-to solution for orchestrating and managing containers. One of the essential elements to understand in Kubernetes networking is <strong>routes</strong>. If you're wondering, "Why should I bother with routes in Kubernetes?" — you’re in the right place! In this post, I’ll break down the basics of routes in Kubernetes and why they’re key to your application’s scalability and accessibility. 🚀</p>
+                <hr />
+                <h2>🎯 What Is a Route in Kubernetes?</h2>
+                <p>In Kubernetes, a <strong>route</strong> is a way to make an application running in a pod accessible from outside the cluster. Routes work hand-in-hand with services to help expose your application externally so users and other applications can interact with it.</p>
+                <p>Imagine you’ve deployed a shiny new application within your Kubernetes cluster. Without a route, this application is essentially in a<strong> “walled garden” with no external access. </strong>A route provides that bridge to the outside world! 🌍</p>
+                <p><img src="images/why-create-a-2.png" alt="why create a 2" class="article-image" loading="lazy"></p>
+                <hr />
+                <h2>🛠 Why Create a Route? The Core Benefits</h2>
+                <h3>1️⃣ <strong>External Access to Services</strong></h3>
+                <ul>
+                <li>
+                <p>Routes allow users and services outside the Kubernetes cluster to access applications within the cluster.</p>
+                </li>
+                <li>
+                <p>Whether you’re hosting a public-facing web app or an internal tool, routes ensure that traffic flows to the right destinations.</p>
+                </li>
+                </ul>
+                <h3>2️⃣ <strong>Load Balancing Made Simple</strong></h3>
+                <ul>
+                <li>
+                <p>Routes can distribute traffic across multiple instances of a service, making sure your application handles load effectively and stays responsive.</p>
+                </li>
+                <li>
+                <p>With built-in load balancing, you can create a reliable and resilient user experience even under high traffic. 🌐💪</p>
+                </li>
+                </ul>
+                <h3>3️⃣ <strong>Enhanced Security</strong></h3>
+                <ul>
+                <li>
+                <p>By defining routes, you can manage security and access control in your cluster, making sure only the right users and services can access specific applications.</p>
+                </li>
+                <li>
+                <p>Kubernetes routes support <strong>TLS termination</strong> to protect data in transit. So, your users get a secure experience every time they connect. 🔐</p>
+                </li>
+                </ul>
+                <h3>4️⃣ <strong>Seamless Scaling</strong></h3>
+                <ul>
+                <li>
+                <p>With autoscaling, Kubernetes can add or remove application instances based on demand. Routes make sure that as instances come and go, they remain accessible without manual intervention.</p>
+                </li>
+                <li>
+                <p>This flexibility ensures your applications are always prepared for fluctuating workloads. 📈⬆️</p>
+                </li>
+                </ul>
+                <h3>5️⃣ <strong>DNS Mapping and Easy Access</strong></h3>
+                <ul>
+                <li>
+                <p>Routes often allow custom DNS names, enabling you to create easy-to-remember URLs for each service.</p>
+                </li>
+                <li>
+                <p>This makes it super user-friendly and convenient for clients to connect, improving your service’s professionalism and usability. ✨</p>
+                </li>
+                </ul>
+                <hr />
+                <h2>🚀 Creating a Route: Step-by-Step Guide</h2>
+                <p>Here’s a quick snapshot of creating a route in Kubernetes. I’ll use OpenShift’s approach, but it’s similar across various Kubernetes distributions.</p>
+                <p>1️⃣ <strong>Define the Route</strong>: Start by creating a route definition in YAML. Specify the route type, service name, and target port.</p>
+                <p>apiVersion: route.openshift.io/v1<br />
+                kind: Route<br />
+                metadata:<br />
+                  name: my-app-route<br />
+                spec:<br />
+                  to:<br />
+                    kind: Service<br />
+                    name: my-app-service<br />
+                  port:<br />
+                    targetPort: 8080</p>
+                <p>2️⃣ <strong>Deploy the Route</strong>: Apply the route definition file to your Kubernetes cluster.</p>
+                <p>kubectl apply -f my-app-route.yaml</p>
+                <p>3️⃣ <strong>Verify the Route</strong>: Check if your route is active by using <code>kubectl</code> commands. Once your route is working, you’ll see an external URL pointing to your application.</p>
+                <p>kubectl get routes</p>
+                <p>🚀 <em>And that’s it!</em> You now have a route in Kubernetes connecting the outside world to your application.</p>
+                <hr />
+                <p><img src="images/why-create-a-3.png" alt="why create a 3" class="article-image" loading="lazy"></p>
+                <hr />
+                <h2>💡 Final Thoughts</h2>
+                <p>Creating a route in Kubernetes is a simple yet powerful step that opens up your application to the world. With routes, you get easy access, seamless scaling, and secure connections. Whether you’re building a personal project or scaling an enterprise-grade app, routes will ensure that users and services have reliable, secure access to your application. 🌐✨</p>
+                <p>If you're just diving into Kubernetes, start exploring routes — it’s a critical tool in your DevOps toolkit!</p>
+                <hr />
+                <p><code>References
+                https:&amp;#047;&amp;#047;gateway-api.sigs.k8s.io/guides/http-routing/
+                https://kubernetes.io/blog/2021/04/22/evolving-kubernetes-networking-with-the-gateway-api/
+                https://medium.com/google-cloud/understanding-kubernetes-networking-ingress-1bc341c84078</code></p>
+                <p><strong>🔗 Connect with me:</strong></p>
+                <ul>
+                <li>
+                <p>💼 <a href="https://www.linkedin.com/in/rifaterdemsahin/">LinkedIn</a></p>
+                </li>
+                <li>
+                <p>🐦 <a href="https://x.com/rifaterdemsahin">Twitter</a></p>
+                </li>
+                <li>
+                <p>🎥 <a href="https://www.youtube.com/@RifatErdemSahin">YouTube</a></p>
+                </li>
+                <li>
+                <p>💻 <a href="https://github.com/rifaterdemsahin">GitHub</a></p>
+                </li>
+                </ul>
+                <p>Happy routing! 🎉</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

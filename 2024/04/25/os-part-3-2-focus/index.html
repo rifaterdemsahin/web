@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS Part 3.2 Focus - Rifat Erdem Sahin</title>
+    <meta name="description" content="OS Part 3.2 Focus Take the top todos network ( FOCUS ) Script to create in Azure domain subnets aro A logic app to create the remaining cluster 3 worker nodes 3 Master nodes Set dns names to all machi">
+    <meta name="keywords" content="OS Part 3.2 Focus">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/04/25/os-part-3-2-focus/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/04/25/os-part-3-2-focus/">
+    <meta property="og:title" content="OS Part 3.2 Focus">
+    <meta property="og:description" content="OS Part 3.2 Focus Take the top todos network ( FOCUS ) Script to create in Azure domain subnets aro A logic app to create the remaining cluster 3 worker nodes 3 Master nodes Set dns names to all machi">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/04/25/os-part-3-2-focus/">
+    <meta property="twitter:title" content="OS Part 3.2 Focus">
+    <meta property="twitter:description" content="OS Part 3.2 Focus Take the top todos network ( FOCUS ) Script to create in Azure domain subnets aro A logic app to create the remaining cluster 3 worker nodes 3 Master nodes Set dns names to all machi">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "OS Part 3.2 Focus",
+      "description": "OS Part 3.2 Focus Take the top todos network ( FOCUS ) Script to create in Azure domain subnets aro A logic app to create the remaining cluster 3 worker nodes 3 Master nodes Set dns names to all machi",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-04-25",
+      "dateModified": "2024-04-25",
+      "url": "https://www.rifaterdemsahin.com/2024/04/25/os-part-3-2-focus/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/04/25/os-part-3-2-focus/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">OS Part 3.2 Focus</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>April 25, 2024</span>
+                    <span>&bull;</span>
+                    <span>10 min read</span>
+                </div>
+                <p class="article-excerpt">OS Part 3.2 Focus Take the top todos network ( FOCUS ) Script to create in Azure domain subnets aro A logic app to create the remaining cluster 3 worker nodes 3 Master nodes Set dns names to all machines start with one addocpdns set a records for OCP and srv records systems to ta</p>
+            </header>
+            <article class="article-content">
+                <h1>OS Part 3.2 Focus</h1>
+                <p>Take the top todos</p>
+                <ul>
+                <li><strong>network ( FOCUS )</strong></li>
+                </ul>
+                <p>Script to create in Azure</p>
+                <p>domain</p>
+                <ul>
+                <li>
+                <p>subnets</p>
+                </li>
+                <li>
+                <p>aro</p>
+                </li>
+                <li>
+                <p>A logic app to create the remaining  cluster </p>
+                </li>
+                </ul>
+                <p>3 worker nodes</p>
+                <ul>
+                <li>
+                <p>3 Master nodes</p>
+                </li>
+                <li>
+                <p>Set dns names to all machines</p>
+                </li>
+                </ul>
+                <p>start with one addocpdns</p>
+                <ul>
+                <li>
+                <p>set a records for OCP</p>
+                </li>
+                <li>
+                <p>and srv records systems to talkt o each other over ports</p>
+                </li>
+                <li>
+                <p><strong>apache</strong> ( web Server )</p>
+                </li>
+                </ul>
+                <p>Script to create in linux</p>
+                <p>sudo apt update</p>
+                <ul>
+                <li>
+                <p>sudo apt install apache2 -y</p>
+                </li>
+                <li>
+                <p>Add this to bootstrap code in storage</p>
+                </li>
+                <li>
+                <p>Use scp to access the machine</p>
+                </li>
+                </ul>
+                <p>GPT</p>
+                <hr />
+                <h3>Azure Network Setup Instructions</h3>
+                <ul>
+                <li>
+                <p><strong>Create Domain and Subnets</strong>: Initialize the domain and configure the subnets within your Azure environment.</p>
+                </li>
+                <li>
+                <p><strong>Deploy Azure Red Hat OpenShift (ARO)</strong>: Set up an ARO instance to manage your Kubernetes deployments.</p>
+                </li>
+                </ul>
+                <p>`az provider register --namespace Microsoft.RedHatOpenShift</p>
+                <p>az account set --subscription 2cb217c1-366d-41c0-8934-3f82869320d8</p>
+                <h1>Variables for your Azure environment</h1>
+                <p>$resourceGroupName="Openshift"<br />
+                $location="uk-south"<br />
+                $domainName="openshift.devops.engineering"<br />
+                $vnetName="openshiftvnet"<br />
+                $subnetName="openshiftsubnet"<br />
+                $aroClusterName="devopsengineering"</p>
+                <h1>Create a resource group</h1>
+                <p>az group create --name $resourceGroupName --location $location</p>
+                <h1>Create a virtual network with a subnet for ARO</h1>
+                <p>az network vnet create --resource-group $resourceGroupName --name $vnetName --address-prefixes 10.0.0.0/22 --subnet-name $subnetName --subnet-prefix 10.0.0.0/24</p>
+                <h1>Create a DNS zone</h1>
+                <p>az network dns zone create --name $domainName --resource-group $resourceGroupName</p>
+                <h1>Deploy Azure Red Hat OpenShift (ARO)</h1>
+                <h1>First, create a service principal for ARO</h1>
+                <p>$aroServicePrincipal=$(az ad sp create-for-rbac --skip-assignment)</p>
+                <h1>Extract appId and password from the service principal output</h1>
+                <p>$appId=$(echo $aroServicePrincipal | jq -r '.appId')<br />
+                $appSecret=$(echo $aroServicePrincipal | jq -r '.password')</p>
+                <h1>Create the ARO cluster</h1>
+                <p>az aro create --resource-group $resourceGroupName --name $aroClusterName --vnet $vnetName --master-subnet $subnetName --worker-subnet $subnetName --client-id $appId --client-secret $appSecret --location $location</p>
+                <h1>Output the cluster's console URL and credentials</h1>
+                <p>echo "ARO Cluster is deployed. Access your cluster here:"<br />
+                az aro show --name $aroClusterName --resource-group $resourceGroupName --query "consoleProfile.url" -o tsv<br />
+                az aro list-credentials --name $aroClusterName --resource-group $resourceGroupName<br />
+                `</p>
+                <p>this creates the cluster &gt;&gt;&gt; try at the start</p>
+                <p><img src="images/os-part-32-1.png" alt="os part 32 1" class="article-image" loading="lazy"></p>
+                <p>test on the cloud shell </p>
+                <p><img src="images/os-part-32-2.png" alt="os part 32 2" class="article-image" loading="lazy"></p>
+                <p>bulk copy paste</p>
+                <p><img src="images/os-part-32-3.png" alt="os part 32 3" class="article-image" loading="lazy"></p>
+                <p>PS /home/rifat&gt; aroClusterName="devopsengineering"<br />
+                aroClusterName=devopsengineering: The term 'aroClusterName=devopsengineering' is not recognized as a name of a cmdlet, function, script file, or executable program.<br />
+                Check the spelling of the name, or if a path was included, verify that the path is correct and try again.<br />
+                PS /home/rifat&gt;</p>
+                <p>It looks like you're using PowerShell and encountered an issue with setting a variable. In PowerShell, variables are assigned using the <code>$</code> prefix and without spaces around the <code>=</code> sign. Here's how you should declare and set the variable <code>aroClusterName</code> in PowerShell:</p>
+                <p>$aroClusterName = "devopsengineering"</p>
+                <p>In your previous attempt, it seems like there was an attempt to reuse the syntax suitable for shells like Bash in a PowerShell environment, which caused the error. For PowerShell, always ensure you use <code>$</code> before the variable name and directly assign values with <code>=</code> without any spaces around it. Here’s a brief fix to adjust Bash commands into PowerShell syntax:</p>
+                <h1>Set up variable for ARO cluster name</h1>
+                <p>$aroClusterName = "devopsengineering"</p>
+                <h1>Example usage of the variable in a command (hypothetical command)</h1>
+                <p>Write-Output "The ARO Cluster Name is set to: $aroClusterName"</p>
+                <p>This should correctly set the variable in PowerShell and allow you to proceed without errors. If you have other commands to translate from Bash to PowerShell, I can help with that too!</p>
+                <hr />
+                <p><img src="images/os-part-32-4.png" alt="os part 32 4" class="article-image" loading="lazy"></p>
+                <p><img src="images/os-part-32-5.png" alt="os part 32 5" class="article-image" loading="lazy"></p>
+                <p><img src="images/os-part-32-6.png" alt="os part 32 6" class="article-image" loading="lazy"></p>
+                <p><img src="images/os-part-32-7.png" alt="os part 32 7" class="article-image" loading="lazy"></p>
+                <p>Here's how you can condense the Azure CLI command to create a virtual network and subnet into a single line:</p>
+                <p>az network vnet create --resource-group $resourceGroupName --name $vnetName --address-prefixes 10.0.0.0/22 --subnet-name $subnetName --subnet-prefix 10.0.0.0/24</p>
+                <p>This command does exactly the same thing as your original command, just formatted to be on one line for easier reading or inclusion in scripts where line breaks might be less desirable. Make sure you replace <code>$resourceGroupName</code>, <code>$vnetName</code>, and <code>$subnetName</code> with the actual values you want to use for your resource group, virtual network, and subnet names.</p>
+                <p><img src="images/os-part-32-8.png" alt="os part 32 8" class="article-image" loading="lazy"></p>
+                <p>before </p>
+                <p><img src="images/os-part-32-9.png" alt="os part 32 9" class="article-image" loading="lazy"></p>
+                <p>after</p>
+                <p><img src="images/os-part-32-10.png" alt="os part 32 10" class="article-image" loading="lazy"></p>
+                <p>Wring resource group</p>
+                <p><img src="images/os-part-32-11.png" alt="os part 32 11" class="article-image" loading="lazy"></p>
+                <p><img src="images/os-part-32-12.png" alt="os part 32 12" class="article-image" loading="lazy"></p>
+                <p><code>az network dns zone create --name $domainName --resource-group $resourceGroupName</code></p>
+                <p><img src="images/os-part-32-13.png" alt="os part 32 13" class="article-image" loading="lazy"></p>
+                <p><img src="images/os-part-32-14.png" alt="os part 32 14" class="article-image" loading="lazy"></p>
+                <pre><code>az account set --subscription ad744a08-2411-4d78-b417-1f1c83f4f741
+                
+                **correct one 
+                **az account set --subscription 2cb217c1-366d-41c0-8934-3f82869320d8
+                
+                </code></pre>
+                <p><img src="images/os-part-32-15.png" alt="os part 32 15" class="article-image" loading="lazy"></p>
+                <p>Server desktop in the back</p>
+                <p><img src="images/os-part-32-16.png" alt="os part 32 16" class="article-image" loading="lazy"></p>
+                <p>manage more visual </p>
+                <p><img src="images/os-part-32-17.png" alt="os part 32 17" class="article-image" loading="lazy"></p>
+                <p>To set a specific Azure subscription as the default using its subscription ID, you can use the Azure CLI. Here's the command to set the default subscription:</p>
+                <p>az account set --subscription ad744a08-2411-4d78-b417-1f1c83f4f741</p>
+                <p>This command tells Azure CLI to use the subscription with the ID <code>ad744a08-2411-4d78-b417-1f1c83f4f741</code> for all subsequent operations in the current session or until you change the subscription again. Ensure that you're logged into the Azure CLI with an account that has access to this subscription.</p>
+                <p><img src="images/os-part-32-18.png" alt="os part 32 18" class="article-image" loading="lazy"></p>
+                <p>use exho to extract</p>
+                <p><img src="images/os-part-32-19.png" alt="os part 32 19" class="article-image" loading="lazy"></p>
+                <p>one primpt as asistant learn more and more use cases</p>
+                <p><img src="images/os-part-32-20.png" alt="os part 32 20" class="article-image" loading="lazy"></p>
+                <p><code>az aro create --resource-group $resourceGroupName --name $aroClusterName --vnet $vnetName --master-subnet $subnetName --worker-subnet $subnetName --service-principal $appId --client-secret $appSecret --location $location</code></p>
+                <p><img src="images/os-part-32-21.png" alt="os part 32 21" class="article-image" loading="lazy"></p>
+                <p>It seems like there's an issue with the use of <code>--service-principal</code> and <code>--client-secret</code> flags in the <code>az aro create</code> command, possibly due to a syntax error or the way these arguments are handled in your Azure CLI environment.</p>
+                <p>Let's review the typical command structure for creating an Azure Red Hat OpenShift (ARO) cluster with the Azure CLI, focusing on service principal credentials. In some versions of the CLI or in certain configurations, the correct flags for these might differ, or the Azure CLI version you're using might not recognize the flags if there's a typo or an update.</p>
+                <p>Here's the standard way to specify these details in an ARO creation command:</p>
+                <p>az aro create --resource-group $resourceGroupName --name $aroClusterName --vnet $vnetName --master-subnet $subnetName --worker-subnet $subnetName --client-id $appId --client-secret $appSecret --location $location</p>
+                <p><strong>Key Changes:</strong></p>
+                <ul>
+                <li>Use <code>--client-id</code> instead of <code>--service-principal</code> for specifying the application (client) ID of the service principal.</li>
+                </ul>
+                <p>If you're still encountering issues, make sure:</p>
+                <ul>
+                <li><strong>Azure CLI is updated</strong>: Your Azure CLI might be outdated, which can lead to unrecognized argument errors. Update it using:</li>
+                </ul>
+                <p>az upgrade</p>
+                <ul>
+                <li>
+                <p><strong>Correct usage of variables</strong>: Ensure all your variables (<code>$resourceGroupName</code>, <code>$aroClusterName</code>, <code>$vnetName</code>, <code>$subnetName</code>, <code>$appId</code>, <code>$appSecret</code>, <code>$location</code>) are defined in your session. In PowerShell, they should be prefixed with <code>$</code> and set correctly.</p>
+                </li>
+                <li>
+                <p><strong>Service Principal Permissions</strong>: Verify that the service principal has adequate permissions to perform the operation and that the client ID and client secret are correct.</p>
+                </li>
+                </ul>
+                <p>You can check which parameters are available and their correct syntax by running:</p>
+                <p>az aro create --help</p>
+                <p>This will display all the acceptable parameters for the <code>az aro create</code> command in your current Azure CLI version, ensuring you're using the correct argument names and formats.</p>
+                <p><img src="images/os-part-32-22.png" alt="os part 32 22" class="article-image" loading="lazy"></p>
+                <p><img src="images/os-part-32-23.png" alt="os part 32 23" class="article-image" loading="lazy"></p>
+                <p>The message you're seeing indicates two main issues that need addressing before successfully creating an Azure Red Hat OpenShift (ARO) cluster:</p>
+                <ul>
+                <li>
+                <p><strong>Missing Pull Secret</strong>: A pull secret is necessary for accessing Red Hat’s registry to download OpenShift and related images. Without it, the cluster won’t have access to Red Hat’s certified operators or samples.</p>
+                </li>
+                <li>
+                <p><strong>Provider Registration</strong>: Before you can create ARO clusters, you must ensure that the <code>Microsoft.RedHatOpenShift</code> provider is registered with your Azure subscription.</p>
+                </li>
+                </ul>
+                <p>Here’s how you can resolve these issues:</p>
+                <h3>1. Register the Microsoft.RedHatOpenShift provider</h3>
+                <p>You need to register the required Azure provider for ARO if it's not already registered. You can do this with the following PowerShell command:</p>
+                <p>az provider register --namespace Microsoft.RedHatOpenShift</p>
+                <h3>2. Obtain a Pull Secret</h3>
+                <p>To get a pull secret:</p>
+                <ul>
+                <li>
+                <p>Go to the <a href="https://cloud.redhat.com/openshift/install/azure/aro-provisioned">Red Hat OpenShift Cluster Manager</a> site.</p>
+                </li>
+                <li>
+                <p>Log in with your Red Hat account (or create one if you don’t already have it).</p>
+                </li>
+                <li>
+                <p>There should be an option to copy the pull secret directly from the website.</p>
+                </li>
+                </ul>
+                <h3>3. Update Your Command to Include the Pull Secret</h3>
+                <p>After obtaining the pull secret, include it in your command. It’s a large JSON string, so it’s often best to save it to a file and reference that file in your command.</p>
+                <p>Here's an example of how to execute the command with a pull secret from a file:</p>
+                <p>$pullSecret = Get-Content -Path 'C:\path\to\your\pull-secret.txt' -Raw<br />
+                az aro create <code>--resource-group $resourceGroupName</code><br />
+                  --name $aroClusterName <code>--vnet $vnetName</code><br />
+                  --master-subnet $subnetName <code>--worker-subnet $subnetName</code><br />
+                  --client-id $appId <code>--client-secret $appSecret</code><br />
+                  --pull-secret $pullSecret `<br />
+                  --location $location</p>
+                <h3>Final Note</h3>
+                <p>Make sure all variables (<code>$resourceGroupName</code>, <code>$aroClusterName</code>, <code>$vnetName</code>, <code>$subnetName</code>, <code>$appId</code>, <code>$appSecret</code>, and <code>$location</code>) are properly defined in your PowerShell session. You might need to check and ensure that each one is set correctly before running the command.</p>
+                <p>Also, keep in mind that the Azure CLI and PowerShell require accurate handling of spaces and line continuations (<code>). If the command spans multiple lines, use the backtick (</code>) at the end of each line to indicate continuation. If you prefer, you can put the whole command on one line, but it may reduce readability.</p>
+                <p><img src="images/os-part-32-24.png" alt="os part 32 24" class="article-image" loading="lazy"></p>
+                <p><img src="images/os-part-32-25.png" alt="os part 32 25" class="article-image" loading="lazy"></p>
+                <p><img src="images/os-part-32-26.png" alt="os part 32 26" class="article-image" loading="lazy"></p>
+                <p>The error message you're seeing indicates that you've set the same subnet name for both the master and worker nodes, which is not allowed in an Azure Red Hat OpenShift (ARO) deployment. Each node type must have its own dedicated subnet.</p>
+                <p>Here's how you can fix the issue:</p>
+                <ul>
+                <li><strong>Create Separate Subnets</strong>: You need to define separate subnets for the master and worker nodes in your virtual network. If you haven't already created these subnets, you can do so using the Azure CLI:</li>
+                </ul>
+                <p># Define variables for subnet names<br />
+                   $masterSubnetName = "MasterSubnet"<br />
+                   $workerSubnetName = "WorkerSubnet"</p>
+                <p># Create master subnet<br />
+                   az network vnet subnet create <code>--resource-group $resourceGroupName</code><br />
+                     --vnet-name $vnetName <code>--name $masterSubnetName</code><br />
+                     --address-prefixes 10.0.0.0/24</p>
+                <p># Create worker subnet<br />
+                   az network vnet subnet create <code>--resource-group $resourceGroupName</code><br />
+                     --vnet-name $vnetName <code>--name $workerSubnetName</code><br />
+                     --address-prefixes 10.0.1.0/24</p>
+                <ul>
+                <li><strong>Update Your ARO Create Command</strong>: Once you have separate subnets, make sure to update your <code>az aro create</code> command to reference these newly created subnet names:</li>
+                </ul>
+                <p>az aro create <code>--resource-group $resourceGroupName</code><br />
+                     --name $aroClusterName <code>--vnet $vnetName</code><br />
+                     --master-subnet $masterSubnetName <code>--worker-subnet $workerSubnetName</code><br />
+                     --client-id $appId <code>--client-secret $appSecret</code><br />
+                     --location $location</p>
+                <ul>
+                <li><strong>Include the Pull Secret</strong>: As mentioned previously, not including the pull secret will limit the functionality of your ARO cluster. If you have your pull secret, you should include it in your command:</li>
+                </ul>
+                <p>$pullSecret = Get-Content -Path 'C:\path\to\your\pull-secret.txt' -Raw<br />
+                   az aro create <code>--resource-group $resourceGroupName</code><br />
+                     --name $aroClusterName <code>--vnet $vnetName</code><br />
+                     --master-subnet $masterSubnetName <code>--worker-subnet $workerSubnetName</code><br />
+                     --client-id $appId <code>--client-secret $appSecret</code><br />
+                     --pull-secret $pullSecret `<br />
+                     --location $location</p>
+                <p>Make sure each subnet is properly configured with non-overlapping IP ranges and that all variables are defined accurately in your session. This will help you avoid common configuration errors and ensure that your deployment proceeds smoothly.</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

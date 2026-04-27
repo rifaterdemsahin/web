@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Come back to the game ( OS Part 3.1 ) - Rifat Erdem Sahin</title>
+    <meta name="description" content="Come back to the game ( OS Part 3.1 ) Kubernetes is asked ! Get the host machine and setup the openshift&gt; video production to move in the back slowly is ok learn from the process. Get your linux bo">
+    <meta name="keywords" content="Come back to the game ( OS Part 3.1 )">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/04/25/come-back-to-the-game/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/04/25/come-back-to-the-game/">
+    <meta property="og:title" content="Come back to the game ( OS Part 3.1 )">
+    <meta property="og:description" content="Come back to the game ( OS Part 3.1 ) Kubernetes is asked ! Get the host machine and setup the openshift&gt; video production to move in the back slowly is ok learn from the process. Get your linux bo">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/04/25/come-back-to-the-game/">
+    <meta property="twitter:title" content="Come back to the game ( OS Part 3.1 )">
+    <meta property="twitter:description" content="Come back to the game ( OS Part 3.1 ) Kubernetes is asked ! Get the host machine and setup the openshift&gt; video production to move in the back slowly is ok learn from the process. Get your linux bo">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Come back to the game ( OS Part 3.1 )",
+      "description": "Come back to the game ( OS Part 3.1 ) Kubernetes is asked ! Get the host machine and setup the openshift&gt; video production to move in the back slowly is ok learn from the process. Get your linux bo",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-04-25",
+      "dateModified": "2024-04-25",
+      "url": "https://www.rifaterdemsahin.com/2024/04/25/come-back-to-the-game/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/04/25/come-back-to-the-game/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Come back to the game ( OS Part 3.1 )</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>April 25, 2024</span>
+                    <span>&bull;</span>
+                    <span>51 min read</span>
+                </div>
+                <p class="article-excerpt">Come back to the game ( OS Part 3.1 ) Kubernetes is asked ! Get the host machine and setup the openshift&gt; video production to move in the back slowly is ok learn from the process. Get your linux box ready in the cloud with IAC.</p>
+            </header>
+            <article class="article-content">
+                <h1>Come back to the game ( OS Part 3.1 )</h1>
+                <p>Kubernetes is asked !</p>
+                <p>Get the host machine and setup the openshift&gt; video production to move in the back slowly is ok learn from the process.</p>
+                <p>Get your linux box ready in the cloud with IAC.</p>
+                <p>90 minutes to install the UI to ubunut 24 is not acceptable &gt; find the image for the host!</p>
+                <p>practical screenshots</p>
+                <p><img src="images/come-back-to-1.png" alt="come back to 1" class="article-image" loading="lazy"></p>
+                <p>Part 2&gt; <a href="https://wordpress.com/post/rifaterdemsahin.com/29268">https://wordpress.com/post/rifaterdemsahin.com/29268</a></p>
+                <p>Part 1 &gt; <a href="https://rifaterdemsahin.com/2024/03/04/openshift-course-pluralsight/">https://rifaterdemsahin.com/2024/03/04/openshift-course-pluralsight/</a></p>
+                <p><img src="images/come-back-to-2.png" alt="come back to 2" class="article-image" loading="lazy"></p>
+                <p>I admit to run simple process you need the K8s and the ASE and appservices has shortcomings more automated approach with the release train engine as k8s.</p>
+                <p>Interviews reflect it </p>
+                <p><code>02:58 I'll do hello. This is Rufat speaking I'm fine. How do you do **xxx**? Yes, it's a perfect time to speak I'm going to go back in, but I'm going to go think about what kind of you'll collaborate with the situation.
+                07:01 I have my own company in United Kingdom for the last seven years. I was thinking contracting for the enterprise customers such as Goldman Sachs was one of my customers.
+                07:15 The time I was working for American-based finance company. What I do is dev AI ops, while the AI is getting more and more prevalent in the industry.
+                07:28 I started implementing the AI practices in the DevOps space calling the AI ops and approaching the customers for the transformation.
+                07:41 So I was being contacting by Goldman Sachs all over the globe. I work with different contracts, including the one in Switzerland, one in Canada.
+                07:54 I did work multiple contracts in United Kingdom, and multiple ones in the UAE, in the Gulf area. So, you working in the United States?
+                08:07 Yes, I got my indefinitely to remain, and I had not contracts at the moment, so I started looking for the market.
+                08:15 and for the opportunities, and I think I did look at the **xxx**. I'm using the Starlink very similar, I suppose, in different places probably, but the new modern banks, I'm very interested on them, and very close to London.
+                08:33 I did work in four or five different finance projects in London. I live in Cambridge, but I did contract through all over the globe.
+                08:42 And what I realize is your time zone was coming from Musket, from Oman. So I did have contracts in Oman as well.
+                08:54 Okay, so that means, would you be able to go from London to Bangkok with physician? Yes, definitely. London is fortunate.
+                09:01 That's a way from me. And I will be able to do a hybrid position. Are we talking about a contract?
+                09:08 Or for a permeable opportunity? Yes, because I got the indefinite literature main, right now I started opening myself up to parliament roles because seven years ago I was working in Microsoft as a permanent employee but once I decided to immigrate I had to adapt for my family so I started looking for
+                09:39 productivity share. Right now the UK market is has ups and downs I guess we are in the downturn so I'm very flexible in terms of the seller requirements.
+                09:53 Yeah and we're looking face between 75,000 and 85,000 so where would you be on that and where would you be on that I think that will definitely suit me though.
+                10:06 I'm not looking for the high-end contracts. I understand that it is time to adapt right now and I will definitely go for those numbers.
+                10:18 Yes. Yes. And the team itself essentially gave the character all of the infrastructure, how to back-end code, etc. And everybody can still have the ability to create the code to pull in, and quickly impossible.
+                10:37 And they all so look at the kind of all the back-end route, kind of infrastructure for the apps that we use because obviously we're a fully digital And so this role would be more of a deal with **Kubernetes **with the native **aws**.
+                10:55 And that, essentially, is kind of the main kind of, what I said, language that they use. So, I mean, you're happy that you're comfortable with the **aws** in **Kubernetes**.
+                11:10 Yes, I delivered more than five plus contracts on **Kubernetes**, and more than 10 plus in **aws** and I'm a regular user for AWS so I will be I would like to work in that kind of an environment and I did projects of **automating infrastructure as code **to accelerate companies for their this new version of infrastructure
+                11:36 their things gets automated for the stakeholders. I made up some good sense in terms of the selection process, it can be changed to the selection process.
+                11:47 And the first thing I'll be with is, I'm going to ahead with these, I'll plot fully TV or direct line manager.
+                12:21 Yes, I guess so. Sorry. I don't know what's happening with my technology today, but everything is going wrong. So I'm sorry.
+                12:28 So I was saying, yes, it's a two-state process. First aid will be the **xxx**. He's the part of the lead.
+                12:36 He's your direct line manager, and xxx, who is the he's a senior cloud engineer as well. So he'd be your pair.
+                12:44 They will ask you, you know, about your hands on experience with Cuban athletes in AWS, my work with it previously.
+                12:50 And then second aid will be with xxxx, so they're kind of senior management within the engineer of 18.
+                12:57 and they were, too, almost a bit of a case study with you where they'll kind of, give you some information and you kind of work with them to form a solution.
+                13:06 So it's not, it's not kind of a yes or no answer. It's more about how you figure out the working and how you get there in every day.
+                13:16 So I mean, based on all of those sessions will be over teams. The wider team that you'd be working with So you've got Scott and Rob, and then we've got consultant that we use from time to time on kind of an ad top basis.
+                13:36 So there's the three of you, and then we have two junior platform engineers. So it's kind of a pretty small team, but we cover quite a lot of the business in total is kind of 500 employees or an X.
+                13:50 All right. Are you happy for me to put QN for interview for the position? Yes, definitely. So they've got availability, they could do tomorrow, between 12 and 12 and 12.
+                14:03 And yes, we either work 12 or 1 or the worst, they've got availability on Monday. I think the tomorrow sounds good though.
+                14:12 Let me check my calendar if I have anything tomorrow, but I don't think I have anything tomorrow, but from time to time my life has the kids activities.
+                14:23 So tomorrow, a 2 p.m. sounds great. So 12 o'clock or one o'clock. One o'clock, tomorrow, one o'clock sounds great. Okay, so what I'll do is after this call, I'll send you the interview invite.
+                14:41 So we'll have to scroll and remove the email addresses. If you want to look them up on LinkedIn and do it.
+                14:47 And they'll just be asking about kind of your hands on Kubernetes experience. and where you used it previously in everything.
+                14:53 And you can use obviously use the opportunity to ask them plenty of questions about the role because it's literally you kind of decided where the right of the opportunity for you and everything.
+                15:05 So I mean, do you have any questions based on what I've said? Do you kind of need anything from me at this stage?
+                15:13 No, as far as I understood, this is a Kubernetes and AWS focus control where I will be working in a three-people team.
+                15:20 And you are going to send me invite for the tomorrow 1pm meeting. Exactly. So the team size, you've got three seniors in the team.
+                15:32 So you need to be one of the seniors. And one of those people is also a consultant. And then you've got two junior people as well.
+                15:39 All right. That sounds good. Thanks. I'll send the invite for tomorrow at 1 o'clock. And just give me a few minutes after this call to sort out.
+                15:47 And if you think of anything in the meantime, just feel free to give me a call back on and either one of the numbers I'll go to from today.
+                15:55 All right, that sounds very good. Thank you very much. I will record this number and link with zero one as xxx from xxx.
+                16:04 So I will make sure that I have your phone number recorded on my head. Perfect. Well, really, really good to speak.
+                16:10 Did you stay with us? Thank you for putting up with my technology issues. And I hope that goes well tomorrow.
+                16:15 All right. Take care of my set cheers. Take care then bye. Bye.</code></p>
+                <hr />
+                <p>Get the host working consistently not in 90 minuts</p>
+                <p><img src="images/come-back-to-3.png" alt="come back to 3" class="article-image" loading="lazy"></p>
+                <p>start empty </p>
+                <p><img src="images/come-back-to-4.png" alt="come back to 4" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-5.png" alt="come back to 5" class="article-image" loading="lazy"></p>
+                <p>RHCOS, or Red Hat CoreOS, is a minimal operating system designed for running containerized applications securely and at scale. It's optimized for Kubernetes deployments. When you refer to a "metal image," you're likely talking about a disk image suitable for bare metal installations.</p>
+                <p>As of my last update, Red Hat provided RHCOS images for various platforms, including bare metal installations. These images could be downloaded from the Red Hat Customer Portal or other official Red Hat sources. However, specific details about the availability or specifications of these images might have changed since then.</p>
+                <p>If you're looking to obtain an RHCOS metal image for your bare metal deployment, I'd recommend checking the official Red Hat documentation or contacting Red Hat support for the most up-to-date information and resources.</p>
+                <p>After deployment I have got to manage it as well.</p>
+                <p>Studio &gt;</p>
+                <p><img src="images/come-back-to-6.png" alt="come back to 6" class="article-image" loading="lazy"></p>
+                <p>Skipping Kubernetes &gt;</p>
+                <p><img src="images/come-back-to-7.png" alt="come back to 7" class="article-image" loading="lazy"></p>
+                <p>Studio and Kubernetes into devops.engineering product</p>
+                <p><img src="images/come-back-to-8.png" alt="come back to 8" class="article-image" loading="lazy"></p>
+                <div class="video-embed"><iframe src="https://www.youtube.com/embed/PHe0bXAIuk0" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
+                
+                <p>After the client there is the network hassle</p>
+                <p><img src="images/come-back-to-9.png" alt="come back to 9" class="article-image" loading="lazy"></p>
+                <p>Create multiple machines and deploy a webservice code there and change and manage it for devops.engineering show all the life cycle</p>
+                <p><img src="images/come-back-to-10.png" alt="come back to 10" class="article-image" loading="lazy"></p>
+                <p>Create a more generic name</p>
+                <p><img src="images/come-back-to-11.png" alt="come back to 11" class="article-image" loading="lazy"></p>
+                <p>Lock your images and the download cost with complexity</p>
+                <p><img src="images/come-back-to-12.png" alt="come back to 12" class="article-image" loading="lazy"></p>
+                <p>Sbhow case this on devops engineering </p>
+                <p><img src="images/come-back-to-13.png" alt="come back to 13" class="article-image" loading="lazy"></p>
+                <p>Sku error </p>
+                <p><img src="images/come-back-to-14.png" alt="come back to 14" class="article-image" loading="lazy"></p>
+                <p>Look for other images</p>
+                <p><img src="images/come-back-to-15.png" alt="come back to 15" class="article-image" loading="lazy"></p>
+                <p>get them ready </p>
+                <p><img src="images/come-back-to-16.png" alt="come back to 16" class="article-image" loading="lazy"></p>
+                <p>search</p>
+                <p>`$locName="uksouth"</p>
+                <p>`</p>
+                <p><img src="images/come-back-to-17.png" alt="come back to 17" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-18.png" alt="come back to 18" class="article-image" loading="lazy"></p>
+                <p>Canonical is a technology company best known for its development and support of the Ubuntu operating system and related projects. Founded in 2004 by South African entrepreneur Mark Shuttleworth, Canonical's mission is to promote and support the open-source software movement.</p>
+                <p>Ubuntu, one of Canonical's flagship products, is a popular Linux distribution known for its ease of use, regular release cycles, and strong community support. Canonical provides enterprise support services for Ubuntu deployments, including long-term support (LTS) releases tailored for stability and reliability in business environments.</p>
+                <p>In addition to Ubuntu, <strong>Canonical </strong>is involved in various other projects and initiatives, such as:</p>
+                <ul>
+                <li>
+                <p><strong>Juju</strong>: A cloud orchestration tool that facilitates the deployment, management, and scaling of applications in<em> cloud environments.</em></p>
+                </li>
+                <li>
+                <p><strong>MAAS (Metal as a Service)</strong>: A tool for provisioning and managing physical servers at scale, particularly in data centers or cloud environments.</p>
+                </li>
+                <li>
+                <p><strong>Snapcraft</strong>: A platform for building and distributing software packages, known as snaps, which are designed to work across a wide range of Linux distributions.</p>
+                </li>
+                <li>
+                <p><strong>LXD</strong>: A container hypervisor and manager that provides a lightweight alternative to traditional virtualization technologies.</p>
+                </li>
+                </ul>
+                <p>Canonical's contributions to the open-source ecosystem extend beyond individual projects. They actively participate in various upstream communities, contribute code, and collaborate with other organizations to advance the adoption and development of open-source software.</p>
+                <p>maybe pro is the one i want</p>
+                <p><img src="images/come-back-to-19.png" alt="come back to 19" class="article-image" loading="lazy"></p>
+                <p>It seems like you've listed a set of strings that resemble identifiers or tags. These strings might be related to licensing or subscription codes for Ubuntu Pro, Canonical's premium version of the Ubuntu operating system tailored for enterprise and commercial use.</p>
+                <p>"0001-com-ubuntu-pro-advanced-sla" suggests a service level agreement (SLA) associated with Ubuntu Pro Advanced support. The additional strings appended to it might represent specific agreements or contracts with different organizations or entities. For instance:</p>
+                <ul>
+                <li>
+                <p>"att" could refer to a contract with AT&amp;T.</p>
+                </li>
+                <li>
+                <p>"ca" might denote a contract with a company based in California.</p>
+                </li>
+                <li>
+                <p>"cfx", "csw", "da", "dd", "kudsec", "nestle" could represent contracts with different companies, organizations, or departments.</p>
+                </li>
+                </ul>
+                <p>However, without more context, it's challenging to provide specific information about these identifiers. They likely relate to the commercial agreements or subscriptions for Ubuntu Pro services provided by Canonical. If you're seeking detailed information or assistance related to these identifiers, you may need to reach out to Canonical's sales or support team.</p>
+                <p>Based on the list provided, "ubuntu" is the identifier that likely corresponds to Ubuntu Desktop. Typically, Ubuntu Desktop editions are identified simply as "ubuntu." Therefore, if you're looking specifically for Ubuntu Desktop, you would use the "ubuntu" identifier.</p>
+                <p>The other identifiers in the list seem to relate to various versions, distributions, services, and agreements offered by Canonical, but none of them explicitly indicate the Ubuntu Desktop edition.</p>
+                <p><img src="images/come-back-to-20.png" alt="come back to 20" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-21.png" alt="come back to 21" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-22.png" alt="come back to 22" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-23.png" alt="come back to 23" class="article-image" loading="lazy"></p>
+                <p>https://azuremarketplace.microsoft.com/en-us/marketplace/apps/ntegralinc1586961136942.ntg_ubuntu_22_04_daas?tab=overview</p>
+                <p><img src="images/come-back-to-24.png" alt="come back to 24" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-25.png" alt="come back to 25" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-26.png" alt="come back to 26" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-27.png" alt="come back to 27" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-28.png" alt="come back to 28" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-29.png" alt="come back to 29" class="article-image" loading="lazy"></p>
+                <p>they collect your phone</p>
+                <p><img src="images/come-back-to-30.png" alt="come back to 30" class="article-image" loading="lazy"></p>
+                <p>This is the part</p>
+                <p><img src="images/come-back-to-31.png" alt="come back to 31" class="article-image" loading="lazy"></p>
+                <p><code>"storageProfile": {
+                                    "osDisk": {
+                                        "createOption": "fromImage",
+                                        "managedDisk": {
+                                            "storageAccountType": "&amp;#091;parameters('osDiskType')]"
+                                        },
+                                        "deleteOption": "&amp;#091;parameters('osDiskDeleteOption')]"
+                                    },
+                                    "imageReference": {
+                                        "publisher": "ntegralinc1586961136942",
+                                        "offer": "ntg_ubuntu_22_04_daas",
+                                        "sku": "ntg_ubuntu_22_04_daas",
+                                        "version": "latest"
+                                    }
+                                },</code></p>
+                <p><img src="images/come-back-to-32.png" alt="come back to 32" class="article-image" loading="lazy"></p>
+                <p>Upload ubuntu desktop image to your end</p>
+                <p><img src="images/come-back-to-33.png" alt="come back to 33" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-34.png" alt="come back to 34" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-35.png" alt="come back to 35" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-36.png" alt="come back to 36" class="article-image" loading="lazy"></p>
+                <p>ubuntu conaconial did not load it &gt; <a href="https://documentation.ubuntu.com/azure/en/latest/azure-how-to/instances/find-ubuntu-images/">https://documentation.ubuntu.com/azure/en/latest/azure-how-to/instances/find-ubuntu-images/</a></p>
+                <p>these guys did &gt; <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/ntegralinc1586961136942.ntg_ubuntu_22_04_daas?tab=overview">https://azuremarketplace.microsoft.com/en-us/marketplace/apps/ntegralinc1586961136942.ntg_ubuntu_22_04_daas?tab=overview</a></p>
+                <p>logs in but rdp not on </p>
+                <p><img src="images/come-back-to-37.png" alt="come back to 37" class="article-image" loading="lazy"></p>
+                <p>3 minutes</p>
+                <p><img src="images/come-back-to-38.png" alt="come back to 38" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-39.png" alt="come back to 39" class="article-image" loading="lazy"></p>
+                <p>update needed</p>
+                <p><img src="images/come-back-to-40.png" alt="come back to 40" class="article-image" loading="lazy"></p>
+                <p>delete and redo</p>
+                <p><img src="images/come-back-to-41.png" alt="come back to 41" class="article-image" loading="lazy"></p>
+                <p>Use this reference</p>
+                <p><code>"imageReference": {
+                                        "publisher": "ntegralinc1586961136942",
+                                        "offer": "ntg_ubuntu_22_04_daas",
+                                        "sku": "ntg_ubuntu_22_04_daas",
+                                        "version": "latest"
+                                    }</code></p>
+                <p>After deletion</p>
+                <p><img src="images/come-back-to-42.png" alt="come back to 42" class="article-image" loading="lazy"></p>
+                <p>todo update yopur script instead of installing xrdp install kubernetes tools.</p>
+                <p><img src="images/come-back-to-43.png" alt="come back to 43" class="article-image" loading="lazy"></p>
+                <p>can i use other publishers offers on linux without the cost ?</p>
+                <p><img src="images/come-back-to-44.png" alt="come back to 44" class="article-image" loading="lazy"></p>
+                <p>ask </p>
+                <p>https://twitter.com/rifaterdemsahin/status/1783422314945638433</p>
+                <p>Deleting is off now time to go on </p>
+                <p><img src="images/come-back-to-45.png" alt="come back to 45" class="article-image" loading="lazy"></p>
+                <p>Azure response</p>
+                <p>https://twitter.com/AzureSupport/status/1783422750217974261</p>
+                <p>Azure not clear on the policy with the offers &gt;</p>
+                <p>https://learn.microsoft.com/en-us/legal/marketplace/certification-policies</p>
+                <p>To use your own image reference in an Azure deployment, especially when deploying a virtual machine or service, you need to specify the details of your custom image in the ARM template or through the Azure portal. The snippet you've provided seems to be part of an ARM (Azure Resource Manager) template where you define the properties of the virtual machine you want to deploy.</p>
+                <p>Here's a step-by-step guide to help you use your own image reference correctly:</p>
+                <ul>
+                <li>
+                <p><strong>Ensure the Image is Available</strong>: Before deploying, make sure the image is created and stored in Azure. This can be a managed image in your Azure subscription or a shared image from another subscription or Azure Marketplace.</p>
+                </li>
+                <li>
+                <p><strong>Custom Image ID</strong>: If you have a custom image (a managed image you created), you should use the resource ID of the image. The resource ID can be found in the Azure portal under the image's properties. It generally looks like this:</p>
+                </li>
+                </ul>
+                <p>/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Compute/images/{image-name}</p>
+                <ul>
+                <li><strong>Modify the ARM Template</strong>: Replace the <code>"imageReference"</code> section with your custom image's resource ID. You do this by using the <code>"imageReference"</code> attribute only if you are referencing a Marketplace image as in your example. For a custom image, use the <code>"storageProfile"</code> property:</li>
+                </ul>
+                <p>"storageProfile": {<br />
+                       "imageReference": {<br />
+                           "id": "/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Compute/images/{image-name}"<br />
+                       }<br />
+                   }</p>
+                <p>Note that if you're using a Marketplace image, you can specify it as you have, with publisher, offer, SKU, and version.</p>
+                <ul>
+                <li>
+                <p><strong>Update Other Parameters</strong>: Make sure the other parts of the ARM template, such as VM size, network interfaces, etc., are correctly configured according to your requirements.</p>
+                </li>
+                <li>
+                <p><strong>Deploy the ARM Template</strong>: You can deploy the template using Azure CLI, PowerShell, or directly through the Azure portal. Using Azure CLI:</p>
+                </li>
+                </ul>
+                <p>az deployment group create \<br />
+                     --resource-group [Your-Resource-Group] \<br />
+                     --template-file [Path-to-your-template.json] \<br />
+                     --parameters @[Path-to-your-parameters.json]</p>
+                <p>Using PowerShell:</p>
+                <p>New-AzResourceGroupDeployment -ResourceGroupName [Your-Resource-Group] -TemplateFile [Path-to-your-template.json] -TemplateParameterFile [Path-to-your-parameters.json]</p>
+                <p>By following these steps, you can deploy a virtual machine or any other Azure resource using your custom or a specific Marketplace image. If you're new to ARM templates, it might be helpful to experiment in a non-production environment to ensure your configurations are correct.</p>
+                <p>Creating your own custom virtual machine image in Azure involves capturing a configured VM so that you can redeploy it later or use it as a template for other deployments. Here’s how you can create and manage your own image:</p>
+                <h3>1. <strong>Prepare the Virtual Machine</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Set Up the VM</strong>: Start by creating a virtual machine in Azure that meets your requirements. Install any applications, updates, configurations, or files that you want to include in the image.</p>
+                </li>
+                <li>
+                <p><strong>Generalize the VM</strong>: Before you capture an image, you must remove machine-specific information from the VM. This process is called "generalizing." If you're using a Windows VM, you can generalize it using Sysprep, and for Linux VMs, you can use the <code>waagent</code> command. For Windows: <code>%windir%\system32\sysprep\sysprep.exe /generalize /oobe /shutdown</code> For Linux: <code>sudo waagent -deprovision+user -force sudo shutdown -h now</code></p>
+                </li>
+                </ul>
+                <h3>2. <strong>Capture the Image</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Deallocate the VM</strong>: After the VM has been generalized and shut down, deallocate the VM using Azure CLI or through the Azure portal. <code>az vm deallocate --resource-group myResourceGroup --name myVM</code></p>
+                </li>
+                <li>
+                <p><strong>Mark the VM as Generalized</strong>: This step is crucial for capturing the image. <code>az vm generalize --resource-group myResourceGroup --name myVM</code></p>
+                </li>
+                <li>
+                <p><strong>Capture the Image</strong>: Finally, capture the image to create a reusable image.<br />
+                <code>bash az image create --resource-group myResourceGroup --name myImage --source myVM</code></p>
+                </li>
+                </ul>
+                <h3>3. <strong>Use the Image for Deployment</strong></h3>
+                <p>Once your image is captured, it's stored as a managed image in your Azure subscription. You can now use this image to create new VMs:</p>
+                <p>az vm create \<br />
+                     --resource-group myResourceGroup \<br />
+                     --name myNewVM \<br />
+                     --image myImage \<br />
+                     --admin-username azureuser \<br />
+                     --generate-ssh-keys</p>
+                <h3>4. <strong>(Optional) Share the Image</strong></h3>
+                <p>If you want to share this image with other subscriptions or even make it publicly available, you can create a Shared Image Gallery. This allows you to manage, share, and globally distribute your custom VM images:</p>
+                <ul>
+                <li>
+                <p><strong>Create an Image Gallery</strong>: Create a gallery to hold your images.</p>
+                </li>
+                <li>
+                <p><strong>Add Image to Gallery</strong>: Add your managed image to the gallery.</p>
+                </li>
+                <li>
+                <p><strong>Create a Version</strong>: Define a version of the image within the gallery.</p>
+                </li>
+                <li>
+                <p><strong>Share the Gallery</strong>: You can share the gallery across subscriptions or Azure regions.</p>
+                </li>
+                </ul>
+                <h3>5. <strong>Management and Compliance</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Update and Maintenance</strong>: Periodically update the image with new software, patches, or configurations.</p>
+                </li>
+                <li>
+                <p><strong>Compliance</strong>: Ensure your image complies with your organization's security and compliance standards.</p>
+                </li>
+                </ul>
+                <p>By following these steps, you can efficiently manage and deploy your custom VM images across your Azure environment, enabling a more streamlined and consistent setup for various applications.</p>
+                <p>my action would be </p>
+                <p><img src="images/come-back-to-46.png" alt="come back to 46" class="article-image" loading="lazy"></p>
+                <p>have the opearting system and do it on your end ?</p>
+                <p><img src="images/come-back-to-47.png" alt="come back to 47" class="article-image" loading="lazy"></p>
+                <p>I need to create my own vhd</p>
+                <p><img src="images/come-back-to-48.png" alt="come back to 48" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-49.png" alt="come back to 49" class="article-image" loading="lazy"></p>
+                <p>To obtain the Virtual Hard Disk (VHD) blob path in Azure, you first need to ensure that you have a VHD file stored as a blob in an Azure Storage Account. This VHD can be used as a source for creating images or directly used for creating new virtual machines. Here's a step-by-step guide on how to find or set up a VHD blob path in Azure:</p>
+                <h3>Step 1: Ensure VHD is Stored in Azure Blob Storage</h3>
+                <p>Before accessing the VHD blob path, make sure that your VHD file is uploaded to an Azure Blob Storage container. If you haven't already uploaded the VHD, you can do so using the Azure Portal, Azure PowerShell, or Azure CLI.</p>
+                <p><strong>Using Azure CLI:</strong></p>
+                <p>az storage blob upload --account-name <YourStorageAccountName> --container-name <YourContainerName> --name <BlobName>.vhd --file /path/to/your/local.vhd --type page</p>
+                <h3>Step 2: Accessing the VHD Blob Path</h3>
+                <p>Once your VHD is stored in Blob Storage, you can retrieve its path. The path generally has the following format:</p>
+                <p>https://<StorageAccountName>.blob.core.windows.net/<ContainerName>/<VHDName>.vhd</p>
+                <p><strong>Using Azure CLI to list blobs:</strong></p>
+                <p>az storage blob list --account-name <YourStorageAccountName> --container-name <YourContainerName> --output table</p>
+                <p>This command will list all blobs in the specified container and their properties, including their URL.</p>
+                <h3>Step 3: Use the VHD Blob Path</h3>
+                <p>You can use this VHD blob path in several ways:</p>
+                <ul>
+                <li>
+                <p><strong>Create a VM Image</strong>: You can create a managed image from the VHD to use in creating virtual machines.</p>
+                </li>
+                <li>
+                <p><strong>Direct VM Creation</strong>: You can directly create a new VM using the VHD blob path as the OS disk.</p>
+                </li>
+                </ul>
+                <p><strong>Creating a managed image from the VHD using Azure CLI:</strong></p>
+                <p>az image create --resource-group <ResourceGroupName> --name <ImageName> --os-type <OsType> --source "https://<StorageAccountName>.blob.core.windows.net/<ContainerName>/<VHDName>.vhd"</p>
+                <p><strong>Creating a VM directly from the VHD blob path:</strong></p>
+                <p>az vm create --resource-group <ResourceGroupName> --name <VMName> --attach-os-disk "https://<StorageAccountName>.blob.core.windows.net/<ContainerName>/<VHDName>.vhd" --os-type <OsType></p>
+                <h3>Additional Considerations</h3>
+                <ul>
+                <li>
+                <p>Ensure the VHD is generalized if it was previously used as a VM's OS disk.</p>
+                </li>
+                <li>
+                <p>The storage account containing the VHD should have the appropriate access policies if you are using it across different Azure services or subscriptions.</p>
+                </li>
+                </ul>
+                <p>By following these steps, you can manage and utilize VHD files stored as blobs in Azure, allowing for versatile VM deployment and management options within your Azure environment.</p>
+                <p>Do it loacally and push it than ?</p>
+                <p>Creating a Virtual Hard Disk (VHD) using VMware Workstation for use in Azure involves several key steps. The general process includes setting up a virtual machine, installing the operating system, preparing the VM for Azure, and converting the VMware disk (VMDK) to a VHD format that Azure supports. Here's how you can do it:</p>
+                <h3>Step 1: Create and Configure a VM in VMware Workstation</h3>
+                <ul>
+                <li>
+                <p><strong>Open VMware Workstation</strong> and create a new virtual machine.</p>
+                </li>
+                <li>
+                <p><strong>Select the Installation Media</strong> for the operating system you want to install.</p>
+                </li>
+                <li>
+                <p><strong>Configure the VM’s Hardware</strong> such as CPUs, memory, and disk size. Make sure the disk format is set to a single file rather than multiple files for easier conversion later.</p>
+                </li>
+                <li>
+                <p><strong>Install the Operating System</strong> on the VM as you would on a physical computer.</p>
+                </li>
+                </ul>
+                <h3>Step 2: Install VMware Tools</h3>
+                <p>Once the OS is installed, install VMware Tools in the VM. This improves performance and enhances the management of the virtual machine.</p>
+                <ul>
+                <li><strong>From the VMware Workstation menu</strong>, choose VM &gt; Install VMware Tools, and follow the instructions provided by the installation wizard inside the VM.</li>
+                </ul>
+                <h3>Step 3: Generalize the VM (if using Windows)</h3>
+                <p>If you're installing Windows, you'll need to generalize the OS using Sysprep to remove system-specific data, allowing the image to be reused for multiple VM deployments.</p>
+                <ul>
+                <li><strong>Run Sysprep</strong> with the generalize option:</li>
+                </ul>
+                <p>C:\Windows\System32\Sysprep\sysprep.exe /generalize /oobe /shutdown</p>
+                <h3>Step 4: Convert the VMware Disk (VMDK) to VHD</h3>
+                <p>After preparing your VM, you need to convert the VMware disk format (VMDK) to a VHD format that Azure can use. This can be done using Microsoft’s free tool called <code>MVMC</code> (Microsoft Virtual Machine Converter) or a third-party tool like StarWind V2V Converter.</p>
+                <ul>
+                <li>
+                <p><strong>Using Microsoft Virtual Machine Converter (MVMC):</strong></p>
+                </li>
+                <li>
+                <p>Download and install MVMC.</p>
+                </li>
+                <li>
+                <p>Run the tool and choose to convert the disk.</p>
+                </li>
+                <li>
+                <p>Select the source VMDK file and set the destination format to VHD.</p>
+                </li>
+                <li>
+                <p>Choose whether you want a dynamically expanding or fixed size disk.</p>
+                </li>
+                <li>
+                <p><strong>Using StarWind V2V Converter:</strong></p>
+                </li>
+                <li>
+                <p>Download and install StarWind V2V Converter.</p>
+                </li>
+                <li>
+                <p>Run the converter, select the source VMDK file, and follow the prompts to convert it to VHD format.</p>
+                </li>
+                </ul>
+                <h3>Step 5: Upload the VHD to Azure</h3>
+                <p>After converting the disk to VHD, upload it to a blob storage in your Azure subscription.</p>
+                <ul>
+                <li>
+                <p><strong>Create a Blob Storage Account</strong> in Azure if you don’t already have one.</p>
+                </li>
+                <li>
+                <p><strong>Create a Container</strong> in your storage account.</p>
+                </li>
+                <li>
+                <p><strong>Upload the VHD using Azure Storage Explorer</strong> or Azure CLI:</p>
+                </li>
+                </ul>
+                <p>az storage blob upload --account-name <YourStorageAccountName> --container-name <YourContainerName> --name <BlobName>.vhd --file /path/to/your/local.vhd --type page</p>
+                <h3>Step 6: Create a VM in Azure Using the Uploaded VHD</h3>
+                <p>Now that your VHD is in Azure Blob Storage, you can create a VM in Azure using this VHD as the OS disk.</p>
+                <ul>
+                <li><strong>Create a VM with Azure CLI</strong> or through the Azure Portal using the VHD as the source for the OS disk.</li>
+                </ul>
+                <p>By following these steps, you can successfully create a VHD in VMware Workstation, convert it for Azure compatibility, and deploy it as a virtual machine in Azure.</p>
+                <p>heck the cost of the machine</p>
+                <p>Cost</p>
+                <p><img src="images/come-back-to-50.png" alt="come back to 50" class="article-image" loading="lazy"></p>
+                <p>I can use their image for 6 pounds till i create my own images</p>
+                <p>To convert the cost from £0.009 per hour to a monthly cost, we'll assume a typical month has about 730 hours (which is 24 hours per day times 30.5 days on average).</p>
+                <p>Let's calculate:</p>
+                <p>[ \text{Monthly Cost} = £0.009 \times 730 \text{ hours} ]</p>
+                <p>[ \text{Monthly Cost} = £6.57 ]</p>
+                <p>So, the cost per month would be approximately £6.57.</p>
+                <p><img src="images/come-back-to-51.png" alt="come back to 51" class="article-image" loading="lazy"></p>
+                <p>Maybe i generalize that machine....if that works.!</p>
+                <p>so use it for now </p>
+                <p><img src="images/come-back-to-52.png" alt="come back to 52" class="article-image" loading="lazy"></p>
+                <p>Before</p>
+                <p><img src="images/come-back-to-53.png" alt="come back to 53" class="article-image" loading="lazy"></p>
+                <p>After</p>
+                <p><img src="images/come-back-to-54.png" alt="come back to 54" class="article-image" loading="lazy"></p>
+                <p>With this sku i should update the script to reflect no xrdp installs </p>
+                <p>my own naming is in </p>
+                <p><img src="images/come-back-to-55.png" alt="come back to 55" class="article-image" loading="lazy"></p>
+                <p>but it is in failed state</p>
+                <p><img src="images/come-back-to-56.png" alt="come back to 56" class="article-image" loading="lazy"></p>
+                <p>source is correct</p>
+                <p><img src="images/come-back-to-57.png" alt="come back to 57" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-58.png" alt="come back to 58" class="article-image" loading="lazy"></p>
+                <p>They make you add to your template the things that they would like to have</p>
+                <p>It seems you're encountering an error related to deploying a virtual machine (VM) in Microsoft Azure that requires specifying a plan because the VM is based on a Marketplace image or a custom image sourced from a Marketplace image. The error message indicates that the request to create a VM did not include the necessary plan information.</p>
+                <p>Here's how to resolve this issue:</p>
+                <h3>1. <strong>Understand Plan Information</strong></h3>
+                <p>When you deploy a VM from certain Marketplace images, Azure requires you to include plan information in your deployment request. This plan typically consists of the <code>name</code>, <code>product</code>, <code>publisher</code>, and sometimes <code>promotionCode</code> of the image. This information corresponds to the billing and usage terms that were agreed upon when the image was created.</p>
+                <h3>2. <strong>Get the Plan Information</strong></h3>
+                <p>You can find the plan information required by following these steps:</p>
+                <ul>
+                <li>
+                <p>Go to the Azure Portal.</p>
+                </li>
+                <li>
+                <p>Navigate to the "Virtual Machines" section and try to initiate the creation of a VM.</p>
+                </li>
+                <li>
+                <p>Select the Marketplace image you used for your VM.</p>
+                </li>
+                <li>
+                <p>Just before you finalize the VM creation, Azure will show you the plan details needed for that particular image. Make note of these details.</p>
+                </li>
+                </ul>
+                <h3>3. <strong>Update Your Deployment Template</strong></h3>
+                <p>If you are using an ARM template or a similar infrastructure-as-code tool, you'll need to include the plan details in your template. Here is an example snippet to include in your ARM template:</p>
+                <p>"plan": {<br />
+                       "name": "planName",<br />
+                       "publisher": "publisherName",<br />
+                       "product": "productName"<br />
+                   }</p>
+                <p>Replace <code>"planName"</code>, <code>"publisherName"</code>, and <code>"productName"</code> with the actual values for the image you are using.</p>
+                <h3>4. <strong>Deploy Using Updated Template</strong></h3>
+                <p>After updating your deployment template with the necessary plan information, redeploy your VM. This should resolve the error as Azure now has all the required details to align the deployment with the licensing and billing terms of the image.</p>
+                <h3>5. <strong>Learn More</strong></h3>
+                <p>Azure provides documentation on how to handle these types of errors. You can find more detailed guidance by searching "Azure VM deployment plan information required" in the Azure documentation or by visiting the <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/">Azure Virtual Machines documentation</a> directly.</p>
+                <p>If you encounter any further issues, checking the exact error message and consulting Azure's support or documentation for error-specific guidance can also be very helpful.</p>
+                <p>retrigger the delete</p>
+                <p><img src="images/come-back-to-59.png" alt="come back to 59" class="article-image" loading="lazy"></p>
+                <p>Meet in the middle have the desktop for visualisation on your end and remove the it from the xrpd action.</p>
+                <p>Set up the linux box naturally &gt; on barebones! and learn in the hassle </p>
+                <p>bRING ALL THE GUNS </p>
+                <p><img src="images/come-back-to-60.png" alt="come back to 60" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-61.png" alt="come back to 61" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-62.png" alt="come back to 62" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-63.png" alt="come back to 63" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-64.png" alt="come back to 64" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-65.png" alt="come back to 65" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-66.png" alt="come back to 66" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-67.png" alt="come back to 67" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-68.png" alt="come back to 68" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-69.png" alt="come back to 69" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-70.png" alt="come back to 70" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-71.png" alt="come back to 71" class="article-image" loading="lazy"></p>
+                <p>Small mini updates in the back </p>
+                <p><img src="images/come-back-to-72.png" alt="come back to 72" class="article-image" loading="lazy"></p>
+                <p>black screen</p>
+                <p><img src="images/come-back-to-73.png" alt="come back to 73" class="article-image" loading="lazy"></p>
+                <p>not enough ram move to 16</p>
+                <p><img src="images/come-back-to-74.png" alt="come back to 74" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-75.png" alt="come back to 75" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-76.png" alt="come back to 76" class="article-image" loading="lazy"></p>
+                <p>16 gb it turns on</p>
+                <p><img src="images/come-back-to-77.png" alt="come back to 77" class="article-image" loading="lazy"></p>
+                <p>so gpt and wmware workstation helps and you setup the kubernetes host the correct way</p>
+                <p><img src="images/come-back-to-78.png" alt="come back to 78" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-79.png" alt="come back to 79" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-80.png" alt="come back to 80" class="article-image" loading="lazy"></p>
+                <p>London Select</p>
+                <p><img src="images/come-back-to-81.png" alt="come back to 81" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-82.png" alt="come back to 82" class="article-image" loading="lazy"></p>
+                <p>Iso installs are too long! &gt;&gt;&gt; hardware mistach is too much time </p>
+                <p><img src="images/come-back-to-83.png" alt="come back to 83" class="article-image" loading="lazy"></p>
+                <p><strong>it is a gen 1 box</strong></p>
+                <p><img src="images/come-back-to-84.png" alt="come back to 84" class="article-image" loading="lazy"></p>
+                <p>Dopamine &gt; go to omad &gt; and only do with the oxytoxin &gt; hero father </p>
+                <p>just xclip</p>
+                <p><img src="images/come-back-to-85.png" alt="come back to 85" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-86.png" alt="come back to 86" class="article-image" loading="lazy"></p>
+                <p>update to xclipsetup</p>
+                <p><img src="images/come-back-to-87.png" alt="come back to 87" class="article-image" loading="lazy"></p>
+                <p>sas 2044</p>
+                <p><img src="images/come-back-to-88.png" alt="come back to 88" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-89.png" alt="come back to 89" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-90.png" alt="come back to 90" class="article-image" loading="lazy"></p>
+                <p>Delete the old resource</p>
+                <p><img src="images/come-back-to-91.png" alt="come back to 91" class="article-image" loading="lazy"></p>
+                <p>Lets see how long does it take this time </p>
+                <p><img src="images/come-back-to-92.png" alt="come back to 92" class="article-image" loading="lazy"></p>
+                <p>need to see the input</p>
+                <p><img src="images/come-back-to-93.png" alt="come back to 93" class="article-image" loading="lazy"></p>
+                <p>I pivoted from the openshift trianing of creating the visual one in the cloud to the local </p>
+                <p>new script worked lets test it</p>
+                <p><img src="images/come-back-to-94.png" alt="come back to 94" class="article-image" loading="lazy"></p>
+                <p>speed is one minute that is great</p>
+                <p>and i have my ubunutu here to test visually as well </p>
+                <p><img src="images/come-back-to-95.png" alt="come back to 95" class="article-image" loading="lazy"></p>
+                <p>log is there</p>
+                <p><img src="images/come-back-to-96.png" alt="come back to 96" class="article-image" loading="lazy"></p>
+                <p>To use <code>cat</code> in combination with <code>xclip</code> for copying file contents to your clipboard on a Linux system, follow these steps:</p>
+                <ul>
+                <li><strong>Ensure <code>xclip</code> is Installed</strong>: First, make sure you have <code>xclip</code> installed. You can install it using your package manager. For example, on Ubuntu, you can install it by running:</li>
+                </ul>
+                <p>sudo apt install xclip</p>
+                <ul>
+                <li>
+                <p><strong>Using <code>cat</code> and <code>xclip</code> Together</strong>:</p>
+                </li>
+                <li>
+                <p>If you want to copy the contents of a file to your clipboard, you can use <code>cat</code> to display the file and pipe it to <code>xclip</code>. For example, to copy the contents of <code>file.txt</code> to the clipboard, you can use:<br />
+                <code>bash cat file.txt | xclip -selection clipboard</code></p>
+                </li>
+                <li>
+                <p>The <code>-selection clipboard</code> option makes sure that the content goes to the clipboard that interacts with Ctrl+C/Ctrl+V operations.</p>
+                </li>
+                <li>
+                <p><strong>Pasting from Clipboard</strong>:</p>
+                </li>
+                <li>
+                <p>After you have copied the contents to the clipboard, you can paste them in any application using the standard paste shortcut (usually Ctrl+V).</p>
+                </li>
+                <li>
+                <p><strong>Alternative Usage</strong>:</p>
+                </li>
+                <li>
+                <p>If you want to copy the output of any command (not just files) to the clipboard, you can pipe it directly to <code>xclip</code>. For example:<br />
+                <code>bash ls -l | xclip -selection clipboard</code></p>
+                </li>
+                </ul>
+                <p>This method is particularly useful for copying data directly from the terminal to other applications without having to manually select and copy text.</p>
+                <p>The error "Can't open display: (null)" typically indicates that the <code>xclip</code> command is unable to access the X server, which is necessary for interacting with the clipboard. This issue is common when you are operating in a command-line environment without a graphical interface, such as when connected via SSH or when using a terminal on a server without a desktop environment.</p>
+                <p>Here are a few solutions you can try to resolve this issue:</p>
+                <h3>1. Specify the Display</h3>
+                <p>If you're running the command in an environment where a graphical interface exists, but <code>xclip</code> doesn't automatically find it, you can explicitly specify the display by setting the <code>DISPLAY</code> environment variable:</p>
+                <p>DISPLAY=:0 cat /var/log/reboot.log | xclip -selection clipboard</p>
+                <p>This command assumes that your graphical interface is running on <code>DISPLAY :0</code>, which is common but may vary depending on your setup.</p>
+                <h3>2. Use SSH with X11 Forwarding</h3>
+                <p>If you're connecting to the machine via SSH, you can use X11 forwarding to allow <code>xclip</code> to interact with your local X server. To do this, connect with the <code>-X</code> option:</p>
+                <p>ssh -X username@hostname</p>
+                <p>Then run your <code>xclip</code> command:</p>
+                <p>cat /var/log/reboot.log | xclip -selection clipboard</p>
+                <p>Ensure that your SSH server and client are configured to allow X11 forwarding. On the server, the <code>X11Forwarding</code> option in <code>/etc/ssh/sshd_config</code> should be set to <code>yes</code>.</p>
+                <h3>3. Alternative Clipboard Utilities</h3>
+                <p>If you are in a non-graphical environment or cannot use X11 forwarding, consider using a different clipboard utility that might not require X11, or you might need to find another method to transfer your data, such as using <code>scp</code> or <code>rsync</code> to copy files directly to a different machine where you can access the contents more easily.</p>
+                <h3>4. Debugging Further</h3>
+                <p>If none of these options are viable or successful, you may need to provide more information about your environment or look into other configuration specifics that might be impacting <code>xclip</code>'s ability to function correctly in your setup.</p>
+                <p><img src="images/come-back-to-97.png" alt="come back to 97" class="article-image" loading="lazy"></p>
+                <p>Could not make it work maybe it always expect a monitor ?</p>
+                <p><strong>INSTALL AT START IS HERE</strong></p>
+                <p>`rifaterdemsahin@oshost-vm:~$ cat /var/log/reboot.log<br />
+                &#091;2024-04-25 10:18:44] (root) Starting script execution...<br />
+                &#091;2024-04-25 10:18:44] (root) Adding xrdpsetup.sh to cron jobs at reboot...<br />
+                &#091;2024-04-25 10:18:44] (root) Current cron jobs:<br />
+                @reboot /var/lib/waagent/custom-script/download/0/xrdpsetup.sh<br />
+                &#091;2024-04-25 10:18:44] (root) Running command: sudo apt-get update -y<br />
+                Get:1 http://azure.archive.ubuntu.com/ubuntu noble InRelease &#091;256 kB]<br />
+                Get:2 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease &#091;89.7 kB]<br />
+                Get:3 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease &#091;90.8 kB]<br />
+                Hit:4 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease<br />
+                Get:5 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 Packages &#091;1401 kB]<br />
+                Get:6 http://azure.archive.ubuntu.com/ubuntu noble/main Translation-en &#091;513 kB]<br />
+                Get:7 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 Packages &#091;15.0 MB]<br />
+                Get:8 http://azure.archive.ubuntu.com/ubuntu noble/universe Translation-en &#091;5981 kB]<br />
+                Get:9 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 Components &#091;3871 kB]<br />
+                Get:10 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 c-n-f Metadata &#091;301 kB]<br />
+                Get:11 http://azure.archive.ubuntu.com/ubuntu noble/restricted amd64 Packages &#091;93.9 kB]<br />
+                Get:12 http://azure.archive.ubuntu.com/ubuntu noble/restricted Translation-en &#091;18.7 kB]<br />
+                Get:13 http://azure.archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages &#091;269 kB]<br />
+                Get:14 http://azure.archive.ubuntu.com/ubuntu noble/multiverse Translation-en &#091;118 kB]<br />
+                Get:15 http://azure.archive.ubuntu.com/ubuntu noble/multiverse amd64 Components &#091;35.0 kB]<br />
+                Get:16 http://azure.archive.ubuntu.com/ubuntu noble/multiverse amd64 c-n-f Metadata &#091;8328 B]<br />
+                Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 c-n-f Metadata &#091;112 B]<br />
+                Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 c-n-f Metadata &#091;116 B]<br />
+                Get:19 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 c-n-f Metadata &#091;112 B]<br />
+                Get:20 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 c-n-f Metadata &#091;116 B]<br />
+                Get:21 http://azure.archive.ubuntu.com/ubuntu noble-backports/restricted amd64 c-n-f Metadata &#091;116 B]<br />
+                Get:22 http://azure.archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 c-n-f Metadata &#091;116 B]<br />
+                Get:23 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 c-n-f Metadata &#091;112 B]<br />
+                Get:24 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 c-n-f Metadata &#091;116 B]<br />
+                Fetched 28.1 MB in 5s (5327 kB/s)<br />
+                Reading package lists...<br />
+                &#091;2024-04-25 10:18:59] (root) Running command: sudo apt install xclip -y</p>
+                <p>WARNING: apt does not have a stable CLI interface. Use with caution in scripts.</p>
+                <p>Reading package lists...<br />
+                Building dependency tree...<br />
+                Reading state information...<br />
+                The following additional packages will be installed:<br />
+                  libice6 libsm6 libxmu6 libxt6t64 x11-common<br />
+                The following NEW packages will be installed:<br />
+                  libice6 libsm6 libxmu6 libxt6t64 x11-common xclip<br />
+                0 upgraded, 6 newly installed, 0 to remove and 0 not upgraded.<br />
+                Need to get 315 kB of archives.<br />
+                After this operation, 1103 kB of additional disk space will be used.<br />
+                Get:1 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 x11-common all 1:7.7+23ubuntu3 &#091;21.7 kB]<br />
+                Get:2 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libice6 amd64 2:1.0.10-1build3 &#091;41.4 kB]<br />
+                Get:3 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libsm6 amd64 2:1.2.3-1build3 &#091;15.7 kB]<br />
+                Get:4 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libxt6t64 amd64 1:1.2.1-1.2build1 &#091;171 kB]<br />
+                Get:5 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libxmu6 amd64 2:1.1.3-3build2 &#091;47.6 kB]<br />
+                Get:6 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 xclip amd64 0.13-3 &#091;17.6 kB]<br />
+                debconf: unable to initialize frontend: Dialog<br />
+                debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)<br />
+                debconf: falling back to frontend: Readline<br />
+                debconf: unable to initialize frontend: Readline<br />
+                debconf: (This frontend requires a controlling tty.)<br />
+                debconf: falling back to frontend: Teletype<br />
+                dpkg-preconfigure: unable to re-open stdin:<br />
+                Fetched 315 kB in 0s (2872 kB/s)<br />
+                Selecting previously unselected package x11-common.<br />
+                (Reading database ... 68615 files and directories currently installed.)<br />
+                Preparing to unpack .../0-x11-common_1%3a7.7+23ubuntu3_all.deb ...<br />
+                Unpacking x11-common (1:7.7+23ubuntu3) ...<br />
+                Selecting previously unselected package libice6:amd64.<br />
+                Preparing to unpack .../1-libice6_2%3a1.0.10-1build3_amd64.deb ...<br />
+                Unpacking libice6:amd64 (2:1.0.10-1build3) ...<br />
+                Selecting previously unselected package libsm6:amd64.<br />
+                Preparing to unpack .../2-libsm6_2%3a1.2.3-1build3_amd64.deb ...<br />
+                Unpacking libsm6:amd64 (2:1.2.3-1build3) ...<br />
+                Selecting previously unselected package libxt6t64:amd64.<br />
+                Preparing to unpack .../3-libxt6t64_1%3a1.2.1-1.2build1_amd64.deb ...<br />
+                Unpacking libxt6t64:amd64 (1:1.2.1-1.2build1) ...<br />
+                Selecting previously unselected package libxmu6:amd64.<br />
+                Preparing to unpack .../4-libxmu6_2%3a1.1.3-3build2_amd64.deb ...<br />
+                Unpacking libxmu6:amd64 (2:1.1.3-3build2) ...<br />
+                Selecting previously unselected package xclip.<br />
+                Preparing to unpack .../5-xclip_0.13-3_amd64.deb ...<br />
+                Unpacking xclip (0.13-3) ...<br />
+                Setting up x11-common (1:7.7+23ubuntu3) ...<br />
+                debconf: unable to initialize frontend: Dialog<br />
+                debconf: (Dialog frontend will not work on a dumb terminal, an emacs shell buffer, or without a controlling terminal.)<br />
+                debconf: falling back to frontend: Readline<br />
+                debconf: unable to initialize frontend: Readline<br />
+                debconf: (This frontend requires a controlling tty.)<br />
+                debconf: falling back to frontend: Teletype<br />
+                Setting up libice6:amd64 (2:1.0.10-1build3) ...<br />
+                Setting up libsm6:amd64 (2:1.2.3-1build3) ...<br />
+                Setting up libxt6t64:amd64 (1:1.2.1-1.2build1) ...<br />
+                Setting up libxmu6:amd64 (2:1.1.3-3build2) ...<br />
+                Setting up xclip (0.13-3) ...<br />
+                Processing triggers for man-db (2.12.0-4build2) ...<br />
+                Processing triggers for libc-bin (2.39-0ubuntu8) ...</p>
+                <p>Running kernel seems to be up-to-date.</p>
+                <p>No services need to be restarted.</p>
+                <p>No containers need to be restarted.</p>
+                <p>No user sessions are running outdated binaries.</p>
+                <p>No VM guests are running outdated hypervisor (qemu) binaries on this host.<br />
+                &#091;2024-04-25 10:19:15] (root) Running command: sudo apt-get upgrade -y<br />
+                Reading package lists...<br />
+                Building dependency tree...<br />
+                Reading state information...<br />
+                Calculating upgrade...<br />
+                0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.<br />
+                &#091;2024-04-25 10:19:16] (root) Logging reboot action...<br />
+                &#091;2024-04-25 10:19:16] (root) - System is rebooting<br />
+                &#091;2024-04-25 10:19:16] (root) Rebooting the system...<br />
+                &#091;2024-04-25 10:19:16] (root) Reboot command issued.`</p>
+                <p>resources are working</p>
+                <p><img src="images/come-back-to-98.png" alt="come back to 98" class="article-image" loading="lazy"></p>
+                <p>favorite test both sides</p>
+                <p><img src="images/come-back-to-99.png" alt="come back to 99" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-100.png" alt="come back to 100" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-101.png" alt="come back to 101" class="article-image" loading="lazy"></p>
+                <p>if one does not work in one place try the other place before going back to part 2 ( distilled version ) <a href="https://wordpress.com/post/rifaterdemsahin.com/29268">https://wordpress.com/post/rifaterdemsahin.com/29268</a></p>
+                <p>htopp works different ui expertience</p>
+                <p><img src="images/come-back-to-102.png" alt="come back to 102" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-103.png" alt="come back to 103" class="article-image" loading="lazy"></p>
+                <p>xclip works in the workstation where there is a monitor</p>
+                <p><img src="images/come-back-to-104.png" alt="come back to 104" class="article-image" loading="lazy"></p>
+                <p>move down with the part 2</p>
+                <p><img src="images/come-back-to-105.png" alt="come back to 105" class="article-image" loading="lazy"></p>
+                <p>Add new dashboard pin and go back to part 1 &gt; <a href="https://wordpress.com/post/rifaterdemsahin.com/21783">https://wordpress.com/post/rifaterdemsahin.com/21783</a></p>
+                <p><img src="images/come-back-to-106.png" alt="come back to 106" class="article-image" loading="lazy"></p>
+                <p>Lets see if i can do the same with the images </p>
+                <p><img src="images/come-back-to-107.png" alt="come back to 107" class="article-image" loading="lazy"></p>
+                <p>This demo environment needed for the devops engineering show case the devaiops</p>
+                <p><img src="images/come-back-to-108.png" alt="come back to 108" class="article-image" loading="lazy"></p>
+                <p>Readh here to easy ingress point </p>
+                <p><img src="images/come-back-to-109.png" alt="come back to 109" class="article-image" loading="lazy"></p>
+                <p>I need to have these downloads</p>
+                <p><img src="images/come-back-to-110.png" alt="come back to 110" class="article-image" loading="lazy"></p>
+                <p>For downloading resources related to Red Hat OpenShift, including installers and images, you'll generally use the Red Hat Customer Portal or the OpenShift installation documentation. Here's a breakdown of what you might be looking for and how to find it:</p>
+                <ul>
+                <li>
+                <p><strong>OpenShift Installer</strong>: The OpenShift Installer is used to provision the infrastructure that OpenShift runs on. You can download the installer specifically configured for your environment (e.g., AWS, Azure, Google Cloud, VMware, bare metal) from the Red Hat Customer Portal.</p>
+                </li>
+                <li>
+                <p><strong>Red Hat CoreOS (RHCOS)</strong>: RHCOS is the container-optimized operating system built for running OpenShift. It integrates the container runtime and other components necessary for running OpenShift and is managed by the OpenShift cluster. Images for RHCOS can also be found on the Red Hat Customer Portal.</p>
+                </li>
+                <li>
+                <p><strong>Secret Management</strong>: OpenShift uses secrets for managing sensitive information like passwords, OAuth tokens, and SSH keys. However, these are generally not downloadable; they are created and managed within the OpenShift cluster.</p>
+                </li>
+                <li>
+                <p><strong>SCJOCOS Metal Image</strong>: It sounds like you might be referring to specialized images or configurations for running OpenShift on bare metal or similar environments. The usual term would be just "RHCOS images for metal installations". These can also be downloaded from the Red Hat Customer Portal.</p>
+                </li>
+                </ul>
+                <p>To access these downloads:</p>
+                <ul>
+                <li>
+                <p>You'll need to have a valid Red Hat subscription.</p>
+                </li>
+                <li>
+                <p>Visit the <a href="https://access.redhat.com/">Red Hat Customer Portal</a>.</p>
+                </li>
+                <li>
+                <p>Navigate to the Downloads section for OpenShift Container Platform.</p>
+                </li>
+                <li>
+                <p>Choose the version of OpenShift you are interested in.</p>
+                </li>
+                <li>
+                <p>From there, you can download the installer and RHCOS images for your specific deployment type (cloud, virtualized environments, or bare metal).</p>
+                </li>
+                </ul>
+                <p>If you have any more specific questions or need detailed guidance on the installation process, I can help with that too!</p>
+                <p>Get the one for the Azure</p>
+                <p><img src="images/come-back-to-111.png" alt="come back to 111" class="article-image" loading="lazy"></p>
+                <p>I have the 22 he has the 20 &gt;&gt;&gt; he olso uses the iso !</p>
+                <p><img src="images/come-back-to-112.png" alt="come back to 112" class="article-image" loading="lazy"></p>
+                <p>networking</p>
+                <p>he also mixes up with the vmware workstation</p>
+                <p><img src="images/come-back-to-113.png" alt="come back to 113" class="article-image" loading="lazy"></p>
+                <p>Network as the base</p>
+                <p><img src="images/come-back-to-114.png" alt="come back to 114" class="article-image" loading="lazy"></p>
+                <p>he adds his keys for practical access</p>
+                <p><img src="images/come-back-to-115.png" alt="come back to 115" class="article-image" loading="lazy"></p>
+                <p>Creates 6 vms in the back </p>
+                <p><img src="images/come-back-to-116.png" alt="come back to 116" class="article-image" loading="lazy"></p>
+                <p>get to this stage to be able to see your box is online </p>
+                <p><img src="images/come-back-to-117.png" alt="come back to 117" class="article-image" loading="lazy"></p>
+                <p>not only one</p>
+                <p><img src="images/come-back-to-118.png" alt="come back to 118" class="article-image" loading="lazy"></p>
+                <p>now the dns makes more and more sense</p>
+                <p><img src="images/come-back-to-119.png" alt="come back to 119" class="article-image" loading="lazy"></p>
+                <p>boxes to talk to each other</p>
+                <p><img src="images/come-back-to-120.png" alt="come back to 120" class="article-image" loading="lazy"></p>
+                <p>Pull secret link</p>
+                <p><img src="images/come-back-to-121.png" alt="come back to 121" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-122.png" alt="come back to 122" class="article-image" loading="lazy"></p>
+                <p>https://access.redhat.com/solutions/4844461</p>
+                <p><img src="images/come-back-to-123.png" alt="come back to 123" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-124.png" alt="come back to 124" class="article-image" loading="lazy"></p>
+                <p>https://console.redhat.com/openshift/create</p>
+                <p><img src="images/come-back-to-125.png" alt="come back to 125" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-126.png" alt="come back to 126" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-127.png" alt="come back to 127" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-128.png" alt="come back to 128" class="article-image" loading="lazy"></p>
+                <p>Save to last pass </p>
+                <p>https://console.redhat.com/openshift/install/azure/user-provisioned</p>
+                <p>Different ways to install the credentials </p>
+                <p><img src="images/come-back-to-129.png" alt="come back to 129" class="article-image" loading="lazy"></p>
+                <p>Secret gets passed over to text file</p>
+                <p><img src="images/come-back-to-130.png" alt="come back to 130" class="article-image" loading="lazy"></p>
+                <p>Openshift initial files with the ssh keys </p>
+                <p><img src="images/come-back-to-131.png" alt="come back to 131" class="article-image" loading="lazy"></p>
+                <p>haproxy.cfg</p>
+                <p><img src="images/come-back-to-132.png" alt="come back to 132" class="article-image" loading="lazy"></p>
+                <p>Worker install looks straight forward</p>
+                <p><img src="images/come-back-to-133.png" alt="come back to 133" class="article-image" loading="lazy"></p>
+                <p>moving the code with the scripts &gt;&gt;&gt; makes sense the hands on </p>
+                <p><img src="images/come-back-to-134.png" alt="come back to 134" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-135.png" alt="come back to 135" class="article-image" loading="lazy"></p>
+                <p>your own registry comes on line &gt;&gt;&gt; logic apps create &gt;  release &gt; destroy part trick &gt;&gt;&gt; to get the project!</p>
+                <p><img src="images/come-back-to-136.png" alt="come back to 136" class="article-image" loading="lazy"></p>
+                <p>First principles fixes</p>
+                <p><img src="images/come-back-to-137.png" alt="come back to 137" class="article-image" loading="lazy"></p>
+                <p>these are running on the host so have your host enviroment in the local </p>
+                <p>and have a file to run them as well </p>
+                <p><img src="images/come-back-to-138.png" alt="come back to 138" class="article-image" loading="lazy"></p>
+                <p>Host setup is also taking the time </p>
+                <p><img src="images/come-back-to-139.png" alt="come back to 139" class="article-image" loading="lazy"></p>
+                <p>Turning the host to the action</p>
+                <p><img src="images/come-back-to-140.png" alt="come back to 140" class="article-image" loading="lazy"></p>
+                <p>added a file called host setup</p>
+                <p><img src="images/come-back-to-141.png" alt="come back to 141" class="article-image" loading="lazy"></p>
+                <p>7m &gt; watched nana and most 0.01 got placed!</p>
+                <p>main yaml part is in </p>
+                <p><img src="images/come-back-to-142.png" alt="come back to 142" class="article-image" loading="lazy"></p>
+                <p>apache server in your network and have your own truth</p>
+                <p><img src="images/come-back-to-143.png" alt="come back to 143" class="article-image" loading="lazy"></p>
+                <p>Metal image</p>
+                <p><img src="images/come-back-to-144.png" alt="come back to 144" class="article-image" loading="lazy"></p>
+                <p>runs manually without a workflow by hand</p>
+                <p><img src="images/come-back-to-145.png" alt="come back to 145" class="article-image" loading="lazy"></p>
+                <p>get hsproxy the host and the apache is the main goal</p>
+                <p><img src="images/come-back-to-146.png" alt="come back to 146" class="article-image" loading="lazy"></p>
+                <p>on host setup</p>
+                <p><img src="images/come-back-to-147.png" alt="come back to 147" class="article-image" loading="lazy"></p>
+                <p>Than run the bootstrap which he moved on to the workstation</p>
+                <p><img src="images/come-back-to-148.png" alt="come back to 148" class="article-image" loading="lazy"></p>
+                <p>bootstrapper gets deleted</p>
+                <p><img src="images/come-back-to-149.png" alt="come back to 149" class="article-image" loading="lazy"></p>
+                <p>focus on basics ( part 3 ) &gt;&gt;&gt; does not make sense to take all in ! &gt;&gt;&gt; push it to the bottom</p>
+                <p>Registry Install </p>
+                <p><img src="images/come-back-to-150.png" alt="come back to 150" class="article-image" loading="lazy"></p>
+                <p>Apache Install</p>
+                <p><img src="images/come-back-to-151.png" alt="come back to 151" class="article-image" loading="lazy"></p>
+                <p>It seems you've uploaded an image of a script intended to create a cluster for OpenShift Sandbox with a DNS primary zone. I can help you understand the script by explaining the steps. Here is a breakdown of the script commands:</p>
+                <ul>
+                <li>
+                <p>The script defines variables for the domain and cluster name to be used throughout the setup process.</p>
+                </li>
+                <li>
+                <p>It appears to have a command that adds a DNS domain to the DNS server. This is typically done to resolve the cluster's domain name to the correct IP addresses.</p>
+                </li>
+                <li>
+                <p>There is also a mention of adding the domain to the DNS server's primary zone file, which means that it would become the authoritative source for information about this domain.</p>
+                </li>
+                <li>
+                <p>Additionally, the script references setting up an external DNS. This implies that the script is making sure that the DNS settings are also updated in a location that is publicly accessible, not just within a private network.</p>
+                </li>
+                <li>
+                <p>There are some commented lines and notes in the script which seem to be instructions or explanations for the user.</p>
+                </li>
+                <li>
+                <p>The PowerShell commands at the bottom indicate that the user is starting some process related to the OpenShift developer sandbox from the PowerShell console. This might be related to configuring the OpenShift environment.</p>
+                </li>
+                </ul>
+                <p>The specific details and how to execute them depend on your DNS server setup, the OpenShift configuration, and your environment. If you want a detailed explanation of each command and how to adapt it for your needs, you could share the text from the script, and I could provide more detailed guidance.</p>
+                <p>Now getting it live server has all the next next part in it</p>
+                <p><img src="images/come-back-to-152.png" alt="come back to 152" class="article-image" loading="lazy"></p>
+                <p>Script &gt; should be able to get the all the ipp adresses created and set the dns records</p>
+                <blockquote>
+                <blockquote>
+                <blockquote>
+                <p>if i can do it with logic apps that is great!</p>
+                </blockquote>
+                </blockquote>
+                </blockquote>
+                <p><img src="images/come-back-to-153.png" alt="come back to 153" class="article-image" loading="lazy"></p>
+                <p>mimic this</p>
+                <p><img src="images/come-back-to-154.png" alt="come back to 154" class="article-image" loading="lazy"></p>
+                <p>To create a PowerShell script that sets up an OpenShift Sandbox with a primary DNS zone, you would need to write a script that:</p>
+                <ul>
+                <li>
+                <p>Defines the domain and cluster name.</p>
+                </li>
+                <li>
+                <p>Adds the domain to your DNS server with a primary zone.</p>
+                </li>
+                <li>
+                <p>Starts the OpenShift installation process with the specified settings.</p>
+                </li>
+                </ul>
+                <p>Below is a template for a PowerShell script that you might use as a starting point. Please note that this is a hypothetical example and would need to be adapted to your specific environment and DNS server configuration. You should replace the placeholders with the actual values specific to your setup.</p>
+                <h1>Define domain and cluster name</h1>
+                <p>$DomainName = "example.com"<br />
+                $ClusterName = "openshift"</p>
+                <h1>Base domain for DNS</h1>
+                <p>$BaseDomain = "sandbox.$DomainName"<br />
+                $ClusterHostname = "api.$ClusterName.$BaseDomain"</p>
+                <h1>IP Address for the OpenShift API - Replace with the actual IP address</h1>
+                <p>$ApiIpAddress = "192.0.2.1"</p>
+                <h1>Adding a primary zone to DNS - This assumes you are using Windows DNS. Adjust if using another DNS service</h1>
+                <p>Add-DnsServerPrimaryZone -Name $BaseDomain -ZoneFile "$BaseDomain.dns"</p>
+                <h1>Adding a DNS A Record for the OpenShift API</h1>
+                <p>Add-DnsServerResourceRecordA -Name "api" -ZoneName $BaseDomain -IPv4Address $ApiIpAddress</p>
+                <h1>Starts the OpenShift installation process</h1>
+                <h1>You need to replace with the actual command to start the OpenShift installation</h1>
+                <h1>This usually involves running an installer script or command with a configuration file</h1>
+                <h1>For example:</h1>
+                <h1>Start-Process -FilePath "openshift-install" -ArgumentList "create cluster --dir=./$ClusterName --log-level=info"</h1>
+                <h1>Please note: You must have the OpenShift CLI installed and properly configured on your machine.</h1>
+                <h1>Consult the OpenShift documentation for the exact installation procedure as it varies by version and environment.</h1>
+                <p>Remember that to run this script, you'll need to have appropriate permissions on the DNS server and the machine where the script is executed. Also, the commands may vary if you're not using Windows DNS Server or if your OpenShift setup has specific requirements.</p>
+                <p>Make sure to consult your DNS provider's documentation for the exact commands to use and the OpenShift installation guide for detailed instructions on deploying a cluster.</p>
+                <p><img src="images/come-back-to-155.png" alt="come back to 155" class="article-image" loading="lazy"></p>
+                <p>forcing myhand with the logic apps</p>
+                <p><img src="images/come-back-to-156.png" alt="come back to 156" class="article-image" loading="lazy"></p>
+                <p>This part comes in with the gpt</p>
+                <p>your goal read understand and iterate</p>
+                <p>Certainly! In PowerShell, you can create a function called <code>AddOcpDns</code> that encapsulates the functionality for adding the necessary DNS records for an OpenShift cluster. Below is an example function that you might include in your PowerShell script. Please note that this example assumes you are using Windows DNS Server and have the required DNS PowerShell module available.</p>
+                <p>function AddOcpDns {<br />
+                    param (<br />
+                        [string]$BaseDomain,<br />
+                        [string]$ClusterName,<br />
+                        [string]$ApiIpAddress,<br />
+                        [string]$AppsWildcardIpAddress<br />
+                    )</p>
+                <pre><code># Define the API and apps DNS names
+                $ApiDnsName = "api.$ClusterName.$BaseDomain"
+                $AppsDnsName = "*.apps.$ClusterName.$BaseDomain"
+                
+                # Adding a primary zone to DNS
+                Add-DnsServerPrimaryZone -Name $BaseDomain -ZoneFile "$BaseDomain.dns"
+                
+                # Adding a DNS A Record for the OpenShift API
+                Add-DnsServerResourceRecordA -Name "api" -ZoneName $BaseDomain -IPv4Address $ApiIpAddress -CreatePtr
+                
+                # Adding a DNS A Record for the apps wildcard
+                Add-DnsServerResourceRecordA -Name "*" -HostNameAlias $AppsDnsName -ZoneName $BaseDomain -IPv4Address $AppsWildcardIpAddress -CreatePtr
+                
+                Write-Host "DNS records for OpenShift have been added:"
+                Write-Host "API URL: $ApiDnsName"
+                Write-Host "Apps wildcard URL: $AppsDnsName"
+                </code></pre>
+                <p>}</p>
+                <h1>Usage example:</h1>
+                <h1>Replace these values with your actual domain name, cluster name, API IP, and apps wildcard IP.</h1>
+                <p>$yourBaseDomain = "example.com"<br />
+                $yourClusterName = "openshift"<br />
+                $yourApiIpAddress = "192.168.1.10" # The IP address of the OpenShift API endpoint<br />
+                $yourAppsWildcardIpAddress = "192.168.1.11" # The IP address for the apps wildcard DNS record</p>
+                <h1>Call the function with the parameters</h1>
+                <p>AddOcpDns -BaseDomain $yourBaseDomain -ClusterName $yourClusterName -ApiIpAddress $yourApiIpAddress -AppsWildcardIpAddress $yourAppsWildcardIpAddress</p>
+                <p>This script defines the <code>AddOcpDns</code> function, which takes four parameters: <code>BaseDomain</code>, <code>ClusterName</code>, <code>ApiIpAddress</code>, and <code>AppsWildcardIpAddress</code>. Inside the function, it sets up a DNS primary zone for the base domain, adds an A record for the OpenShift API endpoint, and adds an A record for the wildcard domain used by OpenShift apps.</p>
+                <p>When using this function, replace the <code>ApiIpAddress</code> and <code>AppsWildcardIpAddress</code> with the actual IP addresses for your OpenShift API and the wildcard domain for apps, respectively.</p>
+                <p>Remember to run this script with administrative privileges since it makes changes to the DNS server configuration. Before running the script, ensure that your DNS server and environment are properly backed up and that you have tested these commands in a non-production environment.</p>
+                <p>A;ll in the name for the enterprise IT to run a high avaible cluster!</p>
+                <p>Easier and visual route for me to iterate for the machines there</p>
+                <p><img src="images/come-back-to-157.png" alt="come back to 157" class="article-image" loading="lazy"></p>
+                <p>also add what you learned</p>
+                <p><img src="images/come-back-to-158.png" alt="come back to 158" class="article-image" loading="lazy"></p>
+                <p>SRV (Service) records are a type of DNS (Domain Name System) record that is used to identify servers that host specific services. They are used to locate services such as Voice over IP (VoIP), messaging, and other services within a domain. Here are some reasons why SRV records are used:</p>
+                <ul>
+                <li>
+                <p><strong>Service Discovery</strong>: SRV records enable service discovery. They provide a way for clients to query a DNS server to find out the hostname and port number of servers providing specific services.</p>
+                </li>
+                <li>
+                <p><strong>Load Distribution and Fault Tolerance</strong>: SRV records can specify multiple servers for a service, each with a priority and weight. This allows clients to choose the best server based on the priority and to distribute the load among servers with the same priority using the weight parameter.</p>
+                </li>
+                <li>
+                <p><strong>Flexible Service Hosting</strong>: Services can be moved to different servers without changing the client configuration. For example, if you move a service to a new IP address, you only need to update the SRV record instead of updating the configuration on each client.</p>
+                </li>
+                <li>
+                <p><strong>Protocol Specification</strong>: SRV records contain the protocol used by the service, which allows the same service to be offered over different protocols.</p>
+                </li>
+                <li>
+                <p><strong>Port Specification</strong>: Since SRV records include the port number, services can run on non-standard ports, and clients can still discover and connect to them without knowing the port in advance.</p>
+                </li>
+                <li>
+                <p><strong>Use with TLS and SSL</strong>: SRV records can be used to direct traffic to secure ports and facilitate the use of SSL/TLS for the service in question.</p>
+                </li>
+                <li>
+                <p><strong>Integration with Active Directory</strong>: In Microsoft's Active Directory, SRV records are used extensively to locate domain controllers and other critical AD services.</p>
+                </li>
+                </ul>
+                <p>Here's an example of what an SRV record might look like:</p>
+                <p>_service._proto.name. TTL class SRV priority weight port target.</p>
+                <p>For example, for a SIP service, it might be:</p>
+                <p>_sip._tcp.example.com. 3600 IN SRV 10 50 5060 sipserver.example.com.</p>
+                <p>In the context of OpenShift or any Kubernetes-based system, SRV records can be useful for helping services locate and communicate with each other within the cluster or from outside the cluster. OpenShift uses DNS for service discovery within the cluster, and SRV records can be a part of this process if services need to be exposed or located in a more complex networking environment.</p>
+                <p>There is a reader there I am less lonely ?</p>
+                <p><img src="images/come-back-to-159.png" alt="come back to 159" class="article-image" loading="lazy"></p>
+                <p>everything came up</p>
+                <p><img src="images/come-back-to-160.png" alt="come back to 160" class="article-image" loading="lazy"></p>
+                <p>Asisted installer steps</p>
+                <p><img src="images/come-back-to-161.png" alt="come back to 161" class="article-image" loading="lazy"></p>
+                <p>Service principal management</p>
+                <p><img src="images/come-back-to-162.png" alt="come back to 162" class="article-image" loading="lazy"></p>
+                <p>ARO &gt; Secret looks like it is loaded that way complex market place practice</p>
+                <p><img src="images/come-back-to-163.png" alt="come back to 163" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-164.png" alt="come back to 164" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-165.png" alt="come back to 165" class="article-image" loading="lazy"></p>
+                <p><img src="images/come-back-to-166.png" alt="come back to 166" class="article-image" loading="lazy"></p>
+                <p>ARO stands for Azure Red Hat OpenShift, which is a joint collaboration between Microsoft Azure and Red Hat to provide a managed OpenShift service hosted on the Azure cloud platform. ARO simplifies the deployment, management, and operations of OpenShift, which is an enterprise Kubernetes platform, allowing users to run containerized applications at scale and with greater security.</p>
+                <p>Here's why ARO is significant:</p>
+                <ul>
+                <li>
+                <p><strong>Simplified Operations</strong>: ARO manages the OpenShift cluster's infrastructure, reducing the operational overhead for users. Microsoft and Red Hat handle maintenance, updates, and patching, leaving users free to focus on their applications.</p>
+                </li>
+                <li>
+                <p><strong>Integrated Support</strong>: Users get integrated support from both Microsoft and Red Hat, streamlining the process of getting help when needed.</p>
+                </li>
+                <li>
+                <p><strong>Security and Compliance</strong>: ARO is built with security in mind, featuring integrated compliance and regulatory features that follow Microsoft's and Red Hat's security best practices.</p>
+                </li>
+                <li>
+                <p><strong>Scalability</strong>: Users can scale their applications more easily due to Azure's cloud infrastructure.</p>
+                </li>
+                <li>
+                <p><strong>Hybrid Cloud</strong>: ARO fits well into a hybrid cloud strategy, offering consistent services and tooling between on-premises environments and the Azure cloud.</p>
+                </li>
+                </ul>
+                <p>Regarding secrets in the context of ARO, or OpenShift in general, a secret is a resource used in Kubernetes and OpenShift to hold sensitive information, such as passwords, OAuth tokens, ssh keys, etc. Secrets are used for several reasons:</p>
+                <ul>
+                <li>
+                <p><strong>Security</strong>: Secrets are intended to hold sensitive data, which should be protected from unauthorized access and should not be stored in plain text, especially within the application code.</p>
+                </li>
+                <li>
+                <p><strong>Confidentiality</strong>: By using secrets, sensitive data is segregated from the application code and can be managed independently. Only the necessary workloads and roles have access to them.</p>
+                </li>
+                <li>
+                <p><strong>Management</strong>: Secrets provide a central mechanism to manage sensitive data and can be rotated, updated, and revoked without modifying the application code.</p>
+                </li>
+                <li>
+                <p><strong>Flexibility</strong>: Secrets can be mounted as data volumes or exposed as environment variables to be used by applications running in a container.</p>
+                </li>
+                </ul>
+                <p>When an OpenShift cluster is created within Azure (ARO), various secrets are required for configuration, including those that allow the cluster to authenticate with Azure services and those that secure the communication between cluster components. Proper handling of secrets is a cornerstone of maintaining a secure and well-functioning OpenShift environment.</p>
+                <p>as at the core helps the process</p>
+                <p><img src="images/come-back-to-167.png" alt="come back to 167" class="article-image" loading="lazy"></p>
+                <p>setting up ingress</p>
+                <p><img src="images/come-back-to-168.png" alt="come back to 168" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>Oc Commands</p>
+                <p><img src="images/come-back-to-169.png" alt="come back to 169" class="article-image" loading="lazy"></p>
+                <p>Api and Grafana Relationshio</p>
+                <p><img src="images/come-back-to-170.png" alt="come back to 170" class="article-image" loading="lazy"></p>
+                <p>Kubeconfig</p>
+                <p><img src="images/come-back-to-171.png" alt="come back to 171" class="article-image" loading="lazy"></p>
+                <p>Different views</p>
+                <p><img src="images/come-back-to-172.png" alt="come back to 172" class="article-image" loading="lazy"></p>
+                <p>Visual pod creation</p>
+                <p><img src="images/come-back-to-173.png" alt="come back to 173" class="article-image" loading="lazy"></p>
+                <p>Helm</p>
+                <p><img src="images/come-back-to-174.png" alt="come back to 174" class="article-image" loading="lazy"></p>
+                <p>Helms wordpress</p>
+                <p><img src="images/come-back-to-175.png" alt="come back to 175" class="article-image" loading="lazy"></p>
+                <p>Storage</p>
+                <p><img src="images/come-back-to-176.png" alt="come back to 176" class="article-image" loading="lazy"></p>
+                <p><strong>MASTER TODOS</strong></p>
+                <ul>
+                <li>network ( FOCUS )</li>
+                </ul>
+                <p>Script to create in Azure</p>
+                <p>domain</p>
+                <ul>
+                <li>
+                <p>subnets</p>
+                </li>
+                <li>
+                <p>aro</p>
+                </li>
+                <li>
+                <p>A logic app to create the remaining  cluster </p>
+                </li>
+                </ul>
+                <p>3 worker nodes</p>
+                <ul>
+                <li>
+                <p>3 Master nodes</p>
+                </li>
+                <li>
+                <p>Set dns names to all machines</p>
+                </li>
+                </ul>
+                <p>start with one addocpdns</p>
+                <ul>
+                <li>
+                <p>set a records for OCP</p>
+                </li>
+                <li>
+                <p>and srv records systems to talkt o each other over ports</p>
+                </li>
+                <li>
+                <p>apache</p>
+                </li>
+                </ul>
+                <p>Script to create in linux</p>
+                <p>sudo apt update</p>
+                <ul>
+                <li>
+                <p>sudo apt install apache2 -y</p>
+                </li>
+                <li>
+                <p>Add this to bootstrap code in storage</p>
+                </li>
+                <li>
+                <p>Use scp to access the machine</p>
+                </li>
+                </ul>
+                <p><strong>SIDE TASKS</strong></p>
+                <ul>
+                <li>Bootstrapping</li>
+                </ul>
+                <p>Trigger</p>
+                <ul>
+                <li>
+                <p>Monitor</p>
+                </li>
+                <li>
+                <p>set servcice principals</p>
+                </li>
+                <li>
+                <p>Install workers with script</p>
+                </li>
+                </ul>
+                <p>move install code with scp</p>
+                <ul>
+                <li>
+                <p>fix line ending with dos2unix</p>
+                </li>
+                <li>
+                <p>create manigest and schedule workloads</p>
+                </li>
+                <li>
+                <p>Controllers</p>
+                </li>
+                </ul>
+                <p>use ioc commands</p>
+                <ul>
+                <li>
+                <p>join worker nodes</p>
+                </li>
+                <li>
+                <p>kubeconfig</p>
+                </li>
+                <li>
+                <p>Automate cluster</p>
+                </li>
+                </ul>
+                <p>turn off machines</p>
+                <ul>
+                <li>
+                <p>static mapping for api and *.apps</p>
+                </li>
+                <li>
+                <p>Yaml repository</p>
+                </li>
+                </ul>
+                <p>os-install/manifests</p>
+                <ul>
+                <li>
+                <p>registry install </p>
+                </li>
+                <li>
+                <p>ingress setup</p>
+                </li>
+                <li>
+                <p>licence install</p>
+                </li>
+                </ul>
+                <p>see expriy</p>
+                <ul>
+                <li>
+                <p>see cluster in redhat.com type o<strong>c</strong>p ( openshift <strong>container </strong>platform )</p>
+                </li>
+                <li>
+                <p>ha proxy</p>
+                </li>
+                </ul>
+                <p>Create a config file</p>
+                <ul>
+                <li>To see on one machine</li>
+                </ul>
+                <p>Start with local workstation</p>
+                <ul>
+                <li>
+                <p>see control plane master and worker</p>
+                </li>
+                <li>
+                <p>Storage</p>
+                </li>
+                </ul>
+                <p>deploy apps</p>
+                <ul>
+                <li>
+                <p>seperate their storage</p>
+                </li>
+                <li>
+                <p>dashboard</p>
+                </li>
+                </ul>
+                <p>see all cluster in the dashboard in azure</p>
+                <ul>
+                <li>
+                <p>use different views in OS</p>
+                </li>
+                <li>
+                <p>visual pod creation</p>
+                </li>
+                <li>
+                <p>OC commands</p>
+                </li>
+                </ul>
+                <p>oc new-project</p>
+                <ul>
+                <li>
+                <p>microservice deploy</p>
+                </li>
+                <li>
+                <p>add it to devops.engineering</p>
+                </li>
+                <li>
+                <p>the enginer is the kubernetes in the train</p>
+                </li>
+                <li>
+                <p>Helm</p>
+                </li>
+                </ul>
+                <p>bring complex elk like monitorung tools</p>
+                <ul>
+                <li>wordpress</li>
+                </ul>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Sending For New Contracts - Rifat Erdem Sahin</title>
+    <meta name="description" content="Email Sending For New Contracts To accomplish this task, you'll need to follow these steps: Set up the Gmail API : This involves creating a project on Google Cloud, enabling the Gmail API, and obtaini">
+    <meta name="keywords" content="Email Sending For New Contracts">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/08/06/email-sending-for-new-contracts/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/08/06/email-sending-for-new-contracts/">
+    <meta property="og:title" content="Email Sending For New Contracts">
+    <meta property="og:description" content="Email Sending For New Contracts To accomplish this task, you'll need to follow these steps: Set up the Gmail API : This involves creating a project on Google Cloud, enabling the Gmail API, and obtaini">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/08/06/email-sending-for-new-contracts/">
+    <meta property="twitter:title" content="Email Sending For New Contracts">
+    <meta property="twitter:description" content="Email Sending For New Contracts To accomplish this task, you'll need to follow these steps: Set up the Gmail API : This involves creating a project on Google Cloud, enabling the Gmail API, and obtaini">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Email Sending For New Contracts",
+      "description": "Email Sending For New Contracts To accomplish this task, you'll need to follow these steps: Set up the Gmail API : This involves creating a project on Google Cloud, enabling the Gmail API, and obtaini",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-08-06",
+      "dateModified": "2024-08-06",
+      "url": "https://www.rifaterdemsahin.com/2024/08/06/email-sending-for-new-contracts/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/08/06/email-sending-for-new-contracts/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Email Sending For New Contracts</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>August 6, 2024</span>
+                    <span>&bull;</span>
+                    <span>8 min read</span>
+                </div>
+                <p class="article-excerpt">Email Sending For New Contracts To accomplish this task, you'll need to follow these steps: Set up the Gmail API : This involves creating a project on Google Cloud, enabling the Gmail API, and obtaining the necessary credentials.</p>
+            </header>
+            <article class="article-content">
+                <h1>Email Sending For New Contracts</h1>
+                <p>To accomplish this task, you'll need to follow these steps:</p>
+                <ul>
+                <li>
+                <p><strong>Set up the Gmail API</strong>: This involves creating a project on Google Cloud, enabling the Gmail API, and obtaining the necessary credentials.</p>
+                </li>
+                <li>
+                <p><strong>Write a script to send emails using the Gmail API</strong>.</p>
+                </li>
+                <li>
+                <p><strong>Integrate OpenAI's GPT-3.5 to update your CV text</strong>.</p>
+                </li>
+                <li>
+                <p><strong>Ensure the text in the CV gets updated every three emails</strong>.</p>
+                </li>
+                </ul>
+                <p>Here is a step-by-step guide along with the necessary code:</p>
+                <h3>Step 1: Set up the Gmail API</h3>
+                <p>Follow <a href="https://developers.google.com/gmail/api/quickstart/python">this guide</a> to set up the Gmail API and get your credentials. You will need the <code>credentials.json</code> file.</p>
+                <h3>Step 2: Install Required Libraries</h3>
+                <p>You will need to install the following libraries:</p>
+                <p>pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib openai</p>
+                <h3>Step 3: Write the Script</h3>
+                <p>Here is a Python script that combines all the steps:</p>
+                <p>import os<br />
+                import pickle<br />
+                import base64<br />
+                from email.mime.multipart import MIMEMultipart<br />
+                from email.mime.text import MIMEText<br />
+                from email.mime.application import MIMEApplication<br />
+                from google.auth.transport.requests import Request<br />
+                from google.oauth2.credentials import Credentials<br />
+                from google_auth_oauthlib.flow import InstalledAppFlow<br />
+                from googleapiclient.discovery import build<br />
+                import openai</p>
+                <h1>Set up OpenAI API key</h1>
+                <p>openai.api_key = 'YOUR_OPENAI_API_KEY'</p>
+                <h1>If modifying these SCOPES, delete the file token.pickle.</h1>
+                <p>SCOPES = ['https://www.googleapis.com/auth/gmail.send']</p>
+                <p>def get_gmail_service():<br />
+                    creds = None<br />
+                    if os.path.exists('token.pickle'):<br />
+                        with open('token.pickle', 'rb') as token:<br />
+                            creds = pickle.load(token)<br />
+                    if not creds or not creds.valid:<br />
+                        if creds and creds.expired and creds.refresh_token:<br />
+                            creds.refresh(Request())<br />
+                        else:<br />
+                            flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)<br />
+                            creds = flow.run_local_server(port=0)<br />
+                        with open('token.pickle', 'wb') as token:<br />
+                            pickle.dump(creds, token)<br />
+                    service = build('gmail', 'v1', credentials=creds)<br />
+                    return service</p>
+                <p>def create_message_with_attachment(sender, to, subject, message_text, file):<br />
+                    message = MIMEMultipart()<br />
+                    message['to'] = to<br />
+                    message['from'] = sender<br />
+                    message['subject'] = subject</p>
+                <pre><code>msg = MIMEText(message_text)
+                message.attach(msg)
+                
+                with open(file, 'rb') as f:
+                    mime_application = MIMEApplication(f.read(), _subtype="pdf")
+                    mime_application.add_header('Content-Disposition', 'attachment', filename=os.path.basename(file))
+                    message.attach(mime_application)
+                
+                raw = base64.urlsafe_b64encode(message.as_bytes())
+                return {'raw': raw.decode()}
+                </code></pre>
+                <p>def send_message(service, user_id, message):<br />
+                    try:<br />
+                        message = service.users().messages().send(userId=user_id, body=message).execute()<br />
+                        print('Message Id: %s' % message['id'])<br />
+                        return message<br />
+                    except Exception as error:<br />
+                        print('An error occurred: %s' % error)<br />
+                        return None</p>
+                <p>def update_cv_text(cv_text, iteration):<br />
+                    response = openai.Completion.create(<br />
+                        model="text-davinci-003",<br />
+                        prompt=f"Update the following CV text to improve it:\n\n{cv_text}",<br />
+                        temperature=0.5,<br />
+                        max_tokens=500<br />
+                    )<br />
+                    return response.choices[0].text.strip()</p>
+                <p>def main():<br />
+                    service = get_gmail_service()<br />
+                    sender = 'your-email@gmail.com'<br />
+                    to = 'recipient-email@gmail.com'<br />
+                    subject = 'Updated CV'<br />
+                    message_text = 'Please find attached my updated CV.'</p>
+                <pre><code>cv_file = 'cv.pdf'
+                cv_text = "Your initial CV text here"
+                email_count = 0
+                
+                while True:
+                    if email_count % 3 == 0:
+                        cv_text = update_cv_text(cv_text, email_count)
+                        with open('cv.txt', 'w') as f:
+                            f.write(cv_text)
+                        # Convert the updated text to PDF (requires additional code/library)
+                
+                    message = create_message_with_attachment(sender, to, subject, message_text, cv_file)
+                    send_message(service, 'me', message)
+                    email_count += 1
+                </code></pre>
+                <p>if <strong>name</strong> == '<strong>main</strong>':<br />
+                    main()</p>
+                <h3>Notes:</h3>
+                <ul>
+                <li>
+                <p><strong>Updating the CV and Converting to PDF</strong>: The code updates the CV text using OpenAI GPT-3.5 and writes it to a text file. You will need an additional library to convert the updated text to a PDF. Libraries like <code>FPDF</code> or <code>ReportLab</code> can be used for this purpose.</p>
+                </li>
+                <li>
+                <p><strong>Google API Credentials</strong>: Ensure you have your <code>credentials.json</code> file in the same directory as your script.</p>
+                </li>
+                <li>
+                <p><strong>OpenAI API Key</strong>: Replace <code>'YOUR_OPENAI_API_KEY'</code> with your actual OpenAI API key.</p>
+                </li>
+                <li>
+                <p><strong>Email and Attachment</strong>: Update <code>sender</code>, <code>to</code>, <code>subject</code>, <code>message_text</code>, and <code>cv_file</code> with appropriate values.</p>
+                </li>
+                </ul>
+                <p>This script updates the CV text every three emails and sends it as an attachment using the Gmail API. You can run the script and monitor the email count to ensure the CV gets updated as intended.</p>
+                <hr />
+                <p>To execute the provided Python script in Visual Studio Code (VS Code) on Windows, follow these steps:</p>
+                <h3>1. Install Visual Studio Code</h3>
+                <ul>
+                <li>Download and install VS Code from the <a href="https://code.visualstudio.com/">official website</a>.</li>
+                </ul>
+                <h3>2. Install Python</h3>
+                <ul>
+                <li>
+                <p>Download and install Python from the <a href="https://www.python.org/downloads/">official Python website</a>.</p>
+                </li>
+                <li>
+                <p>Ensure you check the option to add Python to your PATH during the installation process.</p>
+                </li>
+                </ul>
+                <h3>3. Install Required Extensions in VS Code</h3>
+                <ul>
+                <li>
+                <p>Open VS Code.</p>
+                </li>
+                <li>
+                <p>Go to the Extensions view by clicking the Extensions icon in the Activity Bar on the side of the window or by pressing <code>Ctrl+Shift+X</code>.</p>
+                </li>
+                <li>
+                <p>Search for and install the "Python" extension provided by Microsoft.</p>
+                </li>
+                </ul>
+                <h3>4. Install Required Python Packages</h3>
+                <ul>
+                <li>
+                <p>Open a terminal in VS Code by selecting <code>View &gt; Terminal</code> or by pressing <code>Ctrl+</code> (backtick).</p>
+                </li>
+                <li>
+                <p>Run the following command to install the required packages:</p>
+                </li>
+                </ul>
+                <p>pip install google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client openai</p>
+                <h3>5. Set Up Your Project</h3>
+                <ul>
+                <li>
+                <p>Create a new folder for your project.</p>
+                </li>
+                <li>
+                <p>Inside this folder, create a new file named <code>main.py</code> and paste the provided code into this file.</p>
+                </li>
+                </ul>
+                <h3>6. Prepare Google API Credentials</h3>
+                <ul>
+                <li>
+                <p>Follow the steps to create a project and OAuth 2.0 credentials on the <a href="https://console.developers.google.com/">Google Cloud Console</a>.</p>
+                </li>
+                <li>
+                <p>Download the <code>credentials.json</code> file and place it in your project folder.</p>
+                </li>
+                </ul>
+                <h3>7. Replace OpenAI API Key</h3>
+                <ul>
+                <li>Replace <code>'YOUR_OPENAI_API_KEY'</code> with your actual OpenAI API key in the code.</li>
+                </ul>
+                <h3>8. Run the Script</h3>
+                <ul>
+                <li>In the terminal, navigate to your project folder if you haven't already:</li>
+                </ul>
+                <p>cd path/to/your/project</p>
+                <ul>
+                <li>Run the script using Python:</li>
+                </ul>
+                <p>python main.py</p>
+                <h3>Explanation of the Code</h3>
+                <h4>Imports</h4>
+                <p>import os<br />
+                import pickle<br />
+                import base64<br />
+                from email.mime.multipart import MIMEMultipart<br />
+                from email.mime.text import MIMEText<br />
+                from email.mime.application import MIMEApplication<br />
+                from google.auth.transport.requests import Request<br />
+                from google.oauth2.credentials import Credentials<br />
+                from google_auth_oauthlib.flow import InstalledAppFlow<br />
+                from googleapiclient.discovery import build<br />
+                import openai</p>
+                <ul>
+                <li>Import necessary libraries for handling files, email composition, Google authentication, and OpenAI API.</li>
+                </ul>
+                <h4>Set up OpenAI API key</h4>
+                <p>openai.api_key = 'YOUR_OPENAI_API_KEY'</p>
+                <ul>
+                <li>Configure the OpenAI API key.</li>
+                </ul>
+                <h4>Gmail API Scopes</h4>
+                <p>SCOPES = ['https://www.googleapis.com/auth/gmail.send']</p>
+                <ul>
+                <li>Define the scope of permissions for Gmail API.</li>
+                </ul>
+                <h4>Get Gmail Service</h4>
+                <p>def get_gmail_service():<br />
+                    creds = None<br />
+                    if os.path.exists('token.pickle'):<br />
+                        with open('token.pickle', 'rb') as token:<br />
+                            creds = pickle.load(token)<br />
+                    if not creds or not creds.valid:<br />
+                        if creds and creds.expired and creds.refresh_token:<br />
+                            creds.refresh(Request())<br />
+                        else:<br />
+                            flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)<br />
+                            creds = flow.run_local_server(port=0)<br />
+                        with open('token.pickle', 'wb') as token:<br />
+                            pickle.dump(creds, token)<br />
+                    service = build('gmail', 'v1', credentials=creds)<br />
+                    return service</p>
+                <ul>
+                <li>Authenticate and authorize the application to use Gmail API. Save and reuse credentials.</li>
+                </ul>
+                <h4>Create Email Message with Attachment</h4>
+                <p>def create_message_with_attachment(sender, to, subject, message_text, file):<br />
+                    message = MIMEMultipart()<br />
+                    message['to'] = to<br />
+                    message['from'] = sender<br />
+                    message['subject'] = subject</p>
+                <pre><code>msg = MIMEText(message_text)
+                message.attach(msg)
+                
+                with open(file, 'rb') as f:
+                    mime_application = MIMEApplication(f.read(), _subtype="pdf")
+                    mime_application.add_header('Content-Disposition', 'attachment', filename=os.path.basename(file))
+                    message.attach(mime_application)
+                
+                raw = base64.urlsafe_b64encode(message.as_bytes())
+                return {'raw': raw.decode()}
+                </code></pre>
+                <ul>
+                <li>Create an email with an attachment, encode it, and prepare it for sending.</li>
+                </ul>
+                <h4>Send Email Message</h4>
+                <p>def send_message(service, user_id, message):<br />
+                    try:<br />
+                        message = service.users().messages().send(userId=user_id, body=message).execute()<br />
+                        print('Message Id: %s' % message['id'])<br />
+                        return message<br />
+                    except Exception as error:<br />
+                        print('An error occurred: %s' % error)<br />
+                        return None</p>
+                <ul>
+                <li>Send the email using the Gmail API service.</li>
+                </ul>
+                <h4>Update CV Text Using OpenAI</h4>
+                <p>def update_cv_text(cv_text, iteration):<br />
+                    response = openai.Completion.create(<br />
+                        model="text-davinci-003",<br />
+                        prompt=f"Update the following CV text to improve it:\n\n{cv_text}",<br />
+                        temperature=0.5,<br />
+                        max_tokens=500<br />
+                    )<br />
+                    return response.choices[0].text.strip()</p>
+                <ul>
+                <li>Use OpenAI to generate an improved version of the CV text.</li>
+                </ul>
+                <h4>Main Function</h4>
+                <p>def main():<br />
+                    service = get_gmail_service()<br />
+                    sender = 'your-email@gmail.com'<br />
+                    to = 'recipient-email@gmail.com'<br />
+                    subject = 'Updated CV'<br />
+                    message_text = 'Please find attached my updated CV.'</p>
+                <pre><code>cv_file = 'cv.pdf'
+                cv_text = "Your initial CV text here"
+                email_count = 0
+                
+                while True:
+                    if email_count % 3 == 0:
+                        cv_text = update_cv_text(cv_text, email_count)
+                        with open('cv.txt', 'w') as f:
+                            f.write(cv_text)
+                        # Convert the updated text to PDF (requires additional code/library)
+                
+                    message = create_message_with_attachment(sender, to, subject, message_text, cv_file)
+                    send_message(service, 'me', message)
+                    email_count += 1
+                </code></pre>
+                <p>if <strong>name</strong> == '<strong>main</strong>':<br />
+                    main()</p>
+                <ul>
+                <li>Main function to get Gmail service, create and send emails, and periodically update the CV text using OpenAI.</li>
+                </ul>
+                <p><strong>REFERENCES</strong></p>
+                <p>Sure! Here are some references for various topics related to your blog post. Make sure to adapt them to fit the context and content of your blog.</p>
+                <h3>General Python Programming</h3>
+                <ul>
+                <li>
+                <p>Python Software Foundation. (2024). <em>Python 3.11 Documentation</em>. Retrieved from <a href="https://docs.python.org/3/">https://docs.python.org/3/</a></p>
+                </li>
+                <li>
+                <p>Barry, P. (2023). <em>Head First Python: A Brain-Friendly Guide</em>. O'Reilly Media.</p>
+                </li>
+                </ul>
+                <h3>Using Google APIs in Python</h3>
+                <ul>
+                <li>
+                <p>Google Developers. (2024). <em>Gmail API Python Quickstart</em>. Retrieved from <a href="https://developers.google.com/gmail/api/quickstart/python">https://developers.google.com/gmail/api/quickstart/python</a></p>
+                </li>
+                <li>
+                <p>Chun, W. (2022). <em>Core Python Applications Programming</em>. Pearson Education.</p>
+                </li>
+                </ul>
+                <h3>Email Handling in Python</h3>
+                <ul>
+                <li>
+                <p>Python Software Foundation. (2024). <em>Email: Examples</em>. Retrieved from <a href="https://docs.python.org/3/library/email.examples.html">https://docs.python.org/3/library/email.examples.html</a></p>
+                </li>
+                <li>
+                <p>Hettinger, R. (2020). <em>Effective Python: 59 Specific Ways to Write Better Python</em>. Addison-Wesley.</p>
+                </li>
+                </ul>
+                <h3>OpenAI API</h3>
+                <ul>
+                <li>
+                <p>OpenAI. (2024). <em>OpenAI API Documentation</em>. Retrieved from <a href="https://beta.openai.com/docs/">https://beta.openai.com/docs/</a></p>
+                </li>
+                <li>
+                <p>Brown, T., et al. (2020). <em>Language Models are Few-Shot Learners</em>. Retrieved from <a href="https://arxiv.org/abs/2005.14165">https://arxiv.org/abs/2005.14165</a></p>
+                </li>
+                </ul>
+                <h3>Automating Tasks with Python</h3>
+                <ul>
+                <li>
+                <p>Al Sweigart. (2019). <em>Automate the Boring Stuff with Python: Practical Programming for Total Beginners</em>. No Starch Press.</p>
+                </li>
+                <li>
+                <p>McKinney, W. (2022). <em>Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython</em>. O'Reilly Media.</p>
+                </li>
+                </ul>
+                <h3>Setting Up Development Environments</h3>
+                <ul>
+                <li>
+                <p>Microsoft. (2024). <em>Get Started with Python in Visual Studio Code</em>. Retrieved from <a href="https://code.visualstudio.com/docs/python/python-tutorial">https://code.visualstudio.com/docs/python/python-tutorial</a></p>
+                </li>
+                <li>
+                <p>Real Python. (2023). <em>Python Development in Visual Studio Code (Setup Guide)</em>. Retrieved from <a href="https://realpython.com/python-development-visual-studio-code/">https://realpython.com/python-development-visual-studio-code/</a></p>
+                </li>
+                </ul>
+                <h3>General Software Development Practices</h3>
+                <ul>
+                <li>
+                <p>Martin, R. C. (2008). <em>Clean Code: A Handbook of Agile Software Craftsmanship</em>. Prentice Hall.</p>
+                </li>
+                <li>
+                <p>Fowler, M. (2018). <em>Refactoring: Improving the Design of Existing Code</em>. Addison-Wesley.</p>
+                </li>
+                </ul>
+                <h3>Git and Version Control</h3>
+                <ul>
+                <li>
+                <p>Chacon, S., &amp; Straub, B. (2014). <em>Pro Git</em>. Apress. Retrieved from <a href="https://git-scm.com/book/en/v2">https://git-scm.com/book/en/v2</a></p>
+                </li>
+                <li>
+                <p>Loeliger, J., &amp; McCullough, M. (2012). <em>Version Control with Git: Powerful Tools and Techniques for Collaborative Software Development</em>. O'Reilly Media.</p>
+                </li>
+                </ul>
+                <p>These references should provide a strong foundation for your blog post, covering essential topics related to Python programming, using Google APIs, handling emails, utilizing the OpenAI API, and setting up your development environment.</p>
+                <p><strong>Why do this in Python ?</strong></p>
+                <p><img src="images/email-sending-for-1.png" alt="email sending for 1" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

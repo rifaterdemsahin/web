@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adding leads by the database by json - Rifat Erdem Sahin</title>
+    <meta name="description" content="Adding leads by the database by json find the label get the sanbox ui get the json process the json fill the db send updates on quarterly basis https://portal.azure.com/#@pexabo.com/resource/subscript">
+    <meta name="keywords" content="Adding leads by the database by json">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/01/26/adding-leads-by-the-database-by-json/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/01/26/adding-leads-by-the-database-by-json/">
+    <meta property="og:title" content="Adding leads by the database by json">
+    <meta property="og:description" content="Adding leads by the database by json find the label get the sanbox ui get the json process the json fill the db send updates on quarterly basis https://portal.azure.com/#@pexabo.com/resource/subscript">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/01/26/adding-leads-by-the-database-by-json/">
+    <meta property="twitter:title" content="Adding leads by the database by json">
+    <meta property="twitter:description" content="Adding leads by the database by json find the label get the sanbox ui get the json process the json fill the db send updates on quarterly basis https://portal.azure.com/#@pexabo.com/resource/subscript">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Adding leads by the database by json",
+      "description": "Adding leads by the database by json find the label get the sanbox ui get the json process the json fill the db send updates on quarterly basis https://portal.azure.com/#@pexabo.com/resource/subscript",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-01-26",
+      "dateModified": "2024-01-26",
+      "url": "https://www.rifaterdemsahin.com/2024/01/26/adding-leads-by-the-database-by-json/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/01/26/adding-leads-by-the-database-by-json/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Adding leads by the database by json</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>January 26, 2024</span>
+                    <span>&bull;</span>
+                    <span>9 min read</span>
+                </div>
+                <p class="article-excerpt">Adding leads by the database by json find the label get the sanbox ui get the json process the json fill the db send updates on quarterly basis https://portal.azure.com/#@pexabo.com/resource/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourcegroups/ContractorMarketing/pro</p>
+            </header>
+            <article class="article-content">
+                <h1>Adding leads by the database by json</h1>
+                <p>find the label </p>
+                <p>get the sanbox ui</p>
+                <p>get the json</p>
+                <p>process the json</p>
+                <p>fill the db </p>
+                <p>send updates on quarterly basis</p>
+                <p>https://portal.azure.com/#@pexabo.com/resource/subscriptions/ad744a08-2411-4d78-b417-1f1c83f4f741/resourcegroups/ContractorMarketing/providers/Microsoft.Logic/workflows/contractormarketing-savelead-bygmaillabel/logicApp</p>
+                <p><img src="images/adding-leads-by-1.png" alt="adding leads by 1" class="article-image" loading="lazy"></p>
+                <p><strong>Sandbox Reference</strong></p>
+                <p>https://developers.google.com/gmail/api/reference/rest/v1/users.messages/list?apix_params=%7B%22userId%22%3A%22info%40pexabo.com%22%2C%22labelIds%22%3A%5B%22Label_1452878502214202942%22%5D%7D</p>
+                <p>base structure4</p>
+                <p><img src="images/adding-leads-by-2.png" alt="adding leads by 2" class="article-image" loading="lazy"></p>
+                <p>premise As long as i have the data i can iterate in it to get the necessary parts to do the marketing &gt; email and region are important </p>
+                <p>Contracting &gt; requires realtime marketing</p>
+                <p>this has to be send in 24 hour frame</p>
+                <p><img src="images/adding-leads-by-3.png" alt="adding leads by 3" class="article-image" loading="lazy"></p>
+                <p>add the sandbox reference in here</p>
+                <p><img src="images/adding-leads-by-4.png" alt="adding leads by 4" class="article-image" loading="lazy"></p>
+                <p>if there is a control in save leads than it is ok to use it</p>
+                <p><img src="images/adding-leads-by-5.png" alt="adding leads by 5" class="article-image" loading="lazy"></p>
+                <p>there is a check system in there</p>
+                <p><img src="images/adding-leads-by-6.png" alt="adding leads by 6" class="article-image" loading="lazy"></p>
+                <p>processed</p>
+                <p><img src="images/adding-leads-by-7.png" alt="adding leads by 7" class="article-image" loading="lazy"></p>
+                <p>have a report to see the number for today</p>
+                <p>add a todaycount parameter</p>
+                <p><img src="images/adding-leads-by-8.png" alt="adding leads by 8" class="article-image" loading="lazy"></p>
+                <p>Sell logic apps and write the logic apps</p>
+                <p>In a transactional world where i sell the devops.engineering service product I got to make sure on the transactional sales process and move the leads to the archieve state on an ongoing basis</p>
+                <p><img src="images/adding-leads-by-9.png" alt="adding leads by 9" class="article-image" loading="lazy"></p>
+                <p>https://www.canva.com/design/DAF6_YNeh4Q/Eqrjy6nK_gkn-1UBxmoarg/edit?utm_content=DAF6_YNeh4Q&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton</p>
+                <p><img src="images/adding-leads-by-10.png" alt="adding leads by 10" class="article-image" loading="lazy"></p>
+                <p>Part of the action is the business model ^^^ connected the dots over there &gt;&gt;&gt; areas of emphasis on the work why i do it and how i connect it.</p>
+                <p>Todays work has to be seen easily &gt;&gt;&gt; not classical crm based but ai based workflow based one and the connection is we are using this to get better and we are selling this for the enterprise integration we get better at sales and package the sales effort. Sales (daily logic app)&gt; borrow (learn for future )&gt; spend ( pay azure ) &gt; package ( in devops engineering on what you learned )</p>
+                <p><img src="images/adding-leads-by-11.png" alt="adding leads by 11" class="article-image" loading="lazy"></p>
+                <p>Goal is to stack the deck for your favour so when you go in you can sell the on demand delivery as there is training and framework in your hand that is active implementation power is there to lead the team</p>
+                <p>Today copy paste was direct many eporting titles can come in &gt; could increase the tech debt on the logic app implementation costs</p>
+                <p><img src="images/adding-leads-by-12.png" alt="adding leads by 12" class="article-image" loading="lazy"></p>
+                <p>Too many logic apps coming in the background for this </p>
+                <p><img src="images/adding-leads-by-13.png" alt="adding leads by 13" class="article-image" loading="lazy"></p>
+                <p>Count comes up in Zero from yesterday </p>
+                <p><img src="images/adding-leads-by-14.png" alt="adding leads by 14" class="article-image" loading="lazy"></p>
+                <p>Add debugger inside make it practical run and see the report</p>
+                <p><img src="images/adding-leads-by-15.png" alt="adding leads by 15" class="article-image" loading="lazy"></p>
+                <blockquote>
+                <blockquote>
+                <blockquote>
+                <p>save lead</p>
+                </blockquote>
+                </blockquote>
+                </blockquote>
+                <p><img src="images/adding-leads-by-16.png" alt="adding leads by 16" class="article-image" loading="lazy"></p>
+                <p><img src="images/adding-leads-by-17.png" alt="adding leads by 17" class="article-image" loading="lazy"></p>
+                <p>Check the parameter and check the report</p>
+                <p>Save looks ok</p>
+                <p><img src="images/adding-leads-by-18.png" alt="adding leads by 18" class="article-image" loading="lazy"></p>
+                <p>one is here</p>
+                <p><img src="images/adding-leads-by-19.png" alt="adding leads by 19" class="article-image" loading="lazy"></p>
+                <p>Numbers rising that is good news at least we are moving in the correct direction</p>
+                <p><img src="images/adding-leads-by-20.png" alt="adding leads by 20" class="article-image" loading="lazy"></p>
+                <p>todo &gt;&gt; the miro board needed to make sense of the logic apps and they are working and they are usefull</p>
+                <p>Count 3 is coming for the day at least i can understand i am working</p>
+                <p><img src="images/adding-leads-by-21.png" alt="adding leads by 21" class="article-image" loading="lazy"></p>
+                <p>this is not a practical CRM ui based app this is a database based CI/CD based application where i am bulindg a sales machine for the recruiters to support contracting and than i would be able to use the know how in the devops.engineering product.</p>
+                <p>Second run i expect to see 3 not 4</p>
+                <p><img src="images/adding-leads-by-22.png" alt="adding leads by 22" class="article-image" loading="lazy"></p>
+                <p>Now it looks like it is working still unlikely the 58 leads did not get added to the system&gt;&gt;&gt; check one by one &gt;</p>
+                <p>tirath@vitsus.com</p>
+                <p><img src="images/adding-leads-by-23.png" alt="adding leads by 23" class="article-image" loading="lazy"></p>
+                <p>Many use cases comes up</p>
+                <p><img src="images/adding-leads-by-24.png" alt="adding leads by 24" class="article-image" loading="lazy"></p>
+                <p>Side backups are the good part of the applications</p>
+                <p><img src="images/adding-leads-by-25.png" alt="adding leads by 25" class="article-image" loading="lazy"></p>
+                <p>odata query language is needed</p>
+                <p><img src="images/adding-leads-by-26.png" alt="adding leads by 26" class="article-image" loading="lazy"></p>
+                <p>yesterdays records are not there</p>
+                <p><img src="images/adding-leads-by-27.png" alt="adding leads by 27" class="article-image" loading="lazy"></p>
+                <p>in one mine it did not get saved</p>
+                <p><img src="images/adding-leads-by-28.png" alt="adding leads by 28" class="article-image" loading="lazy"></p>
+                <p>save operation is problematic</p>
+                <p><img src="images/adding-leads-by-29.png" alt="adding leads by 29" class="article-image" loading="lazy"></p>
+                <p>Email content and recuiter is getting pushed</p>
+                <p><img src="images/adding-leads-by-30.png" alt="adding leads by 30" class="article-image" loading="lazy"></p>
+                <p>These have a problem</p>
+                <p><img src="images/adding-leads-by-31.png" alt="adding leads by 31" class="article-image" loading="lazy"></p>
+                <p>Daniel did not get inserted</p>
+                <p><img src="images/adding-leads-by-32.png" alt="adding leads by 32" class="article-image" loading="lazy"></p>
+                <p>Parameter send inside is not daniel</p>
+                <p><img src="images/adding-leads-by-33.png" alt="adding leads by 33" class="article-image" loading="lazy"></p>
+                <p>https://portal.azure.com/#view/Microsoft_Azure_EMA/LogicAppsMonitorBlade/runid/%2Fsubscriptions%2Fad744a08-2411-4d78-b417-1f1c83f4f741%2FresourceGroups%2FContractorMarketing%2Fproviders%2FMicrosoft.Logic%2Fworkflows%2Fcontractormarketing-saveleads%2Fruns%2F08584953272716785759570286433CU08</p>
+                <p>Error parameter shouold only be used at the top and self runners not inside only use the variables.</p>
+                <p>Design patterns hittim me</p>
+                <p><img src="images/adding-leads-by-34.png" alt="adding leads by 34" class="article-image" loading="lazy"></p>
+                <p>Foixed the paramater to the variable now 3 has to be 30 and than i can remove the old labels and rerun it</p>
+                <p><img src="images/adding-leads-by-35.png" alt="adding leads by 35" class="article-image" loading="lazy"></p>
+                <p>Runid &gt; not in the link last one is there <a href="https://portal.azure.com/#view/Microsoft_Azure_EMA/LogicAppsDesignerBlade/id/%2Fsubscriptions%2Fad744a08-2411-4d78-b417-1f1c83f4f741%2FresourceGroups%2FContractorMarketing%2Fproviders%2FMicrosoft.Logic%2Fworkflows%2Fcontractormarketing-savelead-bygmaillabel">https://portal.azure.com/#view/Microsoft_Azure_EMA/LogicAppsDesignerBlade/id/%2Fsubscriptions%2Fad744a08-2411-4d78-b417-1f1c83f4f741%2FresourceGroups%2FContractorMarketing%2Fproviders%2FMicrosoft.Logic%2Fworkflows%2Fcontractormarketing-savelead-bygmaillabel</a></p>
+                <p>CU18 needs to be there &gt; <a href="https://portal.azure.com/#view/Microsoft_Azure_EMA/LogicAppsMonitorBlade/runid/%2Fsubscriptions%2Fad744a08-2411-4d78-b417-1f1c83f4f741%2FresourceGroups%2FContractorMarketing%2Fproviders%2FMicrosoft.Logic%2Fworkflows%2Fcontractormarketing-savelead-bygmaillabel%2Fruns%2F08584953225080416604663588348CU18">https://portal.azure.com/#view/Microsoft_Azure_EMA/LogicAppsMonitorBlade/runid/%2Fsubscriptions%2Fad744a08-2411-4d78-b417-1f1c83f4f741%2FresourceGroups%2FContractorMarketing%2Fproviders%2FMicrosoft.Logic%2Fworkflows%2Fcontractormarketing-savelead-bygmaillabel%2Fruns%2F08584953225080416604663588348CU18</a></p>
+                <p>With saves runtime moves to 4 minutes from 1 minute</p>
+                <p><img src="images/adding-leads-by-36.png" alt="adding leads by 36" class="article-image" loading="lazy"></p>
+                <p>47 inserts</p>
+                <p><img src="images/adding-leads-by-37.png" alt="adding leads by 37" class="article-image" loading="lazy"></p>
+                <p>Find a way to look at last 5 entries</p>
+                <p>contractormarketing-report-leadslastfive</p>
+                <p>Can see the last 5 maybe the emailid can be added</p>
+                <p><img src="images/adding-leads-by-38.png" alt="adding leads by 38" class="article-image" loading="lazy"></p>
+                <p>can not see the email text &gt; for future information that is missing</p>
+                <p><img src="images/adding-leads-by-39.png" alt="adding leads by 39" class="article-image" loading="lazy"></p>
+                <p>The emails with more apps should be able to update the data as well.</p>
+                <p>email content not send there</p>
+                <p><img src="images/adding-leads-by-40.png" alt="adding leads by 40" class="article-image" loading="lazy"></p>
+                <p>it should be there but the issue is the header should have a size blocker</p>
+                <p><img src="images/adding-leads-by-41.png" alt="adding leads by 41" class="article-image" loading="lazy"></p>
+                <p>Move it to the body</p>
+                <p>Packaged ui based product versus datasource based actions are very different</p>
+                <p><img src="images/adding-leads-by-42.png" alt="adding leads by 42" class="article-image" loading="lazy"></p>
+                <p>I have a decision i can rerun and force an update &gt;&gt;&gt; or forget it.</p>
+                <p>now i would do it as i need to test update function as well</p>
+                <p>As this function would be run for sometime </p>
+                <p><img src="images/adding-leads-by-43.png" alt="adding leads by 43" class="article-image" loading="lazy"></p>
+                <p>I would make the system easier for the ai to process make a bigger database &gt;&gt;&gt; make sure i have enough leads to work on on a proactive manner.</p>
+                <p>Last 5 minute update count needed</p>
+                <p><img src="images/adding-leads-by-44.png" alt="adding leads by 44" class="article-image" loading="lazy"></p>
+                <p>syntax matters</p>
+                <p><img src="images/adding-leads-by-45.png" alt="adding leads by 45" class="article-image" loading="lazy"></p>
+                <p>https://stackoverflow.com/questions/64216759/date-comparison-in-azure-logic-app-get-entities-connector</p>
+                <p>updates to be shown</p>
+                <p><img src="images/adding-leads-by-46.png" alt="adding leads by 46" class="article-image" loading="lazy"></p>
+                <p>All powers are in the sales cycle to start</p>
+                <p><img src="images/adding-leads-by-47.png" alt="adding leads by 47" class="article-image" loading="lazy"></p>
+                <p>update should be in the save</p>
+                <p><img src="images/adding-leads-by-48.png" alt="adding leads by 48" class="article-image" loading="lazy"></p>
+                <p>update is on the left handside</p>
+                <p><img src="images/adding-leads-by-49.png" alt="adding leads by 49" class="article-image" loading="lazy"></p>
+                <p>email content updates it</p>
+                <p><img src="images/adding-leads-by-50.png" alt="adding leads by 50" class="article-image" loading="lazy"></p>
+                <p>now waiting for 5 minutes17;20 expect to see the emailbody in the database</p>
+                <p><img src="images/adding-leads-by-51.png" alt="adding leads by 51" class="article-image" loading="lazy"></p>
+                <p>in the future the ai can process and map in a better fashion !</p>
+                <p>Also creating the email lists would help the process of getting leads.</p>
+                <p>Now data incoming it is enough for now</p>
+                <p><img src="images/adding-leads-by-52.png" alt="adding leads by 52" class="article-image" loading="lazy"></p>
+                <p>multi ones are inside </p>
+                <p><img src="images/adding-leads-by-53.png" alt="adding leads by 53" class="article-image" loading="lazy"></p>
+                <p>What can i do &gt;&gt;&gt; write a query to detech the doubles</p>
+                <p>unlimited sales work is there to do </p>
+                <p><img src="images/adding-leads-by-54.png" alt="adding leads by 54" class="article-image" loading="lazy"></p>
+                <p><img src="images/adding-leads-by-55.png" alt="adding leads by 55" class="article-image" loading="lazy"></p>
+                <p>There are some 2 ones</p>
+                <p><img src="images/adding-leads-by-56.png" alt="adding leads by 56" class="article-image" loading="lazy"></p>
+                <p>Iterate on them and delete the old one move the data to the new one.</p>
+                <p>dublicate is the</p>
+                <p><img src="images/adding-leads-by-57.png" alt="adding leads by 57" class="article-image" loading="lazy"></p>
+                <p>Find the ones to be deleted</p>
+                <p><img src="images/adding-leads-by-58.png" alt="adding leads by 58" class="article-image" loading="lazy"></p>
+                <p>disable as it cant be reused that easily</p>
+                <p>add a unique field on email make it easier after deletion</p>
+                <p><img src="images/adding-leads-by-59.png" alt="adding leads by 59" class="article-image" loading="lazy"></p>
+                <p>backup 218 KB</p>
+                <p><img src="images/adding-leads-by-60.png" alt="adding leads by 60" class="article-image" loading="lazy"></p>
+                <p>BASICS over risky webui</p>
+                <p><img src="images/adding-leads-by-61.png" alt="adding leads by 61" class="article-image" loading="lazy"></p>
+                <p><img src="images/adding-leads-by-62.png" alt="adding leads by 62" class="article-image" loading="lazy"></p>
+                <p>empty row are blocking the action</p>
+                <p><img src="images/adding-leads-by-63.png" alt="adding leads by 63" class="article-image" loading="lazy"></p>
+                <p><strong>run this</strong></p>
+                <p>select * from leads order by recruiteremail</p>
+                <p>update leads set recruiteremail='r1@aol.com' where LeadID=3</p>
+                <p>update leads set recruiteremail='r2@aol.com' where LeadID=4</p>
+                <p>update leads set recruiteremail='r3@aol.com' where LeadID=5</p>
+                <p>update leads set recruiteremail='r4@aol.com' where LeadID=6</p>
+                <p><strong>to run this</strong></p>
+                <p>ALTER TABLE Leads</p>
+                <p>ADD CONSTRAINT recruiteremail UNIQUE(recruiteremail);</p>
+                <p>now the same email cannot be entered to the system &gt;&gt;&gt;&gt; and there is also a varcharmax logs field which would help</p>
+                <p>now i can remove the old labels and remap the ones</p>
+                <p>removed the label</p>
+                <p><img src="images/adding-leads-by-64.png" alt="adding leads by 64" class="article-image" loading="lazy"></p>
+                <p>reprocess the 236 and then resend the emails for the 236 filtered to 50 &gt;&gt;&gt; and now we have a reply system using the sandbox...faster &gt;&gt;&gt;&gt;and making the logic apps better</p>
+                <p>map the action &gt;&gt;&gt; new emails with existinf recruiters should go to the logs</p>
+                <p><img src="images/adding-leads-by-65.png" alt="adding leads by 65" class="article-image" loading="lazy"></p>
+                <p>updates to the manual process &gt; replybyid needs an update</p>
+                <p><img src="images/adding-leads-by-66.png" alt="adding leads by 66" class="article-image" loading="lazy"></p>
+                <p>Sandbox link needed</p>
+                <p><img src="images/adding-leads-by-67.png" alt="adding leads by 67" class="article-image" loading="lazy"></p>
+                <p><img src="images/adding-leads-by-68.png" alt="adding leads by 68" class="article-image" loading="lazy"></p>
+                <p>Api explorer</p>
+                <p><img src="images/adding-leads-by-69.png" alt="adding leads by 69" class="article-image" loading="lazy"></p>
+                <p>make messaging better</p>
+                <p><img src="images/adding-leads-by-70.png" alt="adding leads by 70" class="article-image" loading="lazy"></p>
+                <p>Location is not there still it is something</p>
+                <p><img src="images/adding-leads-by-71.png" alt="adding leads by 71" class="article-image" loading="lazy"></p>
+                <p>Appending the log</p>
+                <p><img src="images/adding-leads-by-72.png" alt="adding leads by 72" class="article-image" loading="lazy"></p>
+                <p>50 rows expecting to end in 19:40</p>
+                <p><img src="images/adding-leads-by-73.png" alt="adding leads by 73" class="article-image" loading="lazy"></p>
+                <p>some failed some succeded &gt; dual run can be ok&gt;&gt;&gt; logs would be dublicated.</p>
+                <p><img src="images/adding-leads-by-74.png" alt="adding leads by 74" class="article-image" loading="lazy"></p>
+                <p>Parse jsons fails when the schema gets updated</p>
+                <p><img src="images/adding-leads-by-75.png" alt="adding leads by 75" class="article-image" loading="lazy"></p>
+                <p>devops.engineering on demand delivery producy ODD Service has a cost for the company.</p>
+                <p>I rerun this one more time</p>
+                <p><img src="images/adding-leads-by-76.png" alt="adding leads by 76" class="article-image" loading="lazy"></p>
+                <p>the last updates not working </p>
+                <p><img src="images/adding-leads-by-77.png" alt="adding leads by 77" class="article-image" loading="lazy"></p>
+                <p>null management</p>
+                <p><img src="images/adding-leads-by-78.png" alt="adding leads by 78" class="article-image" loading="lazy"></p>
+                <p>["string","null"] &gt;&gt;&gt; update when i see the error &gt;&gt; small null touches needed</p>
+                <p>add to the comments for future reference</p>
+                <p><img src="images/adding-leads-by-79.png" alt="adding leads by 79" class="article-image" loading="lazy"></p>
+                <p>Twice email is send</p>
+                <p><img src="images/adding-leads-by-80.png" alt="adding leads by 80" class="article-image" loading="lazy"></p>
+                <p>Reply also needs to have email checks</p>
+                <p><img src="images/adding-leads-by-81.png" alt="adding leads by 81" class="article-image" loading="lazy"></p>
+                <p>Added the terminate a bit late</p>
+                <p><img src="images/adding-leads-by-82.png" alt="adding leads by 82" class="article-image" loading="lazy"></p>
+                <p>update date added</p>
+                <p><img src="images/adding-leads-by-83.png" alt="adding leads by 83" class="article-image" loading="lazy"></p>
+                <p>emails getting send</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

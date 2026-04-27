@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Step-by-Step Guide: Installing Rancher Desktop and Using Kubernetes on Windows 11 - Rifat Erdem Sahin</title>
+    <meta name="description" content="🚀 Step-by-Step Guide: Installing Rancher Desktop and Using Kubernetes on Windows 11 Remove the docker desktop one for starters Setting up Kubernetes on your local machine has never been easier thanks ">
+    <meta name="keywords" content="🚀 Step-by-Step Guide: Installing Rancher Desktop and Using Kubernetes on Windows 11">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/09/21/🚀-step-by-step-guide-installing-rancher-desktop-and-using-kubernetes-on-windows-11/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/09/21/🚀-step-by-step-guide-installing-rancher-desktop-and-using-kubernetes-on-windows-11/">
+    <meta property="og:title" content="🚀 Step-by-Step Guide: Installing Rancher Desktop and Using Kubernetes on Windows 11">
+    <meta property="og:description" content="🚀 Step-by-Step Guide: Installing Rancher Desktop and Using Kubernetes on Windows 11 Remove the docker desktop one for starters Setting up Kubernetes on your local machine has never been easier thanks ">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/09/21/🚀-step-by-step-guide-installing-rancher-desktop-and-using-kubernetes-on-windows-11/">
+    <meta property="twitter:title" content="🚀 Step-by-Step Guide: Installing Rancher Desktop and Using Kubernetes on Windows 11">
+    <meta property="twitter:description" content="🚀 Step-by-Step Guide: Installing Rancher Desktop and Using Kubernetes on Windows 11 Remove the docker desktop one for starters Setting up Kubernetes on your local machine has never been easier thanks ">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "🚀 Step-by-Step Guide: Installing Rancher Desktop and Using Kubernetes on Windows 11",
+      "description": "🚀 Step-by-Step Guide: Installing Rancher Desktop and Using Kubernetes on Windows 11 Remove the docker desktop one for starters Setting up Kubernetes on your local machine has never been easier thanks ",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-09-21",
+      "dateModified": "2024-09-21",
+      "url": "https://www.rifaterdemsahin.com/2024/09/21/🚀-step-by-step-guide-installing-rancher-desktop-and-using-kubernetes-on-windows-11/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/09/21/🚀-step-by-step-guide-installing-rancher-desktop-and-using-kubernetes-on-windows-11/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">🚀 Step-by-Step Guide: Installing Rancher Desktop and Using Kubernetes on Windows 11</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>September 21, 2024</span>
+                    <span>&bull;</span>
+                    <span>16 min read</span>
+                </div>
+                <p class="article-excerpt">🚀 Step-by-Step Guide: Installing Rancher Desktop and Using Kubernetes on Windows 11 Remove the docker desktop one for starters Setting up Kubernetes on your local machine has never been easier thanks to Rancher Desktop.</p>
+            </header>
+            <article class="article-content">
+                <h1>🚀 Step-by-Step Guide: Installing Rancher Desktop and Using Kubernetes on Windows 11</h1>
+                <p>Remove the docker desktop one for starters</p>
+                <p><img src="images/stepbystep-guide-installing-1.png" alt="stepbystep guide installing 1" class="article-image" loading="lazy"></p>
+                <p>Setting up Kubernetes on your local machine has never been easier thanks to Rancher Desktop. If you're running Windows 11 and want to use Kubernetes locally, you’re in the right place! In this guide, I’ll show you how to install Rancher Desktop and get started with Kubernetes using <strong>kubectl</strong> on Windows 11. Let’s dive in! 🎯</p>
+                <hr />
+                <h2>🛠️ Step 1: Install Rancher Desktop on Windows 11</h2>
+                <h3>1.1 Download Rancher Desktop</h3>
+                <p>Head over to the official <a href="https://rancherdesktop.io/">Rancher Desktop website</a> and download the latest Windows installer (.exe).</p>
+                <p><img src="images/stepbystep-guide-installing-2.png" alt="stepbystep guide installing 2" class="article-image" loading="lazy"></p>
+                <h3>1.2 Run the Installer</h3>
+                <ul>
+                <li>
+                <p>Double-click the <code>.exe</code> file to start the installation.</p>
+                </li>
+                <li>
+                <p>Follow the on-screen instructions to complete the installation.</p>
+                </li>
+                </ul>
+                <blockquote></blockquote>
+                <p>💡 <em>Rancher Desktop requires WSL 2 (Windows Subsystem for Linux). Make sure it is enabled.</em></p>
+                <p><img src="images/stepbystep-guide-installing-3.png" alt="stepbystep guide installing 3" class="article-image" loading="lazy"></p>
+                <p><img src="images/stepbystep-guide-installing-4.png" alt="stepbystep guide installing 4" class="article-image" loading="lazy"></p>
+                <h3>1.3 Enable WSL 2 on Windows 11 (if not already enabled)</h3>
+                <p>If WSL 2 isn't already enabled, follow these steps:</p>
+                <ul>
+                <li>
+                <p><strong>Open PowerShell as Administrator</strong>:<br />
+                Press <strong>Win + X</strong> and choose <strong>Windows Terminal (Admin)</strong>.</p>
+                </li>
+                <li>
+                <p><strong>Run the WSL Installation Command</strong>:<br />
+                In the terminal, run the following command to install WSL and set WSL 2 as the default version:</p>
+                </li>
+                </ul>
+                <p>wsl --install</p>
+                <p><img src="images/stepbystep-guide-installing-5.png" alt="stepbystep guide installing 5" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>Restart Your Computer</strong>:<br />
+                After installation, restart your system to ensure everything is set up correctly.</li>
+                </ul>
+                <hr />
+                <h2>🔧 Step 2: Setting Up Kubernetes in Rancher Desktop</h2>
+                <p>After successfully installing Rancher Desktop, it's time to configure Kubernetes.</p>
+                <h3>2.1 Launch Rancher Desktop</h3>
+                <p>Click the <strong>Start</strong> menu, search for <strong>Rancher Desktop</strong>, and open the application.</p>
+                <p><img src="images/stepbystep-guide-installing-6.png" alt="stepbystep guide installing 6" class="article-image" loading="lazy"></p>
+                <h3>2.2 Kubernetes Settings</h3>
+                <ul>
+                <li>
+                <p><strong>Open the Settings Menu</strong>:<br />
+                Once Rancher Desktop is running, click the <strong>Settings</strong> gear icon on the top right corner.</p>
+                </li>
+                <li>
+                <p><strong>Configure Kubernetes</strong>:<br />
+                Under <strong>Kubernetes Settings</strong>, choose the version of Kubernetes you'd like to install.</p>
+                </li>
+                </ul>
+                <blockquote></blockquote>
+                <p>💡 <em>It's recommended to stick to the stable version unless you're exploring specific features.</em></p>
+                <ul>
+                <li>
+                <p><strong>Select Container Runtime</strong>:<br />
+                Rancher Desktop allows you to choose between container runtimes. If you're unsure, stick with <strong>containerd</strong>, the default option.</p>
+                </li>
+                <li>
+                <p><strong>Enable Kubernetes</strong>:<br />
+                After configuring, make sure to toggle the Kubernetes option to <strong>ON</strong>. This will start the Kubernetes services on your machine.</p>
+                </li>
+                <li>
+                <p><strong>Wait for Kubernetes to Install</strong>:<br />
+                Rancher Desktop will now download and configure your chosen Kubernetes version. This may take a few minutes, so grab a coffee ☕ while it sets up!</p>
+                </li>
+                </ul>
+                <h3>Screenshot</h3>
+                <p><img src="images/stepbystep-guide-installing-7.png" alt="stepbystep guide installing 7" class="article-image" loading="lazy"></p>
+                <p>🖼️</p>
+                <p>Once configured, you should see the Kubernetes dashboard indicating that everything is running smoothly.</p>
+                <p>Before </p>
+                <p><img src="images/stepbystep-guide-installing-8.png" alt="stepbystep guide installing 8" class="article-image" loading="lazy"></p>
+                <p>After</p>
+                <p><img src="images/stepbystep-guide-installing-9.png" alt="stepbystep guide installing 9" class="article-image" loading="lazy"></p>
+                <p>Stuck and docker engine restart</p>
+                <p><img src="images/stepbystep-guide-installing-10.png" alt="stepbystep guide installing 10" class="article-image" loading="lazy"></p>
+                <h2>💻 Step 3: Using Kubernetes with <code>kubectl</code> on Windows 11</h2>
+                <p>Once Rancher Desktop is up and running, you’ll want to interact with your Kubernetes cluster using <code>kubectl</code>, which is installed automatically with Rancher Desktop.</p>
+                <h3>3.1 Open PowerShell or Windows Terminal</h3>
+                <p>Press <strong>Win + X</strong> and choose <strong>Windows Terminal</strong> (or PowerShell) to open a command-line interface.</p>
+                <h3>3.2 Test Kubernetes Connection</h3>
+                <p>Run the following command to check if <code>kubectl</code> is installed and working:</p>
+                <p>kubectl version --client</p>
+                <p>You should see the <code>kubectl</code> version displayed, confirming that it's installed.</p>
+                <p><img src="images/stepbystep-guide-installing-11.png" alt="stepbystep guide installing 11" class="article-image" loading="lazy"></p>
+                <h3>3.3 Check Kubernetes Nodes</h3>
+                <p>Now, verify that your Kubernetes cluster is running by checking the nodes:</p>
+                <p><img src="images/stepbystep-guide-installing-12.png" alt="stepbystep guide installing 12" class="article-image" loading="lazy"></p>
+                <p>kubectl get nodes</p>
+                <p>You should see output similar to:</p>
+                <p>NAME             STATUS   ROLES           AGE   VERSION<br />
+                rancher-desktop  Ready    control-plane   10m   v1.24.0</p>
+                <p><img src="images/stepbystep-guide-installing-13.png" alt="stepbystep guide installing 13" class="article-image" loading="lazy"></p>
+                <p>🎉 Congratulations! Your local Kubernetes cluster is now fully operational!</p>
+                <p>Dashboard actions</p>
+                <p><img src="images/stepbystep-guide-installing-14.png" alt="stepbystep guide installing 14" class="article-image" loading="lazy"></p>
+                <hr />
+                <h2>🔥 Step 4: Deploy Your First Kubernetes App</h2>
+                <p>Now that Kubernetes is running, let’s deploy a simple app.</p>
+                <ul>
+                <li>Create a <strong>deployment</strong> using the <strong>nginx</strong> container image:</li>
+                </ul>
+                <p>kubectl create deployment my-nginx --image=nginx</p>
+                <ul>
+                <li>Expose this deployment as a <strong>service</strong>:</li>
+                </ul>
+                <p>kubectl expose deployment my-nginx --port=80 --type=NodePort</p>
+                <ul>
+                <li>Check the status of the pods:</li>
+                </ul>
+                <p>kubectl get pods</p>
+                <ul>
+                <li>Access the service by finding the NodePort:</li>
+                </ul>
+                <p>kubectl get service my-nginx</p>
+                <p>This will give you the details on which port the service is exposed. You can then access it via <code>localhost</code> on that port.</p>
+                <hr />
+                <h2>🌐 Troubleshooting WSL 2 Issues</h2>
+                <p>If you encounter issues with WSL 2 or Rancher Desktop, try the following:</p>
+                <ul>
+                <li><strong>Reinstall WSL 2</strong>:<br />
+                Run the following command in PowerShell (Admin) to update and reinstall WSL 2:</li>
+                </ul>
+                <p>wsl --update</p>
+                <ul>
+                <li><strong>Check WSL 2 Version</strong>:<br />
+                Ensure that your WSL version is set to WSL 2. You can check with:</li>
+                </ul>
+                <p>wsl --list --verbose</p>
+                <p>If you see that any Linux distribution is set to WSL 1, you can upgrade it to WSL 2 with:</p>
+                <p>wsl --set-version <distro_name> 2</p>
+                <hr />
+                <h2>🎯 Why Use Rancher Desktop on Windows 11?</h2>
+                <p>Rancher Desktop simplifies the complexity of managing containers and Kubernetes, allowing you to work faster and more efficiently. Here are a few reasons I recommend it:</p>
+                <ul>
+                <li>
+                <p>🐳 <strong>Docker Replacement</strong>: It replaces Docker Desktop, integrating container runtime and Kubernetes in one tool.</p>
+                </li>
+                <li>
+                <p>🌍 <strong>Cross-Platform Support</strong>: Works across Windows, macOS, and Linux seamlessly.</p>
+                </li>
+                <li>
+                <p>⚙️ <strong>Version Switching</strong>: Easily switch between Kubernetes versions without reinstalling.</p>
+                </li>
+                </ul>
+                <hr />
+                <h2>🎥 Final Thoughts</h2>
+                <p>Rancher Desktop is a must-have tool for developers who want a local Kubernetes environment without the overhead of cloud services. Its ease of use, coupled with the powerful features of Kubernetes, makes it a no-brainer for development on Windows 11.</p>
+                <p>I hope this guide helped you get started with Rancher Desktop on Windows 11. Feel free to reach out to me if you have any questions!</p>
+                <hr />
+                <p><strong>🔗 Connect with me:</strong></p>
+                <ul>
+                <li>
+                <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/rifaterdemsahin/">https://www.linkedin.com/in/rifaterdemsahin/</a></p>
+                </li>
+                <li>
+                <p>🐦 Twitter: <a href="https://x.com/rifaterdemsahin">https://x.com/rifaterdemsahin</a></p>
+                </li>
+                <li>
+                <p>🎥 YouTube: <a href="https://www.youtube.com/@RifatErdemSahin">https://www.youtube.com/@RifatErdemSahin</a></p>
+                </li>
+                <li>
+                <p>💻 GitHub: <a href="https://github.com/rifaterdemsahin">https://github.com/rifaterdemsahin</a></p>
+                </li>
+                </ul>
+                <p>Happy coding! 👨‍💻</p>
+                <p>Stuck At</p>
+                <p><img src="images/stepbystep-guide-installing-15.png" alt="stepbystep guide installing 15" class="article-image" loading="lazy"></p>
+                <p>If you're stuck at the step where Rancher Desktop is updating the <strong>kubeconfig</strong> or having issues with it, this can happen due to a few common reasons. Let's walk through how to troubleshoot and resolve this problem. 🚑</p>
+                <h3>🛠️ Step 1: Check if <code>kubectl</code> is Pointing to the Right Context</h3>
+                <p>Sometimes, the kubeconfig file doesn’t get updated correctly, or <code>kubectl</code> isn't pointing to the correct context. You can verify this by running:</p>
+                <p>kubectl config get-contexts</p>
+                <p><img src="images/stepbystep-guide-installing-16.png" alt="stepbystep guide installing 16" class="article-image" loading="lazy"></p>
+                <p>This will list all available contexts. Look for something like <code>rancher-desktop</code> in the list. If it's not selected, switch to the Rancher Desktop context with the following command:</p>
+                <p>kubectl config use-context rancher-desktop</p>
+                <p><img src="images/stepbystep-guide-installing-17.png" alt="stepbystep guide installing 17" class="article-image" loading="lazy"></p>
+                <h3>🛠️ Step 2: Manually Update the Kubeconfig Path</h3>
+                <p>Rancher Desktop might not have automatically updated the <strong>kubeconfig</strong> path, which tells <code>kubectl</code> where to find your cluster configuration. You can manually ensure that the correct kubeconfig file is being used.</p>
+                <ul>
+                <li>
+                <p>Open <strong>PowerShell</strong> or <strong>Windows Terminal</strong> as Administrator.</p>
+                </li>
+                <li>
+                <p>Check if the kubeconfig file exists at the default path for Rancher Desktop:</p>
+                </li>
+                </ul>
+                <p>$HOME/.kube/config</p>
+                <p><img src="images/stepbystep-guide-installing-18.png" alt="stepbystep guide installing 18" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>If the config file isn't there, manually set the environment variable to the correct path. Run this command:</li>
+                </ul>
+                <p>$env:KUBECONFIG="$HOME/.kube/config"</p>
+                <p><img src="images/stepbystep-guide-installing-19.png" alt="stepbystep guide installing 19" class="article-image" loading="lazy"></p>
+                <p>You can confirm the file path is correct by running:</p>
+                <p>echo $env:KUBECONFIG</p>
+                <p><img src="images/stepbystep-guide-installing-20.png" alt="stepbystep guide installing 20" class="article-image" loading="lazy"></p>
+                <p>After setting it, try running:</p>
+                <p>kubectl get nodes</p>
+                <p>If the configuration is correct, you should see the nodes listed.</p>
+                <h3>🛠️ Step 3: Restart Rancher Desktop</h3>
+                <p>Sometimes, Rancher Desktop needs to be restarted for the configuration to be applied properly. Close Rancher Desktop completely, and then:</p>
+                <ul>
+                <li>
+                <p>Right-click on the <strong>Rancher Desktop</strong> icon in the system tray and select <strong>Quit</strong>.</p>
+                </li>
+                <li>
+                <p>Open Rancher Desktop again and wait for it to load fully.</p>
+                </li>
+                <li>
+                <p>After reopening, try running:</p>
+                </li>
+                </ul>
+                <p>kubectl get nodes</p>
+                <p>If it's still not working, Rancher Desktop may not have been able to correctly set the context. You can recreate the kubeconfig by following the next step.</p>
+                <p><img src="images/stepbystep-guide-installing-21.png" alt="stepbystep guide installing 21" class="article-image" loading="lazy"></p>
+                <p>Run as Admin </p>
+                <p><img src="images/stepbystep-guide-installing-22.png" alt="stepbystep guide installing 22" class="article-image" loading="lazy"></p>
+                <p>Moves to starting </p>
+                <p><img src="images/stepbystep-guide-installing-23.png" alt="stepbystep guide installing 23" class="article-image" loading="lazy"></p>
+                <p><img src="images/stepbystep-guide-installing-24.png" alt="stepbystep guide installing 24" class="article-image" loading="lazy"></p>
+                <h3>🛠️ Step 4: Recreate Kubeconfig</h3>
+                <p>If you suspect that the kubeconfig is corrupted or missing important data, you can recreate it:</p>
+                <ul>
+                <li>
+                <p>Open Rancher Desktop and go to <strong>Preferences &gt; Kubernetes</strong>.</p>
+                </li>
+                <li>
+                <p>There should be an option to <strong>Reset Kubeconfig</strong> or <strong>Recreate Kubeconfig</strong>.</p>
+                </li>
+                <li>
+                <p>Click that, and it will regenerate the kubeconfig file.</p>
+                </li>
+                </ul>
+                <p>Once regenerated, recheck using:</p>
+                <p>kubectl config view</p>
+                <p><img src="images/stepbystep-guide-installing-25.png" alt="stepbystep guide installing 25" class="article-image" loading="lazy"></p>
+                <p>Then test with:</p>
+                <p>kubectl get nodes</p>
+                <h3>🛠️ Step 5: WSL 2 Networking Issues (Optional)</h3>
+                <p>If you are using WSL 2 and the steps above don't work, there could be networking issues between Rancher Desktop (which uses WSL 2) and Windows.</p>
+                <p>You can reset WSL 2 by running:</p>
+                <p>wsl --shutdown</p>
+                <p>Then restart Rancher Desktop and Kubernetes again.</p>
+                <hr />
+                <h3>⚡ Still Stuck? Extra Debugging Steps:</h3>
+                <p>If none of the above steps fix the issue, here are a couple more options to troubleshoot:</p>
+                <ul>
+                <li>
+                <p><strong>Check Logs</strong>: Open the logs from Rancher Desktop by navigating to <strong>Settings &gt; Logs</strong>. Look for any errors or warnings related to kubeconfig.</p>
+                </li>
+                <li>
+                <p><strong>Reinstall Rancher Desktop</strong>: As a last resort, you can uninstall and reinstall Rancher Desktop to ensure a fresh configuration.</p>
+                </li>
+                </ul>
+                <hr />
+                <p>Let me know if this helps or if you're facing any specific error messages!</p>
+                <p>Containers Stuck </p>
+                <p>Start docker desktop engine</p>
+                <p><img src="images/stepbystep-guide-installing-26.png" alt="stepbystep guide installing 26" class="article-image" loading="lazy"></p>
+                <p>New Accepts and New Surveys coming up</p>
+                <p><img src="images/stepbystep-guide-installing-27.png" alt="stepbystep guide installing 27" class="article-image" loading="lazy"></p>
+                <p>2 sides of the coin and let it load </p>
+                <p><img src="images/stepbystep-guide-installing-28.png" alt="stepbystep guide installing 28" class="article-image" loading="lazy"></p>
+                <p><img src="images/stepbystep-guide-installing-29.png" alt="stepbystep guide installing 29" class="article-image" loading="lazy"></p>
+                <p><img src="images/stepbystep-guide-installing-30.png" alt="stepbystep guide installing 30" class="article-image" loading="lazy"></p>
+                <p>kUBERNETES RUNNING IN THE BACK </p>
+                <p><img src="images/stepbystep-guide-installing-31.png" alt="stepbystep guide installing 31" class="article-image" loading="lazy"></p>
+                <p>cLUSTER dASHBOARD</p>
+                <p><img src="images/stepbystep-guide-installing-32.png" alt="stepbystep guide installing 32" class="article-image" loading="lazy"></p>
+                <p><img src="images/stepbystep-guide-installing-33.png" alt="stepbystep guide installing 33" class="article-image" loading="lazy"></p>
+                <p><img src="images/stepbystep-guide-installing-34.png" alt="stepbystep guide installing 34" class="article-image" loading="lazy"></p>
+                <p><img src="images/stepbystep-guide-installing-35.png" alt="stepbystep guide installing 35" class="article-image" loading="lazy"></p>
+                <p><img src="images/stepbystep-guide-installing-36.png" alt="stepbystep guide installing 36" class="article-image" loading="lazy"></p>
+                <p><img src="images/stepbystep-guide-installing-37.png" alt="stepbystep guide installing 37" class="article-image" loading="lazy"></p>
+                <p>Web UI</p>
+                <p>Rancher Desktop does not have a built-in web UI like the full Rancher Server does, but you can install and access a simple Kubernetes web dashboard that works with Rancher Desktop's Kubernetes environment.</p>
+                <p>Here’s how to install and access the Kubernetes Web UI (Dashboard) with Rancher Desktop on Windows:</p>
+                <hr />
+                <h2>Step 1: Deploy Kubernetes Dashboard</h2>
+                <p>You can install the official Kubernetes dashboard by running the following command:</p>
+                <p><code>kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml</code></p>
+                <p>This will deploy the Kubernetes Dashboard along with the necessary resources like <code>ServiceAccounts</code>, <code>Secrets</code>, and <code>ClusterRoles</code>.</p>
+                <p><img src="images/stepbystep-guide-installing-38.png" alt="stepbystep guide installing 38" class="article-image" loading="lazy"></p>
+                <hr />
+                <h2>Step 2: Create an Admin User</h2>
+                <p>To access the dashboard, you'll need to create a service account and a cluster role binding. Run the following commands to create them:</p>
+                <h3>2.1 Create a Service Account</h3>
+                <p><code>kubectl create serviceaccount dashboard-admin-sa</code></p>
+                <p><img src="images/stepbystep-guide-installing-39.png" alt="stepbystep guide installing 39" class="article-image" loading="lazy"></p>
+                <h3>2.2 Bind the Service Account to the Admin Role</h3>
+                <p>k<code>ubectl create clusterrolebinding dashboard-admin-sa-binding --clusterrole=cluster-admin --serviceaccount=default:dashboard-admin-sa</code></p>
+                <hr />
+                <p><img src="images/stepbystep-guide-installing-40.png" alt="stepbystep guide installing 40" class="article-image" loading="lazy"></p>
+                <h2>Step 3: Access the Dashboard</h2>
+                <p>The Kubernetes Dashboard is not exposed on the internet by default. To access it locally, you need to create a proxy. Run this command to start a proxy to access the dashboard:</p>
+                <p>k<code>ubectl proxy</code></p>
+                <p>This will run a proxy server on your local machine at <code>http://localhost:8001</code>.</p>
+                <p><img src="images/stepbystep-guide-installing-41.png" alt="stepbystep guide installing 41" class="article-image" loading="lazy"></p>
+                <hr />
+                <h2>Step 4: Open the Kubernetes Dashboard</h2>
+                <p>After starting the proxy, open your web browser and navigate to the following URL:</p>
+                <p><code>http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/</code></p>
+                <p><img src="images/stepbystep-guide-installing-42.png" alt="stepbystep guide installing 42" class="article-image" loading="lazy"></p>
+                <p>You should now see the Kubernetes Dashboard web UI.</p>
+                <hr />
+                <h2>Step 5: Get Access Token for Login</h2>
+                <p>To log in, you will need an access token.</p>
+                <h3>5.1 Retrieve the Token</h3>
+                <p>Run the following command to get the token for the <code>dashboard-admin-sa</code> account:</p>
+                <p><code>kubectl get secret $(kubectl get serviceaccount dashboard-admin-sa -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"</code></p>
+                <p>This will output the token. Copy it.</p>
+                <h3>5.2 Log In to the Dashboard</h3>
+                <p>Go back to the web UI and paste the token in the login screen under the <strong>Token</strong> section, and hit <strong>Sign in</strong>.</p>
+                <hr />
+                <h2>Step 6: Explore the Kubernetes Web UI</h2>
+                <p>Now you have access to the Kubernetes Dashboard! You can:</p>
+                <ul>
+                <li>
+                <p>Monitor your Kubernetes resources like Pods, Deployments, and Services.</p>
+                </li>
+                <li>
+                <p>Check the health of your nodes and workloads.</p>
+                </li>
+                <li>
+                <p>Perform basic Kubernetes operations directly from the web UI.</p>
+                </li>
+                </ul>
+                <hr />
+                <p>It seems like the service account <code>dashboard-admin-sa</code> doesn't have any associated secrets yet, which is likely causing the issue. This usually happens when Kubernetes hasn't generated the secret for the service account.</p>
+                <p>Here are the steps to resolve the issue:</p>
+                <h3>Step 1: Verify the Service Account and Secret</h3>
+                <ul>
+                <li>Check if the service account was created correctly by running:</li>
+                </ul>
+                <p>kubectl get serviceaccount dashboard-admin-sa</p>
+                <p>You should see an output like:</p>
+                <p>NAME                SECRETS   AGE<br />
+                   dashboard-admin-sa  1         5m</p>
+                <p>If the number of secrets is <code>0</code>, it means the secret hasn't been created yet. Wait for a few minutes and try again.</p>
+                <ul>
+                <li>If the secret count is still <code>0</code>, force Kubernetes to generate a secret by deleting and recreating the service account:</li>
+                </ul>
+                <p>kubectl delete serviceaccount dashboard-admin-sa<br />
+                   kubectl create serviceaccount dashboard-admin-sa</p>
+                <hr />
+                <p><img src="images/stepbystep-guide-installing-43.png" alt="stepbystep guide installing 43" class="article-image" loading="lazy"></p>
+                <h3>Step 2: Bind the Service Account to the Cluster Role Again</h3>
+                <p>Once the service account is recreated, bind it to the <code>cluster-admin</code> role again:</p>
+                <p>kubectl create clusterrolebinding dashboard-admin-sa-binding --clusterrole=cluster-admin --serviceaccount=default:dashboard-admin-sa</p>
+                <hr />
+                <h3>Step 3: Check for Secrets Again</h3>
+                <p>Wait for a minute or two, and check if the secret has been generated by running:</p>
+                <p>kubectl get secret</p>
+                <p>You should see something similar to:</p>
+                <p>NAME                               TYPE                                  DATA   AGE<br />
+                dashboard-admin-sa-token-xxxxx     kubernetes.io/service-account-token   3      1m</p>
+                <hr />
+                <p><img src="images/stepbystep-guide-installing-44.png" alt="stepbystep guide installing 44" class="article-image" loading="lazy"></p>
+                <h3>Step 4: Retrieve the Token</h3>
+                <p>Now, run the following command to retrieve the token again:</p>
+                <p>kubectl get secret $(kubectl get serviceaccount dashboard-admin-sa -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"</p>
+                <p>This should now work correctly and return the token you can use to log in to the Kubernetes Dashboard.</p>
+                <hr />
+                <h3>If the Issue Persists:</h3>
+                <p>If you are still having trouble retrieving the token, try running the following command as an alternative:</p>
+                <p>kubectl get secret -n default $(kubectl get sa dashboard-admin-sa -o jsonpath="{.secrets[0].name}") -o jsonpath="{.data.token}" | base64 --decode</p>
+                <p>This command manually decodes the token from the service account secret.</p>
+                <p>Let me know if this works or if you encounter further issues!</p>
+                <hr />
+                <p>It looks like the <code>openssl</code> command is not recognized because it isn't installed on your system. Since <code>openssl</code> is typically used for generating random tokens, we can work around this by creating a simple static token manually or using a different method.</p>
+                <h3>Method 1: Use a Static Token</h3>
+                <p>You can manually provide a static token instead of using <code>openssl</code>. Here’s how to generate a simple token and proceed:</p>
+                <ul>
+                <li>Create a random token manually. You can just use any random string. For example:</li>
+                </ul>
+                <p>mysupersecrettoken1234567890</p>
+                <ul>
+                <li>Now, create the secret using that token:</li>
+                </ul>
+                <p>kubectl create secret generic dashboard-admin-sa-token --from-literal=token=mysupersecrettoken1234567890 --namespace default</p>
+                <hr />
+                <p><img src="images/stepbystep-guide-installing-45.png" alt="stepbystep guide installing 45" class="article-image" loading="lazy"></p>
+                <h3>Method 2: Use PowerShell to Generate a Random Token</h3>
+                <p>If you'd like to use a random token, PowerShell can generate one without the need for <code>openssl</code>. Here's how:</p>
+                <ul>
+                <li>Use PowerShell to generate a random 32-character token:</li>
+                </ul>
+                <p>$token = [convert]::ToBase64String((1..32 | ForEach-Object {Get-Random -Maximum 255}))</p>
+                <ul>
+                <li>Create the secret with this token:</li>
+                </ul>
+                <p>kubectl create secret generic dashboard-admin-sa-token --from-literal=token=$token --namespace default</p>
+                <hr />
+                <h3>Method 3: Skip Token Creation (Use a Built-in Secret)</h3>
+                <p>You can also skip the manual token creation and wait for Kubernetes to generate a secret automatically after creating the service account. If you see the following command not returning any secrets:</p>
+                <p>kubectl get secrets</p>
+                <p>Run this to verify the service account creation:</p>
+                <p>kubectl get serviceaccount dashboard-admin-sa -o yaml</p>
+                <p>After waiting a few minutes, Kubernetes should automatically generate a secret associated with the <code>dashboard-admin-sa</code> service account.</p>
+                <h3>Next Steps</h3>
+                <p>Once the secret is created with any of the above methods, you can:</p>
+                <ul>
+                <li>Retrieve the secret and token by running:</li>
+                </ul>
+                <p>kubectl describe secret dashboard-admin-sa-token</p>
+                <ul>
+                <li>
+                <p>Copy the token value.</p>
+                </li>
+                <li>
+                <p>Log in to the Kubernetes Dashboard using the token at:</p>
+                </li>
+                </ul>
+                <p>http:&#047;&#047;localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/</p>
+                <p>Let me know how it goes!</p>
+                <hr />
+                <p>It seems like the secret <code>dashboard-admin-sa-token</code> already exists in your cluster. You can either delete the existing secret and recreate it or use the existing secret for your Kubernetes Dashboard login.</p>
+                <h3>Option 1: Delete the Existing Secret and Recreate It</h3>
+                <ul>
+                <li>First, delete the existing secret:</li>
+                </ul>
+                <p>kubectl delete secret dashboard-admin-sa-token --namespace default</p>
+                <ul>
+                <li>After that, recreate the secret with the token:</li>
+                </ul>
+                <p>kubectl create secret generic dashboard-admin-sa-token --from-literal=token=mysupersecrettoken1234567890 --namespace default</p>
+                <p>This will create the secret with the specified token, which you can then use to log in.</p>
+                <hr />
+                <h3>Option 2: Use the Existing Secret</h3>
+                <p>If you don't want to recreate the secret, you can retrieve the token from the existing secret.</p>
+                <p><img src="images/stepbystep-guide-installing-46.png" alt="stepbystep guide installing 46" class="article-image" loading="lazy"></p>
+                <ul>
+                <li>Check the existing secrets:</li>
+                </ul>
+                <p>kubectl get secrets --namespace default</p>
+                <ul>
+                <li>Describe the secret to get the token:</li>
+                </ul>
+                <p>kubectl describe secret dashboard-admin-sa-token --namespace default</p>
+                <p>In the output, you will see a <code>token</code> section like this:</p>
+                <p>Name:         dashboard-admin-sa-token<br />
+                   Namespace:    default<br />
+                   Labels:       <none><br />
+                   Annotations:  <none></p>
+                <p>Type:  kubernetes.io/service-account-token</p>
+                <p>Data<br />
+                   ====<br />
+                   ca.crt:     1025 bytes<br />
+                   namespace:  7 bytes<br />
+                   token:      eyJhbGciOiJSUzI1NiIsImtpZCI6IkFxxxxxx...</p>
+                <ul>
+                <li>
+                <p>Copy the token from the <code>token</code> field.</p>
+                </li>
+                <li>
+                <p>Use this token to log in to the Kubernetes Dashboard.</p>
+                </li>
+                </ul>
+                <p><img src="images/stepbystep-guide-installing-47.png" alt="stepbystep guide installing 47" class="article-image" loading="lazy"></p>
+                <hr />
+                <h3>Step 3: Access the Kubernetes Dashboard</h3>
+                <p>Once you have the token, navigate to the Kubernetes Dashboard login URL:</p>
+                <p>http:&#047;&#047;localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/</p>
+                <p>Paste the token into the <strong>Token</strong> section of the login screen and sign in.</p>
+                <hr />
+                <p>Let me know if you're able to access the dashboard or if you encounter any more issues!</p>
+                <hr />
+                <p><img src="images/stepbystep-guide-installing-48.png" alt="stepbystep guide installing 48" class="article-image" loading="lazy"></p>
+                <p><img src="images/stepbystep-guide-installing-49.png" alt="stepbystep guide installing 49" class="article-image" loading="lazy"></p>
+                <p>The <code>kubeconfig</code> file is usually located in the following default directory on your system. It stores the configuration data that <code>kubectl</code> uses to interact with your Kubernetes cluster.</p>
+                <h3>Default Location of <code>kubeconfig</code> on Windows:</h3>
+                <p>C:\Users\<Your-Username>.kube\config</p>
+                <h3>How to Access the <code>kubeconfig</code> File:</h3>
+                <ul>
+                <li><strong>Open File Explorer</strong> and navigate to the following path:</li>
+                </ul>
+                <p>C:\Users\<Your-Username>.kube\</p>
+                <p>Replace <code>&lt;Your-Username&gt;</code> with your actual Windows username.</p>
+                <ul>
+                <li>
+                <p>Inside the <code>.kube</code> folder, you should find the <code>config</code> file, which is your <code>kubeconfig</code>.</p>
+                </li>
+                <li>
+                <p><strong>Alternative Approach</strong>: You can quickly open the <code>.kube</code> folder by running the following command in <strong>PowerShell</strong> or <strong>Command Prompt</strong>:</p>
+                </li>
+                </ul>
+                <p>explorer %USERPROFILE%.kube</p>
+                <p>This will open the <code>.kube</code> folder directly in File Explorer.</p>
+                <hr />
+                <p>If you installed Rancher Desktop, the configuration file should be placed in this default location. Let me know if you need any further help!</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

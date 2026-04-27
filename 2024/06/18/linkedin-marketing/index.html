@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linkedin Marketing Automation - Rifat Erdem Sahin</title>
+    <meta name="description" content="Linkedin Marketing Automation Add Companies of interest with Python Sure, here's an updated version of the script that includes a debugger, displays iteration location and time in the console, and ign">
+    <meta name="keywords" content="Linkedin Marketing Automation">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/06/18/linkedin-marketing/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/06/18/linkedin-marketing/">
+    <meta property="og:title" content="Linkedin Marketing Automation">
+    <meta property="og:description" content="Linkedin Marketing Automation Add Companies of interest with Python Sure, here's an updated version of the script that includes a debugger, displays iteration location and time in the console, and ign">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/06/18/linkedin-marketing/">
+    <meta property="twitter:title" content="Linkedin Marketing Automation">
+    <meta property="twitter:description" content="Linkedin Marketing Automation Add Companies of interest with Python Sure, here's an updated version of the script that includes a debugger, displays iteration location and time in the console, and ign">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Linkedin Marketing Automation",
+      "description": "Linkedin Marketing Automation Add Companies of interest with Python Sure, here's an updated version of the script that includes a debugger, displays iteration location and time in the console, and ign",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-06-18",
+      "dateModified": "2024-06-18",
+      "url": "https://www.rifaterdemsahin.com/2024/06/18/linkedin-marketing/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/06/18/linkedin-marketing/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Linkedin Marketing Automation</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>June 18, 2024</span>
+                    <span>&bull;</span>
+                    <span>5 min read</span>
+                </div>
+                <p class="article-excerpt">Linkedin Marketing Automation Add Companies of interest with Python Sure, here's an updated version of the script that includes a debugger, displays iteration location and time in the console, and ignores non-URL lines in the text file.</p>
+            </header>
+            <article class="article-content">
+                <h1>Linkedin Marketing Automation</h1>
+                <p>Add Companies of interest with Python</p>
+                <p>Sure, here's an updated version of the script that includes a debugger, displays iteration location and time in the console, and ignores non-URL lines in the text file. You can run the script from the specified location:</p>
+                <p>import time<br />
+                import webbrowser<br />
+                import re</p>
+                <h1>Function to read URLs from a text file and filter out non-URLs</h1>
+                <p>def read_urls(filename):<br />
+                    with open(filename, 'r') as file:<br />
+                        lines = file.readlines()<br />
+                    # Regular expression to match URLs<br />
+                    url_pattern = re.compile(<br />
+                        r'^(?:http|ftp)s?://'  # http:// or https://<br />
+                        r'(?:(?:<a href="?:[A-Z0-9-]{0,61}[A-Z0-9]">A-Z0-9</a>?.)+(?:[A-Z]{2,6}.?|[A-Z0-9-]{2,}.?)|'  # domain...<br />
+                        r'localhost|'  # localhost...<br />
+                        r'\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}|'  # ...or ipv4<br />
+                        r'[?[A-F0-9]*:[A-F0-9:]+]?)'  # ...or ipv6<br />
+                        r'(?::\d+)?'  # optional port<br />
+                        r'(?:/?|[/?]\S+)$', re.IGNORECASE)<br />
+                    urls = [line.strip() for line in lines if url_pattern.match(line.strip())]<br />
+                    return urls</p>
+                <h1>Main function to open URLs at intervals with debugger</h1>
+                <p>def open_urls_at_intervals(filename, interval):<br />
+                    urls = read_urls(filename)<br />
+                    for index, url in enumerate(urls):<br />
+                        print(f"Iteration: {index + 1}, Time: {time.strftime('%Y-%m-%d %H:%M:%S')}, URL: {url}")<br />
+                        webbrowser.open(url)<br />
+                        time.sleep(interval)</p>
+                <p>if <strong>name</strong> == "<strong>main</strong>":<br />
+                    import pdb; pdb.set_trace()  # Debugger entry point<br />
+                    filename = 'C:\Users\Pexabo\Desktop\contractormarketing\links.txt'<br />
+                    interval = 10  # Interval in seconds<br />
+                    open_urls_at_intervals(filename, interval)</p>
+                <h3>Instructions:</h3>
+                <ul>
+                <li>
+                <p><strong>Create the <code>links.txt</code> file:</strong></p>
+                </li>
+                <li>
+                <p>Ensure that you have a <code>links.txt</code> file at <code>C:\Users\Pexabo\Desktop\contractormarketing\links.txt</code>.</p>
+                </li>
+                <li>
+                <p>This file should contain one URL per line. Non-URL lines will be ignored.</p>
+                </li>
+                <li>
+                <p><strong>Save the script:</strong></p>
+                </li>
+                <li>
+                <p>Save the updated script to <code>C:\Users\Pexabo\Desktop\contractormarketing\openlinks.py</code>.</p>
+                </li>
+                <li>
+                <p><strong>Run the script:</strong></p>
+                </li>
+                <li>
+                <p>Open a terminal or command prompt.</p>
+                </li>
+                <li>
+                <p>Navigate to the directory where your script is saved:<br />
+                <code>sh cd C:\Users\Pexabo\Desktop\contractormarketing</code></p>
+                </li>
+                <li>
+                <p>Run the script using Python:<br />
+                <code>sh python openlinks.py</code></p>
+                </li>
+                </ul>
+                <h3>How the script works:</h3>
+                <ul>
+                <li>
+                <p><strong>URL Validation:</strong> The script uses a regular expression to ensure only valid URLs are processed.</p>
+                </li>
+                <li>
+                <p><strong>Debugger:</strong> The <code>pdb.set_trace()</code> line starts the Python debugger, allowing you to step through the code if needed.</p>
+                </li>
+                <li>
+                <p><strong>Console Output:</strong> For each URL, the script prints the iteration number, current time, and URL to the console.</p>
+                </li>
+                <li>
+                <p><strong>Interval:</strong> The script opens each URL at a 10-second interval.</p>
+                </li>
+                </ul>
+                <p>This will ensure that only valid URLs are opened and non-URL lines are ignored. The debugger will help you step through the code if you need to troubleshoot or inspect variables.</p>
+                <p><img src="images/linkedin-marketing-automation-1.png" alt="linkedin marketing automation 1" class="article-image" loading="lazy"></p>
+                <p>error in environment installs</p>
+                <p>024-06-18 16:38:19.105 [info] &gt; C:\Python313\python.exe ~.vscode\extensions\ms-python.python-2024.8.1\python_files\installed_check.py .\requirements.txt</p>
+                <p>2024-06-18 16:38:20.548 [info] Running installed packages checker:  {</p>
+                <p>id: 'C:\PYTHON313\PYTHON.EXE',</p>
+                <p>sysPrefix: 'C:\Python313',</p>
+                <p>envType: 'Global',</p>
+                <p>envName: '',</p>
+                <p>envPath: '',</p>
+                <p>path: 'C:\Python313\python.exe',</p>
+                <p>architecture: 3,</p>
+                <p>sysVersion: '3.13.0b2 (tags/v3.13.0b2:3a83b17, Jun  5 2024, 19:01:25) [MSC v.1940 64 bit (AMD64)]',</p>
+                <p>version: {</p>
+                <pre><code>raw: '3.13.0',
+                
+                major: 3,
+                
+                minor: 13,
+                
+                patch: 0,
+                
+                build: [],
+                
+                prerelease: [ 'beta', '2' ]
+                </code></pre>
+                <p>},</p>
+                <p>displayName: 'Python 3.13.0b2 64-bit',</p>
+                <p>detailedDisplayName: 'Python 3.13.0b2 64-bit',</p>
+                <p>type: undefined</p>
+                <p>} c:\Users\Pexabo.vscode\extensions\ms-python.python-2024.8.1\python_files\installed_check.py c:\Users\Pexabo\Desktop\contractormarketing\requirements.txt</p>
+                <p>2024-06-18 16:38:20.549 [info] &gt; C:\Python313\python.exe ~.vscode\extensions\ms-python.python-2024.8.1\python_files\installed_check.py .\requirements.txt</p>
+                <p>2024-06-18 16:38:36.646 [info] Selected workspace c:\Users\Pexabo\Desktop\contractormarketing for creating virtual environment.</p>
+                <p>2024-06-18 16:38:36.657 [info] Starting Environment refresh</p>
+                <p>2024-06-18 16:38:36.657 [info] Searching for windows registry interpreters</p>
+                <p>2024-06-18 16:38:36.657 [info] Searching windows known paths locator</p>
+                <p>2024-06-18 16:38:36.658 [info] Searching for pyenv environments</p>
+                <p>2024-06-18 16:38:36.658 [info] Searching for conda environments</p>
+                <p>2024-06-18 16:38:36.659 [info] Searching for global virtual environments</p>
+                <p>2024-06-18 16:38:36.659 [info] Searching for custom virtual environments</p>
+                <p>2024-06-18 16:38:36.659 [info] Searching for windows store envs</p>
+                <p>2024-06-18 16:38:36.660 [info] &gt; conda info --json</p>
+                <p>2024-06-18 16:38:36.664 [info] pyenv is not installed</p>
+                <p>2024-06-18 16:38:36.664 [info] Finished searching for pyenv environments: 7 milliseconds</p>
+                <p>2024-06-18 16:38:36.664 [info] Finished searching for custom virtual envs: 6 milliseconds</p>
+                <p>2024-06-18 16:38:36.664 [info] Finished searching for windows store envs: 6 milliseconds</p>
+                <p>2024-06-18 16:38:36.683 [info] Finished searching for global virtual envs: 25 milliseconds</p>
+                <p>2024-06-18 16:38:36.700 [info] &gt; C:\Python312\python.exe -I ~.vscode\extensions\ms-python.python-2024.8.1\python_files\get_output_via_markers.py ~.vscode\extensions\ms-python.python-2024.8.1\python_files\interpreterInfo.py</p>
+                <p>2024-06-18 16:38:36.700 [info] Finished searching windows known paths locator: 44 milliseconds</p>
+                <p>2024-06-18 16:38:36.883 [info] Finished searching for windows registry interpreters: 235 milliseconds</p>
+                <p>2024-06-18 16:38:36.886 [info] Environments refresh paths discovered (event): 238 milliseconds</p>
+                <p>2024-06-18 16:38:36.886 [info] Environments refresh paths discovered: 238 milliseconds</p>
+                <p>2024-06-18 16:38:36.889 [info] Environments refresh finished (event): 240 milliseconds</p>
+                <p>2024-06-18 16:38:36.890 [info] Environment refresh took 242 milliseconds</p>
+                <p>2024-06-18 16:38:38.771 [info] Selected interpreter C:\Python313\python.exe for creating virtual environment.</p>
+                <p>2024-06-18 16:38:41.317 [info] Running Env creation script:  [</p>
+                <p>'C:\Python313\python.exe',</p>
+                <p>'c:\Users\Pexabo\.vscode\extensions\ms-python.python-2024.8.1\python_files\create_venv.py',</p>
+                <p>'--git-ignore',</p>
+                <p>'--requirements',</p>
+                <p>'c:\Users\Pexabo\Desktop\contractormarketing\requirements.txt'</p>
+                <p>]</p>
+                <p>2024-06-18 16:38:41.317 [info] &gt; C:\Python313\python.exe ~.vscode\extensions\ms-python.python-2024.8.1\python_files\create_venv.py --git-ignore --requirements .\requirements.txt</p>
+                <p>2024-06-18 16:38:41.317 [info] cwd: .</p>
+                <p>2024-06-18 16:38:42.377 [info] Running: C:\Python313\python.exe -m venv .venv</p>
+                <p>2024-06-18 16:38:43.523 [info] Environments refresh finished (event): 5 milliseconds</p>
+                <p>2024-06-18 16:38:43.523 [info] Environments refresh paths discovered: 5 milliseconds</p>
+                <p>2024-06-18 16:38:50.070 [info] CREATED_VENV:c:\Users\Pexabo\Desktop\contractormarketing.venv\Scripts\python.exe</p>
+                <p>2024-06-18 16:38:50.071 [info] CREATE_VENV.UPGRADING_PIP</p>
+                <p>Running: c:\Users\Pexabo\Desktop\contractormarketing.venv\Scripts\python.exe -m pip install --upgrade pip</p>
+                <p>2024-06-18 16:38:50.680 [info] Requirement already satisfied: pip in c:\users\pexabo\desktop\contractormarketing.venv\lib\site-packages (24.0)</p>
+                <p>2024-06-18 16:38:51.498 [info] CREATE_VENV.UPGRADED_PIP</p>
+                <p>VENV_INSTALLING_REQUIREMENTS: ['c:\Users\Pexabo\Desktop\contractormarketing\requirements.txt']</p>
+                <p>VENV_INSTALLING_REQUIREMENTS: c:\Users\Pexabo\Desktop\contractormarketing\requirements.txt</p>
+                <p>Running: c:\Users\Pexabo\Desktop\contractormarketing.venv\Scripts\python.exe -m pip install -r c:\Users\Pexabo\Desktop\contractormarketing\requirements.txt</p>
+                <p>2024-06-18 16:38:52.465 [info] <strong>ERROR</strong>: Could not find a version that satisfies the requirement python_version&gt;=3.6 (from versions: 0.0.2)</p>
+                <p>2024-06-18 16:38:52.465 [info] <strong>ERROR</strong>: No matching distribution found for python_version&gt;=3.6</p>
+                <p>2024-06-18 16:38:52.573 [info] Traceback (most recent call last):</p>
+                <p>2024-06-18 16:38:52.573 [info]   File "c:\Users\Pexabo.vscode\extensions\ms-python.python-2024.8.1\python_files\create_venv.py", line 92, in run_process</p>
+                <pre><code>subprocess.run(args, cwd=os.getcwd(), check=True)
+                
+                ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                </code></pre>
+                <p>File "C:\Python313\Lib\subprocess.py", line 577, in run</p>
+                <pre><code>raise CalledProcessError(retcode, process.args,
+                
+                                         output=stdout, stderr=stderr)
+                </code></pre>
+                <p>subprocess.CalledProcessError: Command '['c:\Users\Pexabo\Desktop\contractormarketing\.venv\Scripts\python.exe', '-m', 'pip', 'install', '-r', 'c:\Users\Pexabo\Desktop\contractormarketing\requirements.txt']' returned non-zero exit status 1.</p>
+                <p>2024-06-18 16:38:52.573 [info]</p>
+                <p>During handling of the above exception, another exception occurred:</p>
+                <p>Traceback (most recent call last):</p>
+                <p>2024-06-18 16:38:52.574 [info]   File "c:\Users\Pexabo.vscode\extensions\ms-python.python-2024.8.1\python_files\create_venv.py", line 258, in <module></p>
+                <pre><code>main(sys.argv[1:])
+                
+                ~~~~^^^^^^^^^^^^^^
+                </code></pre>
+                <p>File "c:\Users\Pexabo.vscode\extensions\ms-python.python-2024.8.1\python_files\create_venv.py", line 250, in main</p>
+                <pre><code>install_requirements(venv_path, requirements)
+                
+                ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+                </code></pre>
+                <p>File "c:\Users\Pexabo.vscode\extensions\ms-python.python-2024.8.1\python_files\create_venv.py", line 112, in install_requirements</p>
+                <pre><code>run_process(
+                
+                ~~~~~~~~~~~^
+                
+                    [venv_path, "-m", "pip", "install", "-r", requirement],
+                
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                
+                    "CREATE_VENV.PIP_FAILED_INSTALL_REQUIREMENTS",
+                
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                
+                )
+                
+                ^
+                </code></pre>
+                <p>File "c:\Users\Pexabo.vscode\extensions\ms-python.python-2024.8.1\python_files\create_venv.py", line 94, in run_process</p>
+                <pre><code>raise VenvError(error_message)
+                </code></pre>
+                <p>2024-06-18 16:38:52.574 [info] VenvError: CREATE_VENV.PIP_FAILED_INSTALL_REQUIREMENTS</p>
+                <p>2024-06-18 16:38:52.599 <strong>[error]</strong> <strong>Error</strong> while running venv creation script:  CREATE_VENV.PIP_FAILED_INSTALL_REQUIREMENTS</p>
+                <p>2024-06-18 16:38:52.599 <strong>[error]</strong> CREATE_VENV.PIP_FAILED_INSTALL_REQUIREMENTS</p>
+                <hr />
+                <p><img src="images/linkedin-marketing-automation-2.png" alt="linkedin marketing automation 2" class="article-image" loading="lazy"></p>
+                <p>environment is there but url is not there</p>
+                <p><img src="images/linkedin-marketing-automation-3.png" alt="linkedin marketing automation 3" class="article-image" loading="lazy"></p>
+                <p>cant find why fix the data </p>
+                <p><img src="images/linkedin-marketing-automation-4.png" alt="linkedin marketing automation 4" class="article-image" loading="lazy"></p>
+                <p>now it works</p>
+                <p><img src="images/linkedin-marketing-automation-5.png" alt="linkedin marketing automation 5" class="article-image" loading="lazy"></p>
+                <p>updated version</p>
+                <p><img src="images/linkedin-marketing-automation-6.png" alt="linkedin marketing automation 6" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

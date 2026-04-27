@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step-by-Step Guide: Installing Rancher on Kubernetes from a Windows System - Rifat Erdem Sahin</title>
+    <meta name="description" content="Step-by-Step Guide: Installing Rancher on Kubernetes from a Windows System To install Rancher on Kubernetes using a Windows system, you can follow these step-by-step instructions.">
+    <meta name="keywords" content="Step-by-Step Guide: Installing Rancher on Kubernetes from a Windows System">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/09/20/step-by-step-guide-installing-rancher-on-kubernetes-from-a-windows-system/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/09/20/step-by-step-guide-installing-rancher-on-kubernetes-from-a-windows-system/">
+    <meta property="og:title" content="Step-by-Step Guide: Installing Rancher on Kubernetes from a Windows System">
+    <meta property="og:description" content="Step-by-Step Guide: Installing Rancher on Kubernetes from a Windows System To install Rancher on Kubernetes using a Windows system, you can follow these step-by-step instructions.">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/09/20/step-by-step-guide-installing-rancher-on-kubernetes-from-a-windows-system/">
+    <meta property="twitter:title" content="Step-by-Step Guide: Installing Rancher on Kubernetes from a Windows System">
+    <meta property="twitter:description" content="Step-by-Step Guide: Installing Rancher on Kubernetes from a Windows System To install Rancher on Kubernetes using a Windows system, you can follow these step-by-step instructions.">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Step-by-Step Guide: Installing Rancher on Kubernetes from a Windows System",
+      "description": "Step-by-Step Guide: Installing Rancher on Kubernetes from a Windows System To install Rancher on Kubernetes using a Windows system, you can follow these step-by-step instructions.",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-09-20",
+      "dateModified": "2024-09-20",
+      "url": "https://www.rifaterdemsahin.com/2024/09/20/step-by-step-guide-installing-rancher-on-kubernetes-from-a-windows-system/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/09/20/step-by-step-guide-installing-rancher-on-kubernetes-from-a-windows-system/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Step-by-Step Guide: Installing Rancher on Kubernetes from a Windows System</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>September 20, 2024</span>
+                    <span>&bull;</span>
+                    <span>19 min read</span>
+                </div>
+                <p class="article-excerpt">Step-by-Step Guide: Installing Rancher on Kubernetes from a Windows System To install Rancher on Kubernetes using a Windows system, you can follow these step-by-step instructions.</p>
+            </header>
+            <article class="article-content">
+                <h1>Step-by-Step Guide: Installing Rancher on Kubernetes from a Windows System</h1>
+                <p>To install <strong>Rancher</strong> on <strong>Kubernetes</strong> using a Windows system, you can follow these step-by-step instructions. This guide assumes that you'll be setting up<strong> Kubernetes via Docker Desktop</strong> (which includes a Kubernetes cluster option), and then deploying <strong>Rancher</strong> using <strong>Helm</strong>. Rancher provides a GUI interface for managing Kubernetes clusters.</p>
+                <h3>Prerequisites:</h3>
+                <ul>
+                <li>
+                <p><strong>Windows 10/11 with WSL2 (Windows Subsystem for Linux) enabled</strong>: You’ll need this to run Linux-based tools.</p>
+                </li>
+                <li>
+                <p><strong>Docker Desktop for Windows</strong>: Docker Desktop includes Kubernetes as an option.</p>
+                </li>
+                <li>
+                <p><strong>kubectl (Kubernetes CLI)</strong>: A tool to manage your Kubernetes cluster.</p>
+                </li>
+                <li>
+                <p><strong>Helm (Kubernetes package manager)</strong>: To install Rancher on Kubernetes.</p>
+                </li>
+                </ul>
+                <h3>Step 1: Enable WSL2 on Windows</h3>
+                <p><img src="images/stepbystep-guide-installing-1.png" alt="stepbystep guide installing 1" class="article-image" loading="lazy"></p>
+                <p>If you don't have WSL2 enabled, follow these steps:</p>
+                <ul>
+                <li>Open <strong>PowerShell</strong> as Administrator and run:</li>
+                </ul>
+                <p>dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart<br />
+                   dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</p>
+                <ul>
+                <li>
+                <p>Download and install the <a href="https://aka.ms/wsl2kernel">Linux Kernel update package</a> if required.</p>
+                </li>
+                <li>
+                <p>Set WSL 2 as the default version:</p>
+                </li>
+                </ul>
+                <p>wsl --set-default-version 2</p>
+                <ul>
+                <li>Install a Linux distribution (e.g., Ubuntu) from the Microsoft Store.</li>
+                </ul>
+                <blockquote>
+                <blockquote>
+                <blockquote>
+                <p>Ubuntu Should run in the terminal !</p>
+                </blockquote>
+                </blockquote>
+                </blockquote>
+                <p><img src="images/stepbystep-guide-installing-2.png" alt="stepbystep guide installing 2" class="article-image" loading="lazy"></p>
+                <h3>Step 2: Install Docker Desktop for Windows</h3>
+                <ul>
+                <li>
+                <p>Download and install <a href="https://www.docker.com/products/docker-desktop">Docker Desktop for Windows</a>.</p>
+                </li>
+                <li>
+                <p><strong>During the installation, ensure the option to enable Kubernetes is checked.</strong></p>
+                </li>
+                <li>
+                <p>After installation, start Docker Desktop, and in the settings, go to <strong>Kubernetes</strong> and enable the Kubernetes option. Click <strong>Apply &amp; Restart</strong>.</p>
+                </li>
+                <li>
+                <p>After Kubernetes is enabled, you can check the status by opening a terminal (PowerShell or Ubuntu via WSL) and running:</p>
+                </li>
+                </ul>
+                <p><img src="images/stepbystep-guide-installing-3.png" alt="stepbystep guide installing 3" class="article-image" loading="lazy"></p>
+                <p>kubectl version --client<br />
+                   kubectl get nodes</p>
+                <p>If Kubernetes is running correctly, you’ll see your local node listed.</p>
+                <p><img src="images/stepbystep-guide-installing-4.png" alt="stepbystep guide installing 4" class="article-image" loading="lazy"></p>
+                <h3>Step 3: Install <code>kubectl</code> and Helm</h3>
+                <ul>
+                <li><strong>Install kubectl</strong>:<br />
+                If it’s not already installed, install <code>kubectl</code> by downloading the binary:</li>
+                </ul>
+                <p>curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/windows/amd64/kubectl.exe"</p>
+                <p>Add the folder where <code>kubectl.exe</code> is saved to your system's PATH.</p>
+                <ul>
+                <li>
+                <p><strong>Install Helm</strong>:<br />
+                Download and install Helm for Windows by downloading the binary from the <a href="https://github.com/helm/helm/releases">Helm GitHub releases page</a>.<br />
+                Extract the binary and add it to your system's PATH.</p>
+                </li>
+                <li>
+                <p>Verify Helm installation by running:</p>
+                </li>
+                </ul>
+                <p>helm version</p>
+                <p><img src="images/stepbystep-guide-installing-5.png" alt="stepbystep guide installing 5" class="article-image" loading="lazy"></p>
+                <h3>Step 4: Install Rancher on Kubernetes using Helm</h3>
+                <ul>
+                <li>Add the Rancher Helm chart repository:</li>
+                </ul>
+                <p>helm repo add rancher-latest https://releases.rancher.com/server-charts/latest<br />
+                   helm repo update</p>
+                <ul>
+                <li>Create a <code>cattle-system</code> namespace for Rancher:</li>
+                </ul>
+                <p>kubectl create namespace cattle-system</p>
+                <ul>
+                <li>Install Cert-Manager for managing SSL certificates (Rancher requires it):</li>
+                </ul>
+                <p>kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.10.1/cert-manager.yaml</p>
+                <p>Wait a few minutes for the <code>cert-manager</code> components to be up and running:</p>
+                <p>kubectl get pods --namespace cert-manager</p>
+                <ul>
+                <li>Install Rancher with Helm:</li>
+                </ul>
+                <p>helm install rancher rancher-latest/rancher \<br />
+                     --namespace cattle-system \<br />
+                     --set hostname=<YOUR_RANCHER_HOSTNAME></p>
+                <p>Replace <code>&lt;YOUR_RANCHER_HOSTNAME&gt;</code> with the hostname you want to use for Rancher. You can use a local IP for testing purposes, but it’s better to use a valid domain with DNS.</p>
+                <p>Here are a few examples of local setups for installing Rancher with Helm using different hostnames:</p>
+                <h3>Example 1: Using a local IP for testing</h3>
+                <p>If you're testing locally and don't have a domain name, you can use a local IP address (e.g., 192.168.1.100):</p>
+                <p><code>helm install rancher rancher-latest/rancher --namespace cattle-system --set hostname=192.168.3.100</code></p>
+                <p>helm install rancher rancher-latest/rancher \<br />
+                     --namespace cattle-system \<br />
+                     --set hostname=192.168.3.100</p>
+                <p>Here is a one-liner for installing Rancher using Helm:</p>
+                <p>helm install rancher rancher-latest/rancher --namespace cattle-system --set hostname=192.168.3.100</p>
+                <h3>Example 2: Using localhost for development</h3>
+                <p>For local development, you can set the hostname to <code>localhost</code>:</p>
+                <p>helm install rancher rancher-latest/rancher \<br />
+                     --namespace cattle-system \<br />
+                     --set hostname=localhost</p>
+                <p>helm install rancher rancher-latest/rancher --namespace cattle-system --set hostname=localhost</p>
+                <p>helm install rancher rancher-latest/rancher --namespace cattle-system --set hostname=localhost <strong>--atomic --force</strong></p>
+                <h3>Example 3: Using a custom domain (with DNS)</h3>
+                <p>If you have a valid domain name, such as <code>rancher.local.test</code>, you would use it like this:</p>
+                <p>helm install rancher rancher-latest/rancher \<br />
+                     --namespace cattle-system \<br />
+                     --set hostname=rancher.local.test</p>
+                <p>In this case, you'd also need to update your <code>/etc/hosts</code> file (or your local DNS) to resolve <code>rancher.local.test</code> to your local IP address, such as:</p>
+                <p>192.168.3.100 rancher.local.test</p>
+                <p>Here’s the one-liner for installing Rancher with the specified hostname:</p>
+                <p>helm install rancher rancher-latest/rancher --namespace cattle-system --set hostname=rancher.local.test</p>
+                <h3>Example 4: Using a wildcard domain for Rancher (if available)</h3>
+                <p>If you're using a wildcard domain setup like <code>*.rancher.local</code>, you can configure it as follows:</p>
+                <p>helm install rancher rancher-latest/rancher \<br />
+                     --namespace cattle-system \<br />
+                     --set hostname=rancher.rancher.local</p>
+                <p>This is useful if you're using a wildcard DNS setup in a more complex environment.</p>
+                <p>Let me know if you need more examples or configurations!</p>
+                <ul>
+                <li>Check the Rancher installation:</li>
+                </ul>
+                <p>kubectl -n cattle-system get deploy rancher</p>
+                <p>Ensure the pods are running:</p>
+                <p>kubectl get pods -n cattle-system</p>
+                <h3>Step 5: Access Rancher</h3>
+                <ul>
+                <li>
+                <p>Once Rancher is up and running, access it via your web browser using the hostname or IP you provided. Rancher by default will use self-signed certificates, so you may need to accept an insecure certificate warning.</p>
+                </li>
+                <li>
+                <p>Follow the Rancher setup steps to create a password and start managing your Kubernetes clusters.</p>
+                </li>
+                </ul>
+                <h3>Optional: Expose Rancher with NodePort or Ingress</h3>
+                <p>If you're testing locally without a proper DNS setup, you can expose Rancher with a NodePort service:</p>
+                <p>kubectl -n cattle-system edit svc rancher</p>
+                <p>Change the <code>type: ClusterIP</code> to <code>type: NodePort</code>. This will expose Rancher on a port of the Kubernetes node.</p>
+                <p>Now, access Rancher via <code>http://&lt;YOUR_NODE_IP&gt;:&lt;NODEPORT&gt;</code>.</p>
+                <h3>Step 6: (Optional) Configure SSL</h3>
+                <p>For a production setup, you should use a valid SSL certificate. You can use Let's Encrypt or another certificate provider. Rancher provides detailed documentation on how to configure this with the Helm chart.</p>
+                <p>That's it! You now have Rancher running on Kubernetes installed from a Windows system.</p>
+                <p><strong>🔗 Connect with me:</strong></p>
+                <ul>
+                <li>
+                <p>💼 LinkedIn: <a href="https://www.linkedin.com/in/rifaterdemsahin/">https://www.linkedin.com/in/rifaterdemsahin/</a></p>
+                </li>
+                <li>
+                <p>🐦 Twitter: <a href="https://x.com/rifaterdemsahin">https://x.com/rifaterdemsahin</a></p>
+                </li>
+                <li>
+                <p>🎥 YouTube: <a href="https://www.youtube.com/@RifatErdemSahin">https://www.youtube.com/@RifatErdemSahin</a></p>
+                </li>
+                <li>
+                <p>💻 GitHub: <a href="https://github.com/rifaterdemsahin">https://github.com/rifaterdemsahin</a></p>
+                </li>
+                </ul>
+                <hr />
+                <p>The error you're encountering when running <code>kubectl get nodes</code> suggests that <code>kubectl</code> is unable to connect to the Kubernetes API server. The error messages like <code>couldn't get current server API group list</code> and <code>Unable to connect to the server: EOF</code> typically indicate a networking issue or misconfiguration in your Kubernetes setup.</p>
+                <p>Here are some potential reasons and troubleshooting steps:</p>
+                <h3>1. <strong>Kubernetes Cluster is Not Running</strong></h3>
+                <ul>
+                <li>
+                <p>If you are using a local Kubernetes solution (like Docker Desktop with Kubernetes, Minikube, or CRC), ensure the Kubernetes cluster is actually running.</p>
+                </li>
+                <li>
+                <p>You can check the status of Docker Desktop Kubernetes or Minikube by running:<br />
+                <code>bash minikube status</code><br />
+                Or check Docker Desktop’s Kubernetes settings to confirm that it’s running.</p>
+                </li>
+                </ul>
+                <h3>2. <strong>Kubeconfig Configuration Issues</strong></h3>
+                <ul>
+                <li>
+                <p>The <code>kubectl</code> command relies on the <code>kubeconfig</code> file to know which cluster to connect to. Check if the configuration is set correctly:<br />
+                <code>bash **kubectl config view**</code></p>
+                </li>
+                <li>
+                <p>If it’s pointing to the wrong cluster or missing details, you can switch the context:<br />
+                <code>bash kubectl config use-context &lt;context-name&gt;</code></p>
+                </li>
+                </ul>
+                <p><img src="images/stepbystep-guide-installing-6.png" alt="stepbystep guide installing 6" class="article-image" loading="lazy"></p>
+                <h3>3. <strong>Port Forwarding/Networking Issue</strong></h3>
+                <ul>
+                <li>
+                <p>Since the error points to <code>https://kubernetes.docker.internal:6443</code>, it looks like you're using a local cluster through Docker. There might be a networking issue between your machine and the Kubernetes API server.</p>
+                </li>
+                <li>
+                <p>Ensure Docker is correctly configured to expose the Kubernetes API server on <code>6443</code> and that there is no firewall or security software blocking access to that port.</p>
+                </li>
+                </ul>
+                <h3>4. <strong>TLS Certificates or Credentials Issue</strong></h3>
+                <ul>
+                <li>
+                <p>Sometimes, connectivity issues stem from expired or misconfigured certificates. Make sure that your Kubernetes credentials (stored in the <code>kubeconfig</code>) are valid and haven't expired.</p>
+                </li>
+                <li>
+                <p>You can regenerate the <code>kubeconfig</code> or ensure the correct certificates are in place.</p>
+                </li>
+                </ul>
+                <h3>5. <strong>Restart Docker Desktop or Minikube</strong></h3>
+                <ul>
+                <li>If you’re using Docker Desktop or Minikube, sometimes simply restarting the Kubernetes environment can resolve the issue:</li>
+                </ul>
+                <p>For Docker Desktop: Toggle the Kubernetes feature off and on again in the settings.</p>
+                <ul>
+                <li>For Minikube: Run <code>minikube stop</code> followed by <code>minikube start</code>.</li>
+                </ul>
+                <h3>6. <strong>Check API Server Logs</strong></h3>
+                <ul>
+                <li>You can check the logs of the Kubernetes API server to identify if it's throwing any errors. If you're using Minikube, run:<br />
+                <code>bash minikube logs</code></li>
+                </ul>
+                <p>By going through these steps, you should be able to identify the root cause of the connectivity issue and restore access to the Kubernetes API server.</p>
+                <p>No, you do not need Minikube if you are already using Docker Desktop with Kubernetes. Docker Desktop has its own built-in Kubernetes environment, and Minikube is typically used for setting up a Kubernetes cluster locally when Docker Desktop’s Kubernetes is not in use.</p>
+                <p>Here’s a quick breakdown:</p>
+                <ul>
+                <li>
+                <p><strong>Docker Desktop with Kubernetes</strong>: This provides a simple, built-in Kubernetes environment on your local machine. It allows you to manage containers and Kubernetes without needing additional tools like Minikube.</p>
+                </li>
+                <li>
+                <p><strong>Minikube</strong>: Minikube is another tool that sets up a local Kubernetes cluster, often used when you want to create a standalone Kubernetes environment without Docker Desktop, or when you need specific Kubernetes versions or configurations.</p>
+                </li>
+                </ul>
+                <h3>In your case:</h3>
+                <p>Since your <code>kubectl config view</code> output shows the context as <code>docker-desktop</code> (which points to Docker Desktop’s Kubernetes), you are already using Docker Desktop’s Kubernetes. You <strong>do not need Minikube</strong> unless you have a specific reason to run a separate Kubernetes cluster.</p>
+                <p>To resolve the <code>kubectl</code> issues, focus on ensuring that Docker Desktop's Kubernetes is enabled and running properly.</p>
+                <p>Running One &gt; No errors &gt; After Starting</p>
+                <p><img src="images/stepbystep-guide-installing-7.png" alt="stepbystep guide installing 7" class="article-image" loading="lazy"></p>
+                <p><img src="images/stepbystep-guide-installing-8.png" alt="stepbystep guide installing 8" class="article-image" loading="lazy"></p>
+                <p>Rancher Values</p>
+                <p>In Docker Containers Logs</p>
+                <p><img src="images/stepbystep-guide-installing-9.png" alt="stepbystep guide installing 9" class="article-image" loading="lazy"></p>
+                <p>Containers for Kubernetes</p>
+                <p><img src="images/stepbystep-guide-installing-10.png" alt="stepbystep guide installing 10" class="article-image" loading="lazy"></p>
+                <p>After updates</p>
+                <p><img src="images/stepbystep-guide-installing-11.png" alt="stepbystep guide installing 11" class="article-image" loading="lazy"></p>
+                <p><img src="images/stepbystep-guide-installing-12.png" alt="stepbystep guide installing 12" class="article-image" loading="lazy"></p>
+                <p>Original Value</p>
+                <p><img src="images/stepbystep-guide-installing-13.png" alt="stepbystep guide installing 13" class="article-image" loading="lazy"></p>
+                <p>Running Pods</p>
+                <p><img src="images/stepbystep-guide-installing-14.png" alt="stepbystep guide installing 14" class="article-image" loading="lazy"></p>
+                <p>Ip Not Working</p>
+                <p><img src="images/stepbystep-guide-installing-15.png" alt="stepbystep guide installing 15" class="article-image" loading="lazy"></p>
+                <p>Check the current ip</p>
+                <p><img src="images/stepbystep-guide-installing-16.png" alt="stepbystep guide installing 16" class="article-image" loading="lazy"></p>
+                <p>Error for <strong>Rancher</strong>!</p>
+                <p>The error you're encountering (<code>services "rancher" is invalid</code>) when trying to edit the Rancher service in the <code>cattle-system</code> namespace suggests there may be a problem with the Rancher service configuration. Here's a list of steps you can take to troubleshoot the issue:</p>
+                <ul>
+                <li><strong>Check the service details:</strong><br />
+                Run the following command to check the details of the Rancher service and verify if it exists and is correctly configured:</li>
+                </ul>
+                <p>kubectl get svc -n cattle-system</p>
+                <p>This will list all services in the <code>cattle-system</code> namespace. Ensure that the service named <code>rancher</code> is listed there. If it's not present, it may need to be recreated.</p>
+                <ul>
+                <li><strong>Inspect the service YAML:</strong><br />
+                If the <code>rancher</code> service is listed, try inspecting its YAML without editing it:</li>
+                </ul>
+                <p>kubectl get svc rancher -n cattle-system -o yaml</p>
+                <p>This will display the full configuration of the service in YAML format. Look for any potential issues, such as invalid fields, missing values, or misconfigurations.</p>
+                <ul>
+                <li>
+                <p><strong>Check service status:</strong><br />
+                Review the status of the pods and ensure that Rancher is running properly. You already checked the pod status, and all three Rancher pods are in the <code>Running</code> state, so the pods themselves seem healthy.</p>
+                </li>
+                <li>
+                <p><strong>Check for logs:</strong><br />
+                View logs for one of the running Rancher pods to see if there are any errors that might give insight into why the service isn't behaving as expected:</p>
+                </li>
+                </ul>
+                <p>kubectl logs <pod-name> -n cattle-system</p>
+                <p>Replace <code>&lt;pod-name&gt;</code> with one of the Rancher pod names (e.g., <code>rancher-57c9747d96-n42sq</code>).</p>
+                <ul>
+                <li><strong>Check for Kubernetes API server issues:</strong><br />
+                Sometimes, editing services may fail due to issues with the Kubernetes API server or its connectivity. Try running:</li>
+                </ul>
+                <p>kubectl version</p>
+                <p>to ensure that your <code>kubectl</code> client and server versions are compatible and there aren't any connectivity issues.</p>
+                <ul>
+                <li><strong>Manual editing:</strong><br />
+                If the edit command is failing, you can manually edit the service configuration by downloading the YAML, modifying it locally, and applying the changes:</li>
+                </ul>
+                <p>kubectl get svc rancher -n cattle-system -o yaml &gt; rancher-service.yaml</p>
+                <p>Edit <code>rancher-service.yaml</code> in a text editor and then apply the changes:</p>
+                <p>kubectl apply -f rancher-service.yaml -n cattle-system</p>
+                <p>If none of these steps resolve the issue, there might be a deeper issue with the service configuration or Rancher itself that would require further investigation into its logs and possibly recreating the service from scratch.</p>
+                <p><strong>Rancher</strong> Debug</p>
+                <p><img src="images/stepbystep-guide-installing-17.png" alt="stepbystep guide installing 17" class="article-image" loading="lazy"></p>
+                <p><img src="images/stepbystep-guide-installing-18.png" alt="stepbystep guide installing 18" class="article-image" loading="lazy"></p>
+                <p><img src="images/stepbystep-guide-installing-19.png" alt="stepbystep guide installing 19" class="article-image" loading="lazy"></p>
+                <p><img src="images/stepbystep-guide-installing-20.png" alt="stepbystep guide installing 20" class="article-image" loading="lazy"></p>
+                <p><img src="images/stepbystep-guide-installing-21.png" alt="stepbystep guide installing 21" class="article-image" loading="lazy"></p>
+                <p>It looks like Rancher encountered a fatal error while starting, and the specific issue mentioned is that the namespace "fleet-local" already exists. This error can occur if a resource, like a namespace or service, is being recreated during startup but was not properly removed or cleaned up from a previous deployment.</p>
+                <p>Here are some possible steps you could take to resolve the issue:</p>
+                <ul>
+                <li>
+                <p><strong>Check the existing namespaces</strong>:<br />
+                Run <code>kubectl get namespaces</code> to check if "fleet-local" already exists.</p>
+                </li>
+                <li>
+                <p><strong>Delete or modify the conflicting namespace</strong>:<br />
+                If the "fleet-local" namespace is no longer needed, you can delete it with the command:</p>
+                </li>
+                </ul>
+                <p>kubectl delete namespace fleet-local</p>
+                <p>If it's in use, you might need to investigate why it's conflicting and adjust the deployment configuration to avoid recreating an existing namespace.</p>
+                <ul>
+                <li><strong>Restart Rancher</strong>:<br />
+                After resolving the namespace issue, restart Rancher to see if the error is fixed.</li>
+                </ul>
+                <p>If you're managing this in a production environment, ensure that any deletion or modification doesn't impact services running in the "fleet-local" namespace. If the issue persists, checking Rancher logs or looking into specific configuration issues with Fleet might also help debug further.</p>
+                <p><img src="images/stepbystep-guide-installing-22.png" alt="stepbystep guide installing 22" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>If Rancher is set up inside Kubernetes on Docker (Docker Desktop Kubernetes or similar), you can follow these steps to find the Rancher URL for logging in:</p>
+                <h3>1. <strong>Check the Service for Rancher</strong></h3>
+                <p>Since Rancher is installed on Kubernetes, it will be exposed via a service. Use this command to check the services:</p>
+                <p>kubectl -n cattle-system get svc</p>
+                <p><img src="images/stepbystep-guide-installing-23.png" alt="stepbystep guide installing 23" class="article-image" loading="lazy"></p>
+                <p>Look for a service named <code>rancher</code>. If it's using a <code>**LoadBalancer**</code>, you’ll see an external IP under the <code>EXTERNAL-IP</code> column. If it’s using a <code>**ClusterIP**</code>, you may need to port-forward to access it.</p>
+                <p>Example output:</p>
+                <p>NAME      TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)<br />
+                   rancher   LoadBalancer   10.0.0.15      192.168.1.100   80:30778/TCP</p>
+                <p>If it’s using a <code>LoadBalancer</code>, you can use the <code>EXTERNAL-IP</code> (e.g., <code>192.168.1.100</code>) and access it at <code>http://EXTERNAL-IP</code> or <code>https://EXTERNAL-IP</code> (depending on your setup).</p>
+                <h3>2. <strong>Port-Forward if ClusterIP is used</strong></h3>
+                <p>If your service type is <code>ClusterIP</code>, you will need to use port-forwarding to access Rancher. Use the following command to set up port forwarding from your local machine to the Rancher service:</p>
+                <p>kubectl -n cattle-system port-forward svc/rancher 8080:80</p>
+                <p>Now, Rancher will be accessible at <code>http://localhost:8080</code>.</p>
+                <p><img src="images/stepbystep-guide-installing-24.png" alt="stepbystep guide installing 24" class="article-image" loading="lazy"></p>
+                <h3>3. <strong>Check Logs for Rancher URL</strong></h3>
+                <p>If you’re still unsure of the URL, you can check the logs of the Rancher container. Use the following command to see the logs:</p>
+                <p>kubectl -n cattle-system logs -l app=rancher</p>
+                <p>The logs may contain the startup details and the exact URL to access Rancher.</p>
+                <p><img src="images/stepbystep-guide-installing-25.png" alt="stepbystep guide installing 25" class="article-image" loading="lazy"></p>
+                <h3>4. <strong>Accessing Rancher</strong></h3>
+                <p>Once you have the correct IP or are using port-forwarding, open your browser and navigate to the Rancher URL (e.g., <code>http://localhost:8080</code> or the external IP obtained from the <code>kubectl get svc</code> command).</p>
+                <p>Let me know if you need further assistance!</p>
+                <hr />
+                <p>Helm force <strong>reinstall</strong></p>
+                <p>The error "cannot re-use a name that is still in use" occurs when you're trying to install a Helm release with a name that already exists. This usually means that the Helm release <code>rancher</code> is already deployed in the <code>cattle-system</code> namespace, even if the installation failed earlier.</p>
+                <p>To resolve this, you have a few options:</p>
+                <h3>1. <strong>Check for Existing Helm Releases:</strong></h3>
+                <p>First, check if there is an existing Helm release with the name <code>rancher</code>:</p>
+                <p>helm list --namespace cattle-system</p>
+                <p>If you see the release, you can either upgrade it or uninstall it.</p>
+                <p><img src="images/stepbystep-guide-installing-26.png" alt="stepbystep guide installing 26" class="article-image" loading="lazy"></p>
+                <h3>2. <strong>Uninstall the Existing Release:</strong></h3>
+                <p>If you want to remove the existing release and start fresh, uninstall it:</p>
+                <p>helm uninstall rancher --namespace cattle-system</p>
+                <p><img src="images/stepbystep-guide-installing-27.png" alt="stepbystep guide installing 27" class="article-image" loading="lazy"></p>
+                <p>Then, retry the installation:</p>
+                <p>helm install rancher rancher-latest/rancher --namespace cattle-system --set hostname=localhost</p>
+                <h3>3. <strong>Upgrade the Existing Release:</strong></h3>
+                <p>If you prefer to upgrade the existing installation instead of uninstalling, use:</p>
+                <p>helm upgrade rancher rancher-latest/rancher --namespace cattle-system --set hostname=localhost</p>
+                <p>Let me know how it goes!</p>
+                <hr />
+                <p>To get the URL for your Rancher installation, follow these steps:</p>
+                <h3>1. <strong>Check the Rancher Service:</strong></h3>
+                <p>Use the following command to find the external URL:</p>
+                <p>kubectl get services --namespace cattle-system</p>
+                <p>Look for the <code>rancher</code> service, which might be exposed as a <code>LoadBalancer</code> or <code>NodePort</code>. Depending on your Kubernetes setup, this will show the URL or IP address you need.</p>
+                <p>Namespace and Deployed </p>
+                <p><img src="images/stepbystep-guide-installing-28.png" alt="stepbystep guide installing 28" class="article-image" loading="lazy"></p>
+                <h3>2. <strong>If using LoadBalancer:</strong></h3>
+                <p>If the service type is <code>LoadBalancer</code>, you should see an external IP in the <code>EXTERNAL-IP</code> column. For example:</p>
+                <p>NAME      TYPE           CLUSTER-IP    EXTERNAL-IP     PORT(S)        AGE<br />
+                   rancher   LoadBalancer   10.43.0.234   35.192.0.10     80:31511/TCP   10m</p>
+                <p>You can then access Rancher at:</p>
+                <p>http://<EXTERNAL-IP></p>
+                <p>In the example above, the URL would be <code>http://35.192.0.10</code>.</p>
+                <h3>3. <strong>If using NodePort:</strong></h3>
+                <p>If the service is of type <code>NodePort</code>, you will need to use the IP of one of your cluster nodes and the port listed in the <code>PORT(S)</code> column. For example:</p>
+                <p>NAME      TYPE       CLUSTER-IP    EXTERNAL-IP   PORT(S)           AGE<br />
+                   rancher   NodePort   10.43.0.234   <none>        80:31511/TCP      10m</p>
+                <p>Here, you can access Rancher at:</p>
+                <p>http://<NODE-IP>:31511</p>
+                <p>Replace <code>&lt;NODE-IP&gt;</code> with the IP address of your Kubernetes node.</p>
+                <h3>4. <strong>If using Ingress:</strong></h3>
+                <p>If you’ve set up an ingress controller and configured a hostname (like <code>localhost</code> in your case), you can access Rancher via that hostname:</p>
+                <p>http:&#047;&#047;localhost</p>
+                <p>If you’re running this locally, make sure the hostname resolves correctly by adding an entry to your <code>/etc/hosts</code> or setting up a DNS.</p>
+                <h3>Check Installation Logs:</h3>
+                <p>After installation, Helm usually outputs instructions on how to access Rancher. You can check these logs by running:</p>
+                <p>helm status rancher --namespace cattle-system</p>
+                <p>This should help you get to the correct URL for Rancher. Let me know if you need more assistance!</p>
+                <p><img src="images/stepbystep-guide-installing-29.png" alt="stepbystep guide installing 29" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>After installs</p>
+                <p>The error you're encountering happens because port 8080 on your local machine is already in use by another process. Here are a few steps you can take to resolve this issue:</p>
+                <h3>Option 1: Use a Different Port</h3>
+                <p>You can forward to a different local port that's not in use. For example, if 8080 is occupied, you could try another port like 8081:</p>
+                <p>kubectl -n cattle-system port-forward svc/rancher 8081:80</p>
+                <p>This will forward port 80 of the Rancher service to your local port 8081.</p>
+                <h3>Option 2: Identify and Kill the Process Using Port 8080</h3>
+                <p>If you want to free up port 8080, you can identify the process using that port and stop it. Here’s how to do that:</p>
+                <h4>For Windows:</h4>
+                <ul>
+                <li>
+                <p>Open a command prompt or PowerShell and run the following command to find the process using port 8080: <code>netstat -aon | findstr :8080</code> This will return the process ID (PID) of the process using port 8080.</p>
+                </li>
+                <li>
+                <p>Once you have the PID, you can kill the process by running: <code>taskkill /PID &lt;PID&gt; /F</code> Replace <code>&lt;PID&gt;</code> with the actual process ID.</p>
+                </li>
+                </ul>
+                <p><img src="images/stepbystep-guide-installing-30.png" alt="stepbystep guide installing 30" class="article-image" loading="lazy"></p>
+                <h3>Option 3: Check for Existing Port Forwarding</h3>
+                <p>Ensure there’s no existing <code>kubectl</code> port-forwarding session already running on port 8080. You can check for running <code>kubectl</code> processes and stop them if needed.</p>
+                <p>ClusterIP <strong>Convert</strong></p>
+                <p>kubectl -n cattle-system edit svc rancher</p>
+                <p>`# Please edit the object below. Lines beginning with a '#' will be ignored,</p>
+                <h1>and an empty file will abort the edit. If an error occurs while saving this file will be</h1>
+                <h1>reopened with the relevant failures.</h1>
+                <h1></h1>
+                <p>apiVersion: v1<br />
+                kind: Service<br />
+                metadata:<br />
+                  annotations:<br />
+                    meta.helm.sh/release-name: rancher<br />
+                    meta.helm.sh/release-namespace: cattle-system<br />
+                  creationTimestamp: "2024-09-20T19:50:53Z"<br />
+                  labels:<br />
+                    app: rancher<br />
+                    app.kubernetes.io/managed-by: Helm<br />
+                    chart: rancher-2.9.2<br />
+                    heritage: Helm<br />
+                    release: rancher<br />
+                  name: rancher<br />
+                  namespace: cattle-system<br />
+                  resourceVersion: "11310"<br />
+                  uid: 788c1e8d-1b0c-44ca-9c24-64efd548ae1b<br />
+                spec:<br />
+                  clusterIP: 10.98.252.41<br />
+                  clusterIPs:<br />
+                  - 10.98.252.41<br />
+                  internalTrafficPolicy: Cluster<br />
+                  ipFamilies:<br />
+                  - IPv4<br />
+                  ipFamilyPolicy: SingleStack<br />
+                  ports:<br />
+                  - name: http<br />
+                    port: 80<br />
+                    protocol: TCP<br />
+                    targetPort: 80<br />
+                  - name: https-internal<br />
+                    port: 443<br />
+                    protocol: TCP<br />
+                    targetPort: 444<br />
+                  selector:<br />
+                    app: rancher<br />
+                  sessionAffinity: None<br />
+                  type: ClusterIP<br />
+                status:<br />
+                  loadBalancer: {}`</p>
+                <p>It looks like the service is already of type <code>ClusterIP</code>, which is what you need. The type <code>ClusterIP</code> is specified in the following part of the YAML:</p>
+                <p>type: ClusterIP</p>
+                <p>There is no need to modify this configuration if you intend to keep the service as a <code>ClusterIP</code>. However, if you're looking to adjust something else, feel free to clarify!</p>
+                <p>CHANGE</p>
+                <p>To access a service of type <code>ClusterIP</code> from within the Kubernetes cluster, you have several options. Since <code>ClusterIP</code> services are only accessible from inside the cluster (they don't expose the service externally by default), here's how you can access it:</p>
+                <h3>1. <strong>Access via Pod (within the cluster)</strong></h3>
+                <p>You can access the service from any pod inside the cluster using the service name and the port defined in your <code>Service</code> object.</p>
+                <p>For example, if you have a pod running inside the cluster, you can access the service like this:</p>
+                <ul>
+                <li>
+                <p><strong>Service Name</strong>: <code>rancher</code> (as defined in your spec)</p>
+                </li>
+                <li>
+                <p><strong>Namespace</strong>: <code>cattle-system</code></p>
+                </li>
+                <li>
+                <p><strong>Port</strong>: <code>80</code> (for HTTP) or <code>443</code> (for HTTPS)</p>
+                </li>
+                </ul>
+                <p>If you are inside a pod, you can use curl or similar tools to access the service:</p>
+                <p>curl http://rancher.cattle-system.svc.cluster.local:80</p>
+                <p>In this example, <code>rancher.cattle-system.svc.cluster.local</code> is the DNS name for the service, and the <code>80</code> is the port defined in your YAML file.</p>
+                <h3>2. <strong>Port Forwarding (from local to cluster)</strong></h3>
+                <p>If you want to access the <code>ClusterIP</code> service from your local machine for testing, you can use <code>kubectl port-forward</code>. This allows you to forward a port from your local machine to the service within the cluster.</p>
+                <p>For example, to access the HTTP service (port 80) from your local machine, you can run:</p>
+                <p>kubectl port-forward -n cattle-system svc/rancher 8080:80</p>
+                <p>This forwards your local port <code>8080</code> to port <code>80</code> of the <code>rancher</code> service. Then, you can access the service in your browser or via <code>curl</code>:</p>
+                <p>http:&#047;&#047;localhost:8080</p>
+                <h3>3. <strong>Using a Debug Pod</strong></h3>
+                <p>If you don't have a running pod but want to debug the connectivity within the cluster, you can deploy a temporary pod to check the service.</p>
+                <ul>
+                <li>Run a temporary pod:</li>
+                </ul>
+                <p>kubectl run curlpod --image=radial/busyboxplus:curl -i --tty --rm</p>
+                <ul>
+                <li>From inside that pod, try accessing the service:</li>
+                </ul>
+                <p>curl http://rancher.cattle-system.svc.cluster.local:80</p>
+                <h3>4. <strong>Access via a NodePort or LoadBalancer (if external access is required)</strong></h3>
+                <p>If you need to access the service from outside the cluster (e.g., from your browser or an external machine), you'll need to change the <code>Service</code> type to <code>NodePort</code> or <code>LoadBalancer</code>.</p>
+                <p>Here's an example of how to change it to <code>NodePort</code>:</p>
+                <p>spec:<br />
+                  type: NodePort<br />
+                  ports:<br />
+                  - port: 80<br />
+                    targetPort: 80<br />
+                    nodePort: 30080  # Optional: you can set a custom NodePort here</p>
+                <p>For <code>LoadBalancer</code> (assuming your cluster supports this), change it like so:</p>
+                <p>spec:<br />
+                  type: LoadBalancer</p>
+                <h3>5. <strong>Using Ingress (Optional for HTTP/HTTPS Services)</strong></h3>
+                <p>If you plan to expose the <code>rancher</code> service externally and want to use a domain name, you can set up an <code>Ingress</code> resource. The ingress controller will route traffic to your <code>ClusterIP</code> service.</p>
+                <p>Let me know if you want more details about any specific method!</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

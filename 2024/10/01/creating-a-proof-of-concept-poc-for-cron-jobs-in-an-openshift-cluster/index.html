@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creating a Proof of Concept (PoC) for Cron Jobs in an OpenShift Cluster - Rifat Erdem Sahin</title>
+    <meta name="description" content="Creating a Proof of Concept (PoC) for Cron Jobs in an OpenShift Cluster When working with OpenShift, you can harness Kubernetes CronJobs to handle scheduled tasks in a containerized environment.">
+    <meta name="keywords" content="Creating a Proof of Concept (PoC) for Cron Jobs in an OpenShift Cluster">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/10/01/creating-a-proof-of-concept-poc-for-cron-jobs-in-an-openshift-cluster/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/10/01/creating-a-proof-of-concept-poc-for-cron-jobs-in-an-openshift-cluster/">
+    <meta property="og:title" content="Creating a Proof of Concept (PoC) for Cron Jobs in an OpenShift Cluster">
+    <meta property="og:description" content="Creating a Proof of Concept (PoC) for Cron Jobs in an OpenShift Cluster When working with OpenShift, you can harness Kubernetes CronJobs to handle scheduled tasks in a containerized environment.">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/10/01/creating-a-proof-of-concept-poc-for-cron-jobs-in-an-openshift-cluster/">
+    <meta property="twitter:title" content="Creating a Proof of Concept (PoC) for Cron Jobs in an OpenShift Cluster">
+    <meta property="twitter:description" content="Creating a Proof of Concept (PoC) for Cron Jobs in an OpenShift Cluster When working with OpenShift, you can harness Kubernetes CronJobs to handle scheduled tasks in a containerized environment.">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Creating a Proof of Concept (PoC) for Cron Jobs in an OpenShift Cluster",
+      "description": "Creating a Proof of Concept (PoC) for Cron Jobs in an OpenShift Cluster When working with OpenShift, you can harness Kubernetes CronJobs to handle scheduled tasks in a containerized environment.",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-10-01",
+      "dateModified": "2024-10-01",
+      "url": "https://www.rifaterdemsahin.com/2024/10/01/creating-a-proof-of-concept-poc-for-cron-jobs-in-an-openshift-cluster/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/10/01/creating-a-proof-of-concept-poc-for-cron-jobs-in-an-openshift-cluster/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Creating a Proof of Concept (PoC) for Cron Jobs in an OpenShift Cluster</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>October 1, 2024</span>
+                    <span>&bull;</span>
+                    <span>11 min read</span>
+                </div>
+                <p class="article-excerpt">Creating a Proof of Concept (PoC) for Cron Jobs in an OpenShift Cluster When working with OpenShift, you can harness Kubernetes CronJobs to handle scheduled tasks in a containerized environment.</p>
+            </header>
+            <article class="article-content">
+                <h1>Creating a Proof of Concept (PoC) for Cron Jobs in an OpenShift Cluster</h1>
+                <p>When working with OpenShift, you can harness Kubernetes CronJobs to handle scheduled tasks in a containerized environment. This blog post will guide you through setting up and testing a CronJob in an OpenShift cluster. We’ll go through each step from setting up your OpenShift cluster to verifying and documenting your setup.</p>
+                <h3>1. <strong>Set Up Your OpenShift Cluster</strong></h3>
+                <p>First, ensure you have access to an OpenShift cluster. Options include:</p>
+                <ul>
+                <li>
+                <p><strong>Local OpenShift installation</strong>: Using Minikube or CodeReady Containers.</p>
+                </li>
+                <li>
+                <p><strong>Managed OpenShift services</strong>: Such as Red Hat OpenShift on AWS, Azure, or GCP.</p>
+                </li>
+                </ul>
+                <h3>2. <strong>Create a Sample Docker Image</strong></h3>
+                <p>Create a Docker image that contains the script or application you want to run periodically.</p>
+                <p><strong>1. Create a Simple Script</strong></p>
+                <p>Here’s an example script that logs the current date and time:</p>
+                <h1>!/bin/bash</h1>
+                <h1>Filename: log_date.sh</h1>
+                <p>echo "Current date and time: $(date)" &gt;&gt; /data/logfile.log</p>
+                <p><strong>2. Create a Dockerfile</strong></p>
+                <p>Define a Dockerfile to build an image with the script:</p>
+                <p>FROM alpine:latest</p>
+                <h1>Install necessary packages</h1>
+                <p>RUN apk add --no-cache bash</p>
+                <h1>Copy the script into the image</h1>
+                <p>COPY log_date.sh /usr/local/bin/log_date.sh<br />
+                RUN chmod +x /usr/local/bin/log_date.sh</p>
+                <h1>Create a directory for logs</h1>
+                <p>RUN mkdir /data</p>
+                <h1>Set the entrypoint to run the script</h1>
+                <p>ENTRYPOINT ["/usr/local/bin/log_date.sh"]</p>
+                <p><img src="images/creating-a-proof-1.png" alt="creating a proof 1" class="article-image" loading="lazy"></p>
+                <p>The error message you're encountering indicates that the tag you're trying to use for your Docker image is not formatted correctly. Docker image tags must follow a specific format, and the error you're seeing is due to having multiple colons (<code>:</code>) in your tag.</p>
+                <h3>Correct Docker Tag Format</h3>
+                <p>A Docker image tag generally follows this format:</p>
+                <p>repository:tag</p>
+                <ul>
+                <li>
+                <p><strong>repository</strong>: The name of the repository (e.g., <code>pexabo/github</code>).</p>
+                </li>
+                <li>
+                <p><strong>tag</strong>: The version or identifier for the image (e.g., <code>latest</code>).</p>
+                </li>
+                </ul>
+                <h3>Issue with Your Command</h3>
+                <p>Your command:</p>
+                <p>docker build -t pexabo/github:latest/log-date-image:latest .</p>
+                <p>In this command:</p>
+                <ul>
+                <li><code>pexabo/github:latest/log-date-image:latest</code> is being treated as the entire image name and tag, which is not valid due to the extra colon (<code>:</code>).</li>
+                </ul>
+                <h3>How to Fix</h3>
+                <p>You need to use only one colon (<code>:</code>) for the tag. If you want to specify a path like structure, use a slash (<code>/</code>) instead.</p>
+                <h4>Option 1: Nested Path as Repository Name</h4>
+                <p>If you're trying to create a nested repository path, you should use slashes (<code>/</code>) like this:</p>
+                <p>docker build -t pexabo/github/log-date-image:latest .</p>
+                <p>Here, <code>pexabo/github/log-date-image</code> is the full repository name, and <code>latest</code> is the tag.</p>
+                <h4>Option 2: Separate Tags</h4>
+                <p>If you want <code>latest</code> and <code>log-date-image</code> to be separate tags (though this is unconventional), you'll need to handle tagging differently. However, typically, Docker only allows one tag per <code>docker build</code> command.</p>
+                <h3>Corrected Command Example</h3>
+                <p>Based on what seems like your intent:</p>
+                <p>docker build -t pexabo/github/log-date-image:latest .</p>
+                <p>This corrected command will build an image with the repository name <code>pexabo/github/log-date-image</code> and the tag <code>latest</code>.</p>
+                <p>Try this corrected command, and it should work without errors!</p>
+                <hr />
+                <p><strong>3. Build and Push the Docker Image</strong></p>
+                <p>Build and push the Docker image to a container registry accessible from your OpenShift cluster:</p>
+                <p>docker build -t <your-registry>/log-date-image:latest .<br />
+                docker push <your-registry>/log-date-image:latest</p>
+                <p><img src="images/creating-a-proof-2.png" alt="creating a proof 2" class="article-image" loading="lazy"></p>
+                <p><img src="images/creating-a-proof-3.png" alt="creating a proof 3" class="article-image" loading="lazy"></p>
+                <p>Cloud build are there </p>
+                <p><img src="images/creating-a-proof-4.png" alt="creating a proof 4" class="article-image" loading="lazy"></p>
+                <hr />
+                <p>The error message you're seeing, <code>denied: requested access to the resource is denied</code>, typically indicates that you do not have permission to push to the specified Docker repository. This could be due to several reasons:</p>
+                <h3>Possible Causes and Solutions</h3>
+                <ul>
+                <li>
+                <p><strong>Not Logged In to Docker Hub or Incorrect Account:</strong></p>
+                </li>
+                <li>
+                <p>Ensure you are logged into Docker Hub with the correct account that has permissions to push to the <code>pexabo/github</code> repository. <strong>Solution:</strong><br />
+                Run the following command to log in to Docker Hub:</p>
+                </li>
+                </ul>
+                <p>docker login</p>
+                <p>After executing the command, enter your Docker Hub username and password. If your login is successful, try pushing the image again.</p>
+                <ul>
+                <li>
+                <p><strong>Repository Does Not Exist or Is Not Owned by You:</strong></p>
+                </li>
+                <li>
+                <p>The repository <code>pexabo/github/log-date-image</code> must exist on Docker Hub, and you must have permission to push images to it. If the repository does not exist or is not public, and you do not have access, you will receive this error. <strong>Solution:</strong></p>
+                </li>
+                <li>
+                <p>If you own the Docker Hub account <code>pexabo</code>:</p>
+                </li>
+                </ul>
+                <p>Log into Docker Hub and create the repository <code>github/log-date-image</code> under your account if it doesn't already exist.</p>
+                <ul>
+                <li>
+                <p>If you do not own the account <code>pexabo</code>, you need to have write access to push to that repository, or you need to use a repository name you have access to.</p>
+                </li>
+                <li>
+                <p><strong>Incorrect Repository Naming:</strong></p>
+                </li>
+                <li>
+                <p>Make sure the repository name <code>pexabo/github/log-date-image</code> is correct and intended. <strong>Solution:</strong></p>
+                </li>
+                <li>
+                <p>Double-check the repository name on Docker Hub and ensure it matches the one you're trying to push.</p>
+                </li>
+                <li>
+                <p><strong>Access Token or Credentials Issue:</strong></p>
+                </li>
+                <li>
+                <p>If you are using an access token instead of a password, ensure that the token has the correct permissions for pushing images. <strong>Solution:</strong></p>
+                </li>
+                <li>
+                <p>Generate a new access token with the appropriate permissions if needed and log in again using the token:</p>
+                </li>
+                </ul>
+                <p>docker login -u <your-username> --password-stdin</p>
+                <p>Then paste your access token after executing the command.</p>
+                <h3>Summary of Steps to Resolve the Issue:</h3>
+                <ul>
+                <li><strong>Login to Docker Hub:</strong></li>
+                </ul>
+                <p>docker login</p>
+                <ul>
+                <li>
+                <p><strong>Ensure Correct Repository and Permissions:</strong></p>
+                </li>
+                <li>
+                <p>Verify that <code>pexabo/github/log-date-image</code> is the correct repository name.</p>
+                </li>
+                <li>
+                <p>Ensure you have the necessary permissions to push to it.</p>
+                </li>
+                <li>
+                <p><strong>Create the Repository on Docker Hub (if necessary):</strong></p>
+                </li>
+                <li>
+                <p>Go to Docker Hub, create the repository under your account if you haven't done so, and then push the image again.</p>
+                </li>
+                </ul>
+                <p>After ensuring you are logged in and have the correct permissions, try pushing the image again:</p>
+                <p>docker push pexabo/github/log-date-image:latest</p>
+                <p>If you follow these steps, you should be able to push your Docker image successfully.</p>
+                <p>Login issue</p>
+                <p>Based on the output of your <code>docker images</code> command, it looks like you have correctly tagged your Docker image with multiple repository names:</p>
+                <ul>
+                <li>
+                <p><code>pexabo/github/log-date-image:latest</code></p>
+                </li>
+                <li>
+                <p><code>rifaterdemsahib/github/log-date-image:latest</code></p>
+                </li>
+                <li>
+                <p><code>rifaterdemsahib/github/mylog-date-image:latest</code></p>
+                </li>
+                </ul>
+                <p>Since the push to Docker Hub is still being denied, here are some additional steps and checks to ensure everything is set up correctly:</p>
+                <h3>Steps to Troubleshoot and Resolve the Push Issue</h3>
+                <ul>
+                <li>
+                <p><strong>Confirm the Correct Repository Name:</strong></p>
+                </li>
+                <li>
+                <p>Make sure you are pushing to a repository that you have created under your Docker Hub account (<code>rifaterdemsahib</code>).</p>
+                </li>
+                <li>
+                <p>The repository name in Docker Hub should exactly match the name you're using in your Docker push command. In this case, ensure the repository <code>github/log-date-image</code> or <code>github/mylog-date-image</code> exists under your Docker Hub account <code>rifaterdemsahib</code>.</p>
+                </li>
+                <li>
+                <p><strong>Check Repository Existence on Docker Hub:</strong></p>
+                </li>
+                <li>
+                <p>Log in to Docker Hub with your <code>rifaterdemsahib</code> account.</p>
+                </li>
+                <li>
+                <p>Go to the "Repositories" section of your profile.</p>
+                </li>
+                <li>
+                <p>Verify that either <code>github/log-date-image</code> or <code>github/mylog-date-image</code> repository exists. If it doesn’t, create the repository manually:</p>
+                </li>
+                <li>
+                <p>Click on "Create Repository."</p>
+                </li>
+                <li>
+                <p>Enter the repository name (e.g., <code>github/log-date-image</code>).</p>
+                </li>
+                <li>
+                <p>Set it to "Public" or "Private" based on your requirements.</p>
+                </li>
+                <li>
+                <p><strong>Login to Docker Hub Again:</strong></p>
+                </li>
+                <li>
+                <p>Although you’ve logged in before, it’s worth logging out and back in to refresh your credentials:</p>
+                </li>
+                </ul>
+                <p>docker logout<br />
+                   docker login -u rifaterdemsahib</p>
+                <p>After running <code>docker login</code>, enter your password or Docker Hub personal access token when prompted.</p>
+                <ul>
+                <li>
+                <p><strong>Check Docker Hub Account Permissions:</strong></p>
+                </li>
+                <li>
+                <p>Make sure your account does not have any restrictions. This could be due to a locked account, security restrictions, or other limitations. Confirm with Docker Hub support if needed.</p>
+                </li>
+                <li>
+                <p><strong>Ensure Correct Tagging and Re-Push:</strong></p>
+                </li>
+                <li>
+                <p>You have already tagged your images correctly, but to confirm, try re-tagging one of your images and pushing again:</p>
+                </li>
+                </ul>
+                <p>docker tag pexabo/github/log-date-image:latest rifaterdemsahib/github/log-date-image:latest<br />
+                   docker push rifaterdemsahib/github/log-date-image:latest</p>
+                <p>If you're using the <code>mylog-date-image</code> tag, do the same:</p>
+                <p>docker tag pexabo/github/log-date-image:latest rifaterdemsahib/github/mylog-date-image:latest<br />
+                   docker push rifaterdemsahib/github/mylog-date-image:latest</p>
+                <ul>
+                <li>
+                <p><strong>Use a Personal Access Token:</strong></p>
+                </li>
+                <li>
+                <p>If you haven’t already, try using a Docker Hub personal access token instead of your password. This is a more secure method and sometimes required if Docker Hub has disabled password login for your account. <strong>Create a Personal Access Token:</strong></p>
+                </li>
+                <li>
+                <p>Go to Docker Hub and navigate to your account settings.</p>
+                </li>
+                <li>
+                <p>Generate a new access token.</p>
+                </li>
+                <li>
+                <p>Use this token for login:</p>
+                </li>
+                </ul>
+                <p>docker login -u rifaterdemsahib --password-stdin</p>
+                <p>Then paste the token when prompted.</p>
+                <p><img src="images/creating-a-proof-5.png" alt="creating a proof 5" class="article-image" loading="lazy"></p>
+                <h3>If the Issue Persists</h3>
+                <p>If you have verified the repository exists, correctly logged in, and used the appropriate credentials but still cannot push:</p>
+                <ul>
+                <li>
+                <p><strong>Docker Hub Limits or Issues</strong>: There could be temporary restrictions or limits on your account. Check the <a href="https://status.docker.com/">Docker Hub Status</a> or contact Docker Hub support for assistance.</p>
+                </li>
+                <li>
+                <p><strong>Account-Specific Issues</strong>: If your Docker Hub account has specific limitations, bans, or security settings applied, this could cause the push denial.</p>
+                </li>
+                </ul>
+                <p>By following these steps, you should be able to identify and resolve the issue preventing you from pushing your Docker image.</p>
+                <hr />
+                <p>The error message <code>denied: requested access to the resource is denied</code> typically indicates that there is an issue with your permissions or authentication for pushing the Docker image to Docker Hub. Here are a few steps to help troubleshoot and resolve the issue:</p>
+                <h3>1. Verify Docker Hub Repository Permissions</h3>
+                <p>Ensure that the repository <code>rifaterdemsahib/github</code> exists on Docker Hub and that your account (<code>rifaterdemsahib</code>) has the correct permissions to push to this repository. If the repository does not exist, you need to create it:</p>
+                <ul>
+                <li>
+                <p>Go to Docker Hub (https://hub.docker.com).</p>
+                </li>
+                <li>
+                <p>Log in with your account (<code>rifaterdemsahib</code>).</p>
+                </li>
+                <li>
+                <p>Create a new repository named <code>github</code>.</p>
+                </li>
+                </ul>
+                <h3>2. Confirm Correct Login</h3>
+                <p>Ensure that you are logged in to Docker Hub with the correct credentials:</p>
+                <p>docker logout<br />
+                docker login -u rifaterdemsahib</p>
+                <p>Make sure to enter the correct password for your Docker Hub account.</p>
+                <h3>3. Check Image Tagging</h3>
+                <p>Ensure that the image is tagged correctly. Your current command tags the image with the repository name <code>rifaterdemsahib/github/log-date-image:latest</code>. The image must be tagged correctly to be pushed to your Docker Hub repository:</p>
+                <p>docker tag pexabo/github/log-date-image:latest rifaterdemsahib/github/log-date-image:latest</p>
+                <p>Check the tag by running:</p>
+                <p>docker images</p>
+                <p>Make sure the <code>rifaterdemsahib/github/log-date-image:latest</code> tag exists.</p>
+                <h3>4. Retry Pushing the Image</h3>
+                <p>After confirming the repository, login, and tagging, try pushing the image again:</p>
+                <p>docker push rifaterdemsahib/github/log-date-image:latest</p>
+                <h3>5. Check for Two-Factor Authentication</h3>
+                <p>If you have enabled two-factor authentication (2FA) on your Docker Hub account, you must use a personal access token instead of your password. To generate a token:</p>
+                <ul>
+                <li>
+                <p>Log in to Docker Hub.</p>
+                </li>
+                <li>
+                <p>Go to your account settings and find the "Security" section.</p>
+                </li>
+                <li>
+                <p>Generate a new access token.</p>
+                </li>
+                </ul>
+                <p>Use this token as your password when logging in:</p>
+                <p>docker login -u rifaterdemsahib --password-stdin</p>
+                <h3>6. Repository Name Change</h3>
+                <p>If the repository name or path has changed, you may need to correct the path in your tag command:</p>
+                <p>docker tag pexabo/github/log-date-image:latest rifaterdemsahib/github/log-date-image:latest</p>
+                <p>Ensure the image's tag matches the intended repository structure on Docker Hub.</p>
+                <h3>7. Verify Docker Hub Server Status</h3>
+                <p>Occasionally, Docker Hub might experience outages or have issues with permissions and access. You can check Docker Hub's status at <a href="https://status.docker.com/">Docker Hub Status</a> to ensure no widespread problems.</p>
+                <h3>Summary</h3>
+                <p>By verifying the repository's existence, ensuring correct permissions and logins, properly tagging your image, and checking Docker Hub's server status, you should be able to resolve the access denied issue and push your Docker image successfully.</p>
+                <p>Docker hub push error &gt; </p>
+                <p><img src="images/creating-a-proof-6.png" alt="creating a proof 6" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><img src="images/creating-a-proof-7.png" alt="creating a proof 7" class="article-image" loading="lazy"></p>
+                <p>Delete and repush also did not work </p>
+                <h3>3. <strong>Create a Kubernetes CronJob Resource</strong></h3>
+                <p>(including crontabs everything runs in docker )</p>
+                <p>Define a Kubernetes CronJob that uses your Docker image to execute the script at scheduled intervals.</p>
+                <p><strong>1. Create a CronJob YAML File</strong></p>
+                <p>Create a file named <code>log-date-cronjob.yaml</code> with the following content:</p>
+                <p>apiVersion: batch/v1<br />
+                kind: CronJob<br />
+                metadata:<br />
+                  name: log-date-cronjob<br />
+                spec:<br />
+                  schedule: "<em>/1 * * * </em>"  # Runs every minute<br />
+                  jobTemplate:<br />
+                    spec:<br />
+                      template:<br />
+                        spec:<br />
+                          containers:<br />
+                          - name: log-date<br />
+                            image: <your-registry>/log-date-image:latest<br />
+                            volumeMounts:<br />
+                            - name: log-volume<br />
+                              mountPath: /data<br />
+                          restartPolicy: OnFailure<br />
+                          volumes:<br />
+                          - name: log-volume<br />
+                            emptyDir: {}</p>
+                <p>Adjust the <code>schedule</code> field according to your needs. The example above schedules the job to run every minute.</p>
+                <p><strong>2. Apply the CronJob Configuration</strong></p>
+                <p>Use the OpenShift CLI (<code>oc</code>) to apply the CronJob configuration:</p>
+                <p>oc apply -f log-date-cronjob.yaml</p>
+                <h3>4. <strong>Verify and Monitor</strong></h3>
+                <p><strong>1. Check CronJob Status</strong></p>
+                <p>Ensure the CronJob is created and running as expected:</p>
+                <p>oc get cronjobs</p>
+                <p><strong>2. Monitor Job Execution</strong></p>
+                <p>To verify that the CronJob is executing correctly, check the logs of the executed jobs:</p>
+                <p>oc get jobs<br />
+                oc logs <job-pod-name></p>
+                <p>Alternatively, check the logs directly from the CronJob:</p>
+                <p>oc logs -l job-name=<job-name></p>
+                <p><strong>3. Review Logs</strong></p>
+                <p>If you have configured logging within your container (e.g., writing to <code>/data/logfile.log</code>), review these logs to ensure your CronJob is working correctly. Access the logs through a persistent volume or other storage mechanism depending on your volume mount configuration.</p>
+                <h3>5. <strong>Documentation and Refinement</strong></h3>
+                <p><strong>1. Document Your PoC</strong></p>
+                <p>Create comprehensive documentation that includes:</p>
+                <ul>
+                <li>
+                <p>The purpose of the CronJob.</p>
+                </li>
+                <li>
+                <p>Details of the Docker image.</p>
+                </li>
+                <li>
+                <p>Configuration of the CronJob.</p>
+                </li>
+                <li>
+                <p>Monitoring and verification steps.</p>
+                </li>
+                </ul>
+                <p><strong>2. Refine Based on Feedback</strong></p>
+                <p>Gather feedback from stakeholders and adjust your CronJob setup based on their input.</p>
+                <p>By following these steps, you’ll have a functional proof of concept for using CronJobs within an OpenShift cluster. This demonstrates how to automate tasks effectively using Kubernetes CronJobs in a containerized environment.</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛠️ Debugging Access to Grafana on VMware Workstation from Windows 11 🚀 - Rifat Erdem Sahin</title>
+    <meta name="description" content="🛠️ Debugging Access to Grafana on VMware Workstation from Windows 11 🚀 If you're struggling to access a Grafana instance running on a Debian VM in VMware Workstation from your Windows 11 host , don't ">
+    <meta name="keywords" content="🛠️ Debugging Access to Grafana on VMware Workstation from Windows 11 🚀">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/09/27/🛠️-debugging-access-to-grafana-on-vmware-workstation-from-windows-11-🚀/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/09/27/🛠️-debugging-access-to-grafana-on-vmware-workstation-from-windows-11-🚀/">
+    <meta property="og:title" content="🛠️ Debugging Access to Grafana on VMware Workstation from Windows 11 🚀">
+    <meta property="og:description" content="🛠️ Debugging Access to Grafana on VMware Workstation from Windows 11 🚀 If you're struggling to access a Grafana instance running on a Debian VM in VMware Workstation from your Windows 11 host , don't ">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/09/27/🛠️-debugging-access-to-grafana-on-vmware-workstation-from-windows-11-🚀/">
+    <meta property="twitter:title" content="🛠️ Debugging Access to Grafana on VMware Workstation from Windows 11 🚀">
+    <meta property="twitter:description" content="🛠️ Debugging Access to Grafana on VMware Workstation from Windows 11 🚀 If you're struggling to access a Grafana instance running on a Debian VM in VMware Workstation from your Windows 11 host , don't ">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "🛠️ Debugging Access to Grafana on VMware Workstation from Windows 11 🚀",
+      "description": "🛠️ Debugging Access to Grafana on VMware Workstation from Windows 11 🚀 If you're struggling to access a Grafana instance running on a Debian VM in VMware Workstation from your Windows 11 host , don't ",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-09-27",
+      "dateModified": "2024-09-27",
+      "url": "https://www.rifaterdemsahin.com/2024/09/27/🛠️-debugging-access-to-grafana-on-vmware-workstation-from-windows-11-🚀/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/09/27/🛠️-debugging-access-to-grafana-on-vmware-workstation-from-windows-11-🚀/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">🛠️ Debugging Access to Grafana on VMware Workstation from Windows 11 🚀</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>September 27, 2024</span>
+                    <span>&bull;</span>
+                    <span>5 min read</span>
+                </div>
+                <p class="article-excerpt">🛠️ Debugging Access to Grafana on VMware Workstation from Windows 11 🚀 If you're struggling to access a Grafana instance running on a Debian VM in VMware Workstation from your Windows 11 host , don't worry!</p>
+            </header>
+            <article class="article-content">
+                <h1>🛠️ Debugging Access to Grafana on VMware Workstation from Windows 11 🚀</h1>
+                <p>If you're struggling to access a <strong>Grafana instance</strong> running on a <strong>Debian VM</strong> in <strong>VMware Workstation</strong> from your <strong>Windows 11 host</strong>, don't worry! This guide will walk you through the entire debugging process, step-by-step, with scripts and commands to get you going. Let's dive in! 🌊</p>
+                <hr />
+                <h2>👷 Step 1: Check Your VMware Network Configuration 🌐</h2>
+                <p>VMware Workstation offers three main networking modes for virtual machines. First, we need to identify which one you're using:</p>
+                <h3>Network Modes:</h3>
+                <ul>
+                <li>
+                <p><strong>NAT (Network Address Translation)</strong>: The VM shares the host’s IP but needs <strong>port forwarding</strong> for external access.</p>
+                </li>
+                <li>
+                <p><strong>Bridged</strong>: The VM is on the same network as <strong>your host</strong> and other devices. No additional configuration needed if everything works as expected.</p>
+                </li>
+                <li>
+                <p><strong>Host-Only</strong>: The VM can only communicate with the host, no internet or external device access.</p>
+                </li>
+                </ul>
+                <h3>📝 Verify Network Settings:</h3>
+                <ul>
+                <li>
+                <p><strong>On Windows</strong>: Open VMware Workstation and check your VM’s network settings.</p>
+                </li>
+                <li>
+                <p>Right-click the VM &gt; <strong>Settings</strong> &gt; <strong>Network Adapter</strong> &gt; Check if it’s <strong>NAT</strong>, <strong>Bridged</strong>, or <strong>Host-Only</strong>.</p>
+                </li>
+                </ul>
+                <hr />
+                <h2>🔍 Step 2: Verify IP Addresses 🏠</h2>
+                <p>We need to confirm the IP addresses of both the host (Windows) and the VM (Debian).</p>
+                <h3>📝 On Debian (VM):</h3>
+                <p>Run the following command to check the IP address:<code>ip addr show</code></p>
+                <p>Look for the <strong>inet</strong> line under your network interface, typically <code>eth0</code>. You should see something like <code>inet 192.168.x.x</code>.</p>
+                <h3>📝 On Windows (Host):</h3>
+                <p>Open a <strong>Command Prompt</strong> or <strong>PowerShell</strong> and run:<code>ipconfig</code></p>
+                <p>Look for your <strong>Ethernet Adapter</strong> or <strong>Wi-Fi Adapter</strong>, and note down the IPv4 address.</p>
+                <hr />
+                <h2>🔐 Step 3: Firewall Configurations 🔥</h2>
+                <h3>Linux (Debian) 🔐</h3>
+                <p>On Debian, we need to ensure that <strong>Grafana</strong> is not being blocked by the firewall. By default, Grafana uses port <strong>3000</strong>.</p>
+                <h4>📝 Allow Grafana Port on Debian:</h4>
+                <p><code>sudo ufw allow 3000/tcp</code></p>
+                <p>If you're using <strong>iptables</strong> instead of <strong>ufw</strong>, run:<code>sudo iptables -A INPUT -p tcp --dport 3000 -j ACCEPT</code></p>
+                <h3>Windows 11 🔐</h3>
+                <p>Next, ensure your <strong>Windows Firewall</strong> allows connections to the VM.</p>
+                <h4>📝 Allow Grafana Port on Windows (for Bridged/Host-Only):</h4>
+                <ul>
+                <li>
+                <p>Open <strong>Windows Defender Firewall</strong>.</p>
+                </li>
+                <li>
+                <p>Click <strong>Advanced settings</strong> &gt; <strong>Inbound Rules</strong> &gt; <strong>New Rule</strong>.</p>
+                </li>
+                <li>
+                <p>Select <strong>Port</strong> &gt; <strong>TCP</strong> &gt; Enter <strong>3000</strong> &gt; Allow connection.</p>
+                </li>
+                </ul>
+                <h4>📝 NAT Port Forwarding (If using NAT mode):</h4>
+                <p>If you're using NAT mode, VMware requires <strong>port forwarding</strong> to allow external connections to your VM.</p>
+                <ul>
+                <li>
+                <p>Go to the <code>vmnetnat.conf</code> file (usually located at <code>C:\ProgramData\VMware</code>).</p>
+                </li>
+                <li>
+                <p>Add the following lines under the <code>[incomingtcp]</code> section:</p>
+                </li>
+                </ul>
+                <p><code>3000 = &lt;Your VM's IP&gt;:3000</code></p>
+                <ul>
+                <li>Restart the VMware NAT service by running:</li>
+                </ul>
+                <p><code>net stop "VMware NAT Service" &amp;&amp; net start "VMware NAT Service"</code></p>
+                <hr />
+                <h2>🧪 Step 4: Test Grafana from Windows 🖥️</h2>
+                <p>Once firewall rules are set, let’s try to access <strong>Grafana</strong> from the host (Windows). Open a browser and go to:<code>http://&lt;VM-IP&gt;:3000</code></p>
+                <p>Replace <code>&lt;VM-IP&gt;</code> with the Debian VM's IP address.</p>
+                <hr />
+                <h2>🔍 Step 5: Troubleshooting Scripts 🛠️</h2>
+                <p>If the connection still doesn’t work, let’s use these debugging tools:</p>
+                <h3>1. <strong>Ping Test</strong> 🏓</h3>
+                <p>Ensure the host and VM can communicate by pinging each other.</p>
+                <h4>📝 From Debian (VM):</h4>
+                <p><code>ping &lt;Windows-IP&gt;</code></p>
+                <h4>📝 From Windows:</h4>
+                <p>Open <strong>Command Prompt</strong> and run:<code>ping &lt;Debian-IP&gt;</code></p>
+                <h3>2. <strong>Checking Open Ports</strong> 🔎</h3>
+                <p>Use <code>netstat</code> to check if Grafana is listening on port <strong>3000</strong>.</p>
+                <h4>📝 On Debian (VM):</h4>
+                <p><code>sudo netstat -tuln | grep 3000</code></p>
+                <p>If it returns something like:<code>tcp 0 0 0.0.0.0:3000 0.0.0.0:* LISTEN</code></p>
+                <p>Then Grafana is running and accepting external connections.</p>
+                <hr />
+                <h2>🏁 Final Checkpoints ✅</h2>
+                <ul>
+                <li>
+                <p><strong>Correct IPs</strong>: Ensure the host and VM are in the same network/subnet.</p>
+                </li>
+                <li>
+                <p><strong>Open Ports</strong>: Verify that <strong>port 3000</strong> is open on both the VM and host firewalls.</p>
+                </li>
+                <li>
+                <p><strong>Network Configuration</strong>: Double-check that the VM network mode allows external connections (Bridged or NAT with port forwarding).</p>
+                </li>
+                </ul>
+                <hr />
+                <h3>🚀 Conclusion</h3>
+                <p>By following these steps and using the provided scripts, you should be able to resolve issues accessing your <strong>Grafana instance</strong> from your <strong>Windows host</strong>. Whether it's NAT, Bridged, or firewall issues, this guide covers the typical challenges that can block your connection.</p>
+                <p>Good luck debugging! 🛠️ If you run into any more issues, feel free to comment below! 💬</p>
+                <p>==================================================================<br />
+                    *** TRY ON MACBOOK ENVIRONMENT ***<br />
+                ==================================================================</p>
+                <p>To run an OVA (Open Virtual Appliance) file on your MacBook, you can use <strong>VirtualBox</strong> or <strong>VMware Fusion</strong>, both of which support OVA files. Here's a step-by-step guide for both options:</p>
+                <h3>1. Using <strong>VirtualBox</strong> (Free Option):</h3>
+                <h4>Step 1: Download and Install VirtualBox</h4>
+                <ul>
+                <li>
+                <p>Go to the <a href="https://www.virtualbox.org/">VirtualBox website</a> and download the macOS version.</p>
+                </li>
+                <li>
+                <p>Install VirtualBox by following the installation instructions.</p>
+                </li>
+                </ul>
+                <h4>Step 2: Open VirtualBox</h4>
+                <ul>
+                <li>Launch VirtualBox after installation.</li>
+                </ul>
+                <h4>Step 3: Import the OVA File</h4>
+                <ul>
+                <li>
+                <p>In VirtualBox, click on the <strong>File</strong> menu and choose <strong>Import Appliance</strong>.</p>
+                </li>
+                <li>
+                <p>Browse for the OVA file on your MacBook and click <strong>Continue</strong>.</p>
+                </li>
+                <li>
+                <p>Review the virtual machine settings (you can modify these later if needed), and then click <strong>Import</strong>.</p>
+                </li>
+                </ul>
+                <h4>Step 4: Run the Virtual Machine</h4>
+                <ul>
+                <li>
+                <p>Once the import is finished, the virtual machine will appear in VirtualBox’s main interface.</p>
+                </li>
+                <li>
+                <p>Select the virtual machine and click <strong>Start</strong> to run the OVA.</p>
+                </li>
+                </ul>
+                <h3>2. Using <strong>VMware Fusion</strong> (Paid Option with Free Trial):</h3>
+                <h4>Step 1: Download and Install VMware Fusion</h4>
+                <ul>
+                <li>
+                <p>Go to the <a href="https://www.vmware.com/products/fusion.html">VMware Fusion website</a> and download the latest version.</p>
+                </li>
+                <li>
+                <p>Install VMware Fusion by following the instructions.</p>
+                </li>
+                </ul>
+                <h4>Step 2: Open VMware Fusion</h4>
+                <ul>
+                <li>Launch VMware Fusion after installation.</li>
+                </ul>
+                <h4>Step 3: Import the OVA File</h4>
+                <ul>
+                <li>
+                <p>In VMware Fusion, go to <strong>File</strong> &gt; <strong>Import</strong>.</p>
+                </li>
+                <li>
+                <p>Browse for the OVA file and select it.</p>
+                </li>
+                </ul>
+                <h4>Step 4: Customize and Run the Virtual Machine</h4>
+                <ul>
+                <li>
+                <p>After the import process, you can configure the VM settings (RAM, CPU, etc.).</p>
+                </li>
+                <li>
+                <p>Click <strong>Finish</strong> and start the virtual machine by clicking <strong>Play</strong>.</p>
+                </li>
+                </ul>
+                <p>Let me know if you need help with any part of the process!</p>
+                <p><img src="images/debugging-access-to-1.png" alt="debugging access to 1" class="article-image" loading="lazy"></p>
+                <p><img src="images/debugging-access-to-2.png" alt="debugging access to 2" class="article-image" loading="lazy"></p>
+                <p><img src="images/debugging-access-to-3.png" alt="debugging access to 3" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

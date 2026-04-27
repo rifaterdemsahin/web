@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missing part in Flow - Rifat Erdem Sahin</title>
+    <meta name="description" content="Missing part in Flow one big script with flow All this has to be linked Creating a Virtual Machine on Azure for Sandboxing In this course, you will learn how to set up a virtual machine on Microsoft A">
+    <meta name="keywords" content="Missing part in Flow">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/04/20/missing-part-in-flow/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/04/20/missing-part-in-flow/">
+    <meta property="og:title" content="Missing part in Flow">
+    <meta property="og:description" content="Missing part in Flow one big script with flow All this has to be linked Creating a Virtual Machine on Azure for Sandboxing In this course, you will learn how to set up a virtual machine on Microsoft A">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/04/20/missing-part-in-flow/">
+    <meta property="twitter:title" content="Missing part in Flow">
+    <meta property="twitter:description" content="Missing part in Flow one big script with flow All this has to be linked Creating a Virtual Machine on Azure for Sandboxing In this course, you will learn how to set up a virtual machine on Microsoft A">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Missing part in Flow",
+      "description": "Missing part in Flow one big script with flow All this has to be linked Creating a Virtual Machine on Azure for Sandboxing In this course, you will learn how to set up a virtual machine on Microsoft A",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-04-20",
+      "dateModified": "2024-04-20",
+      "url": "https://www.rifaterdemsahin.com/2024/04/20/missing-part-in-flow/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/04/20/missing-part-in-flow/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Missing part in Flow</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>April 20, 2024</span>
+                    <span>&bull;</span>
+                    <span>10 min read</span>
+                </div>
+                <p class="article-excerpt">Missing part in Flow one big script with flow All this has to be linked Creating a Virtual Machine on Azure for Sandboxing In this course, you will learn how to set up a virtual machine on Microsoft Azure for sandboxing purposes.</p>
+            </header>
+            <article class="article-content">
+                <h1>Missing part in Flow</h1>
+                <p>one big script with flow</p>
+                <p><img src="images/missing-part-in-1.png" alt="missing part in 1" class="article-image" loading="lazy"></p>
+                <p>All this has to be linked</p>
+                <h1>Creating a Virtual Machine on Azure for Sandboxing</h1>
+                <p>In this course, you will learn how to set up a virtual machine on Microsoft Azure for sandboxing purposes.</p>
+                <h2>Module 1: Introduction to Azure Virtual Machines</h2>
+                <p>In this module, you will get an overview of Azure Virtual Machines and their key features. You will also understand the benefits of using Azure for your sandboxing needs.</p>
+                <h2>Module 2: Creating an Azure Account</h2>
+                <p>Here, you will be guided through the process of creating an account on Microsoft Azure, including the necessary steps for account verification and subscription setup.</p>
+                <h2>Module 3: Configuring a Virtual Machine</h2>
+                <p>In this module, you will learn how to configure a virtual machine on Azure, including selecting the appropriate machine type, operating system, and networking settings for sandboxing.</p>
+                <h2>Module 4: Deploying Sandbox Environments</h2>
+                <p>You will explore the practical aspects of deploying sandbox environments on Azure Virtual Machines, including best practices for security and resource management.</p>
+                <p>By the end of this course, you will have the knowledge and skills to effectively create and utilize virtual machines on Azure for sandboxing purposes.</p>
+                <p><img src="images/missing-part-in-2.png" alt="missing part in 2" class="article-image" loading="lazy"></p>
+                <h1>Creating a Virtual Machine on Azure for Sandboxing</h1>
+                <p>In this course, you will learn how to set up a <a href="https://rifaterdemsahin.com/wp-content/uploads/2024/04/image-1468.png?w=1024">virtual machine on Microsoft Azure</a> for sandboxing purposes.</p>
+                <h2>Module 1: Introduction to Azure Virtual Machines</h2>
+                <p>In this module, you will get an overview of <a href="https://rifaterdemsahin.com/wp-content/uploads/2024/04/image-1468.png?w=1024">Azure Virtual Machines</a> and their key features. You will also understand the benefits of using Azure for your sandboxing needs.</p>
+                <h2>Module 2: Creating an Azure Account</h2>
+                <p>Here, you will be guided through the process of creating an account on <a href="https://rifaterdemsahin.com/wp-content/uploads/2024/04/image-1468.png?w=1024">Microsoft Azure</a>, including the necessary steps for account verification and subscription setup.</p>
+                <h2>Module 3: Configuring a Virtual Machine</h2>
+                <p>In this module, you will learn how to configure a <a href="https://rifaterdemsahin.com/wp-content/uploads/2024/04/image-1468.png?w=1024">virtual machine on Azure</a>, including selecting the appropriate machine type, operating system, and networking settings for sandboxing.</p>
+                <h2>Module 4: Deploying Sandbox Environments</h2>
+                <p>You will explore the practical aspects of deploying sandbox environments on <a href="https://rifaterdemsahin.com/wp-content/uploads/2024/04/image-1468.png?w=1024">Azure Virtual Machines</a>, including best practices for security and resource management.</p>
+                <p>By the end of this course, you will have the knowledge and skills to effectively create and utilize <a href="https://rifaterdemsahin.com/wp-content/uploads/2024/04/image-1469.png?w=1024">virtual machines on Azure for sandboxing purposes</a>.</p>
+                <p><img src="images/missing-part-in-3.png" alt="missing part in 3" class="article-image" loading="lazy"></p>
+                <p>There is slides and notes in the &gt; action is moving forward.</p>
+                <p>maybe i use the drive  docs or copilot to write the script like </p>
+                <p>maybe a master script &gt; <a href="https://docs.google.com/document/d/17cjkpa_Q1czxY6yGx6fFlnXP0AKqovbwp9qciso2bjw/edit">https://docs.google.com/document/d/17cjkpa_Q1czxY6yGx6fFlnXP0AKqovbwp9qciso2bjw/edit</a></p>
+                <p>Entering tables is there</p>
+                <p><img src="images/missing-part-in-4.png" alt="missing part in 4" class="article-image" loading="lazy"></p>
+                <p>Shot list and the script ointegrated to each other </p>
+                <p><img src="images/missing-part-in-5.png" alt="missing part in 5" class="article-image" loading="lazy"></p>
+                <p>it can be seen here</p>
+                <p><img src="images/missing-part-in-6.png" alt="missing part in 6" class="article-image" loading="lazy"></p>
+                <p>tabular data makes &gt;&gt;&gt;&gt; sense</p>
+                <p><img src="images/missing-part-in-7.png" alt="missing part in 7" class="article-image" loading="lazy"></p>
+                <p>export canva and add works</p>
+                <p><img src="images/missing-part-in-8.png" alt="missing part in 8" class="article-image" loading="lazy"></p>
+                <p>index ids needed</p>
+                <p><img src="images/missing-part-in-9.png" alt="missing part in 9" class="article-image" loading="lazy"></p>
+                <p>Hard time saving it</p>
+                <p><img src="images/missing-part-in-10.png" alt="missing part in 10" class="article-image" loading="lazy"></p>
+                <p>if so tabular why not use sheets</p>
+                <p><img src="images/missing-part-in-11.png" alt="missing part in 11" class="article-image" loading="lazy"></p>
+                <p><img src="images/missing-part-in-12.png" alt="missing part in 12" class="article-image" loading="lazy"></p>
+                <p>maybe wordpress table</p>
+                <p>https://www.canva.com/design/DAGCZFYwanc/W9p2zGW733jotlquobjbOQ/view?embed</p>
+                <p><a href="https://www.canva.com/design/DAGCZFYwanc/W9p2zGW733jotlquobjbOQ/view?utm_content=DAGCZFYwanc&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link">Editting Template &gt; Build your POC Station With GPT v12&lt; mvp2</a> by Pexabo Info</p>
+                <p><code>&lt;div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
+                 padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+                 border-radius: 8px; will-change: transform;"&gt;
+                  [https://www.canva.com/design/DAGCZFYwanc/W9p2zGW733jotlquobjbOQ/view?embed](https://www.canva.com/design/DAGCZFYwanc/W9p2zGW733jotlquobjbOQ/view?embed)
+                &lt;/div&gt;
+                &lt;a href="https://www.canva.com/design/DAGCZFYwanc/W9p2zGW733jotlquobjbOQ/view?utm_content=DAGCZFYwanc&amp;amp;utm_campaign=designshare&amp;amp;utm_medium=embeds&amp;amp;utm_source=link" target="_blank" rel="noopener"&gt;Editting Template &gt; Build your  POC Station With GPT v12&lt; mvp2&lt;/a&gt; by Pexabo Info</code></p>
+                <p><img src="images/missing-part-in-13.png" alt="missing part in 13" class="article-image" loading="lazy"></p>
+                <p>it can create the table</p>
+                <p>Section Title</p>
+                <p>Slide &gt; PrevizScript &gt; FlowFiles(footage/voiceover)StatusHey there. With this MVP, I'm going to demonstrate our minimum viable product for delivery on demand. Showcase details of the DevOps engineering product. We are going to show how to build the sandbox station using GPT. So you will be able to create your own proof of concept implementations. We are going to take the idea and make the reality for you for any product that you want to test different components in the DevOps cycle. I'm going to make sure it is going to be a very visual course, you will be able to see all the compute and infrastructure components. My aim is to make an easy process for you to be able to replicate it on your end and you will be able to create immutable infrastructure so you can demo it to your customers, your boss or your manager.</p>
+                <p>not easy to change like sheets</p>
+                <p><img src="images/missing-part-in-14.png" alt="missing part in 14" class="article-image" loading="lazy"></p>
+                <p>not that easy </p>
+                <p><img src="images/missing-part-in-15.png" alt="missing part in 15" class="article-image" loading="lazy"></p>
+                <p>NOTION HAS MAXIMIZE AND MINIMIZE BUT SINGLE FILE</p>
+                <p><img src="images/missing-part-in-16.png" alt="missing part in 16" class="article-image" loading="lazy"></p>
+                <p>maybe again</p>
+                <p><img src="images/missing-part-in-17.png" alt="missing part in 17" class="article-image" loading="lazy"></p>
+                <p>smartsheet has multifile intake</p>
+                <p><img src="images/missing-part-in-18.png" alt="missing part in 18" class="article-image" loading="lazy"></p>
+                <p>naybe view is not correct</p>
+                <p>notion also took in agallery view as well</p>
+                <p><img src="images/missing-part-in-19.png" alt="missing part in 19" class="article-image" loading="lazy"></p>
+                <p><img src="images/missing-part-in-20.png" alt="missing part in 20" class="article-image" loading="lazy"></p>
+                <p>Looks good but the flow is not guranteed</p>
+                <p><img src="images/missing-part-in-21.png" alt="missing part in 21" class="article-image" loading="lazy"></p>
+                <p><img src="images/missing-part-in-22.png" alt="missing part in 22" class="article-image" loading="lazy"></p>
+                <p>no otter but dictate is there</p>
+                <p><img src="images/missing-part-in-23.png" alt="missing part in 23" class="article-image" loading="lazy"></p>
+                <p>gpt added</p>
+                <p><img src="images/missing-part-in-24.png" alt="missing part in 24" class="article-image" loading="lazy"></p>
+                <p>side by side</p>
+                <p><img src="images/missing-part-in-25.png" alt="missing part in 25" class="article-image" loading="lazy"></p>
+                <p><img src="images/missing-part-in-26.png" alt="missing part in 26" class="article-image" loading="lazy"></p>
+                <p><img src="images/missing-part-in-27.png" alt="missing part in 27" class="article-image" loading="lazy"></p>
+                <p>cant delete them all</p>
+                <p><img src="images/missing-part-in-28.png" alt="missing part in 28" class="article-image" loading="lazy"></p>
+                <p>cant really take the image</p>
+                <p><img src="images/missing-part-in-29.png" alt="missing part in 29" class="article-image" loading="lazy"></p>
+                <p>THIS IS WHAT I NEED</p>
+                <p><img src="images/missing-part-in-30.png" alt="missing part in 30" class="article-image" loading="lazy"></p>
+                <p>it has start with images</p>
+                <p><img src="images/missing-part-in-31.png" alt="missing part in 31" class="article-image" loading="lazy"></p>
+                <p>the pdf is the one i am looking for</p>
+                <p><img src="images/missing-part-in-32.png" alt="missing part in 32" class="article-image" loading="lazy"></p>
+                <p>so many elements in it</p>
+                <p><img src="images/missing-part-in-33.png" alt="missing part in 33" class="article-image" loading="lazy"></p>
+                <p>notion is one of them</p>
+                <p><img src="images/missing-part-in-34.png" alt="missing part in 34" class="article-image" loading="lazy"></p>
+                <p>https://plaky.com/blog/project-management-software-for-video-production</p>
+                <p><img src="images/missing-part-in-35.png" alt="missing part in 35" class="article-image" loading="lazy"></p>
+                <p>thgere is always script at the core</p>
+                <p><img src="images/missing-part-in-36.png" alt="missing part in 36" class="article-image" loading="lazy"></p>
+                <p>maybe one note is what i look for</p>
+                <p><img src="images/missing-part-in-37.png" alt="missing part in 37" class="article-image" loading="lazy"></p>
+                <p>assemble has a gallery</p>
+                <p><img src="images/missing-part-in-38.png" alt="missing part in 38" class="article-image" loading="lazy"></p>
+                <p>grom flow to confusion</p>
+                <p><img src="images/missing-part-in-39.png" alt="missing part in 39" class="article-image" loading="lazy"></p>
+                <p>miro takes it in order &gt; similar to onenote</p>
+                <p><img src="images/missing-part-in-40.png" alt="missing part in 40" class="article-image" loading="lazy"></p>
+                <p>miro feels the most flexible</p>
+                <p><img src="images/missing-part-in-41.png" alt="missing part in 41" class="article-image" loading="lazy"></p>
+                <p>Today add it to the miro after indexing it at least at miro there are frames like the slide they can be exported in groups and there are links and it can be watched.</p>
+                <p>it is close to the table format that can be printed and the flow is there ! &gt;&gt;&gt; the editor is in the business of flow.</p>
+                <p>instead of 1.2.3 &gt;&gt;&gt; ABC is better &gt;&gt;&gt; to go to A2 if it needs to be inserted</p>
+                <p><img src="images/missing-part-in-42.png" alt="missing part in 42" class="article-image" loading="lazy"></p>
+                <p>start making miro better bring all the guns into the fight than leave the ones that works</p>
+                <p><img src="images/missing-part-in-43.png" alt="missing part in 43" class="article-image" loading="lazy"></p>
+                <p>pdf and images downloaded</p>
+                <p><img src="images/missing-part-in-44.png" alt="missing part in 44" class="article-image" loading="lazy"></p>
+                <p>Pdf into the slides order</p>
+                <p><img src="images/missing-part-in-45.png" alt="missing part in 45" class="article-image" loading="lazy"></p>
+                <p>Idea of miro everything should be found and explained so that the editor enters the state of the flow</p>
+                <p>a4 frame ready to print </p>
+                <p><img alt="missing-part-in-46.png" src="https://rifaterdemsahin.com/wp-content/uploads/2024/04/image-1514.png?w=1024" /></p>
+                <p>maximum upload is 30</p>
+                <p><img src="images/missing-part-in-47.png" alt="missing part in 47" class="article-image" loading="lazy"></p>
+                <p>at least canva embed is there</p>
+                <p><img src="images/missing-part-in-48.png" alt="missing part in 48" class="article-image" loading="lazy"></p>
+                <p>pdf is bigger not just the images</p>
+                <p><img src="images/missing-part-in-49.png" alt="missing part in 49" class="article-image" loading="lazy"></p>
+                <p><img src="images/missing-part-in-50.png" alt="missing part in 50" class="article-image" loading="lazy"></p>
+                <p>upload works</p>
+                <p><img src="images/missing-part-in-51.png" alt="missing part in 51" class="article-image" loading="lazy"></p>
+                <p>Arrival order has an issue</p>
+                <p><img src="images/missing-part-in-52.png" alt="missing part in 52" class="article-image" loading="lazy"></p>
+                <p>Goal See the the slides and the text in one line &gt; and work on the FLOW!</p>
+                <p>order ok it is just at the bottom</p>
+                <p><img src="images/missing-part-in-53.png" alt="missing part in 53" class="article-image" loading="lazy"></p>
+                <p>maybe storyboard format is better from taking on the previz in the canva</p>
+                <p><img src="images/missing-part-in-54.png" alt="missing part in 54" class="article-image" loading="lazy"></p>
+                <p>Auto save is easier</p>
+                <p><img src="images/missing-part-in-55.png" alt="missing part in 55" class="article-image" loading="lazy"></p>
+                <p>you can place the otter here inside the storyboard</p>
+                <p><img src="images/missing-part-in-56.png" alt="missing part in 56" class="article-image" loading="lazy"></p>
+                <p>it is a <em>linked</em> <strong>pdf</strong> so that should work better in terms of the implementation</p>
+                <p>upwork task should not be the canva export but miro export with. links and help the editor</p>
+                <p>move production template legacy to here</p>
+                <p><img src="images/missing-part-in-57.png" alt="missing part in 57" class="article-image" loading="lazy"></p>
+                <p>updated the course structure to maturity matrix</p>
+                <p><img src="images/missing-part-in-58.png" alt="missing part in 58" class="article-image" loading="lazy"></p>
+                <p><img src="images/missing-part-in-59.png" alt="missing part in 59" class="article-image" loading="lazy"></p>
+                <p>different pivoted business plan</p>
+                <p><img src="images/missing-part-in-60.png" alt="missing part in 60" class="article-image" loading="lazy"></p>
+                <p>more read more updates</p>
+                <p><img src="images/missing-part-in-61.png" alt="missing part in 61" class="article-image" loading="lazy"></p>
+                <p>Convert into editors guide</p>
+                <p><img src="images/missing-part-in-62.png" alt="missing part in 62" class="article-image" loading="lazy"></p>
+                <p>move your idea to legacy</p>
+                <p><img src="images/missing-part-in-63.png" alt="missing part in 63" class="article-image" loading="lazy"></p>
+                <p><img src="images/missing-part-in-64.png" alt="missing part in 64" class="article-image" loading="lazy"></p>
+                <p>PDF to delegate not the table as the person would need the links to download &gt;&gt;&gt;</p>
+                <p>the destionation can have everything in one folder</p>
+                <p>resources</p>
+                <p><img src="images/missing-part-in-65.png" alt="missing part in 65" class="article-image" loading="lazy"></p>
+                <p>Script image audio and video added to story board</p>
+                <p><img src="images/missing-part-in-66.png" alt="missing part in 66" class="article-image" loading="lazy"></p>
+                <p>Storyboard with links</p>
+                <p><img src="images/missing-part-in-67.png" alt="missing part in 67" class="article-image" loading="lazy"></p>
+                <p>Audio add</p>
+                <p><img src="images/missing-part-in-68.png" alt="missing part in 68" class="article-image" loading="lazy"></p>
+                <p>added the hacker rank </p>
+                <p><img src="images/missing-part-in-69.png" alt="missing part in 69" class="article-image" loading="lazy"></p>
+                <p><img src="images/missing-part-in-70.png" alt="missing part in 70" class="article-image" loading="lazy"></p>
+                <p><img src="images/missing-part-in-71.png" alt="missing part in 71" class="article-image" loading="lazy"></p>
+                <p>sotryboard outlining the gaps</p>
+                <p><img src="images/missing-part-in-72.png" alt="missing part in 72" class="article-image" loading="lazy"></p>
+                <p>Loom is a better place to upload </p>
+                <p>and dowload is there and the transcribe is there</p>
+                <p><img src="images/missing-part-in-73.png" alt="missing part in 73" class="article-image" loading="lazy"></p>
+                <p>uploading to loom</p>
+                <p><img src="images/missing-part-in-74.png" alt="missing part in 74" class="article-image" loading="lazy"></p>
+                <p>Loom has practical player on the miro board &gt;</p>
+                <p>pdf for the upwork ad &gt; miro fior reallife use case for collabration</p>
+                <p>move transcribe into miro</p>
+                <p><img src="images/missing-part-in-75.png" alt="missing part in 75" class="article-image" loading="lazy"></p>
+                <p>external link opener in miro</p>
+                <p><img src="images/missing-part-in-76.png" alt="missing part in 76" class="article-image" loading="lazy"></p>
+                <p>maybe left to right is important</p>
+                <p><img src="images/missing-part-in-77.png" alt="missing part in 77" class="article-image" loading="lazy"></p>
+                <p>A1 A2 is makes sense and to be able to see all </p>
+                <p><img src="images/missing-part-in-78.png" alt="missing part in 78" class="article-image" loading="lazy"></p>
+                <p>faster template to share it </p>
+                <p><img src="images/missing-part-in-79.png" alt="missing part in 79" class="article-image" loading="lazy"></p>
+                <p>most parts from old template with a change in business plan cant be taken</p>
+                <p><img src="images/missing-part-in-80.png" alt="missing part in 80" class="article-image" loading="lazy"></p>
+                <p>writing in bulk</p>
+                <p><img src="images/missing-part-in-81.png" alt="missing part in 81" class="article-image" loading="lazy"></p>
+                <p>dictation</p>
+                <p><img src="images/missing-part-in-82.png" alt="missing part in 82" class="article-image" loading="lazy"></p>
+                <p><img src="images/missing-part-in-83.png" alt="missing part in 83" class="article-image" loading="lazy"></p>
+                <p>some take time to write</p>
+                <p>https://rifaterdemsahin.com/2024/04/21/2023-to-2024-video-production-maturity</p>
+                <p>Space mouse time</p>
+                <p><img src="images/missing-part-in-84.png" alt="missing part in 84" class="article-image" loading="lazy"></p>
+                <p>MVP3 FOUND AND PROBLEM SOLVING COURSE</p>
+                <p>DEVAIOPS ITERATED</p>
+                <p>NOW MOVE THE REMAIING TO THE TEMPLATE AND TALK TO EDITORS LEVERAGE WITH THEM</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organize with GPT - Rifat Erdem Sahin</title>
+    <meta name="description" content="Organize with GPT Based on the content provided from the document, here's a structured outline for a course titled  Creating Linux Hosts in Azure with Infrastructure as Code : Course Outline: Creating">
+    <meta name="keywords" content="Organize with GPT">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/04/14/organize-with-gpt/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/04/14/organize-with-gpt/">
+    <meta property="og:title" content="Organize with GPT">
+    <meta property="og:description" content="Organize with GPT Based on the content provided from the document, here's a structured outline for a course titled  Creating Linux Hosts in Azure with Infrastructure as Code : Course Outline: Creating">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/04/14/organize-with-gpt/">
+    <meta property="twitter:title" content="Organize with GPT">
+    <meta property="twitter:description" content="Organize with GPT Based on the content provided from the document, here's a structured outline for a course titled  Creating Linux Hosts in Azure with Infrastructure as Code : Course Outline: Creating">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Organize with GPT",
+      "description": "Organize with GPT Based on the content provided from the document, here's a structured outline for a course titled  Creating Linux Hosts in Azure with Infrastructure as Code : Course Outline: Creating",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-04-14",
+      "dateModified": "2024-04-14",
+      "url": "https://www.rifaterdemsahin.com/2024/04/14/organize-with-gpt/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/04/14/organize-with-gpt/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Organize with GPT</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>April 14, 2024</span>
+                    <span>&bull;</span>
+                    <span>12 min read</span>
+                </div>
+                <p class="article-excerpt">Organize with GPT Based on the content provided from the document, here's a structured outline for a course titled &quot;Creating Linux Hosts in Azure with Infrastructure as Code&quot;: Course Outline: Creating Linux Hosts in Azure with Infrastructure as Code Introduction Overview of Infra</p>
+            </header>
+            <article class="article-content">
+                <h1>Organize with GPT</h1>
+                <p><img src="images/organize-with-gpt-1.png" alt="organize with gpt 1" class="article-image" loading="lazy"></p>
+                <p><img src="images/organize-with-gpt-2.png" alt="organize with gpt 2" class="article-image" loading="lazy"></p>
+                <p>Based on the content provided from the document, here's a structured outline for a course titled "Creating Linux Hosts in Azure with Infrastructure as Code":</p>
+                <h3>Course Outline: Creating Linux Hosts in Azure with Infrastructure as Code</h3>
+                <h4>Introduction</h4>
+                <ul>
+                <li>
+                <p><strong>Overview of Infrastructure as Code (IaC)</strong></p>
+                </li>
+                <li>
+                <p>Importance of IaC in modern IT environments</p>
+                </li>
+                <li>
+                <p>Benefits of using IaC for managing cloud resources</p>
+                </li>
+                <li>
+                <p><strong>Introduction to Azure and Linux VMs</strong></p>
+                </li>
+                <li>
+                <p>Key features of Azure for hosting Linux VMs</p>
+                </li>
+                <li>
+                <p>Overview of Linux as a choice for virtual machines</p>
+                </li>
+                </ul>
+                <h4>Section 1: Setting Up Your Azure Environment</h4>
+                <ul>
+                <li>
+                <p><strong>Creating Resource Groups</strong></p>
+                </li>
+                <li>
+                <p>Explanation and creation of Azure resource groups</p>
+                </li>
+                <li>
+                <p><strong>Configuring Network and Security Settings</strong></p>
+                </li>
+                <li>
+                <p>Setting up network security groups</p>
+                </li>
+                <li>
+                <p>Configuring IP addressing and firewall rules</p>
+                </li>
+                </ul>
+                <h4>Section 2: Deploying Linux Virtual Machines Using ARM Templates</h4>
+                <ul>
+                <li>
+                <p><strong>Introduction to ARM Templates</strong></p>
+                </li>
+                <li>
+                <p>Structure and components of ARM Templates</p>
+                </li>
+                <li>
+                <p><strong>Writing and Deploying ARM Templates</strong></p>
+                </li>
+                <li>
+                <p>Step-by-step guide to writing ARM templates for Linux VMs</p>
+                </li>
+                <li>
+                <p>Deploying templates via Azure CLI and Portal</p>
+                </li>
+                </ul>
+                <h4>Section 3: Automating Deployments Using Custom Scripts</h4>
+                <ul>
+                <li>
+                <p><strong>Using Azure Custom Script Extension</strong></p>
+                </li>
+                <li>
+                <p>How to integrate custom scripts in ARM templates</p>
+                </li>
+                <li>
+                <p>Automating Linux environment setup with Bash scripts</p>
+                </li>
+                </ul>
+                <h4>Section 4: Managing VM Lifecycle</h4>
+                <ul>
+                <li>
+                <p><strong>Starting, Stopping, and Deallocating VMs</strong></p>
+                </li>
+                <li>
+                <p>Commands and scripts to manage VM lifecycle</p>
+                </li>
+                <li>
+                <p><strong>Recreating VMs to Optimize Costs</strong></p>
+                </li>
+                <li>
+                <p>Strategies for using VMs in a cost-effective manner</p>
+                </li>
+                </ul>
+                <h4>Section 5: Advanced Configuration</h4>
+                <ul>
+                <li>
+                <p><strong>Remote Desktop and SSH Configurations</strong></p>
+                </li>
+                <li>
+                <p>Setting up xRDP for Linux VMs</p>
+                </li>
+                <li>
+                <p>Configuring SSH for secure remote access</p>
+                </li>
+                </ul>
+                <h4>Section 6: Monitoring and Maintenance</h4>
+                <ul>
+                <li>
+                <p><strong>Using Azure Monitor and Log Analytics</strong></p>
+                </li>
+                <li>
+                <p>Tools and practices for monitoring VM performance</p>
+                </li>
+                <li>
+                <p><strong>Updating and Maintaining Linux Systems</strong></p>
+                </li>
+                <li>
+                <p>Regular updates and security patches</p>
+                </li>
+                </ul>
+                <h4>Conclusion</h4>
+                <ul>
+                <li>
+                <p><strong>Best Practices and Summary</strong></p>
+                </li>
+                <li>
+                <p>Recap of key practices in managing Linux VMs in Azure</p>
+                </li>
+                <li>
+                <p><strong>Q&amp;A and Closing Remarks</strong></p>
+                </li>
+                </ul>
+                <h4>Additional Resources</h4>
+                <ul>
+                <li>
+                <p><strong>Documentation and Further Reading</strong></p>
+                </li>
+                <li>
+                <p>Links to Azure documentation and detailed guides on Linux VM management</p>
+                </li>
+                </ul>
+                <p>This outline covers the key aspects of creating and managing Linux hosts in Azure using infrastructure as code, providing a comprehensive roadmap for learners to follow in a course format.</p>
+                <p>To record at the distill stage i need a <strong>canva</strong> presentation. these are the topics for thinkific and udemy </p>
+                <p>Delete and be ready to rerun it </p>
+                <p><img src="images/organize-with-gpt-3.png" alt="organize with gpt 3" class="article-image" loading="lazy"></p>
+                <p>lets see if i can create the presentation from here</p>
+                <div class="video-embed"><iframe src="https://www.youtube.com/embed/bVCRcNlY1yw" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
+                
+                <p><img src="images/organize-with-gpt-4.png" alt="organize with gpt 4" class="article-image" loading="lazy"></p>
+                <p>it is ready </p>
+                <p><img src="images/organize-with-gpt-5.png" alt="organize with gpt 5" class="article-image" loading="lazy"></p>
+                <p><img src="images/organize-with-gpt-6.png" alt="organize with gpt 6" class="article-image" loading="lazy"></p>
+                <p>Text and slides are in</p>
+                <p><img src="images/organize-with-gpt-7.png" alt="organize with gpt 7" class="article-image" loading="lazy"></p>
+                <p><img src="images/organize-with-gpt-8.png" alt="organize with gpt 8" class="article-image" loading="lazy"></p>
+                <p>use presentation template</p>
+                <p><img src="images/organize-with-gpt-9.png" alt="organize with gpt 9" class="article-image" loading="lazy"></p>
+                <p><strong>Another rational persons one hour course is my 8 hour course</strong></p>
+                <p>version higher</p>
+                <p><img src="images/organize-with-gpt-10.png" alt="organize with gpt 10" class="article-image" loading="lazy"></p>
+                <p><img src="images/organize-with-gpt-11.png" alt="organize with gpt 11" class="article-image" loading="lazy"></p>
+                <p><img src="images/organize-with-gpt-12.png" alt="organize with gpt 12" class="article-image" loading="lazy"></p>
+                <p><img src="images/organize-with-gpt-13.png" alt="organize with gpt 13" class="article-image" loading="lazy"></p>
+                <p><img src="images/organize-with-gpt-14.png" alt="organize with gpt 14" class="article-image" loading="lazy"></p>
+                <p>Started on the canvas prepare distilled shooting https://www.canva.com/design/DAGCZFYwanc/KyVkBJbOmZ_NT_4dqyFb3g/edit?utm_content=DAGCZFYwanc&amp;utm_campaign=designshare&amp;utm_medium=link2&amp;utm_source=sharebutton</p>
+                <p><img src="images/organize-with-gpt-15.png" alt="organize with gpt 15" class="article-image" loading="lazy"></p>
+                <p>ready organie template</p>
+                <p><img src="images/organize-with-gpt-16.png" alt="organize with gpt 16" class="article-image" loading="lazy"></p>
+                <p><img src="images/organize-with-gpt-17.png" alt="organize with gpt 17" class="article-image" loading="lazy"></p>
+                <p><img src="images/organize-with-gpt-18.png" alt="organize with gpt 18" class="article-image" loading="lazy"></p>
+                <p>fit yourn text</p>
+                <p><img src="images/organize-with-gpt-19.png" alt="organize with gpt 19" class="article-image" loading="lazy"></p>
+                <p>adapt while shiooting it</p>
+                <p>intro as helper</p>
+                <p><img src="images/organize-with-gpt-20.png" alt="organize with gpt 20" class="article-image" loading="lazy"></p>
+                <p>POWERPOUINT LIMITATIONS</p>
+                <p><img src="images/organize-with-gpt-21.png" alt="organize with gpt 21" class="article-image" loading="lazy"></p>
+                <p>none artistic touch on the templates leverage the canva subs</p>
+                <p><img src="images/organize-with-gpt-22.png" alt="organize with gpt 22" class="article-image" loading="lazy"></p>
+                <p>half done for 13 pages</p>
+                <p><img src="images/organize-with-gpt-23.png" alt="organize with gpt 23" class="article-image" loading="lazy"></p>
+                <p>upload</p>
+                <p><a href="https://rifaterdemsahin.com/wp-content/uploads/2024/04/linux-vm-mastery-in-azure-v4.pdf">linux-vm-mastery-in-azure-v4</a><a href="https://rifaterdemsahin.com/wp-content/uploads/2024/04/linux-vm-mastery-in-azure-v4.pdf">Download</a></p>
+                <p>bold it and convergence continues</p>
+                <p>reuse template</p>
+                <p><img src="images/organize-with-gpt-24.png" alt="organize with gpt 24" class="article-image" loading="lazy"></p>
+                <p>create symbols </p>
+                <p><img src="images/organize-with-gpt-25.png" alt="organize with gpt 25" class="article-image" loading="lazy"></p>
+                <p>60 slides 60 minutes</p>
+                <p><img src="images/organize-with-gpt-26.png" alt="organize with gpt 26" class="article-image" loading="lazy"></p>
+                <p><img src="images/organize-with-gpt-27.png" alt="organize with gpt 27" class="article-image" loading="lazy"></p>
+                <ul>
+                <li><strong>divergence</strong> ( gather the points ) &gt; hero reaches there</li>
+                </ul>
+                <p>reach the goal &gt;&gt; 96 pages pdf </p>
+                <ul>
+                <li>
+                <p>create presentation &gt;&gt; 50 Pages more</p>
+                </li>
+                <li>
+                <p><strong>convergence</strong> ( connect point for one goal ) ( cheat sheets are ready to do it )</p>
+                </li>
+                </ul>
+                <p>record in bulk doing the goal with presentation ( multi cam)</p>
+                <p>OBS</p>
+                <p>Face</p>
+                <ul>
+                <li>
+                <p>Screen</p>
+                </li>
+                <li>
+                <p>edit and publish in bulk</p>
+                </li>
+                </ul>
+                <p>Transcript </p>
+                <p>practical davinci 19</p>
+                <p>At the start one skip &gt;&gt;&gt; and parts not fully done</p>
+                <p><img src="images/organize-with-gpt-28.png" alt="organize with gpt 28" class="article-image" loading="lazy"></p>
+                <p>for the flow be ready to update</p>
+                <p><img src="images/organize-with-gpt-29.png" alt="organize with gpt 29" class="article-image" loading="lazy"></p>
+                <p>2 mic to record</p>
+                <p>ask iothers</p>
+                <p><img src="images/organize-with-gpt-30.png" alt="organize with gpt 30" class="article-image" loading="lazy"></p>
+                <p>audio issue and now daiuvinci is getting installed</p>
+                <p>i can also record to the rodecaster as backup &gt;<strong> 3 audio backups now</strong></p>
+                <p>find audio</p>
+                <p><img src="images/organize-with-gpt-31.png" alt="organize with gpt 31" class="article-image" loading="lazy"></p>
+                <p>it has to be there</p>
+                <p><img src="images/organize-with-gpt-32.png" alt="organize with gpt 32" class="article-image" loading="lazy"></p>
+                <p>editor needed</p>
+                <p><img src="images/organize-with-gpt-33.png" alt="organize with gpt 33" class="article-image" loading="lazy"></p>
+                <p>if obs fails move loom canvas</p>
+                <p><img src="images/organize-with-gpt-34.png" alt="organize with gpt 34" class="article-image" loading="lazy"></p>
+                <p>loom works</p>
+                <p><img src="images/organize-with-gpt-35.png" alt="organize with gpt 35" class="article-image" loading="lazy"></p>
+                <p>why does my oobs dies not work</p>
+                <p><img src="images/organize-with-gpt-36.png" alt="organize with gpt 36" class="article-image" loading="lazy"></p>
+                <p>remove and readd</p>
+                <p><img src="images/organize-with-gpt-37.png" alt="organize with gpt 37" class="article-image" loading="lazy"></p>
+                <p>delete and readded it is back </p>
+                <p><img src="images/organize-with-gpt-38.png" alt="organize with gpt 38" class="article-image" loading="lazy"></p>
+                <p>read and update</p>
+                <p><img src="images/organize-with-gpt-39.png" alt="organize with gpt 39" class="article-image" loading="lazy"></p>
+                <p>3 saves audio the voicemeeter not saving </p>
+                <p>risk install in the back on davinci </p>
+                <p>flow got stopped ion the slide 3</p>
+                <p><img src="images/organize-with-gpt-40.png" alt="organize with gpt 40" class="article-image" loading="lazy"></p>
+                <p>AT LEAST CHECK WITH THE EXISTING ONE &gt;&gt;&gt; flow IS CRITICAL TRY TO COMPLETE THE SHOOT IN ONE GO</p>
+                <p><img src="images/organize-with-gpt-41.png" alt="organize with gpt 41" class="article-image" loading="lazy"></p>
+                <p>CANVA IS THERE </p>
+                <p><img src="images/organize-with-gpt-42.png" alt="organize with gpt 42" class="article-image" loading="lazy"></p>
+                <p>`wordpress capture<br />
+                https:&#047;&#047;wordpress.com/post/rifaterdemsahin.com/27120</p>
+                <p>wordpress organize<br />
+                https://wordpress.com/post/rifaterdemsahin.com/27392</p>
+                <p>gpt<br />
+                https://chat.openai.com/c/3f3fda55-9799-40f1-b410-20cb15246f06</p>
+                <p>udemy<br />
+                https://www.udemy.com/instructor/courses/</p>
+                <p>Loom<br />
+                https://www.loom.com/looms/videos/Linux-VM-Mastery-in-Azure-v5-b8e4c46134af41738862e3c78776d0fb`</p>
+                <p>Upload it there</p>
+                <p><img src="images/organize-with-gpt-43.png" alt="organize with gpt 43" class="article-image" loading="lazy"></p>
+                <p>Wait for the correct time to deliver it</p>
+                <p><strong>Flow </strong>is crucial in video production as it ensures a seamless, engaging experience for viewers. Proper flow maintains continuity and coherence across scenes and transitions, guiding the audience through a logical progression of ideas or story elements. This is achieved through careful editing, consistent pacing, and strategic narrative structuring. A well-maintained flow holds the viewer's attention, evokes the desired emotional responses, and enhances the overall impact of the video, making the content more memorable and effective. Without good flow, videos can appear disjointed or confusing, potentially alienating the audience and diminishing the communicative power of the production.</p>
+                <p>thne davinci 19 is installed and arya in the studio restart the box </p>
+                <p><img src="images/organize-with-gpt-44.png" alt="organize with gpt 44" class="article-image" loading="lazy"></p>
+                <p>and test transctipy based edit&gt; leave the cameras on and record.!</p>
+                <p><img src="images/organize-with-gpt-45.png" alt="organize with gpt 45" class="article-image" loading="lazy"></p>
+                <p><img src="images/organize-with-gpt-46.png" alt="organize with gpt 46" class="article-image" loading="lazy"></p>
+                <p>resolve issues&gt;</p>
+                <p><img src="images/organize-with-gpt-47.png" alt="organize with gpt 47" class="article-image" loading="lazy"></p>
+                <p><img src="images/organize-with-gpt-48.png" alt="organize with gpt 48" class="article-image" loading="lazy"></p>
+                <p>Proper memory allocation</p>
+                <p><img src="images/organize-with-gpt-49.png" alt="organize with gpt 49" class="article-image" loading="lazy"></p>
+                <p><img src="images/organize-with-gpt-50.png" alt="organize with gpt 50" class="article-image" loading="lazy"></p>
+                <p><img src="images/organize-with-gpt-51.png" alt="organize with gpt 51" class="article-image" loading="lazy"></p>
+                <p>Licence key issue could make thins harder</p>
+                <p>future task ( todo )</p>
+                <p>second transcribe with licence as this is a licenced feature</p>
+                <p>2.8x</p>
+                <p>no smart card but still the error is there</p>
+                <p>The error message you're encountering typically occurs in environments where smart card authentication is used, especially in Windows systems. This message indicates a problem with how the domain information is structured or presented in the smart card logon certificate, making it difficult for a non-domain-joined computer (a computer that is not part of a larger network of computers managed centrally) to recognize and authenticate the user properly. Here's what you can do to address this issue:</p>
+                <ul>
+                <li>
+                <p><strong>Contact System Administrator</strong>: As the error message suggests, the first and most straightforward step is to contact your system administrator. This issue often involves configuration settings that are not accessible to the average user.</p>
+                </li>
+                <li>
+                <p><strong>Certificate Configuration</strong>: The administrator should check the smart card's logon certificate, particularly the Distinguished Name (DN) field. The DN needs to include specific domain information that the system can use to verify the user's credentials. It's possible the certificate was not properly issued or lacks necessary domain information.</p>
+                </li>
+                <li>
+                <p><strong>Update Certificate Template</strong>: If the certificate template used to issue smart card certificates is missing necessary information, the administrator may need to update the template to include these details. This change typically involves adjusting the template in the Certificate Authority that issues these certificates.</p>
+                </li>
+                <li>
+                <p><strong>Reissue Certificate</strong>: If the existing certificate is not configured correctly, it might be necessary to reissue a new certificate with the proper settings and information in the DN field.</p>
+                </li>
+                <li>
+                <p><strong>Test Configuration</strong>: After adjustments are made, testing with a non-domain-joined computer is crucial to ensure the problem is resolved. This can help verify that the domain information is now correctly included and recognized during the authentication process.</p>
+                </li>
+                <li>
+                <p><strong>Review Group Policy Settings</strong>: For domain-joined computers, it's also a good idea to review Group Policy settings related to smart card login to ensure they are correctly configured and enforced.</p>
+                </li>
+                <li>
+                <p><strong>Documentation and Support</strong>: Sometimes, specific scenarios or configurations might require looking into the vendor’s documentation or seeking direct support from the software or hardware provider of the smart card systems.</p>
+                </li>
+                </ul>
+                <p>Addressing this issue typically requires administrative access and a good understanding of the domain and certificate configurations, so coordinating with IT support is essential.</p>
+                <p>cancelled the audio &gt;</p>
+                <p>The error message you're encountering indicates that the "GameInput Service" service on your system stopped because it encountered a storage-related compatibility issue. Specifically, the service is trying to access a compound file that was created or modified using a newer version of the storage format than the service can handle. Here's how you can address this problem:</p>
+                <h3>1. <strong>Update Your System and Software</strong></h3>
+                <ul>
+                <li>
+                <p><strong>Update Game Software</strong>: Ensure that the game or application using the GameInput Service is updated to the latest version. Sometimes, updates include patches for compatibility issues.</p>
+                </li>
+                <li>
+                <p><strong>Update Windows</strong>: Make sure your Windows operating system is updated. Updates can provide patches and improvements that might resolve version incompatibilities with system services.</p>
+                </li>
+                <li>
+                <p><strong>Update Drivers</strong>: Particularly, ensure that input device drivers (like those for game controllers, keyboards, etc.) are up to date, as these can affect how services related to input are handled.</p>
+                </li>
+                </ul>
+                <h3>2. <strong>Reinstall the Affected Service</strong></h3>
+                <ul>
+                <li>If updates don’t resolve the issue, try reinstalling the software that utilizes the GameInput Service. A fresh install might replace outdated or corrupted files and configurations.</li>
+                </ul>
+                <h3>3. <strong>Compatibility Mode</strong></h3>
+                <ul>
+                <li>If you suspect that the issue is due to compatibility, particularly with older games or applications, try running the game or application in compatibility mode:</li>
+                </ul>
+                <p>Right-click the executable file or shortcut.</p>
+                <ul>
+                <li>
+                <p>Choose 'Properties'.</p>
+                </li>
+                <li>
+                <p>Go to the 'Compatibility' tab.</p>
+                </li>
+                <li>
+                <p>Check 'Run this program in compatibility mode for:' and select an older version of Windows.</p>
+                </li>
+                <li>
+                <p>Apply and OK.</p>
+                </li>
+                </ul>
+                <h3>4. <strong>Check System Logs</strong></h3>
+                <ul>
+                <li>Use Event Viewer to check for additional error details that might provide more context on why the GameInput Service is failing. This information can be helpful if you need to contact technical support.</li>
+                </ul>
+                <p>Press <code>Win + R</code>, type <code>eventvwr.msc</code>, and hit Enter.</p>
+                <ul>
+                <li>Navigate to Windows Logs &gt; Application and look for error entries related to the GameInput Service.</li>
+                </ul>
+                <h3>5. <strong>Contact Support</strong></h3>
+                <ul>
+                <li>If none of the above steps work, consider contacting the support team for the game or application, or Microsoft Support if the issue seems related to Windows components.</li>
+                </ul>
+                <h3>6. <strong>System Restore</strong></h3>
+                <ul>
+                <li>As a last resort, if you believe a recent change in your system caused the issue, you can perform a system restore to revert your system settings to a previous state when everything worked correctly. This should be done cautiously:</li>
+                </ul>
+                <p>Type <code>Create a restore point</code> in the Windows search bar and select it.</p>
+                <ul>
+                <li>
+                <p>Go to the 'System Protection' tab and click on 'System Restore'.</p>
+                </li>
+                <li>
+                <p>Follow the instructions to choose a restore point prior to when the error began occurring.</p>
+                </li>
+                </ul>
+                <p>Each of these steps targets a different potential cause of the issue, from simple software updates to more complex compatibility problems. It's best to proceed methodically, starting with the most common solutions (like updating software) before moving to more involved processes.</p>
+                <p><img src="images/organize-with-gpt-52.png" alt="organize with gpt 52" class="article-image" loading="lazy"></p>
+                <p>eye cut and make it shorter</p>
+                <p><img src="images/organize-with-gpt-53.png" alt="organize with gpt 53" class="article-image" loading="lazy"></p>
+                <p>transcribe on shorter one </p>
+                <p><img src="images/organize-with-gpt-54.png" alt="organize with gpt 54" class="article-image" loading="lazy"></p>
+                <p>20 minutes went down to 2 minutes</p>
+                <p>2x goes to 26x </p>
+                <p>gpu gets used</p>
+                <p><img src="images/organize-with-gpt-55.png" alt="organize with gpt 55" class="article-image" loading="lazy"></p>
+                <p>create timeline 2 and drop there</p>
+                <p><img src="images/organize-with-gpt-56.png" alt="organize with gpt 56" class="article-image" loading="lazy"></p>
+                <p>export testing</p>
+                <p><img src="images/organize-with-gpt-57.png" alt="organize with gpt 57" class="article-image" loading="lazy"></p>
+                <p>Converted to mov</p>
+                <p><img src="images/organize-with-gpt-58.png" alt="organize with gpt 58" class="article-image" loading="lazy"></p>
+                <p>normalize audio and retry </p>
+                <p><img src="images/organize-with-gpt-59.png" alt="organize with gpt 59" class="article-image" loading="lazy"></p>
+                <p>fix issues on the topic read multi times and make it good for the comunnunity to consume!</p>
+                <div class="video-embed"><iframe src="https://www.loom.com/embed/f40c079acd284f36a3ced16ca0d8ceec" frameborder="0" allowfullscreen></iframe></div>
+                
+                <p>more incoming and gpt in many places</p>
+                <p><img src="images/organize-with-gpt-60.png" alt="organize with gpt 60" class="article-image" loading="lazy"></p>
+                <p>paster style with keyboard shortcuts makes it easier</p>
+                <p>enter animate takes time </p>
+                <p><img src="images/organize-with-gpt-61.png" alt="organize with gpt 61" class="article-image" loading="lazy"></p>
+                <p>90 minutes</p>
+                <p><img src="images/organize-with-gpt-62.png" alt="organize with gpt 62" class="article-image" loading="lazy"></p>
+                <p>add markers + on where you are left</p>
+                <p><img src="images/organize-with-gpt-63.png" alt="organize with gpt 63" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

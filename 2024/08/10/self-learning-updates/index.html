@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How I Use Azure Logic Apps Workflow to Automate Recruiter Email Responses - Rifat Erdem Sahin</title>
+    <meta name="description" content="How I Use Azure Logic Apps Workflow to Automate Recruiter Email Responses As someone who juggles multiple roles as an operator and designer , my daily routine often involves handling upcoming issues, ">
+    <meta name="keywords" content="How I Use Azure Logic Apps Workflow to Automate Recruiter Email Responses">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/08/10/self-learning-updates/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/08/10/self-learning-updates/">
+    <meta property="og:title" content="How I Use Azure Logic Apps Workflow to Automate Recruiter Email Responses">
+    <meta property="og:description" content="How I Use Azure Logic Apps Workflow to Automate Recruiter Email Responses As someone who juggles multiple roles as an operator and designer , my daily routine often involves handling upcoming issues, ">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/08/10/self-learning-updates/">
+    <meta property="twitter:title" content="How I Use Azure Logic Apps Workflow to Automate Recruiter Email Responses">
+    <meta property="twitter:description" content="How I Use Azure Logic Apps Workflow to Automate Recruiter Email Responses As someone who juggles multiple roles as an operator and designer , my daily routine often involves handling upcoming issues, ">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "How I Use Azure Logic Apps Workflow to Automate Recruiter Email Responses",
+      "description": "How I Use Azure Logic Apps Workflow to Automate Recruiter Email Responses As someone who juggles multiple roles as an operator and designer , my daily routine often involves handling upcoming issues, ",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-08-10",
+      "dateModified": "2024-08-10",
+      "url": "https://www.rifaterdemsahin.com/2024/08/10/self-learning-updates/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/08/10/self-learning-updates/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">How I Use Azure Logic Apps Workflow to Automate Recruiter Email Responses</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>August 10, 2024</span>
+                    <span>&bull;</span>
+                    <span>7 min read</span>
+                </div>
+                <p class="article-excerpt">How I Use Azure Logic Apps Workflow to Automate Recruiter Email Responses As someone who juggles multiple roles as an operator and designer , my daily routine often involves handling upcoming issues, troubleshooting, and making sure that everything runs smoothly.</p>
+            </header>
+            <article class="article-content">
+                <h1>How I Use Azure Logic Apps Workflow to Automate Recruiter Email Responses</h1>
+                <p>As someone who juggles multiple roles as an <strong>operator </strong>and <strong>designer</strong>, my daily routine often involves handling upcoming issues, troubleshooting, and making sure that everything runs smoothly. Recently, I've started using Azure Logic Apps to streamline one of the more repetitive tasks I face—answering recruiter emails. While this might seem like a simple task, it can be time-consuming and prone to errors, especially when managing multiple opportunities at once. Here’s how I went about automating this process, the lessons I learned, and how I made it work efficiently for my specific needs.</p>
+                <h3>Before: The Manual Process</h3>
+                <p>Before implementing automation, my process for handling recruiter emails was entirely manual:</p>
+                <ul>
+                <li>
+                <p><strong>Receiving Emails</strong>: I would receive various emails from recruiters, each requiring a customized response.</p>
+                </li>
+                <li>
+                <p><strong>Analyzing Job Offers</strong>: I’d manually read through the job offers, cross-referencing the requirements with my skills and experience.</p>
+                </li>
+                <li>
+                <p><strong>Drafting Responses</strong>: If the job seemed like a good fit, I’d draft a response, attach my resume, and hit send.</p>
+                </li>
+                <li>
+                <p><strong>Tracking Responses</strong>: Keeping track of which jobs I had responded to was a nightmare, often leading to missed opportunities or duplicate responses.</p>
+                </li>
+                </ul>
+                <p>This process was inefficient and prone to human error. I often found myself spending more time on these tasks than necessary, time that could have been better spent on my core responsibilities.</p>
+                <h3>After: Automating with Azure Logic Apps</h3>
+                <p>I decided to automate this process using Azure Logic Apps, which offers a robust and flexible way to create workflows that integrate seamlessly with various services. Here’s how I set it up:</p>
+                <ul>
+                <li>
+                <p><strong>Researching the Requirements</strong>:</p>
+                </li>
+                <li>
+                <p>I started by understanding the various triggers and actions available in Azure Logic Apps. This was a one-off research project that laid the foundation for the workflow.I use the storage to keep my skills and answers</p>
+                </li>
+                <li>
+                <p>I identified key components like the email service (Gmail), file storage for attachments, and a filtering mechanism to identify relevant job offers.</p>
+                </li>
+                <li>
+                <p><strong>Creating the Workflow</strong>:</p>
+                </li>
+                <li>
+                <p><strong>Trigger</strong>: The workflow starts with an email trigger that monitors my inbox for incoming recruiter emails.</p>
+                </li>
+                <li>
+                <p><strong>Filtering Emails</strong>: I used conditional logic to filter emails based on specific keywords and sender domains. If the email doesn’t match the criteria, it’s skipped.</p>
+                </li>
+                <li>
+                <p><strong>Analyzing Job Requirements</strong>: The workflow extracts the job description from the email and compares it to a predefined list of my skills. If there’s a match, the workflow proceeds; if not, the email is marked as irrelevant.</p>
+                </li>
+                <li>
+                <p><strong>Generating a Response</strong>: For matching jobs, the workflow automatically drafts a response using a templated email format. It also attaches my latest resume and sends the email.</p>
+                </li>
+                <li>
+                <p><strong>Logging and Backup</strong>: Each interaction is logged, and a copy of the sent email is saved in a designated folder for future reference.</p>
+                </li>
+                <li>
+                <p><strong>Handling Failures</strong>: ( as an operator )</p>
+                </li>
+                <li>
+                <p>I built in failure handling mechanisms. For instance, if there’s an internal error, the workflow logs it but skips the email instead of retrying. This prevents unnecessary delays.</p>
+                </li>
+                <li>
+                <p>If a cover letter fails to generate due to a lack of matching skills, the email is skipped, and I am notified to manually review it. This ensures that I don’t waste time on opportunities that aren’t a good fit.</p>
+                </li>
+                <li>
+                <p><strong>Testing and Iteration</strong>:</p>
+                </li>
+                <li>
+                <p>The first few runs of the workflow highlighted areas that needed tweaking—like optimizing keyword filters and refining the job requirement matching process.</p>
+                </li>
+                <li>
+                <p>I iterated on the workflow, adding more robust error handling and making sure that attachments were always correctly loaded and sent.</p>
+                </li>
+                </ul>
+                <h3>Success Criteria: Evaluating the Workflow</h3>
+                <p>I set clear success criteria to evaluate whether the automation was working effectively:</p>
+                <ul>
+                <li>
+                <p><strong>Success Rate</strong>: The workflow successfully responded to over 60% of relevant emails without any manual intervention.</p>
+                </li>
+                <li>
+                <p><strong>Failure Rate</strong>: The failure rate was capped at a maximum of 30%, and in most cases, these were appropriately skipped rather than causing a workflow halt.</p>
+                </li>
+                <li>
+                <p><strong>Efficiency</strong>: I significantly reduced the time spent on email management, allowing me to focus on my core responsibilities.</p>
+                </li>
+                </ul>
+                <h3>Lessons Learned and Self-Reflections</h3>
+                <p>Throughout this process, I learned several key lessons:</p>
+                <ul>
+                <li>
+                <p><strong>Importance of Initial Research</strong>: The one-off research project to understand Azure Logic Apps was crucial. Without a solid foundation, the workflow would have been far less effective.</p>
+                </li>
+                <li>
+                <p><strong>Iterative Improvement</strong>: Automation is not a set-it-and-forget-it solution. It requires continuous monitoring and iteration to adapt to new challenges and improve performance.</p>
+                </li>
+                <li>
+                <p><strong>Failure Handling</strong>: Not all failures are bad. By designing the workflow to skip certain failures, I avoided unnecessary complications and kept the process running smoothly.</p>
+                </li>
+                </ul>
+                <h3>Conclusion</h3>
+                <p>Automating recruiter email responses with Azure Logic Apps has transformed a time-consuming, error-prone process into an efficient, reliable system. By focusing on my specific needs and setting clear success criteria, I was able to build a workflow that not only saves time but also ensures that I never miss a relevant opportunity.</p>
+                <p>If you’re managing a high volume of recruiter emails or similar tasks, I highly recommend exploring automation with Azure Logic Apps. It’s been a game-changer for me, and with a bit of customization, it can be tailored to fit almost any workflow.</p>
+                <p>Start with research &gt; Logic apps are part of it </p>
+                <p><img src="images/how-i-use-1.png" alt="how i use 1" class="article-image" loading="lazy"></p>
+                <p>Create a guide for your self &gt; templated icons to move</p>
+                <p><img src="images/how-i-use-2.png" alt="how i use 2" class="article-image" loading="lazy"></p>
+                <p>Also consider publising your self learnings with Logic apps</p>
+                <p>SORTING <strong>SEPERATORS</strong> TO PUT THE CONTENT IN THAN I WOULD CLONE AND BACKUP </p>
+                <p>TEMPLATED</p>
+                <p><img src="images/how-i-use-3.png" alt="how i use 3" class="article-image" loading="lazy"></p>
+                <p>ALSO ADDING PROMPTS &gt; part of the game ask good questions</p>
+                <p><img src="images/how-i-use-4.png" alt="how i use 4" class="article-image" loading="lazy"></p>
+                <p>RESEARCH IS <strong>not </strong>A ONE OFF PROJECT</p>
+                <p><img src="images/how-i-use-5.png" alt="how i use 5" class="article-image" loading="lazy"></p>
+                <p><strong>Check your action as well &gt;</strong> if the mail system is working or not</p>
+                <p><img src="images/how-i-use-6.png" alt="how i use 6" class="article-image" loading="lazy"></p>
+                <p>sUCCESS AT 60s &gt; learn as an <strong>operator</strong></p>
+                <p><img src="images/how-i-use-7.png" alt="how i use 7" class="article-image" loading="lazy"></p>
+                <p>FAIL MAX AT 30 &gt; faster fails are better without api calls to openai</p>
+                <p><img src="images/how-i-use-8.png" alt="how i use 8" class="article-image" loading="lazy"></p>
+                <p>FOCUS TO TELL YOUR OWN STORY &gt; logic apps are part of the gpt course &gt;daily usecase</p>
+                <p><img src="images/how-i-use-9.png" alt="how i use 9" class="article-image" loading="lazy"></p>
+                <p>BEFORE &gt;&gt;&gt; the fail understand where it is coming from automation and the GPT are part of each other &gt;&gt;&gt; lymic system and cortex</p>
+                <p><img src="images/how-i-use-10.png" alt="how i use 10" class="article-image" loading="lazy"></p>
+                <p>AFTER</p>
+                <p><img src="images/how-i-use-11.png" alt="how i use 11" class="article-image" loading="lazy"></p>
+                <p>A STEP IS A SUCCESS ?? &gt;&gt;&gt; understand the state machine</p>
+                <p><img src="images/how-i-use-12.png" alt="how i use 12" class="article-image" loading="lazy"></p>
+                <p><img src="images/how-i-use-13.png" alt="how i use 13" class="article-image" loading="lazy"></p>
+                <p>FoCUS HAS TO BE LOAD ATTACHMENTS &gt; false flag</p>
+                <p>ALSO ADDED THE FAIL PART</p>
+                <p><img src="images/how-i-use-14.png" alt="how i use 14" class="article-image" loading="lazy"></p>
+                <p>NOT FAILED IT HAS TO BE SKIPPED</p>
+                <p><img src="images/how-i-use-15.png" alt="how i use 15" class="article-image" loading="lazy"></p>
+                <p>FIXING IT </p>
+                <p><img src="images/how-i-use-16.png" alt="how i use 16" class="article-image" loading="lazy"></p>
+                <p>COVER LETTER IS FAILING WHY &gt;&gt;&gt; check sub workflows </p>
+                <p><img src="images/how-i-use-17.png" alt="how i use 17" class="article-image" loading="lazy"></p>
+                <p>INTERNAL ERROR &gt;&gt;&gt; understand why</p>
+                <p><img src="images/how-i-use-18.png" alt="how i use 18" class="article-image" loading="lazy"></p>
+                <p>IF THERE <strong>NO SKILLS MATCHED T</strong>HAN THERE IS NO MEANING TO SEND THE EMAIL &gt;&gt;&gt; future candidate for AI now using a static list that needs to be regenerated with each contract.</p>
+                <p><img src="images/how-i-use-19.png" alt="how i use 19" class="article-image" loading="lazy"></p>
+                <p>ALSO NO NEED TO CALL IT </p>
+                <p><img src="images/how-i-use-20.png" alt="how i use 20" class="article-image" loading="lazy"></p>
+                <p>break it here is the way to go  &gt;&gt;&gt; easier fix</p>
+                <p><img src="images/how-i-use-21.png" alt="how i use 21" class="article-image" loading="lazy"></p>
+                <p><img src="images/how-i-use-22.png" alt="how i use 22" class="article-image" loading="lazy"></p>
+                <p>it cant do the trick &gt;&gt;&gt; easier fixes are there as well </p>
+                <p><img src="images/how-i-use-23.png" alt="how i use 23" class="article-image" loading="lazy"></p>
+                <p>MARK IT IN THE SELF RESEARCH &gt;&gt;&gt; self learnings</p>
+                <p><img src="images/how-i-use-24.png" alt="how i use 24" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

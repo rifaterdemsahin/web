@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Openshift  Host Continue on the setup ( OS Part 2 ) - Rifat Erdem Sahin</title>
+    <meta name="description" content="Openshift Host Continue on the setup ( OS Part 2 ) Main Script &gt; My Goal to do everything there &gt; Convert into a single skill and add the course/skill ware part / Would be an add on to linkedin ">
+    <meta name="keywords" content="Openshift  Host Continue on the setup ( OS Part 2 )">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/04/23/openshift-host-continue-on-the-setup/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/04/23/openshift-host-continue-on-the-setup/">
+    <meta property="og:title" content="Openshift  Host Continue on the setup ( OS Part 2 )">
+    <meta property="og:description" content="Openshift Host Continue on the setup ( OS Part 2 ) Main Script &gt; My Goal to do everything there &gt; Convert into a single skill and add the course/skill ware part / Would be an add on to linkedin ">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/04/23/openshift-host-continue-on-the-setup/">
+    <meta property="twitter:title" content="Openshift  Host Continue on the setup ( OS Part 2 )">
+    <meta property="twitter:description" content="Openshift Host Continue on the setup ( OS Part 2 ) Main Script &gt; My Goal to do everything there &gt; Convert into a single skill and add the course/skill ware part / Would be an add on to linkedin ">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Openshift  Host Continue on the setup ( OS Part 2 )",
+      "description": "Openshift Host Continue on the setup ( OS Part 2 ) Main Script &gt; My Goal to do everything there &gt; Convert into a single skill and add the course/skill ware part / Would be an add on to linkedin ",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-04-23",
+      "dateModified": "2024-04-23",
+      "url": "https://www.rifaterdemsahin.com/2024/04/23/openshift-host-continue-on-the-setup/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/04/23/openshift-host-continue-on-the-setup/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Openshift  Host Continue on the setup ( OS Part 2 )</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>April 23, 2024</span>
+                    <span>&bull;</span>
+                    <span>14 min read</span>
+                </div>
+                <p class="article-excerpt">Openshift Host Continue on the setup ( OS Part 2 ) Main Script &gt; My Goal to do everything there &gt; Convert into a single skill and add the course/skill ware part / Would be an add on to linkedin &gt; why &gt; https://rifaterdemsahin.com/2024/04/09/why-complete-the-openshift-</p>
+            </header>
+            <article class="article-content">
+                <h1>Openshift  Host Continue on the setup ( OS Part 2 )</h1>
+                <p>Main Script &gt; My Goal to do everything there &gt; Convert into a single skill and add the course/skill ware part /</p>
+                <p><img src="images/openshift-host-continue-1.png" alt="openshift host continue 1" class="article-image" loading="lazy"></p>
+                <p>Would be an add on to linkedin  &gt; </p>
+                <p><img src="images/openshift-host-continue-2.png" alt="openshift host continue 2" class="article-image" loading="lazy"></p>
+                <p>why &gt; <a href="https://rifaterdemsahin.com/2024/04/09/why-complete-the-openshift-creation/">https://rifaterdemsahin.com/2024/04/09/why-complete-the-openshift-creation/</a></p>
+                <p>gcp focus &gt; <a href="https://rifaterdemsahin.com/2024/04/05/hackerrank-focus/">https://rifaterdemsahin.com/2024/04/05/hackerrank-focus/</a></p>
+                <p>Customers are there &gt;&gt;&gt; learn agents from all not only azure onpremises gateway</p>
+                <p><img src="images/openshift-host-continue-3.png" alt="openshift host continue 3" class="article-image" loading="lazy"></p>
+                <p>miro board &gt; <a href="https://miro.com/app/board/uXjVNi9RlUg=/">https://miro.com/app/board/uXjVNi9RlUg=/</a></p>
+                <p><strong>Move on From here &gt;</strong> <a href="https://rifaterdemsahin.com/2024/03/04/openshift-course-pluralsight/">https://rifaterdemsahin.com/2024/03/04/openshift-course-pluralsight/</a></p>
+                <p>Pink Machine start</p>
+                <p><img src="images/openshift-host-continue-4.png" alt="openshift host continue 4" class="article-image" loading="lazy"></p>
+                <p>The powershell script has other parts in this </p>
+                <p><img src="images/openshift-host-continue-5.png" alt="openshift host continue 5" class="article-image" loading="lazy"></p>
+                <p>Start empty </p>
+                <p><img src="images/openshift-host-continue-6.png" alt="openshift host continue 6" class="article-image" loading="lazy"></p>
+                <p>Add to dashboard</p>
+                <p><img src="images/openshift-host-continue-7.png" alt="openshift host continue 7" class="article-image" loading="lazy"></p>
+                <p>remove the old ones keep it active</p>
+                <p><img src="images/openshift-host-continue-8.png" alt="openshift host continue 8" class="article-image" loading="lazy"></p>
+                <p><img src="images/openshift-host-continue-9.png" alt="openshift host continue 9" class="article-image" loading="lazy"></p>
+                <p>add to open shift</p>
+                <p><img src="images/openshift-host-continue-10.png" alt="openshift host continue 10" class="article-image" loading="lazy"></p>
+                <p>Looks like he installed on windows not the linux enviroment</p>
+                <p><img src="images/openshift-host-continue-11.png" alt="openshift host continue 11" class="article-image" loading="lazy"></p>
+                <p>Place we are trying to reach  &gt; While Andres outlines the estimation for his work!</p>
+                <p><img src="images/openshift-host-continue-12.png" alt="openshift host continue 12" class="article-image" loading="lazy"></p>
+                <p>Hassle and demo would be great on Linkedin &gt; Nana created a course in a package!</p>
+                <p><img src="images/openshift-host-continue-13.png" alt="openshift host continue 13" class="article-image" loading="lazy"></p>
+                <p>AKS and nginx is there </p>
+                <p><img src="images/openshift-host-continue-14.png" alt="openshift host continue 14" class="article-image" loading="lazy"></p>
+                <p>AKS practical expose is there</p>
+                <p><img src="images/openshift-host-continue-15.png" alt="openshift host continue 15" class="article-image" loading="lazy"></p>
+                <p>Both are different &gt; he used the windows on the kubernetes example which gives 2 sided examples to market on</p>
+                <p><img src="images/openshift-host-continue-16.png" alt="openshift host continue 16" class="article-image" loading="lazy"></p>
+                <p>Today i expect to have these</p>
+                <p><img src="images/openshift-host-continue-17.png" alt="openshift host continue 17" class="article-image" loading="lazy"></p>
+                <p>would trigger the create host</p>
+                <p><img src="images/openshift-host-continue-18.png" alt="openshift host continue 18" class="article-image" loading="lazy"></p>
+                <p>Manually get the diff of the linux install and fix it</p>
+                <p><img src="images/openshift-host-continue-19.png" alt="openshift host continue 19" class="article-image" loading="lazy"></p>
+                <p>ask your wishes</p>
+                <p>https://twitter.com/rifaterdemsahin/status/1782702096543818002</p>
+                <p>2 boxes to deliver</p>
+                <p><img src="images/openshift-host-continue-20.png" alt="openshift host continue 20" class="article-image" loading="lazy"></p>
+                <p>nginx would be used</p>
+                <p><img src="images/openshift-host-continue-21.png" alt="openshift host continue 21" class="article-image" loading="lazy"></p>
+                <p>Multiple controllers with one regfistry outside &gt; delete them not to have cost!</p>
+                <p><img src="images/openshift-host-continue-22.png" alt="openshift host continue 22" class="article-image" loading="lazy"></p>
+                <p>Delete all with speed</p>
+                <p><img src="images/openshift-host-continue-23.png" alt="openshift host continue 23" class="article-image" loading="lazy"></p>
+                <p>Services and requirements</p>
+                <p><img src="images/openshift-host-continue-24.png" alt="openshift host continue 24" class="article-image" loading="lazy"></p>
+                <p>setting up the access is the key </p>
+                <p><img src="images/openshift-host-continue-25.png" alt="openshift host continue 25" class="article-image" loading="lazy"></p>
+                <p>redhat account</p>
+                <p><img src="images/openshift-host-continue-26.png" alt="openshift host continue 26" class="article-image" loading="lazy"></p>
+                <p>Lastpass fixed</p>
+                <p><img src="images/openshift-host-continue-27.png" alt="openshift host continue 27" class="article-image" loading="lazy"></p>
+                <p>More data</p>
+                <p><img src="images/openshift-host-continue-28.png" alt="openshift host continue 28" class="article-image" loading="lazy"></p>
+                <p><img src="images/openshift-host-continue-29.png" alt="openshift host continue 29" class="article-image" loading="lazy"></p>
+                <p>dns task automated</p>
+                <p><img src="images/openshift-host-continue-30.png" alt="openshift host continue 30" class="article-image" loading="lazy"></p>
+                <p>he is setting up his own version of ubuntu there</p>
+                <p><img src="images/openshift-host-continue-31.png" alt="openshift host continue 31" class="article-image" loading="lazy"></p>
+                <p>dns and connectivity of the host is also another project</p>
+                <p><img src="images/openshift-host-continue-32.png" alt="openshift host continue 32" class="article-image" loading="lazy"></p>
+                <p>PTR getting added</p>
+                <p><img src="images/openshift-host-continue-33.png" alt="openshift host continue 33" class="article-image" loading="lazy"></p>
+                <p><img src="images/openshift-host-continue-34.png" alt="openshift host continue 34" class="article-image" loading="lazy"></p>
+                <p>dont target that step &gt;&gt;&gt; still the ubuntu is the one that he downloaded...and created!</p>
+                <p>he uses the bootstap for the inital machine name</p>
+                <p><img src="images/openshift-host-continue-35.png" alt="openshift host continue 35" class="article-image" loading="lazy"></p>
+                <p>My Steps &gt;</p>
+                <p>Change the deployment to ubuntu latest version</p>
+                <p>Next Stage the vm gets created and the Openshift gets installed</p>
+                <p><img src="images/openshift-host-continue-36.png" alt="openshift host continue 36" class="article-image" loading="lazy"></p>
+                <p>haproxy to manage</p>
+                <p><img src="images/openshift-host-continue-37.png" alt="openshift host continue 37" class="article-image" loading="lazy"></p>
+                <p>see the oc command at the start is ok</p>
+                <p><img src="images/openshift-host-continue-38.png" alt="openshift host continue 38" class="article-image" loading="lazy"></p>
+                <p>after install practical tools are coming in Grafana video would be coming in</p>
+                <p><img src="images/openshift-host-continue-39.png" alt="openshift host continue 39" class="article-image" loading="lazy"></p>
+                <p><strong>task 1</strong> &gt; update the ubuntu version 18 to 22 &gt; ( done to 24 &gt;&gt;&gt; UI loading takes too much time &gt;&gt; we need an image )</p>
+                <p><strong>task 2 </strong>&gt; install the bootstrapper</p>
+                <ul>
+                <li>
+                <p>library install &gt; script</p>
+                </li>
+                <li>
+                <p>dns *</p>
+                </li>
+                </ul>
+                <p><strong>task 3&gt;</strong> Focus on the cluster! ( other role )</p>
+                <p>Openshift resolve the account</p>
+                <p><img src="images/openshift-host-continue-40.png" alt="openshift host continue 40" class="article-image" loading="lazy"></p>
+                <p>https://developers.redhat.com/?extIdCarryOver=true&amp;sc_cid=7013a000003SgNhAAK&amp;source=sso</p>
+                <p>why empty ?</p>
+                <p><img src="images/openshift-host-continue-41.png" alt="openshift host continue 41" class="article-image" loading="lazy"></p>
+                <p><img src="images/openshift-host-continue-42.png" alt="openshift host continue 42" class="article-image" loading="lazy"></p>
+                <p>delete got triggered some how</p>
+                <p><img src="images/openshift-host-continue-43.png" alt="openshift host continue 43" class="article-image" loading="lazy"></p>
+                <p>4 day cycle</p>
+                <p><img src="images/openshift-host-continue-44.png" alt="openshift host continue 44" class="article-image" loading="lazy"></p>
+                <p><img src="images/openshift-host-continue-45.png" alt="openshift host continue 45" class="article-image" loading="lazy"></p>
+                <p>we need this to create resources with our latest image</p>
+                <p><img src="images/openshift-host-continue-46.png" alt="openshift host continue 46" class="article-image" loading="lazy"></p>
+                <p>To update your Azure ARM template to deploy the latest version of Ubuntu, you need to modify the <code>imageReference</code> section of the <code>storageProfile</code> within the <code>Microsoft.Compute/virtualMachines</code> resource definition. This section specifies the operating system image that the virtual machine will use.</p>
+                <p>Here's what you need to change:</p>
+                <ul>
+                <li>
+                <p><strong>SKU</strong>: Ubuntu frequently updates its SKU names with the release of new versions. For instance, if you want to use the latest long-term support (LTS) version after Ubuntu 18.04, such as Ubuntu 20.04 LTS, you need to change the SKU to <code>20_04-lts-gen2</code>.</p>
+                </li>
+                <li>
+                <p><strong>Publisher and Offer</strong>: Typically, for Ubuntu, the publisher is <code>Canonical</code> and the offer is <code>UbuntuServer</code>. These usually do not change unless Canonical changes their publishing details on Azure.</p>
+                </li>
+                </ul>
+                <p>Here's an example of how the relevant part of your JSON template should look if you were updating to Ubuntu 20.04 LTS:</p>
+                <p>"storageProfile": {<br />
+                  "imageReference": {<br />
+                    "offer": "UbuntuServer",<br />
+                    "publisher": "Canonical",<br />
+                    "sku": "20_04-lts-gen2",  // Change this line to the latest LTS version SKU<br />
+                    "version": "latest"<br />
+                  },<br />
+                  "osDisk": {<br />
+                    "createOption": "fromImage"<br />
+                  }<br />
+                }</p>
+                <p>This adjustment will ensure that your deployment uses the Ubuntu 20.04 LTS image. If a newer LTS version is available and you want to use that, simply replace <code>20_04-lts-gen2</code> with the corresponding SKU of the new version, such as <code>22_04-lts-gen2</code> for Ubuntu 22.04 LTS.</p>
+                <p>Make sure to always check the Azure Marketplace or Canonical announcements for the latest available versions and their corresponding SKU names.</p>
+                <p><img src="images/openshift-host-continue-47.png" alt="openshift host continue 47" class="article-image" loading="lazy"></p>
+                <p>Ran 18.04</p>
+                <p>https://portal.azure.com/#view/Microsoft_Azure_EMA/LogicAppsMonitorBlade/runid/%2Fsubscriptions%2F2cb217c1-366d-41c0-8934-3f82869320d8%2FresourceGroups%2FOpenshiftHelper%2Fproviders%2FMicrosoft.Logic%2Fworkflows%2Fopenshifthelper-createhost%2Fruns%2F08584877426683168670311406728CU07</p>
+                <p>20.04 did not work </p>
+                <p><code>{
+                  "error": {
+                    "code": "InvalidTemplateDeployment",
+                    "message": "The template deployment 'linuxhost20240423130012' is not valid according to the validation procedure. The tracking id is 'dca6e690-eb9b-41af-80ff-8e01f63e3a7d'. See inner errors for details.",
+                    "details": &amp;#091;
+                      {
+                        "code": "InvalidParameter",
+                        "target": "imageReference",
+                        "message": "The following list of images referenced from the deployment template are not found: Publisher: Canonical, Offer: UbuntuServer, Sku: 20_04-lts-gen2, Version: latest. Please refer to https://docs.microsoft.com/en-us/azure/virtual-machines/windows/cli-ps-findimage for instructions on finding available images."
+                      }
+                    ]
+                  }
+                }</code></p>
+                <p>retirgger</p>
+                <p><img src="images/openshift-host-continue-48.png" alt="openshift host continue 48" class="article-image" loading="lazy"></p>
+                <p><img src="images/openshift-host-continue-49.png" alt="openshift host continue 49" class="article-image" loading="lazy"></p>
+                <p><code>$locName="uksouth"
+                Get-AzVMImagePublisher -Location $locName | Select PublisherName</code></p>
+                <p>$pubName="Canonical"</p>
+                <p>Get-AzVMImageOffer -Location $locName -PublisherName $pubName | Select Offer</p>
+                <p><img src="images/openshift-host-continue-50.png" alt="openshift host continue 50" class="article-image" loading="lazy"></p>
+                <p><img src="images/openshift-host-continue-51.png" alt="openshift host continue 51" class="article-image" loading="lazy"></p>
+                <p>$offerName="ubuntu-24_04-lts-daily"</p>
+                <p>Get-AzVMImageSku -Location $locName -PublisherName $pubName -Offer $offerName | Select Skus</p>
+                <p><img src="images/openshift-host-continue-52.png" alt="openshift host continue 52" class="article-image" loading="lazy"></p>
+                <p>$skuName="server-gen1"</p>
+                <p>Get-AzVMImage -Location $locName -PublisherName $pubName -Offer $offerName -Sku $skuName | Select Version</p>
+                <p><img src="images/openshift-host-continue-53.png" alt="openshift host continue 53" class="article-image" loading="lazy"></p>
+                <p><img src="images/openshift-host-continue-54.png" alt="openshift host continue 54" class="article-image" loading="lazy"></p>
+                <p><img src="images/openshift-host-continue-55.png" alt="openshift host continue 55" class="article-image" loading="lazy"></p>
+                <p>lets check the xrdp there now we can do this &gt;</p>
+                <p><img src="images/openshift-host-continue-56.png" alt="openshift host continue 56" class="article-image" loading="lazy"></p>
+                <p>the client software is what we are looking for</p>
+                <p>It looks like you've provided an image of a script related to installing and setting up an OpenShift environment on a developer's host. Based on this image, you may be looking to generate a similar script.</p>
+                <p>Here's an outline of the steps that might be contained in such a script, according to the commands visible in your image:</p>
+                <ul>
+                <li>
+                <p><strong>Install dos2unix</strong>: It's a utility to convert files from the DOS/Windows text format to the Unix text format.</p>
+                </li>
+                <li>
+                <p><strong>Get Installer</strong>: Use <code>curl</code> to download the OpenShift installer from the provided URL.</p>
+                </li>
+                <li>
+                <p><strong>Extract the Installer</strong>: Extract the downloaded tarball with <code>tar xvf</code>.</p>
+                </li>
+                <li>
+                <p><strong>Get OC client</strong>: Download the OpenShift client (<code>oc</code>) using <code>curl</code>.</p>
+                </li>
+                <li>
+                <p><strong>Extract the OC client</strong>: Extract the downloaded OpenShift client tarball.</p>
+                </li>
+                <li>
+                <p><strong>Create Install Directory</strong>: Make a directory, typically named for organizing installation-related files.</p>
+                </li>
+                <li>
+                <p><strong>Copy Configuration Files</strong>: Copy the OpenShift install configuration YAML files into the installation directory.</p>
+                </li>
+                </ul>
+                <p>To recreate a full script for setting up OpenShift on a developer host, you would need to have more details, like specific URLs for downloads, which configuration files are needed, and how they should be configured.</p>
+                <p>If you can provide more details or additional parts of the script, I could help you construct a more complete version of the installation script.</p>
+                <p>than more on with xrdp to install there is they work ..this is going to be the second file in </p>
+                <p><img src="images/openshift-host-continue-57.png" alt="openshift host continue 57" class="article-image" loading="lazy"></p>
+                <p>Andres is quiet &gt;&gt;&gt; time for him to come up with the numbers</p>
+                <p><img src="images/openshift-host-continue-58.png" alt="openshift host continue 58" class="article-image" loading="lazy"></p>
+                <p><img src="images/openshift-host-continue-59.png" alt="openshift host continue 59" class="article-image" loading="lazy"></p>
+                <p>maybe the xrdp is not running there well </p>
+                <p><img src="images/openshift-host-continue-60.png" alt="openshift host continue 60" class="article-image" loading="lazy"></p>
+                <p>I am able to login to the box</p>
+                <p><img src="images/openshift-host-continue-61.png" alt="openshift host continue 61" class="article-image" loading="lazy"></p>
+                <p>htop machine status</p>
+                <p><img src="images/openshift-host-continue-62.png" alt="openshift host continue 62" class="article-image" loading="lazy"></p>
+                <p>Practical sorters are there</p>
+                <p><img src="images/openshift-host-continue-63.png" alt="openshift host continue 63" class="article-image" loading="lazy"></p>
+                <p><img src="images/openshift-host-continue-64.png" alt="openshift host continue 64" class="article-image" loading="lazy"></p>
+                <p>xrdp is here</p>
+                <p><img src="images/openshift-host-continue-65.png" alt="openshift host continue 65" class="article-image" loading="lazy"></p>
+                <p>old scripts</p>
+                <p>`#!/bin/bash</p>
+                <h1>Ensure the script is run as root</h1>
+                <p>if &#091; "$(id -u)" -ne 0 ]; then<br />
+                   echo "This script must be run as root" 1&gt;&amp;2<br />
+                   exit 1<br />
+                fi</p>
+                <h1>Update the package list and upgrade all installed packages</h1>
+                <p>apt-get update -y<br />
+                if &#091; $? -ne 0 ]; then<br />
+                    echo "Failed to update package list" 1&gt;&amp;2<br />
+                    exit 1<br />
+                fi</p>
+                <p>apt-get upgrade -y<br />
+                if &#091; $? -ne 0 ]; then<br />
+                    echo "Failed to upgrade installed packages" 1&gt;&amp;2<br />
+                    exit 1<br />
+                fi</p>
+                <h1>Install xrdp and configure it</h1>
+                <p>apt-get install xrdp -y<br />
+                if &#091; $? -ne 0 ]; then<br />
+                    echo "Failed to install xrdp" 1&gt;&amp;2<br />
+                    exit 1<br />
+                fi</p>
+                <p>ufw allow 3389/tcp<br />
+                <strong>echo "gnome-session" &gt; /etc/skel/.xsession<br />
+                </strong># Using /etc/skel so new users inherit this setup</p>
+                <h1>Install Ubuntu desktop environment correctly</h1>
+                <p>apt-get install ubuntu-desktop -y<br />
+                if &#091; $? -ne 0 ]; then<br />
+                    echo "Failed to install ubuntu-desktop" 1&gt;&amp;2<br />
+                    exit 1<br />
+                fi</p>
+                <p>systemctl restart xrdp<br />
+                if &#091; $? -ne 0 ]; then<br />
+                    echo "Failed to restart xrdp" 1&gt;&amp;2<br />
+                    exit 1<br />
+                fi</p>
+                <h1>Log the reboot action</h1>
+                <p>echo "$(date "+%Y-%m-%d %H:%M:%S") - System is rebooting" &gt;&gt; /var/log/reboot.log</p>
+                <h1>Reboot the system silently</h1>
+                <p>nohup shutdown -r now &gt; /dev/null 2&gt;&amp;1 &amp;<br />
+                `</p>
+                <p>maybe it is out at starts?</p>
+                <p><img src="images/openshift-host-continue-66.png" alt="openshift host continue 66" class="article-image" loading="lazy"></p>
+                <p><img src="images/openshift-host-continue-67.png" alt="openshift host continue 67" class="article-image" loading="lazy"></p>
+                <p>To add a user to the <code>sudo</code> group on a Linux system, which essentially gives them superuser privileges, you would typically use the following command:</p>
+                <ul>
+                <li>
+                <p>Open your terminal.</p>
+                </li>
+                <li>
+                <p>Type the following command to add the user "rifaterdemsahin" to the sudo group:</p>
+                </li>
+                </ul>
+                <p>sudo usermod -aG sudo rifaterdemsahin</p>
+                <p>Here's what each part of the command does:</p>
+                <ul>
+                <li>
+                <p><code>sudo</code>: Runs the command as a superuser.</p>
+                </li>
+                <li>
+                <p><code>usermod</code>: A utility to modify a user account.</p>
+                </li>
+                <li>
+                <p><code>-aG</code>: The <code>-a</code> is to append the user to the given group, and <code>-G</code> specifies the group.</p>
+                </li>
+                <li>
+                <p><code>sudo</code>: The name of the group to which the user will be added.</p>
+                </li>
+                <li>
+                <p><code>rifaterdemsahin</code>: The username of the user you want to add to the sudo group.</p>
+                </li>
+                </ul>
+                <p>Make sure that you have administrative privileges to execute this command. After running it, the user "rifaterdemsahin" will have sudo access and can execute commands that require superuser permissions.</p>
+                <p><img src="images/openshift-host-continue-68.png" alt="openshift host continue 68" class="article-image" loading="lazy"></p>
+                <p>only sudo works maybde 24 is different</p>
+                <p><img src="images/openshift-host-continue-69.png" alt="openshift host continue 69" class="article-image" loading="lazy"></p>
+                <p>it says the packages are there</p>
+                <p><img src="images/openshift-host-continue-70.png" alt="openshift host continue 70" class="article-image" loading="lazy"></p>
+                <p>Looks like this part is working now &gt; apt-get install xrdp -y</p>
+                <p><img src="images/openshift-host-continue-71.png" alt="openshift host continue 71" class="article-image" loading="lazy"></p>
+                <p><img src="images/openshift-host-continue-72.png" alt="openshift host continue 72" class="article-image" loading="lazy"></p>
+                <p><img src="images/openshift-host-continue-73.png" alt="openshift host continue 73" class="article-image" loading="lazy"></p>
+                <p>up it could be stuck </p>
+                <p>this looks like it is working</p>
+                <p><img src="images/openshift-host-continue-74.png" alt="openshift host continue 74" class="article-image" loading="lazy"></p>
+                <p>azure one looks like it is stuck</p>
+                <p><img src="images/openshift-host-continue-75.png" alt="openshift host continue 75" class="article-image" loading="lazy"></p>
+                <p>UI brings much more components than the past</p>
+                <p><img src="images/openshift-host-continue-76.png" alt="openshift host continue 76" class="article-image" loading="lazy"></p>
+                <p><img src="images/openshift-host-continue-77.png" alt="openshift host continue 77" class="article-image" loading="lazy"></p>
+                <p><img src="images/openshift-host-continue-78.png" alt="openshift host continue 78" class="article-image" loading="lazy"></p>
+                <h1>!/bin/bash</h1>
+                <h1>Ensure the script is run as root</h1>
+                <p>if [ "$(id -u)" -ne 0 ]; then<br />
+                echo "This script must be run as root" 1&gt;&amp;2<br />
+                exit 1<br />
+                fi</p>
+                <h1>Update the package list and upgrade all installed packages</h1>
+                <p>sudo apt-get update -y<br />
+                if [ $? -ne 0 ]; then<br />
+                echo "Failed to update package list" 1&gt;&amp;2<br />
+                exit 1<br />
+                fi</p>
+                <p>sudo apt-get upgrade -y<br />
+                if [ $? -ne 0 ]; then<br />
+                echo "Failed to upgrade installed packages" 1&gt;&amp;2<br />
+                exit 1<br />
+                fi</p>
+                <h1>Install xrdp and configure it</h1>
+                <p>sudo apt-get install xrdp -y<br />
+                if [ $? -ne 0 ]; then<br />
+                echo "Failed to install xrdp" 1&gt;&amp;2<br />
+                exit 1<br />
+                fi</p>
+                <p>sudo ufw allow 3389/tcp<br />
+                echo "gnome-session" | sudo tee /etc/skel/.xsession &gt; /dev/null # Using /etc/skel so new users inherit this setup</p>
+                <h1>Install Ubuntu desktop environment correctly</h1>
+                <p>sudo apt-get install ubuntu-desktop -y<br />
+                if [ $? -ne 0 ]; then<br />
+                echo "Failed to install ubuntu-desktop" 1&gt;&amp;2<br />
+                exit 1<br />
+                fi</p>
+                <p>sudo systemctl restart xrdp<br />
+                if [ $? -ne 0 ]; then<br />
+                echo "Failed to restart xrdp" 1&gt;&amp;2<br />
+                exit 1<br />
+                fi</p>
+                <h1>Log the reboot action</h1>
+                <p>echo "$(date "+%Y-%m-%d %H:%M:%S") - System is rebooting" | sudo tee -a /var/log/reboot.log &gt; /dev/null</p>
+                <h1>Reboot the system silently</h1>
+                <p>sudo nohup shutdown -r now &gt; /dev/null 2&gt;&amp;1 &amp;</p>
+                <p>If you're experiencing a failure with the command <code>echo "gnome-session" | sudo tee /etc/skel/.xsession &gt; /dev/null</code> on Ubuntu 24.04 due to permission issues, there are a few things to check and ensure for it to execute successfully:</p>
+                <ul>
+                <li>
+                <p><strong>Sudo Privileges</strong>: Ensure the user executing the script has the necessary sudo privileges. This typically means the user should be able to execute commands with <code>sudo</code> without entering a password, or you must run the script in a context where the password can be entered if prompted.</p>
+                </li>
+                <li>
+                <p><strong>Filesystem Permissions</strong>: Make sure that the <code>/etc/skel</code> directory has the correct permissions. You can check the permissions with the following command:</p>
+                </li>
+                </ul>
+                <p>ls -ld /etc/skel</p>
+                <p>Typically, the directory should be owned by root, and writable by the owner. If the permissions are incorrect, you can set them with:</p>
+                <p>sudo chown root:root /etc/skel<br />
+                   sudo chmod 755 /etc/skel</p>
+                <ul>
+                <li><strong>Sudo Configuration</strong>: If the user has sudo access but cannot execute this specific command, check the sudoers file for any command-specific restrictions. You can view the sudoers file by running:</li>
+                </ul>
+                <p>sudo visudo</p>
+                <p>Look for any lines that might limit the commands your user can run. Ensure there are no restrictive settings for the specific command or that the user isn’t limited to a subset of commands.</p>
+                <ul>
+                <li><strong>SELinux or AppArmor Policies</strong>: Ubuntu uses AppArmor as a security module that could restrict actions even under sudo. If AppArmor is enforcing a policy that prevents writing to <code>/etc/skel/.xsession</code>, you might need to adjust the policy. Check the status and logs of AppArmor with:</li>
+                </ul>
+                <p>sudo aa-status<br />
+                   sudo dmesg | grep apparmor</p>
+                <p>Adjusting AppArmor policies can be complex, so it's essential to understand the implications of changes you make.</p>
+                <ul>
+                <li><strong>Debugging the Command</strong>: Run the command outside the script to check its output and error messages directly in your terminal. This might provide additional clues:</li>
+                </ul>
+                <p>echo "gnome-session" | sudo tee /etc/skel/.xsession</p>
+                <p>By ensuring these aspects are correctly set up, the command should execute without permission issues. If problems persist after checking and adjusting these settings, you may need to look deeper into system logs or specific configurations unique to your setup.</p>
+                <p><img src="images/openshift-host-continue-79.png" alt="openshift host continue 79" class="article-image" loading="lazy"></p>
+                <p>feels stuck </p>
+                <p><img src="images/openshift-host-continue-80.png" alt="openshift host continue 80" class="article-image" loading="lazy"></p>
+                <p><img src="images/openshift-host-continue-81.png" alt="openshift host continue 81" class="article-image" loading="lazy"></p>
+                <p>much longer install time is there</p>
+                <p><img src="images/openshift-host-continue-82.png" alt="openshift host continue 82" class="article-image" loading="lazy"></p>
+                <p>Script pinned as well</p>
+                <p><img src="images/openshift-host-continue-83.png" alt="openshift host continue 83" class="article-image" loading="lazy"></p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>

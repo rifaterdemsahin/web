@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Not so easy to test a function - Rifat Erdem Sahin</title>
+    <meta name="description" content="Not so easy to test a function Pipeline was not so easy and use friendly could not fully trigger the test and it is too slow Day 3 use the development enviroment https://developer.microsoft.com/en-us/">
+    <meta name="keywords" content="Not so easy to test a function">
+    <meta name="author" content="Rifat Erdem Sahin">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.rifaterdemsahin.com/2024/03/06/not-so-easy-to-test-a-function/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.rifaterdemsahin.com/2024/03/06/not-so-easy-to-test-a-function/">
+    <meta property="og:title" content="Not so easy to test a function">
+    <meta property="og:description" content="Not so easy to test a function Pipeline was not so easy and use friendly could not fully trigger the test and it is too slow Day 3 use the development enviroment https://developer.microsoft.com/en-us/">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:site_name" content="Rifat Erdem Sahin">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2024/03/06/not-so-easy-to-test-a-function/">
+    <meta property="twitter:title" content="Not so easy to test a function">
+    <meta property="twitter:description" content="Not so easy to test a function Pipeline was not so easy and use friendly could not fully trigger the test and it is too slow Day 3 use the development enviroment https://developer.microsoft.com/en-us/">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:creator" content="@rifaterdemsahin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Not so easy to test a function",
+      "description": "Not so easy to test a function Pipeline was not so easy and use friendly could not fully trigger the test and it is too slow Day 3 use the development enviroment https://developer.microsoft.com/en-us/",
+      "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
+      "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
+      "datePublished": "2024-03-06",
+      "dateModified": "2024-03-06",
+      "url": "https://www.rifaterdemsahin.com/2024/03/06/not-so-easy-to-test-a-function/",
+      "mainEntityOfPage": "https://www.rifaterdemsahin.com/2024/03/06/not-so-easy-to-test-a-function/",
+      "articleSection": "Blog",
+      "keywords": []
+    }
+    </script>
+    <link rel="stylesheet" href="../../../../5_Symbols/assets/css/common-styles.css">
+    <style>
+        /* ── Main content ─────────────────────────────────────── */
+        .main-content { padding: 3rem 0; }
+
+        .back-to-blog {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-size: 0.9375rem;
+        }
+        .back-to-blog:hover { text-decoration: underline; }
+
+        .article-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .article-category {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .article-excerpt {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        /* ── Article body ─────────────────────────────────────── */
+        .article-content { font-size: var(--font-size-base); line-height: 1.8; color: var(--text-primary); }
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            font-weight: 700; margin: 2rem 0 1rem; color: var(--text-primary);
+        }
+        .article-content h2 { font-size: 1.75rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content p { margin-bottom: 1.25rem; }
+        .article-content ul, .article-content ol { margin: 1rem 0 1.25rem 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: initial; }
+        .article-content ol li { list-style: decimal; }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background-color: rgba(0,122,255,0.05);
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            color: var(--text-secondary);
+        }
+        .article-content pre, .article-content code {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: var(--border-radius-sm);
+            font-family: 'SF Mono','Fira Code','Roboto Mono',monospace;
+            font-size: 0.9em;
+        }
+        .article-content code { padding: 0.2em 0.4em; }
+        .article-content pre { padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .article-content pre code { background: none; padding: 0; }
+        .article-content img, .article-image {
+            max-width: 100%; height: auto;
+            border-radius: var(--border-radius-md);
+            margin: 1.5rem auto; display: block;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Video embeds (YouTube / Loom) ────────────────────── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border-radius: var(--border-radius-md);
+            background: #000;
+        }
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .article-content hr { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+        .article-content table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+        .article-content th, .article-content td { padding: 0.75rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+        .article-content th { background-color: var(--bg-light); font-weight: 600; }
+        .article-content a { color: var(--primary-color); }
+
+        /* ── Footer ───────────────────────────────────────────── */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #f5f5f7;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 1rem;
+            color: #a1a1a6;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
+            color: #f5f5f7;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-links a:hover { color: var(--accent-color); text-decoration: none; }
+        .footer-bottom {
+            border-top: 1px solid #3a3a3c;
+            padding-top: 1rem;
+            color: #86868b;
+            font-size: 0.875rem;
+        }
+
+        /* ── Responsive ───────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .article-title { font-size: 1.75rem; }
+            .footer-links { gap: 0.5rem 1rem; }
+            .container { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="../../../../5_Symbols/pages/index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a></li>
+                <li><a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a></li>
+                <li><a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a></li>
+                <li><a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a></li>
+                <li><a href="../../../../5_Symbols/pages/ebook.html">&#128218; Ebook</a></li>
+                <li><a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a></li>
+                <li><a href="../../../../5_Symbols/pages/investor.html">&#128188; Investors</a></li>
+                <li><a href="../../../../5_Symbols/pages/about.html">&#128100; About</a></li>
+                <li><a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="../../../../5_Symbols/pages/blog.html" class="back-to-blog">&#8592; Back to Blog</a>
+            <header class="article-header">
+                <h1 class="article-title">Not so easy to test a function</h1>
+                <div class="article-meta">
+                    <span class="article-category">Blog</span>
+                    <span>&bull;</span>
+                    <span>March 6, 2024</span>
+                    <span>&bull;</span>
+                    <span>9 min read</span>
+                </div>
+                <p class="article-excerpt">Not so easy to test a function Pipeline was not so easy and use friendly could not fully trigger the test and it is too slow Day 3 use the development enviroment https://developer.microsoft.com/en-us/windows/downloads/virtual-machines Stuck here of practical testing https://dev.a</p>
+            </header>
+            <article class="article-content">
+                <h1>Not so easy to test a function</h1>
+                <p>Pipeline was not so easy and use friendly</p>
+                <p>could not fully trigger the test and it is too slow</p>
+                <p>Day 3 use the development enviroment</p>
+                <p><img src="images/not-so-easy-1.png" alt="not so easy 1" class="article-image" loading="lazy"></p>
+                <p>https://developer.microsoft.com/en-us/windows/downloads/virtual-machines</p>
+                <p><img src="images/not-so-easy-2.png" alt="not so easy 2" class="article-image" loading="lazy"></p>
+                <p>Stuck here of practical testing</p>
+                <p>https://dev.azure.com/pexabo/contractormarketing/_git/contractormarketing-helperfunctions/commit/411c3c1069203563e9bf1c6de8f9ea8e745e1e91?refName=refs%2Fheads%2Fmain</p>
+                <p>Local machine has other issues</p>
+                <p><img src="images/not-so-easy-3.png" alt="not so easy 3" class="article-image" loading="lazy"></p>
+                <p><img src="images/not-so-easy-4.png" alt="not so easy 4" class="article-image" loading="lazy"></p>
+                <p><img src="images/not-so-easy-5.png" alt="not so easy 5" class="article-image" loading="lazy"></p>
+                <p><img src="images/not-so-easy-6.png" alt="not so easy 6" class="article-image" loading="lazy"></p>
+                <p><img src="images/not-so-easy-7.png" alt="not so easy 7" class="article-image" loading="lazy"></p>
+                <p>250k handle system over loaded cant take a screenshot</p>
+                <p><img src="images/not-so-easy-8.jpg" alt="not so easy 8" class="article-image" loading="lazy"></p>
+                <p>cpu &gt; stuck with <strong>ovf tool </strong>and performance monitor by iobit / loupe deck</p>
+                <p>the screenshot tool failed thanks to light shot</p>
+                <p><img src="images/not-so-easy-9.png" alt="not so easy 9" class="article-image" loading="lazy"></p>
+                <p><img src="images/not-so-easy-10.png" alt="not so easy 10" class="article-image" loading="lazy"></p>
+                <p>uncheck and reboot</p>
+                <p><img src="images/not-so-easy-11.png" alt="not so easy 11" class="article-image" loading="lazy"></p>
+                <p>extra tools install on a big workstation not so serverless anymore when i am trying to test in a practical manner</p>
+                <p><img src="images/not-so-easy-12.png" alt="not so easy 12" class="article-image" loading="lazy"></p>
+                <p>Maybe this it the alternative with python</p>
+                <p><img src="images/not-so-easy-13.png" alt="not so easy 13" class="article-image" loading="lazy"></p>
+                <p>use the test enviroment from cloud9</p>
+                <p>https://www.pluralsight.com/labs/aws/program-the-cloud-using-aws-cloud9-ide?utm_source=google&amp;utm_medium=paid-search&amp;utm_campaign=upskilling-and-reskilling&amp;utm_term=ssi-emea-uk-dynamic&amp;utm_content=free-trial&amp;gad_source=1&amp;gclid=CjwKCAiA6KWvBhAREiwAFPZM7tAjDecY0ybtiAngzQHIgz4yCtKZwTi9RDSZNt6a_D5GtPxIKK2JiRoCp3QQAvD_BwE</p>
+                <p>vmware tools</p>
+                <p><img src="images/not-so-easy-14.png" alt="not so easy 14" class="article-image" loading="lazy"></p>
+                <p>ms dev environment</p>
+                <p><img src="images/not-so-easy-15.png" alt="not so easy 15" class="article-image" loading="lazy"></p>
+                <p><img src="images/not-so-easy-16.png" alt="not so easy 16" class="article-image" loading="lazy"></p>
+                <p>Archilies heel is the compilation ?</p>
+                <p><img src="images/not-so-easy-17.png" alt="not so easy 17" class="article-image" loading="lazy"></p>
+                <p>ms trying to take you in </p>
+                <p><img src="images/not-so-easy-18.png" alt="not so easy 18" class="article-image" loading="lazy"></p>
+                <p>Azure DevOps Build in Integration ( People needs to go home )</p>
+                <p><img src="images/not-so-easy-19.png" alt="not so easy 19" class="article-image" loading="lazy"></p>
+                <p><img src="images/not-so-easy-20.png" alt="not so easy 20" class="article-image" loading="lazy"></p>
+                <p>ms working hard but needs a workstation and a workstaion&gt;&gt;&gt;&gt; to many layers</p>
+                <p><img src="images/not-so-easy-21.png" alt="not so easy 21" class="article-image" loading="lazy"></p>
+                <p><img src="images/not-so-easy-22.png" alt="not so easy 22" class="article-image" loading="lazy"></p>
+                <p><img src="images/not-so-easy-23.png" alt="not so easy 23" class="article-image" loading="lazy"></p>
+                <p>compiled languages harder to run !</p>
+                <p><img src="images/not-so-easy-24.png" alt="not so easy 24" class="article-image" loading="lazy"></p>
+                <p>virtual machine system build into the pyhton programming so no need </p>
+                <p><img src="images/not-so-easy-25.png" alt="not so easy 25" class="article-image" loading="lazy"></p>
+                <p>.net compiled and interpreted</p>
+                <p><img src="images/not-so-easy-26.png" alt="not so easy 26" class="article-image" loading="lazy"></p>
+                <p><img src="images/not-so-easy-27.png" alt="not so easy 27" class="article-image" loading="lazy"></p>
+                <p><img src="images/not-so-easy-28.png" alt="not so easy 28" class="article-image" loading="lazy"></p>
+                <p>Stong cloud support</p>
+                <p><img src="images/not-so-easy-29.png" alt="not so easy 29" class="article-image" loading="lazy"></p>
+                <p>dot net to be opened from the solution and build to make it ready </p>
+                <p><img src="images/not-so-easy-30.png" alt="not so easy 30" class="article-image" loading="lazy"></p>
+                <p>Build in python should be much more straight forward?</p>
+                <p><img src="images/not-so-easy-31.png" alt="not so easy 31" class="article-image" loading="lazy"></p>
+                <div class="video-embed"><iframe src="https://www.youtube.com/embed/4pbPTu5z8nQ" title="YouTube video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe></div>
+                
+                <p>Let watch and build at the same time</p>
+                <p><img src="images/not-so-easy-32.png" alt="not so easy 32" class="article-image" loading="lazy"></p>
+                <p>unit test is not easy to find and run</p>
+                <p><img src="images/not-so-easy-33.png" alt="not so easy 33" class="article-image" loading="lazy"></p>
+                <p>maybe upgrade &gt;&gt;&gt; still that can break the azure devops</p>
+                <p><img src="images/not-so-easy-34.png" alt="not so easy 34" class="article-image" loading="lazy"></p>
+                <p>There are ready tools?</p>
+                <p><img src="images/not-so-easy-35.png" alt="not so easy 35" class="article-image" loading="lazy"></p>
+                <p>Microsoft has the publish ready to test on the web maybe</p>
+                <p><img src="images/not-so-easy-36.png" alt="not so easy 36" class="article-image" loading="lazy"></p>
+                <p>One click publish is there</p>
+                <p><img src="images/not-so-easy-37.png" alt="not so easy 37" class="article-image" loading="lazy"></p>
+                <p><img src="images/not-so-easy-38.png" alt="not so easy 38" class="article-image" loading="lazy"></p>
+                <p>PUBLISH IS there</p>
+                <p><img src="images/not-so-easy-39.png" alt="not so easy 39" class="article-image" loading="lazy"></p>
+                <p>Selected no and it failed</p>
+                <p><img src="images/not-so-easy-40.png" alt="not so easy 40" class="article-image" loading="lazy"></p>
+                <p><img src="images/not-so-easy-41.png" alt="not so easy 41" class="article-image" loading="lazy"></p>
+                <p>Target error</p>
+                <p><img src="images/not-so-easy-42.png" alt="not so easy 42" class="article-image" loading="lazy"></p>
+                <p>my main magic is here</p>
+                <p><img src="images/not-so-easy-43.png" alt="not so easy 43" class="article-image" loading="lazy"></p>
+                <p>The logic app was so slow needed a programming language and a cloud debugger</p>
+                <p><img src="images/not-so-easy-44.png" alt="not so easy 44" class="article-image" loading="lazy"></p>
+                <p>Console is there </p>
+                <p><img src="images/not-so-easy-45.png" alt="not so easy 45" class="article-image" loading="lazy"></p>
+                <p>Csharp is there as well maybe the workstation i have is the issue </p>
+                <p><img src="images/not-so-easy-46.png" alt="not so easy 46" class="article-image" loading="lazy"></p>
+                <p><img src="images/not-so-easy-47.png" alt="not so easy 47" class="article-image" loading="lazy"></p>
+                <p>hmmm there is a reason people dont wanna manage the ops</p>
+                <p><img src="images/not-so-easy-48.png" alt="not so easy 48" class="article-image" loading="lazy"></p>
+                <p>Payments in action</p>
+                <p><img src="images/not-so-easy-49.png" alt="not so easy 49" class="article-image" loading="lazy"></p>
+                <p>20 dollars a month </p>
+                <p><img src="images/not-so-easy-50.png" alt="not so easy 50" class="article-image" loading="lazy"></p>
+                <p>120 a year mini machine and the enviroment cost</p>
+                <p><img src="images/not-so-easy-51.png" alt="not so easy 51" class="article-image" loading="lazy"></p>
+                <p>Get feedback </p>
+                <p><img src="images/not-so-easy-52.png" alt="not so easy 52" class="article-image" loading="lazy"></p>
+                <p>add code</p>
+                <p><code>public static string processText(string htmlToText,List&lt;string&gt; mykeyvalue)
+                    {
+                        foreach (var key in mykeyvalue)
+                        {
+                            if (htmlToText.Contains(key))
+                            {
+                                result.Add(key);
+                            }
+                        }
+                        return string.Join(", ", result);
+                    }</code></p>
+                <p>14 sn here is the error nice</p>
+                <p><img src="images/not-so-easy-53.png" alt="not so easy 53" class="article-image" loading="lazy"></p>
+                <p><img src="images/not-so-easy-54.png" alt="not so easy 54" class="article-image" loading="lazy"></p>
+                <p>not bad</p>
+                <p><img src="images/not-so-easy-55.png" alt="not so easy 55" class="article-image" loading="lazy"></p>
+                <p>16 sec not bad</p>
+                <p><img src="images/not-so-easy-56.png" alt="not so easy 56" class="article-image" loading="lazy"></p>
+                <p>not many using it </p>
+                <p><img src="images/not-so-easy-57.png" alt="not so easy 57" class="article-image" loading="lazy"></p>
+                <p>Basic use cases with libraries ok </p>
+                <p>with updates and lower than 30 sec ok</p>
+                <p><img src="images/not-so-easy-58.png" alt="not so easy 58" class="article-image" loading="lazy"></p>
+                <p>formatting and identation ok </p>
+                <p>Package and on top library is ok</p>
+                <p><img src="images/not-so-easy-59.png" alt="not so easy 59" class="article-image" loading="lazy"></p>
+                <p>Dependencies ok</p>
+                <p><img src="images/not-so-easy-60.png" alt="not so easy 60" class="article-image" loading="lazy"></p>
+                <p>Forcing its hand</p>
+                <p><img src="images/not-so-easy-61.png" alt="not so easy 61" class="article-image" loading="lazy"></p>
+                <p>no build but there is run that is ok</p>
+                <p><img src="images/not-so-easy-62.png" alt="not so easy 62" class="article-image" loading="lazy"></p>
+                <p>Errors</p>
+                <p><img src="images/not-so-easy-63.png" alt="not so easy 63" class="article-image" loading="lazy"></p>
+                <p>take the libraries from the action for the csproj</p>
+                <p><img src="images/not-so-easy-64.png" alt="not so easy 64" class="article-image" loading="lazy"></p>
+                <p>Clean the browser ( ok )</p>
+                <p><img src="images/not-so-easy-65.png" alt="not so easy 65" class="article-image" loading="lazy"></p>
+                <p>In take works now it shows the namespaces</p>
+                <p><img src="images/not-so-easy-66.png" alt="not so easy 66" class="article-image" loading="lazy"></p>
+                <p>Easy retrigger and add the libraries to intercept</p>
+                <p>Nuget error</p>
+                <p><img src="images/not-so-easy-67.png" alt="not so easy 67" class="article-image" loading="lazy"></p>
+                <p>Practical helpers are ok </p>
+                <p><img src="images/not-so-easy-68.png" alt="not so easy 68" class="article-image" loading="lazy"></p>
+                <p>Resolved packages coming in</p>
+                <p><img src="images/not-so-easy-69.png" alt="not so easy 69" class="article-image" loading="lazy"></p>
+                <p>older version is not there</p>
+                <p><img src="images/not-so-easy-70.png" alt="not so easy 70" class="article-image" loading="lazy"></p>
+                <p>That exe is our issue</p>
+                <p><img src="images/not-so-easy-71.png" alt="not so easy 71" class="article-image" loading="lazy"></p>
+                <p>removed the version no file versions</p>
+                <p>maybe remove the tester &gt;&gt;&gt; and use the top as the tester &gt;&gt;&lt; adaopt a bit</p>
+                <p><img src="images/not-so-easy-72.png" alt="not so easy 72" class="article-image" loading="lazy"></p>
+                <p>remove the funtions just test csharp and move it to the functions in azure </p>
+                <p><img src="images/not-so-easy-73.png" alt="not so easy 73" class="article-image" loading="lazy"></p>
+                <p>Cleaned up</p>
+                <p><img src="images/not-so-easy-74.png" alt="not so easy 74" class="article-image" loading="lazy"></p>
+                <p>Packages.lock auto fixed ( ok )</p>
+                <p><img src="images/not-so-easy-75.png" alt="not so easy 75" class="article-image" loading="lazy"></p>
+                <p>some errors on multi classes</p>
+                <p>Limited action is there so that is ok at least it runs </p>
+                <p><img src="images/not-so-easy-76.png" alt="not so easy 76" class="article-image" loading="lazy"></p>
+                <p>There is also a boot time</p>
+                <p><img src="images/not-so-easy-77.png" alt="not so easy 77" class="article-image" loading="lazy"></p>
+                <p>Tools might help me and justify the 20 pouind cost?</p>
+                <p><img src="images/not-so-easy-78.png" alt="not so easy 78" class="article-image" loading="lazy"></p>
+                <p>ai could be worthy</p>
+                <p><img src="images/not-so-easy-79.png" alt="not so easy 79" class="article-image" loading="lazy"></p>
+                <p>some deploy function is there</p>
+                <p><img src="images/not-so-easy-80.png" alt="not so easy 80" class="article-image" loading="lazy"></p>
+                <p>Repl is booting &gt;&gt;&gt; how much did i use it?</p>
+                <p><img src="images/not-so-easy-81.png" alt="not so easy 81" class="article-image" loading="lazy"></p>
+                <p>Cycles are getting sold</p>
+                <p><img src="images/not-so-easy-82.png" alt="not so easy 82" class="article-image" loading="lazy"></p>
+                <p><img src="images/not-so-easy-83.png" alt="not so easy 83" class="article-image" loading="lazy"></p>
+                <p><img src="images/not-so-easy-84.png" alt="not so easy 84" class="article-image" loading="lazy"></p>
+                <p>Usage</p>
+                <p><img src="images/not-so-easy-85.png" alt="not so easy 85" class="article-image" loading="lazy"></p>
+                <p>Cost</p>
+                <p><img src="images/not-so-easy-86.png" alt="not so easy 86" class="article-image" loading="lazy"></p>
+                <p>iSSUES</p>
+                <p><img src="images/not-so-easy-87.png" alt="not so easy 87" class="article-image" loading="lazy"></p>
+                <p>https://ask.replit.com/t/stuck-on-booting-repl/38735/21</p>
+                <p><img src="images/not-so-easy-88.png" alt="not so easy 88" class="article-image" loading="lazy"></p>
+                <p>IDE frozen maybe the vcloud9 is the way to go </p>
+                <p><img src="images/not-so-easy-89.png" alt="not so easy 89" class="article-image" loading="lazy"></p>
+                <p>https://aws.amazon.com/pm/cloud9/?gclid=CjwKCAiA6KWvBhAREiwAFPZM7k5f4TfmwjMxnpu1iOmlu571I8g_LP_wxXGIQrhatW-Y3kd0mBIXFhoCsTsQAvD_BwE&amp;trk=2fff4d3b-4db9-4722-81cb-22b70ca3a660&amp;sc_channel=ps&amp;ef_id=CjwKCAiA6KWvBhAREiwAFPZM7k5f4TfmwjMxnpu1iOmlu571I8g_LP_wxXGIQrhatW-Y3kd0mBIXFhoCsTsQAvD_BwE:G:s&amp;s_kwcid=AL!4422!3!651612449957!e!!g!!cloud9!19835791169!155574317268</p>
+                <p>I am back </p>
+                <p><img src="images/not-so-easy-90.png" alt="not so easy 90" class="article-image" loading="lazy"></p>
+                <p>replit still working on it &gt;?</p>
+                <p>MAchine in the back </p>
+                <p><img src="images/not-so-easy-91.png" alt="not so easy 91" class="article-image" loading="lazy"></p>
+                <p>Timeout ready </p>
+                <p><img src="images/not-so-easy-92.png" alt="not so easy 92" class="article-image" loading="lazy"></p>
+                <p><img src="images/not-so-easy-93.png" alt="not so easy 93" class="article-image" loading="lazy"></p>
+                <p>Errors for devops</p>
+                <p><img src="images/not-so-easy-94.png" alt="not so easy 94" class="article-image" loading="lazy"></p>
+                <p>Linux cloud9</p>
+                <p><img src="images/not-so-easy-95.png" alt="not so easy 95" class="article-image" loading="lazy"></p>
+                <p><img src="images/not-so-easy-96.png" alt="not so easy 96" class="article-image" loading="lazy"></p>
+                <p>run not working</p>
+                <p><img src="images/not-so-easy-97.png" alt="not so easy 97" class="article-image" loading="lazy"></p>
+                <p>Csharp is out</p>
+                <p><img src="images/not-so-easy-98.png" alt="not so easy 98" class="article-image" loading="lazy"></p>
+                <p>repl is the key </p>
+                <p><img src="images/not-so-easy-99.png" alt="not so easy 99" class="article-image" loading="lazy"></p>
+                <p>Cant find the template python</p>
+                <p><img src="images/not-so-easy-100.png" alt="not so easy 100" class="article-image" loading="lazy"></p>
+                <p>replit could be on to something they can have down time as long as they are transparent that is ok#</p>
+                <p><img src="images/not-so-easy-101.png" alt="not so easy 101" class="article-image" loading="lazy"></p>
+                <p><img src="images/not-so-easy-102.png" alt="not so easy 102" class="article-image" loading="lazy"></p>
+                <p>language has to change due to library and the c sharp is not cloud ready </p>
+                <p>and the library ready &gt;&gt;&gt; devops mor on the python part</p>
+                <p><img src="images/not-so-easy-103.png" alt="not so easy 103" class="article-image" loading="lazy"></p>
+                <p>now found the header</p>
+                <p><img src="images/not-so-easy-104.png" alt="not so easy 104" class="article-image" loading="lazy"></p>
+                <p>Faster close and run ready &gt;&gt;&gt; run button is there &gt;&gt;&gt;&gt; the csharp one needs compiler and finding the dependencies...</p>
+                <p><img src="images/not-so-easy-105.png" alt="not so easy 105" class="article-image" loading="lazy"></p>
+                <p>Use notion and wait for replit &gt;&gt;&gt; use cloud 9 as backup</p>
+                <p><img src="images/not-so-easy-106.png" alt="not so easy 106" class="article-image" loading="lazy"></p>
+                <p>python short lol</p>
+                <p><img src="images/not-so-easy-107.png" alt="not so easy 107" class="article-image" loading="lazy"></p>
+                <p>notion as a by pass location</p>
+                <p><img src="images/not-so-easy-108.png" alt="not so easy 108" class="article-image" loading="lazy"></p>
+                <p>Code backup and delete c9</p>
+                <p>`"""<br />
+                Your module description<br />
+                """<br />
+                print("started")</p>
+                <p>def process_text(html_to_text, my_key_value):<br />
+                    result = &#091;key for key in my_key_value if key in html_to_text]<br />
+                    return ", ".join(result)</p>
+                <p>def test_process_text():</p>
+                <h1>Arrange</h1>
+                <p>html_to_text = "Dear candidate, we are looking for a talented software engineer with experience in C#, .NET, and SQL. Please respond if you are interested."<br />
+                my_key_value = &#091;"software engineer", "C#", ".NET", "SQL"]</p>
+                <h1>Act</h1>
+                <p>result = process_text(html_to_text, my_key_value)</p>
+                <h1>Assert</h1>
+                <p>assert result == "software engineer, C#, .NET, SQL"</p>
+                <p>print("ended")`</p>
+                <p><img src="images/not-so-easy-109.png" alt="not so easy 109" class="article-image" loading="lazy"></p>
+                <p>turned on  &gt; 2 hour down time </p>
+                <p><img src="images/not-so-easy-110.png" alt="not so easy 110" class="article-image" loading="lazy"></p>
+                <p>enviroment trigger without cloud9</p>
+                <p><img src="images/not-so-easy-111.png" alt="not so easy 111" class="article-image" loading="lazy"></p>
+                <p>the indentation is the key in pyjton to have less syntax</p>
+                <p><img src="images/not-so-easy-112.png" alt="not so easy 112" class="article-image" loading="lazy"></p>
+                <p>python and yaml so close to each other</p>
+                <p><img src="images/not-so-easy-113.png" alt="not so easy 113" class="article-image" loading="lazy"></p>
+                <p>Testinf the f sharp</p>
+                <p><img src="images/not-so-easy-114.png" alt="not so easy 114" class="article-image" loading="lazy"></p>
+                <p>call the method</p>
+                <p><img src="images/not-so-easy-115.png" alt="not so easy 115" class="article-image" loading="lazy"></p>
+                <p>Assert there is an error</p>
+                <p><img src="images/not-so-easy-116.png" alt="not so easy 116" class="article-image" loading="lazy"></p>
+                <p>it is failing at assert</p>
+                <p><img src="images/not-so-easy-117.png" alt="not so easy 117" class="article-image" loading="lazy"></p>
+                <p><img src="images/not-so-easy-118.png" alt="not so easy 118" class="article-image" loading="lazy"></p>
+                <p>it works</p>
+                <p><img src="images/not-so-easy-119.png" alt="not so easy 119" class="article-image" loading="lazy"></p>
+                <p><img src="images/not-so-easy-120.png" alt="not so easy 120" class="article-image" loading="lazy"></p>
+                <p><img src="images/not-so-easy-121.png" alt="not so easy 121" class="article-image" loading="lazy"></p>
+                <p>Bigger list also works</p>
+                <p><img src="images/not-so-easy-122.png" alt="not so easy 122" class="article-image" loading="lazy"></p>
+                <pre><code>https:&amp;#047;&amp;#047;replit.com/@info1146/Python#main.py
+                </code></pre>
+                <p>https://replit.com/@info1146/Python#main.py</p>
+                <hr />
+                <p><em>Imported from rifaterdemsahin.com · 2024</em></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">Let's connect and grow together in the world of technology</p>
+            <div class="footer-links">
+                <a href="../../../../5_Symbols/pages/index.html">&#127968; Home</a>
+                <a href="../../../../5_Symbols/pages/about.html">&#128100; About</a>
+                <a href="../../../../5_Symbols/pages/contact.html">&#128222; Contact</a>
+                <a href="../../../../5_Symbols/pages/newsletter.html">&#128231; Newsletter</a>
+                <a href="../../../../5_Symbols/pages/courses.html">&#127891; Courses</a>
+                <a href="../../../../5_Symbols/pages/email-form.html">&#127915; Get Coupon</a>
+                <a href="../../../../5_Symbols/pages/early-bird-registration.html">&#128038; Early Bird</a>
+                <a href="../../../../5_Symbols/pages/blog.html">&#128221; Blog</a>
+                <a href="../../../../5_Symbols/pages/delivery-pilot.html">&#128640; Delivery Pilot</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('.footer-bottom p').forEach(el => {
+                if (el.textContent.includes('\u00a9')) el.textContent = el.textContent.replace(/\d{4}/, currentYear);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear);
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({behavior: 'smooth', block: 'start'});
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
+        });
+    </script>
+</body>
+</html>
