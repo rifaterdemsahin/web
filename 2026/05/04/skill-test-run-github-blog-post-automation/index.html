@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skill Test Run - GitHub Blog Post Automation - Rifat Erdem Sahin</title>
-    <meta name="description" content="This is a test post created by the updated `github-blog-post` skill to verify the new structure works end-to-end.\n\n## What was tested\n\n- GitHub Contents API...">
+    <meta name="description" content="A complete walkthrough of the automated publishing pipeline from local Obsidian notes to a live blog post using the Second Brain, fal.ai image generation, and GitHub.">
     <meta name="keywords" content="Skill Test Run - GitHub Blog Post Automation">
     <meta name="author" content="Rifat Erdem Sahin">
     <meta name="robots" content="index, follow">
@@ -14,8 +14,8 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://www.rifaterdemsahin.com/2026/05/04/skill-test-run-github-blog-post-automation/">
     <meta property="og:title" content="Skill Test Run - GitHub Blog Post Automation">
-    <meta property="og:description" content="This is a test post created by the updated `github-blog-post` skill to verify the new structure works end-to-end.\n\n## What was tested\n\n- GitHub Contents API...">
-    <meta property="og:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="og:description" content="A complete walkthrough of the automated publishing pipeline from local Obsidian notes to a live blog post using the Second Brain, fal.ai image generation, and GitHub.">
+    <meta property="og:image" content="https://www.rifaterdemsahin.com/2026/05/04/skill-test-run-github-blog-post-automation/images/workflow-diagram.png">
     <meta property="og:site_name" content="Rifat Erdem Sahin">
     <meta property="og:locale" content="en_GB">
 
@@ -23,8 +23,8 @@
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.rifaterdemsahin.com/2026/05/04/skill-test-run-github-blog-post-automation/">
     <meta property="twitter:title" content="Skill Test Run - GitHub Blog Post Automation">
-    <meta property="twitter:description" content="This is a test post created by the updated `github-blog-post` skill to verify the new structure works end-to-end.\n\n## What was tested\n\n- GitHub Contents API...">
-    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/assets/images/erdem_photo.jpeg">
+    <meta property="twitter:description" content="A complete walkthrough of the automated publishing pipeline from local Obsidian notes to a live blog post using the Second Brain, fal.ai image generation, and GitHub.">
+    <meta property="twitter:image" content="https://www.rifaterdemsahin.com/2026/05/04/skill-test-run-github-blog-post-automation/images/workflow-diagram.png">
     <meta property="twitter:creator" content="@rifaterdemsahin">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,7 +37,7 @@
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": "Skill Test Run - GitHub Blog Post Automation",
-      "description": "This is a test post created by the updated `github-blog-post` skill to verify the new structure works end-to-end.\n\n## What was tested\n\n- GitHub Contents API...",
+      "description": "A complete walkthrough of the automated publishing pipeline from local Obsidian notes to a live blog post using the Second Brain, fal.ai image generation, and GitHub.",
       "author": {"@type": "Person", "name": "Rifat Erdem Sahin", "jobTitle": "SRE Contractor & Founder"},
       "publisher": {"@type": "Person", "name": "Rifat Erdem Sahin"},
       "datePublished": "2026-05-04",
@@ -234,12 +234,59 @@
                     <span>&bull;</span>
                     <span>May 04, 2026</span>
                     <span>&bull;</span>
-                    <span>1 min read</span>
+                    <span>3 min read</span>
                 </div>
-                <p class="article-excerpt">This is a test post created by the updated `github-blog-post` skill to verify the new structure works end-to-end.\n\n## What was tested\n\n- GitHub Contents API...</p>
+                <p class="article-excerpt">A complete walkthrough of the automated publishing pipeline from local Obsidian notes to a live blog post using the Second Brain, fal.ai image generation, and GitHub.</p>
             </header>
             <article class="article-content">
-                <p>This is a test post created by the updated <code>github-blog-post</code> skill to verify the new structure works end-to-end.\n\n## What was tested\n\n- GitHub Contents API integration\n- HTML generation with proper structure\n- Date-based directory creation: YYYY/MM/DD/slug/index.html\n\nIf you see this on the site, the skill is working!</p>
+                <p><img src="images/workflow-diagram.png" alt="Publishing workflow diagram" class="article-image" loading="lazy"></p>
+
+                <h2>The Publishing Pipeline</h2>
+                <p>This post demonstrates the end-to-end workflow I use to publish content from my local <strong>Obsidian</strong> vault to my live blog at <strong>hello.rifaterdemsahin.com</strong>. The pipeline connects my Second Brain, AI image generation via <strong>fal.ai</strong>, and GitHub for seamless deployment.</p>
+
+                <h2>Step-by-Step Process</h2>
+                <h3>1. Write in Obsidian</h3>
+                <p>Everything starts in my local Obsidian vault. I write drafts using Markdown, add tags, and organize notes using the PARA method (Projects, Areas, Resources, Archive). The vault lives inside my <strong>Second Brain</strong> repository, which syncs to GitHub.</p>
+
+                <h3>2. Second Brain Processing</h3>
+                <p>The Second Brain acts as the central hub. It contains:</p>
+                <ul>
+                    <li><strong>Scripts</strong> that transform Markdown into structured HTML</li>
+                    <li><strong>Templates</strong> for consistent blog post formatting</li>
+                    <li><strong>Asset pipelines</strong> for image optimization and tagging</li>
+                    <li><strong>SEO metadata</strong> generation for every post</li>
+                </ul>
+
+                <h3>3. AI Image Generation with fal.ai</h3>
+                <p>For every post, I generate a custom header image using <strong>fal.ai</strong>. The workflow sends a prompt describing the post topic to fal.ai, which returns a high-quality image. This image is saved locally and then pushed alongside the post content. The diagram above was generated using DALL-E to illustrate this exact pipeline.</p>
+
+                <h3>4. GitHub Commit</h3>
+                <p>Once the content and assets are ready, the skill pushes everything to the <code>rifaterdemsahin/web</code> repository:</p>
+                <ul>
+                    <li>HTML post file goes to <code>YYYY/MM/DD/slug/index.html</code></li>
+                    <li>Images go to <code>YYYY/MM/DD/slug/images/</code></li>
+                    <li>Commit message includes the post title</li>
+                </ul>
+
+                <h3>5. Live Deployment</h3>
+                <p>GitHub Pages (or the existing static hosting) serves the content immediately after the commit. The post becomes available at:</p>
+                <blockquote>
+                    <code>https://hello.rifaterdemsahin.com/YYYY/MM/DD/slug/</code>
+                </blockquote>
+
+                <h2>Why This Matters</h2>
+                <p>This pipeline removes friction from publishing. I never leave my Obsidian environment, yet every post gets professional formatting, AI-generated imagery, and instant deployment. It is a practical application of the Second Brain philosophy: <em>capture once, reuse everywhere</em>.</p>
+
+                <h2>Tools in the Stack</h2>
+                <table>
+                    <tr><th>Tool</th><th>Purpose</th></tr>
+                    <tr><td>Obsidian</td><td>Local Markdown writing</td></tr>
+                    <tr><td>Second Brain</td><td>Content processing &amp; templating</td></tr>
+                    <tr><td>fal.ai</td><td>AI image generation</td></tr>
+                    <tr><td>GitHub</td><td>Version control &amp; hosting</td></tr>
+                    <tr><td>GitHub Pages</td><td>Static site delivery</td></tr>
+                </table>
+
                 <hr />
                 <p><em>Imported from rifaterdemsahin.com &middot; 2026</em></p>
             </article>
