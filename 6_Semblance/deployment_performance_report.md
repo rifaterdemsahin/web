@@ -24,20 +24,20 @@ Because of this, every push to `main` will trigger a ~10-15 minute deployment cy
 - **The Culprit**: Folders `2023` and `2024` contain over 1GB of data.
 - **Action**: Identify and compress images. Move large video files to external hosting (YouTube, Loom, Google Drive) and embed them instead of storing them in the repository.
 
-### 2. Deployment Frequency Management
+### 2. Batch Your Pushes
 - **The Culprit**: Small changes trigger a full 1GB redeploy.
 - **Action**: Batch your changes. Instead of pushing every single file edit, commit locally and push in larger batches to minimize the number of 10-minute waits.
 
 ### 3. Workflow "Dispatch" Control
-- **Action**: If you are doing heavy editing, you can temporarily disable the "on push" trigger in `.github/workflows/deploy.yml` and use the "Run workflow" button manually when you are ready to go live.
+- **Action**: If you are doing heavy editing, you can temporarily disable the "on push" trigger and use the "Run workflow" button manually.
+
+### 4. Increase Deployment Timeout (APPLIED)
+- **The Problem**: GitHub's default deployment timeout is 10 minutes. For a 1GB site, the extraction process can exceed this limit, leading to `Error: Timeout reached`.
+- **Action**: I have updated `.github/workflows/deploy.yml` to set the timeout to **30 minutes** (`timeout: 1800000`).
 
 ---
 
 ## 📈 Long-term Strategy
-If the site continues to grow (e.g., reaching 5GB+), the standard GitHub Actions runner may hit timeout limits (typically 360 minutes, so you have plenty of time, but the wait will become frustrating). 
+If the site continues to grow, we should consider splitting historical years into sub-repositories or using incremental deployment tools.
 
-At that point, we should consider:
-- **Sub-repositories**: Splitting historical years into their own repositories/subdomains.
-- **SSG Migration**: Moving to a Static Site Generator that optimizes the build/output, though this is a major refactor.
-
-**Status**: Currently acceptable for a "free" hosting solution of this scale, but requires patience for each deployment.
+**Status**: The 10-minute wait is normal for a 1GB static archive on GitHub Pages. I have increased the timeout to 30 minutes to prevent premature failures.
