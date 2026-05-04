@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest Posts & Updates - Rifat Erdem Sahin | AI & DevOps</title>
+    <meta name="description" content="Stay up to date with the newest articles, courses, and insights from Rifat Erdem Sahin. Fresh content on AI transformation and DevOps.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/common-styles.css">
+    <style>
+        .latest-section { padding: 4rem 0; }
+        .latest-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .latest-item {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+        }
+        .latest-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary-color);
+            transform: scale(1.02);
+        }
+        .latest-date {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-color);
+            color: #000;
+            border-radius: 12px;
+            font-weight: 800;
+            height: 100px;
+        }
+        .date-day { font-size: 1.5rem; }
+        .date-month { font-size: 0.9rem; text-transform: uppercase; }
+        .latest-content h2 { margin-bottom: 0.5rem; font-size: 1.6rem; }
+        .latest-excerpt { color: #aaa; margin-bottom: 1rem; line-height: 1.5; }
+        .latest-meta { font-size: 0.8rem; color: var(--primary-color); font-weight: 600; }
+        
+        @media (max-width: 600px) {
+            .latest-item { grid-template-columns: 1fr; }
+            .latest-date { height: 60px; flex-direction: row; gap: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="index.html" class="navbar-brand">Rifat Erdem Sahin</a>
+            <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            <ul class="nav-links">
+                <li><a href="index.html">🏠 Home</a></li>
+                <li><a href="blog.html">📝 Blog</a></li>
+                <li><a href="archive.html">📚 Archive</a></li>
+                <li><a href="contact.html">📞 Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <header class="page-header">
+                <h1 class="page-title">What's New?</h1>
+                <p class="page-subtitle">The latest insights and updates from the world of AI and DevOps.</p>
+            </header>
+
+            <section class="latest-section">
+                <div class="latest-list">
+                    <article class="latest-item">
+                        <div class="latest-date">
+                            <span class="date-day">15</span>
+                            <span class="date-month">May</span>
+                        </div>
+                        <div class="latest-content">
+                            <span class="latest-meta">ARTICLE • AI</span>
+                            <h2>The Future of DevOps: AI-Powered Automation</h2>
+                            <p class="latest-excerpt">Deep dive into how Generative AI is reshaping CI/CD pipelines and incident response.</p>
+                            <a href="blog.html" class="btn btn-secondary btn-sm">Read Article</a>
+                        </div>
+                    </article>
+
+                    <article class="latest-item">
+                        <div class="latest-date">
+                            <span class="date-day">10</span>
+                            <span class="date-month">May</span>
+                        </div>
+                        <div class="latest-content">
+                            <span class="latest-meta">PROJECT • LEARNING</span>
+                            <h2>Delivery Pilot: Interactive Labs Released</h2>
+                            <p class="latest-excerpt">New hands-on labs for AWS Bedrock and Vertex AI are now available on the platform.</p>
+                            <a href="delivery-pilot.html" class="btn btn-secondary btn-sm">Explore Labs</a>
+                        </div>
+                    </article>
+
+                    <article class="latest-item">
+                        <div class="latest-date">
+                            <span class="date-day">01</span>
+                            <span class="date-month">May</span>
+                        </div>
+                        <div class="latest-content">
+                            <span class="latest-meta">GUIDE • SECURITY</span>
+                            <h2>Zero-Trust for AI Deployments</h2>
+                            <p class="latest-excerpt">Essential security patterns for hosting large language models in enterprise environments.</p>
+                            <a href="blog.html" class="btn btn-secondary btn-sm">View Guide</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Rifat Erdem Sahin. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="archive.html">Archive</a>
+                <a href="tags.html">Tags</a>
+                <a href="latest.html">Latest</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
