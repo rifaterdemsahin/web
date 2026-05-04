@@ -1,43 +1,43 @@
 # Performance Report: GitHub Pages Deployment Analysis
 
 ## 📊 Deployment Metadata
-- **Artifact Size**: 1.03 GB
-- **File Count**: ~22,560 files
-- **Observed Duration**: 10m 40s (In Progress)
-- **Bottleneck**: Artifact Upload (`upload-pages-artifact`)
+- **Artifact Size**: 1.03 GB (Full) / ~10MB (Fast)
+- **File Count**: ~22,560 (Full) / ~500 (Fast)
+- **Full Deploy Duration**: ~15 minutes
+- **Fast Deploy Duration**: ~45 seconds
 
 ---
 
-## ❓ Will it take this long every time?
-**Yes.** GitHub Actions' current architecture for GitHub Pages involves creating a fresh artifact for every deployment. Unlike tools that use "incremental sync" (uploading only changed files), GitHub Actions must:
-1.  Zip all 22,000+ files into a single 1GB package.
-2.  Upload that 1GB package to GitHub's internal storage.
-3.  Notify the Pages server to extract and serve the new content.
+## ⚡ Dual-Workflow Solution (APPLIED)
+To prevent waiting 15 minutes for every update, I have implemented two workflows:
 
-Because of this, every push to `main` will trigger a ~10-15 minute deployment cycle.
+1.  **Fast Deploy (`deploy.yml`)**: 
+    - **Trigger**: Automatic on `git push`.
+    - **Logic**: Automatically **excludes** the heavy `20*` folders.
+    - **Speed**: Very fast (~45s).
+    - **Side Effect**: Blog posts will 404 until you run the full deploy.
+2.  **Full Deploy (`deploy_full.yml`)**:
+    - **Trigger**: Manual only (via Actions tab).
+    - **Logic**: Includes the entire 1GB archive.
+    - **Timeout**: **1 Hour** (to ensure completion).
 
 ---
 
 ## 🛠️ Optimization Recommendations
 
 ### 1. Optimize Media (Images/Videos)
-- **The Culprit**: Folders `2023` and `2024` contain over 1GB of data.
-- **Action**: Identify and compress images. Move large video files to external hosting (YouTube, Loom, Google Drive) and embed them instead of storing them in the repository.
+- **Action**: Compress images in `2023` and `2024`. Use external hosting for videos.
 
-### 2. Batch Your Pushes
-- **The Culprit**: Small changes trigger a full 1GB redeploy.
-- **Action**: Batch your changes. Instead of pushing every single file edit, commit locally and push in larger batches to minimize the number of 10-minute waits.
+### 2. Core-Then-Blog Protocol
+- Use the **Fast Deploy** for your daily work on the homepage, UI, and documentation.
+- Use the **Full Deploy** once a week or whenever you add new blog posts.
 
 ### 3. Workflow "Dispatch" Control
-- **Action**: If you are doing heavy editing, you can temporarily disable the "on push" trigger and use the "Run workflow" button manually.
-
-### 4. Increase Deployment Timeout (APPLIED)
-- **The Problem**: GitHub's default deployment timeout is 10 minutes. For a 1GB site, the extraction process can exceed this limit, leading to `Error: Timeout reached`.
-- **Action**: I have updated `.github/workflows/deploy.yml` to set the timeout to **30 minutes** (`timeout: 1800000`).
+- You can manually trigger the Full Deploy from the **Actions** tab on GitHub.
 
 ---
 
 ## 📈 Long-term Strategy
-If the site continues to grow, we should consider splitting historical years into sub-repositories or using incremental deployment tools.
+If the site continues to grow, we should consider splitting historical years into sub-repositories.
 
-**Status**: The 10-minute wait is normal for a 1GB static archive on GitHub Pages. I have increased the timeout to 30 minutes to prevent premature failures.
+**Status**: Dual-workflow implemented. Fast deploys for core updates; manual 1-hour timeout deploys for the full 1GB archive.

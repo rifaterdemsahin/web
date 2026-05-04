@@ -1,15 +1,7 @@
-name: Fast Deploy (Core Site Only)
+name: Full Deploy (Including Blog Archives)
 
 on:
-  push:
-    branches: ["main"]
-    paths-ignore:
-      - '20**/**' # Ignore all year folders
-      - 'README.md'
-      - '4_formula/**'
-      - '6_Semblance/**'
-      - '.gemini/**'
-  workflow_dispatch:
+  workflow_dispatch: # Manual trigger only
 
 permissions:
   contents: read
@@ -18,7 +10,7 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -32,19 +24,14 @@ jobs:
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
-
-      - name: Remove Blog Files for Fast Deploy
-        run: |
-          rm -rf 2020 2023 2024 2025 2026 2027
-          echo "Removed blog archives for fast deployment"
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '.' # Includes everything (1.03 GB)
       
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          timeout: 600000 # Standard 10 min timeout
+          timeout: 3600000 # 1 Hour timeout (60 mins * 60 secs * 1000 ms)
