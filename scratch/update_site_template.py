@@ -1,7 +1,10 @@
 import os
 import re
 
-files = ["about.html", "blog.html", "contact.html", "courses.html", "delivery-pilot.html"]
+files = [
+    "about.html", "blog.html", "contact.html", "courses.html", 
+    "delivery-pilot.html", "enterprise-ai-maturity.html", "index.html"
+]
 base_path = "/Users/rifaterdemsahin/projects/web/5_Symbols/pages/"
 
 navbar_html = """    <nav class="navbar">
@@ -19,9 +22,9 @@ navbar_html = """    <nav class="navbar">
                     </ul>
                 </li>
                 <li class="has-dropdown">
-                    <a href="blog.html">📝 Blog</a>
+                    <a href="/blog/">📝 Blog</a>
                     <ul class="dropdown-menu">
-                        <li><a href="blog.html">Latest Posts</a></li>
+                        <li><a href="/blog/">Latest Posts</a></li>
                         <li><a href="archive.html">Archive</a></li>
                         <li><a href="newsletter.html">Newsletter</a></li>
                     </ul>
@@ -65,7 +68,7 @@ footer_html = """    <footer class="footer">
         <div class="footer-content">
             <div class="footer-links">
                 <a href="about.html">About</a>
-                <a href="blog.html">Blog</a>
+                <a href="/blog/">Blog</a>
                 <a href="latest.html">Content</a>
                 <a href="courses.html">Courses</a>
                 <a href="delivery-pilot.html">Services</a>

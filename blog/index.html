@@ -84,7 +84,7 @@
 </head>
 <body>
     <!-- Navigation -->
-                <nav class="navbar">
+        <nav class="navbar">
         <div class="nav-container container">
             <a href="index.html" class="navbar-brand">Rifat Erdem Sahin</a>
             <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
@@ -99,9 +99,9 @@
                     </ul>
                 </li>
                 <li class="has-dropdown">
-                    <a href="/blog/">📝 Blog</a>
+                    <a href="blog.html">📝 Blog</a>
                     <ul class="dropdown-menu">
-                        <li><a href="/blog/">Latest Posts</a></li>
+                        <li><a href="blog.html">Latest Posts</a></li>
                         <li><a href="archive.html">Archive</a></li>
                         <li><a href="newsletter.html">Newsletter</a></li>
                     </ul>
@@ -146,25 +146,48 @@
         <div class="container">
             <!-- Page Header -->
             <div class="page-header">
-                <h1 class="page-title">Blog & Insights</h1>
+                <h1 class="page-title">Content Hub & Second Brain</h1>
                 <p class="page-subtitle">
-                    Explore my latest thoughts on DevOps, AI, technology trends, and professional growth. 
-                    Practical insights from real-world experience.
+                    Insights from my personal knowledge system. I document everything I learn about AI, SRE, and Delivery Engineering in real-time.
                 </p>
                 <div class="blog-nav-shortcuts" style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center;">
-                    <a href="latest.html" class="btn btn-secondary btn-sm">✨ Latest Posts</a>
-                    <a href="archive.html" class="btn btn-secondary btn-sm">📅 Archive</a>
-                    <a href="tags.html" class="btn btn-secondary btn-sm">🏷️ Browse Tags</a>
+                    <a href="/archive.html" class="btn btn-secondary btn-sm">📅 Full Archive</a>
+                    <a href="/tags.html" class="btn btn-secondary btn-sm">🏷️ Topics</a>
                 </div>
             </div>
 
-            <!-- WordPress Blog Link -->
+            <!-- Lead Magnet Hero -->
+            <div class="lead-magnet-hero" style="background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 3rem; border-radius: 20px; margin-bottom: 4rem; text-align: center; border: 1px solid rgba(255,255,255,0.1);">
+                <span style="background: var(--primary-color); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-bottom: 1rem; display: inline-block;">NEW: FREE RESOURCE</span>
+                <h2 style="font-size: 2rem; margin-bottom: 1rem;">Enterprise AI Maturity Checklist</h2>
+                <p style="font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto 2rem;">
+                    Download the 15-point readiness framework used by enterprise SRE teams to evaluate on-premise AI transformation.
+                </p>
+                <a href="/pages/enterprise-ai-maturity.html" class="btn btn-primary" style="background: white; color: var(--primary-color);">Download Checklist &rarr;</a>
+            </div>
+
+            <!-- Content Clusters -->
+            <div class="content-clusters" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
+                <div class="cluster-card" style="background: var(--bg-secondary); padding: 2rem; border-radius: 15px; border-left: 5px solid var(--primary-color);">
+                    <h3>🚀 AI Delivery</h3>
+                    <p>How I use AI to accelerate SRE workflows and close enterprise skills gaps.</p>
+                    <a href="/tags.html#ai" style="color: var(--primary-color); font-weight: 600;">Explore AI Posts &rarr;</a>
+                </div>
+                <div class="cluster-card" style="background: var(--bg-secondary); padding: 2rem; border-radius: 15px; border-left: 5px solid #00ff88;">
+                    <h3>🛠️ SRE & DevOps</h3>
+                    <p>Deep dives into Infrastructure as Code, Security, and Scalability.</p>
+                    <a href="/tags.html#devops" style="color: var(--primary-color); font-weight: 600;">Explore DevOps Posts &rarr;</a>
+                </div>
+                <div class="cluster-card" style="background: var(--bg-secondary); padding: 2rem; border-radius: 15px; border-left: 5px solid var(--accent-color);">
+                    <h3>🧠 Second Brain</h3>
+                    <p>Transparent insights from my 40,000+ personal knowledge management system.</p>
+                    <a href="/tags.html#philosophy" style="color: var(--primary-color); font-weight: 600;">Explore Philosophy &rarr;</a>
+                </div>
+            </div>
+
             <div class="wordpress-blog">
-                <h3>📝 Latest Blog Posts</h3>
-                <p>Visit my WordPress blog for the complete collection of articles, tutorials, and insights.</p>
-                <a href="https://rifaterdemsahin.com/" target="_blank" class="btn btn-primary">
-                    Read All Posts on WordPress
-                </a>
+                <h3>📝 Latest Insights</h3>
+                <p>Synced directly from my Obsidian vault and private research notes.</p>
             </div>
 
             <!-- Blog Content -->
@@ -307,11 +330,11 @@
     </main>
 
     <!-- Footer -->
-                <footer class="footer">
+        <footer class="footer">
         <div class="footer-content">
             <div class="footer-links">
                 <a href="about.html">About</a>
-                <a href="/blog/">Blog</a>
+                <a href="blog.html">Blog</a>
                 <a href="latest.html">Content</a>
                 <a href="courses.html">Courses</a>
                 <a href="delivery-pilot.html">Services</a>

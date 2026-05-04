@@ -116,20 +116,58 @@ ul {
     text-decoration: none;
 }
 
-/* Underline effect on hover */
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--accent-color);
-    transition: width 0.3s ease;
-}
-
 .nav-links a:hover::after {
     width: 100%;
+}
+
+/* Dropdown Menu Styles */
+.has-dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    min-width: 200px;
+    box-shadow: var(--shadow-lg);
+    border-radius: var(--border-radius-md);
+    padding: 1rem 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    border: 1px solid var(--border-color);
+}
+
+.has-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li {
+    padding: 0;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    transition: all 0.2s ease;
+}
+
+.dropdown-menu a:hover {
+    background: var(--bg-light);
+    color: var(--primary-color);
+    padding-left: 1.75rem;
+}
+
+.dropdown-menu a::after {
+    display: none;
 }
 
 .hamburger {
@@ -174,6 +212,23 @@ ul {
 
     .nav-links.active {
         display: flex; /* Show when active */
+    }
+
+    /* Mobile Dropdown Behavior */
+    .nav-links .has-dropdown:hover .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        background: var(--bg-light);
+        width: 100%;
+    }
+
+    .nav-links .dropdown-menu a {
+        padding: 0.5rem 0;
+        font-size: 0.875rem;
     }
 
     .hamburger {
