@@ -1,7 +1,22 @@
 # Rifat Erdem Sahin - Personal Website
 
 This is the personal website for Rifat Erdem Sahin, an AI Solutions Architect based in Cambridge, UK.
-https://hello.rifaterdemsahin.com
+https://www.rifaterdemsahin.com
+
+## 🚀 Deployment Controls
+Click the links below to manage the website deployment:
+
+- ⚡ **[Fast Deploy (Core Site Only)](https://github.com/rifaterdemsahin/web/actions/workflows/deploy.yml)**
+  - *Trigger*: Runs on every push or click.
+  - *Speed*: ~45 seconds.
+  - *Note*: Excludes blog archives (they will 404).
+
+- 📂 **[Full Deploy (Everything + Blog)](https://github.com/rifaterdemsahin/web/actions/workflows/deploy_full.yml)**
+  - *Trigger*: **Manual only**.
+  - *Speed*: ~15 minutes (1GB artifact).
+  - *Note*: Use this to update blog posts or restore the archive.
+
+---
 
 ## 📁 Project Structure
 
