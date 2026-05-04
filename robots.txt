@@ -1,6 +1,14 @@
 User-agent: *
 Allow: /
 
+# Specific blog directories for better visibility
+Allow: /2020/
+Allow: /2023/
+Allow: /2024/
+Allow: /2025/
+Allow: /2026/
+Allow: /2027/
+
 # Sitemap
 Sitemap: https://www.rifaterdemsahin.com/sitemap.xml
 
