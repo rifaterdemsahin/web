@@ -939,23 +939,60 @@
 
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="navbar-container container">
+        <nav class="navbar">
+        <div class="nav-container container">
             <a href="index.html" class="navbar-brand">Rifat Erdem Sahin</a>
             <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+            
             <ul class="nav-links">
-                <li><a href="index.html">🏠 Home</a></li>
-                <li><a href="vision.html">👁️ Vision</a></li>
-                <li><a href="delivery-pilot.html">🚀 Delivery Pilot</a></li>
-                <li><a href="enterprise-ai-maturity.html">🏢 Enterprise AI</a></li>
-                <li><a href="courses.html">🎓 Courses</a></li>
-                <li><a href="early-bird-registration.html">🐦 Early Bird</a></li>
-                <li><a href="ebook.html">📚 Ebook</a></li>
-                <li><a href="newsletter.html">📧 Newsletter</a></li>
-                <li><a href="investor.html">💼 Investors</a></li>
-                <li><a href="about.html">👤 About</a></li>
+                <li class="has-dropdown">
+                    <a href="about.html">👤 About</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="about.html#who">Who I Am</a></li>
+                        <li><a href="about.html#track-record">Track Record</a></li>
+                        <li><a href="about.html#credentials">Philosophy</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="blog.html">📝 Blog</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="blog.html">Latest Posts</a></li>
+                        <li><a href="archive.html">Archive</a></li>
+                        <li><a href="newsletter.html">Newsletter</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="latest.html">✨ Content</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://www.youtube.com/@RifatErdemSahin" target="_blank">YouTube</a></li>
+                        <li><a href="latest.html">Latest Updates</a></li>
+                        <li><a href="tags.html">Topics</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="courses.html">🎓 Courses</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://www.coursera.org/instructor/~184662540" target="_blank">Coursera</a></li>
+                        <li><a href="https://www.udemy.com/user/rifat-exclusive-sahin-2/" target="_blank">Udemy</a></li>
+                        <li><a href="ebook.html">Free Ebook</a></li>
+                    </ul>
+                </li>
+                <li class="has-dropdown">
+                    <a href="delivery-pilot.html">🚀 Services</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="delivery-pilot.html">Delivery Pilot</a></li>
+                        <li><a href="enterprise-ai-maturity.html">Enterprise AI</a></li>
+                        <li><a href="workshops.html">Workshops</a></li>
+                    </ul>
+                </li>
+                <li><a href="https://github.com/rifaterdemsahin" target="_blank">🛠️ Tools</a></li>
                 <li><a href="contact.html">📞 Contact</a></li>
             </ul>
+
+            <div class="nav-utility">
+                <a href="https://www.linkedin.com/in/rifaterdemsahin/" target="_blank" class="social-icon" style="color: var(--text-secondary); font-size: 1.2rem; margin-right: 1rem;"><i class="fab fa-linkedin"></i></a>
+                <a href="contact.html" class="btn btn-primary btn-sm btn-cta">Book a Call</a>
+            </div>
         </div>
     </nav>
 
@@ -969,14 +1006,12 @@
                     <strong>I</strong>ncreases <strong>S</strong>kills <strong>E</strong>xpectations 📈
                 </div>
                 <p class="hero-description">
-                    Welcome to the <strong>new</strong> era of enterprise transformation! ✨
-                    We bridge the gap between traditional engineering and the new world of <strong>Vibe
-                        Programming</strong>.
-                    Join the revolution where developers and non-developers unite in a continuous learning cycle.
-                    <strong>Assessment 🕵️‍♂️ → Training 🎓 → Implementation 🚀</strong>
+                    Bridging the divide between legacy SRE/DevOps and the AI-driven future. 
+                    Delivery Pilot helps enterprises close skills gaps through AI-powered automation, 
+                    fractional leadership, and hands-on training that makes complex technologies accessible.
                 </p>
                 <div class="hero-cta">
-                    <a href="https://calendly.com/rifaterdem/" target="_blank" class="btn btn-primary">� Start Your
+                    <a href="https://calendly.com/rifaterdem/" target="_blank" class="btn btn-primary"> Start Your
                         Assessment</a>
                     <a href="#transformation-stages" class="btn btn-secondary">✨ Explore the Vibe</a>
                 </div>
@@ -1297,9 +1332,8 @@
                     <!-- Prosumer Plan -->
                     <div class="pricing-card">
                         <div class="pricing-header">
-                            <h3 class="pricing-title">Prosumer</h3>
-                            <div class="pricing-subtitle">1-on-1 Assessment</div>
-                            <div class="pricing-price">$50</div>
+                            <h3 class="pricing-title">Individual Assessment</h3>
+                            <div class="pricing-price">$100</div>
                             <div class="pricing-period">per session</div>
                         </div>
                         <div class="pricing-features">
@@ -1349,15 +1383,16 @@
                     <div class="pricing-card featured">
                         <div class="pricing-badge">Most Popular</div>
                         <div class="pricing-header">
-                            <h3 class="pricing-title">Professional & Enterprise</h3>
-                            <div class="pricing-subtitle">Team Enterprise-wise AI Adaptation</div>
-                            <div class="pricing-price">Request Quote</div>
-                            <div class="pricing-period">custom pricing</div>
+                            <h3 class="pricing-title">Fractional SRE / Managed Services</h3>
+                            <div class="pricing-price">Custom</div>
+                            <div class="pricing-period">Enterprise focus</div>
                         </div>
                         <div class="pricing-features">
                             <ul>
-                                <li>🤖 Enterprise data source integration</li>
-                                <li>👥 Team assessment included</li>
+                                <li>AI Maturity Assessment</li>
+                                <li>Fractional SRE Leadership</li>
+                                <li>Custom Training Roadmap</li>
+                                <li>Managed AI Automation</li>
                                 <li>📊 Production-ready solutions</li>
                                 <li>🔄 24/7 support available</li>
                                 <li>📚 Complete documentation</li>
@@ -1437,23 +1472,21 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+        <footer class="footer">
         <div class="footer-content">
-            <p class="footer-text">Let's connect and grow together in the world of technology</p>
             <div class="footer-links">
-                <a href="index.html">🏠 Home</a>
-                <a href="about.html">👤 About</a>
-                <a href="contact.html">📞 Contact</a>
-                <a href="newsletter.html">📧 Newsletter</a>
-                <a href="courses.html">🎓 Courses</a>
-                <a href="email-form.html">🎫 Get Coupon</a>
-                <a href="early-bird-registration.html">🐦 Early Bird</a>
-                <a href="https://rifaterdemsahin.com/" target="_blank">📝 Blog</a>
-                <a href="delivery-pilot.html">🚀 Delivery Pilot</a>
-                <a href="enterprise-ai-maturity.html">🏢 Enterprise AI</a>
+                <a href="about.html">About</a>
+                <a href="blog.html">Blog</a>
+                <a href="latest.html">Content</a>
+                <a href="courses.html">Courses</a>
+                <a href="delivery-pilot.html">Services</a>
+                <a href="https://github.com/rifaterdemsahin" target="_blank">Tools</a>
+                <a href="contact.html">Contact</a>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Rifat Erdem Sahin. All rights reserved.</p>
+                <p>&copy; 2026 Rifat Erdem Sahin. All rights reserved.</p>
+                <p style="color: #00ff88; margin-top: 1rem;">🚀 Bridging the AI Skills Gap | SC Cleared | NATO Security Clearance</p>
+                <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 0.5rem;">Cambridge, UK | Dual British/Turkish Citizen</p>
             </div>
         </div>
     </footer>
