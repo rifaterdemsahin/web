@@ -54,46 +54,7 @@
       "url": "https://www.rifaterdemsahin.com/pages/delivery-pilot.html",
       "image": "https://www.rifaterdemsahin.com/assets/images/delivery_pilot.png",
       "serviceType": "AI Learning and Technology Training",
-      "areaServed": "Worldwide",
-      "offers": [
-        {
-          "@type": "Offer",
-          "name": "Prosumer Plan",
-          "description": "1-on-1 AI Maturity Assessment",
-          "price": "50",
-          "priceCurrency": "USD",
-          "priceSpecification": {
-            "@type": "UnitPriceSpecification",
-            "price": "100",
-            "priceCurrency": "USD",
-            "unitText": "per discovery call"
-          }
-        },
-        {
-          "@type": "Offer",
-          "name": "Fractional SRE / AI Leadership",
-          "description": "Managed service for enterprise-scale AI readiness and transformation",
-          "priceCurrency": "GBP"
-        },
-        {
-          "@type": "Offer",
-          "name": "Workshops Plan",
-          "description": "Onsite UK & Global Sessions",
-          "price": "500",
-          "priceCurrency": "GBP",
-          "priceSpecification": {
-            "@type": "UnitPriceSpecification",
-            "price": "500",
-            "priceCurrency": "GBP",
-            "unitText": "per day"
-          }
-        },
-        {
-          "@type": "Offer",
-          "name": "Professional & Enterprise Plan",
-          "description": "Team Enterprise-wise AI Adaptation with custom pricing"
-        }
-      ]
+      "areaServed": "Worldwide"
     }
     </script>
     <style>
@@ -488,100 +449,33 @@
         }
 
         /* Pricing Section */
-        .pricing-section {
+        /* Information Section */
+        .info-section {
             padding: 6rem 0;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .pricing-card {
-            background: white;
-            border-radius: 15px;
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border-color);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .pricing-card.featured {
-            border: 2px solid var(--primary-color);
-            transform: scale(1.05);
-        }
-
-        .pricing-card.featured::before {
-            content: 'Most Popular';
-            position: absolute;
-            top: 1rem;
-            right: -1rem;
-            background: var(--primary-color);
-            color: white;
-            padding: 0.5rem 2rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-            transform: rotate(45deg);
-        }
-
-        .pricing-header {
-            padding: 2rem;
             text-align: center;
-            background: var(--bg-accent);
+            background: var(--bg-secondary);
         }
 
-        .pricing-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
+        .info-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-xl);
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid var(--border-color);
         }
 
-        .pricing-price {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
+        .info-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
         }
 
-        .pricing-period {
+        .info-text {
+            font-size: 1.2rem;
             color: var(--text-secondary);
-            font-size: 1rem;
-        }
-
-        .pricing-features {
-            padding: 2rem;
-        }
-
-        .pricing-features ul {
-            list-style: none;
             margin-bottom: 2rem;
-        }
-
-        .pricing-features li {
-            padding: 0.5rem 0;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .pricing-features li::before {
-            content: '✓';
-            color: var(--success-color);
-            font-weight: bold;
-        }
-
-        .pricing-cta {
-            padding: 0 2rem 2rem;
+            line-height: 1.8;
         }
 
         /* CTA Section */
@@ -984,7 +878,7 @@
                     <a href="courses.html">🎓 Courses</a>
                     <ul class="dropdown-menu">
                         <li><a href="https://www.coursera.org/instructor/~184662540" target="_blank">Coursera</a></li>
-                        <li><a href="https://www.udemy.com/user/rifat-exclusive-sahin-2/" target="_blank">Udemy</a></li>
+                        <li><a href="https://www.udemy.com/user/rifat-erdem-sahin-2/" target="_blank">Udemy</a></li>
                         <li><a href="ebook.html">Free Ebook</a></li>
                         <li><a href="early-bird-registration.html">Early Bird</a></li>
                     </ul>
@@ -1005,7 +899,7 @@
 
             <div class="nav-utility">
                 <a href="https://www.linkedin.com/in/rifaterdemsahin/" target="_blank" class="social-icon" style="color: var(--text-secondary); font-size: 1.2rem; margin-right: 1rem;"><i class="fab fa-linkedin"></i></a>
-                <a href="contact.html" class="btn btn-primary btn-sm btn-cta">Book a Call</a>
+                <a href="https://deliverypilot.net" target="_blank" class="btn btn-primary btn-sm btn-cta">Visit Pilot Site</a>
             </div>
         </div>
     </nav>
@@ -1026,8 +920,7 @@
                     fractional leadership, and hands-on training that makes complex technologies accessible.
                 </p>
                 <div class="hero-cta">
-                    <a href="https://calendly.com/rifaterdem/" target="_blank" class="btn btn-primary"> Start Your
-                        Assessment</a>
+                    <a href="https://deliverypilot.net" target="_blank" class="btn btn-primary"> Visit DeliveryPilot.net</a>
                     <a href="#transformation-stages" class="btn btn-secondary">✨ Explore the Vibe</a>
                 </div>
             </div>
@@ -1334,94 +1227,20 @@
             </div>
         </section>
 
-        <!-- Pricing Section -->
-        <section id="pricing" class="pricing-section">
+        <!-- Information & External Site Section -->
+        <section id="more-info" class="info-section">
             <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Support Plans</h2>
-                    <p class="section-subtitle">
-                        Choose the support plan that fits your learning and implementation needs
+                <div class="info-card">
+                    <div class="info-icon">🌐</div>
+                    <h2 class="section-title">Comprehensive AI Solutions</h2>
+                    <p class="info-text">
+                        For detailed service plans, custom enterprise solutions, and our latest AI-driven frameworks, 
+                        please visit our dedicated platform. We provide tailored support for teams of all sizes.
                     </p>
-                </div>
-
-                <div class="pricing-grid">
-                    <!-- Prosumer Plan -->
-                    <div class="pricing-card">
-                        <div class="pricing-header">
-                            <h3 class="pricing-title">Individual Assessment</h3>
-                            <div class="pricing-price">$100</div>
-                            <div class="pricing-period">per session</div>
-                        </div>
-                        <div class="pricing-features">
-                            <ul>
-                                <li>🎯 Individual AI maturity assessment</li>
-                                <li>📊 Personalized skills gap analysis</li>
-                                <li>🗺️ Custom AI learning roadmap</li>
-                                <li>💡 Career transformation strategy</li>
-                                <li>📋 Actionable next steps</li>
-                                <li>⏰ 60-minute 1-on-1 session</li>
-                                <li>📄 Written assessment report</li>
-                                <li>🔄 Follow-up recommendations</li>
-                            </ul>
-                        </div>
-                        <div class="pricing-cta">
-                            <a href="https://calendly.com/rifaterdem/" target="_blank" class="btn btn-primary">📅 Book
-                                Assessment</a>
-                        </div>
-                    </div>
-
-                    <!-- Workshops Plan -->
-                    <div class="pricing-card">
-                        <div class="pricing-header">
-                            <h3 class="pricing-title"><a href="workshops.html" style="text-decoration: none; color: inherit;">Workshops</a></h3>
-                            <div class="pricing-subtitle">Onsite UK & Global Sessions</div>
-                            <div class="pricing-price">£500</div>
-                            <div class="pricing-period">per consultant/day</div>
-                        </div>
-                        <div class="pricing-features">
-                            <ul>
-                                <li>🇬🇧 Live onsite training in UK</li>
-                                <li>🌍 Global live training sessions</li>
-                                <li>👥 Face-to-face interaction</li>
-                                <li>🏭 Enterprise-wide implementation</li>
-                                <li>🎯 Multiple technology areas</li>
-                                <li>🚀 Post-implementation support</li>
-                                <li>🏨 Hotel & travel billed separately</li>
-                            </ul>
-                        </div>
-                        <div class="pricing-cta">
-                            <a href="workshops.html" class="btn btn-secondary" style="width: 100%; margin-bottom: 0.5rem; color: var(--primary-color); border-color: var(--primary-color);">🎯 View Workshop Details</a>
-                            <a href="https://calendly.com/rifaterdem/" target="_blank" class="btn btn-primary">📅
-                                Schedule Interview</a>
-                        </div>
-                    </div>
-
-                    <!-- Professional & Enterprise Plan -->
-                    <div class="pricing-card featured">
-                        <div class="pricing-badge">Most Popular</div>
-                        <div class="pricing-header">
-                            <h3 class="pricing-title">Fractional SRE / Managed Services</h3>
-                            <div class="pricing-price">Custom</div>
-                            <div class="pricing-period">Enterprise focus</div>
-                        </div>
-                        <div class="pricing-features">
-                            <ul>
-                                <li>AI Maturity Assessment</li>
-                                <li>Fractional SRE Leadership</li>
-                                <li>Custom Training Roadmap</li>
-                                <li>Managed AI Automation</li>
-                                <li>📊 Production-ready solutions</li>
-                                <li>🔄 24/7 support available</li>
-                                <li>📚 Complete documentation</li>
-                                <li>⚡ Priority support</li>
-                                <li>🔄 Integration guidance</li>
-                                <li>📞 Direct access to expert</li>
-                            </ul>
-                        </div>
-                        <div class="pricing-cta">
-                            <a href="https://calendly.com/rifaterdem/" target="_blank" class="btn btn-primary">📅
-                                Schedule Interview</a>
-                        </div>
+                    <div class="cta-buttons">
+                        <a href="https://deliverypilot.net" target="_blank" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.2rem 2.5rem;">
+                            🚀 Explore DeliveryPilot.net
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1459,8 +1278,7 @@
                     your gaps and initiate self-learning in yourself and your teams today.
                 </p>
                 <div class="cta-buttons">
-                    <a href="https://calendly.com/rifaterdem/" target="_blank" class="btn btn-primary">📅 Schedule
-                        Interview</a>
+                    <a href="https://deliverypilot.net" target="_blank" class="btn btn-primary">🚀 Visit DeliveryPilot.net</a>
                     <a href="https://www.linkedin.com/in/rifaterdemsahin/" target="_blank"
                         class="btn btn-secondary">Connect on LinkedIn</a>
                 </div>
