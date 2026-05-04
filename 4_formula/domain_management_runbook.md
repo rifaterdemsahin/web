@@ -1,87 +1,89 @@
-# Runbook: Domain Migration & WordPress Cancellation
+# Runbook: Domain Migration to GitHub Pages & WordPress Cancellation
 
-This runbook outlines the process for updating domain records for `rifaterdemsahin.com` and canceling the associated WordPress.com membership.
+This runbook outlines the process for updating `rifaterdemsahin.com` to point to GitHub Pages and canceling the legacy WordPress.com membership.
 
 ## 1. System Architecture Overview
 
-Currently, the domain infrastructure is split between WordPress.com (Registrar/Hosting) and Cloudflare (DNS Management).
+The domain is registered via **GoDaddy**, managed via **Cloudflare DNS**, and integrated with a **Homelab** environment. The goal is to move the primary web presence to **GitHub Pages**.
 
 ```mermaid
 graph TD
     User((User)) -->|Requests| CF[Cloudflare DNS]
-    CF -->|Points WWW| WP[WordPress.com Hosting]
-    CF -->|Points Hello| WP
-    subgraph WordPress.com
-        WP_Reg[Domain Registrar]
-        WP_Host[Web Hosting / Membership]
+    CF -->|CNAME / Proxied| GH[GitHub Pages]
+    CF -->|Tunnel / A Record| HL[Homelab Services]
+    
+    subgraph Registrar
+        GD[GoDaddy]
     end
     
-    style WP_Reg fill:#f9f,stroke:#333,stroke-width:2px
+    subgraph Management
+        CF
+    end
+
+    subgraph Destination
+        GH
+        HL
+    end
+    
+    GD -.->|Nameservers| CF
+    style GD fill:#f9f,stroke:#333,stroke-width:2px
     style CF fill:#f96,stroke:#333,stroke-width:2px
+    style GH fill:#2ea44f,stroke:#333,stroke-width:2px,color:#fff
 ```
 
-## 2. Phase 1: DNS Updates (Cloudflare)
+## 2. Phase 1: Cloudflare DNS Configuration
 
-Since DNS is managed by Cloudflare, you can update where `www` and `hello` point without waiting for the WordPress cancellation.
+Since the registrar is GoDaddy and nameservers point to Cloudflare, all changes happen in the Cloudflare Dashboard.
 
-### Steps:
-1.  **Login to Cloudflare Dashboard**.
-2.  Select the **rifaterdemsahin.com** zone.
-3.  Navigate to the **DNS** section.
-4.  **Update `www` record**:
-    *   Locate the `A` or `CNAME` record for `www`.
-    *   Click **Edit** and change the target to your new hosting IP or CNAME.
-    *   Ensure the "Proxy status" (Orange cloud) is toggled as desired.
-5.  **Update `hello` record**:
-    *   Locate the `A` or `CNAME` record for `hello`.
-    *   Update the target to the new destination.
-6.  **Verify Propagation**:
-    *   Run `dig hello.rifaterdemsahin.com` or use a tool like [whatsmydns.net](https://www.whatsmydns.net/).
+### Target: GitHub Pages (`rifaterdemsahin.github.io`)
 
-## 3. Phase 2: Domain Registrar Transfer (Pre-Cancellation)
+1.  **Update `hello` subdomain**:
+    *   Type: `CNAME`
+    *   Name: `hello`
+    *   Target: `rifaterdemsahin.github.io`
+    *   Proxy Status: **Proxied** (Orange Cloud) for SSL/CDN.
+2.  **Update `www` subdomain**:
+    *   Type: `CNAME`
+    *   Name: `www`
+    *   Target: `rifaterdemsahin.github.io`
+3.  **Update Apex (`@`) Record**:
+    *   GitHub requires A records for the root domain:
+        *   `185.199.108.153`
+        *   `185.199.109.153`
+        *   `185.199.110.153`
+        *   `185.199.111.153`
+    *   *Alternative*: Cloudflare supports "CNAME Flattening" for the apex. You can set `@` to CNAME `rifaterdemsahin.github.io`.
 
-**CRITICAL**: If your domain is registered through WordPress.com, you must decide if you want to keep the domain name before canceling the membership.
+## 3. Phase 2: GitHub Pages Repository Setup
 
-### Option A: Keep Domain at WordPress.com (Not Recommended if canceling membership)
-You can cancel the *hosting* but keep the *domain* registration. However, it's cleaner to move it.
+1.  Open your GitHub repository (e.g., `rifaterdemsahin/web`).
+2.  Go to **Settings** → **Pages**.
+3.  Under **Custom domain**, enter `rifaterdemsahin.com` (or the specific subdomain like `hello.rifaterdemsahin.com`).
+4.  Click **Save**.
+5.  **Verify DNS**: GitHub will check the records.
+6.  Check **Enforce HTTPS** (once the certificate is issued).
 
-### Option B: Transfer Domain to Cloudflare (Recommended)
-1.  In WordPress.com, go to **Upgrades → Domains**.
-2.  Select `rifaterdemsahin.com`.
-3.  Click **Transfer Domain** → **Transfer to another registrar**.
-4.  Disable **Transfer Lock**.
-5.  Get the **Auth Code (EPP Code)**.
-6.  In Cloudflare, go to **Domain Registration → Transfer Domains** and follow the prompts.
+## 4. Phase 3: WordPress.com Cancellation
 
-## 4. Phase 3: Cancel WordPress.com Membership
-
-Once your domain is safe (either transferred or set to remain active), you can cancel the subscription.
+Since the domain is registered at GoDaddy, the WordPress membership is purely for hosting/services and can be canceled without risk to the domain.
 
 ### Steps:
 1.  **Login to WordPress.com**.
 2.  Navigate to **Upgrades → Purchases**.
-3.  Select the membership/plan you wish to cancel.
+3.  Select the membership/plan.
 4.  Click **Cancel Plan**.
-    *   *Note*: If you are within the refund window, it will offer a refund. Otherwise, it will disable auto-renew.
-5.  **Confirm Domain Status**: Ensure that "Domain Mapping" or the domain itself isn't deleted if you haven't transferred it yet.
+5.  Confirm that you no longer need the WordPress hosting.
 
-## 5. Future State Diagram
+## 5. Homelab Integration Note
 
-```mermaid
-graph TD
-    User((User)) -->|Requests| CF[Cloudflare DNS]
-    CF -->|Points WWW| NewHost[New Hosting/GitHub Pages]
-    CF -->|Points Hello| NewHost
-    CF_Reg[Cloudflare Registrar] -.->|Manages Domain| CF
-    
-    style NewHost fill:#9f9,stroke:#333,stroke-width:2px
-    style CF_Reg fill:#f96,stroke:#333,stroke-width:2px
-```
+If you are running services in your homelab using this domain:
+*   Ensure **Cloudflare Tunnels** (Cloudflared) or Dynamic DNS (DDNS) records are not overwritten.
+*   The `hello` and `www` records should be the only ones redirected to GitHub.
 
 ## 6. Verification Checklist
 
-- [ ] `www.rifaterdemsahin.com` points to new target.
-- [ ] `hello.rifaterdemsahin.com` points to new target.
-- [ ] Domain transfer initiated or domain renewal confirmed outside of WP.
-- [ ] WordPress.com subscription status: **Canceled**.
-- [ ] Auto-renew disabled for all WordPress.com services.
+- [ ] `dig hello.rifaterdemsahin.com` returns GitHub IPs or Cloudflare Proxy.
+- [ ] `www.rifaterdemsahin.com` redirects/loads GitHub content.
+- [ ] GitHub Pages "Custom Domain" status: **DNS check successful**.
+- [ ] WordPress.com subscription: **Canceled**.
+- [ ] Homelab internal services: **Verified accessible** (if applicable).
