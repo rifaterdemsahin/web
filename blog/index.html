@@ -32,7 +32,77 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="../5_Symbols/assets/css/main.css">
-    <link rel="stylesheet" href="../assets/css/common-styles.css">
+    <link rel="stylesheet" href="../5_Symbols/assets/css/common-styles.css">
+    
+    <style>
+        /* Premium Blog Enhancements */
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .blog-post {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: var(--glass-shadow);
+        }
+
+        .post-image {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            flex-shrink: 0;
+        }
+
+        /* Link Testing Mode */
+        .test-mode-active a {
+            outline: 2px dashed #00ff88 !important;
+            position: relative;
+        }
+
+        .test-mode-active a::after {
+            content: attr(href);
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+            background: #00ff88;
+            color: #000;
+            font-size: 10px;
+            padding: 2px 4px;
+            border-radius: 4px;
+            white-space: nowrap;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        #test-mode-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 9999;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+    </style>
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -156,8 +226,9 @@
                     Insights from my personal knowledge system. I document everything I learn about AI, SRE, and Delivery Engineering in real-time.
                 </p>
                 <div class="blog-nav-shortcuts" style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center;">
-                    <a href="/archive.html" class="btn btn-secondary btn-sm">📅 Full Archive</a>
-                    <a href="/tags.html" class="btn btn-secondary btn-sm">🏷️ Topics</a>
+                    <a href="../5_Symbols/pages/archive.html" class="btn btn-secondary btn-sm">📅 Full Archive</a>
+                    <a href="../5_Symbols/pages/tags.html" class="btn btn-secondary btn-sm">🏷️ Topics</a>
+                    <button id="test-mode-btn" class="btn btn-outline-primary btn-sm" onclick="toggleTestMode()">🧪 Test Links</button>
                 </div>
             </div>
 
@@ -201,80 +272,76 @@
                 <div class="blog-posts">
                     <!-- Featured Post 1 -->
                     <article class="blog-post">
-                        <div class="post-image">🚀</div>
+                        <div class="post-image">📜</div>
                         <div class="post-content">
                             <div class="post-meta">
-                                <span class="post-category">DevOps</span>
+                                <span class="post-category">Contractors</span>
                                 <span>•</span>
-                                <span>December 2024</span>
+                                <span>Feb 2027</span>
                             </div>
-                            <h2 class="post-title">The Future of DevOps: AI-Powered Automation</h2>
+                            <h2 class="post-title">Contractors and passports</h2>
                             <p class="post-excerpt">
-                                Explore how artificial intelligence is revolutionizing DevOps practices, from automated deployments 
-                                to predictive monitoring and intelligent incident response.
+                                Critical insights for international contractors managing passport logistics and security clearances.
                             </p>
-                            <a href="https://rifaterdemsahin.com/" target="_blank" class="read-more">
-                                Read Full Article
+                            <a href="../2027/02/17/contractors-and-passports/index.html" class="read-more">
+                                Read Full Article &rarr;
                             </a>
                         </div>
                     </article>
 
                     <!-- Featured Post 2 -->
                     <article class="blog-post">
-                        <div class="post-image">☁️</div>
+                        <div class="post-image">💸</div>
                         <div class="post-content">
                             <div class="post-meta">
-                                <span class="post-category">Cloud</span>
+                                <span class="post-category">Career</span>
                                 <span>•</span>
-                                <span>November 2024</span>
+                                <span>Dec 2026</span>
                             </div>
-                            <h2 class="post-title">Multi-Cloud Strategy: Best Practices for 2024</h2>
+                            <h2 class="post-title">High-Income Career Without a Degree</h2>
                             <p class="post-excerpt">
-                                Learn how to design and implement a robust multi-cloud strategy that maximizes flexibility, 
-                                reduces vendor lock-in, and optimizes costs across AWS, Azure, and GCP.
+                                How to leverage skills and certifications to build a premium career in technology without traditional academic paths.
                             </p>
-                            <a href="https://rifaterdemsahin.com/" target="_blank" class="read-more">
-                                Read Full Article
+                            <a href="../2026/12/03/how-to-build-a-high-income-career-without-a-degree/index.html" class="read-more">
+                                Read Full Article &rarr;
                             </a>
                         </div>
                     </article>
 
                     <!-- Featured Post 3 -->
                     <article class="blog-post">
-                        <div class="post-image">🤖</div>
+                        <div class="post-image">📡</div>
                         <div class="post-content">
                             <div class="post-meta">
-                                <span class="post-category">AI</span>
+                                <span class="post-category">Hardware</span>
                                 <span>•</span>
-                                <span>October 2024</span>
+                                <span>Nov 2026</span>
                             </div>
-                            <h2 class="post-title">Integrating AI into Your DevOps Pipeline</h2>
+                            <h2 class="post-title">Testing a 4G Router for NAS Data Transfer</h2>
                             <p class="post-excerpt">
-                                A practical guide to incorporating AI and machine learning into your existing DevOps workflows 
-                                for enhanced automation and intelligent decision-making.
+                                A wireless marvel: Testing 4G routing solutions for efficient data movement to network-attached storage.
                             </p>
-                            <a href="https://rifaterdemsahin.com/" target="_blank" class="read-more">
-                                Read Full Article
+                            <a href="../2026/11/14/📡-testing-a-4g-router-to-move-data-to-nas-a-wireless-marvel-🚀/index.html" class="read-more">
+                                Read Full Article &rarr;
                             </a>
                         </div>
                     </article>
 
                     <!-- Featured Post 4 -->
                     <article class="blog-post">
-                        <div class="post-image">📊</div>
+                        <div class="post-image">📈</div>
                         <div class="post-content">
                             <div class="post-meta">
-                                <span class="post-category">Monitoring</span>
+                                <span class="post-category">AI</span>
                                 <span>•</span>
-                                <span>September 2024</span>
+                                <span>Sep 2026</span>
                             </div>
-                            <h2 class="post-title">Observability in Modern Applications</h2>
+                            <h2 class="post-title">AI-Based Graph Generation</h2>
                             <p class="post-excerpt">
-                                Deep dive into implementing comprehensive observability solutions using modern tools like 
-                                Prometheus, Grafana, and distributed tracing systems.
+                                Using artificial intelligence to automate complex data visualization and graph architectural diagrams.
                             </p>
-                            <a href="https://rifaterdemsahin.com/" target="_blank" class="read-more">
-                                Read Full Article
+                            <a href="../2026/09/11/ai-based-graph-generation/index.html" class="read-more">
+                                Read Full Article &rarr;
                             </a>
                         </div>
                     </article>
@@ -298,11 +365,11 @@
                     <div class="sidebar-widget">
                         <h3 class="widget-title">Categories</h3>
                         <div class="widget-content">
-                            <p><a href="https://rifaterdemsahin.com/" target="_blank" style="color: var(--primary-color); text-decoration: none;">DevOps & Automation</a></p>
-                            <p><a href="https://rifaterdemsahin.com/" target="_blank" style="color: var(--primary-color); text-decoration: none;">AI & Machine Learning</a></p>
-                            <p><a href="https://rifaterdemsahin.com/" target="_blank" style="color: var(--primary-color); text-decoration: none;">Cloud Infrastructure</a></p>
-                            <p><a href="https://rifaterdemsahin.com/" target="_blank" style="color: var(--primary-color); text-decoration: none;">Career & Growth</a></p>
-                            <p><a href="https://rifaterdemsahin.com/" target="_blank" style="color: var(--primary-color); text-decoration: none;">Technology Trends</a></p>
+                            <p><a href="../5_Symbols/pages/tags.html#devops" style="color: var(--primary-color); text-decoration: none;">DevOps & Automation</a></p>
+                            <p><a href="../5_Symbols/pages/tags.html#ai" style="color: var(--primary-color); text-decoration: none;">AI & Machine Learning</a></p>
+                            <p><a href="../5_Symbols/pages/tags.html#cloud" style="color: var(--primary-color); text-decoration: none;">Cloud Infrastructure</a></p>
+                            <p><a href="../5_Symbols/pages/tags.html#career" style="color: var(--primary-color); text-decoration: none;">Career & Growth</a></p>
+                            <p><a href="../5_Symbols/pages/tags.html#philosophy" style="color: var(--primary-color); text-decoration: none;">Technology Trends</a></p>
                         </div>
                     </div>
 
@@ -440,6 +507,21 @@
             const url = encodeURIComponent(window.location.href);
             const text = encodeURIComponent(document.title);
             window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank', 'width=600,height=600');
+        }
+
+        // Link Test Mode Toggle
+        function toggleTestMode() {
+            document.body.classList.toggle('test-mode-active');
+            const btn = document.getElementById('test-mode-btn');
+            if (document.body.classList.contains('test-mode-active')) {
+                btn.innerHTML = '✨ Exit Test Mode';
+                btn.classList.remove('btn-outline-primary');
+                btn.classList.add('btn-success');
+            } else {
+                btn.innerHTML = '🧪 Test Links';
+                btn.classList.remove('btn-success');
+                btn.classList.add('btn-outline-primary');
+            }
         }
     </script>
 </body>
