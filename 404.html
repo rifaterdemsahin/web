@@ -8,9 +8,16 @@
         // Smart 404 Redirect
         (function() {
             var currentPath = window.location.pathname;
-            // Check if the path matches the old broken link
+
+            // Old WordPress CV URLs → new CV selector page
+            if (currentPath.indexOf('/wp-content/uploads/') !== -1 &&
+                (currentPath.indexOf('cv') !== -1 || currentPath.indexOf('resume') !== -1)) {
+                window.location.replace('/5_Symbols/pages/cv.html');
+                return;
+            }
+
+            // Old broken delivery-pilot link
             if (currentPath === '/pages/delivery-pilot.html' || currentPath === '/pages/delivery-pilot') {
-                // Redirect to home page
                 window.location.replace('/');
             }
         })();

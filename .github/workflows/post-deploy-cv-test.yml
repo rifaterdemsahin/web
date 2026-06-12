@@ -1,0 +1,50 @@
+name: Post-Deploy CV URL Tests
+
+on:
+  workflow_run:
+    workflows:
+      - "Fast Deploy (Core Site Only)"
+      - "pages build and deployment"
+    types:
+      - completed
+  workflow_dispatch:
+
+jobs:
+  cv-url-tests:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+    steps:
+      - name: Wait for GitHub Pages to propagate
+        run: sleep 30
+
+      - name: Test CV selector page is live
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://www.rifaterdemsahin.com/5_Symbols/pages/cv.html")
+          echo "CV page status: $STATUS"
+          [ "$STATUS" = "200" ] || (echo "FAIL: CV page returned $STATUS" && exit 1)
+
+      - name: Test sample CV PDFs are accessible
+        run: |
+          for ROLE in cv_devops_engineer cv_ai_solutions_architect cv_llm_engineer cv_kubernetes_engineer cv_cloud_architect; do
+            URL="https://www.rifaterdemsahin.com/5_Symbols/cv/${ROLE}.pdf"
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
+            echo "${ROLE}.pdf → $STATUS"
+            [ "$STATUS" = "200" ] || (echo "FAIL: $URL returned $STATUS" && exit 1)
+          done
+
+      - name: Test old WordPress CV URL returns 404 with redirect logic
+        run: |
+          # GitHub Pages serves 404.html for missing paths; verify it contains the redirect script
+          BODY=$(curl -s "https://www.rifaterdemsahin.com/wp-content/uploads/2025/05/erdem-sahin-cv_summary_2025_may.pdf")
+          echo "$BODY" | grep -q "cv.html" || (echo "FAIL: 404 page missing CV redirect script" && exit 1)
+          echo "PASS: 404 page contains CV redirect"
+
+      - name: Test old WordPress .docx URL returns 404 with redirect logic
+        run: |
+          BODY=$(curl -s "https://www.rifaterdemsahin.com/wp-content/uploads/2025/05/erdem-sahin-cv_summary_2025_may.docx")
+          echo "$BODY" | grep -q "cv.html" || (echo "FAIL: 404 page missing CV redirect script" && exit 1)
+          echo "PASS: 404 page contains CV redirect"
+
+      - name: Report results
+        if: always()
+        run: echo "CV post-deploy tests complete."
